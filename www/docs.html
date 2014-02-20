@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Docs @ dnet 0.99.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Hai Fang and Julian Gough">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+
+<style type="text/css">
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 8px 20px 12px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #999999;
+}
+
+.navbar .brand:hover {
+  color: #F87217;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar .nav > li > a:hover {
+  color: #F87217;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+</style>
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17338744-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- Enlarge image -->
+<script type="text/javascript">
+    function newWin(url, name, width, height) { 
+       
+        var left = (screen.width/2)-(width/2);
+        var top = (screen.height/2)-(height/2); 
+        
+        window.open(url,name,'scrollbars=yes,resizable=yes,fullscreen=yes, width=' + width + ', height='+height+', top='+top+', left='+left);
+    }
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">dnet 0.99.0</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="install.html"><i class="icon-wrench icon-white"></i> Installation</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <div class="row">
+  <div class="span8">
+
+    <h1>Documentations</h1><p>
+
+    <h3>Training and Analysis functions</h3>
+    <p>These functions are used for training and analysis</p>
+
+    
+    <ul class="index">
+    
+      <li class = "icon">
+        <a href="eCal.html"><img src="icons/eCal.png" width = "40" height = "40" /></a><code><a href="eCal.html">eCal</a></code><br /> 
+        Function to conduct gene set enrichment analysis given the input data and the ontology in query</li>
+            
+      <li class = "icon">
+        <a href="eView.html"><img src="icons/eCal.png" width = "40" height = "40" /></a><code><a href="eView.html">eView</a></code><br /> 
+        Function to view enrichment results in a sample-specific manner</li>
+                
+      <li>
+        <code><a href="eWrite.html">eWrite</a></code><br />Function to write out enrichment results</li>
+            
+      <li>
+        <code><a href="ePvalAggregate.html">ePvalAggregate</a></code><br />Function to aggregate p values</li>
+            
+      <li>
+        <code><a href="eGraphInduce.html">eGraphInduce</a></code><br />Function to generate a subgraph induced by given vertices and their k nearest neighbors</li>
+            
+      <li>
+        <code><a href="eBUMfit.html">eBUMfit</a></code><br />Function to fit a p-value distribution under beta-uniform mixture model</li>
+            
+      <li>
+        <code><a href="eBUMscore.html">eBUMscore</a></code><br />Function to transform p-values into scores according to the fitted beta-uniform mixture model and/or after controlling false discovery rate</li>
+            
+      <li>
+        <code><a href="eGraphFind.html">eGraphFind</a></code><br />Function to find heuristically maximum scoring module</li>
+            
+      <li>
+        <code><a href="eGraphPipeline.html">eGraphPipeline</a></code><br />Function to setup the pipeline for finding maximum-scoring module from an input graph and the signficance imposed on its nodes</li>
+            
+      <li>
+        <code><a href="eGraphConfidence.html">eGraphConfidence</a></code><br />Function to append the confidence information from the source graphs into the target graph</li>
+            
+      <li>
+        <code><a href="eGraphReorder.html">eGraphReorder</a></code><br />Function to reorder the multiple graph colorings within a sheet-shape rectangle grid</li>
+            
+      <li>
+        <code><a href="eRWR.html">eRWR</a></code><br />Function to implement Random Walk with Restart (RWR) to pre-compute affinity matrix for the input graph</li>
+    
+    </ul>
+    <h3>Visualisation functions</h3>
+    <p>These functions are used for visualisation</p>
+
+    
+    <ul class="index">
+    
+      <li class = "icon">
+        <a href="visRunES.html"><img src="icons/visRunES.png" width = "40" height = "40" /></a><code><a href="visRunES.html">visRunES</a></code><br /> 
+        Function to visualise running enrichment score for a given sample and a gene set</li>
+            
+      <li class = "icon">
+        <a href="visGraph.html"><img src="icons/visRunES.png" width = "40" height = "40" /></a><code><a href="visGraph.html">visGraph</a></code><br /> 
+        Function to visualise a graph object of class "igraph" or "graphNEL"</li>
+                
+      <li>
+        <code><a href="visGraphMul.html">visGraphMul</a></code><br />Function to visualise the same graph but with multiple graph node colorings according to input data matrix</li>
+            
+      <li>
+        <code><a href="visGraphAnimate.html">visGraphAnimate</a></code><br />Function to animate the same graph but with multiple graph node colorings according to input data matrix</li>
+            
+      <li>
+        <code><a href="visGraphReorder.html">visGraphReorder</a></code><br />Function to visualise the multiple graph colorings reorded within a sheet-shape rectangle grid</li>
+            
+      <li>
+        <code><a href="visGraphArc.html">visGraphArc</a></code><br />Function to visualise an igraph object via arc diagram</li>
+            
+      <li>
+        <code><a href="visGraphCircle.html">visGraphCircle</a></code><br />Function to visualise an igraph object via circle diagram</li>
+    
+    </ul>
+    <h3>Built-in databases</h3>
+    
+    
+    <ul class="index">
+        
+      <li>
+        <code><a href="org.Mm.eg.html">org.Mm.eg</a></code><br />Mouse Entrez Genes (EG).</li>
+            
+      <li>
+        <code><a href="org.Mm.egDO.html">org.Mm.egDO</a></code><br />Annotations of Mouse Entrez Genes (EG) by Disease Ontology (DO).</li>
+            
+      <li>
+        <code><a href="org.Mm.egGOBP.html">org.Mm.egGOBP</a></code><br />Annotations of Mouse Entrez Genes (EG) by Gene Ontology Biological Process (GOBP).</li>
+            
+      <li>
+        <code><a href="org.Mm.egGOCC.html">org.Mm.egGOCC</a></code><br />Annotations of Mouse Entrez Genes (EG) by Gene Ontology Cellular Component (GOCC).</li>
+            
+      <li>
+        <code><a href="org.Mm.egGOMF.html">org.Mm.egGOMF</a></code><br />Annotations of Mouse Entrez Genes (EG) by Gene Ontology Molecular Function (GOMF).</li>
+            
+      <li>
+        <code><a href="org.Mm.egHPMI.html">org.Mm.egHPMI</a></code><br />Annotations of Mouse Entrez Genes (EG) by Human Phenotype Mode of Inheritance (HPMI).</li>
+            
+      <li>
+        <code><a href="org.Mm.egHPON.html">org.Mm.egHPON</a></code><br />Annotations of Mouse Entrez Genes (EG) by Human Phenotype ONset and clinical course (HPON).</li>
+            
+      <li>
+        <code><a href="org.Mm.egHPPA.html">org.Mm.egHPPA</a></code><br />Annotations of Mouse Entrez Genes (EG) by Human Phenotype Phenotypic Abnormality (HPPA).</li>
+            
+      <li>
+        <code><a href="org.Mm.egMP.html">org.Mm.egMP</a></code><br />Annotations Mouse Entrez Genes (EG) by Mammalian Phenotype (MP).</li>
+            
+      <li>
+        <code><a href="org.Mm.egPS.html">org.Mm.egPS</a></code><br />Annotations Mouse Entrez Genes (EG) by phylostratific age (PS).</li>
+            
+      <li>
+        <code><a href="org.Hs.string.html">org.Hs.string</a></code><br />Human functional protein association network from STRING (version 9.0.5).</li>
+            
+      <li>
+        <code><a href="org.Mm.string.html">org.Mm.string</a></code><br />Mouse functional protein association network from STRING (version 9.0.5).</li>
+            
+      <li>
+        <code><a href="org.At.string.html">org.At.string</a></code><br />Arabidopsis functional protein association network from STRING (version 9.0.5).</li>
+    
+    </ul>
+    <h3>Built-in datasets</h3>
+    
+    
+    <ul class="index">
+        
+      <li>
+        <code><a href="Hiratani_TableS1.html">Hiratani_TableS1</a></code>(RT, CpG, EX)<br />Mouse multilayer omics dataset from Hiratani et al. (2010)</li>
+            
+      <li>
+        <code><a href="CLL.html">CLL</a></code><br />Transcriptome dataset for Chronic Lymphocytic Leukemia patients from Chuang et al. (2012)</li>
+    
+    </ul>
+  </div>
+  
+  
+  <div class="span4">
+    
+    <!--
+    
+    
+    <h2>URL</h2>
+    <ul>
+      <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
+    </ul>
+    
+    <h2>Citation</h2>
+    <p>Fang H, Gough J. (2013) supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map. Biochemical and Biophysical Research Communications, doi: <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
+
+    
+    <h2>Author</h2>
+    Hai Fang and Julian Gough
+    
+    -->
+    
+  </div>
+  
+  
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+
+<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
+
+
+      </footer>
+    </div>
+  </body>
+</html>
