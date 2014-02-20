@@ -8,7 +8,7 @@ Maintainer: Hai Fang <hfang@cs.bris.ac.uk>
 Depends: R (>= 3.0.1), supraHex, igraph
 Imports: 
 Description: The 'dnet' package is initiased to fill in the need of an open-source tool for analysing biological networks and high-throughput biological data in an integrative manner. More specifically, dnet intends to analyse the biological network whose nodes/genes are associated with numeric properties such as expression patterns across a series of samples in subject. Also, dnet aims to deliver an eye-intuitive tool for network-based sample stratifications.
-URL: http://supfam.org/dnet
+URL: http://dnet.r-forge.r-project.org
 Collate: 
     'eCal.r'
     'eView.r'
