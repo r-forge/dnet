@@ -14,7 +14,7 @@
 #' @note The given vertices plus their k nearest neighbors will be used to induce the subgraph.
 #' @export
 #' @seealso \code{\link{eGraphInduce}}
-#' @include eGraphInduce.r
+#' @include visGraph.r
 #' @examples
 #' # 1) generate a random graph according to the ER model
 #' g <- erdos.renyi.game(100, 1/100)

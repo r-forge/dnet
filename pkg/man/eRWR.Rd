@@ -20,11 +20,11 @@
 \value{
   \itemize{ \item{\code{PTmatrix}: affinity matrix with the
   dimension of n X n, where n is the number of nodes in the
-  input graph. Columns stand for nodes starting to walk
-  from, and rows for nodes ending up to. Therefore, a
+  input graph. Columns stand for starting nodes walking
+  from, and rows for ending nodes walking to. Therefore, a
   column for a starting node represents a steady-state
   affinity vector that the starting node will visit all the
-  end nodes in the graph} }
+  ending nodes in the graph} }
 }
 \description{
   \code{eRWR} is supposed to implement Random Walk with

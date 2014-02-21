@@ -29,16 +29,9 @@ Assume you do not have a ROOT privilege and want R installation under your home 
     make install
     /home/hfang/R-3.0.2/bin/R # start R
 
-## 2. Install the package from Bioconductor and R-Forge
+## 2. Install the packages from CRAN, R-Forge and github
 
 Notes: below are R command lines (NOT shell command lines).
-
-To install [stable release version](http://bioconductor.org/packages/release/bioc/html/supraHex.html), run:
-
-    source("http://bioconductor.org/biocLite.R")
-    biocLite(c("supraHex","igraph"))
-
-To install [latest development version](http://bioconductor.org/packages/devel/bioc/html/supraHex.html) (`highly recommended` for benefits of latest improvements), run:
 
     install.packages("hexbin",repos="http://www.stats.bris.ac.uk/R")
     install.packages("supraHex",repos="http://R-Forge.R-project.org", type="source")
@@ -46,3 +39,4 @@ To install [latest development version](http://bioconductor.org/packages/devel/b
     install.packages("devtools",repos="http://www.stats.bris.ac.uk/R")
     library(devtools)
     install_github("arcdiagram",  username="gastonstat")
+    install.packages("dnet",repos="http://R-Forge.R-project.org", type="source")

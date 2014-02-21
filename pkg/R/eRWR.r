@@ -8,7 +8,7 @@
 #' 
 #' @return 
 #' \itemize{
-#'  \item{\code{PTmatrix}: affinity matrix with the dimension of n X n, where n is the number of nodes in the input graph. Columns stand for nodes starting to walk from, and rows for nodes ending up to. Therefore, a column for a starting node represents a steady-state affinity vector that the starting node will visit all the end nodes in the graph}
+#'  \item{\code{PTmatrix}: affinity matrix with the dimension of n X n, where n is the number of nodes in the input graph. Columns stand for starting nodes walking from, and rows for ending nodes walking to. Therefore, a column for a starting node represents a steady-state affinity vector that the starting node will visit all the ending nodes in the graph}
 #' }
 #' @note The input graph will treat as an unweighted graph if there is no 'weight' edge attribute assocaited
 #' @export

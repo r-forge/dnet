@@ -89,9 +89,11 @@
         <ul class="nav">
           <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
         </ul>
+        <!--
         <ul class="nav">
           <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
         </ul>
+        -->
       </div>
     </div>
   </div>
@@ -141,17 +143,9 @@ make install
 /home/hfang/R-3.0.2/bin/R # start R
 </code></pre>
 
-<h2>2. Install the package from Bioconductor and R-Forge</h2>
+<h2>2. Install the packages from CRAN, R-Forge and github</h2>
 
 <p>Notes: below are R command lines (NOT shell command lines).</p>
-
-<p>To install <a href="http://bioconductor.org/packages/release/bioc/html/supraHex.html">stable release version</a>, run:</p>
-
-<pre><code>source(&quot;http://bioconductor.org/biocLite.R&quot;)
-biocLite(c(&quot;supraHex&quot;,&quot;igraph&quot;))
-</code></pre>
-
-<p>To install <a href="http://bioconductor.org/packages/devel/bioc/html/supraHex.html">latest development version</a> (<code>highly recommended</code> for benefits of latest improvements), run:</p>
 
 <pre><code>install.packages(&quot;hexbin&quot;,repos=&quot;http://www.stats.bris.ac.uk/R&quot;)
 install.packages(&quot;supraHex&quot;,repos=&quot;http://R-Forge.R-project.org&quot;, type=&quot;source&quot;)
@@ -159,6 +153,7 @@ install.packages(&quot;igraph&quot;,repos=&quot;http://www.stats.bris.ac.uk/R&qu
 install.packages(&quot;devtools&quot;,repos=&quot;http://www.stats.bris.ac.uk/R&quot;)
 library(devtools)
 install_github(&quot;arcdiagram&quot;,  username=&quot;gastonstat&quot;)
+install.packages(&quot;dnet&quot;,repos=&quot;http://R-Forge.R-project.org&quot;, type=&quot;source&quot;)
 </code></pre>
 
 
@@ -173,11 +168,7 @@ install_github(&quot;arcdiagram&quot;,  username=&quot;gastonstat&quot;)
     <ul>
       <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
     </ul>
-    
-    <h2>Citation</h2>
-    <p>Fang H, Gough J. (2013) supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map. Biochemical and Biophysical Research Communications, doi: <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
-
-    
+        
     <h2>Author</h2>
     Hai Fang and Julian Gough
     

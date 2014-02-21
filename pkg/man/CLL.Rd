@@ -27,10 +27,10 @@ Chuang et al. (2012). Subnetwork-based analysis of chronic lymphocytic leukemia 
 \keyword{datasets}
 
 \examples{
-data(CLL)
-CLL
+#data(CLL)
+#CLL
 # extract information about the first 5 samples
-pData(CLL)[1:5,]
+#pData(CLL)[1:5,]
 # extract information about the first 5 features
-fData(CLL)[1:5,]
+#fData(CLL)[1:5,]
 }

@@ -41,6 +41,6 @@ Franceschini et al. (2013) STRING v9.1: protein-protein interaction networks, wi
 \keyword{datasets}
 
 \examples{
-data(org.Hs.string)
-org.Hs.string
+#data(org.Hs.string)
+#org.Hs.string
 }

@@ -4,8 +4,8 @@ list(
     readme = "",
     
     index = list(
-        sd_section("Training and Analysis functions",
-            "These functions are used for training and analysis",
+        sd_section("Analysis functions",
+            "These functions are used for analysis",
             c(
                 'eCal',
                 'eView',
@@ -60,6 +60,7 @@ list(
         )
     ),
     
+    if(0){
     icons = list(  
         eCal = sd_icon({
           textGrob("Common", rot = 45, gp = gpar(cex = 1))
@@ -70,5 +71,5 @@ list(
         eView = sd_icon(inherit = "eCal"),
         visGraph = sd_icon(inherit = "visRunES")
     )
-    
+    }
 )
