@@ -42,8 +42,8 @@
 #' @seealso \code{\link{eView}}, \code{\link{eWrite}}
 #' @include eCal.r
 #' @examples
-#' load("~/Databases/ChipSeq/supraHex/Bioinformatics_AN/RTiming/GSE18019/TableS1T.RData")
-#' data <- RT_LR[,1:2]
+#' #load("~/Databases/ChipSeq/supraHex/Bioinformatics_AN/RTiming/GSE18019/TableS1T.RData")
+#' #data <- RT_LR[,1:2]
 #' #eTerm <- eCal(data=data, identity="symbol", genome="mm", ontology="MP", sizeRange=c(10,1000), which_distance=c(1), weight=1, nperm=10)
 
 eCal <- function(data, identity=c("symbol","entrez"), genome=c("mm", "hs"), ontology=c("GOBP","GOMF","GOCC","MP","DO","PS"), sizeRange=c(10,1000), which_distance=NULL, weight=1, nperm=1000, fast=T, sigTail=c("two-tails","one-tail"), verbose=T)
