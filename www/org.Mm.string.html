@@ -113,7 +113,7 @@
     <p>An igraph object that contains a functional protein association network in mouse. The network is extracted from the STRING database (version 9.0.5). Only those associations with medium confidence (score>=0.4) are retained.</p>
   
     <h3>Usage</h3>
-    <pre>data(org.Mm.string)</pre>
+    <pre>load(url("http://dnet.r-forge.r-project.org/data/org.Mm.string.RData"))</pre>
         <!-- 
     -->
     
@@ -162,7 +162,10 @@
     </div>
     
     <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'>#data(org.Mm.string)#org.Mm.string</div></pre>
+    <pre class="examples"><div class='input'>load(url("http://dnet.r-forge.r-project.org/data/org.Hs.string.RData"))
+org.Mm.string
+</div>
+<strong class='error'>Error in eval(expr, envir, enclos): object 'org.Mm.string' not found</strong></pre>
   </div>
   
   <div class="span4">

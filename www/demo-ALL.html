@@ -167,7 +167,7 @@ pval <- fit2$p.value[,1]
 fdr_target <- 1e-14
 module <- <a href='eGraphPipeline.html' target=eGraphPipeline>eGraphPipeline</a>(g=g, pval=pval, fdr=fdr_target)
 </div>
-<strong class='message'>Start at 2014-02-21 16:53:30</strong>
+<strong class='message'>Start at 2014-02-21 17:54:34</strong>
 <strong class='message'></strong>
 <strong class='message'>First, fit the p-value distribution under beta-uniform mixture model...</strong>
 <strong class='message'>	A total of p-values: 6190</strong>
@@ -180,7 +180,7 @@ module <- <a href='eGraphPipeline.html' target=eGraphPipeline>eGraphPipeline</a>
 <strong class='message'>Finally, find the module with the maximum score...</strong>
 <strong class='message'>	Size of the module: 30 nodes and 38 edges</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-02-21 16:53:32</strong>
+<strong class='message'>Finish at 2014-02-21 17:54:36</strong>
 <strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'>
@@ -264,7 +264,7 @@ colnames(data) <- tmp[ind]
 # 11) color by additional data (be reordered)
 sReorder <- <a href='eGraphReorder.html' target=eGraphReorder>eGraphReorder</a>(g, data, feature="edge", node.normalise="degree", amplifier=2, metric="none")
 </div>
-<strong class='message'>Start at 2014-02-21 16:53:53</strong>
+<strong class='message'>Start at 2014-02-21 17:55:36</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -291,8 +291,8 @@ sReorder <- <a href='eGraphReorder.html' target=eGraphReorder>eGraphReorder</a>(
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-02-21 16:53:55</strong>
-<strong class='message'>Runtime in total is: 2 secs
+<strong class='message'>End at 2014-02-21 17:55:39</strong>
+<strong class='message'>Runtime in total is: 3 secs
 </strong>
 <div class='input'><a href='visGraphReorder.html' target=visGraphReorder>visGraphReorder</a>(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap="darkgreen-lightgreen-lightpink-darkred", vertex.label=NA,vertex.shape="sphere", vertex.size=18,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)</div>
 <a href="javascript:newWin('ALL-54.png', 'ALL-54.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='ALL-54.png', width="400" /></a>
