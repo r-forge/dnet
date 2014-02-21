@@ -1,4 +1,4 @@
-<a href="index.html"><IMG src="dnet_logo.png" height="150px" id="logo"></a>
+<a href="index.html"><IMG src="dnet_logo.png" height="100px" id="logo"></a>
 
 ## Introduction
 
