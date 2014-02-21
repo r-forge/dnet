@@ -33,10 +33,15 @@ Assume you do not have a ROOT privilege and want R installation under your home 
 
 Notes: below are R command lines (NOT shell command lines).
 
+First, install the dependent packages:
+
     install.packages("hexbin",repos="http://www.stats.bris.ac.uk/R")
     install.packages("supraHex",repos="http://R-Forge.R-project.org", type="source")
     install.packages("igraph",repos="http://www.stats.bris.ac.uk/R")
     install.packages("devtools",repos="http://www.stats.bris.ac.uk/R")
     library(devtools)
     install_github("arcdiagram",  username="gastonstat")
+
+Then, install the dnet package:
+
     install.packages("dnet",repos="http://R-Forge.R-project.org", type="source")

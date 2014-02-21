@@ -147,13 +147,19 @@ make install
 
 <p>Notes: below are R command lines (NOT shell command lines).</p>
 
+<p>First, install the dependent packages:</p>
+
 <pre><code>install.packages(&quot;hexbin&quot;,repos=&quot;http://www.stats.bris.ac.uk/R&quot;)
 install.packages(&quot;supraHex&quot;,repos=&quot;http://R-Forge.R-project.org&quot;, type=&quot;source&quot;)
 install.packages(&quot;igraph&quot;,repos=&quot;http://www.stats.bris.ac.uk/R&quot;)
 install.packages(&quot;devtools&quot;,repos=&quot;http://www.stats.bris.ac.uk/R&quot;)
 library(devtools)
 install_github(&quot;arcdiagram&quot;,  username=&quot;gastonstat&quot;)
-install.packages(&quot;dnet&quot;,repos=&quot;http://R-Forge.R-project.org&quot;, type=&quot;source&quot;)
+</code></pre>
+
+<p>Then, install the dnet package:</p>
+
+<pre><code>install.packages(&quot;dnet&quot;,repos=&quot;http://R-Forge.R-project.org&quot;, type=&quot;source&quot;)
 </code></pre>
 
 
