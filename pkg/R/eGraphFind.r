@@ -29,7 +29,7 @@
 #'
 #' # 3) calculate the scores according to the fitted BUM and fdr=0.01
 #' # using "pdf" method
-#' scores <- eBUMscore(fit, method="pdf", fdr=0.05, scatter.bum=TRUE)
+#' scores <- eBUMscore(fit, method="pdf", fdr=0.05, scatter.bum=FALSE)
 #' names(scores) <- as.character(1:length(scores))
 #'
 #' # 4) generate a random graph according to the ER model
@@ -39,7 +39,7 @@
 #' subg <- eGraphInduce(g, V(g), knn=0)
 #'
 #' # 6) find the module with the maximum score
-#' module <- eGraphFind(subg, scores)
+#' #module <- eGraphFind(subg, scores)
 
 eGraphFind <- function(g, scores)
 {

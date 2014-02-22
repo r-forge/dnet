@@ -211,20 +211,17 @@
 x <- rbeta(1000, shape1=0.5, shape2=1)
 
 # 2) fit a p-value distribution under beta-uniform mixture model
-fit <- eBUMfit(x, ntry=1, hist.bum=TRUE, contour.bum=TRUE)
+fit <- eBUMfit(x, ntry=1, hist.bum=FALSE, contour.bum=FALSE)
 </div>
 <strong class='message'>	A total of p-values: 1000</strong>
-<strong class='message'>	Maximum Log-Likelihood: 341.6</strong>
-<strong class='message'>	Mixture parameter (lambda): 0.040</strong>
-<strong class='message'>	Shape parameter (a): 0.473</strong>
-<a href="javascript:newWin('eGraphFind-6.png', 'eGraphFind-6.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='eGraphFind-6.png', width="400" /></a>
+<strong class='message'>	Maximum Log-Likelihood: 315.3</strong>
+<strong class='message'>	Mixture parameter (lambda): 0.000</strong>
+<strong class='message'>	Shape parameter (a): 0.496</strong>
 <div class='input'>
 # 3) calculate the scores according to the fitted BUM and fdr=0.01
 # using "pdf" method
-scores <- eBUMscore(fit, method="pdf", fdr=0.05, scatter.bum=TRUE)
-</div>
-<a href="javascript:newWin('eGraphFind-8.png', 'eGraphFind-8.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='eGraphFind-8.png', width="400" /></a>
-<div class='input'>names(scores) <- as.character(1:length(scores))
+scores <- eBUMscore(fit, method="pdf", fdr=0.05, scatter.bum=FALSE)
+names(scores) <- as.character(1:length(scores))
 
 # 4) generate a random graph according to the ER model
 g <- erdos.renyi.game(1000, 1/100)
@@ -233,7 +230,7 @@ g <- erdos.renyi.game(1000, 1/100)
 subg <- eGraphInduce(g, V(g), knn=0)
 
 # 6) find the module with the maximum score
-module <- eGraphFind(subg, scores)
+#module <- eGraphFind(subg, scores)
 </div></pre>
   </div>
   
