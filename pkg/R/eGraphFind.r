@@ -25,7 +25,7 @@
 #' x <- rbeta(1000, shape1=0.5, shape2=1)
 #'
 #' # 2) fit a p-value distribution under beta-uniform mixture model
-#' fit <- eBUMfit(x, ntry=1, hist.bum=TRUE, contour.bum=TRUE)
+#' fit <- eBUMfit(x, ntry=1, hist.bum=FALSE, contour.bum=FALSE)
 #'
 #' # 3) calculate the scores according to the fitted BUM and fdr=0.01
 #' # using "pdf" method
