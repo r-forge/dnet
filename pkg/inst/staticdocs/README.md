@@ -2,7 +2,7 @@
 
 ## Introduction
 
-`dnet` is an open-source R package for analysing biological networks and high-throughput biological data in an integrative manner. The supra-hexagonal map is a giant hexagon on a 2-dimensional map grid seamlessly consisting of smaller hexagons. It intends to meet the need for quickly understanding genome-wide biological data, which usually involve a large number of genomic coordinates (e.g. genes) but a much smaller number of samples. 
+`dnet` is an open-source R package for analysing biological networks and high-throughput biological data in an integrative manner.
 
 `dnet` intends to analyse the biological network whose nodes/genes are associated with numeric properties such as expression patterns across a series of samples in subject.
 
