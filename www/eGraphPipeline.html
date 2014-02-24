@@ -84,10 +84,10 @@
           <li><a href="install.html"><i class="icon-wrench icon-white"></i> Installation</a></li>
         </ul>
         <ul class="nav">
-          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
         </ul>
         <ul class="nav">
-          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
+          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
         </ul>
         <!--
         <ul class="nav">
@@ -202,33 +202,33 @@ subg <- eGraphInduce(g, V(g), knn=0)
 # 4) find maximum-scoring module based on fdr=0.1 threshold
 module <- eGraphPipeline(g=subg, pval=x, fdr=0.1)
 </div>
-<strong class='message'>Start at 2014-02-22 17:08:41</strong>
+<strong class='message'>Start at 2014-02-24 12:47:08</strong>
 <strong class='message'></strong>
 <strong class='message'>First, fit the p-value distribution under beta-uniform mixture model...</strong>
 <strong class='message'>	A total of p-values: 1000</strong>
-<strong class='message'>	Maximum Log-Likelihood: 304.3</strong>
+<strong class='message'>	Maximum Log-Likelihood: 353.0</strong>
 <strong class='message'>	Mixture parameter (lambda): 0.000</strong>
-<strong class='message'>	Shape parameter (a): 0.501</strong>
+<strong class='message'>	Shape parameter (a): 0.478</strong>
 <strong class='message'>Second, determine FDR threshold...</strong>
 <strong class='message'>	FDR threshold: 1.00e-01</strong>
 <strong class='message'>Third, calculate the scores according to the fitted BUM and FDR threshold...</strong>
 <strong class='message'>Finally, find the module with the maximum score...</strong>
-<strong class='message'>	Size of the module: 173 nodes and 226 edges</strong>
+<strong class='message'>	Size of the module: 195 nodes and 255 edges</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-02-22 17:08:42</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>Finish at 2014-02-24 12:47:10</strong>
+<strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'>
 # 5) find maximum-scoring module with the desired node number nsize=20
 module <- eGraphPipeline(g=subg, pval=x, nsize=20)
 </div>
-<strong class='message'>Start at 2014-02-22 17:08:42</strong>
+<strong class='message'>Start at 2014-02-24 12:47:10</strong>
 <strong class='message'></strong>
 <strong class='message'>First, fit the p-value distribution under beta-uniform mixture model...</strong>
 <strong class='message'>	A total of p-values: 1000</strong>
-<strong class='message'>	Maximum Log-Likelihood: 304.3</strong>
+<strong class='message'>	Maximum Log-Likelihood: 353.0</strong>
 <strong class='message'>	Mixture parameter (lambda): 0.000</strong>
-<strong class='message'>	Shape parameter (a): 0.501</strong>
+<strong class='message'>	Shape parameter (a): 0.478</strong>
 <strong class='message'>Second, determine FDR threshold...</strong>
 <strong class='message'>	Via constraint on the network size (20 nodes)</strong>
 <strong class='message'>	Scanning FDR at rough stage...</strong>
@@ -248,25 +248,23 @@ module <- eGraphPipeline(g=subg, pval=x, nsize=20)
 <strong class='message'>		FDR: 1.00e-07, corresponding to the network size (0 nodes)</strong>
 <strong class='message'>		FDR: 1.00e-06, corresponding to the network size (0 nodes)</strong>
 <strong class='message'>		FDR: 1.00e-05, corresponding to the network size (0 nodes)</strong>
-<strong class='message'>		FDR: 1.00e-04, corresponding to the network size (0 nodes)</strong>
+<strong class='message'>		FDR: 1.00e-04, corresponding to the network size (1 nodes)</strong>
 <strong class='message'>		FDR: 1.00e-03, corresponding to the network size (1 nodes)</strong>
-<strong class='message'>		FDR: 1.00e-02, corresponding to the network size (5 nodes)</strong>
-<strong class='message'>		FDR: 1.00e-01, corresponding to the network size (173 nodes)</strong>
+<strong class='message'>		FDR: 1.00e-02, corresponding to the network size (9 nodes)</strong>
+<strong class='message'>		FDR: 1.00e-01, corresponding to the network size (195 nodes)</strong>
 <strong class='message'>	Scanning FDR at finetune stage...</strong>
-<strong class='message'>		FDR: 1.50e-02, corresponding to the network size (7 nodes)</strong>
-<strong class='message'>		FDR: 2.00e-02, corresponding to the network size (6 nodes)</strong>
-<strong class='message'>		FDR: 2.50e-02, corresponding to the network size (8 nodes)</strong>
-<strong class='message'>		FDR: 3.00e-02, corresponding to the network size (10 nodes)</strong>
-<strong class='message'>		FDR: 3.50e-02, corresponding to the network size (12 nodes)</strong>
-<strong class='message'>		FDR: 4.00e-02, corresponding to the network size (14 nodes)</strong>
-<strong class='message'>		FDR: 4.50e-02, corresponding to the network size (14 nodes)</strong>
-<strong class='message'>		FDR: 5.00e-02, corresponding to the network size (36 nodes)</strong>
-<strong class='message'>	FDR threshold: 5.00e-02</strong>
+<strong class='message'>		FDR: 1.50e-02, corresponding to the network size (9 nodes)</strong>
+<strong class='message'>		FDR: 2.00e-02, corresponding to the network size (14 nodes)</strong>
+<strong class='message'>		FDR: 2.50e-02, corresponding to the network size (11 nodes)</strong>
+<strong class='message'>		FDR: 3.00e-02, corresponding to the network size (6 nodes)</strong>
+<strong class='message'>		FDR: 3.50e-02, corresponding to the network size (6 nodes)</strong>
+<strong class='message'>		FDR: 4.00e-02, corresponding to the network size (32 nodes)</strong>
+<strong class='message'>	FDR threshold: 4.00e-02</strong>
 <strong class='message'>Third, calculate the scores according to the fitted BUM and FDR threshold...</strong>
 <strong class='message'>Finally, find the module with the maximum score...</strong>
-<strong class='message'>	Size of the module: 36 nodes and 36 edges</strong>
+<strong class='message'>	Size of the module: 32 nodes and 31 edges</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-02-22 17:08:48</strong>
+<strong class='message'>Finish at 2014-02-24 12:47:16</strong>
 <strong class='message'>Runtime in total is: 6 secs
 </strong></pre>
   </div>

@@ -1,10 +1,10 @@
-<a href="index.html"><IMG src="dnet_logo.png" height="100px" id="logo"></a>
+<a href="index.html"><IMG src="dnet_logo1.png" height="100px" id="logo"></a>
 
 ## Introduction
 
 `dnet` is an open-source R package for analysing biological networks and high-throughput biological data in an integrative manner.
 
-`dnet` intends to analyse the biological network whose nodes/genes are associated with numeric properties such as expression patterns across a series of samples in subject.
+`dnet` intends to analyse the biological network whose nodes/genes are associated with dynamic information such as expression levels across samples.
 
 `dnet` aims to deliver an eye-intuitive tool for network-based sample stratifications.
 
@@ -13,7 +13,7 @@
 * An integrated framework for integration of network and expression information for classifying/stratifying samples
 * Identification of expression-active dynamic subnetworks
 * Network-based sample stratifications 
-* Visualisations of networks on 2D sample landscape
+* Visualisations of network-based sample stratifications on 2D landscape
 * This package can run on `Windows`, `Mac` and `Linux`
 
 ## See also
