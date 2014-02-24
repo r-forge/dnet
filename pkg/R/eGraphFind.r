@@ -39,7 +39,7 @@
 #' subg <- eGraphInduce(g, V(g), knn=0)
 #'
 #' # 6) find the module with the maximum score
-#' #module <- eGraphFind(subg, scores)
+#' module <- eGraphFind(subg, scores)
 
 eGraphFind <- function(g, scores)
 {
@@ -198,6 +198,11 @@ eGraphFind <- function(g, scores)
             for (i in neg.node.ids) {
                 if (!is.na(V(sub.mig)[i]$clusters[1])) {
                     borders <- c(i, V(sub.mig)[i]$clusters)
+                    
+                    ##########################
+                    borders <- unlist(borders)
+                    ##########################
+                    
                     score.neg.nodes <- c(score.neg.nodes, sum(V(sub.mig)[borders]$score))
                 }else{
                     score.neg.nodes <- c(score.neg.nodes, V(sub.mig)[i]$score)

@@ -97,7 +97,7 @@ g <- erdos.renyi.game(1000, 1/100)
 subg <- eGraphInduce(g, V(g), knn=0)
 
 # 6) find the module with the maximum score
-#module <- eGraphFind(subg, scores)
+module <- eGraphFind(subg, scores)
 }
 \seealso{
   \code{\link{eGraphFind}}
