@@ -23,7 +23,6 @@ Collate:
     'eGraphConfidence.r'
     'visGraph.r'
     'visGraphMul.r'
-    'visGraphAnimate.r'
     'visGraphReorder.r'
     'eGraphReorder.r'
     'visGraphArc.r'

@@ -237,7 +237,7 @@ data <- matrix(runif(nnodes*nsamples), nrow=nnodes, ncol=nsamples)
 rownames(data) <- V(subg)$name
 sReorder <- eGraphReorder(g=subg, data, feature="node", node.normalise="none")
 </div>
-<strong class='message'>Start at 2014-02-24 17:52:21</strong>
+<strong class='message'>Start at 2014-02-24 18:05:57</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -247,14 +247,14 @@ sReorder <- eGraphReorder(g=subg, data, feature="node", node.normalise="none")
 <strong class='message'>Finally, append the response data (hits and mqe) into the sMap object...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
-<strong class='message'>   dimension of input data: 10x40
+<strong class='message'>   dimension of input data: 10x11
    xy-dimension of map grid: xdim=6, ydim=6
    grid lattice: rect
    grid shape: sheet
    dimension of grid coord: 36x2
    initialisation method: linear
-   dimension of codebook matrix: 36x40
-   mean quantization error: 1.13310345128816
+   dimension of codebook matrix: 36x11
+   mean quantization error: 0.151488367668205
 </strong>
 <strong class='message'>Below are the details of trainology:</strong>
 <strong class='message'>   training algorithm: sequential
@@ -264,8 +264,8 @@ sReorder <- eGraphReorder(g=subg, data, feature="node", node.normalise="none")
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-02-24 17:52:22</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>End at 2014-02-24 18:05:57</strong>
+<strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
 # 4) visualise the module with vertices being color-coded by input data
