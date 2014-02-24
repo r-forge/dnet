@@ -27,7 +27,6 @@ list(
                 'visRunES',
                 'visGraph',
                 'visGraphMul',
-                'visGraphAnimate',
                 'visGraphReorder',
                 'visGraphArc',
                 'visGraphCircle'
