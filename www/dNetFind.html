@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>dNetFind @ dnet 0.99.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+
+<style type="text/css">
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 8px 20px 12px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #999999;
+}
+
+.navbar .brand:hover {
+  color: #F87217;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar .nav > li > a:hover {
+  color: #F87217;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+</style>
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17338744-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- Enlarge image -->
+<script type="text/javascript">
+    function newWin(url, name, width, height) { 
+       
+        var left = (screen.width/2)-(width/2);
+        var top = (screen.height/2)-(height/2); 
+        
+        window.open(url,name,'scrollbars=yes,resizable=yes,fullscreen=yes, width=' + width + ', height='+height+', top='+top+', left='+left);
+    }
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">dnet 0.99.0</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="install.html"><i class="icon-wrench icon-white"></i> Installation</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <!--
+        <ul class="nav">
+          <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
+        </ul>
+        -->
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h2>Function to find heuristically maximum scoring module</h2>
+
+<div class="row">
+  <div class="span8">
+  
+    <h3>Description</h3>
+    <p><code>dNetFind</code> is supposed to find the maximum scoring
+  module from an input graph and scores imposed on its
+  nodes. The input graph and the output module are both of
+  "igraph" or "graphNET" object. The input scores imposed
+  on the nodes in the input graph can be divided into two
+  parts: the positve nodes and the negative nodes. The
+  searching for maximum scoring module is deduced to find
+  the connected subgraph containing the positive nodes as
+  many as possible, but the negative nodes as few as
+  possible. To this end, a heuristic search is used (see
+  Note below).</p>
+  
+    <h3>Usage</h3>
+    <pre>dNetFind(g, scores)</pre>
+    
+    <h3>Arguments</h3>
+    <dl>
+      <dt>g</dt>
+      <dd>an object of class "igraph" or "graphNEL"</dd>
+      <dt>scores</dt>
+      <dd>a vector of scores. For each element, it
+  must have the name that could be mapped onto the input
+  graph</dd>
+    </dl>
+    <!-- 
+    -->
+    
+    <div class="Value">
+      <h3>Value</h3>
+      
+      <p>a module with a maximum score, an object of class
+  "igraph" or "graphNEL"</p>
+    </div>
+    <div class="Note">
+      <h3>Note</h3>
+      
+      <p>The search procedure is heuristic to find the module with
+  the maximum score: <ul>
+<li>i) transform the input
+  graph into a new graph by collapsing connected positive
+  nodes into a meta-node. As such, meta-nodes are isolated
+  to each other but are linked via negative nodes
+  (single-nodes). Clearly, meta-nodes have positive scores,
+  and negative scores for the single-nodes. </li>
+<li>ii)
+  append the weight attribute to the edges in the
+  transformed graph. There are two types of edges: 1) the
+  single-single edge with two single-nodes as two ends, and
+  2) single-meta edge with a single-node as one end and a
+  meta-node as the other end. The weight for a
+  single-single edge is the absolute sum of the scores in
+  its two-end single-nodes but normalised by their degrees.
+  The weight for a single-meta edge is simply the absolute
+  score in its single-node end normalised by the degree. As
+  such, weights are all non-negative. </li>
+<li>iii) find
+  minimum spanning tree (MST) in the weighted transformed
+  graph using Prim's greedy algorithm. A spanning tree of
+  the weighted graph is a subgraph that is tree and
+  connects all the node together. The MST is a spanning
+  tree with the sum of its edge weights minimised among all
+  possible spanning trees. </li>
+<li>iv) find all shortest
+  paths between any pair of meta-nodes in the MST. Within
+  the weighted transformed graph in ii), a subgraph is
+  induced containing nodes (only occuring in these shortest
+  paths) and all edges between them. </li>
+<li>v) within the
+  induced subgraph, identify single-nodes that are direct
+  neighbors of meta-nodes. For each of these single-nodes,
+  also make sure it has the absolute scores no more than
+  the sum of scores in its neighboring meta-nodes. These
+  single-nodes meeting both criteria are called "linkers".
+  </li>
+<li>vi) still within the induced subgraph in v), find
+  the linker graph that contains only linkers and edges
+  between them. Similarly to iii), find MST of the linker
+  graph, called 'linker MST'. Notably, this linker MST
+  serves as the scaffold, which only contains linkers but
+  has meta-nodes being direcly attached to. </li>
+<li>vii) in
+  linker MST plus its attached meta-nodes, find the optimal
+  path that has the sum of scores of its nodes and attached
+  meta-nodes maximised amongest all possible paths. Nodes
+  along this optimal path plus their attached meta-nodes
+  are called 'module nodes'. </li>
+<li>viii) finally, from the
+  input graph extract a subgraph (called 'module') that
+  only contains module nodes and edges betwen them. This
+  module is the maximum scoring module containing the
+  positive nodes as many as possible, but the negative
+  nodes as few as possible. </li>
+</ul></p>
+      <p></p>
+    </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) generate an vector consisting of random values from beta distribution
+x <- rbeta(1000, shape1=0.5, shape2=1)
+
+# 2) fit a p-value distribution under beta-uniform mixture model
+fit <- dBUMfit(x, ntry=1, hist.bum=FALSE, contour.bum=FALSE)
+</div>
+<strong class='message'>	A total of p-values: 1000</strong>
+<strong class='message'>	Maximum Log-Likelihood: 341.6</strong>
+<strong class='message'>	Mixture parameter (lambda): 0.040</strong>
+<strong class='message'>	Shape parameter (a): 0.473</strong>
+<div class='input'>
+# 3) calculate the scores according to the fitted BUM and fdr=0.01
+# using "pdf" method
+scores <- dBUMscore(fit, method="pdf", fdr=0.05, scatter.bum=FALSE)
+names(scores) <- as.character(1:length(scores))
+
+# 4) generate a random graph according to the ER model
+g <- erdos.renyi.game(1000, 1/100)
+
+# 5) produce the induced subgraph only based on the nodes in query
+subg <- dNetInduce(g, V(g), knn=0)
+
+# 6) find the module with the maximum score
+module <- dNetFind(subg, scores)
+</div></pre>
+  </div>
+  
+  <div class="span4">
+    
+    <!-- 
+    <ul>
+      <li>dNetFind</li>
+    </ul>
+    <ul>
+      
+    </ul> 
+    -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='dNetFind.html'>dNetFind</a></code>
+
+        
+    <!--
+    
+    <h2>URL</h2>
+    <ul>
+      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
+    </ul>
+    
+    
+    -->
+    
+  </div>
+  
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+
+<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
+
+
+      </footer>
+    </div>
+  </body>
+</html>

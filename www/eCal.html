@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>eCal @ dnet 0.99.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+
+<style type="text/css">
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 8px 20px 12px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #999999;
+}
+
+.navbar .brand:hover {
+  color: #F87217;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar .nav > li > a:hover {
+  color: #F87217;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+</style>
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17338744-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- Enlarge image -->
+<script type="text/javascript">
+    function newWin(url, name, width, height) { 
+       
+        var left = (screen.width/2)-(width/2);
+        var top = (screen.height/2)-(height/2); 
+        
+        window.open(url,name,'scrollbars=yes,resizable=yes,fullscreen=yes, width=' + width + ', height='+height+', top='+top+', left='+left);
+    }
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">dnet 0.99.0</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="install.html"><i class="icon-wrench icon-white"></i> Installation</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <!--
+        <ul class="nav">
+          <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
+        </ul>
+        -->
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h2>Function to conduct gene set enrichment analysis given the input data and the ontology in query</h2>
+
+<div class="row">
+  <div class="span8">
+  
+    <h3>Description</h3>
+    <p><code>eCal</code> is supposed to conduct gene set enrichment
+  analysis given the input data and the ontology in query.
+  It returns an object of class "eTerm".</p>
+  
+    <h3>Usage</h3>
+    <pre>eCal(data, identity = c("symbol", "entrez"), genome = c("mm", "hs"), ontology = c("GOBP", 
+  "GOMF", "GOCC", "MP", "DO", "PS"), sizeRange = c(10, 1000), which_distance = NULL, 
+      weight = 1, nperm = 1000, fast = T, sigTail = c("two-tails", "one-tail"), verbose = T)</pre>
+    
+    <h3>Arguments</h3>
+    <dl>
+      <dt>data</dt>
+      <dd>a data frame or matrix of input data. It must
+  have row names, either Entrez Gene ID or Symbol</dd>
+      <dt>identity</dt>
+      <dd>the type of gene identity (i.e. row names
+  of input data), either "symbol" for gene symbols (by
+  default) or "entrez" for Entrez Gene ID. The option
+  "symbol" is preferred as it is relatively stable from one
+  update to another; when gene symbols cannot be matched,
+  synonyms will be searched against</dd>
+      <dt>genome</dt>
+      <dd>the genome identity. It can be either "mm"
+  for mouse genome or "hs" for human genome</dd>
+      <dt>ontology</dt>
+      <dd>the ontology supported currently. For
+  mouse genome, it can be "GOBP" for Gene Ontology
+  Biological Process, "GOMF" for Gene Ontology Molecular
+  Function, "GOCC" for Gene Ontology Cellular Component, or
+  "MP" for Mammalian Phenotype. For human genome, it can be
+  "GOBP" for Gene Ontology Biological Process, "GOMF" for
+  Gene Ontology Molecular Function, "GOCC" for Gene
+  Ontology Cellular Component, "HP" for Human Phenotype, or
+  "DO" for Disease Ontology.</dd>
+      <dt>sizeRange</dt>
+      <dd>the minimum and maximum size of members
+  of each gene set in consideration. By default, it sets to
+  a minimum of 10 but no more than 1000</dd>
+      <dt>which_distance</dt>
+      <dd>which distance of terms in the
+  ontology is used to restrict terms in consideration. By
+  default, it sets to 'NULL' to consider all distances</dd>
+      <dt>weight</dt>
+      <dd>type of score weigth. It can be "0" for
+  unweighted (an equivalent to Kolmogorov-Smirnov, only
+  considering the rank), "1" for weighted by input gene
+  score (by default), and "2" for over-weighted, and so on</dd>
+      <dt>nperm</dt>
+      <dd>the number of random permutations. For each
+  permutation, gene-score associations will be permutated
+  so that permutation of gene-term associations is
+  realised</dd>
+      <dt>fast</dt>
+      <dd>logical to indicate whether to fast calculate
+  expected results from permutated data. By default, it
+  sets to true</dd>
+      <dt>sigTail</dt>
+      <dd>the tail used to calculate the statistical
+  significance. It can be either "two-tails" for the
+  significance based on two-tails or "one-tail" for the
+  significance based on one tail</dd>
+      <dt>verbose</dt>
+      <dd>logical to indicate whether the messages
+  will be displayed in the screen. By default, it sets to
+  false for no display</dd>
+    </dl>
+    <!-- 
+    -->
+    
+    <div class="Value">
+      <h3>Value</h3>
+      
+      <p>an object of class "eTerm", a list with following
+  components: <ul>
+<li><code>set_info</code>: a matrix of
+  nSet X 4 containing gene set information, where nSet is
+  the number of gene set in consideration, and the 4
+  columns are "setID" (i.e. "Term ID"), "name" (i.e. "Term
+  Name"), "namespace" and "distance" </li>
+<li><code>gs</code>: a
+  list of gene sets, each storing gene members. Always,
+  gene sets are identified by "setID" and gene members
+  identified by "Entrez ID" </li>
+<li><code>data</code>: a matrix of
+  nGene X nSample containing input data in consideration.
+  It is not always the same as the input data as only those
+  mappable are retained </li>
+<li><code>es</code>: a matrix of nSet
+  X nSample containing enrichment score, where nSample is
+  the number of samples (i.e. the number of columns in
+  input data </li>
+<li><code>nes</code>: a matrix of nSet X nSample
+  containing normalised enrichment score. It is the version
+  of enrichment score but after being normalised by gene
+  set size </li>
+<li><code>pvalue</code>: a matrix of nSet X nSample
+  containing nominal p value </li>
+<li><code>adjp</code>: a matrix
+  of nSet X nSample containing adjusted p value. It is the
+  p value but after being adjusted for multiple
+  comparisons </li>
+<li><code>gadjp</code>: a matrix of nSet X
+  nSample containing globally adjusted p value in terms of
+  all samples </li>
+<li><code>fdr</code>: a matrix of nSet X nSample
+  containing false discovery rate (FDR). It is the
+  estimated probability that the normalised enrichment
+  score represents a false positive finding
+  </li>
+<li><code>qvalue</code>: a matrix of nSet X nSample
+  containing q value. It is the monotunically increasing
+  FDR </li>
+<li><code>call</code>: the call that produced this
+  result </li>
+</ul></p>
+      <p></p>
+    </div>
+    <div class="Note">
+      <h3>Note</h3>
+      
+      <p>The interpretation of returned components: <ul>
+<li>"es": enrichment score for the gene set is the
+  degree to which this gene set is overrepresented at the
+  top or bottom of the ranked list of genes in each column
+  of input data; </li>
+<li>"nes": normalised enrichment score
+  for the gene set is enrichment score that has already
+  normalised by gene set size. It is comparable across
+  analysed gene sets; </li>
+<li>"pvalue": nominal p value is
+  the statistical significance of the enrichment score. It
+  is not adjusted for multiple hypothesis testing, and thus
+  is of limited use in comparing gene sets; </li>
+<li>"adjp":
+  adjusted p value by Benjamini & Hochberg method. It is
+  comparable across gene sets; </li>
+<li>"gadjp": globally
+  adjusted p value by Benjamini & Hochberg method. Unlike
+  "adjp", it is adjusted in terms of all samples;
+  </li>
+<li>"fdr": false discovery rate is the estimated
+  probability that the normalised enrichment score
+  represents a false positive finding. Unlike "adjp" or
+  "gadjp" (also aliased as "fdr") that is derived from a
+  list of p values, this version of fdr is directly
+  calculate from the statistic (i.e. normalised enrichment
+  score); </li>
+<li>"qvalue": q value is the monotunically
+  increasing FDR so that the higher "nes", the lower
+  "qvalue". </li>
+</ul></p>
+      <p></p>
+    </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'>#load("~/Databases/ChipSeq/supraHex/Bioinformatics_AN/RTiming/GSE18019/TableS1T.RData")#data <- RT_LR[,1:2]#eTerm <- eCal(data=data, identity="symbol", genome="mm", ontology="MP", sizeRange=c(10,1000), which_distance=c(1), weight=1, nperm=10)</div></pre>
+  </div>
+  
+  <div class="span4">
+    
+    <!-- 
+    <ul>
+      <li>eCal</li>
+    </ul>
+    <ul>
+      
+    </ul> 
+    -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='eView.html'>eView</a></code>, <code><a href='eWrite.html'>eWrite</a></code>
+
+        
+    <!--
+    
+    <h2>URL</h2>
+    <ul>
+      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
+    </ul>
+    
+    
+    -->
+    
+  </div>
+  
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+
+<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
+
+
+      </footer>
+    </div>
+  </body>
+</html>
