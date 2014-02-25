@@ -10,26 +10,26 @@ list(
                 'eCal',
                 'eView',
                 'eWrite',
-                'ePvalAggregate',
-                'eGraphInduce',
-                'eBUMfit',
-                'eBUMscore',
-                'eGraphFind',
-                'eGraphPipeline',
-                'eGraphConfidence',
-                'eGraphReorder',
-                'eRWR'
+                'dPvalAggregate',
+                'dNetInduce',
+                'dBUMfit',
+                'dBUMscore',
+                'dNetFind',
+                'dNetPipeline',
+                'dNetConfidence',
+                'dNetReorder',
+                'dRWR'
             )
         ),
         sd_section("Visualisation functions",
             "These functions are used for visualisation",
             c(
                 'visRunES',
-                'visGraph',
-                'visGraphMul',
-                'visGraphReorder',
-                'visGraphArc',
-                'visGraphCircle'
+                'visNet',
+                'visNetMul',
+                'visNetReorder',
+                'visNetArc',
+                'visNetCircle'
             )
         ),
         sd_section("Built-in databases",
@@ -68,7 +68,7 @@ list(
           textGrob("Hot", rot = 45, gp = gpar(cex = 1.2))
         }),
         eView = sd_icon(inherit = "eCal"),
-        visGraph = sd_icon(inherit = "visRunES")
+        visNet = sd_icon(inherit = "visRunES")
     )
     }
 )

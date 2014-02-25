@@ -16,7 +16,7 @@ mapped.eset <- mapByVar(ALL, network=interactome, attr="geneID")
 mapped.eset[1:5,1:5]
 
 # extract network that only contains genes in mapped.eset
-network <- eGraphInduce(g=interactome, nodes_query=rownames(mapped.eset), knn=0, remove.loops=T, largest.comp=T)
+network <- dNetInduce(g=interactome, nodes_query=rownames(mapped.eset), knn=0, remove.loops=T, largest.comp=T)
 g <- igraph.from.graphNEL(network)
 
 # 1) preparation of node p-values
@@ -33,7 +33,7 @@ pval <- fit2$p.value[,1]
 
 # 2) identification of module
 fdr_target <- 1e-14
-module <- eGraphPipeline(g=g, pval=pval, fdr=fdr_target)
+module <- dNetPipeline(g=g, pval=pval, fdr=fdr_target)
 
 g <- module
 glayout <- layout.fruchterman.reingold(g)
@@ -67,20 +67,20 @@ tmp <- data.frame(ind=1:vcount(g), vgroups, vdegrees)
 ordering <- tmp[order(vgroups,vdegrees),]$ind
 
 # 6) visualise graph using 1-dimensional arc diagram
-visGraphArc(g, ordering=ordering, labels=V(g)$geneSymbol, vertex.label.color=vcolors, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.size=log(vdegrees)+0.1, vertex.label.cex=0.6)
+visNetArc(g, ordering=ordering, labels=V(g)$geneSymbol, vertex.label.color=vcolors, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.size=log(vdegrees)+0.1, vertex.label.cex=0.6)
 
 # 7) visualise graph using circle diagram
 # 7a) drawn into a single circle 
-visGraphCircle(g=g, com=com, ordering=ordering, colormap=colormap, vertex.label=V(g)$geneSymbol, vertex.size=igraph::degree(g)+5, vertex.label.color="black", vertex.label.cex=0.6, vertex.label.dist=0.75, vertex.shape="sphere", edge.color.within="grey", edge.color.crossing="black", edge.width=1, edge.lty=1, mark.shape=1, mark.expand=10)
+visNetCircle(g=g, com=com, ordering=ordering, colormap=colormap, vertex.label=V(g)$geneSymbol, vertex.size=igraph::degree(g)+5, vertex.label.color="black", vertex.label.cex=0.6, vertex.label.dist=0.75, vertex.shape="sphere", edge.color.within="grey", edge.color.crossing="black", edge.width=1, edge.lty=1, mark.shape=1, mark.expand=10)
 # 7b) drawn into multiple circles
-visGraphCircle(g=g, com=com, circles="multiple", ordering=ordering, colormap=colormap, vertex.label=V(g)$geneSymbol, vertex.size=igraph::degree(g)+5, vertex.label.color="black", vertex.label.cex=0.6, vertex.label.dist=0.25, vertex.shape="sphere", edge.color.within="grey", edge.color.crossing="black", edge.width=1, edge.lty=1, mark.shape=1, mark.expand=10)
+visNetCircle(g=g, com=com, circles="multiple", ordering=ordering, colormap=colormap, vertex.label=V(g)$geneSymbol, vertex.size=igraph::degree(g)+5, vertex.label.color="black", vertex.label.cex=0.6, vertex.label.dist=0.25, vertex.shape="sphere", edge.color.within="grey", edge.color.crossing="black", edge.width=1, edge.lty=1, mark.shape=1, mark.expand=10)
 
 # 8) as comparison, also visualise graph on 2-dimensional layout 
 mark.groups <- communities(com)
 mark.col <- visColoralpha(mcolors, alpha=0.2)
 mark.border <- visColoralpha(mcolors, alpha=0.2)
 edge.color <- c("grey", "black")[crossing(com,g)+1]
-visGraph(g, glayout=glayout, vertex.label=V(g)$geneSymbol, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.shape="sphere", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
+visNet(g, glayout=glayout, vertex.label=V(g)$geneSymbol, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.shape="sphere", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
 
 legend_name <- paste("C",1:length(mcolors)," (n=",com$csize,", pval=",signif(com$significance,digits=2),")",sep='')
 legend("bottomleft", legend=legend_name, fill=mcolors, bty="n", cex=0.7)
@@ -88,16 +88,16 @@ legend("bottomleft", legend=legend_name, fill=mcolors, bty="n", cex=0.7)
 # 9) color by score and FC
 logFC <- fit2$coefficients[V(g)$name,1]
 par(mfrow=c(1,2), mar=c(0.5,0.5,0.5,0.5))
-visGraph(g, glayout=glayout, pattern=V(module)$score, newpage=F, colorbar=F, mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
-visGraph(g, glayout=glayout, pattern=logFC, newpage=F, colorbar=F, mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
+visNet(g, glayout=glayout, pattern=V(module)$score, newpage=F, colorbar=F, mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
+visNet(g, glayout=glayout, pattern=logFC, newpage=F, colorbar=F, mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
 
 # 10) color by additional data
 tmp <- substr(unlist(ALL$BT), 0, 2)
 ind <- union(which(tmp=="B4"), which(tmp=="T3"))
 data <- mapped.eset[V(g)$name,ind]
 colnames(data) <- tmp[ind]
-visGraphMul(g=g, data=data, height=ceiling(sqrt(ncol(data)))*2, newpage=T,glayout=glayout,colormap="darkgreen-lightgreen-lightpink-darkred",vertex.label=NA,vertex.shape="sphere", vertex.size=18,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
+visNetMul(g=g, data=data, height=ceiling(sqrt(ncol(data)))*2, newpage=T,glayout=glayout,colormap="darkgreen-lightgreen-lightpink-darkred",vertex.label=NA,vertex.shape="sphere", vertex.size=18,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
 
 # 11) color by additional data (be reordered)
-sReorder <- eGraphReorder(g, data, feature="edge", node.normalise="degree", amplifier=2, metric="none")
-visGraphReorder(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap="darkgreen-lightgreen-lightpink-darkred", vertex.label=NA,vertex.shape="sphere", vertex.size=18,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)
+sReorder <- dNetReorder(g, data, feature="edge", node.normalise="degree", amplifier=2, metric="none")
+visNetReorder(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap="darkgreen-lightgreen-lightpink-darkred", vertex.label=NA,vertex.shape="sphere", vertex.size=18,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)

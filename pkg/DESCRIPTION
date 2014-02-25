@@ -2,7 +2,7 @@ Package: dnet
 Type: Package
 Title: Expression-active dynamic networks for stratifying and visualising samples
 Version: 0.99.0
-Date: 2014-2-20
+Date: 2014-2-25
 Author: Hai Fang and Julian Gough
 Maintainer: Hai Fang <hfang@cs.bris.ac.uk>
 Depends: R (>= 3.0.1), supraHex, igraph
@@ -14,19 +14,19 @@ Collate:
     'eView.r'
     'eWrite.r'
     'visRunES.r'
-    'ePvalAggregate.r'
-    'eGraphInduce.r'
-    'eBUMfit.r'
-    'eBUMscore.r'
-    'eGraphFind.r'
-    'eGraphPipeline.r'
-    'eGraphConfidence.r'
-    'visGraph.r'
-    'visGraphMul.r'
-    'visGraphReorder.r'
-    'eGraphReorder.r'
-    'visGraphArc.r'
-    'visGraphCircle.r'
-    'eRWR.r'
+    'dPvalAggregate.r'
+    'dNetInduce.r'
+    'dBUMfit.r'
+    'dBUMscore.r'
+    'dNetFind.r'
+    'dNetPipeline.r'
+    'dNetConfidence.r'
+    'visNet.r'
+    'visNetMul.r'
+    'visNetReorder.r'
+    'dNetReorder.r'
+    'visNetArc.r'
+    'visNetCircle.r'
+    'dRWR.r'
 License: GPL-2
 biocViews: Bioinformatics
