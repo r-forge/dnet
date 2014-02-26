@@ -42,7 +42,6 @@
 #' rownames(data) <- V(subg)$name
 #' sReorder <- dNetReorder(g=subg, data, feature="node", node.normalise="none")
 
-
 dNetReorder <- function (g, data, feature=c("node", "edge"), node.normalise=c("none", "degree"), xdim=NULL, ydim=NULL, amplifier=NULL, metric=c("none","pearson","spearman","kendall","euclidean","manhattan","cos","mi"), init=c("linear","uniform","sample"), algorithm=c("sequential","batch"), alphaType=c("invert","linear","power"), neighKernel=c("gaussian","bubble","cutgaussian","ep","gamma"))
 {
 
@@ -127,7 +126,7 @@ dNetReorder <- function (g, data, feature=c("node", "edge"), node.normalise=c("n
         ydim <- ceiling(sqrt(nHex))
     }
 
-    sReorder <- sCompReorder(fdata, xdim=xdim, ydim=ydim, metric=metric, init=init, algorithm=algorithm, alphaType=alphaType, neighKernel=neighKernel)
+    sReorder <- sCompReorder(fdata, xdim=xdim, ydim=ydim, amplifier=amplifier, metric=metric, init=init, algorithm=algorithm, alphaType=alphaType, neighKernel=neighKernel)
     
     invisible(sReorder)
 }
