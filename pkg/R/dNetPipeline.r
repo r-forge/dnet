@@ -36,7 +36,7 @@
 #' module <- dNetPipeline(g=subg, pval=x, fdr=0.1)
 #' 
 #' # 5) find maximum-scoring module with the desired node number nsize=20
-#' module <- dNetPipeline(g=subg, pval=x, nsize=20)
+#' # module <- dNetPipeline(g=subg, pval=x, nsize=20)
 
 dNetPipeline <- function(g, pval, method=c("pdf","cdf"), fdr=NULL, nsize=NULL, plot=F, verbose=T)
 {

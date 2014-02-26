@@ -1,13 +1,13 @@
 Package: dnet
 Type: Package
-Title: Expression-active dynamic networks for stratifying and visualising samples
+Title: Expression-active dynamic networks for sample stratifications and visualisations
 Version: 0.99.0
-Date: 2014-2-25
+Date: 2014-2-26
 Author: Hai Fang and Julian Gough
 Maintainer: Hai Fang <hfang@cs.bris.ac.uk>
-Depends: R (>= 3.0.1), supraHex, igraph
+Depends: R (>= 3.0.1), igraph, supraHex
 Imports: 
-Description: The 'dnet' package is initiased to fill in the need of an open-source tool for analysing biological networks and high-throughput biological data in an integrative manner. More specifically, dnet intends to analyse the biological network whose nodes/genes are associated with numeric properties such as expression patterns across a series of samples in subject. Also, dnet aims to deliver an eye-intuitive tool for network-based sample stratifications.
+Description: The 'dnet' package is initiased to fill in the need of an open-source tool for analysing biological networks and high-throughput biological data in an integrative manner. More specifically, dnet intends to analyse the biological network whose nodes/genes are associated with dynamic information such as expression levels across samples. Also, dnet aims to deliver an eye-intuitive tool for network-based sample stratifications.
 URL: http://dnet.r-forge.r-project.org
 Collate: 
     'eCal.r'
