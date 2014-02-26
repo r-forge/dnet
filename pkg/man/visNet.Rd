@@ -124,7 +124,7 @@ subg <- dNetInduce(g, V(g), knn=0)
 # 3) visualise the subg with vertices being color-coded by the pattern
 pattern <- runif(vcount(subg))
 names(pattern) <- V(subg)$name
-visNet(g=subg, pattern=pattern, vertex.shape="sphere")
+visNet(g=subg, pattern=pattern, colormap="bwr", vertex.shape="sphere")
 }
 \seealso{
   \code{\link{dNetFind}}

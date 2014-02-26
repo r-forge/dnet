@@ -35,7 +35,7 @@
 #' # 3) visualise the subg with vertices being color-coded by the pattern
 #' pattern <- runif(vcount(subg))
 #' names(pattern) <- V(subg)$name
-#' visNet(g=subg, pattern=pattern, vertex.shape="sphere")
+#' visNet(g=subg, pattern=pattern, colormap="bwr", vertex.shape="sphere")
 
 visNet <- function(g, pattern=NULL, colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"), ncolors=40, zlim=NULL, colorbar=T, newpage=T, glayout=layout.fruchterman.reingold, vertex.frame.color=NA, vertex.size=NULL, vertex.color=NULL, vertex.shape=NULL, vertex.label=NULL, vertex.label.cex=NULL, vertex.label.dist=NULL, vertex.label.color="black", ...)
 {
@@ -92,6 +92,7 @@ visNet <- function(g, pattern=NULL, colormap=c("bwr","jet","gbr","wyr","br","yr"
                 }
                 zlim <- c(vmin,vmax)
             }
+            
             ## A function to map a vector to colors
             vec2color <- function(vec, colormap=colormap, ncolors=ncolors, zlim=zlim){
                 palette.name <- visColormap(colormap=colormap)
