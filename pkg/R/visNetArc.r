@@ -48,7 +48,7 @@
 #' visNetArc(g, ordering=ordering, labels=V(g)$name, vertex.label.color=vcolors, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.size=log(vdegrees)+0.1)
 #'
 #' # 7) as comparison, also visualise graph on 2-dimensional layout 
-#' visNet(g, layout=layout.kamada.kawai(g), vertex.label=V(g)$name, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.shape="sphere")
+#' visNet(g, colormap="bwr", layout=layout.kamada.kawai(g), vertex.label=V(g)$name, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.shape="sphere")
 
 visNetArc <- function(g, orientation=c('vertical','horizontal'), newpage=T, ordering=NULL, labels=V(g)$name, vertex.label.color="black", vertex.label.cex=1, vertex.color="transparent", vertex.frame.color="black", vertex.size=log(degree(g))+0.1, vertex.pch=21, vertex.lwd=1, edge.color="grey", edge.width=1, edge.lty=1, ...)
 {

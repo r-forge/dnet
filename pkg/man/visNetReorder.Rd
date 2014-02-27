@@ -123,7 +123,7 @@ rownames(data) <- V(subg)$name
 sReorder <- dNetReorder(g=subg, data, feature="node", node.normalise="none")
 
 # 4) visualise the module with vertices being color-coded by input data
-visNetReorder(g=subg, data=data, sReorder)
+visNetReorder(g=subg, colormap="bwr", data=data, sReorder)
 }
 \seealso{
   \code{\link{visNet}}, \code{\link{dNetReorder}}

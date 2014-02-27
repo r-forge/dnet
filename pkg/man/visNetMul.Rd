@@ -118,7 +118,7 @@ nnodes <- vcount(subg)
 nsamples <- 10
 data <- matrix(runif(nnodes*nsamples), nrow=nnodes, ncol=nsamples)
 rownames(data) <- V(subg)$name
-visNetMul(g=subg, data=data, glayout=layout.fruchterman.reingold)
+visNetMul(g=subg, colormap="bwr", data=data, glayout=layout.fruchterman.reingold)
 }
 \seealso{
   \code{\link{visNet}}

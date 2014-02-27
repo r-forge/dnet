@@ -42,7 +42,7 @@
 #' sReorder <- dNetReorder(g=subg, data, feature="node", node.normalise="none")
 #' 
 #' # 4) visualise the module with vertices being color-coded by input data
-#' visNetReorder(g=subg, data=data, sReorder)
+#' visNetReorder(g=subg, colormap="bwr", data=data, sReorder)
 
 visNetReorder <- function (g, data, sReorder, height=7, margin=rep(0.1,4), border.color="#EEEEEE", colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"), ncolors=40, zlim=NULL, colorbar=T, colorbar.fraction=0.5, newpage=T, glayout=layout.fruchterman.reingold, mtext.side=3, mtext.adj=0,mtext.cex=1,mtext.font=2,mtext.col="black", ...)
 {

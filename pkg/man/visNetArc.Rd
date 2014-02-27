@@ -99,7 +99,7 @@ ordering <- tmp[order(vgroups,vdegrees),]$ind
 visNetArc(g, ordering=ordering, labels=V(g)$name, vertex.label.color=vcolors, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.size=log(vdegrees)+0.1)
 
 # 7) as comparison, also visualise graph on 2-dimensional layout
-visNet(g, layout=layout.kamada.kawai(g), vertex.label=V(g)$name, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.shape="sphere")
+visNet(g, colormap="bwr", layout=layout.kamada.kawai(g), vertex.label=V(g)$name, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.shape="sphere")
 }
 \seealso{
   \code{\link{visNet}}
