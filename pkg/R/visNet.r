@@ -61,7 +61,6 @@ visNet <- function(g, pattern=NULL, colormap=c("bwr","jet","gbr","wyr","br","yr"
         }
     }
     
-    
     shapes <- rep("circle", vcount(ig))
     if(is.null(vertex.shape)){
         if ("score" %in% list.vertex.attributes(ig)){
