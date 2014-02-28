@@ -127,10 +127,10 @@ ordering <- tmp[order(vgroups,vdegrees),]$ind
 
 # 6) visualise graph using circle diagram
 # 6a) drawn into a single circle
-visNetCircle(g=g, colormap="bwr", com=com, ordering=ordering, vertex.label=V(g)$name)
+#visNetCircle(g=g, colormap="bwr", com=com, ordering=ordering, vertex.label=V(g)$name)
 
 # 6b) drawn into multlpe circles (one circle per community)
-visNetCircle(g=g, colormap="bwr", com=com, circles="multiple", ordering=ordering, vertex.label=V(g)$name)
+#visNetCircle(g=g, colormap="bwr", com=com, circles="multiple", ordering=ordering, vertex.label=V(g)$name)
 
 # 7) as comparison, also visualise graph on 2-dimensional layout
 mark.groups <- communities(com)
