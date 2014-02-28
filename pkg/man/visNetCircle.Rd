@@ -134,10 +134,10 @@ ordering <- tmp[order(vgroups,vdegrees),]$ind
 
 # 7) as comparison, also visualise graph on 2-dimensional layout
 mark.groups <- communities(com)
-mark.col <- visColoralpha(mcolors, alpha=0.2)
-mark.border <- visColoralpha(mcolors, alpha=0.2)
+#mark.col <- visColoralpha(mcolors, alpha=0.2)
+#mark.border <- visColoralpha(mcolors, alpha=0.2)
 edge.color <- c("grey", "black")[crossing(com,g)+1]
-visNet(g, colormap="bwr", glayout=layout.fruchterman.reingold, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.shape="sphere", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
+#visNet(g, colormap="bwr", glayout=layout.fruchterman.reingold, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.shape="sphere", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
 }
 \seealso{
   \code{\link{visNet}}
