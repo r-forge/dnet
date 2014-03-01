@@ -237,7 +237,7 @@ data <- matrix(runif(nnodes*nsamples), nrow=nnodes, ncol=nsamples)
 rownames(data) <- V(subg)$name
 sReorder <- dNetReorder(g=subg, data, feature="node", node.normalise="none")
 </div>
-<strong class='message'>Start at 2014-02-26 11:37:51</strong>
+<strong class='message'>Start at 2014-03-01 20:40:16</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -247,14 +247,14 @@ sReorder <- dNetReorder(g=subg, data, feature="node", node.normalise="none")
 <strong class='message'>Finally, append the response data (hits and mqe) into the sMap object...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
-<strong class='message'>   dimension of input data: 10x11
+<strong class='message'>   dimension of input data: 10x18
    xy-dimension of map grid: xdim=6, ydim=6
    grid lattice: rect
    grid shape: sheet
    dimension of grid coord: 36x2
    initialisation method: linear
-   dimension of codebook matrix: 36x11
-   mean quantization error: 0.151488367668205
+   dimension of codebook matrix: 36x18
+   mean quantization error: 0.51541697589806
 </strong>
 <strong class='message'>Below are the details of trainology:</strong>
 <strong class='message'>   training algorithm: sequential
@@ -264,12 +264,12 @@ sReorder <- dNetReorder(g=subg, data, feature="node", node.normalise="none")
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-02-26 11:37:52</strong>
+<strong class='message'>End at 2014-03-01 20:40:17</strong>
 <strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'>
 # 4) visualise the module with vertices being color-coded by input data
-visNetReorder(g=subg, data=data, sReorder)
+visNetReorder(g=subg, colormap="bwr", data=data, sReorder)
 </div>
 <a href="javascript:newWin('visNetReorder-18.png', 'visNetReorder-18.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visNetReorder-18.png', width="400" /></a></pre>
   </div>

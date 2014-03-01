@@ -76,32 +76,33 @@ eCal <- function(data, identity=c("symbol","entrez"), genome=c("mm", "hs"), onto
     
     if(genome == "mm"){
         
-        data("org.Mm.eg", package="eRT")
+        #data("org.Mm.eg", package="dnet")
+        load(url("http://dnet.r-forge.r-project.org/data/org.Mm.eg.RData"))
         EG <- org.Mm.eg
         
         if(ontology == "GOBP"){
-            #load("~/scripts/hfang/enricher/mm/GOBP.RData")
-            data("org.Mm.egGOBP", package="eRT")
+            #data("org.Mm.egGOBP", package="dnet")
+            load(url("http://dnet.r-forge.r-project.org/data/org.Mm.egGOBP.RData"))
             GS <- org.Mm.egGOBP
         }else if(ontology == "GOMF"){
-            #load("~/scripts/hfang/enricher/mm/GOMF.RData")
-            data("org.Mm.egGOMF", package="eRT")
+            #data("org.Mm.egGOMF", package="dnet")
+            load(url("http://dnet.r-forge.r-project.org/data/org.Mm.egGOMF.RData"))
             GS <- org.Mm.egGOMF
         }else if(ontology == "GOCC"){
-            #load("~/scripts/hfang/enricher/mm/GOCC.RData")
-            data("org.Mm.egGOCC", package="eRT")
+            #data("org.Mm.egGOCC", package="dnet")
+            load(url("http://dnet.r-forge.r-project.org/data/org.Mm.egGOCC.RData"))
             GS <- org.Mm.egGOCC
         }else if(ontology == "MP"){
-            #load("~/scripts/hfang/enricher/mm/MP.RData")
-            data("org.Mm.egMP", package="eRT")
+            #data("org.Mm.egMP", package="dnet")
+            load(url("http://dnet.r-forge.r-project.org/data/org.Mm.egMP.RData"))
             GS <- org.Mm.egMP
         }else if(ontology == "DO"){
-            #load("~/scripts/hfang/enricher/mm/DO.RData")
-            data("org.Mm.egDO", package="eRT")
+            #data("org.Mm.egDO", package="dnet")
+            load(url("http://dnet.r-forge.r-project.org/data/org.Mm.egDO.RData"))
             GS <- org.Mm.egDO
         }else if(ontology == "PS"){
-            #load("~/scripts/hfang/enricher/mm/PS.RData")
-            data("org.Mm.egPS", package="eRT")
+            #data("org.Mm.egPS", package="dnet")
+            load(url("http://dnet.r-forge.r-project.org/data/org.Mm.egPS.RData"))
             GS <- org.Mm.egPS
         }
     }

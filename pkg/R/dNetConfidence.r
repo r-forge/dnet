@@ -9,6 +9,7 @@
 #' an object of class "igraph" or "graphNEL", which is a target graph but appended with the "nodeConfidence" attribute to the nodes and the "edgeConfidence" attribute to the edges
 #' @note None
 #' @export
+#' @import igraph supraHex
 #' @seealso \code{\link{visNet}}
 #' @include dNetConfidence.r
 #' @examples
