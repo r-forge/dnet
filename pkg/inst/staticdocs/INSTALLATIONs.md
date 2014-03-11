@@ -35,13 +35,12 @@ Notes: below are `R command lines (NOT shell command lines in Terminal)`.
 
 First, install the dependent packages:
 
-    install.packages("hexbin",repos="http://www.stats.bris.ac.uk/R")
-    install.packages("supraHex",repos="http://R-Forge.R-project.org", type="source")
-    install.packages("igraph",repos="http://www.stats.bris.ac.uk/R")
-    install.packages("devtools",repos="http://www.stats.bris.ac.uk/R")
-    library(devtools)
-    install_github("arcdiagram",  username="gastonstat")
+    if(!require(hexbin)) install.packages("hexbin",repos="http://www.stats.bris.ac.uk/R")
+    if(!require(supraHex)) install.packages("supraHex",repos="http://R-Forge.R-project.org", type="source")
+    if(!require(igraph)) install.packages("igraph",repos="http://www.stats.bris.ac.uk/R")
+    if(!require(devtools)) install.packages("devtools",repos="http://www.stats.bris.ac.uk/R")
+    if(!require(arcdiagram)) install_github("arcdiagram",  username="gastonstat")
 
 Then, install the dnet package:
 
-    install.packages("dnet",repos="http://R-Forge.R-project.org", type="source")
+    if(!require(dnet)) install.packages("dnet",repos="http://R-Forge.R-project.org", type="source")

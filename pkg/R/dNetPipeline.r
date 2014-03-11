@@ -125,7 +125,7 @@ dNetPipeline <- function(g, pval, method=c("pdf","cdf"), fdr=NULL, nsize=NULL, p
     
     if(is.null(fdr_final)){
         if(verbose){
-            message(sprintf("\tNo FDR threshold"), appendLF=T)
+            message(sprintf("\tNo FDR threshold required"), appendLF=T)
         }
     }else{
         if(verbose){
@@ -133,9 +133,8 @@ dNetPipeline <- function(g, pval, method=c("pdf","cdf"), fdr=NULL, nsize=NULL, p
         }
     }
 
-        
     if(verbose){
-        message(sprintf("Third, calculate the scores according to the fitted BUM and FDR threshold..."), appendLF=T)
+        message(sprintf("Third, calculate the scores according to the fitted BUM and FDR threshold (if any)..."), appendLF=T)
     }
     ## calculate the scores according to the fitted BUM and fdr threshold (fdr_final) 
     if(plot){
@@ -145,6 +144,7 @@ dNetPipeline <- function(g, pval, method=c("pdf","cdf"), fdr=NULL, nsize=NULL, p
     }
     
     if(verbose){
+        message(sprintf("\tAmongst %d scores, there are %d positives.", length(scores), sum(scores>0)), appendLF=T)
         message(sprintf("Finally, find the module with the maximum score..."), appendLF=T)
     }
     ## find the module with the maximum score

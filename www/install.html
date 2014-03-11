@@ -149,17 +149,16 @@ make install
 
 <p>First, install the dependent packages:</p>
 
-<pre><code>install.packages(&quot;hexbin&quot;,repos=&quot;http://www.stats.bris.ac.uk/R&quot;)
-install.packages(&quot;supraHex&quot;,repos=&quot;http://R-Forge.R-project.org&quot;, type=&quot;source&quot;)
-install.packages(&quot;igraph&quot;,repos=&quot;http://www.stats.bris.ac.uk/R&quot;)
-install.packages(&quot;devtools&quot;,repos=&quot;http://www.stats.bris.ac.uk/R&quot;)
-library(devtools)
-install_github(&quot;arcdiagram&quot;,  username=&quot;gastonstat&quot;)
+<pre><code>if(!require(hexbin)) install.packages(&quot;hexbin&quot;,repos=&quot;http://www.stats.bris.ac.uk/R&quot;)
+if(!require(supraHex)) install.packages(&quot;supraHex&quot;,repos=&quot;http://R-Forge.R-project.org&quot;, type=&quot;source&quot;)
+if(!require(igraph)) install.packages(&quot;igraph&quot;,repos=&quot;http://www.stats.bris.ac.uk/R&quot;)
+if(!require(devtools)) install.packages(&quot;devtools&quot;,repos=&quot;http://www.stats.bris.ac.uk/R&quot;)
+if(!require(arcdiagram)) install_github(&quot;arcdiagram&quot;,  username=&quot;gastonstat&quot;)
 </code></pre>
 
 <p>Then, install the dnet package:</p>
 
-<pre><code>install.packages(&quot;dnet&quot;,repos=&quot;http://R-Forge.R-project.org&quot;, type=&quot;source&quot;)
+<pre><code>if(!require(dnet)) install.packages(&quot;dnet&quot;,repos=&quot;http://R-Forge.R-project.org&quot;, type=&quot;source&quot;)
 </code></pre>
 
 
