@@ -35,7 +35,7 @@
   independently distributed over [0,1] under the null
   hypothesis (uniform distribution). According to the order
   statisitcs, they follow the Beta distribution with the
-  paramters \eqn{a=order} and \eqn{b=nc-order+1}. According
+  paramters \eqn{a=order} and \eqn{b=c-order+1}. According
   to the the Fisher's method, after transformation by
   \eqn{-2*\sum^clog(pvalue)}, they follow Chi-Squared
   distribution.

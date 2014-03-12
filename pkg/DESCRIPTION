@@ -29,5 +29,6 @@ Collate:
     'visNetArc.r'
     'visNetCircle.r'
     'dRWR.r'
+    'dContrast.r'
 License: GPL-2
 biocViews: Bioinformatics

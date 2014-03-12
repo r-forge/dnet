@@ -78,7 +78,7 @@ dNetPipeline <- function(g, pval, method=c("pdf","cdf"), fdr=NULL, nsize=NULL, p
         ## at rough phase
         fdr_rough <- NULL
         nsize_rough <- 0
-        for(i in seq(from=-20,to=0)){
+        for(i in seq(from=floor(log10(min(pval[pval!=0]))),to=0)){
             fdr_test <- 10^i
             
             scores_test <- dBUMscore(fit=fit, method=method, fdr=fdr_test, scatter.bum=F)

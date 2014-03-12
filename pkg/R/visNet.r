@@ -98,7 +98,8 @@ visNet <- function(g, pattern=NULL, colormap=c("bwr","jet","gbr","wyr","br","yr"
                 colors <- palette.name(ncolors)
                 scale <- length(colors)/(max(zlim)-min(zlim))
                 sapply(1:length(vec), function(x){
-                    colors[min(ncolors, floor(1+(vec[x]-min(vec))*scale))]
+                    ind <- floor(1+(vec[x]-min(zlim))*scale)
+                    colors[max(1,min(ncolors,ind))]
                 })
             }
             vertex.color <- vec2color(pattern, colormap=colormap, ncolors=ncolors, zlim=zlim)

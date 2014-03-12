@@ -13,7 +13,7 @@ if(!require(limma)){
     library(limma)
 }
 
-# This dataset involves 130 patients with chronic lymphocytic leukemia (CLL). When enrolled in the study, these CLL patients had not received prior therapy for CLL. Additional covariate about sampling time to first treatment (years) is available. The dataset has been normalised and log2-transformed, and provided as an 'ExpressionSet' object.
+# This dataset involves 130 patients with chronic lymphocytic leukemia (CLL). When enrolled in the study, these CLL patients had not received prior therapy for CLL. Additional covariate about sampling time to first treatment (years) is available. The dataset has been normalised and log2-transformed, and provided as an "ExpressionSet" object.
 load(url("http://dnet.r-forge.r-project.org/data/CLL.RData"))
 CLL
 
@@ -22,10 +22,10 @@ sensVal <- log2(30)
 filter_flag <- apply(exprs(CLL)<sensVal,1,sum) > 0.7*ncol(exprs(CLL))
 eset <- CLL[!filter_flag,]
 
-# Create esetNew after replacing all those less than 'sensVal' with 'sensVal'
+# Create esetNew after replacing all those less than "sensVal" with "sensVal"
 new.matrix <- exprs(eset)
-new.matrix[new.matrix<sensVal] <- sensVal
-esetNew <- new('ExpressionSet',exprs=new.matrix,phenoData=as(pData(eset),"AnnotatedDataFrame"),featureData=as(fData(eset),"AnnotatedDataFrame"))
+new.matrix[new.matrix <= sensVal] <- sensVal
+esetNew <- new("ExpressionSet",exprs=new.matrix,phenoData=as(pData(eset),"AnnotatedDataFrame"),featureData=as(fData(eset),"AnnotatedDataFrame"))
 
 # A function to convert probeset-centric to entrezgene-centric expression levels
 prob2gene <- function(eset){
@@ -46,10 +46,9 @@ prob2gene <- function(eset){
             }
         }
     })
-    
     rownames(edat) <- rownames(forder) # as gene symbols
     colnames(edat) <- rownames(pData(eset))
-    esetGene <- new('ExpressionSet',exprs=data.frame(edat),phenoData=as(pData(eset),"AnnotatedDataFrame"),featureData=as(data.frame(forder),"AnnotatedDataFrame"))
+    esetGene <- new("ExpressionSet",exprs=data.frame(edat),phenoData=as(pData(eset),"AnnotatedDataFrame"),featureData=as(data.frame(forder),"AnnotatedDataFrame"))
     return(esetGene)
 }
 esetGene <- prob2gene(esetNew)
