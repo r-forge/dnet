@@ -3,7 +3,7 @@
 #' \code{dNetFind} is supposed to find the maximum scoring module from an input graph and scores imposed on its nodes. The input graph and the output module are both of "igraph" or "graphNET" object. The input scores imposed on the nodes in the input graph can be divided into two parts: the positve nodes and the negative nodes. The searching for maximum scoring module is deduced to find the connected subgraph containing the positive nodes as many as possible, but the negative nodes as few as possible. To this end, a heuristic search is used (see Note below).
 #'
 #' @param g an object of class "igraph" or "graphNEL"
-#' @param scores a vector of scores. For each element, it must have the name that could be mapped onto the input graph
+#' @param scores a vector of scores. For each element, it must have the name that could be mapped onto the input graph. Also, the names in input "scores" should contain all those in the input graph "g", but the reverse is not necessary
 #' @return 
 #' a module with a maximum score, an object of class "igraph" or "graphNEL"
 #' @note The search procedure is heuristic to find the module with the maximum score:

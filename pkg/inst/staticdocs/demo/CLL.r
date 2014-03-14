@@ -59,16 +59,15 @@ load(url("http://dnet.r-forge.r-project.org/data/org.Hs.string.RData"))
 org.Hs.string
 
 # extract network that only contains genes in esetGene
-## for extracted expression
 ind <- match(V(org.Hs.string)$symbol, rownames(esetGene))
+## for extracted expression
 esetGeneSub <- esetGene[ind[!is.na(ind)],]
 esetGeneSub
 ## for extracted graph
-ind <- match(rownames(esetGene), V(org.Hs.string)$symbol)
-nodes_mapped <- V(org.Hs.string)$name[ind[!is.na(ind)]]
-g <- dNetInduce(g=org.Hs.string, nodes_query=nodes_mapped, knn=0, remove.loops=T, largest.comp=T)
-V(g)$name <- V(g)$symbol
-g
+nodes_mapped <- V(org.Hs.string)$name[!is.na(ind)]
+network <- dNetInduce(g=org.Hs.string, nodes_query=nodes_mapped, knn=0, remove.loops=T, largest.comp=T)
+V(network)$name <- V(network)$symbol
+network
 
 # according to sampling time to first treatment (years), patient samples are categorised into 3 groups: early-phase disease (E) if they were collected more than 4 years before treatment, intermediate phase (I) if collected 4 or less, but 1 or more, years before treatment (yellow bars), or late phase (L) if collected less than 1 year before treatment.
 EIL <- sapply(pData(esetGeneSub)$Time, function(x) {
@@ -85,8 +84,9 @@ EIL <- sapply(pData(esetGeneSub)$Time, function(x) {
 design <- model.matrix(~ -1 + factor(EIL))
 colnames(design)<- c("E", "I", "L")
 contrast.matrix <- makeContrasts(L-E, I-E, L-I, levels=design)
+colnames(contrast.matrix) <- c("L_E", "I_E", "L_I")
 contrast.matrix 
-fit <- lmFit(exprs(esetGeneSub), design)
+fit <- lmFit(exprs(esetGene), design)
 fit2 <- contrasts.fit(fit, contrast.matrix)
 fit2 <- eBayes(fit2)
 # for p-value
@@ -96,20 +96,15 @@ adjpvals <- sapply(1:ncol(pvals),function(x) {
     p.adjust(pvals[,x], method="BH")
 })
 colnames(adjpvals) <- colnames(pvals)
-
+# num of differentially expressed genes
+apply(adjpvals<1e-1, 2, sum)
 # only for the comparisons from late phase (L) against the early stage (E) 
-# visualise expression patterns for differentially expressed genes
-ind <- union(which(EIL=="L"), which(EIL=="E"))
-data <- exprs(esetGeneSub)[adjpvals[,1]<1e-1,ind]
-colnames(data) <- EIL[ind]
-heatmap(as.matrix(data),col=visColormap("bwr")(64),zlim=c(min(data),max(data)), scale="none", cexRow=0.2+0.5/log10(nrow(data)), cexCol=0.2+0.5/log10(ncol(data)), Rowv=NULL,Colv=NA)
+my_contrast <- "L_E"
 # get the p-values and calculate the scores thereupon
-pval <- pvals[,1]
+pval <- pvals[,my_contrast]
 
 # 2) identification of module
-module <- dNetPipeline(g=g, pval=pval, nsize=20)
-
-g <- module
+g <- dNetPipeline(g=network, pval=pval, nsize=20)
 glayout <- layout.fruchterman.reingold(g)
 
 # 3) color nodes according to communities identified via a spin-glass model and simulated annealing
@@ -121,17 +116,7 @@ colormap <- "yellow-darkorange"
 palette.name <- visColormap(colormap=colormap)
 mcolors <- palette.name(length(com))
 vcolors <- mcolors[vgroups]
-
-com$significance <- sapply(1:length(com), function(x) {
-    community.significance.test <- function(g, vids, ...) {
-        subg <- induced.subgraph(g, vids)
-        within.degrees <- igraph::degree(subg)
-        cross.degrees <- igraph::degree(g, vids) - within.degrees
-        wilcox.test(within.degrees, cross.degrees, ...)
-    }
-    tmp <- suppressWarnings(community.significance.test(g, vids=V(g)$name[com$membership==x]))
-    signif(tmp$p.value, digits=3)
-})
+com$significance <- dCommSignif(g, com)
 
 # 4) size nodes according to degrees
 vdegrees <- igraph::degree(g)
@@ -161,18 +146,19 @@ legend("bottomleft", legend=legend_name, fill=mcolors, bty="n", cex=0.6)
 
 # 9) color by score and FC
 # colored by score
-visNet(g, glayout=glayout, pattern=V(module)$score, mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
+visNet(g, glayout=glayout, pattern=V(g)$score, zlim=c(-1*ceiling(max(abs(V(g)$score))),ceiling(max(abs(V(g)$score)))), vertex.shape="circle", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
 # colored by FC
-logFC <- fit2$coefficients[V(g)$name,1]
-visNet(g, glayout=glayout, pattern=logFC, zlim=c(-1,1), mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
+colormap <- "darkgreen-lightgreen-lightpink-darkred"
+logFC <- fit2$coefficients[V(g)$name,my_contrast]
+visNet(g, glayout=glayout, pattern=logFC, colormap=colormap, vertex.shape="circle", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
 
 # 10) color by additional data
 ind <- union(which(EIL=="L"), which(EIL=="E"))
 ind <- sample(ind, 10) # sampling randomly 10 without replacement.
-data <- exprs(esetGeneSub)[V(g)$name,ind]
+data <- exprs(esetGene)[V(g)$name,ind]
 colnames(data) <- EIL[ind]
-visNetMul(g=g, data=data, height=ceiling(sqrt(ncol(data)))*2, newpage=T,glayout=glayout,colormap="darkgreen-lightgreen-lightpink-darkred",vertex.label=NA,vertex.shape="sphere", vertex.size=18,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
+visNetMul(g=g, data=data, height=ceiling(sqrt(ncol(data)))*2, newpage=T,glayout=glayout,colormap=colormap,vertex.label=NA,vertex.shape="sphere", vertex.size=18,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
 
 # 11) color by additional data (be reordered)
 sReorder <- dNetReorder(g, data, feature="edge", node.normalise="degree", amplifier=2, metric="none")
-visNetReorder(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap="darkgreen-lightgreen-lightpink-darkred", vertex.label=NA,vertex.shape="sphere", vertex.size=18,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)
+visNetReorder(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap=colormap, vertex.label=NA,vertex.shape="sphere", vertex.size=18,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)

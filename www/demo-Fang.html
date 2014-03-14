@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Demo for human embryo dataset from Fang et al @ dnet 0.99.0</title>
+<title>Demo for human embryo dataset @ dnet 0.99.0</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Hai Fang and Julian Gough">
 
@@ -104,7 +104,7 @@
         
       </header>
       
-      <h2>Demo for human embryo dataset from Fang et al</h2>
+      <h2>Demo for human embryo dataset</h2>
 
 Notes:
 <li> All results are based on dnet (version 0.99.0). </li>
@@ -204,8 +204,8 @@ org.Hs.string
 </div>
 <div class='input'>
 # extract network that only contains genes in esetGene
-## for extracted expression
 ind <- match(V(org.Hs.string)$symbol, rownames(esetGene))
+## for extracted expression
 esetGeneSub <- esetGene[ind[!is.na(ind)],]
 esetGeneSub
 </div>
@@ -225,26 +225,25 @@ experimentData: use 'experimentData(object)'
 Annotation:  
 </div>
 <div class='input'>## for extracted graph
-ind <- match(rownames(esetGene), V(org.Hs.string)$symbol)
-nodes_mapped <- V(org.Hs.string)$name[ind[!is.na(ind)]]
+nodes_mapped <- V(org.Hs.string)$name[!is.na(ind)]
 network <- <a href='dNetInduce.html' target=dNetInduce>dNetInduce</a>(g=org.Hs.string, nodes_query=nodes_mapped, knn=0, remove.loops=T, largest.comp=T)
 V(network)$name <- V(network)$symbol
 network
 </div>
-<div class='output'>IGRAPH UN-- 2645 25986 -- 
+<div class='output'>IGRAPH UN-- 2651 26041 -- 
 + attr: name (v/c), seqid (v/c), geneid (v/n), symbol (v/c),
   description (v/c)
 </div>
 <div class='input'>
 # 1) preparation of node p-values
 ## define the design matrix in a order manner
-all <- as.vector(pData(esetGeneSub)$Stage)
+all <- as.vector(pData(esetGene)$Stage)
 level <- levels(factor(all))
 index_level <- sapply(level, function(x) which(all==x)[1])
 level_sorted <- all[sort(index_level, decreasing=F)]
 design <- sapply(level_sorted, function(x) as.numeric(all==x)) # Convert a factor column to multiple boolean columns
 ## a linear model is fitted for every gene by the function lmFit
-fit <- lmFit(exprs(esetGeneSub), design)
+fit <- lmFit(exprs(esetGene), design)
 ## define a contrast matrix
 contrasts <- <a href='dContrast.html' target=dContrast>dContrast</a>(level_sorted, contrast.type="average")
 contrast.matrix <- makeContrasts(contrasts=contrasts$each, levels=design)
@@ -263,35 +262,35 @@ colnames(adjpvals) <- colnames(pvals)
 apply(adjpvals<1e-2, 2, sum)
 </div>
 <div class='output'>  S9  S10  S11  S12  S13  S14 
-2164 1274  373  345 1415 1828 
+3125 1764  485  461 1996 2556 
 </div>
 <div class='input'>
 # only for the comparisons of S9 against the average
-# visualise expression patterns for differentially expressed genes
 my_contrast <- "S9"
-data <- exprs(esetGeneSub)[adjpvals[,my_contrast]<1e-2,]
-heatmap(as.matrix(data),col=visColormap("bwr")(64),zlim=c(min(data),max(data)), scale="none", cexRow=0.2+0.5/log10(nrow(data)), cexCol=0.2+0.5/log10(ncol(data)), Rowv=NULL,Colv=NA)
-</div>
-<a href="javascript:newWin('Fang-12.png', 'Fang-12.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-12.png', width="400" /></a>
-<div class='input'>
 # get the p-values and calculate the scores thereupon
 pval <- pvals[,my_contrast]
 #pval <- <a href='dPvalAggregate.html' target=dPvalAggregate>dPvalAggregate</a>(pvals, method="orderStatistic", order=ncol(pvals))
 #pval <- <a href='dPvalAggregate.html' target=dPvalAggregate>dPvalAggregate</a>(pvals, method="fishers", order=ncol(pvals))
 
+data <- exprs(esetGeneSub)[adjpvals[,my_contrast]<1e-2,]
+heatmap(as.matrix(data),col=visColormap("bwr")(64),zlim=c(min(data),max(data)), scale="none", cexRow=0.2+0.5/log10(nrow(data)), cexCol=0.2+0.5/log10(ncol(data)), Rowv=NULL,Colv=NA)
+</div>
+<strong class='error'>Error in hclustfun(distfun(x)): NA/NaN/Inf in foreign function call (arg 11)</strong>
+<div class='input'>
 # 2) identification of module
 g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network, pval=pval, nsize=40)
 </div>
-<strong class='message'>Start at 2014-03-12 19:49:55</strong>
+<strong class='message'>Start at 2014-03-14 20:03:18</strong>
 <strong class='message'></strong>
 <strong class='message'>First, fit the p-value distribution under beta-uniform mixture model...</strong>
-<strong class='message'>	A total of p-values: 2883</strong>
-<strong class='message'>	Maximum Log-Likelihood: 18584.4</strong>
+<strong class='message'>	A total of p-values: 4139</strong>
+<strong class='message'>	Maximum Log-Likelihood: 26595.8</strong>
 <strong class='message'>	Mixture parameter (lambda): 0.000</strong>
 <strong class='message'>	Shape parameter (a): 0.103</strong>
 <strong class='message'>Second, determine FDR threshold...</strong>
-<strong class='message'>	Via constraint on the network size (40 nodes)</strong>
+<strong class='message'>	Via constraint on the size of subnetwork to be identified (40 nodes)</strong>
 <strong class='message'>	Scanning FDR at rough stage...</strong>
+<strong class='message'>		FDR: 1.00e-19, corresponding to the network size (0 nodes)</strong>
 <strong class='message'>		FDR: 1.00e-18, corresponding to the network size (0 nodes)</strong>
 <strong class='message'>		FDR: 1.00e-17, corresponding to the network size (0 nodes)</strong>
 <strong class='message'>		FDR: 1.00e-16, corresponding to the network size (1 nodes)</strong>
@@ -307,11 +306,11 @@ g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network,
 <strong class='message'>		FDR: 3.00e-12, corresponding to the network size (40 nodes)</strong>
 <strong class='message'>	FDR threshold: 3.00e-12</strong>
 <strong class='message'>Third, calculate the scores according to the fitted BUM and FDR threshold (if any)...</strong>
-<strong class='message'>	Amongst 2883 scores, there are 55 positives.</strong>
-<strong class='message'>Finally, find the module with the maximum score...</strong>
+<strong class='message'>	Amongst 4139 scores, there are 71 positives.</strong>
+<strong class='message'>Finally, find the subnetwork from the input network with 2651 nodes and 26041 edges...</strong>
 <strong class='message'>	Size of the module: 40 nodes and 64 edges</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-03-12 19:50:11</strong>
+<strong class='message'>Finish at 2014-03-14 20:03:34</strong>
 <strong class='message'>Runtime in total is: 16 secs
 </strong>
 <div class='input'>glayout <- layout.fruchterman.reingold(g)
@@ -325,17 +324,7 @@ colormap <- "yellow-darkorange"
 palette.name <- visColormap(colormap=colormap)
 mcolors <- palette.name(length(com))
 vcolors <- mcolors[vgroups]
-
-com$significance <- sapply(1:length(com), function(x) {
-    community.significance.test <- function(g, vids, ...) {
-        subg <- induced.subgraph(g, vids)
-        within.degrees <- igraph::degree(subg)
-        cross.degrees <- igraph::degree(g, vids) - within.degrees
-        wilcox.test(within.degrees, cross.degrees, ...)
-    }
-    tmp <- suppressWarnings(community.significance.test(g, vids=V(g)$name[com$membership==x]))
-    signif(tmp$p.value, digits=3)
-})
+com$significance <- <a href='dCommSignif.html' target=dCommSignif>dCommSignif</a>(g, com)
 
 # 4) size nodes according to degrees
 vdegrees <- igraph::degree(g)
@@ -347,17 +336,17 @@ ordering <- tmp[order(vgroups,vdegrees),]$ind
 # 6) visualise graph using 1-dimensional arc diagram
 <a href='visNetArc.html' target=visNetArc>visNetArc</a>(g, ordering=ordering, labels=V(g)$geneSymbol, vertex.label.color=vcolors, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.size=log(vdegrees)+0.1, vertex.label.cex=0.4)
 </div>
-<a href="javascript:newWin('Fang-46.png', 'Fang-46.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-46.png', width="400" /></a>
+<a href="javascript:newWin('Fang-47.png', 'Fang-47.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-47.png', width="400" /></a>
 <div class='input'>
 # 7) visualise graph using circle diagram
 # 7a) drawn into a single circle 
 <a href='visNetCircle.html' target=visNetCircle>visNetCircle</a>(g=g, com=com, ordering=ordering, colormap=colormap, vertex.label=V(g)$symbol, vertex.size=igraph::degree(g)+5, vertex.label.color="black", vertex.label.cex=0.6, vertex.label.dist=0.75, vertex.shape="sphere", edge.color.within="grey", edge.color.crossing="black", edge.width=1, edge.lty=1, mark.shape=1, mark.expand=10)
 </div>
-<a href="javascript:newWin('Fang-48.png', 'Fang-48.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-48.png', width="400" /></a>
+<a href="javascript:newWin('Fang-49.png', 'Fang-49.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-49.png', width="400" /></a>
 <div class='input'># 7b) drawn into multiple circles
 <a href='visNetCircle.html' target=visNetCircle>visNetCircle</a>(g=g, com=com, circles="multiple", ordering=ordering, colormap=colormap, vertex.label=V(g)$symbol, vertex.size=igraph::degree(g)+5, vertex.label.color="black", vertex.label.cex=0.6, vertex.label.dist=0.25, vertex.shape="sphere", edge.color.within="grey", edge.color.crossing="black", edge.width=1, edge.lty=1, mark.shape=1, mark.expand=10)
 </div>
-<a href="javascript:newWin('Fang-50.png', 'Fang-50.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-50.png', width="400" /></a>
+<a href="javascript:newWin('Fang-51.png', 'Fang-51.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-51.png', width="400" /></a>
 <div class='input'>
 # 8) as comparison, also visualise graph on 2-dimensional layout 
 mark.groups <- communities(com)
@@ -366,35 +355,36 @@ mark.border <- visColoralpha(mcolors, alpha=0.2)
 edge.color <- c("grey", "black")[crossing(com,g)+1]
 <a href='visNet.html' target=visNet>visNet</a>(g, glayout=glayout, vertex.label=V(g)$geneSymbol, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.shape="sphere", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
 </div>
-<a href="javascript:newWin('Fang-52.png', 'Fang-52.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-52.png', width="400" /></a>
+<a href="javascript:newWin('Fang-53.png', 'Fang-53.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-53.png', width="400" /></a>
 <div class='input'>
 legend_name <- paste("C",1:length(mcolors)," (n=",com$csize,", pval=",signif(com$significance,digits=2),")",sep='')
 legend("bottomleft", legend=legend_name, fill=mcolors, bty="n", cex=0.6)
 </div>
-<a href="javascript:newWin('Fang-54.png', 'Fang-54.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-54.png', width="400" /></a>
+<a href="javascript:newWin('Fang-55.png', 'Fang-55.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-55.png', width="400" /></a>
 <div class='input'>
 # 9) color by score and FC
 # colored by score
 <a href='visNet.html' target=visNet>visNet</a>(g, glayout=glayout, pattern=V(g)$score, zlim=c(-1*ceiling(max(abs(V(g)$score))),ceiling(max(abs(V(g)$score)))), vertex.shape="circle", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
 </div>
-<a href="javascript:newWin('Fang-56.png', 'Fang-56.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-56.png', width="400" /></a>
+<a href="javascript:newWin('Fang-57.png', 'Fang-57.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-57.png', width="400" /></a>
 <div class='input'># colored by FC
+colormap <- "darkgreen-lightgreen-lightpink-darkred"
 logFC <- fit2$coefficients[V(g)$name,my_contrast]
-<a href='visNet.html' target=visNet>visNet</a>(g, glayout=glayout, pattern=logFC, zlim=c(-1,1), mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
+<a href='visNet.html' target=visNet>visNet</a>(g, glayout=glayout, pattern=logFC, colormap=colormap, mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
 </div>
-<a href="javascript:newWin('Fang-58.png', 'Fang-58.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-58.png', width="400" /></a>
+<a href="javascript:newWin('Fang-59.png', 'Fang-59.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-59.png', width="400" /></a>
 <div class='input'>
 # 10) color by additional data
-##data <- exprs(esetGeneSub)[V(g)$name,]
+##data <- exprs(esetGene)[V(g)$name,]
 data <- as.matrix(fit2$coefficients[V(g)$name,])
-<a href='visNetMul.html' target=visNetMul>visNetMul</a>(g=g, data=data, height=ceiling(sqrt(ncol(data)))*2, newpage=T,glayout=glayout,colormap="darkgreen-lightgreen-lightpink-darkred",vertex.label=NA,vertex.shape="sphere", vertex.size=18,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
+<a href='visNetMul.html' target=visNetMul>visNetMul</a>(g=g, data=data, height=ceiling(sqrt(ncol(data)))*2, newpage=T,glayout=glayout,colormap=colormap,vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
 </div>
-<a href="javascript:newWin('Fang-60.png', 'Fang-60.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-60.png', width="400" /></a>
+<a href="javascript:newWin('Fang-61.png', 'Fang-61.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-61.png', width="400" /></a>
 <div class='input'>
 # 11) color by additional data (be reordered)
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="edge", node.normalise="degree", amplifier=2, metric="none")
 </div>
-<strong class='message'>Start at 2014-03-12 19:50:53</strong>
+<strong class='message'>Start at 2014-03-14 20:04:12</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -421,11 +411,25 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-12 19:50:54</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>End at 2014-03-14 20:04:12</strong>
+<strong class='message'>Runtime in total is: 0 secs
 </strong>
-<div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap="darkgreen-lightgreen-lightpink-darkred", vertex.label=NA,vertex.shape="sphere", vertex.size=18,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)</div>
-<a href="javascript:newWin('Fang-78.png', 'Fang-78.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-78.png', width="400" /></a>
+<div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap=colormap, vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)
+</div>
+<a href="javascript:newWin('Fang-79.png', 'Fang-79.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-79.png', width="400" /></a>
+<div class='input'>
+# 12) heatmap of subnetwork
+data[data < -2] <- -2
+data[data > 2] <- 2
+heatmap(as.matrix(data),col=visColormap(colormap=colormap)(64),zlim=c(-2,2), scale="none", cexRow=0.2+0.5/log10(nrow(data)), cexCol=0.2+0.5/log10(ncol(data)), Rowv=NULL,Colv=NULL)
+</div>
+<a href="javascript:newWin('Fang-81.png', 'Fang-81.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-81.png', width="400" /></a>
+<div class='input'>hmap <- data.frame(Symbol=rownames(data), data)
+write.table(hmap, file=paste(my_contrast,".txt", sep=""), quote=F, row.names=F,col.names=T,sep="\t")
+
+# 13) Write the subnetwork into a SIF-formatted file (Simple Interaction File)
+sif <- data.frame(source=get.edgelist(g)[,1], type="interaction", target=get.edgelist(g)[,2])
+write.table(sif, file=paste(my_contrast,".sif", sep=""), quote=F, row.names=F,col.names=F,sep="\t")</div>
       </pre>
     </div>
 
@@ -437,6 +441,7 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
       <li><a href="dContrast.html">dContrast</a></li>
       <li><a href="dPvalAggregate.html">dPvalAggregate</a></li>
       <li><a href="dNetPipeline.html">dNetPipeline</a></li>
+      <li><a href="dCommSignif.html">dCommSignif</a></li>
       <li><a href="visNetArc.html">visNetArc</a></li>
       <li><a href="visNetCircle.html">visNetCircle</a></li>
       <li><a href="visNet.html">visNet</a></li>

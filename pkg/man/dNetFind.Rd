@@ -9,7 +9,9 @@
 
   \item{scores}{a vector of scores. For each element, it
   must have the name that could be mapped onto the input
-  graph}
+  graph. Also, the names in input "scores" should contain
+  all those in the input graph "g", but the reverse is not
+  necessary}
 }
 \value{
   a module with a maximum score, an object of class

@@ -1,5 +1,6 @@
 export(dBUMfit)
 export(dBUMscore)
+export(dCommSignif)
 export(dContrast)
 export(dNetConfidence)
 export(dNetFind)

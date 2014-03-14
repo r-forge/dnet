@@ -126,7 +126,9 @@
       <dt>pval</dt>
       <dd>a vector containing input p-values. For each
   element, it must have the name that could be mapped onto
-  the input graph</dd>
+  the input graph. Also, the names in input "pval" should
+  contain all those in the input graph "g", but the reverse
+  is not necessary</dd>
       <dt>method</dt>
       <dd>the method used for the transformation. It
   can be either "pdf" for the method based on the
@@ -202,21 +204,21 @@ subg <- dNetInduce(g, V(g), knn=0)
 # 4) find maximum-scoring module based on fdr=0.1 threshold
 module <- dNetPipeline(g=subg, pval=x, fdr=0.1)
 </div>
-<strong class='message'>Start at 2014-03-12 19:51:38</strong>
+<strong class='message'>Start at 2014-03-14 20:04:52</strong>
 <strong class='message'></strong>
 <strong class='message'>First, fit the p-value distribution under beta-uniform mixture model...</strong>
 <strong class='message'>	A total of p-values: 1000</strong>
-<strong class='message'>	Maximum Log-Likelihood: 295.3</strong>
-<strong class='message'>	Mixture parameter (lambda): 0.000</strong>
-<strong class='message'>	Shape parameter (a): 0.506</strong>
+<strong class='message'>	Maximum Log-Likelihood: 353.0</strong>
+<strong class='message'>	Mixture parameter (lambda): 0.033</strong>
+<strong class='message'>	Shape parameter (a): 0.470</strong>
 <strong class='message'>Second, determine FDR threshold...</strong>
 <strong class='message'>	FDR threshold: 1.00e-01</strong>
 <strong class='message'>Third, calculate the scores according to the fitted BUM and FDR threshold (if any)...</strong>
-<strong class='message'>	Amongst 1000 scores, there are 191 positives.</strong>
-<strong class='message'>Finally, find the module with the maximum score...</strong>
-<strong class='message'>	Size of the module: 162 nodes and 187 edges</strong>
+<strong class='message'>	Amongst 1000 scores, there are 227 positives.</strong>
+<strong class='message'>Finally, find the subnetwork from the input network with 1000 nodes and 5120 edges...</strong>
+<strong class='message'>	Size of the module: 207 nodes and 266 edges</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-03-12 19:51:39</strong>
+<strong class='message'>Finish at 2014-03-14 20:04:53</strong>
 <strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'>

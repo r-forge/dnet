@@ -3,7 +3,7 @@
 #' \code{dNetPipeline} is supposed to finish ab inito maximum-scoring module identification for the input graph with the node information on the significance (p-values). It returns an object of class "igraph" or "graphNEL". 
 #'
 #' @param g an object of class "igraph" or "graphNEL"
-#' @param pval a vector containing input p-values. For each element, it must have the name that could be mapped onto the input graph
+#' @param pval a vector containing input p-values. For each element, it must have the name that could be mapped onto the input graph. Also, the names in input "pval" should contain all those in the input graph "g", but the reverse is not necessary
 #' @param method the method used for the transformation. It can be either "pdf" for the method based on the probability density function of the fitted model, or "cdf" for the method based on the cumulative distribution function of the fitted model
 #' @param fdr the given FDR threshold. By default, it is set to NULL, meaning there is no constraint. If given, those p-values with the FDR below this are considered significant and thus scored positively. Instead, those p-values with the FDR above this given FDR are considered insigificant and thus scored negatively
 #' @param nsize the desired number of nodes constrained to the resulting module. It is not nulll, a wide range of FDR will be scanned to find the FDR threshold leading to the desired number of nodes in the resulting module. Notably, the given FDR threshold will be overwritten. 
@@ -68,7 +68,7 @@ dNetPipeline <- function(g, pval, method=c("pdf","cdf"), fdr=NULL, nsize=NULL, p
         fdr_final <- NULL
         ####################################
         if(verbose){
-            message(sprintf("\tVia constraint on the network size (%d nodes)", nsize), appendLF=T)
+            message(sprintf("\tVia constraint on the size of subnetwork to be identified (%d nodes)", nsize), appendLF=T)
         }
         ## Constraint on the network size
         
@@ -145,7 +145,7 @@ dNetPipeline <- function(g, pval, method=c("pdf","cdf"), fdr=NULL, nsize=NULL, p
     
     if(verbose){
         message(sprintf("\tAmongst %d scores, there are %d positives.", length(scores), sum(scores>0)), appendLF=T)
-        message(sprintf("Finally, find the module with the maximum score..."), appendLF=T)
+        message(sprintf("Finally, find the subnetwork from the input network with %d nodes and %d edges...", vcount(g), ecount(g)), appendLF=T)
     }
     ## find the module with the maximum score
     module <- dNetFind(g, scores)

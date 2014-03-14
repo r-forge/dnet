@@ -10,7 +10,9 @@
 
   \item{pval}{a vector containing input p-values. For each
   element, it must have the name that could be mapped onto
-  the input graph}
+  the input graph. Also, the names in input "pval" should
+  contain all those in the input graph "g", but the reverse
+  is not necessary}
 
   \item{method}{the method used for the transformation. It
   can be either "pdf" for the method based on the

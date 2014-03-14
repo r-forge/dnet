@@ -1,3 +1,3 @@
 CLL   Demo for CLL dataset
-Hiratani    Demo for multilayer omics dataset from Hiratani et al
-Fang   Demo for human embryo dataset from Fang et al
+Hiratani    Demo for multilayer omics dataset
+Fang   Demo for human embryo dataset

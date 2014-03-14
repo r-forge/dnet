@@ -18,7 +18,8 @@ list(
                 'dNetPipeline',
                 'dNetConfidence',
                 'dNetReorder',
-                'dRWR'
+                'dRWR',
+                'dContrast'
             )
         ),
         sd_section("Visualisation functions",

@@ -78,7 +78,7 @@ visNetMul <- function (g, data, height=7, margin=rep(0.1,4), border.color="#EEEE
     ind <- match(rownames(data), V(ig)$name)
     nodes_mapped <- V(ig)$name[ind[!is.na(ind)]]
     if(length(nodes_mapped)!=vcount(ig)){
-        stop("The function must require that the row names of input data could all be mapped onto the input graph.\n")
+        stop("The function must require that the row names of input data contain all those in the input graph.\n")
     }
     data <- as.matrix(data[nodes_mapped,])
     
