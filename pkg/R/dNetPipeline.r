@@ -38,7 +38,7 @@
 #' # 5) find maximum-scoring module with the desired node number nsize=20
 #' # module <- dNetPipeline(g=subg, pval=x, nsize=20)
 
-dNetPipeline <- function(g, pval, method=c("pdf","cdf"), fdr=NULL, nsize=NULL, plot=F, verbose=T)
+dNetPipeline <- function(g, pval, method=c("pdf","cdf","fdr"), fdr=NULL, nsize=NULL, plot=F, verbose=T)
 {
 
     startT <- Sys.time()
@@ -47,15 +47,24 @@ dNetPipeline <- function(g, pval, method=c("pdf","cdf"), fdr=NULL, nsize=NULL, p
         message("", appendLF=T)
     }
     ####################################################################################
-
-    if(verbose){
-        message(sprintf("First, fit the p-value distribution under beta-uniform mixture model..."), appendLF=T)
-    }
-    ## fit a p-value distribution under beta-uniform mixture model
-    if(plot){
-        fit <- dBUMfit(pval, ntry=1, hist.bum=T, contour.bum=T, verbose=verbose)
-    }else{
-        fit <- dBUMfit(pval, ntry=1, hist.bum=F, contour.bum=F, verbose=verbose)
+    
+    method <- match.arg(method)
+    ####################
+    
+    if(method!="fdr"){
+        if(verbose){
+            message(sprintf("First, fit the p-value distribution under beta-uniform mixture model..."), appendLF=T)
+        }
+        ## fit a p-value distribution under beta-uniform mixture model
+        if(plot){
+            fit <- dBUMfit(pval, ntry=1, hist.bum=T, contour.bum=T, verbose=verbose)
+        }else{
+            fit <- dBUMfit(pval, ntry=1, hist.bum=F, contour.bum=F, verbose=verbose)
+        }
+    }else if(method=="fdr"){
+        if(verbose){
+            message(sprintf("First, consider the fdr distribution"), appendLF=T)
+        }
     }
     
     if(verbose){
@@ -81,7 +90,12 @@ dNetPipeline <- function(g, pval, method=c("pdf","cdf"), fdr=NULL, nsize=NULL, p
         for(i in seq(from=floor(log10(min(pval[pval!=0]))),to=0)){
             fdr_test <- 10^i
             
-            scores_test <- dBUMscore(fit=fit, method=method, fdr=fdr_test, scatter.bum=F)
+            if(method!="fdr"){
+                scores_test <- dBUMscore(fit=fit, method=method, fdr=fdr_test, scatter.bum=F)
+            }else if(method=="fdr"){
+                scores_test <- dFDRscore(pval, fdr.threshold=fdr_test, scatter=F)
+            }
+    
             module_test <- suppressWarnings(dNetFind(g, scores_test))
             nsize_test <- vcount(module_test)
             
@@ -106,7 +120,12 @@ dNetPipeline <- function(g, pval, method=c("pdf","cdf"), fdr=NULL, nsize=NULL, p
             fdr_final <- NULL
             for(fdr_test in seq(from=fdr_rough/10+fdr_rough/20,to=fdr_rough-fdr_rough/20,by=fdr_rough/20)){
             
-                scores_test <- dBUMscore(fit=fit, method=method, fdr=fdr_test, scatter.bum=F)
+                if(method!="fdr"){
+                    scores_test <- dBUMscore(fit=fit, method=method, fdr=fdr_test, scatter.bum=F)
+                }else if(method=="fdr"){
+                    scores_test <- dFDRscore(pval, fdr.threshold=fdr_test, scatter=F)
+                }
+            
                 module_test <- suppressWarnings(dNetFind(g, scores_test))
                 nsize_test <- vcount(module_test)
             
@@ -132,16 +151,29 @@ dNetPipeline <- function(g, pval, method=c("pdf","cdf"), fdr=NULL, nsize=NULL, p
             message(sprintf("\tFDR threshold: %1.2e", fdr_final), appendLF=T)
         }
     }
-
-    if(verbose){
-        message(sprintf("Third, calculate the scores according to the fitted BUM and FDR threshold (if any)..."), appendLF=T)
+    
+    if(method!="fdr"){
+        if(verbose){
+            message(sprintf("Third, calculate the scores according to the fitted BUM and FDR threshold (if any)..."), appendLF=T)
+        }
+        ## calculate the scores according to the fitted BUM and fdr threshold (fdr_final) 
+        if(plot){
+            scores <- dBUMscore(fit=fit, method=method, fdr=fdr_final, scatter.bum=T)
+        }else{
+            scores <- dBUMscore(fit=fit, method=method, fdr=fdr_final, scatter.bum=F)
+        }
+    }else if(method=="fdr"){
+        if(verbose){
+            message(sprintf("Third, calculate the scores according to the given fdr and the threshold (if any)..."), appendLF=T)
+        }
+        ## calculate the scores according to the fitted BUM and fdr threshold (fdr_final) 
+        if(plot){
+            scores <- dFDRscore(pval, fdr.threshold=fdr_final, scatter=T)
+        }else{
+            scores <- dFDRscore(pval, fdr.threshold=fdr_final, scatter=F)
+        }
     }
-    ## calculate the scores according to the fitted BUM and fdr threshold (fdr_final) 
-    if(plot){
-        scores <- dBUMscore(fit=fit, method=method, fdr=fdr_final, scatter.bum=T)
-    }else{
-        scores <- dBUMscore(fit=fit, method=method, fdr=fdr_final, scatter.bum=F)
-    }
+    ####################
     
     if(verbose){
         message(sprintf("\tAmongst %d scores, there are %d positives.", length(scores), sum(scores>0)), appendLF=T)

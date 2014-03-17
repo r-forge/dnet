@@ -74,7 +74,20 @@ network <- dNetInduce(g=org.Hs.string, nodes_query=nodes_mapped, knn=0, remove.l
 V(network)$name <- V(network)$symbol
 network
 
-# 1) preparation of node p-values
+# prepare the expression matrix
+D <- as.matrix(exprs(esetGene))
+D <- D - as.matrix(apply(D,1,mean),ncol=1)[,rep(1,ncol(D))]
+
+# heatmap of expression matrix with rows ordered according the dominant patterns
+sorted <- sort.int(D %*% svd(D)$v[,1], decreasing=T, index.return=T)
+mat_data <- D[sorted$ix,]
+lvs <- levels(pData(esetGene)$Stage)
+lvs_color <- visColormap(colormap="rainbow")(length(lvs))
+my_ColSideColors <- sapply(pData(esetGene)$Stage, function(x) lvs_color[x==lvs])
+visHeatmap(mat_data, colormap="gbr", zlim=NULL, ColSideColors=my_ColSideColors, labRow=NA)
+#legend("topright", legend=lvs, col=lvs_color, lty=1, lwd=10)
+
+# 1) preparation of node significance
 ## define the design matrix in a order manner
 all <- as.vector(pData(esetGene)$Stage)
 level <- levels(factor(all))
@@ -100,18 +113,11 @@ colnames(adjpvals) <- colnames(pvals)
 # num of differentially expressed genes
 apply(adjpvals<1e-2, 2, sum)
 
-# only for the comparisons of S9 against the average
-my_contrast <- "S9"
-# get the p-values and calculate the scores thereupon
-pval <- pvals[,my_contrast]
-#pval <- dPvalAggregate(pvals, method="orderStatistic", order=ncol(pvals))
-#pval <- dPvalAggregate(pvals, method="fishers", order=ncol(pvals))
-
-data <- exprs(esetGeneSub)[adjpvals[,my_contrast]<1e-2,]
-heatmap(as.matrix(data),col=visColormap("bwr")(64),zlim=c(min(data),max(data)), scale="none", cexRow=0.2+0.5/log10(nrow(data)), cexCol=0.2+0.5/log10(ncol(data)), Rowv=NULL,Colv=NA)
+# obtain gene significance from the given gene-sample matrix according to singular value decomposition-based method
+fdr <- dSVDSignif(data=D, num.eigen=NULL, pval.eigen=1e-2, signif="fdr", orient.permutation="row", num.permutation=1000, fdr.procedure="stepup", verbose=T)
 
 # 2) identification of module
-g <- dNetPipeline(g=network, pval=pval, nsize=40)
+g <- dNetPipeline(g=network, pval=fdr, method="fdr", nsize=30)
 glayout <- layout.fruchterman.reingold(g)
 
 # 3) color nodes according to communities identified via a spin-glass model and simulated annealing
@@ -151,16 +157,12 @@ visNet(g, glayout=glayout, vertex.label=V(g)$geneSymbol, vertex.color=vcolors, v
 legend_name <- paste("C",1:length(mcolors)," (n=",com$csize,", pval=",signif(com$significance,digits=2),")",sep='')
 legend("bottomleft", legend=legend_name, fill=mcolors, bty="n", cex=0.6)
 
-# 9) color by score and FC
+# 9) color by score
 # colored by score
 visNet(g, glayout=glayout, pattern=V(g)$score, zlim=c(-1*ceiling(max(abs(V(g)$score))),ceiling(max(abs(V(g)$score)))), vertex.shape="circle", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
-# colored by FC
-colormap <- "darkgreen-lightgreen-lightpink-darkred"
-logFC <- fit2$coefficients[V(g)$name,my_contrast]
-visNet(g, glayout=glayout, pattern=logFC, colormap=colormap, mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
 
 # 10) color by additional data
-##data <- exprs(esetGene)[V(g)$name,]
+colormap <- "darkgreen-lightgreen-lightpink-darkred"
 data <- as.matrix(fit2$coefficients[V(g)$name,])
 visNetMul(g=g, data=data, height=ceiling(sqrt(ncol(data)))*2, newpage=T,glayout=glayout,colormap=colormap,vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
 
@@ -169,12 +171,10 @@ sReorder <- dNetReorder(g, data, feature="edge", node.normalise="degree", amplif
 visNetReorder(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap=colormap, vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)
 
 # 12) heatmap of subnetwork
-data[data < -2] <- -2
-data[data > 2] <- 2
-heatmap(as.matrix(data),col=visColormap(colormap=colormap)(64),zlim=c(-2,2), scale="none", cexRow=0.2+0.5/log10(nrow(data)), cexCol=0.2+0.5/log10(ncol(data)), Rowv=NULL,Colv=NULL)
+visHeatmap(data, row.metric="euclidean", row.method="average", column.metric="euclidean", column.method="average", colormap="gbr", zlim=c(-2,2), row.cutree=3)
 hmap <- data.frame(Symbol=rownames(data), data)
-write.table(hmap, file=paste(my_contrast,".txt", sep=""), quote=F, row.names=F,col.names=T,sep="\t")
+write.table(hmap, file=paste("Fang_whole.txt", sep=""), quote=F, row.names=F,col.names=T,sep="\t")
 
 # 13) Write the subnetwork into a SIF-formatted file (Simple Interaction File)
 sif <- data.frame(source=get.edgelist(g)[,1], type="interaction", target=get.edgelist(g)[,2])
-write.table(sif, file=paste(my_contrast,".sif", sep=""), quote=F, row.names=F,col.names=F,sep="\t")
+write.table(sif, file=paste("Fang_whole.sif", sep=""), quote=F, row.names=F,col.names=F,sep="\t")

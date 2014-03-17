@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>dSVDSignif @ dnet 0.99.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+
+<style type="text/css">
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 8px 20px 12px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #999999;
+}
+
+.navbar .brand:hover {
+  color: #F87217;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar .nav > li > a:hover {
+  color: #F87217;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+</style>
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17338744-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- Enlarge image -->
+<script type="text/javascript">
+    function newWin(url, name, width, height) { 
+       
+        var left = (screen.width/2)-(width/2);
+        var top = (screen.height/2)-(height/2); 
+        
+        window.open(url,name,'scrollbars=yes,resizable=yes,fullscreen=yes, width=' + width + ', height='+height+', top='+top+', left='+left);
+    }
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">dnet 0.99.0</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="install.html"><i class="icon-wrench icon-white"></i> Installation</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <!--
+        <ul class="nav">
+          <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
+        </ul>
+        -->
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h2>Function to obtain SVD-based gene significance from the input gene-sample matrix</h2>
+
+<div class="row">
+  <div class="span8">
+  
+    <h3>Description</h3>
+    <p><code>dSVDSignif</code> is supposed to obtain gene signficance
+  from the given gene-sample matrix according to singular
+  value decomposition (SVD)-based method. The method
+  includes: 1) singular value decomposition of the input
+  matrix; 2) determination of the eigens in consideration
+  (if not given); 3) construction of the gene-specific
+  project vector based on the considered eigens; 4)
+  calculation of the distance statistic from the projection
+  vector to zero point vector; and 5) based on distance
+  statistic to obtain the gene significance.</p>
+  
+    <h3>Usage</h3>
+    <pre>dSVDSignif(data, num.eigen = NULL, pval.eigen = 0.01, signif = c("fdr", "pval"), 
+  orient.permutation = c("row", "column", "both"), num.permutation = 100, fdr.procedure = c("stepup", 
+          "stepdown"), verbose = T)</pre>
+    
+    <h3>Arguments</h3>
+    <dl>
+      <dt>data</dt>
+      <dd>an input gene-sample data matrix used for
+  singular value decomposition</dd>
+      <dt>num.eigen</dt>
+      <dd>an integer specifying the number of
+  eigens in consideration. If NULL, this number will be
+  automatically decided on based on the observed relative
+  eigenexpression against randomised relative
+  eigenexpression calculated from a list (here 100) of
+  permutated input matrix</dd>
+      <dt>pval.eigen</dt>
+      <dd>p-value used to call those eigens as
+  dominant. This parameter is used only when parameter
+  'num.eigen' is NULL. Here, p-value is calcualted to
+  assess how likely the observed relative eigenexpression
+  are more than the maximum relative eigenexpression
+  calculated from permutated matrix</dd>
+      <dt>signif</dt>
+      <dd>the singificance to return. It can be
+  either "pval" for using the p-value as the gene
+  significance, or "fdr" for using the fdr as the gene
+  significance</dd>
+      <dt>orient.permutation</dt>
+      <dd>the orientation of matrix being
+  permutated. It can be either "row" to permutate values
+  within each row, or "column" to permutate values within
+  each column, or "both" to permutate values both within
+  rows and columns. Notably, when using the p-value as the
+  gene significance, it is always to permutate values
+  within each row.</dd>
+      <dt>num.permutation</dt>
+      <dd>an integer specifying how many
+  permutations are used</dd>
+      <dt>fdr.procedure</dt>
+      <dd>the procedure to adjust the fdr. To
+  ensure that the high distance statistic the more
+  significance, the fdr should be adjusted either using
+  "stepup" for step-up procedure (from the most significant
+  to the least significant) or using "stepdown" for
+  step-down procedure (from the least significant to the
+  most significant)</dd>
+      <dt>verbose</dt>
+      <dd>logical to indicate whether the messages
+  will be displayed in the screen. By default, it sets to
+  true for display</dd>
+    </dl>
+    <!-- 
+    -->
+    
+    <div class="Value">
+      <h3>Value</h3>
+      
+      <p>a vector storing gene significance</p>
+    </div>
+    <div class="Note">
+      <h3>Note</h3>
+      
+      <p>none</p>
+    </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) generate data with three different distributions, each with an iid normal random matrix of 1000 x 3
+data <- cbind(matrix(rnorm(1000*3,mean=0,sd=1), nrow=1000, ncol=3),
+matrix(rnorm(1000*3,mean=0.5,sd=1), nrow=1000, ncol=3),
+matrix(rnorm(1000*3,mean=-0.5,sd=1), nrow=1000, ncol=3))
+
+# 2) calculate the significance according to SVD
+# using "pval" significance
+pval <- dSVDSignif(data, signif="pval", num.permutation=100)
+</div>
+<strong class='message'>Start at 2014-03-17 17:32:12</strong>
+<strong class='message'></strong>
+<strong class='message'>First, singular value decomposition of the input matrix (with 1000 rows and 9 columns)...</strong>
+<strong class='message'>Second, determinate the eigens...</strong>
+<strong class='message'>	via automatically deciding on the number of dominant eigens under the cutoff of 1.00e-02 pvalue</strong>
+<strong class='message'>	number of the eigens in consideration: 1</strong>
+<strong class='message'>Third, construct the gene-specific projection vector,and calculate distance statistics...</strong>
+<strong class='message'>Finally, obtain gene significance (p-value) based on 100 of row-wise permutations...</strong>
+<strong class='message'></strong>
+<strong class='message'>Finish at 2014-03-17 17:32:14</strong>
+<strong class='message'>Runtime in total is: 2 secs
+</strong>
+<div class='input'># using "fdr" significance
+fdr <- dSVDSignif(data, signif="fdr", num.permutation=100)
+</div>
+<strong class='message'>Start at 2014-03-17 17:32:14</strong>
+<strong class='message'></strong>
+<strong class='message'>First, singular value decomposition of the input matrix (with 1000 rows and 9 columns)...</strong>
+<strong class='message'>Second, determinate the eigens...</strong>
+<strong class='message'>	via automatically deciding on the number of dominant eigens under the cutoff of 1.00e-02 pvalue</strong>
+<strong class='message'>	number of the eigens in consideration: 1</strong>
+<strong class='message'>Third, construct the gene-specific projection vector,and calculate distance statistics...</strong>
+<strong class='message'>Finally, obtain gene significance (fdr) based on 100 permutations...</strong>
+<strong class='message'>	doing row-wise permutations...</strong>
+<strong class='message'>	estimating fdr...</strong>
+<strong class='message'>1 (out of 1000) at 2014-03-17 17:32:16</strong>
+<strong class='message'>100 (out of 1000) at 2014-03-17 17:32:16</strong>
+<strong class='message'>200 (out of 1000) at 2014-03-17 17:32:16</strong>
+<strong class='message'>300 (out of 1000) at 2014-03-17 17:32:16</strong>
+<strong class='message'>400 (out of 1000) at 2014-03-17 17:32:16</strong>
+<strong class='message'>500 (out of 1000) at 2014-03-17 17:32:17</strong>
+<strong class='message'>600 (out of 1000) at 2014-03-17 17:32:17</strong>
+<strong class='message'>700 (out of 1000) at 2014-03-17 17:32:17</strong>
+<strong class='message'>800 (out of 1000) at 2014-03-17 17:32:17</strong>
+<strong class='message'>900 (out of 1000) at 2014-03-17 17:32:18</strong>
+<strong class='message'>1000 (out of 1000) at 2014-03-17 17:32:18</strong>
+<strong class='message'>	using stepup procedure...</strong>
+<strong class='message'></strong>
+<strong class='message'>Finish at 2014-03-17 17:32:18</strong>
+<strong class='message'>Runtime in total is: 4 secs
+</strong></pre>
+  </div>
+  
+  <div class="span4">
+    
+    <!-- 
+    <ul>
+      <li>dSVDSignif</li>
+    </ul>
+    <ul>
+      
+    </ul> 
+    -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='dFDRscore.html'>dFDRscore</a></code>
+
+        
+    <!--
+    
+    <h2>URL</h2>
+    <ul>
+      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
+    </ul>
+    
+    
+    -->
+    
+  </div>
+  
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+
+<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
+
+
+      </footer>
+    </div>
+  </body>
+</html>

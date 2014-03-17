@@ -2,7 +2,7 @@
 \alias{dNetPipeline}
 \title{Function to setup the pipeline for finding maximum-scoring module from an input graph and the signficance imposed on its nodes}
 \usage{
-  dNetPipeline(g, pval, method = c("pdf", "cdf"),
+  dNetPipeline(g, pval, method = c("pdf", "cdf", "fdr"),
     fdr = NULL, nsize = NULL, plot = F, verbose = T)
 }
 \arguments{

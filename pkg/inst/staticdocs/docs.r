@@ -19,7 +19,10 @@ list(
                 'dNetConfidence',
                 'dNetReorder',
                 'dRWR',
-                'dContrast'
+                'dContrast',
+                'dCommSignif',
+                'dSVDSignif',
+                'dFDRscore'
             )
         ),
         sd_section("Visualisation functions",
@@ -30,7 +33,8 @@ list(
                 'visNetMul',
                 'visNetReorder',
                 'visNetArc',
-                'visNetCircle'
+                'visNetCircle',
+                'visHeatmap'
             )
         ),
         sd_section("Built-in databases",

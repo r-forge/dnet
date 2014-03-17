@@ -17,7 +17,7 @@ if(!require(limma)){
 load(url("http://dnet.r-forge.r-project.org/data/CLL.RData"))
 CLL
 
-# Non-specific probesets filtering: the signals below log2(30) are considered as being technically unreliable (i.e. an empirically determined value of minimum sensitivity). Also, those probesets with >70% of samples having technically unriliable signals were excluded from furhter consideration
+# Non-specific probesets filtering: the signals below log2(30) are considered as being technically unreliable (i.e. an empirically determined value of minimum sensitivity). Also, those probesets with >70% of samples having technically unriliable signals were excluded from further consideration
 sensVal <- log2(30)
 filter_flag <- apply(exprs(CLL)<sensVal,1,sum) > 0.7*ncol(exprs(CLL))
 eset <- CLL[!filter_flag,]

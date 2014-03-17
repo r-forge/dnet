@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Demo for human embryo dataset @ dnet 0.99.0</title>
+<title>Demo for time-course omics dataset @ dnet 0.99.0</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Hai Fang and Julian Gough">
 
@@ -104,7 +104,7 @@
         
       </header>
       
-      <h2>Demo for human embryo dataset</h2>
+      <h2>Demo for time-course omics dataset</h2>
 
 Notes:
 <li> All results are based on dnet (version 0.99.0). </li>
@@ -235,7 +235,22 @@ network
   description (v/c)
 </div>
 <div class='input'>
-# 1) preparation of node p-values
+# prepare the expression matrix
+D <- as.matrix(exprs(esetGene))
+D <- D - as.matrix(apply(D,1,mean),ncol=1)[,rep(1,ncol(D))]
+
+# heatmap of expression matrix with rows ordered according the dominant patterns
+sorted <- sort.int(D %*% svd(D)$v[,1], decreasing=T, index.return=T)
+mat_data <- D[sorted$ix,]
+lvs <- levels(pData(esetGene)$Stage)
+lvs_color <- visColormap(colormap="rainbow")(length(lvs))
+my_ColSideColors <- sapply(pData(esetGene)$Stage, function(x) lvs_color[x==lvs])
+<a href='visHeatmap.html' target=visHeatmap>visHeatmap</a>(mat_data, colormap="gbr", zlim=NULL, ColSideColors=my_ColSideColors, labRow=NA)
+</div>
+<a href="javascript:newWin('Fang-10.png', 'Fang-10.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-10.png', width="400" /></a>
+<div class='input'>#legend("topright", legend=lvs, col=lvs_color, lty=1, lwd=10)
+
+# 1) preparation of node significance
 ## define the design matrix in a order manner
 all <- as.vector(pData(esetGene)$Stage)
 level <- levels(factor(all))
@@ -265,53 +280,58 @@ apply(adjpvals<1e-2, 2, sum)
 3125 1764  485  461 1996 2556 
 </div>
 <div class='input'>
-# only for the comparisons of S9 against the average
-my_contrast <- "S9"
-# get the p-values and calculate the scores thereupon
-pval <- pvals[,my_contrast]
-#pval <- <a href='dPvalAggregate.html' target=dPvalAggregate>dPvalAggregate</a>(pvals, method="orderStatistic", order=ncol(pvals))
-#pval <- <a href='dPvalAggregate.html' target=dPvalAggregate>dPvalAggregate</a>(pvals, method="fishers", order=ncol(pvals))
-
-data <- exprs(esetGeneSub)[adjpvals[,my_contrast]<1e-2,]
-heatmap(as.matrix(data),col=visColormap("bwr")(64),zlim=c(min(data),max(data)), scale="none", cexRow=0.2+0.5/log10(nrow(data)), cexCol=0.2+0.5/log10(ncol(data)), Rowv=NULL,Colv=NA)
+# obtain gene significance from the given gene-sample matrix according to singular value decomposition-based method
+fdr <- <a href='dSVDSignif.html' target=dSVDSignif>dSVDSignif</a>(data=D, num.eigen=NULL, pval.eigen=1e-2, signif="fdr", orient.permutation="row", num.permutation=1000, fdr.procedure="stepup", verbose=T)
 </div>
-<strong class='error'>Error in hclustfun(distfun(x)): NA/NaN/Inf in foreign function call (arg 11)</strong>
+<strong class='message'>Start at 2014-03-17 17:20:47</strong>
+<strong class='message'></strong>
+<strong class='message'>First, singular value decomposition of the input matrix (with 4139 rows and 18 columns)...</strong>
+<strong class='message'>Second, determinate the eigens...</strong>
+<strong class='message'>	via automatically deciding on the number of dominant eigens under the cutoff of 1.00e-02 pvalue</strong>
+<strong class='message'>	number of the eigens in consideration: 2</strong>
+<strong class='message'>Third, construct the gene-specific projection vector,and calculate distance statistics...</strong>
+<strong class='message'>Finally, obtain gene significance (fdr) based on 1000 permutations...</strong>
+<strong class='message'>	doing row-wise permutations...</strong>
+<strong class='message'>	estimating fdr...</strong>
+<strong class='message'>1 (out of 4139) at 2014-03-17 17:22:11</strong>
+<strong class='message'>414 (out of 4139) at 2014-03-17 17:22:56</strong>
+<strong class='message'>828 (out of 4139) at 2014-03-17 17:23:41</strong>
+<strong class='message'>1242 (out of 4139) at 2014-03-17 17:24:26</strong>
+<strong class='message'>1656 (out of 4139) at 2014-03-17 17:25:11</strong>
+<strong class='message'>2070 (out of 4139) at 2014-03-17 17:25:56</strong>
+<strong class='message'>2484 (out of 4139) at 2014-03-17 17:26:41</strong>
+<strong class='message'>2898 (out of 4139) at 2014-03-17 17:27:26</strong>
+<strong class='message'>3312 (out of 4139) at 2014-03-17 17:28:11</strong>
+<strong class='message'>3726 (out of 4139) at 2014-03-17 17:28:56</strong>
+<strong class='message'>4139 (out of 4139) at 2014-03-17 17:29:41</strong>
+<strong class='message'>	using stepup procedure...</strong>
+<strong class='message'></strong>
+<strong class='message'>Finish at 2014-03-17 17:29:41</strong>
+<strong class='message'>Runtime in total is: 534 secs
+</strong>
 <div class='input'>
 # 2) identification of module
-g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network, pval=pval, nsize=40)
+g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network, pval=fdr, method="fdr", nsize=30)
 </div>
-<strong class='message'>Start at 2014-03-14 20:03:18</strong>
+<strong class='message'>Start at 2014-03-17 17:29:41</strong>
 <strong class='message'></strong>
-<strong class='message'>First, fit the p-value distribution under beta-uniform mixture model...</strong>
-<strong class='message'>	A total of p-values: 4139</strong>
-<strong class='message'>	Maximum Log-Likelihood: 26595.8</strong>
-<strong class='message'>	Mixture parameter (lambda): 0.000</strong>
-<strong class='message'>	Shape parameter (a): 0.103</strong>
+<strong class='message'>First, consider the fdr distribution</strong>
 <strong class='message'>Second, determine FDR threshold...</strong>
-<strong class='message'>	Via constraint on the size of subnetwork to be identified (40 nodes)</strong>
+<strong class='message'>	Via constraint on the size of subnetwork to be identified (30 nodes)</strong>
 <strong class='message'>	Scanning FDR at rough stage...</strong>
-<strong class='message'>		FDR: 1.00e-19, corresponding to the network size (0 nodes)</strong>
-<strong class='message'>		FDR: 1.00e-18, corresponding to the network size (0 nodes)</strong>
-<strong class='message'>		FDR: 1.00e-17, corresponding to the network size (0 nodes)</strong>
-<strong class='message'>		FDR: 1.00e-16, corresponding to the network size (1 nodes)</strong>
-<strong class='message'>		FDR: 1.00e-15, corresponding to the network size (1 nodes)</strong>
-<strong class='message'>		FDR: 1.00e-14, corresponding to the network size (3 nodes)</strong>
-<strong class='message'>		FDR: 1.00e-13, corresponding to the network size (12 nodes)</strong>
-<strong class='message'>		FDR: 1.00e-12, corresponding to the network size (30 nodes)</strong>
-<strong class='message'>		FDR: 1.00e-11, corresponding to the network size (45 nodes)</strong>
+<strong class='message'>		FDR: 1.00e-02, corresponding to the network size (0 nodes)</strong>
+<strong class='message'>		FDR: 1.00e-01, corresponding to the network size (327 nodes)</strong>
 <strong class='message'>	Scanning FDR at finetune stage...</strong>
-<strong class='message'>		FDR: 1.50e-12, corresponding to the network size (32 nodes)</strong>
-<strong class='message'>		FDR: 2.00e-12, corresponding to the network size (33 nodes)</strong>
-<strong class='message'>		FDR: 2.50e-12, corresponding to the network size (38 nodes)</strong>
-<strong class='message'>		FDR: 3.00e-12, corresponding to the network size (40 nodes)</strong>
-<strong class='message'>	FDR threshold: 3.00e-12</strong>
-<strong class='message'>Third, calculate the scores according to the fitted BUM and FDR threshold (if any)...</strong>
-<strong class='message'>	Amongst 4139 scores, there are 71 positives.</strong>
+<strong class='message'>		FDR: 1.50e-02, corresponding to the network size (0 nodes)</strong>
+<strong class='message'>		FDR: 2.00e-02, corresponding to the network size (42 nodes)</strong>
+<strong class='message'>	FDR threshold: 2.00e-02</strong>
+<strong class='message'>Third, calculate the scores according to the given fdr and the threshold (if any)...</strong>
+<strong class='message'>	Amongst 4139 scores, there are 82 positives.</strong>
 <strong class='message'>Finally, find the subnetwork from the input network with 2651 nodes and 26041 edges...</strong>
-<strong class='message'>	Size of the module: 40 nodes and 64 edges</strong>
+<strong class='message'>	Size of the module: 42 nodes and 148 edges</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-03-14 20:03:34</strong>
-<strong class='message'>Runtime in total is: 16 secs
+<strong class='message'>Finish at 2014-03-17 17:30:02</strong>
+<strong class='message'>Runtime in total is: 21 secs
 </strong>
 <div class='input'>glayout <- layout.fruchterman.reingold(g)
 
@@ -336,17 +356,17 @@ ordering <- tmp[order(vgroups,vdegrees),]$ind
 # 6) visualise graph using 1-dimensional arc diagram
 <a href='visNetArc.html' target=visNetArc>visNetArc</a>(g, ordering=ordering, labels=V(g)$geneSymbol, vertex.label.color=vcolors, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.size=log(vdegrees)+0.1, vertex.label.cex=0.4)
 </div>
-<a href="javascript:newWin('Fang-47.png', 'Fang-47.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-47.png', width="400" /></a>
+<a href="javascript:newWin('Fang-60.png', 'Fang-60.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-60.png', width="400" /></a>
 <div class='input'>
 # 7) visualise graph using circle diagram
 # 7a) drawn into a single circle 
 <a href='visNetCircle.html' target=visNetCircle>visNetCircle</a>(g=g, com=com, ordering=ordering, colormap=colormap, vertex.label=V(g)$symbol, vertex.size=igraph::degree(g)+5, vertex.label.color="black", vertex.label.cex=0.6, vertex.label.dist=0.75, vertex.shape="sphere", edge.color.within="grey", edge.color.crossing="black", edge.width=1, edge.lty=1, mark.shape=1, mark.expand=10)
 </div>
-<a href="javascript:newWin('Fang-49.png', 'Fang-49.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-49.png', width="400" /></a>
+<a href="javascript:newWin('Fang-62.png', 'Fang-62.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-62.png', width="400" /></a>
 <div class='input'># 7b) drawn into multiple circles
 <a href='visNetCircle.html' target=visNetCircle>visNetCircle</a>(g=g, com=com, circles="multiple", ordering=ordering, colormap=colormap, vertex.label=V(g)$symbol, vertex.size=igraph::degree(g)+5, vertex.label.color="black", vertex.label.cex=0.6, vertex.label.dist=0.25, vertex.shape="sphere", edge.color.within="grey", edge.color.crossing="black", edge.width=1, edge.lty=1, mark.shape=1, mark.expand=10)
 </div>
-<a href="javascript:newWin('Fang-51.png', 'Fang-51.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-51.png', width="400" /></a>
+<a href="javascript:newWin('Fang-64.png', 'Fang-64.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-64.png', width="400" /></a>
 <div class='input'>
 # 8) as comparison, also visualise graph on 2-dimensional layout 
 mark.groups <- communities(com)
@@ -355,36 +375,30 @@ mark.border <- visColoralpha(mcolors, alpha=0.2)
 edge.color <- c("grey", "black")[crossing(com,g)+1]
 <a href='visNet.html' target=visNet>visNet</a>(g, glayout=glayout, vertex.label=V(g)$geneSymbol, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.shape="sphere", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
 </div>
-<a href="javascript:newWin('Fang-53.png', 'Fang-53.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-53.png', width="400" /></a>
+<a href="javascript:newWin('Fang-66.png', 'Fang-66.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-66.png', width="400" /></a>
 <div class='input'>
 legend_name <- paste("C",1:length(mcolors)," (n=",com$csize,", pval=",signif(com$significance,digits=2),")",sep='')
 legend("bottomleft", legend=legend_name, fill=mcolors, bty="n", cex=0.6)
 </div>
-<a href="javascript:newWin('Fang-55.png', 'Fang-55.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-55.png', width="400" /></a>
+<a href="javascript:newWin('Fang-68.png', 'Fang-68.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-68.png', width="400" /></a>
 <div class='input'>
-# 9) color by score and FC
+# 9) color by score
 # colored by score
 <a href='visNet.html' target=visNet>visNet</a>(g, glayout=glayout, pattern=V(g)$score, zlim=c(-1*ceiling(max(abs(V(g)$score))),ceiling(max(abs(V(g)$score)))), vertex.shape="circle", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
 </div>
-<a href="javascript:newWin('Fang-57.png', 'Fang-57.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-57.png', width="400" /></a>
-<div class='input'># colored by FC
-colormap <- "darkgreen-lightgreen-lightpink-darkred"
-logFC <- fit2$coefficients[V(g)$name,my_contrast]
-<a href='visNet.html' target=visNet>visNet</a>(g, glayout=glayout, pattern=logFC, colormap=colormap, mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
-</div>
-<a href="javascript:newWin('Fang-59.png', 'Fang-59.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-59.png', width="400" /></a>
+<a href="javascript:newWin('Fang-70.png', 'Fang-70.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-70.png', width="400" /></a>
 <div class='input'>
 # 10) color by additional data
-##data <- exprs(esetGene)[V(g)$name,]
+colormap <- "darkgreen-lightgreen-lightpink-darkred"
 data <- as.matrix(fit2$coefficients[V(g)$name,])
 <a href='visNetMul.html' target=visNetMul>visNetMul</a>(g=g, data=data, height=ceiling(sqrt(ncol(data)))*2, newpage=T,glayout=glayout,colormap=colormap,vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
 </div>
-<a href="javascript:newWin('Fang-61.png', 'Fang-61.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-61.png', width="400" /></a>
+<a href="javascript:newWin('Fang-72.png', 'Fang-72.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-72.png', width="400" /></a>
 <div class='input'>
 # 11) color by additional data (be reordered)
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="edge", node.normalise="degree", amplifier=2, metric="none")
 </div>
-<strong class='message'>Start at 2014-03-14 20:04:12</strong>
+<strong class='message'>Start at 2014-03-17 17:31:06</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -394,14 +408,14 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
 <strong class='message'>Finally, append the response data (hits and mqe) into the sMap object...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
-<strong class='message'>   dimension of input data: 6x64
+<strong class='message'>   dimension of input data: 6x148
    xy-dimension of map grid: xdim=4, ydim=4
    grid lattice: rect
    grid shape: sheet
    dimension of grid coord: 16x2
    initialisation method: linear
-   dimension of codebook matrix: 16x64
-   mean quantization error: 0.555282939015634
+   dimension of codebook matrix: 16x148
+   mean quantization error: 0.304716221881805
 </strong>
 <strong class='message'>Below are the details of trainology:</strong>
 <strong class='message'>   training algorithm: sequential
@@ -411,25 +425,23 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-14 20:04:12</strong>
-<strong class='message'>Runtime in total is: 0 secs
+<strong class='message'>End at 2014-03-17 17:31:07</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap=colormap, vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)
 </div>
-<a href="javascript:newWin('Fang-79.png', 'Fang-79.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-79.png', width="400" /></a>
+<a href="javascript:newWin('Fang-90.png', 'Fang-90.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-90.png', width="400" /></a>
 <div class='input'>
 # 12) heatmap of subnetwork
-data[data < -2] <- -2
-data[data > 2] <- 2
-heatmap(as.matrix(data),col=visColormap(colormap=colormap)(64),zlim=c(-2,2), scale="none", cexRow=0.2+0.5/log10(nrow(data)), cexCol=0.2+0.5/log10(ncol(data)), Rowv=NULL,Colv=NULL)
+<a href='visHeatmap.html' target=visHeatmap>visHeatmap</a>(data, row.metric="euclidean", row.method="average", column.metric="euclidean", column.method="average", colormap="gbr", zlim=c(-2,2), row.cutree=3)
 </div>
-<a href="javascript:newWin('Fang-81.png', 'Fang-81.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-81.png', width="400" /></a>
+<a href="javascript:newWin('Fang-92.png', 'Fang-92.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-92.png', width="400" /></a>
 <div class='input'>hmap <- data.frame(Symbol=rownames(data), data)
-write.table(hmap, file=paste(my_contrast,".txt", sep=""), quote=F, row.names=F,col.names=T,sep="\t")
+write.table(hmap, file=paste("Fang_whole.txt", sep=""), quote=F, row.names=F,col.names=T,sep="\t")
 
 # 13) Write the subnetwork into a SIF-formatted file (Simple Interaction File)
 sif <- data.frame(source=get.edgelist(g)[,1], type="interaction", target=get.edgelist(g)[,2])
-write.table(sif, file=paste(my_contrast,".sif", sep=""), quote=F, row.names=F,col.names=F,sep="\t")</div>
+write.table(sif, file=paste("Fang_whole.sif", sep=""), quote=F, row.names=F,col.names=F,sep="\t")</div>
       </pre>
     </div>
 
@@ -438,8 +450,9 @@ write.table(sif, file=paste(my_contrast,".sif", sep=""), quote=F, row.names=F,co
     <h2>Functions used in this demo</h2>
     <ul>
       <li><a href="dNetInduce.html">dNetInduce</a></li>
+      <li><a href="visHeatmap.html">visHeatmap</a></li>
       <li><a href="dContrast.html">dContrast</a></li>
-      <li><a href="dPvalAggregate.html">dPvalAggregate</a></li>
+      <li><a href="dSVDSignif.html">dSVDSignif</a></li>
       <li><a href="dNetPipeline.html">dNetPipeline</a></li>
       <li><a href="dCommSignif.html">dCommSignif</a></li>
       <li><a href="visNetArc.html">visNetArc</a></li>

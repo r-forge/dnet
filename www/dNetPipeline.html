@@ -116,8 +116,8 @@
   It returns an object of class "igraph" or "graphNEL".</p>
   
     <h3>Usage</h3>
-    <pre>dNetPipeline(g, pval, method = c("pdf", "cdf"), fdr = NULL, nsize = NULL, plot = F, 
-  verbose = T)</pre>
+    <pre>dNetPipeline(g, pval, method = c("pdf", "cdf", "fdr"), fdr = NULL, nsize = NULL, 
+  plot = F, verbose = T)</pre>
     
     <h3>Arguments</h3>
     <dl>
@@ -204,22 +204,22 @@ subg <- dNetInduce(g, V(g), knn=0)
 # 4) find maximum-scoring module based on fdr=0.1 threshold
 module <- dNetPipeline(g=subg, pval=x, fdr=0.1)
 </div>
-<strong class='message'>Start at 2014-03-14 20:04:52</strong>
+<strong class='message'>Start at 2014-03-17 17:32:08</strong>
 <strong class='message'></strong>
 <strong class='message'>First, fit the p-value distribution under beta-uniform mixture model...</strong>
 <strong class='message'>	A total of p-values: 1000</strong>
-<strong class='message'>	Maximum Log-Likelihood: 353.0</strong>
-<strong class='message'>	Mixture parameter (lambda): 0.033</strong>
-<strong class='message'>	Shape parameter (a): 0.470</strong>
+<strong class='message'>	Maximum Log-Likelihood: 287.3</strong>
+<strong class='message'>	Mixture parameter (lambda): 0.071</strong>
+<strong class='message'>	Shape parameter (a): 0.492</strong>
 <strong class='message'>Second, determine FDR threshold...</strong>
 <strong class='message'>	FDR threshold: 1.00e-01</strong>
 <strong class='message'>Third, calculate the scores according to the fitted BUM and FDR threshold (if any)...</strong>
-<strong class='message'>	Amongst 1000 scores, there are 227 positives.</strong>
-<strong class='message'>Finally, find the subnetwork from the input network with 1000 nodes and 5120 edges...</strong>
-<strong class='message'>	Size of the module: 207 nodes and 266 edges</strong>
+<strong class='message'>	Amongst 1000 scores, there are 182 positives.</strong>
+<strong class='message'>Finally, find the subnetwork from the input network with 1000 nodes and 5024 edges...</strong>
+<strong class='message'>	Size of the module: 142 nodes and 162 edges</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-03-14 20:04:53</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>Finish at 2014-03-17 17:32:10</strong>
+<strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'>
 # 5) find maximum-scoring module with the desired node number nsize=20
