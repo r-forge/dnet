@@ -47,7 +47,7 @@
 #' visHeatmapAdv(data, dendrogram="column", colormap="gbr", zlim=c(-2,2))
 #'
 #' # 3) heatmap after only clustering rows (with 2 color-coded groups)
-#' visHeatmapAdv(data, Colv=FALSE, colormap="gbr", zlim=c(-2,2), row.cutree=2, row.colormap="gray-black", labRow=NA)
+#' visHeatmapAdv(data, Colv=FALSE, colormap="gbr", zlim=c(-2,2), row.cutree=2, row.colormap="jet", labRow=NA)
 #'
 #' # 4) prepare colors for the column sidebar
 #' # color for stages (S1-S3)
