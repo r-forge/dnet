@@ -81,10 +81,22 @@ D <- D - as.matrix(apply(D,1,mean),ncol=1)[,rep(1,ncol(D))]
 # heatmap of expression matrix with rows ordered according the dominant patterns
 sorted <- sort.int(D %*% svd(D)$v[,1], decreasing=T, index.return=T)
 mat_data <- D[sorted$ix,]
-lvs <- levels(pData(esetGene)$Stage)
+
+# prepare colors for the column sidebar
+# color for stages (S9-S14)
+stages <- sub("_.*","",colnames(mat_data))
+lvs <- unique(stages)
 lvs_color <- visColormap(colormap="rainbow")(length(lvs))
-my_ColSideColors <- sapply(pData(esetGene)$Stage, function(x) lvs_color[x==lvs])
-visHeatmap(mat_data, colormap="gbr", zlim=NULL, ColSideColors=my_ColSideColors, labRow=NA)
+col_stages <- sapply(stages, function(x) lvs_color[x==lvs])
+# color for replicates (R1-R3)
+replicates <- sub(".*_","",colnames(mat_data))
+lvs <- unique(replicates)
+lvs_color <- visColormap(colormap="rainbow")(length(lvs))
+col_replicates <- sapply(replicates, function(x) lvs_color[x==lvs])
+# combine both color vectors
+ColSideColors <- cbind(col_stages,col_replicates)
+colnames(ColSideColors) <- c("Stages","Replicates")
+visHeatmapAdv(mat_data, Rowv=FALSE, Colv=FALSE, colormap="gbr", zlim=c(-1,1), density.info="density", tracecol="yellow", ColSideColors=ColSideColors, labRow=NA)
 #legend("topright", legend=lvs, col=lvs_color, lty=1, lwd=10)
 
 # 1) preparation of node significance

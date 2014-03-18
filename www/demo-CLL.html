@@ -89,11 +89,9 @@
         <ul class="nav">
           <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
         </ul>
-        <!--
         <ul class="nav">
           <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
         </ul>
-        -->
       </div>
     </div>
   </div>
@@ -335,7 +333,7 @@ pval <- pvals[,my_contrast]
 # 2) identification of module
 g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network, pval=pval, nsize=20)
 </div>
-<strong class='message'>Start at 2014-03-17 17:10:24</strong>
+<strong class='message'>Start at 2014-03-18 17:55:22</strong>
 <strong class='message'></strong>
 <strong class='message'>First, fit the p-value distribution under beta-uniform mixture model...</strong>
 <strong class='message'>	A total of p-values: 9367</strong>
@@ -363,8 +361,8 @@ g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network,
 <strong class='message'>Finally, find the subnetwork from the input network with 6341 nodes and 102586 edges...</strong>
 <strong class='message'>	Size of the module: 31 nodes and 37 edges</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-03-17 17:12:55</strong>
-<strong class='message'>Runtime in total is: 151 secs
+<strong class='message'>Finish at 2014-03-18 17:57:55</strong>
+<strong class='message'>Runtime in total is: 153 secs
 </strong>
 <div class='input'>glayout <- layout.fruchterman.reingold(g)
 
@@ -439,7 +437,7 @@ colnames(data) <- EIL[ind]
 # 11) color by additional data (be reordered)
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="edge", node.normalise="degree", amplifier=2, metric="none")
 </div>
-<strong class='message'>Start at 2014-03-17 17:13:29</strong>
+<strong class='message'>Start at 2014-03-18 17:58:30</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -456,7 +454,7 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    dimension of grid coord: 25x2
    initialisation method: linear
    dimension of codebook matrix: 25x37
-   mean quantization error: 1.83410987723207
+   mean quantization error: 2.18582292564042
 </strong>
 <strong class='message'>Below are the details of trainology:</strong>
 <strong class='message'>   training algorithm: sequential
@@ -466,8 +464,8 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-17 17:13:30</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>End at 2014-03-18 17:58:30</strong>
+<strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap=colormap, vertex.label=NA,vertex.shape="sphere", vertex.size=18,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)</div>
 <a href="javascript:newWin('CLL-93.png', 'CLL-93.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='CLL-93.png', width="400" /></a>
@@ -489,6 +487,9 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
       <li><a href="visNetReorder.html">visNetReorder</a></li>
     </ul>
     
+    <h2>Citation</h2>
+    <p>Fang H, Gough J. (2014) dnet: Expression-active dynamic networks for sample stratifications and visualisations. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+
     
     <!--
     

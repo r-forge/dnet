@@ -89,11 +89,9 @@
         <ul class="nav">
           <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
         </ul>
-        <!--
         <ul class="nav">
           <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
         </ul>
-        -->
       </div>
     </div>
   </div>
@@ -204,7 +202,7 @@ subg <- dNetInduce(g, V(g), knn=0)
 # 4) find maximum-scoring module based on fdr=0.1 threshold
 module <- dNetPipeline(g=subg, pval=x, fdr=0.1)
 </div>
-<strong class='message'>Start at 2014-03-17 17:32:08</strong>
+<strong class='message'>Start at 2014-03-18 18:16:22</strong>
 <strong class='message'></strong>
 <strong class='message'>First, fit the p-value distribution under beta-uniform mixture model...</strong>
 <strong class='message'>	A total of p-values: 1000</strong>
@@ -218,8 +216,8 @@ module <- dNetPipeline(g=subg, pval=x, fdr=0.1)
 <strong class='message'>Finally, find the subnetwork from the input network with 1000 nodes and 5024 edges...</strong>
 <strong class='message'>	Size of the module: 142 nodes and 162 edges</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-03-17 17:32:10</strong>
-<strong class='message'>Runtime in total is: 2 secs
+<strong class='message'>Finish at 2014-03-18 18:16:23</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'>
 # 5) find maximum-scoring module with the desired node number nsize=20
@@ -243,7 +241,11 @@ module <- dNetPipeline(g=subg, pval=x, fdr=0.1)
   <code><a href='dBUMfit.html'>dBUMfit</a></code>, <code><a href='dBUMscore.html'>dBUMscore</a></code>,
   <code><a href='dNetFind.html'>dNetFind</a></code>
 
-        
+    
+    <h2>Citation</h2>
+    <p>Fang H, Gough J. (2014) dnet: Expression-active dynamic networks for sample stratifications and visualisations. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+
+    
     <!--
     
     <h2>URL</h2>

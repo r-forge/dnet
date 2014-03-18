@@ -86,8 +86,8 @@
   color-code the column groups (i.e. sidebar colors used to
   annotate the columns)}
 
-  \item{...}{additional graphic parameters. See type
-  ?heatmap for the complete list.}
+  \item{...}{additional graphic parameters. Type ?heatmap
+  for the complete list.}
 }
 \value{
   invisible

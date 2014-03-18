@@ -15,7 +15,7 @@
 #' @param row.colormap short name for the colormap to color-code the row groups (i.e. sidebar colors used to annotate the rows)
 #' @param column.cutree an integer scalar specifying the desired number of groups being cut from the column dendrogram. Note, this optional is only enabled when the column dengrogram is built
 #' @param column.colormap short name for the colormap to color-code the column groups (i.e. sidebar colors used to annotate the columns)
-#' @param ... additional graphic parameters. See type ?heatmap for the complete list.
+#' @param ... additional graphic parameters. Type ?heatmap for the complete list.
 #' @return 
 #' invisible
 #' @note The clustering methods are provided:
@@ -73,7 +73,7 @@ colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"), ncolors=64, zlim=N
                 row_color <- visColormap(colormap=row.colormap)(length(unique(row_cutree)))
                 my_RowSideColors <- row_color[as.vector(row_cutree)]
             }
-        }   
+        }
     }else{
         my_Rowv <- NA
     }

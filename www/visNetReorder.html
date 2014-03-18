@@ -89,11 +89,9 @@
         <ul class="nav">
           <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
         </ul>
-        <!--
         <ul class="nav">
           <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
         </ul>
-        -->
       </div>
     </div>
   </div>
@@ -237,7 +235,7 @@ data <- matrix(runif(nnodes*nsamples), nrow=nnodes, ncol=nsamples)
 rownames(data) <- V(subg)$name
 sReorder <- dNetReorder(g=subg, data, feature="node", node.normalise="none")
 </div>
-<strong class='message'>Start at 2014-03-17 17:33:04</strong>
+<strong class='message'>Start at 2014-03-18 18:17:19</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -247,14 +245,14 @@ sReorder <- dNetReorder(g=subg, data, feature="node", node.normalise="none")
 <strong class='message'>Finally, append the response data (hits and mqe) into the sMap object...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
-<strong class='message'>   dimension of input data: 10x9
+<strong class='message'>   dimension of input data: 10x15
    xy-dimension of map grid: xdim=6, ydim=6
    grid lattice: rect
    grid shape: sheet
    dimension of grid coord: 36x2
    initialisation method: linear
-   dimension of codebook matrix: 36x9
-   mean quantization error: 0.182064962969937
+   dimension of codebook matrix: 36x15
+   mean quantization error: 0.358258347595373
 </strong>
 <strong class='message'>Below are the details of trainology:</strong>
 <strong class='message'>   training algorithm: sequential
@@ -264,7 +262,7 @@ sReorder <- dNetReorder(g=subg, data, feature="node", node.normalise="none")
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-17 17:33:05</strong>
+<strong class='message'>End at 2014-03-18 18:17:20</strong>
 <strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'>
@@ -289,7 +287,11 @@ visNetReorder(g=subg, colormap="bwr", data=data, sReorder)
     
   <code><a href='visNet.html'>visNet</a></code>, <code><a href='dNetReorder.html'>dNetReorder</a></code>
 
-        
+    
+    <h2>Citation</h2>
+    <p>Fang H, Gough J. (2014) dnet: Expression-active dynamic networks for sample stratifications and visualisations. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+
+    
     <!--
     
     <h2>URL</h2>
