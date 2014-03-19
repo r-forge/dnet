@@ -36,6 +36,7 @@ Notes: below are `R command lines (NOT shell command lines in Terminal)`.
 First, install the dependent packages:
 
     if(!require(hexbin)) install.packages("hexbin",repos="http://www.stats.bris.ac.uk/R")
+    if(!require(ape)) install.packages("ape",repos="http://www.stats.bris.ac.uk/R")
     if(!require(supraHex)) install.packages("supraHex",repos="http://R-Forge.R-project.org", type="source")
     if(!require(igraph)) install.packages("igraph",repos="http://www.stats.bris.ac.uk/R")
     if(!require(devtools)) install.packages("devtools",repos="http://www.stats.bris.ac.uk/R")

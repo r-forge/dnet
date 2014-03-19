@@ -33,7 +33,5 @@ Collate:
     'dCommSignif.r'
     'dSVDSignif.r'
     'dFDRscore.r'
-    'visHeatmap.r'
-    'visHeatmapAdv.r'
 License: GPL-2
 biocViews: Bioinformatics

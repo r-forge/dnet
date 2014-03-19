@@ -44,7 +44,7 @@
   product of the component number and the amplifier
   constitutes the number of rectangles in the sheet grid}
 
-  \item{metric}{distance metric used to difine the
+  \item{metric}{distance metric used to define the
   similarity between component planes. It can be "none",
   which means directly using column-wise vectors of
   codebook/data matrix. Otherwise, first calculate the
