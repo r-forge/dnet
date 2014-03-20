@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Home @ dnet 0.99.0</title>
+<title>visColormap @ dnet 0.99.0</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="author" content="Hai Fang and Julian Gough">
+<meta name="author" content="">
 
 <link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/bootstrap-responsive.css" rel="stylesheet">
@@ -102,90 +102,112 @@
         
       </header>
       
-      <div class="row">
+      <h2>Function to define a colormap</h2>
+
+<div class="row">
   <div class="span8">
-    <p><a href="index.html"><IMG src="dnet_logo1.png" height="100px" id="logo"></a></p>
+  
+    <h3>Description</h3>
+    <p><code>visColormap</code> is supposed to define a colormap. It
+  returns a function, which will take an integer argument
+  specifying how many colors interpolate the given
+  colormap.</p>
+  
+    <h3>Usage</h3>
+    <pre>visColormap(colormap = c("bwr", "jet", "gbr", "wyr", "br", "yr", "rainbow", "wb"))</pre>
+    
+    <h3>Arguments</h3>
+    <dl>
+      <dt>colormap</dt>
+      <dd>short name for the colormap</dd>
+    </dl>
+    <!-- 
+    -->
+    
+    <div class="Value">
+      <h3>Value</h3>
+      
+      <p><ul>
+<li><code>palette.name</code>: a function that
+  takes an integer argument for generating that number of
+  colors interpolating the given sequence </li>
+</ul></p>
+      <p></p>
+    </div>
+    <div class="Note">
+      <h3>Note</h3>
+      
+      <p>The input colormap includes: <ul>
+<li>"jet": jet
+  colormap </li>
+<li>"bwr": blue-white-red </li>
+<li>"gbr":
+  green-black-red </li>
+<li>"wyr": white-yellow-red
+  </li>
+<li>"br": black-red </li>
+<li>"yr": yellow-red
+  </li>
+<li>"wb": white-black </li>
+<li>"rainbow": rainbow
+  colormap, that is, red-yellow-green-cyan-blue-magenta
+  </li>
+<li>Alternatively, any hyphen-separated HTML color
+  names, e.g. "blue-black-yellow",
+  "royalblue-white-sandybrown",
+  "darkblue-lightblue-lightyellow-darkorange",
+  "darkgreen-white-darkviolet",
+  "darkgreen-lightgreen-lightpink-darkred". A list of
+  standard color names can be found in
+  <a href = 'http://html-color-codes.info/color-names'>http://html-color-codes.info/color-names</a> </li>
+</ul></p>
+      <p></p>
+    </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) define "blue-white-red" colormap
+palette.name <- visColormap(colormap="bwr")
 
-<h2>Introduction</h2>
-
-<p><code>dnet</code> is an open-source R package for analysing biological networks and high-throughput biological data in an integrative manner.</p>
-
-<p><code>dnet</code> intends to analyse the biological network whose nodes/genes are associated with dynamic information such as expression levels across samples.</p>
-
-<p><code>dnet</code> aims to deliver an eye-intuitive tool for network-based sample stratifications.</p>
-
-<h2>Features</h2>
-
-<ul>
-<li>An integrated framework for integration of network and expression information for classifying/stratifying samples</li>
-<li>Identification of expression-active dynamic subnetworks</li>
-<li>Network-based sample stratifications </li>
-<li>Visualisations of network-based sample stratifications on 2D landscape</li>
-<li>This package can run on <code>Windows</code>, <code>Mac</code> and <code>Linux</code></li>
-</ul>
-
-<h2>See also</h2>
-
-<ul>
-<li><a href="http://igraph.sourceforge.net">igraph</a></li>
-<li><a href="http://supfam.org/supraHex">supraHex</a></li>
-</ul>
-
-
+# 2) use the return function "palette.name" to generate 10 colors spanning "bwr"
+palette.name(10)
+</div>
+<div class='output'> [1] "#0000FF" "#3838FF" "#7171FF" "#AAAAFF" "#E2E2FF" "#FFE2E2" "#FFAAAA"
+ [8] "#FF7171" "#FF3838" "#FF0000"
+</div></pre>
   </div>
   
-  <div class="span3 offset1">
-  
-
-    <h2>Manual</h2>
+  <div class="span4">
+    
+    <!-- 
     <ul>
-
-    
-    
-        <li>dnet Reference Manual (<a href="vignettes/dnet.pdf">PDF</a>, <a href="docs.html">HTML</a>)</li>
-    
+      <li>visColormap</li>
     </ul>
-
-    <h2>Demos</h2>
     <ul>
-      <li><a href="demo-CLL.html">Demo for patient omics dataset</a></li>
-      <li><a href="demo-Hiratani.html">Demo for multilayer omics dataset</a></li>
-      <li><a href="demo-Fang.html">Demo for time-course omics dataset</a></li>
-    </ul>
+      
+    </ul> 
+    -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='visColoralpha.html'>visColoralpha</a></code>
+
+    
+    <h2>Citation</h2>
+    <p>Fang H, Gough J. (2014) dnet: Expression-active dynamic networks for sample stratifications and visualisations. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+
+    
+    <!--
     
     <h2>URL</h2>
     <ul>
       <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
     </ul>
     
-    <h2>Dependency</h2>
-    <ul>
-      <li><strong>Depends</strong>: igraph, supraHex, ape</li>
-      <li><strong>Imports</strong>: </li>
-      <li><strong>Suggests</strong>: affy, limma</li>
-      <li><strong>Extends</strong>: </li>
-    </ul>
-    
-    <h2>License</h2>
-    GPL-2
-    
-    <h2>Author</h2>
-    Hai Fang and Julian Gough
-    
-    <!--
-    
-    
-    <h2>Manual</h2>
-    <ul>
-        <li><a href="vignettes/dnet.pdf">dnet Reference Manual</a></li>
-    </ul>
-    
-    <h2>Maintainer</h2>
-    Hai Fang &lt;hfang@cs.bris.ac.uk&gt;
     
     -->
     
   </div>
+  
 </div>
       
       <footer>

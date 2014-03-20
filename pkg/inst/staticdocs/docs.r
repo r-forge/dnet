@@ -33,7 +33,11 @@ list(
                 'visNetMul',
                 'visNetReorder',
                 'visNetArc',
-                'visNetCircle'
+                'visNetCircle',
+                'visColoralpha',
+                'visHeatmap',
+                'visHeatmapAdv',
+                'visTreeBootstrap'
             )
         ),
         sd_section("Built-in databases",
