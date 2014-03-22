@@ -139,9 +139,7 @@ sReorder <- dNetReorder(g, data, feature="edge", node.normalise="degree", amplif
 visNetReorder(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap=colormap, vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.4,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)
 
 # 12) heatmap of subnetwork
-data[data < -2] <- -2
-data[data > 2] <- 2
-heatmap(as.matrix(data),col=visColormap(colormap=colormap)(64),zlim=c(-2,2), scale="none", cexRow=0.2+0.5/log10(nrow(data)), cexCol=0.2+0.5/log10(ncol(data)), Rowv=NULL,Colv=NULL)
+visHeatmapAdv(data, colormap=colormap)
 hmap <- data.frame(Symbol=rownames(data), data)
 write.table(hmap, file=paste(my_contrast,".txt", sep=""), quote=F, row.names=F,col.names=T,sep="\t")
 

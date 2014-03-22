@@ -271,7 +271,7 @@ pval <- pvals[,my_contrast]
 # 2) identification of module
 g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network, pval=pval, nsize=40)
 </div>
-<strong class='message'>Start at 2014-03-22 07:42:42</strong>
+<strong class='message'>Start at 2014-03-22 16:59:14</strong>
 <strong class='message'></strong>
 <strong class='message'>First, fit the p-value distribution under beta-uniform mixture model...</strong>
 <strong class='message'>	A total of p-values: 17292</strong>
@@ -301,8 +301,8 @@ g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network,
 <strong class='message'>Finally, find the subnetwork from the input network with 9046 nodes and 155986 edges...</strong>
 <strong class='message'>	Size of the module: 40 nodes and 53 edges</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-03-22 07:46:12</strong>
-<strong class='message'>Runtime in total is: 210 secs
+<strong class='message'>Finish at 2014-03-22 17:02:36</strong>
+<strong class='message'>Runtime in total is: 202 secs
 </strong>
 <div class='input'>glayout <- layout.fruchterman.reingold(g)
 
@@ -374,7 +374,7 @@ data <- exprs(esetGene)[V(g)$name,]
 # 11) color by additional data (be reordered)
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="edge", node.normalise="degree", amplifier=3, metric="none")
 </div>
-<strong class='message'>Start at 2014-03-22 07:47:37</strong>
+<strong class='message'>Start at 2014-03-22 17:05:07</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -401,7 +401,7 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    radius (at rough stage): from 2 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-22 07:47:43</strong>
+<strong class='message'>End at 2014-03-22 17:05:13</strong>
 <strong class='message'>Runtime in total is: 6 secs
 </strong>
 <div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap=colormap, vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.4,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)
@@ -409,9 +409,7 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
 <a href="javascript:newWin('Hiratani-81.png', 'Hiratani-81.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Hiratani-81.png', width="400" /></a>
 <div class='input'>
 # 12) heatmap of subnetwork
-data[data < -2] <- -2
-data[data > 2] <- 2
-heatmap(as.matrix(data),col=<a href='visColormap.html' target=visColormap>visColormap</a>(colormap=colormap)(64),zlim=c(-2,2), scale="none", cexRow=0.2+0.5/log10(nrow(data)), cexCol=0.2+0.5/log10(ncol(data)), Rowv=NULL,Colv=NULL)
+<a href='visHeatmapAdv.html' target=visHeatmapAdv>visHeatmapAdv</a>(data, colormap=colormap)
 </div>
 <a href="javascript:newWin('Hiratani-83.png', 'Hiratani-83.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Hiratani-83.png', width="400" /></a>
 <div class='input'>hmap <- data.frame(Symbol=rownames(data), data)
@@ -440,10 +438,11 @@ write.table(sif, file=paste(my_contrast,".sif", sep=""), quote=F, row.names=F,co
       <li><a href="visNetMul.html">visNetMul</a></li>
       <li><a href="dNetReorder.html">dNetReorder</a></li>
       <li><a href="visNetReorder.html">visNetReorder</a></li>
+      <li><a href="visHeatmapAdv.html">visHeatmapAdv</a></li>
     </ul>
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) dnet: Expression-active dynamic networks for sample stratifications and visualisations. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network and expression data. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

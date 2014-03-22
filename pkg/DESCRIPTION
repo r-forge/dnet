@@ -1,6 +1,6 @@
 Package: dnet
 Type: Package
-Title: Expression-active dynamic networks for sample stratifications and visualisations
+Title: Dynamic networks via an integrative analysis of network and expression data
 Version: 0.99.0
 Date: 2014-3-21
 Author: Hai Fang and Julian Gough

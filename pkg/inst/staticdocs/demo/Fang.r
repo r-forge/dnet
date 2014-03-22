@@ -183,7 +183,7 @@ sReorder <- dNetReorder(g, data, feature="edge", node.normalise="degree", amplif
 visNetReorder(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap=colormap, vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)
 
 # 12) heatmap of subnetwork
-visHeatmap(data, row.metric="euclidean", row.method="average", column.metric="euclidean", column.method="average", colormap="gbr", zlim=c(-2,2), row.cutree=3)
+visHeatmapAdv(data, colormap="gbr", row.cutree=3, column.cutree=3)
 hmap <- data.frame(Symbol=rownames(data), data)
 write.table(hmap, file=paste("Fang_whole.txt", sep=""), quote=F, row.names=F,col.names=T,sep="\t")
 
