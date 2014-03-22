@@ -136,43 +136,15 @@
     </div>
     
     <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'>load(url("http://dnet.r-forge.r-project.org/data/CLL.RData"))
+    <pre class="examples"><div class='input'># not run
+if(0){
+load(url("http://dnet.r-forge.r-project.org/data/CLL.RData"))
 CLL
-</div>
-<div class='output'>ExpressionSet (storageMode: lockedEnvironment)
-assayData: 54675 features, 130 samples 
-  element names: exprs 
-protocolData: none
-phenoData
-  sampleNames: GSM977137 GSM977138 ... GSM977266 (130 total)
-  varLabels: Name Time Treatment
-  varMetadata: labelDescription
-featureData
-  featureNames: 1007_s_at 1053_at ... AFFX-TrpnX-M_at (54675 total)
-  fvarLabels: EntrezID Symbol Desc
-  fvarMetadata: labelDescription
-experimentData: use 'experimentData(object)'
-Annotation:  
-</div>
-<div class='input'># extract information about the first 5 samples
+# extract information about the first 5 samples
 pData(CLL)[1:5,]
-</div>
-<div class='output'>          Name     Time Treatment
-GSM977137 CLL1 2.487671         1
-GSM977138 CLL2 3.084932         1
-GSM977139 CLL3 2.882192         1
-GSM977140 CLL4 0.109589         1
-GSM977141 CLL5 3.249315         0
-</div>
-<div class='input'># extract information about the first 5 features
+# extract information about the first 5 features
 fData(CLL)[1:5,]
-</div>
-<div class='output'>          EntrezID Symbol                                        Desc
-1007_s_at     <NA>   <NA>                                          NA
-1053_at       5982   RFC2 replication factor C (activator 1) 2, 40kDa
-117_at        3310  HSPA6        heat shock 70kDa protein 6 (HSP70B')
-121_at        7849   PAX8                                paired box 8
-1255_g_at     2978 GUCA1A     guanylate cyclase activator 1A (retina)
+}
 </div></pre>
   </div>
   
