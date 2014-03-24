@@ -114,13 +114,13 @@
     <ul class="index">
         
       <li>
-        <code><a href="eCal.html">eCal</a></code><br />Function to conduct gene set enrichment analysis given the input data and the ontology in query</li>
+        <code><a href="dGSEA.html">dGSEA</a></code><br />Function to conduct gene set enrichment analysis given the input data and the ontology in query</li>
             
       <li>
-        <code><a href="eView.html">eView</a></code><br />Function to view enrichment results in a sample-specific manner</li>
+        <code><a href="dGSEAview.html">dGSEAview</a></code><br />Function to view enrichment results in a sample-specific manner</li>
             
       <li>
-        <code><a href="eWrite.html">eWrite</a></code><br />Function to write out enrichment results</li>
+        <code><a href="dGSEAwrite.html">dGSEAwrite</a></code><br />Function to write out enrichment results</li>
             
       <li>
         <code><a href="dPvalAggregate.html">dPvalAggregate</a></code><br />Function to aggregate p values</li>
@@ -135,31 +135,31 @@
         <code><a href="dBUMscore.html">dBUMscore</a></code><br />Function to transform p-values into scores according to the fitted beta-uniform mixture model and/or after controlling false discovery rate</li>
             
       <li>
+        <code><a href="dSVDSignif.html">dSVDSignif</a></code><br />Function to obtain SVD-based gene significance from the input gene-sample matrix</li>
+            
+      <li>
+        <code><a href="dFDRscore.html">dFDRscore</a></code><br />Function to transform fdr into scores according to log-likelihood ratio between the true positives and the false positivies and/or after controlling false discovery rate</li>
+            
+      <li>
         <code><a href="dNetFind.html">dNetFind</a></code><br />Function to find heuristically maximum scoring module</li>
             
       <li>
         <code><a href="dNetPipeline.html">dNetPipeline</a></code><br />Function to setup the pipeline for finding maximum-scoring module from an input graph and the signficance imposed on its nodes</li>
             
       <li>
-        <code><a href="dNetConfidence.html">dNetConfidence</a></code><br />Function to append the confidence information from the source graphs into the target graph</li>
-            
-      <li>
         <code><a href="dNetReorder.html">dNetReorder</a></code><br />Function to reorder the multiple graph colorings within a sheet-shape rectangle grid</li>
-            
-      <li>
-        <code><a href="dRWR.html">dRWR</a></code><br />Function to implement Random Walk with Restart (RWR) to pre-compute affinity matrix for the input graph</li>
-            
-      <li>
-        <code><a href="dContrast.html">dContrast</a></code><br />Function to help build the contrast matrix</li>
             
       <li>
         <code><a href="dCommSignif.html">dCommSignif</a></code><br />Function to test the significance of communities within a graph</li>
             
       <li>
-        <code><a href="dSVDSignif.html">dSVDSignif</a></code><br />Function to obtain SVD-based gene significance from the input gene-sample matrix</li>
+        <code><a href="dNetConfidence.html">dNetConfidence</a></code><br />Function to append the confidence information from the source graphs into the target graph</li>
             
       <li>
-        <code><a href="dFDRscore.html">dFDRscore</a></code><br />Function to transform fdr into scores according to log-likelihood ratio between the true positives and the false positivies and/or after controlling false discovery rate</li>
+        <code><a href="dContrast.html">dContrast</a></code><br />Function to help build the contrast matrix</li>
+            
+      <li>
+        <code><a href="dRWR.html">dRWR</a></code><br />Function to implement Random Walk with Restart (RWR) on the input graph. to pre-compute affinity matrix for the input graph</li>
     
     </ul>
     <h3>Visualisation functions</h3>
@@ -169,7 +169,7 @@
     <ul class="index">
         
       <li>
-        <code><a href="visRunES.html">visRunES</a></code><br />Function to visualise running enrichment score for a given sample and a gene set</li>
+        <code><a href="visGSEA.html">visGSEA</a></code><br />Function to visualise running enrichment score for a given sample and a gene set</li>
             
       <li>
         <code><a href="visNet.html">visNet</a></code><br />Function to visualise a graph object of class "igraph" or "graphNEL"</li>
@@ -199,7 +199,46 @@
         <code><a href="visTreeBootstrap.html">visTreeBootstrap</a></code><br />Function to build and visualise the bootstrapped tree</li>
     
     </ul>
-    <h3>Built-in databases</h3>
+    <h3>Built-in databases in human</h3>
+    
+    
+    <ul class="index">
+        
+      <li>
+        <code><a href="org.Hs.eg.html">org.Hs.eg</a></code><br />Human Entrez Genes (EG).</li>
+            
+      <li>
+        <code><a href="org.Hs.egDO.html">org.Hs.egDO</a></code><br />Annotations of Human Entrez Genes (EG) by Disease Ontology (DO).</li>
+            
+      <li>
+        <code><a href="org.Hs.egGOBP.html">org.Hs.egGOBP</a></code><br />Annotations of Human Entrez Genes (EG) by Gene Ontology Biological Process (GOBP).</li>
+            
+      <li>
+        <code><a href="org.Hs.egGOCC.html">org.Hs.egGOCC</a></code><br />Annotations of Human Entrez Genes (EG) by Gene Ontology Cellular Component (GOCC).</li>
+            
+      <li>
+        <code><a href="org.Hs.egGOMF.html">org.Hs.egGOMF</a></code><br />Annotations of Human Entrez Genes (EG) by Gene Ontology Molecular Function (GOMF).</li>
+            
+      <li>
+        <code><a href="org.Hs.egHPMI.html">org.Hs.egHPMI</a></code><br />Annotations of Human Entrez Genes (EG) by Human Phenotype Mode of Inheritance (HPMI).</li>
+            
+      <li>
+        <code><a href="org.Hs.egHPON.html">org.Hs.egHPON</a></code><br />Annotations of Human Entrez Genes (EG) by Human Phenotype ONset and clinical course (HPON).</li>
+            
+      <li>
+        <code><a href="org.Hs.egHPPA.html">org.Hs.egHPPA</a></code><br />Annotations of Human Entrez Genes (EG) by Human Phenotype Phenotypic Abnormality (HPPA).</li>
+            
+      <li>
+        <code><a href="org.Hs.egMP.html">org.Hs.egMP</a></code><br />Annotations Human Entrez Genes (EG) by Mammalian Phenotype (MP).</li>
+            
+      <li>
+        <code><a href="org.Hs.egPS.html">org.Hs.egPS</a></code><br />Annotations Human Entrez Genes (EG) by phylostratific age (PS).</li>
+            
+      <li>
+        <code><a href="org.Hs.string.html">org.Hs.string</a></code><br />Human functional protein association network from STRING (version 9.0.5).</li>
+    
+    </ul>
+    <h3>Built-in databases in mouse</h3>
     
     
     <ul class="index">
@@ -235,11 +274,14 @@
         <code><a href="org.Mm.egPS.html">org.Mm.egPS</a></code><br />Annotations Mouse Entrez Genes (EG) by phylostratific age (PS).</li>
             
       <li>
-        <code><a href="org.Hs.string.html">org.Hs.string</a></code><br />Human functional protein association network from STRING (version 9.0.5).</li>
-            
-      <li>
         <code><a href="org.Mm.string.html">org.Mm.string</a></code><br />Mouse functional protein association network from STRING (version 9.0.5).</li>
-            
+    
+    </ul>
+    <h3>Built-in databases in arabidopsis</h3>
+    
+    
+    <ul class="index">
+        
       <li>
         <code><a href="org.At.string.html">org.At.string</a></code><br />Arabidopsis functional protein association network from STRING (version 9.0.5).</li>
     

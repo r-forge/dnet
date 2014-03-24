@@ -7,40 +7,57 @@ list(
         sd_section("Analysis functions",
             "These functions are used for analysis",
             c(
-                'eCal',
-                'eView',
-                'eWrite',
+                'dGSEA',
+                'dGSEAview',
+                'dGSEAwrite',
                 'dPvalAggregate',
                 'dNetInduce',
                 'dBUMfit',
                 'dBUMscore',
+                'dSVDSignif',
+                'dFDRscore',
                 'dNetFind',
                 'dNetPipeline',
-                'dNetConfidence',
                 'dNetReorder',
-                'dRWR',
-                'dContrast',
                 'dCommSignif',
-                'dSVDSignif',
-                'dFDRscore'
+                'dNetConfidence',
+                'dContrast',
+                'dRWR'
             )
         ),
         sd_section("Visualisation functions",
             "These functions are used for visualisation",
             c(
-                'visRunES',
+                'visGSEA',
                 'visNet',
                 'visNetMul',
                 'visNetReorder',
                 'visNetArc',
                 'visNetCircle',
+                'visColormap',
                 'visColoralpha',
                 'visHeatmap',
                 'visHeatmapAdv',
                 'visTreeBootstrap'
             )
         ),
-        sd_section("Built-in databases",
+        sd_section("Built-in databases in human",
+            "",
+            c(
+                "org.Hs.eg",
+                "org.Hs.egDO", 
+                "org.Hs.egGOBP",
+                "org.Hs.egGOCC",
+                "org.Hs.egGOMF",
+                "org.Hs.egHPMI", 
+                "org.Hs.egHPON",
+                "org.Hs.egHPPA",
+                "org.Hs.egMP",
+                "org.Hs.egPS",
+                "org.Hs.string"
+            )
+        ),
+        sd_section("Built-in databases in mouse",
             "",
             c(
                 "org.Mm.eg",
@@ -53,8 +70,12 @@ list(
                 "org.Mm.egHPPA",
                 "org.Mm.egMP",
                 "org.Mm.egPS",
-                "org.Hs.string",
-                "org.Mm.string",
+                "org.Mm.string"
+            )
+        ),
+        sd_section("Built-in databases in arabidopsis",
+            "",
+            c(
                 "org.At.string"
             )
         ),
