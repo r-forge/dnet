@@ -5,7 +5,7 @@
 #' @param data a data frame or matrix of input data. It must have row names, either Entrez Gene ID or Symbol
 #' @param identity the type of gene identity (i.e. row names of input data), either "symbol" for gene symbols (by default) or "entrez" for Entrez Gene ID. The option "symbol" is preferred as it is relatively stable from one update to another; when gene symbols cannot be matched, synonyms will be searched against
 #' @param genome the genome identity. It can be either "mm" for mouse genome or "hs" for human genome
-#' @param ontology the ontology supported currently. For mouse genome, it can be "GOBP" for Gene Ontology Biological Process, "GOMF" for Gene Ontology Molecular Function, "GOCC" for Gene Ontology Cellular Component, or "MP" for Mammalian Phenotype. For human genome, it can be "GOBP" for Gene Ontology Biological Process, "GOMF" for Gene Ontology Molecular Function, "GOCC" for Gene Ontology Cellular Component, "HP" for Human Phenotype, or "DO" for Disease Ontology. 
+#' @param ontology the ontology supported currently. It can be "GOBP" for Gene Ontology Biological Process, "GOMF" for Gene Ontology Molecular Function, "GOCC" for Gene Ontology Cellular Component, "MP" for Mammalian Phenotype, "HP" for Human Phenotype, "DO" for Disease Ontology, and "PS" for phylostratific age 
 #' @param sizeRange the minimum and maximum size of members of each gene set in consideration. By default, it sets to a minimum of 10 but no more than 1000
 #' @param which_distance which distance of terms in the ontology is used to restrict terms in consideration. By default, it sets to 'NULL' to consider all distances
 #' @param weight type of score weigth. It can be "0" for unweighted (an equivalent to Kolmogorov-Smirnov, only considering the rank), "1" for weighted by input gene score (by default), and "2" for over-weighted, and so on
@@ -74,6 +74,11 @@ dGSEA <- function(data, identity=c("symbol","entrez"), genome=c("mm", "hs"), ont
         colnames(data) <- seq(1,ncol(data))
     }
     
+    if(verbose){
+        now <- Sys.time()
+        message(sprintf("First, load the ontology %s and its gene associations in the genome %s (%s) ...", ontology, genome, as.character(now)), appendLF=T)
+    }
+    
     EG <- list()
     GS <- list()
     if(genome == "mm"){
@@ -99,6 +104,10 @@ dGSEA <- function(data, identity=c("symbol","entrez"), genome=c("mm", "hs"), ont
             #data("org.Mm.egMP", package="dnet")
             load(url("http://dnet.r-forge.r-project.org/data/org.Mm.egMP.RData"))
             eval(parse(text="GS <- org.Mm.egMP"))
+        }else if(ontology == "HP"){
+            #data("org.Mm.egHP", package="dnet")
+            load(url("http://dnet.r-forge.r-project.org/data/org.Mm.egHP.RData"))
+            eval(parse(text="GS <- org.Mm.egHP"))
         }else if(ontology == "DO"){
             #data("org.Mm.egDO", package="dnet")
             load(url("http://dnet.r-forge.r-project.org/data/org.Mm.egDO.RData"))
@@ -131,6 +140,10 @@ dGSEA <- function(data, identity=c("symbol","entrez"), genome=c("mm", "hs"), ont
             #data("org.Hs.egMP", package="dnet")
             load(url("http://dnet.r-forge.r-project.org/data/org.Hs.egMP.RData"))
             eval(parse(text="GS <- org.Hs.egMP"))
+        }else if(ontology == "HP"){
+            #data("org.Hs.egMP", package="dnet")
+            load(url("http://dnet.r-forge.r-project.org/data/org.Hs.egHP.RData"))
+            eval(parse(text="GS <- org.Hs.egHP"))
         }else if(ontology == "DO"){
             #data("org.Hs.egDO", package="dnet")
             load(url("http://dnet.r-forge.r-project.org/data/org.Hs.egDO.RData"))
@@ -146,13 +159,12 @@ dGSEA <- function(data, identity=c("symbol","entrez"), genome=c("mm", "hs"), ont
     allSymbol <- as.vector(EG$gene_info$Symbol)
     allSynonyms <- as.vector(EG$gene_info$Synonyms)
     
-    if(identity == "symbol"){
+    if(verbose){
+        now <- Sys.time()
+        message(sprintf("Then, do mapping based on %s (%s) ...", identity, as.character(now)), appendLF=T)
+    }
     
-        if(verbose){
-            now <- Sys.time()
-            message <- paste(c("Start Symbol mapping at (",as.character(now),") ..."), collapse="")
-            message(message, appendLF=T)
-        }
+    if(identity == "symbol"){
     
         Symbol <- rownames(data)
         
@@ -209,8 +221,7 @@ dGSEA <- function(data, identity=c("symbol","entrez"), genome=c("mm", "hs"), ont
         
         if(verbose){
             now <- Sys.time()
-            message <- paste(c("\tFinish Symbol mapping at (",as.character(now),")!"), collapse="")
-            message(message, appendLF=T)
+            message(sprintf("\tAmong %d symbols of input data, there are %d mappable via official gene symbols, %d mappable via alias and %d unmappable", length(Symbol), (length(Symbol)-length(a)), sum(!is.na(b)), sum(is.na(b))), appendLF=T)
         }
         
     }else{
@@ -308,12 +319,16 @@ dGSEA <- function(data, identity=c("symbol","entrez"), genome=c("mm", "hs"), ont
     colnames(SS.adjp) <- colnames(data)
     rownames(SS.adjp) <- names(gs)
     
+    if(verbose){
+        now <- Sys.time()
+        message(sprintf("Third, perform GSEA analysis (%s) ...", as.character(now)), appendLF=T)
+    }
+    
     for(j in 1:nSample){
         
         if(verbose){
             now <- Sys.time()
-            message <- paste(c("Sample ",j," is being processed at (",as.character(now),") ..."), collapse="")
-            message(message, appendLF=T)
+            message(sprintf("\tSample %d is being processed at (%s) ...", j, as.character(now)), appendLF=T)
         }
         
         rank.score <- data[,j]
@@ -336,8 +351,8 @@ dGSEA <- function(data, identity=c("symbol","entrez"), genome=c("mm", "hs"), ont
             
             if(verbose){
                 if(k %% 100==0 | k==nSet){
-                    message <- paste(c("\t", k, " of ", nSet, " gene sets have been processed!"), collapse="")
-                    message(message, appendLF=T)
+                    now <- Sys.time()
+                    message(sprintf("\t\t %d of %d gene sets have been processed (%s) ...", k, nSet, as.character(now)), appendLF=T)
                 }
             }
             
