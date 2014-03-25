@@ -23,10 +23,10 @@
 #'
 #' # 2) calculate the significance according to SVD
 #' # using "fdr" significance
-#' fdr <- dSVDsignif(data, signif="fdr", num.permutation=100)
+#' fdr <- dSVDsignif(data, signif="fdr", num.permutation=10)
 #' \dontrun{
 #' # using "pval" significance
-#' pval <- dSVDsignif(data, signif="pval", num.permutation=100)
+#' pval <- dSVDsignif(data, signif="pval", num.permutation=10)
 #' }
 
 dSVDsignif <- function(data, num.eigen=NULL, pval.eigen=1e-2, signif=c("fdr","pval"), orient.permutation=c("row","column","both"), num.permutation=100, fdr.procedure=c("stepup","stepdown"), verbose=T)

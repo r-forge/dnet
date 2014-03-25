@@ -21,7 +21,7 @@
 #'
 #' # 2) calculate the significance according to SVD
 #' # using "fdr" significance
-#' fdr <- dSVDsignif(data, signif="fdr", num.permutation=100)
+#' fdr <- dSVDsignif(data, signif="fdr", num.permutation=10)
 #'
 #' # 3) calculate the scores according to the fitted BUM and fdr=0.01
 #' # no fdr threshold
