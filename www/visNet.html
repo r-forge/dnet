@@ -102,15 +102,16 @@
         
       </header>
       
-      <h2>Function to visualise a graph object of class "igraph" or "graphNEL"</h2>
+      <h2>Function to visualise a graph object of class "igraph" or
+"graphNEL"</h2>
 
 <div class="row">
   <div class="span8">
   
     <h3>Description</h3>
     <p><code>visNet</code> is supposed to visualise a graph object of
-  class "igraph" or "graphNEL". It also allows the
-  color-coding of vertices by providing the input pattern.</p>
+class "igraph" or "graphNEL". It also allows the
+color-coding of vertices by providing the input pattern.</p>
   
     <h3>Usage</h3>
     <pre>visNet(g, pattern = NULL, colormap = c("bwr", "jet", "gbr", "wyr", "br", "yr", "rainbow", 
@@ -125,92 +126,92 @@
       <dd>an object of class "igraph" or "graphNEL"</dd>
       <dt>pattern</dt>
       <dd>a numeric vector used to color-code
-  vertices/nodes. Notably, if the input vector contains
-  names, then these names should include all node names of
-  input graph, i.e. V(g)$name, since there is a mapping
-  operation. After mapping, the length of the patern vector
-  should be the same as the number of nodes of input graph;
-  otherwise, this input pattern will be ignored. The way of
-  how to color-code is to map values in the pattern onto
-  the whole colormap (see the next arguments: colormap,
-  ncolors, zlim and colorbar)</dd>
+vertices/nodes. Notably, if the input vector contains
+names, then these names should include all node names of
+input graph, i.e. V(g)$name, since there is a mapping
+operation. After mapping, the length of the patern vector
+should be the same as the number of nodes of input graph;
+otherwise, this input pattern will be ignored. The way of
+how to color-code is to map values in the pattern onto
+the whole colormap (see the next arguments: colormap,
+ncolors, zlim and colorbar)</dd>
       <dt>colormap</dt>
       <dd>short name for the colormap. It can be
-  one of "jet" (jet colormap), "bwr" (blue-white-red
-  colormap), "gbr" (green-black-red colormap), "wyr"
-  (white-yellow-red colormap), "br" (black-red colormap),
-  "yr" (yellow-red colormap), "wb" (white-black colormap),
-  and "rainbow" (rainbow colormap, that is,
-  red-yellow-green-cyan-blue-magenta). Alternatively, any
-  hyphen-separated HTML color names, e.g.
-  "blue-black-yellow", "royalblue-white-sandybrown",
-  "darkgreen-white-darkviolet". A list of standard color
-  names can be found in
-  <a href = 'http://html-color-codes.info/color-names'>http://html-color-codes.info/color-names</a></dd>
+one of "jet" (jet colormap), "bwr" (blue-white-red
+colormap), "gbr" (green-black-red colormap), "wyr"
+(white-yellow-red colormap), "br" (black-red colormap),
+"yr" (yellow-red colormap), "wb" (white-black colormap),
+and "rainbow" (rainbow colormap, that is,
+red-yellow-green-cyan-blue-magenta). Alternatively, any
+hyphen-separated HTML color names, e.g.
+"blue-black-yellow", "royalblue-white-sandybrown",
+"darkgreen-white-darkviolet". A list of standard color
+names can be found in
+<a href = 'http://html-color-codes.info/color-names'>http://html-color-codes.info/color-names</a></dd>
       <dt>ncolors</dt>
       <dd>the number of colors specified over the
-  colormap</dd>
+colormap</dd>
       <dt>zlim</dt>
       <dd>the minimum and maximum z/patttern values for
-  which colors should be plotted, defaulting to the range
-  of the finite values of z. Each of the given colors will
-  be used to color an equispaced interval of this range.
-  The midpoints of the intervals cover the range, so that
-  values just outside the range will be plotted</dd>
+which colors should be plotted, defaulting to the range
+of the finite values of z. Each of the given colors will
+be used to color an equispaced interval of this range.
+The midpoints of the intervals cover the range, so that
+values just outside the range will be plotted</dd>
       <dt>colorbar</dt>
       <dd>logical to indicate whether to append a
-  colorbar. If pattern is null, it always sets to false</dd>
+colorbar. If pattern is null, it always sets to false</dd>
       <dt>newpage</dt>
       <dd>logical to indicate whether to open a new
-  page. By default, it sets to true for opening a new page</dd>
+page. By default, it sets to true for opening a new page</dd>
       <dt>glayout</dt>
       <dd>either a function or a numeric matrix
-  configuring how the vertices will be placed on the plot.
-  If layout is a function, this function will be called
-  with the graph as the single parameter to determine the
-  actual coordinates. This function can be one of
-  "layout.auto", "layout.random", "layout.circle",
-  "layout.sphere", "layout.fruchterman.reingold",
-  "layout.kamada.kawai", "layout.spring",
-  "layout.reingold.tilford",
-  "layout.fruchterman.reingold.grid", "layout.lgl",
-  "layout.graphopt", "layout.svd" and "layout.norm". A full
-  explanation of these layouts can be found in
-  <a href = 'http://igraph.sourceforge.net/doc/R/layout.html'>http://igraph.sourceforge.net/doc/R/layout.html</a></dd>
+configuring how the vertices will be placed on the plot.
+If layout is a function, this function will be called
+with the graph as the single parameter to determine the
+actual coordinates. This function can be one of
+"layout.auto", "layout.random", "layout.circle",
+"layout.sphere", "layout.fruchterman.reingold",
+"layout.kamada.kawai", "layout.spring",
+"layout.reingold.tilford",
+"layout.fruchterman.reingold.grid", "layout.lgl",
+"layout.graphopt", "layout.svd" and "layout.norm". A full
+explanation of these layouts can be found in
+<a href = 'http://igraph.sourceforge.net/doc/R/layout.html'>http://igraph.sourceforge.net/doc/R/layout.html</a></dd>
       <dt>vertex.frame.color</dt>
       <dd>the color of the frame of the
-  vertices. If it is NA, then there is no frame</dd>
+vertices. If it is NA, then there is no frame</dd>
       <dt>vertex.size</dt>
       <dd>the size of each vertex. If it is a
-  vector, each vertex may differ in size</dd>
+vector, each vertex may differ in size</dd>
       <dt>vertex.color</dt>
       <dd>the fill color of the vertices. If it
-  is NA, then there is no fill color. If the pattern is
-  given, this setup will be ignored</dd>
+is NA, then there is no fill color. If the pattern is
+given, this setup will be ignored</dd>
       <dt>vertex.shape</dt>
       <dd>the shape of each vertex. It can be
-  one of "circle", "square", "csquare", "rectangle",
-  "crectangle", "vrectangle", "pie"
-  (<a href = 'http://igraph.sourceforge.net/doc/R/vertex.shape.pie.html'>http://igraph.sourceforge.net/doc/R/vertex.shape.pie.html</a>),
-  "sphere", and "none". If it sets to NULL, these vertices
-  with negative will be "csquare" and the rest "circle".</dd>
+one of "circle", "square", "csquare", "rectangle",
+"crectangle", "vrectangle", "pie"
+(<a href = 'http://igraph.sourceforge.net/doc/R/vertex.shape.pie.html'>http://igraph.sourceforge.net/doc/R/vertex.shape.pie.html</a>),
+"sphere", and "none". If it sets to NULL, these vertices
+with negative will be "csquare" and the rest "circle".</dd>
       <dt>vertex.label</dt>
       <dd>the label of the vertices. If it is
-  NA, then there is no label. The default vertex labels are
-  the name attribute of the nodes</dd>
+NA, then there is no label. The default vertex labels are
+the name attribute of the nodes</dd>
       <dt>vertex.label.cex</dt>
       <dd>the font size of vertex labels.</dd>
       <dt>vertex.label.dist</dt>
       <dd>the distance of the label from
-  the center of the vertex. If it is 0 then the label is
-  centered on the vertex. If it is 1 then the label is
-  displayed beside the vertex.</dd>
+the center of the vertex. If it is 0 then the label is
+centered on the vertex. If it is 1 then the label is
+displayed beside the vertex.</dd>
       <dt>vertex.label.color</dt>
       <dd>the color of vertex labels.</dd>
       <dt>...</dt>
       <dd>additional graphic parameters. See
-  <a href = 'http://igraph.sourceforge.net/doc/R/plot.graph.html'>http://igraph.sourceforge.net/doc/R/plot.graph.html</a>
-  for the complete list.</dd>
+<a href = 'http://igraph.sourceforge.net/doc/R/plot.graph.html'>http://igraph.sourceforge.net/doc/R/plot.graph.html</a>
+for the complete list.</dd>
     </dl>
     <!-- 
     -->
@@ -254,11 +255,11 @@ visNet(g=subg, pattern=pattern, colormap="bwr", vertex.shape="sphere")
       
     <h2>See also</h2>
     
-  <code><a href='dNetFind.html'>dNetFind</a></code>
+<code><a href='dNetFind.html'>dNetFind</a></code>
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network and expression data. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

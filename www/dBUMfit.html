@@ -102,22 +102,23 @@
         
       </header>
       
-      <h2>Function to fit a p-value distribution under beta-uniform mixture model</h2>
+      <h2>Function to fit a p-value distribution under beta-uniform
+mixture model</h2>
 
 <div class="row">
   <div class="span8">
   
     <h3>Description</h3>
     <p><code>dBUMfit</code> is supposed to take as input a vector of
-  p-values for deriving their distribution under
-  beta-uniform mixture model (see Note below). The density
-  distribution of input p-values is expressed as a mixture
-  of two components: one for the null hypothesis (the noise
-  component) and the other for the alternative hypothesis
-  (the signal component). The noise component is the
-  uniform density, while the signal component is the
-  remainder of the mixture distribution. It returns an
-  object of class "BUM".</p>
+p-values for deriving their distribution under
+beta-uniform mixture model (see Note below). The density
+distribution of input p-values is expressed as a mixture
+of two components: one for the null hypothesis (the noise
+component) and the other for the alternative hypothesis
+(the signal component). The noise component is the
+uniform density, while the signal component is the
+remainder of the mixture distribution. It returns an
+object of class "BUM".</p>
   
     <h3>Usage</h3>
     <pre>dBUMfit(x, ntry = 1, hist.bum = T, contour.bum = T, verbose = T)</pre>
@@ -128,20 +129,20 @@
       <dd>a vector containing input p-values</dd>
       <dt>ntry</dt>
       <dd>an integeter specifying how many trys are
-  used to find the optimised parameters by maximum
-  likelihood estimation</dd>
+used to find the optimised parameters by maximum
+likelihood estimation</dd>
       <dt>hist.bum</dt>
       <dd>logical to indicate whether the histogram
-  graph should be drawn</dd>
+graph should be drawn</dd>
       <dt>contour.bum</dt>
       <dd>logical to indicate whether a contour
-  plot should be drawn to show the log likelihood as a
-  function of two parameters (a and lambda) in the
-  beta-uniform mixture model</dd>
+plot should be drawn to show the log likelihood as a
+function of two parameters (a and lambda) in the
+beta-uniform mixture model</dd>
       <dt>verbose</dt>
       <dd>logical to indicate whether the messages
-  will be displayed in the screen. By default, it sets to
-  true for display</dd>
+will be displayed in the screen. By default, it sets to
+true for display</dd>
     </dl>
     <!-- 
     -->
@@ -150,15 +151,15 @@
       <h3>Value</h3>
       
       <p>an object of class "BUM", a list with following elements:
-  <ul>
+<ul>
 <li><code>lambda</code>: estimated mixture
-  parameter </li>
+parameter </li>
 <li><code>a</code>: estimated shape parameter
-  </li>
+</li>
 <li><code>NLL</code>: Negative log-likelihood
-  </li>
+</li>
 <li><code>pvalues</code>: the input pvalues
-  </li>
+</li>
 <li><code>call</code>: the call that produced this result </li>
 </ul></p>
       <p></p>
@@ -167,43 +168,43 @@
       <h3>Note</h3>
       
       <p>The probability density function of p-values under the
-  Beta-Uniform Mixture model is formulated as:
-  <code class = 'eq'>f(x|\lambda,a) = \lambda + (1-\lambda)*a*x^{a-1}</code>.
-  The model names after mixing two distributions: <ul>
+Beta-Uniform Mixture model is formulated as:
+<code class = 'eq'>f(x|\lambda,a) = \lambda + (1-\lambda)*a*x^{a-1}</code>.
+The model names after mixing two distributions: <ul>
 <li>the uniform distribution with the density function
-  as <code class = 'eq'>\frac{1}{b-a}|_{a=0}^{b=1}=1</code> </li>
+as <code class = 'eq'>\frac{1}{b-a}|_{a=0}^{b=1}=1</code> </li>
 <li>the beta
-  distribution with the density function as
-  <code class = 'eq'>\frac{\Gamma(a+b)}{\Gamma(a)+\Gamma(b)}*x^{a-1}*(1-x)^{b-1}|_{b=1}=a*x^{a-1}</code>
-  </li>
+distribution with the density function as
+<code class = 'eq'>\frac{\Gamma(a+b)}{\Gamma(a)+\Gamma(b)}*x^{a-1}*(1-x)^{b-1}|_{b=1}=a*x^{a-1}</code>
+</li>
 </ul>
  Both are mixed via <code class = 'eq'>\lambda</code>. The mixture parameter
-  <code class = 'eq'>\lambda</code> measures the contribution from the uniform
-  distribution. Accordingly, <code class = 'eq'>1-\lambda</code> measures the
-  contribution from the beta distribution. Notably, the
-  probability density function of the beta distribution can
-  be splitted into two parts (rather than the exclusitive
-  signal): <ul>
+<code class = 'eq'>\lambda</code> measures the contribution from the uniform
+distribution. Accordingly, <code class = 'eq'>1-\lambda</code> measures the
+contribution from the beta distribution. Notably, the
+probability density function of the beta distribution can
+be splitted into two parts (rather than the exclusitive
+signal): <ul>
 <li>the constant part as noise:
-  <code class = 'eq'>a*x^{a-1}|_{x=1}=a</code> </li>
+<code class = 'eq'>a*x^{a-1}|_{x=1}=a</code> </li>
 <li>the rest part as signal:
-  <code class = 'eq'>a*(x^{a-1}-1)</code> </li>
+<code class = 'eq'>a*(x^{a-1}-1)</code> </li>
 </ul>
  In other words, there is no signal
-  at <code class = 'eq'>x=1</code> but all being noise. It is a conservative,
-  upper bound estimation of the noise. Therefore, the
-  probability density function in the model can be
-  decomposed into signal-noise components: <ul>
+at <code class = 'eq'>x=1</code> but all being noise. It is a conservative,
+upper bound estimation of the noise. Therefore, the
+probability density function in the model can be
+decomposed into signal-noise components: <ul>
 <li>the signal component:
-  <code class = 'eq'>(1-\lambda)*a*(x^{a-1}-1)</code> </li>
+<code class = 'eq'>(1-\lambda)*a*(x^{a-1}-1)</code> </li>
 <li>the noise
-  component: <code class = 'eq'>\lambda + (1-\lambda)*a</code> </li>
+component: <code class = 'eq'>\lambda + (1-\lambda)*a</code> </li>
 </ul>
  It is
-  misleading to simply view <code class = 'eq'>\lambda</code> as the noise
-  component and <code class = 'eq'>(1-\lambda)*a*x^{a-1}</code> as the signal
-  component, just as wrongly do in the literatures (e.g.
-  <a href = 'http://www.ncbi.nlm.nih.gov/pubmed/18586718'>http://www.ncbi.nlm.nih.gov/pubmed/18586718</a>)</p>
+misleading to simply view <code class = 'eq'>\lambda</code> as the noise
+component and <code class = 'eq'>(1-\lambda)*a*x^{a-1}</code> as the signal
+component, just as wrongly do in the literatures (e.g.
+<a href = 'http://www.ncbi.nlm.nih.gov/pubmed/18586718'>http://www.ncbi.nlm.nih.gov/pubmed/18586718</a>)</p>
     </div>
     
     <h3 id="examples">Examples</h3>
@@ -241,11 +242,11 @@ fit <- dBUMfit(x)
       
     <h2>See also</h2>
     
-  <code><a href='dBUMscore.html'>dBUMscore</a></code>
+<code><a href='dBUMscore.html'>dBUMscore</a></code>
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network and expression data. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

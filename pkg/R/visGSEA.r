@@ -15,7 +15,9 @@
 #' @seealso \code{\link{dGSEA}}, \code{\link{dGSEAview}}
 #' @include visGSEA.r
 #' @examples
-#' #visGSEA(eTerm, which_sample=1, which_term=1)
+#' \dontrun{
+#' visGSEA(eTerm, which_sample=1, which_term=1)
+#' }
 
 visGSEA <- function(eTerm, which_sample=1, which_term="GO:0006281", weight=1, orientation=c('vertical','horizontal'), newpage=T) 
 {

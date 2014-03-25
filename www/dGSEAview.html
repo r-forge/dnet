@@ -109,7 +109,7 @@
   
     <h3>Description</h3>
     <p><code>dGSEAview</code> is supposed to view results of gene set
-  enrichment analysis but for a specific sample.</p>
+enrichment analysis but for a specific sample.</p>
   
     <h3>Usage</h3>
     <pre>dGSEAview(eTerm, which_sample = 1, top_num = 10, sortBy = c("adjp", "gadjp", "ES", 
@@ -123,22 +123,22 @@
       <dd>which sample will be viewed</dd>
       <dt>top_num</dt>
       <dd>the maximum number of gene sets will be
-  viewed</dd>
+viewed</dd>
       <dt>sortBy</dt>
       <dd>which statistics will be used for sorting
-  and viewing gene sets. It can be "adjp" for adjusted p
-  value, "gadjp" for globally adjusted p value, "ES" for
-  enrichment score, "nES" for normalised enrichment score,
-  "pvalue" for p value, "FWER" for family-wise error rate,
-  "FDR" for false discovery rate, "qvalue" for q value</dd>
+and viewing gene sets. It can be "adjp" for adjusted p
+value, "gadjp" for globally adjusted p value, "ES" for
+enrichment score, "nES" for normalised enrichment score,
+"pvalue" for p value, "FWER" for family-wise error rate,
+"FDR" for false discovery rate, "qvalue" for q value</dd>
       <dt>decreasing</dt>
       <dd>logical to indicate whether to sort in
-  a decreasing order. If it is null, it would be true for
-  "ES" or "nES"; otherwise it would be false</dd>
+a decreasing order. If it is null, it would be true for
+"ES" or "nES"; otherwise it would be false</dd>
       <dt>details</dt>
       <dd>logical to indicate whether the detail
-  information of gene sets is also viewed. By default, it
-  sets to false for no inclusion</dd>
+information of gene sets is also viewed. By default, it
+sets to false for no inclusion</dd>
     </dl>
     <!-- 
     -->
@@ -149,28 +149,28 @@
       <p>a data frame with following components: <ul>
 <li><code>setID</code>: term ID </li>
 <li><code>ES</code>: enrichment
-  score </li>
+score </li>
 <li><code>nES</code>: normalised enrichment score
-  </li>
+</li>
 <li><code>pvalue</code>: nominal p value </li>
 <li><code>adjp</code>:
-  adjusted p value </li>
+adjusted p value </li>
 <li><code>gadjp</code>: globally adjusted p
-  value </li>
+value </li>
 <li><code>FDR</code>: false discovery rate
-  </li>
+</li>
 <li><code>qvalue</code>: q value </li>
 <li><code>setSize</code>: the
-  number of genes in the set; optional, it is only appended
-  when "details" is true </li>
+number of genes in the set; optional, it is only appended
+when "details" is true </li>
 <li><code>name</code>: term name;
-  optional, it is only appended when "details" is true
-  </li>
+optional, it is only appended when "details" is true
+</li>
 <li><code>namespace</code>: term namespace; optional, it is
-  only appended when "details" is true
-  </li>
+only appended when "details" is true
+</li>
 <li><code>distance</code>: term distance; optional, it is
-  only appended when "details" is true </li>
+only appended when "details" is true </li>
 </ul></p>
       <p></p>
     </div>
@@ -181,7 +181,7 @@
     </div>
     
     <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'>#dGSEAview(eTerm, which_sample=1, top_num=10, sortBy="adjp", decreasing=F, details=T)</div></pre>
+    <pre class="examples"><div class='input'>## <strong>Not run</strong>: # dGSEAview(eTerm, which_sample=1, top_num=10, sortBy="adjp",# decreasing=F, details=T)# ## <strong>End(Not run)</strong></div></pre>
   </div>
   
   <div class="span4">
@@ -197,11 +197,11 @@
       
     <h2>See also</h2>
     
-  <code><a href='dGSEA.html'>dGSEA</a></code>
+<code><a href='dGSEA.html'>dGSEA</a></code>
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network and expression data. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

@@ -29,7 +29,9 @@
 #' @seealso \code{\link{dGSEA}}
 #' @include dGSEAview.r
 #' @examples
-#' #dGSEAview(eTerm, which_sample=1, top_num=10, sortBy="adjp", decreasing=F, details=T)
+#' \dontrun{
+#' dGSEAview(eTerm, which_sample=1, top_num=10, sortBy="adjp", decreasing=F, details=T)
+#' }
 
 dGSEAview <- function(eTerm, which_sample=1, top_num=10, sortBy=c("adjp","gadjp","ES","nES","pvalue","FWER","FDR","qvalue"), decreasing=NULL, details=F) 
 {

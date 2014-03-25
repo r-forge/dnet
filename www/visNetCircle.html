@@ -109,9 +109,9 @@
   
     <h3>Description</h3>
     <p><code>visNetCircle</code> is supposed to visualise a graph
-  object of class "igraph" via circle diagram. For better
-  visualisation, ordering of vertices is determined
-  according to communities and degrees.</p>
+object of class "igraph" via circle diagram. For better
+visualisation, ordering of vertices is determined
+according to communities and degrees.</p>
   
     <h3>Usage</h3>
     <pre>visNetCircle(g, com, circles = c("single", "multiple"), newpage = T, ordering = NULL, 
@@ -127,78 +127,78 @@
       <dd>an object of class "igraph"</dd>
       <dt>com</dt>
       <dd>an object of class "communities" (see
-  <a href = 'http://igraph.sourceforge.net/doc/R/communities.html'>http://igraph.sourceforge.net/doc/R/communities.html</a>)</dd>
+<a href = 'http://igraph.sourceforge.net/doc/R/communities.html'>http://igraph.sourceforge.net/doc/R/communities.html</a>)</dd>
       <dt>circles</dt>
       <dd>how circles are drawn in the plot. It can
-  be either "single" for all communities being drawn in a
-  single circle (by default) or "multiple" for communities
-  being drawn in the different circles (i.e. one circle per
-  community)</dd>
+be either "single" for all communities being drawn in a
+single circle (by default) or "multiple" for communities
+being drawn in the different circles (i.e. one circle per
+community)</dd>
       <dt>newpage</dt>
       <dd>logical to indicate whether to open a new
-  page. By default, it sets to true for opening a new page</dd>
+page. By default, it sets to true for opening a new page</dd>
       <dt>ordering</dt>
       <dd>a numeric vector about the ordering of
-  vertices. It is optional. It is highly recommend to order
-  vertices according to communities and degrees</dd>
+vertices. It is optional. It is highly recommend to order
+vertices according to communities and degrees</dd>
       <dt>colormap</dt>
       <dd>short name for the colormap. It can be
-  one of "jet" (jet colormap), "bwr" (blue-white-red
-  colormap), "gbr" (green-black-red colormap), "wyr"
-  (white-yellow-red colormap), "br" (black-red colormap),
-  "yr" (yellow-red colormap), "wb" (white-black colormap),
-  and "rainbow" (rainbow colormap, that is,
-  red-yellow-green-cyan-blue-magenta). Alternatively, any
-  hyphen-separated HTML color names, e.g.
-  "blue-black-yellow", "royalblue-white-sandybrown",
-  "darkgreen-white-darkviolet". A list of standard color
-  names can be found in
-  <a href = 'http://html-color-codes.info/color-names'>http://html-color-codes.info/color-names</a></dd>
+one of "jet" (jet colormap), "bwr" (blue-white-red
+colormap), "gbr" (green-black-red colormap), "wyr"
+(white-yellow-red colormap), "br" (black-red colormap),
+"yr" (yellow-red colormap), "wb" (white-black colormap),
+and "rainbow" (rainbow colormap, that is,
+red-yellow-green-cyan-blue-magenta). Alternatively, any
+hyphen-separated HTML color names, e.g.
+"blue-black-yellow", "royalblue-white-sandybrown",
+"darkgreen-white-darkviolet". A list of standard color
+names can be found in
+<a href = 'http://html-color-codes.info/color-names'>http://html-color-codes.info/color-names</a></dd>
       <dt>vertex.label</dt>
       <dd>the label of the vertices. The
-  default vertex labels are the name attribute of the
-  nodes</dd>
+default vertex labels are the name attribute of the
+nodes</dd>
       <dt>vertex.size</dt>
       <dd>the size of each vertex. By default,
-  it is decided according to node degrees</dd>
+it is decided according to node degrees</dd>
       <dt>vertex.label.color</dt>
       <dd>the color of vertex labels</dd>
       <dt>vertex.label.cex</dt>
       <dd>the font size of vertex labels</dd>
       <dt>vertex.label.dist</dt>
       <dd>the distance of the label from
-  the center of the vertex. If it is 0 then the label is
-  centered on the vertex. If it is 1 then the label is
-  displayed beside the vertex.</dd>
+the center of the vertex. If it is 0 then the label is
+centered on the vertex. If it is 1 then the label is
+displayed beside the vertex.</dd>
       <dt>vertex.shape</dt>
       <dd>the shape of each vertex. It can be
-  one of "circle", "square", "csquare", "rectangle",
-  "crectangle", "vrectangle", "pie"
-  (<a href = 'http://igraph.sourceforge.net/doc/R/vertex.shape.pie.html'>http://igraph.sourceforge.net/doc/R/vertex.shape.pie.html</a>),
-  "sphere", and "none". If it sets to NULL, these vertices
-  with negative will be "csquare" and the rest "circle".</dd>
+one of "circle", "square", "csquare", "rectangle",
+"crectangle", "vrectangle", "pie"
+(<a href = 'http://igraph.sourceforge.net/doc/R/vertex.shape.pie.html'>http://igraph.sourceforge.net/doc/R/vertex.shape.pie.html</a>),
+"sphere", and "none". If it sets to NULL, these vertices
+with negative will be "csquare" and the rest "circle".</dd>
       <dt>edge.width</dt>
       <dd>line width for the edges (default 1)</dd>
       <dt>edge.lty</dt>
       <dd>line type for the edges (default 1)</dd>
       <dt>edge.color.within</dt>
       <dd>the color for edges within a
-  community (default "grey")</dd>
+community (default "grey")</dd>
       <dt>edge.color.crossing</dt>
       <dd>the color for edges between
-  communities (default "black")</dd>
+communities (default "black")</dd>
       <dt>mark.shape</dt>
       <dd>a numeric scalar or vector controlling
-  the smoothness of the vertex group marking polygons. Its
-  possible values are between -1 (fully polygons) and 1
-  (fully smoothness)</dd>
+the smoothness of the vertex group marking polygons. Its
+possible values are between -1 (fully polygons) and 1
+(fully smoothness)</dd>
       <dt>mark.expand</dt>
       <dd>a numeric scalar or vector, the size
-  of the border around the marked vertex groups</dd>
+of the border around the marked vertex groups</dd>
       <dt>...</dt>
       <dd>additional graphic parameters. See
-  <a href = 'http://igraph.sourceforge.net/doc/R/plot.graph.html'>http://igraph.sourceforge.net/doc/R/plot.graph.html</a>
-  for the complete list.</dd>
+<a href = 'http://igraph.sourceforge.net/doc/R/plot.graph.html'>http://igraph.sourceforge.net/doc/R/plot.graph.html</a>
+for the complete list.</dd>
     </dl>
     <!-- 
     -->
@@ -232,24 +232,36 @@ vcolors <- mcolors[vgroups]
 vdegrees <- igraph::degree(g)
 
 # 5) sort nodes: first by communities and then degrees
-
 tmp<-data.frame(ind=1:vcount(g), vgroups, vdegrees)
 ordering <- tmp[order(vgroups,vdegrees),]$ind
 
 # 6) visualise graph using circle diagram
 # 6a) drawn into a single circle
-#visNetCircle(g=g, colormap="bwr", com=com, ordering=ordering, vertex.label=V(g)$name)
-
+visNetCircle(g=g, colormap="bwr", com=com, ordering=ordering,
+vertex.label=V(g)$name)
+</div>
+<a href="javascript:newWin('visNetCircle-2.png', 'visNetCircle-2.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visNetCircle-2.png', width="400" /></a>
+<div class='input'>
 # 6b) drawn into multlpe circles (one circle per community)
-#visNetCircle(g=g, colormap="bwr", com=com, circles="multiple", ordering=ordering, vertex.label=V(g)$name)
-
+visNetCircle(g=g, colormap="bwr", com=com, circles="multiple",
+ordering=ordering,
+vertex.label=V(g)$name)
+</div>
+<a href="javascript:newWin('visNetCircle-4.png', 'visNetCircle-4.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visNetCircle-4.png', width="400" /></a>
+<div class='input'>
 # 7) as comparison, also visualise graph on 2-dimensional layout
 mark.groups <- communities(com)
-#mark.col <- visColoralpha(mcolors, alpha=0.2)
-#mark.border <- visColoralpha(mcolors, alpha=0.2)
+mark.col <- visColoralpha(mcolors, alpha=0.2)
+mark.border <- visColoralpha(mcolors, alpha=0.2)
 edge.color <- c("grey", "black")[crossing(com,g)+1]
-#visNet(g, colormap="bwr", glayout=layout.fruchterman.reingold, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.shape="sphere", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
-</div></pre>
+visNet(g, colormap="bwr", glayout=layout.fruchterman.reingold,
+vertex.color=vcolors,
+vertex.frame.color=vcolors, vertex.shape="sphere",
+mark.groups=mark.groups, mark.col=mark.col,
+mark.border=mark.border, mark.shape=1, mark.expand=10,
+edge.color=edge.color)
+</div>
+<a href="javascript:newWin('visNetCircle-6.png', 'visNetCircle-6.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visNetCircle-6.png', width="400" /></a></pre>
   </div>
   
   <div class="span4">
@@ -265,11 +277,11 @@ edge.color <- c("grey", "black")[crossing(com,g)+1]
       
     <h2>See also</h2>
     
-  <code><a href='visNet.html'>visNet</a></code>
+<code><a href='visNet.html'>visNet</a></code>
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network and expression data. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

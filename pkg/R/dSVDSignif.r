@@ -1,6 +1,6 @@
 #' Function to obtain SVD-based gene significance from the input gene-sample matrix
 #'
-#' \code{dSVDSignif} is supposed to obtain gene signficance from the given gene-sample matrix according to singular value decomposition (SVD)-based method. The method includes: 1) singular value decomposition of the input matrix; 2) determination of the eigens in consideration (if not given); 3) construction of the gene-specific project vector based on the considered eigens; 4) calculation of the distance statistic from the projection vector to zero point vector; and 5) based on distance statistic to obtain the gene significance.
+#' \code{dSVDsignif} is supposed to obtain gene signficance from the given gene-sample matrix according to singular value decomposition (SVD)-based method. The method includes: 1) singular value decomposition of the input matrix; 2) determination of the eigens in consideration (if not given); 3) construction of the gene-specific project vector based on the considered eigens; 4) calculation of the distance statistic from the projection vector to zero point vector; and 5) based on distance statistic to obtain the gene significance.
 #'
 #' @param data an input gene-sample data matrix used for singular value decomposition
 #' @param num.eigen an integer specifying the number of eigens in consideration. If NULL, this number will be automatically decided on based on the observed relative eigenexpression against randomised relative eigenexpression calculated from a list (here 100) of permutated input matrix
@@ -14,20 +14,22 @@
 #' @note none
 #' @export
 #' @seealso \code{\link{dFDRscore}}
-#' @include dSVDSignif.r
+#' @include dSVDsignif.r
 #' @examples
-#' # 1) generate data with three different distributions, each with an iid normal random matrix of 1000 x 3
+#' # 1) generate data with an iid matrix of 1000 x 9
 #' data <- cbind(matrix(rnorm(1000*3,mean=0,sd=1), nrow=1000, ncol=3), 
 #' matrix(rnorm(1000*3,mean=0.5,sd=1), nrow=1000, ncol=3), 
 #' matrix(rnorm(1000*3,mean=-0.5,sd=1), nrow=1000, ncol=3))
 #'
 #' # 2) calculate the significance according to SVD
-#' # using "pval" significance
-#' pval <- dSVDSignif(data, signif="pval", num.permutation=100)
 #' # using "fdr" significance
-#' fdr <- dSVDSignif(data, signif="fdr", num.permutation=100)
+#' fdr <- dSVDsignif(data, signif="fdr", num.permutation=100)
+#' \dontrun{
+#' # using "pval" significance
+#' pval <- dSVDsignif(data, signif="pval", num.permutation=100)
+#' }
 
-dSVDSignif <- function(data, num.eigen=NULL, pval.eigen=1e-2, signif=c("fdr","pval"), orient.permutation=c("row","column","both"), num.permutation=100, fdr.procedure=c("stepup","stepdown"), verbose=T)
+dSVDsignif <- function(data, num.eigen=NULL, pval.eigen=1e-2, signif=c("fdr","pval"), orient.permutation=c("row","column","both"), num.permutation=100, fdr.procedure=c("stepup","stepdown"), verbose=T)
 {
 
     startT <- Sys.time()

@@ -102,21 +102,23 @@
         
       </header>
       
-      <h2>Function to transform fdr into scores according to log-likelihood ratio between the true positives and the false positivies and/or after controlling false discovery rate</h2>
+      <h2>Function to transform fdr into scores according to
+log-likelihood ratio between the true positives and the false
+positivies and/or after controlling false discovery rate</h2>
 
 <div class="row">
   <div class="span8">
   
     <h3>Description</h3>
     <p><code>dFDRscore</code> is supposed to take as input a vector of
-  fdr, which are transformed into scores according to
-  according to log-likelihood ratio between the true
-  positives and the false positivies. Also if the FDR
-  threshold is given, it is used to make sure that fdr
-  below threshold are considered significant and thus
-  scored positively. Instead, those fdr above the given
-  threshold are considered insigificant and thus scored
-  negatively.</p>
+fdr, which are transformed into scores according to
+according to log-likelihood ratio between the true
+positives and the false positivies. Also if the FDR
+threshold is given, it is used to make sure that fdr
+below threshold are considered significant and thus
+scored positively. Instead, those fdr above the given
+threshold are considered insigificant and thus scored
+negatively.</p>
   
     <h3>Usage</h3>
     <pre>dFDRscore(fdr, fdr.threshold = NULL, scatter = F)</pre>
@@ -127,16 +129,16 @@
       <dd>a vector containing a list of input fdr</dd>
       <dt>fdr.threshold</dt>
       <dd>the given FDR threshold. By default,
-  it is set to NULL, meaning there is no constraint. If
-  given, those fdr with the FDR below threshold are
-  considered significant and thus scored positively.
-  Instead, those fdr with the FDR above given threshold are
-  considered insigificant and thus scored negatively</dd>
+it is set to NULL, meaning there is no constraint. If
+given, those fdr with the FDR below threshold are
+considered significant and thus scored positively.
+Instead, those fdr with the FDR above given threshold are
+considered insigificant and thus scored negatively</dd>
       <dt>scatter</dt>
       <dd>logical to indicate whether the scatter
-  graph of scores against p-values should be drawn. Also
-  indicated is the score corresponding to the given FDR
-  threshold (if any)</dd>
+graph of scores against p-values should be drawn. Also
+indicated is the score corresponding to the given FDR
+threshold (if any)</dd>
     </dl>
     <!-- 
     -->
@@ -156,16 +158,16 @@
     </div>
     
     <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'># 1) generate data with three different distributions, each with an iid normal random matrix of 1000 x 3
+    <pre class="examples"><div class='input'># 1) generate data with an iid matrix of 1000 x 9
 data <- cbind(matrix(rnorm(1000*3,mean=0,sd=1), nrow=1000, ncol=3),
 matrix(rnorm(1000*3,mean=0.5,sd=1), nrow=1000, ncol=3),
 matrix(rnorm(1000*3,mean=-0.5,sd=1), nrow=1000, ncol=3))
 
 # 2) calculate the significance according to SVD
 # using "fdr" significance
-fdr <- dSVDSignif(data, signif="fdr", num.permutation=100)
+fdr <- dSVDsignif(data, signif="fdr", num.permutation=100)
 </div>
-<strong class='message'>Start at 2014-03-24 18:27:39</strong>
+<strong class='message'>Start at 2014-03-25 16:19:26</strong>
 <strong class='message'></strong>
 <strong class='message'>First, singular value decomposition of the input matrix (with 1000 rows and 9 columns)...</strong>
 <strong class='message'>Second, determinate the eigens...</strong>
@@ -175,20 +177,20 @@ fdr <- dSVDSignif(data, signif="fdr", num.permutation=100)
 <strong class='message'>Finally, obtain gene significance (fdr) based on 100 permutations...</strong>
 <strong class='message'>	doing row-wise permutations...</strong>
 <strong class='message'>	estimating fdr...</strong>
-<strong class='message'>1 (out of 1000) at 2014-03-24 18:27:41</strong>
-<strong class='message'>100 (out of 1000) at 2014-03-24 18:27:41</strong>
-<strong class='message'>200 (out of 1000) at 2014-03-24 18:27:41</strong>
-<strong class='message'>300 (out of 1000) at 2014-03-24 18:27:42</strong>
-<strong class='message'>400 (out of 1000) at 2014-03-24 18:27:42</strong>
-<strong class='message'>500 (out of 1000) at 2014-03-24 18:27:42</strong>
-<strong class='message'>600 (out of 1000) at 2014-03-24 18:27:42</strong>
-<strong class='message'>700 (out of 1000) at 2014-03-24 18:27:42</strong>
-<strong class='message'>800 (out of 1000) at 2014-03-24 18:27:43</strong>
-<strong class='message'>900 (out of 1000) at 2014-03-24 18:27:43</strong>
-<strong class='message'>1000 (out of 1000) at 2014-03-24 18:27:43</strong>
+<strong class='message'>1 (out of 1000) at 2014-03-25 16:19:28</strong>
+<strong class='message'>100 (out of 1000) at 2014-03-25 16:19:28</strong>
+<strong class='message'>200 (out of 1000) at 2014-03-25 16:19:28</strong>
+<strong class='message'>300 (out of 1000) at 2014-03-25 16:19:28</strong>
+<strong class='message'>400 (out of 1000) at 2014-03-25 16:19:28</strong>
+<strong class='message'>500 (out of 1000) at 2014-03-25 16:19:29</strong>
+<strong class='message'>600 (out of 1000) at 2014-03-25 16:19:29</strong>
+<strong class='message'>700 (out of 1000) at 2014-03-25 16:19:29</strong>
+<strong class='message'>800 (out of 1000) at 2014-03-25 16:19:29</strong>
+<strong class='message'>900 (out of 1000) at 2014-03-25 16:19:30</strong>
+<strong class='message'>1000 (out of 1000) at 2014-03-25 16:19:30</strong>
 <strong class='message'>	using stepup procedure...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-03-24 18:27:43</strong>
+<strong class='message'>Finish at 2014-03-25 16:19:30</strong>
 <strong class='message'>Runtime in total is: 4 secs
 </strong>
 <div class='input'>
@@ -214,11 +216,11 @@ scores <- dFDRscore(fdr, fdr.threshold=0.1, scatter=TRUE)
       
     <h2>See also</h2>
     
-  <code><a href='dSVDSignif.html'>dSVDSignif</a></code>, <code><a href='dNetPipeline.html'>dNetPipeline</a></code>
+<code><a href='dSVDsignif.html'>dSVDsignif</a></code>, <code><a href='dNetPipeline.html'>dNetPipeline</a></code>
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network and expression data. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

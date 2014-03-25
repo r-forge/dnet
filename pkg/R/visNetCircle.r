@@ -45,23 +45,25 @@
 #' vdegrees <- igraph::degree(g)
 #' 
 #' # 5) sort nodes: first by communities and then degrees
-#' 
 #' tmp<-data.frame(ind=1:vcount(g), vgroups, vdegrees)
 #' ordering <- tmp[order(vgroups,vdegrees),]$ind
 #'
 #' # 6) visualise graph using circle diagram
 #' # 6a) drawn into a single circle 
-#' #visNetCircle(g=g, colormap="bwr", com=com, ordering=ordering, vertex.label=V(g)$name)
+#' visNetCircle(g=g, colormap="bwr", com=com, ordering=ordering, vertex.label=V(g)$name)
 #'
 #' # 6b) drawn into multlpe circles (one circle per community) 
-#' #visNetCircle(g=g, colormap="bwr", com=com, circles="multiple", ordering=ordering, vertex.label=V(g)$name)
+#' visNetCircle(g=g, colormap="bwr", com=com, circles="multiple", ordering=ordering, 
+#' vertex.label=V(g)$name)
 #'
 #' # 7) as comparison, also visualise graph on 2-dimensional layout 
 #' mark.groups <- communities(com)
-#' #mark.col <- visColoralpha(mcolors, alpha=0.2)
-#' #mark.border <- visColoralpha(mcolors, alpha=0.2)
+#' mark.col <- visColoralpha(mcolors, alpha=0.2)
+#' mark.border <- visColoralpha(mcolors, alpha=0.2)
 #' edge.color <- c("grey", "black")[crossing(com,g)+1]
-#' #visNet(g, colormap="bwr", glayout=layout.fruchterman.reingold, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.shape="sphere", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
+#' visNet(g, colormap="bwr", glayout=layout.fruchterman.reingold, vertex.color=vcolors, 
+#' vertex.frame.color=vcolors, vertex.shape="sphere", mark.groups=mark.groups, mark.col=mark.col, 
+#' mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
 
 visNetCircle <- function(g, com, circles=c("single","multiple"), newpage=T, ordering=NULL, colormap=c("rainbow", "bwr","jet","gbr","wyr","br","yr","wb"), vertex.label=V(g)$name, vertex.size=log(igraph::degree(g))+2, vertex.label.color="black", vertex.label.cex=0.6, vertex.label.dist=0.75, vertex.shape="sphere", edge.width=1, edge.lty=1, edge.color.within="grey", edge.color.crossing="black", mark.shape=1, mark.expand=10, ...)
 {

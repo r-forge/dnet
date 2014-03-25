@@ -102,19 +102,21 @@
         
       </header>
       
-      <h2>Function to transform p-values into scores according to the fitted beta-uniform mixture model and/or after controlling false discovery rate</h2>
+      <h2>Function to transform p-values into scores according to the
+fitted beta-uniform mixture model and/or after controlling false
+discovery rate</h2>
 
 <div class="row">
   <div class="span8">
   
     <h3>Description</h3>
     <p><code>dBUMscore</code> is supposed to take as input a vector of
-  p-values, which are transformed into scores according to
-  the fitted beta-uniform mixture model. Also if the FDR
-  threshold is given, it is used to make sure that p-values
-  below this are considered significant and thus scored
-  positively. Instead, those p-values above the given FDR
-  are considered insigificant and thus scored negatively.</p>
+p-values, which are transformed into scores according to
+the fitted beta-uniform mixture model. Also if the FDR
+threshold is given, it is used to make sure that p-values
+below this are considered significant and thus scored
+positively. Instead, those p-values above the given FDR
+are considered insigificant and thus scored negatively.</p>
   
     <h3>Usage</h3>
     <pre>dBUMscore(fit, method = c("pdf", "cdf"), fdr = NULL, scatter.bum = T)</pre>
@@ -125,22 +127,22 @@
       <dd>an object of class "BUM"</dd>
       <dt>method</dt>
       <dd>the method used for the transformation. It
-  can be either "pdf" for the method based on the
-  probability density function of the fitted model, or
-  "cdf" for the method based on the cumulative distribution
-  function of the fitted model</dd>
+can be either "pdf" for the method based on the
+probability density function of the fitted model, or
+"cdf" for the method based on the cumulative distribution
+function of the fitted model</dd>
       <dt>fdr</dt>
       <dd>the given FDR threshold. By default, it is set
-  to NULL, meaning there is no constraint. If given, those
-  p-values with the FDR below this are considered
-  significant and thus scored positively. Instead, those
-  p-values with the FDR above this given FDR are considered
-  insigificant and thus scored negatively</dd>
+to NULL, meaning there is no constraint. If given, those
+p-values with the FDR below this are considered
+significant and thus scored positively. Instead, those
+p-values with the FDR above this given FDR are considered
+insigificant and thus scored negatively</dd>
       <dt>scatter.bum</dt>
       <dd>logical to indicate whether the
-  scatter graph of scores against p-values should be drawn.
-  Also indicated is the p-value (called tau) corresponding
-  to the given FDR threshold (if any)</dd>
+scatter graph of scores against p-values should be drawn.
+Also indicated is the p-value (called tau) corresponding
+to the given FDR threshold (if any)</dd>
     </dl>
     <!-- 
     -->
@@ -157,59 +159,59 @@
       <h3>Note</h3>
       
       <p>The transformation from the input p-value <code class = 'eq'>x</code> to the
-  score <code class = 'eq'>S(x)</code> is based on the fitted beta-uniform
-  mixture model with two parameters <code class = 'eq'>\lambda</code> and
-  <code class = 'eq'>a</code>: <code class = 'eq'>f(x|\lambda,a) = \lambda +
-  (1-\lambda)*a*x^{a-1}</code>. Specifically, it considers the
-  log-likehood ratio between the signal and noise compoment
-  of the model. The probability density function (pdf) of
-  the signal component and the noise component are
-  <code class = 'eq'>(1-\lambda)*a*(x^{a-1}-1)</code> and <code class = 'eq'>\lambda +
-  (1-\lambda)*a</code>, respectively. Accordingly, the cumulative
-  distribution function (cdf) of the signal component and
-  the noise component are <code class = 'eq'>\int_0^x
-  (1-\lambda)*a*(x^{a-1}-1) \, \mathrm{d}x</code> and
-  <code class = 'eq'>\int_0^x \lambda+(1-\lambda)*a \, \mathrm{d}x</code>. In
-  order to take into account the significance of the
-  p-value, the <code class = 'eq'>fdr</code> threshold is also used for
-  down-weighting the score. According to how to measure
-  both components, there are two methods implemented for
-  deriving the score <code class = 'eq'>S(x)</code>: <ul>
+score <code class = 'eq'>S(x)</code> is based on the fitted beta-uniform
+mixture model with two parameters <code class = 'eq'>\lambda</code> and
+<code class = 'eq'>a</code>: <code class = 'eq'>f(x|\lambda,a) = \lambda +
+(1-\lambda)*a*x^{a-1}</code>. Specifically, it considers the
+log-likehood ratio between the signal and noise compoment
+of the model. The probability density function (pdf) of
+the signal component and the noise component are
+<code class = 'eq'>(1-\lambda)*a*(x^{a-1}-1)</code> and <code class = 'eq'>\lambda +
+(1-\lambda)*a</code>, respectively. Accordingly, the cumulative
+distribution function (cdf) of the signal component and
+the noise component are <code class = 'eq'>\int_0^x
+(1-\lambda)*a*(x^{a-1}-1) \, \mathrm{d}x</code> and
+<code class = 'eq'>\int_0^x \lambda+(1-\lambda)*a \, \mathrm{d}x</code>. In
+order to take into account the significance of the
+p-value, the <code class = 'eq'>fdr</code> threshold is also used for
+down-weighting the score. According to how to measure
+both components, there are two methods implemented for
+deriving the score <code class = 'eq'>S(x)</code>: <ul>
 <li>The method
-  "pdf": <code class = 'eq'>S(x) =
-  log_2\frac{(1-\lambda)*a*(x^{a-1}-1)}{\lambda+(1-\lambda)*a}
-  -
-  log_2\frac{(1-\lambda)*a*(\tau^{a-1}-1)}{\lambda+(1-\lambda)*a}
-  = log_2\big(\frac{x^{a-1}-1}{\tau^{a-1}-1}\big)</code>. For the
-  purpose of down-weighting scores, it must ensure
-  <code class = 'eq'>log_2\frac{(1-\lambda)*a*(\tau^{a-1}-1)}{\lambda+(1-\lambda)*a}
-  \geq 0 </code>, that is, the constraint via <code class = 'eq'>\tau \leq
-  \big(\frac{\lambda+2*a*(1-\lambda)}{a*(1-\lambda)}\big)^{\frac{1}{a-1}}</code>
-  </li>
+"pdf": <code class = 'eq'>S(x) =
+log_2\frac{(1-\lambda)*a*(x^{a-1}-1)}{\lambda+(1-\lambda)*a}
+-
+log_2\frac{(1-\lambda)*a*(\tau^{a-1}-1)}{\lambda+(1-\lambda)*a}
+= log_2\big(\frac{x^{a-1}-1}{\tau^{a-1}-1}\big)</code>. For the
+purpose of down-weighting scores, it must ensure
+<code class = 'eq'>log_2\frac{(1-\lambda)*a*(\tau^{a-1}-1)}{\lambda+(1-\lambda)*a}
+\geq 0 </code>, that is, the constraint via <code class = 'eq'>\tau \leq
+\big(\frac{\lambda+2*a*(1-\lambda)}{a*(1-\lambda)}\big)^{\frac{1}{a-1}}</code>
+</li>
 <li>The method "cdf": <code class = 'eq'>S(x) = log_2\frac{\int_0^x
-  (1-\lambda)*a*(x^{a-1}-1) \, \mathrm{d}x}{\int_0^x
-  \lambda+(1-\lambda)*a \, \mathrm{d}x} -
-  log_2\frac{\int_0^\tau (1-\lambda)*a*(\tau^{a-1}-1) \,
-  \mathrm{d}x}{\int_0^\tau \lambda+(1-\lambda)*a \,
-  \mathrm{d}x} =
-  log_2\frac{(1-\lambda)*(x^{a-1}-a)}{\lambda+(1-\lambda)*a}
-  -
-  log_2\frac{(1-\lambda)*(\tau^{a-1}-a)}{\lambda+(1-\lambda)*a}
-  = log_2\big(\frac{x^{a-1}-a}{\tau^{a-1}-a}\big)</code>. For the
-  purpose of down-weighting scores, it must ensure
-  <code class = 'eq'>log_2\frac{(1-\lambda)*(\tau^{a-1}-a)}{\lambda+(1-\lambda)*a}
-  \geq 0 </code>, that is, the constraint via <code class = 'eq'>\tau \leq
-  \big(\frac{\lambda+2*a*(1-\lambda)}{1-\lambda}\big)^{\frac{1}{a-1}}</code>
-  </li>
+(1-\lambda)*a*(x^{a-1}-1) \, \mathrm{d}x}{\int_0^x
+\lambda+(1-\lambda)*a \, \mathrm{d}x} -
+log_2\frac{\int_0^\tau (1-\lambda)*a*(\tau^{a-1}-1) \,
+\mathrm{d}x}{\int_0^\tau \lambda+(1-\lambda)*a \,
+\mathrm{d}x} =
+log_2\frac{(1-\lambda)*(x^{a-1}-a)}{\lambda+(1-\lambda)*a}
+-
+log_2\frac{(1-\lambda)*(\tau^{a-1}-a)}{\lambda+(1-\lambda)*a}
+= log_2\big(\frac{x^{a-1}-a}{\tau^{a-1}-a}\big)</code>. For the
+purpose of down-weighting scores, it must ensure
+<code class = 'eq'>log_2\frac{(1-\lambda)*(\tau^{a-1}-a)}{\lambda+(1-\lambda)*a}
+\geq 0 </code>, that is, the constraint via <code class = 'eq'>\tau \leq
+\big(\frac{\lambda+2*a*(1-\lambda)}{1-\lambda}\big)^{\frac{1}{a-1}}</code>
+</li>
 <li>Where <code class = 'eq'>\tau
-  =\big[\frac{\lambda+(1-\lambda)*a-fdr*\lambda}{fdr*(1-\lambda)}\big]^{\frac{1}{a-1}}</code>,
-  i.e. the p-value corresponding to the exact <code class = 'eq'>fdr</code>
-  threshold. It can be duduced from the definition of the
-  false discovery rate: <code class = 'eq'>fdr \doteq \frac{\int_0^\tau
-  \lambda+(1-\lambda)*a \, \mathrm{d}x}{\int_0^\tau
-  \lambda+(1-\lambda)*a*x^{a-1} \, \mathrm{d}x}</code>. Notably,
-  if the calculated <code class = 'eq'>\tau</code> exceeds the contraint, it
-  will be reset to the maximum end of that constraint </li>
+=\big[\frac{\lambda+(1-\lambda)*a-fdr*\lambda}{fdr*(1-\lambda)}\big]^{\frac{1}{a-1}}</code>,
+i.e. the p-value corresponding to the exact <code class = 'eq'>fdr</code>
+threshold. It can be duduced from the definition of the
+false discovery rate: <code class = 'eq'>fdr \doteq \frac{\int_0^\tau
+\lambda+(1-\lambda)*a \, \mathrm{d}x}{\int_0^\tau
+\lambda+(1-\lambda)*a*x^{a-1} \, \mathrm{d}x}</code>. Notably,
+if the calculated <code class = 'eq'>\tau</code> exceeds the contraint, it
+will be reset to the maximum end of that constraint </li>
 </ul></p>
       <p></p>
     </div>
@@ -251,11 +253,11 @@ scores <- dBUMscore(fit, method="cdf", fdr=0.01)
       
     <h2>See also</h2>
     
-  <code><a href='dBUMfit.html'>dBUMfit</a></code>
+<code><a href='dBUMfit.html'>dBUMfit</a></code>
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network and expression data. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

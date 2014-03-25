@@ -102,19 +102,20 @@
         
       </header>
       
-      <h2>Function to visualise running enrichment score for a given sample and a gene set</h2>
+      <h2>Function to visualise running enrichment score for a given
+sample and a gene set</h2>
 
 <div class="row">
   <div class="span8">
   
     <h3>Description</h3>
     <p><code>visGSEA</code> is supposed to visualise running
-  enrichment score for a given sample and a gene set. To
-  help understand the underlying running enrichment score,
-  the input gene scores are also displayed. Positions for
-  members in the given gene set are color-coded in both
-  displays (red line for the positive gene scores, and
-  green line for the negative).</p>
+enrichment score for a given sample and a gene set. To
+help understand the underlying running enrichment score,
+the input gene scores are also displayed. Positions for
+members in the given gene set are color-coded in both
+displays (red line for the positive gene scores, and
+green line for the negative).</p>
   
     <h3>Usage</h3>
     <pre>visGSEA(eTerm, which_sample = 1, which_term = "GO:0006281", weight = 1, orientation = c("vertical", 
@@ -126,21 +127,21 @@
       <dd>an object of class "eTerm"</dd>
       <dt>which_sample</dt>
       <dd>which sample will be used. It can be
-  index or sample names</dd>
+index or sample names</dd>
       <dt>which_term</dt>
       <dd>which term will be used. It can be
-  index or term ID or term names</dd>
+index or term ID or term names</dd>
       <dt>weight</dt>
       <dd>type of score weigth. It can be "0" for
-  unweighted (an equivalent to Kolmogorov-Smirnov, only
-  considering the rank), "1" for weighted by input gene
-  score (by default), and "2" for over-weighted, and so on</dd>
+unweighted (an equivalent to Kolmogorov-Smirnov, only
+considering the rank), "1" for weighted by input gene
+score (by default), and "2" for over-weighted, and so on</dd>
       <dt>orientation</dt>
       <dd>the orientation of the plots. It can
-  be either "vertical" (default) or "horizontal"</dd>
+be either "vertical" (default) or "horizontal"</dd>
       <dt>newpage</dt>
       <dd>logical to indicate whether to open a new
-  page. By default, it sets to true for opening a new page</dd>
+page. By default, it sets to true for opening a new page</dd>
     </dl>
     <!-- 
     -->
@@ -157,7 +158,7 @@
     </div>
     
     <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'>#visGSEA(eTerm, which_sample=1, which_term=1)</div></pre>
+    <pre class="examples"><div class='input'>## <strong>Not run</strong>: # visGSEA(eTerm, which_sample=1, which_term=1)# ## <strong>End(Not run)</strong></div></pre>
   </div>
   
   <div class="span4">
@@ -173,11 +174,11 @@
       
     <h2>See also</h2>
     
-  <code><a href='dGSEA.html'>dGSEA</a></code>, <code><a href='dGSEAview.html'>dGSEAview</a></code>
+<code><a href='dGSEA.html'>dGSEA</a></code>, <code><a href='dGSEAview.html'>dGSEAview</a></code>
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network and expression data. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

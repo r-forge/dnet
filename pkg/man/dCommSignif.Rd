@@ -2,31 +2,31 @@
 \alias{dCommSignif}
 \title{Function to test the significance of communities within a graph}
 \usage{
-  dCommSignif(g, comm)
+dCommSignif(g, comm)
 }
 \arguments{
-  \item{g}{an object of class "igraph" or "graphNEL"}
+\item{g}{an object of class "igraph" or "graphNEL"}
 
-  \item{comm}{an object of class "communities". Details on
-  this class can be found at
-  \url{http://igraph.sourceforge.net/doc/R/communities.html}}
+\item{comm}{an object of class "communities". Details on
+this class can be found at
+\url{http://igraph.sourceforge.net/doc/R/communities.html}}
 }
 \value{
-  \itemize{ \item{\code{significance}: a vector of p-values
-  (significance)} }
+\itemize{ \item{\code{significance}: a vector of p-values
+(significance)} }
 }
 \description{
-  \code{dCommSignif} is supposed to test the significance
-  of communities within a graph. For a community of the
-  graph, it first calculates two types of degrees for each
-  node: degrees based on parters only within the community
-  itself, and the degrees based on its parters NOT in the
-  community but in the graph. Then, it performs two-sample
-  Wilcoxon tests on these two types of degrees to produce
-  the signficance level (p-value)
+\code{dCommSignif} is supposed to test the significance
+of communities within a graph. For a community of the
+graph, it first calculates two types of degrees for each
+node: degrees based on parters only within the community
+itself, and the degrees based on its parters NOT in the
+community but in the graph. Then, it performs two-sample
+Wilcoxon tests on these two types of degrees to produce
+the signficance level (p-value)
 }
 \note{
-  none
+none
 }
 \examples{
 # 1) generate an vector consisting of random values from beta distribution
@@ -54,6 +54,6 @@ comm <- walktrap.community(module, modularity=TRUE)
 significance <- dCommSignif(module, comm)
 }
 \seealso{
-  \code{\link{dCommSignif}}
+\code{\link{dCommSignif}}
 }
 

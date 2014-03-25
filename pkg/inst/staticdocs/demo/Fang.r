@@ -126,7 +126,7 @@ colnames(adjpvals) <- colnames(pvals)
 apply(adjpvals<1e-2, 2, sum)
 
 # obtain gene significance from the given gene-sample matrix according to singular value decomposition-based method
-fdr <- dSVDSignif(data=D, num.eigen=NULL, pval.eigen=1e-2, signif="fdr", orient.permutation="row", num.permutation=200, fdr.procedure="stepup", verbose=T)
+fdr <- dSVDsignif(data=D, num.eigen=NULL, pval.eigen=1e-2, signif="fdr", orient.permutation="row", num.permutation=200, fdr.procedure="stepup", verbose=T)
 
 # 2) identification of module
 g <- dNetPipeline(g=network, pval=fdr, method="fdr", nsize=30)

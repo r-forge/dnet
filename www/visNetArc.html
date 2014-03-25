@@ -109,14 +109,14 @@
   
     <h3>Description</h3>
     <p><code>visNetArc</code> is supposed to visualise a graph object
-  of class "igraph" via arc diagram in one-dimensional
-  layout. More precisely, it displays vertices (nodes)
-  along an axis, with edges linked by arcs. With proper
-  ordering of vertices (e.g. according to communities and
-  degrees), arc diagram is able to identify clusters and
-  bridges (as effective as two-dimensional layout). One
-  advantage of using arc diagram is to allow for easy
-  annotations along vertices.</p>
+of class "igraph" via arc diagram in one-dimensional
+layout. More precisely, it displays vertices (nodes)
+along an axis, with edges linked by arcs. With proper
+ordering of vertices (e.g. according to communities and
+degrees), arc diagram is able to identify clusters and
+bridges (as effective as two-dimensional layout). One
+advantage of using arc diagram is to allow for easy
+annotations along vertices.</p>
   
     <h3>Usage</h3>
     <pre>visNetArc(g, orientation = c("vertical", "horizontal"), newpage = T, ordering = NULL, 
@@ -130,48 +130,48 @@
       <dd>an object of class "igraph"</dd>
       <dt>orientation</dt>
       <dd>the orientation of the plots. It can
-  be either "vertical" (default) or "horizontal"</dd>
+be either "vertical" (default) or "horizontal"</dd>
       <dt>newpage</dt>
       <dd>logical to indicate whether to open a new
-  page. By default, it sets to true for opening a new page</dd>
+page. By default, it sets to true for opening a new page</dd>
       <dt>ordering</dt>
       <dd>a numeric vector about the ordering of
-  vertices. It is optional. It is highly recommend to order
-  vertices according to communities and degrees</dd>
+vertices. It is optional. It is highly recommend to order
+vertices according to communities and degrees</dd>
       <dt>labels</dt>
       <dd>the label of the vertices. The default
-  vertex labels are the name attribute of the nodes</dd>
+vertex labels are the name attribute of the nodes</dd>
       <dt>vertex.label.color</dt>
       <dd>the color of vertex labels</dd>
       <dt>vertex.label.cex</dt>
       <dd>the font size of vertex labels</dd>
       <dt>vertex.color</dt>
       <dd>the fill color of the vertices. The
-  default vertex colors are transparent</dd>
+default vertex colors are transparent</dd>
       <dt>vertex.frame.color</dt>
       <dd>the color of the frame of the
-  vertices. The default vertex frame colors are black</dd>
+vertices. The default vertex frame colors are black</dd>
       <dt>vertex.size</dt>
       <dd>the size of each vertex. By default,
-  it is decided according to node degrees</dd>
+it is decided according to node degrees</dd>
       <dt>vertex.pch</dt>
       <dd>the shape of each vertex. Either an
-  integer specifying a symbol or a single character to be
-  used as the default in plotting points. See
-  <a href = 'http://www.statmethods.net/advgraphs/parameters.html'>http://www.statmethods.net/advgraphs/parameters.html</a></dd>
+integer specifying a symbol or a single character to be
+used as the default in plotting points. See
+<a href = 'http://www.statmethods.net/advgraphs/parameters.html'>http://www.statmethods.net/advgraphs/parameters.html</a></dd>
       <dt>vertex.lwd</dt>
       <dd>line width for the vertices (default
-  1)</dd>
+1)</dd>
       <dt>edge.color</dt>
       <dd>the color of the edges (default
-  "grey")</dd>
+"grey")</dd>
       <dt>edge.width</dt>
       <dd>line width for the edges (default 1)</dd>
       <dt>edge.lty</dt>
       <dd>line type for the edges (default 1)</dd>
       <dt>...</dt>
       <dd>additional graphic parameters associated with
-  'mtext'</dd>
+'mtext'</dd>
     </dl>
     <!-- 
     -->
@@ -208,12 +208,18 @@ tmp <- data.frame(ind=1:vcount(g), vgroups, vdegrees)
 ordering <- tmp[order(vgroups,vdegrees),]$ind
 
 # 6) visualise graph using 1-dimensional arc diagram
-visNetArc(g, ordering=ordering, labels=V(g)$name, vertex.label.color=vcolors, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.size=log(vdegrees)+0.1)
+visNetArc(g, ordering=ordering, labels=V(g)$name,
+vertex.label.color=vcolors,
+vertex.color=vcolors, vertex.frame.color=vcolors,
+vertex.size=log(vdegrees)+0.1)
 </div>
 <a href="javascript:newWin('visNetArc-2.png', 'visNetArc-2.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visNetArc-2.png', width="400" /></a>
 <div class='input'>
 # 7) as comparison, also visualise graph on 2-dimensional layout
-visNet(g, colormap="bwr", layout=layout.kamada.kawai(g), vertex.label=V(g)$name, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.shape="sphere")
+visNet(g, colormap="bwr", layout=layout.kamada.kawai(g),
+vertex.label=V(g)$name,
+vertex.color=vcolors, vertex.frame.color=vcolors,
+vertex.shape="sphere")
 </div>
 <a href="javascript:newWin('visNetArc-4.png', 'visNetArc-4.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visNetArc-4.png', width="400" /></a></pre>
   </div>
@@ -231,11 +237,11 @@ visNet(g, colormap="bwr", layout=layout.kamada.kawai(g), vertex.label=V(g)$name,
       
     <h2>See also</h2>
     
-  <code><a href='visNet.html'>visNet</a></code>
+<code><a href='visNet.html'>visNet</a></code>
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network and expression data. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

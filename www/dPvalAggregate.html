@@ -109,11 +109,11 @@
   
     <h3>Description</h3>
     <p><code>dPvalAggregate</code> is supposed to aggregate a input
-  matrix p-values into a vector of aggregated p-values. The
-  aggregate operation is applied to each row of input
-  matrix, each resulting in an aggregated p-value. The
-  method implemented can be based on the order statistics
-  of p-values or according to Fisher's method.</p>
+matrix p-values into a vector of aggregated p-values. The
+aggregate operation is applied to each row of input
+matrix, each resulting in an aggregated p-value. The
+method implemented can be based on the order statistics
+of p-values or according to Fisher's method.</p>
   
     <h3>Usage</h3>
     <pre>dPvalAggregate(pmatrix, method = c("orderStatistic", "fishers"), order = ncol(pmatrix))</pre>
@@ -124,12 +124,12 @@
       <dd>a data frame or matrix of p-values</dd>
       <dt>method</dt>
       <dd>the method used. It can be either
-  "orderStatistic" for the method based on the order
-  statistics of p-values, or "fishers" for Fisher's method</dd>
+"orderStatistic" for the method based on the order
+statistics of p-values, or "fishers" for Fisher's method</dd>
       <dt>order</dt>
       <dd>an integeter specifying the order used for
-  the aggregation according to on the order statistics of
-  p-values</dd>
+the aggregation according to on the order statistics of
+p-values</dd>
     </dl>
     <!-- 
     -->
@@ -139,7 +139,7 @@
       
       <p><ul>
 <li><code>ap</code>: a vector with the length
-  nrow(pmatrix), containing aggregated p-values </li>
+nrow(pmatrix), containing aggregated p-values </li>
 </ul></p>
       <p></p>
     </div>
@@ -147,14 +147,14 @@
       <h3>Note</h3>
       
       <p>For each row of input matrix with the <code class = 'eq'>c</code> columns,
-  there are <code class = 'eq'>c</code> p-values that are uniformly
-  independently distributed over [0,1] under the null
-  hypothesis (uniform distribution). According to the order
-  statisitcs, they follow the Beta distribution with the
-  paramters <code class = 'eq'>a=order</code> and <code class = 'eq'>b=c-order+1</code>. According
-  to the the Fisher's method, after transformation by
-  <code class = 'eq'>-2*\sum^clog(pvalue)</code>, they follow Chi-Squared
-  distribution.</p>
+there are <code class = 'eq'>c</code> p-values that are uniformly
+independently distributed over [0,1] under the null
+hypothesis (uniform distribution). According to the order
+statisitcs, they follow the Beta distribution with the
+paramters <code class = 'eq'>a=order</code> and <code class = 'eq'>b=c-order+1</code>. According
+to the the Fisher's method, after transformation by
+<code class = 'eq'>-2*\sum^clog(pvalue)</code>, they follow Chi-Squared
+distribution.</p>
     </div>
     
     <h3 id="examples">Examples</h3>
@@ -182,11 +182,11 @@ ap <- dPvalAggregate(pmatrix, method="fishers")
       
     <h2>See also</h2>
     
-  <code><a href='dPvalAggregate.html'>dPvalAggregate</a></code>
+<code><a href='dPvalAggregate.html'>dPvalAggregate</a></code>
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network and expression data. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

@@ -109,13 +109,13 @@
   
     <h3>Description</h3>
     <p><code>dCommSignif</code> is supposed to test the significance
-  of communities within a graph. For a community of the
-  graph, it first calculates two types of degrees for each
-  node: degrees based on parters only within the community
-  itself, and the degrees based on its parters NOT in the
-  community but in the graph. Then, it performs two-sample
-  Wilcoxon tests on these two types of degrees to produce
-  the signficance level (p-value)</p>
+of communities within a graph. For a community of the
+graph, it first calculates two types of degrees for each
+node: degrees based on parters only within the community
+itself, and the degrees based on its parters NOT in the
+community but in the graph. Then, it performs two-sample
+Wilcoxon tests on these two types of degrees to produce
+the signficance level (p-value)</p>
   
     <h3>Usage</h3>
     <pre>dCommSignif(g, comm)</pre>
@@ -126,8 +126,8 @@
       <dd>an object of class "igraph" or "graphNEL"</dd>
       <dt>comm</dt>
       <dd>an object of class "communities". Details on
-  this class can be found at
-  <a href = 'http://igraph.sourceforge.net/doc/R/communities.html'>http://igraph.sourceforge.net/doc/R/communities.html</a></dd>
+this class can be found at
+<a href = 'http://igraph.sourceforge.net/doc/R/communities.html'>http://igraph.sourceforge.net/doc/R/communities.html</a></dd>
     </dl>
     <!-- 
     -->
@@ -137,7 +137,7 @@
       
       <p><ul>
 <li><code>significance</code>: a vector of p-values
-  (significance) </li>
+(significance) </li>
 </ul></p>
       <p></p>
     </div>
@@ -192,11 +192,11 @@ significance <- dCommSignif(module, comm)
       
     <h2>See also</h2>
     
-  <code><a href='dCommSignif.html'>dCommSignif</a></code>
+<code><a href='dCommSignif.html'>dCommSignif</a></code>
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network and expression data. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

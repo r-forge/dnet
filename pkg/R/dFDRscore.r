@@ -11,17 +11,17 @@
 #' }
 #' @note none
 #' @export
-#' @seealso \code{\link{dSVDSignif}}, \code{\link{dNetPipeline}}
+#' @seealso \code{\link{dSVDsignif}}, \code{\link{dNetPipeline}}
 #' @include dFDRscore.r
 #' @examples
-#' # 1) generate data with three different distributions, each with an iid normal random matrix of 1000 x 3
+#' # 1) generate data with an iid matrix of 1000 x 9
 #' data <- cbind(matrix(rnorm(1000*3,mean=0,sd=1), nrow=1000, ncol=3), 
 #' matrix(rnorm(1000*3,mean=0.5,sd=1), nrow=1000, ncol=3), 
 #' matrix(rnorm(1000*3,mean=-0.5,sd=1), nrow=1000, ncol=3))
 #'
 #' # 2) calculate the significance according to SVD
 #' # using "fdr" significance
-#' fdr <- dSVDSignif(data, signif="fdr", num.permutation=100)
+#' fdr <- dSVDsignif(data, signif="fdr", num.permutation=100)
 #'
 #' # 3) calculate the scores according to the fitted BUM and fdr=0.01
 #' # no fdr threshold

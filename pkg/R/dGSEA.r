@@ -42,11 +42,13 @@
 #' @seealso \code{\link{dGSEAview}}, \code{\link{dGSEAwrite}}, \code{\link{visGSEA}}
 #' @include dGSEA.r
 #' @examples
-#' #load(url("http://dnet.r-forge.r-project.org/data/Hiratani_TableS1.RData"))
-#' #data <- RT[,1:2]
-#' #eTerm <- dGSEA(data=data, identity="symbol", genome="mm", ontology="MP", sizeRange=c(10,1000), which_distance=c(1), weight=1, nperm=10)
+#' \dontrun{
+#' load(url("http://dnet.r-forge.r-project.org/data/Hiratani_TableS1.RData"))
+#' data <- RT[,1:2]
+#' eTerm <- dGSEA(data, identity="symbol", genome="mm", ontology="MP", which_distance=c(1,2))
+#' }
 
-dGSEA <- function(data, identity=c("symbol","entrez"), genome=c("mm", "hs"), ontology=c("GOBP","GOMF","GOCC","MP","DO","PS"), sizeRange=c(10,1000), which_distance=NULL, weight=1, nperm=1000, fast=T, sigTail=c("two-tails","one-tail"), verbose=T)
+dGSEA <- function(data, identity=c("symbol","entrez"), genome=c("mm", "hs"), ontology=c("GOBP","GOMF","GOCC","MP","DO","PS"), sizeRange=c(10,1000), which_distance=NULL, weight=1, nperm=100, fast=T, sigTail=c("two-tails","one-tail"), verbose=T)
 {
     startT <- Sys.time()
     message(paste(c("Start at ",as.character(startT)), collapse=""), appendLF=T)

@@ -109,7 +109,7 @@
   
     <h3>Description</h3>
     <p><code>dGSEAwrite</code> is supposed to write out enrichment
-  results.</p>
+results.</p>
   
     <h3>Usage</h3>
     <pre>dGSEAwrite(eTerm, which_content = c("gadjp", "adjp", "pvalue", "FWER", "FDR", "qvalue", 
@@ -122,29 +122,29 @@
       <dd>an object of class "eTerm"</dd>
       <dt>which_content</dt>
       <dd>the content will be written out. It
-  includes two categories: i) based on "adjp" for adjusted
-  p value, "gadjp" for globally adjusted p value, "pvalue"
-  for p value, "FWER" for family-wise error rate, "FDR" for
-  false discovery rate, "qvalue" for q value; ii) based on
-  "ES" for enrichment score, "nES" for normalised
-  enrichment score. For the former, the content is : first
-  -1*log10-transformed, and then multiplied by -1 if nES is
-  negative.</dd>
+includes two categories: i) based on "adjp" for adjusted
+p value, "gadjp" for globally adjusted p value, "pvalue"
+for p value, "FWER" for family-wise error rate, "FDR" for
+false discovery rate, "qvalue" for q value; ii) based on
+"ES" for enrichment score, "nES" for normalised
+enrichment score. For the former, the content is : first
+-1*log10-transformed, and then multiplied by -1 if nES is
+negative.</dd>
       <dt>which_score</dt>
       <dd>which statistics/score will be used
-  for declaring the significance. It can be "adjp" for
-  adjusted p value, "gadjp" for globally adjusted p value,
-  "FWER" for family-wise error rate, "FDR" for false
-  discovery rate, "qvalue" for q value</dd>
+for declaring the significance. It can be "adjp" for
+adjusted p value, "gadjp" for globally adjusted p value,
+"FWER" for family-wise error rate, "FDR" for false
+discovery rate, "qvalue" for q value</dd>
       <dt>cutoff</dt>
       <dd>a cutoff to declare the signficance. It
-  should be used together with 'which_score'</dd>
+should be used together with 'which_score'</dd>
       <dt>filename</dt>
       <dd>a character string naming a filename</dd>
       <dt>keep.significance</dt>
       <dd>logical to indicate whether or
-  not to mask those insignfiicant by NA. By default, it
-  sets to true to mask those insignfiicant by NA</dd>
+not to mask those insignfiicant by NA. By default, it
+sets to true to mask those insignfiicant by NA</dd>
     </dl>
     <!-- 
     -->
@@ -155,14 +155,14 @@
       <p>a data frame with following components: <ul>
 <li><code>setID</code>: term ID </li>
 <li><code>setSize</code>: the
-  number of genes in the set </li>
+number of genes in the set </li>
 <li><code>name</code>: term name
-  </li>
+</li>
 <li><code>namespace</code>: term namespace
-  </li>
+</li>
 <li><code>distance</code>: term distance </li>
 <li><code>sample
-  names</code>: sample names in the next columns </li>
+names</code>: sample names in the next columns </li>
 </ul></p>
       <p></p>
     </div>
@@ -170,11 +170,11 @@
       <h3>Note</h3>
       
       <p>If "filename" is not NULL, a tab-delimited text file will
-  be also written out.</p>
+be also written out.</p>
     </div>
     
     <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'>#output <- dGSEAwrite(eTerm, which_content="gadjp", which_score="gadjp", cutoff=0.05, filename="dGSEAwrite_output.txt", keep.significance=T)</div></pre>
+    <pre class="examples"><div class='input'>## <strong>Not run</strong>: # output <- dGSEAwrite(eTerm, which_content="gadjp", which_score="gadjp",# filename="eTerm.txt")# ## <strong>End(Not run)</strong></div></pre>
   </div>
   
   <div class="span4">
@@ -190,11 +190,11 @@
       
     <h2>See also</h2>
     
-  <code><a href='dGSEA.html'>dGSEA</a></code>
+<code><a href='dGSEA.html'>dGSEA</a></code>
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network and expression data. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

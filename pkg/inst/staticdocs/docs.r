@@ -14,7 +14,7 @@ list(
                 'dNetInduce',
                 'dBUMfit',
                 'dBUMscore',
-                'dSVDSignif',
+                'dSVDsignif',
                 'dFDRscore',
                 'dNetFind',
                 'dNetPipeline',
