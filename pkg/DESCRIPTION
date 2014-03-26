@@ -1,8 +1,8 @@
 Package: dnet
 Type: Package
-Title: DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data
-Version: 0.99.0
-Date: 2014-3-25
+Title: Dynamic NETworks via an integrative analysis of biological networks and high-throughput digitised data
+Version: 1.0.0
+Date: 2014-3-26
 Author: Hai Fang and Julian Gough
 Maintainer: Hai Fang <hfang@cs.bris.ac.uk>
 Depends: R (>= 3.0.2), igraph, supraHex
