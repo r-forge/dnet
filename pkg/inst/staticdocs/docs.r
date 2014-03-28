@@ -42,7 +42,7 @@ list(
             )
         ),
         sd_section("Built-in databases in human",
-            "",
+            "These databases are used for enrichment analysis in human",
             c(
                 "org.Hs.eg",
                 "org.Hs.egDO", 
@@ -57,8 +57,28 @@ list(
                 "org.Hs.string"
             )
         ),
+        sd_section("Built-in genesets in human",
+            "These genesets are derived from the molecular signatures database (Msigdb)",
+            c(
+                "org.Hs.egMsigdbC1",
+                "org.Hs.egMsigdbC2CGP", 
+                "org.Hs.egMsigdbC2CP",
+                "org.Hs.egMsigdbC2KEGG",
+                "org.Hs.egMsigdbC2REACTOME",
+                "org.Hs.egMsigdbC2BIOCARTA", 
+                "org.Hs.egMsigdbC3TFT",
+                "org.Hs.egMsigdbC3MIR",
+                "org.Hs.egMsigdbC4CGN",
+                "org.Hs.egMsigdbC4CM",
+                "org.Hs.egMsigdbC5BP",
+                "org.Hs.egMsigdbC5MF", 
+                "org.Hs.egMsigdbC5CC",
+                "org.Hs.egMsigdbC6",
+                "org.Hs.egMsigdbC7"
+            )
+        ),
         sd_section("Built-in databases in mouse",
-            "",
+            "These databases are used for enrichment analysis in mouse",
             c(
                 "org.Mm.eg",
                 "org.Mm.egDO", 
@@ -74,13 +94,18 @@ list(
             )
         ),
         sd_section("Built-in databases in arabidopsis",
-            "",
+            "These databases are used for enrichment analysis in arabidopsis",
             c(
+                "org.At.eg",
+                "org.At.egGOBP",
+                "org.At.egGOCC",
+                "org.At.egGOMF",
+                "org.At.egPS",
                 "org.At.string"
             )
         ),
         sd_section("Built-in datasets",
-            "",
+            "These datasets are used for the demo",
             c(
                 "Hiratani_TableS1",
                 "CLL"

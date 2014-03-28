@@ -3,8 +3,7 @@
 \title{Function to implement Random Walk with Restart (RWR) on the
 input graph. to pre-compute affinity matrix for the input graph}
 \usage{
-dRWR(g,
-normalise = c("laplacian", "row", "column", "none"),
+dRWR(g, normalise = c("laplacian", "row", "column", "none"),
 setSeeds = NULL, restart = 0.75)
 }
 \arguments{
@@ -49,37 +48,36 @@ i.e., following a random walk (RW)}
 }
 \value{
 When the seeds are NOT given, it returns: \itemize{
-\item{\code{PTmatrix}: pre-computated affinity matrix
-with the dimension of n X n, where n is the number of
-nodes in the input graph. Columns stand for starting
-nodes walking from, and rows for ending nodes walking to.
-Therefore, a column for a starting node represents a
-steady-state affinity vector that the starting node will
-visit all the ending nodes in the graph} } When the seeds
-are given, it returns: \itemize{ \item{\code{PTmatrix}:
-affinity matrix with the dimension of n X nset, where n
-is the number of nodes in the input graph, and nset for
-the number of the sets of seeds (i.e. the number of
-columns in setSeeds). Each column stands for the steady
-probability vector, storing the affinity score of all
-nodes in the graph to the starting nodes/seeds. This
-steady probability vector can be viewed as the
-"influential impact" over the graph imposed by the
-starting nodes/seeds.} }
+\item{\code{PTmatrix}: pre-computated affinity matrix with
+the dimension of n X n, where n is the number of nodes in
+the input graph. Columns stand for starting nodes walking
+from, and rows for ending nodes walking to. Therefore, a
+column for a starting node represents a steady-state
+affinity vector that the starting node will visit all the
+ending nodes in the graph} } When the seeds are given, it
+returns: \itemize{ \item{\code{PTmatrix}: affinity matrix
+with the dimension of n X nset, where n is the number of
+nodes in the input graph, and nset for the number of the
+sets of seeds (i.e. the number of columns in setSeeds).
+Each column stands for the steady probability vector,
+storing the affinity score of all nodes in the graph to the
+starting nodes/seeds. This steady probability vector can be
+viewed as the "influential impact" over the graph imposed
+by the starting nodes/seeds.} }
 }
 \description{
 \code{dRWR} is supposed to implement Random Walk with
-Restart (RWR) on the input graph. If the seeds (i.e. a
-set of starting nodes) are given, it intends to calculate
-the affinity score of all nodes in the graph to the given
+Restart (RWR) on the input graph. If the seeds (i.e. a set
+of starting nodes) are given, it intends to calculate the
+affinity score of all nodes in the graph to the given
 seeds. If the seeds are not give, it will pre-compute
 affinity matrix for nodes in the input graph with respect
 to each starting node (rather than a set of nodes) by
 looping over every node in the graph.
 }
 \note{
-The input graph will treat as an unweighted graph if
-there is no 'weight' edge attribute associated with
+The input graph will treat as an unweighted graph if there
+is no 'weight' edge attribute associated with
 }
 \examples{
 # 1) generate a random graph according to the ER model

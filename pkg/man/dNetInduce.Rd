@@ -3,8 +3,7 @@
 \title{Function to generate a subgraph induced by given vertices and
 their k nearest neighbors}
 \usage{
-dNetInduce(g, nodes_query, knn = 0, remove.loops = T,
-largest.comp = T)
+dNetInduce(g, nodes_query, knn = 0, remove.loops = T, largest.comp = T)
 }
 \arguments{
 \item{g}{an object of class "igraph" or "graphNEL"}
@@ -29,20 +28,19 @@ largest component is only retained. By default, it sets
 to true for the largest component being left}
 }
 \value{
-\itemize{ \item{\code{subg}: an induced subgraph, an
-object of class "igraph" or "graphNEL"} }
+\itemize{ \item{\code{subg}: an induced subgraph, an object
+of class "igraph" or "graphNEL"} }
 }
 \description{
-\code{dNetInduce} is supposed to produce a subgraph
-induced by given vertices and its k nearest neighbors.
-The input is a graph of "igraph" or "graphNET" object, a
-list of the vertices of the graph, and a k value for
-finding k nearest neighbors for these vertices. The
-output is a subgraph induced by given veretices plus
-their k neighbours. The resultant subgraph inherits the
-class from the input one. The induced subgraph conatins
-exactly the vertices of interest, and all the edges
-between them.
+\code{dNetInduce} is supposed to produce a subgraph induced
+by given vertices and its k nearest neighbors. The input is
+a graph of "igraph" or "graphNET" object, a list of the
+vertices of the graph, and a k value for finding k nearest
+neighbors for these vertices. The output is a subgraph
+induced by given veretices plus their k neighbours. The
+resultant subgraph inherits the class from the input one.
+The induced subgraph conatins exactly the vertices of
+interest, and all the edges between them.
 }
 \note{
 The given vertices plus their k nearest neighbors will be

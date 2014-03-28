@@ -1,4 +1,4 @@
-CHANGES IN VERSION 0.99.0
+CHANGES IN VERSION 1.0.0
 -----------------------
 
 NEW FEATURES
@@ -8,3 +8,5 @@ NEW FEATURES
     o Identification of expression-active dynamic subnetworks
 
     o Network-based sample stratifications and visualisations on 2D landscape
+    
+    o Enrichment analysis using a wide variety of ontologies

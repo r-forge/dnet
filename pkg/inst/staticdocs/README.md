@@ -14,6 +14,7 @@
 * Identification of expression-active dynamic subnetworks
 * Network-based sample stratifications 
 * Visualisations of network-based sample stratifications on 2D landscape
+* Enrichment analysis using a wide variety of ontologies
 * This package can run on `Windows`, `Mac` and `Linux`
 
 ## See also
