@@ -110,10 +110,10 @@
     <h3>Description</h3>
     <p><code>dPvalAggregate</code> is supposed to aggregate a input
 matrix p-values into a vector of aggregated p-values. The
-aggregate operation is applied to each row of input
-matrix, each resulting in an aggregated p-value. The
-method implemented can be based on the order statistics
-of p-values or according to Fisher's method.</p>
+aggregate operation is applied to each row of input matrix,
+each resulting in an aggregated p-value. The method
+implemented can be based on the order statistics of
+p-values or according to Fisher's method.</p>
   
     <h3>Usage</h3>
     <pre>dPvalAggregate(pmatrix, method = c("orderStatistic", "fishers"), order = ncol(pmatrix))</pre>
@@ -147,27 +147,16 @@ nrow(pmatrix), containing aggregated p-values </li>
       <h3>Note</h3>
       
       <p>For each row of input matrix with the <code class = 'eq'>c</code> columns,
-there are <code class = 'eq'>c</code> p-values that are uniformly
-independently distributed over [0,1] under the null
-hypothesis (uniform distribution). According to the order
-statisitcs, they follow the Beta distribution with the
-paramters <code class = 'eq'>a=order</code> and <code class = 'eq'>b=c-order+1</code>. According
-to the the Fisher's method, after transformation by
+there are <code class = 'eq'>c</code> p-values that are uniformly independently
+distributed over [0,1] under the null hypothesis (uniform
+distribution). According to the order statisitcs, they
+follow the Beta distribution with the paramters
+<code class = 'eq'>a=order</code> and <code class = 'eq'>b=c-order+1</code>. According to the the
+Fisher's method, after transformation by
 <code class = 'eq'>-2*\sum^clog(pvalue)</code>, they follow Chi-Squared
 distribution.</p>
     </div>
-    
-    <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'># 1) generate an iid uniformly-distributed random matrix of 1000x3
-pmatrix <- cbind(runif(1000), runif(1000), runif(1000))
-
-# 2) aggregate according to the ordre statistics
-ap <- dPvalAggregate(pmatrix, method="orderStatistic")
-
-# 3) aggregate according to the Fisher's method
-ap <- dPvalAggregate(pmatrix, method="fishers")
-</div></pre>
-  </div>
+      </div>
   
   <div class="span4">
     
@@ -186,7 +175,7 @@ ap <- dPvalAggregate(pmatrix, method="fishers")
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

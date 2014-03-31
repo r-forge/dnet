@@ -110,9 +110,9 @@ input graph. to pre-compute affinity matrix for the input graph</h2>
   
     <h3>Description</h3>
     <p><code>dRWR</code> is supposed to implement Random Walk with
-Restart (RWR) on the input graph. If the seeds (i.e. a
-set of starting nodes) are given, it intends to calculate
-the affinity score of all nodes in the graph to the given
+Restart (RWR) on the input graph. If the seeds (i.e. a set
+of starting nodes) are given, it intends to calculate the
+affinity score of all nodes in the graph to the given
 seeds. If the seeds are not give, it will pre-compute
 affinity matrix for nodes in the input graph with respect
 to each starting node (rather than a set of nodes) by
@@ -170,81 +170,35 @@ i.e., following a random walk (RW)</dd>
       <h3>Value</h3>
       
       <p>When the seeds are NOT given, it returns: <ul>
-<li><code>PTmatrix</code>: pre-computated affinity matrix
-with the dimension of n X n, where n is the number of
-nodes in the input graph. Columns stand for starting
-nodes walking from, and rows for ending nodes walking to.
-Therefore, a column for a starting node represents a
-steady-state affinity vector that the starting node will
-visit all the ending nodes in the graph </li>
+<li><code>PTmatrix</code>: pre-computated affinity matrix with
+the dimension of n X n, where n is the number of nodes in
+the input graph. Columns stand for starting nodes walking
+from, and rows for ending nodes walking to. Therefore, a
+column for a starting node represents a steady-state
+affinity vector that the starting node will visit all the
+ending nodes in the graph </li>
 </ul>
- When the seeds
-are given, it returns: <ul>
-<li><code>PTmatrix</code>:
-affinity matrix with the dimension of n X nset, where n
-is the number of nodes in the input graph, and nset for
-the number of the sets of seeds (i.e. the number of
-columns in setSeeds). Each column stands for the steady
-probability vector, storing the affinity score of all
-nodes in the graph to the starting nodes/seeds. This
-steady probability vector can be viewed as the
-"influential impact" over the graph imposed by the
-starting nodes/seeds. </li>
+ When the seeds are given, it
+returns: <ul>
+<li><code>PTmatrix</code>: affinity matrix
+with the dimension of n X nset, where n is the number of
+nodes in the input graph, and nset for the number of the
+sets of seeds (i.e. the number of columns in setSeeds).
+Each column stands for the steady probability vector,
+storing the affinity score of all nodes in the graph to the
+starting nodes/seeds. This steady probability vector can be
+viewed as the "influential impact" over the graph imposed
+by the starting nodes/seeds. </li>
 </ul></p>
       <p></p>
     </div>
     <div class="Note">
       <h3>Note</h3>
       
-      <p>The input graph will treat as an unweighted graph if
-there is no 'weight' edge attribute associated with</p>
+      <p>The input graph will treat as an unweighted graph if there
+is no 'weight' edge attribute associated with</p>
     </div>
-    
-    <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'># 1) generate a random graph according to the ER model
-g <- erdos.renyi.game(100, 1/100)
-
-# 2) produce the induced subgraph only based on the nodes in query
-subg <- dNetInduce(g, V(g), knn=0)
-V(subg)$name <- 1:vcount(subg)
-
-# 3) obtain the pre-computated affinity matrix
-PTmatrix <- dRWR(subg, normalise="laplacian", restart=0.75)
-# visualise affinity matrix
-visHeatmapAdv(PTmatrix, Rowv=FALSE, Colv=FALSE, colormap="wyr",
-KeyValueName="Affinity")
-</div>
-<a href="javascript:newWin('dRWR-2.png', 'dRWR-2.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='dRWR-2.png', width="400" /></a>
-<div class='input'>
-# 4) obtain affinity matrix given sets of seeds
-# define sets of seeds
-# each seed with equal weight (i.e. all non-zero entries are '1')
-aSeeds <- c(1,0,1,0,1)
-bSeeds <- c(0,0,1,0,1)
-setSeeds <- data.frame(aSeeds,bSeeds)
-rownames(setSeeds) <- 1:5
-# calcualte affinity matrix
-PTmatrix <- dRWR(subg, normalise="laplacian", setSeeds=setSeeds,
-restart=0.75)
-</div>
-<strong class='warning'>Warning message:
-The row names of input setSeeds do not contain all those in the input graph.
-</strong>
-<div class='input'>PTmatrix
-</div>
-<div class='output'>        aSeeds      bSeeds
-1  0.273208489 0.001135639
-2  0.002865965 0.004204145
-3  0.270493778 0.401098701
-4  0.025633966 0.037603019
-5  0.274441705 0.408020930
-6  0.053002633 0.006424146
-7  0.048514898 0.072128592
-8  0.002865965 0.004204145
-9  0.046106638 0.060976537
-10 0.002865965 0.004204145
-</div></pre>
-  </div>
+      </div>
   
   <div class="span4">
     
@@ -263,7 +217,7 @@ The row names of input setSeeds do not contain all those in the input graph.
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

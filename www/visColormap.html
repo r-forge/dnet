@@ -110,8 +110,7 @@
     <h3>Description</h3>
     <p><code>visColormap</code> is supposed to define a colormap. It
 returns a function, which will take an integer argument
-specifying how many colors interpolate the given
-colormap.</p>
+specifying how many colors interpolate the given colormap.</p>
   
     <h3>Usage</h3>
     <pre>visColormap(colormap = c("bwr", "jet", "gbr", "wyr", "br", "yr", "rainbow", "wb"))</pre>
@@ -128,9 +127,9 @@ colormap.</p>
       <h3>Value</h3>
       
       <p><ul>
-<li><code>palette.name</code>: a function that
-takes an integer argument for generating that number of
-colors interpolating the given sequence </li>
+<li><code>palette.name</code>: a function that takes
+an integer argument for generating that number of colors
+interpolating the given sequence </li>
 </ul></p>
       <p></p>
     </div>
@@ -143,18 +142,17 @@ colormap </li>
 <li>"bwr": blue-white-red </li>
 <li>"gbr":
 green-black-red </li>
-<li>"wyr": white-yellow-red
+<li>"wyr": white-yellow-red </li>
+<li>"br":
+black-red </li>
+<li>"yr": yellow-red </li>
+<li>"wb": white-black
 </li>
-<li>"br": black-red </li>
-<li>"yr": yellow-red
-</li>
-<li>"wb": white-black </li>
-<li>"rainbow": rainbow
-colormap, that is, red-yellow-green-cyan-blue-magenta
-</li>
-<li>Alternatively, any hyphen-separated HTML color
-names, e.g. "blue-black-yellow",
-"royalblue-white-sandybrown",
+<li>"rainbow": rainbow colormap, that is,
+red-yellow-green-cyan-blue-magenta </li>
+<li>Alternatively,
+any hyphen-separated HTML color names, e.g.
+"blue-black-yellow", "royalblue-white-sandybrown",
 "darkblue-lightblue-lightyellow-darkorange",
 "darkgreen-white-darkviolet",
 "darkgreen-lightgreen-lightpink-darkred". A list of
@@ -163,18 +161,7 @@ standard color names can be found in
 </ul></p>
       <p></p>
     </div>
-    
-    <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'># 1) define "blue-white-red" colormap
-palette.name <- visColormap(colormap="bwr")
-
-# 2) use the return function "palette.name" to generate 10 colors spanning "bwr"
-palette.name(10)
-</div>
-<div class='output'> [1] "#0000FF" "#3838FF" "#7171FF" "#AAAAFF" "#E2E2FF" "#FFE2E2" "#FFAAAA"
- [8] "#FF7171" "#FF3838" "#FF0000"
-</div></pre>
-  </div>
+      </div>
   
   <div class="span4">
     
@@ -193,7 +180,7 @@ palette.name(10)
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

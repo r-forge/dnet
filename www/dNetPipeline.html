@@ -162,71 +162,32 @@ true for display</dd>
     <div class="Value">
       <h3>Value</h3>
       
-      <p>a module with a maximum score, an object of class
-"igraph" or "graphNEL"</p>
+      <p>a module with a maximum score, an object of class "igraph"
+or "graphNEL"</p>
     </div>
     <div class="Note">
       <h3>Note</h3>
       
       <p>The pipeline sequentially consists of: <ul>
 <li>i)
-<code><a href='dBUMfit.html'>dBUMfit</a></code> used to fit the p-value
-distribution under beta-uniform mixture model. </li>
-<li>ii)
-if there is the desired number of nodes constrained to
-the resulting module, a wide range of FDR (including
-rough stage with large intervals, and finetune stage with
-smaller intervals) will be scanned to find the FDR
-threshold to meet the desired number of nodes.
-</li>
-<li>iii) <code><a href='dBUMscore.html'>dBUMscore</a></code> used to calculate the
-scores according to the fitted BUM and FDR threshold.
-</li>
-<li>iv) <code><a href='dNetFind.html'>dNetFind</a></code> used to find
-maximum-scoring module from the input graph and scores
-imposed on its nodes. </li>
+<code><a href='dBUMfit.html'>dBUMfit</a></code> used to fit the p-value distribution
+under beta-uniform mixture model. </li>
+<li>ii) if there is
+the desired number of nodes constrained to the resulting
+module, a wide range of FDR (including rough stage with
+large intervals, and finetune stage with smaller intervals)
+will be scanned to find the FDR threshold to meet the
+desired number of nodes. </li>
+<li>iii)
+<code><a href='dBUMscore.html'>dBUMscore</a></code> used to calculate the scores
+according to the fitted BUM and FDR threshold. </li>
+<li>iv)
+<code><a href='dNetFind.html'>dNetFind</a></code> used to find maximum-scoring module
+from the input graph and scores imposed on its nodes. </li>
 </ul></p>
       <p></p>
     </div>
-    
-    <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'># 1) generate an vector consisting of random values from beta distribution
-x <- rbeta(1000, shape1=0.5, shape2=1)
-names(x) <- as.character(1:length(x))
-
-# 2) generate a random graph according to the ER model
-g <- erdos.renyi.game(1000, 1/100)
-
-# 3) produce the induced subgraph only based on the nodes in query
-subg <- dNetInduce(g, V(g), knn=0)
-
-# 4) find maximum-scoring module based on fdr=0.1 threshold
-module <- dNetPipeline(g=subg, pval=x, fdr=0.1)
-</div>
-<strong class='message'>Start at 2014-03-26 11:40:55</strong>
-<strong class='message'></strong>
-<strong class='message'>First, fit the p-value distribution under beta-uniform mixture model...</strong>
-<strong class='message'>	A total of p-values: 1000</strong>
-<strong class='message'>	Maximum Log-Likelihood: 332.0</strong>
-<strong class='message'>	Mixture parameter (lambda): 0.000</strong>
-<strong class='message'>	Shape parameter (a): 0.488</strong>
-<strong class='message'>Second, determine FDR threshold...</strong>
-<strong class='message'>	FDR threshold: 1.00e-01</strong>
-<strong class='message'>Third, calculate the scores according to the fitted BUM and FDR threshold (if any)...</strong>
-<strong class='message'>	Amongst 1000 scores, there are 208 positives.</strong>
-<strong class='message'>Finally, find the subnetwork from the input network with 1000 nodes and 4971 edges...</strong>
-<strong class='message'>	Size of the module: 166 nodes and 206 edges</strong>
-<strong class='message'></strong>
-<strong class='message'>Finish at 2014-03-26 11:40:57</strong>
-<strong class='message'>Runtime in total is: 2 secs
-</strong>
-<div class='input'>
-## <strong>Not run</strong>: 
-# # 5) find maximum-scoring module with the desired node number nsize=20
-# # module <- dNetPipeline(g=subg, pval=x, nsize=20)
-# ## <strong>End(Not run)</strong>
-</div></pre>
-  </div>
+      </div>
   
   <div class="span4">
     
@@ -246,7 +207,7 @@ module <- dNetPipeline(g=subg, pval=x, fdr=0.1)
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

@@ -108,15 +108,14 @@
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>visNetArc</code> is supposed to visualise a graph object
-of class "igraph" via arc diagram in one-dimensional
-layout. More precisely, it displays vertices (nodes)
-along an axis, with edges linked by arcs. With proper
-ordering of vertices (e.g. according to communities and
-degrees), arc diagram is able to identify clusters and
-bridges (as effective as two-dimensional layout). One
-advantage of using arc diagram is to allow for easy
-annotations along vertices.</p>
+    <p><code>visNetArc</code> is supposed to visualise a graph object of
+class "igraph" via arc diagram in one-dimensional layout.
+More precisely, it displays vertices (nodes) along an axis,
+with edges linked by arcs. With proper ordering of vertices
+(e.g. according to communities and degrees), arc diagram is
+able to identify clusters and bridges (as effective as
+two-dimensional layout). One advantage of using arc diagram
+is to allow for easy annotations along vertices.</p>
   
     <h3>Usage</h3>
     <pre>visNetArc(g, orientation = c("vertical", "horizontal"), newpage = T, ordering = NULL, 
@@ -186,43 +185,7 @@ used as the default in plotting points. See
       
       <p>none</p>
     </div>
-    
-    <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'># 1) generate a random graph according to the ER model
-g <- erdos.renyi.game(100, 1/80)
-
-# 2) produce the induced subgraph only based on the nodes in query
-g <- dNetInduce(g, V(g), knn=0)
-
-# 3) color nodes according to communities identified via a spin-glass model and simulated annealing
-com <- spinglass.community(g, spins=4)
-vgroups <- com$membership
-palette.name <- visColormap(colormap="rainbow")
-vcolors <- palette.name(length(com))[vgroups]
-
-# 4) size nodes according to degrees
-vdegrees <- igraph::degree(g)
-
-# 5) sort nodes: first by communities and then degrees
-tmp <- data.frame(ind=1:vcount(g), vgroups, vdegrees)
-ordering <- tmp[order(vgroups,vdegrees),]$ind
-
-# 6) visualise graph using 1-dimensional arc diagram
-visNetArc(g, ordering=ordering, labels=V(g)$name,
-vertex.label.color=vcolors,
-vertex.color=vcolors, vertex.frame.color=vcolors,
-vertex.size=log(vdegrees)+0.1)
-</div>
-<a href="javascript:newWin('visNetArc-2.png', 'visNetArc-2.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visNetArc-2.png', width="400" /></a>
-<div class='input'>
-# 7) as comparison, also visualise graph on 2-dimensional layout
-visNet(g, colormap="bwr", layout=layout.kamada.kawai(g),
-vertex.label=V(g)$name,
-vertex.color=vcolors, vertex.frame.color=vcolors,
-vertex.shape="sphere")
-</div>
-<a href="javascript:newWin('visNetArc-4.png', 'visNetArc-4.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visNetArc-4.png', width="400" /></a></pre>
-  </div>
+      </div>
   
   <div class="span4">
     
@@ -241,7 +204,7 @@ vertex.shape="sphere")
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 0.99.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--
