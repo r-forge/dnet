@@ -52,7 +52,8 @@ list(
                 "ig.HPMI",
                 "ig.DO",
                 "ig.MP",
-                "dDagInduce"
+                "dDagInduce",
+                "visDag"
             )
         ),
         sd_section("Built-in databases in human",

@@ -6,7 +6,7 @@
 
 `dnet` intends to analyse the biological network whose nodes/genes are associated with dynamic information such as expression levels across samples, with aims to identify expression-active dynamic subnetworks.
 
-`dnet` also supports enrichment analysis using ontologies including Gene Ontology, Disease Ontology, Human Phenotype and Mammalian Phenotype. Evolution analysis is also possible by providing gene phylostratific age information. Both analyses can be carried out in a variety of organisms: human, mouse, rat, chicken, c.elegans, fruitfly, zebrafish and arabidopsis.
+`dnet` also supports enrichment analysis using ontologies including Gene Ontology (GO), Disease Ontology (DO), Human Phenotype (HP) and Mammalian Phenotype (MP). Evolution analysis is also possible using gene phylostratific age information. Both analyses can be carried out in a variety of organisms: human, mouse, rat, chicken, c.elegans, fruitfly, zebrafish and arabidopsis.
 
 `dnet` aims to deliver an eye-intuitive tool for network-based sample stratifications.
 

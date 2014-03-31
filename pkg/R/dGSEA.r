@@ -43,7 +43,7 @@
 #' @include dGSEA.r
 #' @examples
 #' \dontrun{
-#' load(url("http://dnet.r-forge.r-project.org/data/Hiratani_TableS1.RData"))
+#' load(url("http://dnet.r-forge.r-project.org/data/Datasets/Hiratani_TableS1.RData"))
 #' data <- RT[,1:2]
 #' eTerm <- dGSEA(data, identity="symbol", genome="mm", ontology="MP", which_distance=c(1,2))
 #' }

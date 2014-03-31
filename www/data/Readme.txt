@@ -1,4 +1,4 @@
-This directory (http://dnet.r-forge.r-project.org/data) contains curated/complited data provided by the open-source R package 'dnet'. 
+This directory (http://dnet.r-forge.r-project.org/data) contains curated/compiled data as part of an open-source R package 'dnet'. 
 
 The data is stored as R data files (ended with '.RData' extension), and can be broadly grouped into the following four categories:
 

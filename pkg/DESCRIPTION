@@ -39,5 +39,6 @@ Collate:
     'visHeatmapAdv.r'
     'visTreeBootstrap.r'
     'dDagInduce.r'
+    'visDag.r'
 License: GPL-2
 biocViews: Bioinformatics
