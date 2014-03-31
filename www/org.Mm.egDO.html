@@ -111,7 +111,7 @@
     <p>An R object that contains associations between Disease Ontology terms and Mouse Entrez Genes. This data is first prepared based on <a href = 'http://sourceforge.net/p/diseaseontology/code/HEAD/tree/trunk/HumanDO.obo'>http://sourceforge.net/p/diseaseontology/code/HEAD/tree/trunk/HumanDO.obo</a> and  <a href = 'http://dga.nubic.northwestern.edu/ajax/Download.ajax.php'>http://dga.nubic.northwestern.edu/ajax/Download.ajax.php</a>, which results in annotations of Human Entrez Genes. Then, these annotations are transferred to Mouse Entrez Genes based on <a href = 'ftp://anonymous@ftp.ncbi.nih.gov/pub/HomoloGene/build67/homologene.data'>ftp://anonymous@ftp.ncbi.nih.gov/pub/HomoloGene/build67/homologene.data</a>.</p>
   
     <h3>Usage</h3>
-    <pre>load(url("http://dnet.r-forge.r-project.org/data/org.Mm.egDO.RData"))</pre>
+    <pre>load(url("http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egDO.RData"))</pre>
         <!-- 
     -->
     
@@ -134,7 +134,14 @@
       <p>Peng et al. (2012) The Disease and Gene Annotations (DGA): an annotation resource for human disease. <em>Nucleic Acids Res</em>, 41:D553-560.</p>
       <p>Sayers et al. (2011) Database resources of the National Center for Biotechnology Information. <em>Nucleic Acids Res</em>, 39:D38-51.</p>
     </div>
-      </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'>load(url("http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egDO.RData"))
+names(org.Mm.egDO)
+</div>
+<div class='output'>[1] "gs"       "set_info"
+</div></pre>
+  </div>
   
   <div class="span4">
     
@@ -149,7 +156,7 @@
       
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network, expression and ontology data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

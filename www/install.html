@@ -154,9 +154,10 @@ install.packages(&quot;dnet&quot;,repos=&quot;http://cran.r-project.org&quot;,ty
 
 <p>To install <a href="http://r-forge.r-project.org/projects/dnet">latest development version</a> (<code>highly recommended</code> for benefits of latest improvements), run:</p>
 
-<pre><code>if(!require(hexbin)) install.packages(&quot;hexbin&quot;,repos=&quot;http://www.stats.bris.ac.uk/R&quot;)
-if(!require(ape)) install.packages(&quot;ape&quot;,repos=&quot;http://www.stats.bris.ac.uk/R&quot;)
-if(!require(igraph)) install.packages(&quot;igraph&quot;,repos=&quot;http://www.stats.bris.ac.uk/R&quot;)
+<pre><code>list.pkg &lt;- c(&quot;hexbin&quot;,&quot;ape&quot;,&quot;igraph&quot;, &quot;graph&quot;, &quot;Rgraphviz&quot;)
+for(pkg in list.pkg){
+    if(!require(pkg, character.only=T)) install.packages(pkg,repos=&quot;http://www.stats.bris.ac.uk/R&quot;,dependencies=T)
+}
 install.packages(&quot;supraHex&quot;,repos=&quot;http://R-Forge.R-project.org&quot;, type=&quot;source&quot;)
 install.packages(&quot;dnet&quot;,repos=&quot;http://R-Forge.R-project.org&quot;, type=&quot;source&quot;)
 </code></pre>
@@ -175,7 +176,7 @@ install.packages(&quot;dnet&quot;,repos=&quot;http://R-Forge.R-project.org&quot;
     </ul>
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network, expression and ontology data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <h2>Author</h2>

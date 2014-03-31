@@ -102,8 +102,7 @@
         
       </header>
       
-      <h2>Function to fit a p-value distribution under beta-uniform
-mixture model</h2>
+      <h2>Function to fit a p-value distribution under beta-uniform mixture model</h2>
 
 <div class="row">
   <div class="span8">
@@ -205,7 +204,28 @@ component and <code class = 'eq'>(1-\lambda)*a*x^{a-1}</code> as the signal
 component, just as wrongly do in the literatures (e.g.
 <a href = 'http://www.ncbi.nlm.nih.gov/pubmed/18586718'>http://www.ncbi.nlm.nih.gov/pubmed/18586718</a>)</p>
     </div>
-      </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) generate an vector consisting of random values from beta distribution
+x <- rbeta(1000, shape1=0.5, shape2=1)
+
+# 2) fit a p-value distribution under beta-uniform mixture model
+fit <- dBUMfit(x)
+</div>
+<strong class='message'>	A total of p-values: 1000</strong>
+<strong class='message'>	Maximum Log-Likelihood: 375.1</strong>
+<strong class='message'>	Mixture parameter (lambda): 0.119</strong>
+<strong class='message'>	Shape parameter (a): 0.438</strong>
+<a href="javascript:newWin('dBUMfit-6.png', 'dBUMfit-6.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='dBUMfit-6.png', width="400" /></a>
+<div class='input'>fit$lambda
+</div>
+<div class='output'>[1] 0.1191395
+</div>
+<div class='input'>fit$a
+</div>
+<div class='output'>[1] 0.4382278
+</div></pre>
+  </div>
   
   <div class="span4">
     
@@ -224,7 +244,7 @@ component, just as wrongly do in the literatures (e.g.
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network, expression and ontology data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

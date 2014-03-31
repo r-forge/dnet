@@ -111,7 +111,7 @@
     <p>An R object that contains associations between Gene Ontology Cellular Component terms and Arabidopsis Entrez Genes. This data is prepared based on <a href = 'http://www.geneontology.org/ontology/obo_format_1_2/gene_ontology.1_2.obo'>http://www.geneontology.org/ontology/obo_format_1_2/gene_ontology.1_2.obo</a> and <a href = 'ftp://ftp.ncbi.nih.gov/gene/DATA/gene2go.gz'>ftp://ftp.ncbi.nih.gov/gene/DATA/gene2go.gz</a>.</p>
   
     <h3>Usage</h3>
-    <pre>load(url("http://dnet.r-forge.r-project.org/data/org.At.egGOCC.RData"))</pre>
+    <pre>load(url("http://dnet.r-forge.r-project.org/data/At/org.At.egGOCC.RData"))</pre>
         <!-- 
     -->
     
@@ -133,7 +133,14 @@
       <p>Maglott et al. (2011) Entrez Gene: gene-centered information at NCBI. <em>Nucleic Acids Res</em>, 39:D52-57.</p>
       <p>Ashburner et al. (2000) Gene ontology: tool for the unification of biology. <em>Nat Genet</em>, 25:25-29.</p>
     </div>
-      </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'>load(url("http://dnet.r-forge.r-project.org/data/At/org.At.egGOCC.RData"))
+names(org.At.egGOCC)
+</div>
+<div class='output'>[1] "gs"       "set_info"
+</div></pre>
+  </div>
   
   <div class="span4">
     
@@ -148,7 +155,7 @@
       
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network, expression and ontology data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

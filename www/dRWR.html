@@ -102,8 +102,7 @@
         
       </header>
       
-      <h2>Function to implement Random Walk with Restart (RWR) on the
-input graph. to pre-compute affinity matrix for the input graph</h2>
+      <h2>Function to implement Random Walk with Restart (RWR) on the input graph. to pre-compute affinity matrix for the input graph</h2>
 
 <div class="row">
   <div class="span8">
@@ -198,7 +197,52 @@ by the starting nodes/seeds. </li>
       <p>The input graph will treat as an unweighted graph if there
 is no 'weight' edge attribute associated with</p>
     </div>
-      </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) generate a random graph according to the ER model
+g <- erdos.renyi.game(100, 1/100)
+
+# 2) produce the induced subgraph only based on the nodes in query
+subg <- dNetInduce(g, V(g), knn=0)
+V(subg)$name <- 1:vcount(subg)
+
+# 3) obtain the pre-computated affinity matrix
+PTmatrix <- dRWR(subg, normalise="laplacian", restart=0.75)
+# visualise affinity matrix
+visHeatmapAdv(PTmatrix, Rowv=FALSE, Colv=FALSE, colormap="wyr",
+KeyValueName="Affinity")
+</div>
+<a href="javascript:newWin('dRWR-2.png', 'dRWR-2.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='dRWR-2.png', width="400" /></a>
+<div class='input'>
+# 4) obtain affinity matrix given sets of seeds
+# define sets of seeds
+# each seed with equal weight (i.e. all non-zero entries are '1')
+aSeeds <- c(1,0,1,0,1)
+bSeeds <- c(0,0,1,0,1)
+setSeeds <- data.frame(aSeeds,bSeeds)
+rownames(setSeeds) <- 1:5
+# calcualte affinity matrix
+PTmatrix <- dRWR(subg, normalise="laplacian", setSeeds=setSeeds,
+restart=0.75)
+</div>
+<strong class='warning'>Warning message:
+The row names of input setSeeds do not contain all those in the input graph.
+</strong>
+<div class='input'>PTmatrix
+</div>
+<div class='output'>        aSeeds      bSeeds
+1  0.273208489 0.001135639
+2  0.002865965 0.004204145
+3  0.270493778 0.401098701
+4  0.025633966 0.037603019
+5  0.274441705 0.408020930
+6  0.053002633 0.006424146
+7  0.048514898 0.072128592
+8  0.002865965 0.004204145
+9  0.046106638 0.060976537
+10 0.002865965 0.004204145
+</div></pre>
+  </div>
   
   <div class="span4">
     
@@ -217,7 +261,7 @@ is no 'weight' edge attribute associated with</p>
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network, expression and ontology data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

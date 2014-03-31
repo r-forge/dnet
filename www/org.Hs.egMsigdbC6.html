@@ -111,7 +111,7 @@
     <p>This data is prepared based on the molecular signatures database (Msigdb; <a href = 'http://www.broadinstitute.org/gsea/msigdb/index.jsp'>http://www.broadinstitute.org/gsea/msigdb/index.jsp</a>). An R object that contains associations between Msigdb C6 oncogenic signature gene sets and Human Entrez Genes. C6 collections contain gene sets that represent signatures of cellular pathways which are often dis-regulated in cancer.</p>
   
     <h3>Usage</h3>
-    <pre>load(url("http://dnet.r-forge.r-project.org/data/org.Hs.egMsigdbC6.RData"))</pre>
+    <pre>load(url("http://dnet.r-forge.r-project.org/data/Msigdb/org.Hs.egMsigdbC6.RData"))</pre>
         <!-- 
     -->
     
@@ -132,7 +132,14 @@
       
       <p>Subramanian et al. (2005) Gene set enrichment analysis: a knowledge-based approach for interpreting genome-wide expression profiles. <em>Proc Natl Acad Sci U S A.</em>, 102(43):15545-50.</p>
     </div>
-      </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'>load(url("http://dnet.r-forge.r-project.org/data/Msigdb/org.Hs.egMsigdbC6.RData"))
+names(org.Hs.egMsigdbC6)
+</div>
+<div class='output'>[1] "gs"       "set_info"
+</div></pre>
+  </div>
   
   <div class="span4">
     
@@ -147,7 +154,7 @@
       
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network, expression and ontology data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

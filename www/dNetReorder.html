@@ -102,8 +102,7 @@
         
       </header>
       
-      <h2>Function to reorder the multiple graph colorings within a
-sheet-shape rectangle grid</h2>
+      <h2>Function to reorder the multiple graph colorings within a sheet-shape rectangle grid</h2>
 
 <div class="row">
   <div class="span8">
@@ -232,7 +231,53 @@ the worse one is always sacrificed by moving to the next
 best one till all samples are placed somewhere exclusively
 on their own.</p>
     </div>
-      </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) generate a random graph according to the ER model
+g <- erdos.renyi.game(100, 1/100)
+
+# 2) produce the induced subgraph only based on the nodes in query
+subg <- dNetInduce(g, V(g), knn=0)
+
+# 3) reorder the module with vertices being color-coded by input data
+nnodes <- vcount(subg)
+nsamples <- 10
+data <- matrix(runif(nnodes*nsamples), nrow=nnodes, ncol=nsamples)
+rownames(data) <- V(subg)$name
+sReorder <- dNetReorder(g=subg, data, feature="node",
+node.normalise="none")
+</div>
+<strong class='message'>Start at 2014-03-31 12:05:08</strong>
+<strong class='message'></strong>
+<strong class='message'>First, define topology of a map grid...</strong>
+<strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
+<strong class='message'>Third, get training at the rough stage...</strong>
+<strong class='message'>Fourth, get training at the finetune stage...</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object...</strong>
+<strong class='message'></strong>
+<strong class='message'>Below are the summaries of the training results:</strong>
+<strong class='message'>   dimension of input data: 10x31
+   xy-dimension of map grid: xdim=6, ydim=6
+   grid lattice: rect
+   grid shape: sheet
+   dimension of grid coord: 36x2
+   initialisation method: linear
+   dimension of codebook matrix: 36x31
+   mean quantization error: 0.803297425908637
+</strong>
+<strong class='message'>Below are the details of trainology:</strong>
+<strong class='message'>   training algorithm: sequential
+   alpha type: invert
+   training neighborhood kernel: gaussian
+   trainlength (x input data length): 36 at rough stage; 144 at finetune stage
+   radius (at rough stage): from 1 to 1
+   radius (at finetune stage): from 1 to 1
+</strong>
+<strong class='message'>End at 2014-03-31 12:05:09</strong>
+<strong class='message'>Runtime in total is: 1 secs
+</strong></pre>
+  </div>
   
   <div class="span4">
     
@@ -251,7 +296,7 @@ on their own.</p>
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network, expression and ontology data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

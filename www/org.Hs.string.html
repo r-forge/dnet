@@ -102,16 +102,16 @@
         
       </header>
       
-      <h2>Human functional protein association network from STRING (version 9.0.5).</h2>
+      <h2>Human functional protein association network from STRING (version 9.1).</h2>
 
 <div class="row">
   <div class="span8">
   
     <h3>Description</h3>
-    <p>An igraph object that contains a functional protein association network in human. The network is extracted from the STRING database (version 9.0.5). Only those associations with medium confidence (score>=0.4) are retained.</p>
+    <p>An igraph object that contains a functional protein association network in human. The network is extracted from the STRING database (version 9.1). Only those associations with medium confidence (score>=0.4) are retained.</p>
   
     <h3>Usage</h3>
-    <pre>load(url("http://dnet.r-forge.r-project.org/data/org.Hs.string.RData"))</pre>
+    <pre>load(url("http://dnet.r-forge.r-project.org/data/Hs/org.Hs.string.RData"))</pre>
         <!-- 
     -->
     
@@ -158,7 +158,19 @@
       
       <p>Franceschini et al. (2013) STRING v9.1: protein-protein interaction networks, with increased coverage and integration. <em>Nucleic Acids Res</em>, 41:D808-D815.</p>
     </div>
-      </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'>load(url("http://dnet.r-forge.r-project.org/data/Hs/org.Hs.string.RData"))
+org.Hs.string
+</div>
+<div class='output'>IGRAPH UN-- 16973 410824 -- 
++ attr: name (v/c), seqid (v/c), geneid (v/n), symbol (v/c),
+  description (v/c), neighborhood_score (e/n), fusion_score (e/n),
+  cooccurence_score (e/n), coexpression_score (e/n), experimental_score
+  (e/n), database_score (e/n), textmining_score (e/n), combined_score
+  (e/n)
+</div></pre>
+  </div>
   
   <div class="span4">
     
@@ -173,7 +185,7 @@
       
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network, expression and ontology data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

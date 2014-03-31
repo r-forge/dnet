@@ -111,7 +111,7 @@
     <p>An R object that contains Entrez Gene information for the arabidopsis. This data is prepared based on <a href = 'ftp://ftp.ncbi.nih.gov/gene/DATA/gene_info.gz'>ftp://ftp.ncbi.nih.gov/gene/DATA/gene_info.gz</a>.</p>
   
     <h3>Usage</h3>
-    <pre>load(url("http://dnet.r-forge.r-project.org/data/org.At.eg.RData"))</pre>
+    <pre>load(url("http://dnet.r-forge.r-project.org/data/At/org.At.eg.RData"))</pre>
         <!-- 
     -->
     
@@ -130,7 +130,29 @@
       
       <p>Maglott et al. (2011) Entrez Gene: gene-centered information at NCBI. <em>Nucleic Acids Res</em>, 39:D52-57.</p>
     </div>
-      </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'>load(url("http://dnet.r-forge.r-project.org/data/At/org.At.eg.RData"))
+names(org.At.eg)
+</div>
+<div class='output'>[1] "gene_info"
+</div>
+<div class='input'>org.At.eg$gene_info[1:5,]
+</div>
+<div class='output'>       GeneID   Symbol                  description chromosome map_location
+814566 814566    rrn26    26S ribosomal RNA protein         MT            -
+814568 814568     nad9 NADH dehydrogenase subunit 9         MT            -
+814569 814569    rpl16        ribosomal protein L16         MT            -
+814570 814570     rps3         ribosomal protein S3         MT            -
+814571 814571 tRNA-Lys                         tRNA         MT            -
+       Synonyms dbXrefs
+814566        -       -
+814568        -       -
+814569        -       -
+814570        -       -
+814571        -       -
+</div></pre>
+  </div>
   
   <div class="span4">
     
@@ -145,7 +167,7 @@
       
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network, expression and ontology data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

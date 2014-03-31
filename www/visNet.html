@@ -102,8 +102,7 @@
         
       </header>
       
-      <h2>Function to visualise a graph object of class "igraph" or
-"graphNEL"</h2>
+      <h2>Function to visualise a graph object of class "igraph" or "graphNEL"</h2>
 
 <div class="row">
   <div class="span8">
@@ -226,7 +225,21 @@ for the complete list.</dd>
       
       <p>none</p>
     </div>
-      </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) generate a random graph according to the ER model
+g <- erdos.renyi.game(100, 1/100)
+
+# 2) produce the induced subgraph only based on the nodes in query
+subg <- dNetInduce(g, V(g), knn=0)
+
+# 3) visualise the subg with vertices being color-coded by the pattern
+pattern <- runif(vcount(subg))
+names(pattern) <- V(subg)$name
+visNet(g=subg, pattern=pattern, colormap="bwr", vertex.shape="sphere")
+</div>
+<a href="javascript:newWin('visNet-2.png', 'visNet-2.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visNet-2.png', width="400" /></a></pre>
+  </div>
   
   <div class="span4">
     
@@ -245,7 +258,7 @@ for the complete list.</dd>
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network, expression and ontology data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

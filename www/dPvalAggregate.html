@@ -156,7 +156,18 @@ Fisher's method, after transformation by
 <code class = 'eq'>-2*\sum^clog(pvalue)</code>, they follow Chi-Squared
 distribution.</p>
     </div>
-      </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) generate an iid uniformly-distributed random matrix of 1000x3
+pmatrix <- cbind(runif(1000), runif(1000), runif(1000))
+
+# 2) aggregate according to the ordre statistics
+ap <- dPvalAggregate(pmatrix, method="orderStatistic")
+
+# 3) aggregate according to the Fisher's method
+ap <- dPvalAggregate(pmatrix, method="fishers")
+</div></pre>
+  </div>
   
   <div class="span4">
     
@@ -175,7 +186,7 @@ distribution.</p>
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network, expression and ontology data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

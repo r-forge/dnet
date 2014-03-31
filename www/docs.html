@@ -114,8 +114,7 @@
     <ul class="index">
         
       <li>
-        <code><a href="dGSEA.html">dGSEA</a></code><br />Function to conduct gene set enrichment analysis given the input
-</li>
+        <code><a href="dGSEA.html">dGSEA</a></code><br />Function to conduct gene set enrichment analysis given the input data and the ontology in query</li>
             
       <li>
         <code><a href="dGSEAview.html">dGSEAview</a></code><br />Function to view enrichment results in a sample-specific manner</li>
@@ -127,49 +126,40 @@
         <code><a href="dPvalAggregate.html">dPvalAggregate</a></code><br />Function to aggregate p values</li>
             
       <li>
-        <code><a href="dNetInduce.html">dNetInduce</a></code><br />Function to generate a subgraph induced by given vertices and
-</li>
+        <code><a href="dNetInduce.html">dNetInduce</a></code><br />Function to generate a subgraph induced by given vertices and their k nearest neighbors</li>
             
       <li>
-        <code><a href="dBUMfit.html">dBUMfit</a></code><br />Function to fit a p-value distribution under beta-uniform
-</li>
+        <code><a href="dBUMfit.html">dBUMfit</a></code><br />Function to fit a p-value distribution under beta-uniform mixture model</li>
             
       <li>
-        <code><a href="dBUMscore.html">dBUMscore</a></code><br />Function to transform p-values into scores according to the
-</li>
+        <code><a href="dBUMscore.html">dBUMscore</a></code><br />Function to transform p-values into scores according to the fitted beta-uniform mixture model and/or after controlling false discovery rate</li>
             
       <li>
-        <code><a href="dSVDsignif.html">dSVDsignif</a></code><br />Function to obtain SVD-based gene significance from the input
-</li>
+        <code><a href="dSVDsignif.html">dSVDsignif</a></code><br />Function to obtain SVD-based gene significance from the input gene-sample matrix</li>
             
       <li>
-        <code><a href="dFDRscore.html">dFDRscore</a></code><br />Function to transform fdr into scores according to
-</li>
+        <code><a href="dFDRscore.html">dFDRscore</a></code><br />Function to transform fdr into scores according to log-likelihood ratio between the true positives and the false positivies and/or after controlling false discovery rate</li>
             
       <li>
         <code><a href="dNetFind.html">dNetFind</a></code><br />Function to find heuristically maximum scoring module</li>
             
       <li>
-        <code><a href="dNetPipeline.html">dNetPipeline</a></code><br />Function to setup the pipeline for finding maximum-scoring
-</li>
+        <code><a href="dNetPipeline.html">dNetPipeline</a></code><br />Function to setup the pipeline for finding maximum-scoring module from an input graph and the signficance imposed on its nodes</li>
             
       <li>
-        <code><a href="dNetReorder.html">dNetReorder</a></code><br />Function to reorder the multiple graph colorings within a
-</li>
+        <code><a href="dNetReorder.html">dNetReorder</a></code><br />Function to reorder the multiple graph colorings within a sheet-shape rectangle grid</li>
             
       <li>
         <code><a href="dCommSignif.html">dCommSignif</a></code><br />Function to test the significance of communities within a graph</li>
             
       <li>
-        <code><a href="dNetConfidence.html">dNetConfidence</a></code><br />Function to append the confidence information from the source
-</li>
+        <code><a href="dNetConfidence.html">dNetConfidence</a></code><br />Function to append the confidence information from the source graphs into the target graph</li>
             
       <li>
         <code><a href="dContrast.html">dContrast</a></code><br />Function to help build the contrast matrix</li>
             
       <li>
-        <code><a href="dRWR.html">dRWR</a></code><br />Function to implement Random Walk with Restart (RWR) on the
-</li>
+        <code><a href="dRWR.html">dRWR</a></code><br />Function to implement Random Walk with Restart (RWR) on the input graph. to pre-compute affinity matrix for the input graph</li>
     
     </ul>
     <h3>Visualisation functions</h3>
@@ -179,20 +169,16 @@
     <ul class="index">
         
       <li>
-        <code><a href="visGSEA.html">visGSEA</a></code><br />Function to visualise running enrichment score for a given
-</li>
+        <code><a href="visGSEA.html">visGSEA</a></code><br />Function to visualise running enrichment score for a given sample and a gene set</li>
             
       <li>
-        <code><a href="visNet.html">visNet</a></code><br />Function to visualise a graph object of class "igraph" or
-</li>
+        <code><a href="visNet.html">visNet</a></code><br />Function to visualise a graph object of class "igraph" or "graphNEL"</li>
             
       <li>
-        <code><a href="visNetMul.html">visNetMul</a></code><br />Function to visualise the same graph but with multiple graph
-</li>
+        <code><a href="visNetMul.html">visNetMul</a></code><br />Function to visualise the same graph but with multiple graph node colorings according to input data matrix</li>
             
       <li>
-        <code><a href="visNetReorder.html">visNetReorder</a></code><br />Function to visualise the multiple graph colorings reorded
-</li>
+        <code><a href="visNetReorder.html">visNetReorder</a></code><br />Function to visualise the multiple graph colorings reorded within a sheet-shape rectangle grid</li>
             
       <li>
         <code><a href="visNetArc.html">visNetArc</a></code><br />Function to visualise an igraph object via arc diagram</li>
@@ -216,8 +202,42 @@
         <code><a href="visTreeBootstrap.html">visTreeBootstrap</a></code><br />Function to build and visualise the bootstrapped tree</li>
     
     </ul>
+    <h3>Built-in databases and functions for ontologies</h3>
+    <p>These databases and functions are used to deal with a variety of ontologies, each represented as a direct acyclic graph (DAG). DAG is stored as an object of the class &#39;igraph&#39;.</p>
+
+    
+    <ul class="index">
+        
+      <li>
+        <code><a href="ig.GOMF.html">ig.GOMF</a></code><br />Gene Ontology Molecular Function (GOMF).</li>
+            
+      <li>
+        <code><a href="ig.GOBP.html">ig.GOBP</a></code><br />Gene Ontology Biological Process (GOBP).</li>
+            
+      <li>
+        <code><a href="ig.GOCC.html">ig.GOCC</a></code><br />Gene Ontology Cellular Component (GOCC).</li>
+            
+      <li>
+        <code><a href="ig.HPPA.html">ig.HPPA</a></code><br />Human Phenotype Phenotypic Abnormality (HPPA).</li>
+            
+      <li>
+        <code><a href="ig.HPON.html">ig.HPON</a></code><br />Human Phenotype ONset and clinical course (HPON).</li>
+            
+      <li>
+        <code><a href="ig.HPMI.html">ig.HPMI</a></code><br />Human Phenotype Mode of Inheritance (HPMI).</li>
+            
+      <li>
+        <code><a href="ig.DO.html">ig.DO</a></code><br />Disease Ontology (DO).</li>
+            
+      <li>
+        <code><a href="ig.MP.html">ig.MP</a></code><br />Mammalian Phenotype (MP).</li>
+            
+      <li>
+        <code><a href="dDagInduce.html">dDagInduce</a></code><br />Function to generate a subgraph of a direct acyclic graph (DAG) induced by given vertices</li>
+    
+    </ul>
     <h3>Built-in databases in human</h3>
-    <p>These databases are used for analysis (e.g. enrichment analysis using ontologies) in human</p>
+    <p>These databases are used for analysis (i.e. enrichment, evolution and network analysis) in human (Hs; tax_id=10090)</p>
 
     
     <ul class="index">
@@ -253,11 +273,11 @@
         <code><a href="org.Hs.egPS.html">org.Hs.egPS</a></code><br />Annotations of Human Entrez Genes (EG) by phylostratific age (PS).</li>
             
       <li>
-        <code><a href="org.Hs.string.html">org.Hs.string</a></code><br />Human functional protein association network from STRING (version 9.0.5).</li>
+        <code><a href="org.Hs.string.html">org.Hs.string</a></code><br />Human functional protein association network from STRING (version 9.1).</li>
     
     </ul>
     <h3>Built-in genesets in human</h3>
-    <p>These genesets are derived from the molecular signatures database (Msigdb)</p>
+    <p>These genesets are derived from the molecular signatures database (Msigdb) in human (Hs)</p>
 
     
     <ul class="index">
@@ -309,7 +329,7 @@
     
     </ul>
     <h3>Built-in databases in mouse</h3>
-    <p>These databases are used for analysis (e.g. enrichment analysis using ontologies) in mouse</p>
+    <p>These databases are used for analysis (i.e. enrichment, evolution and network analysis) in mouse (Mm; tax_id=10090)</p>
 
     
     <ul class="index">
@@ -345,11 +365,11 @@
         <code><a href="org.Mm.egPS.html">org.Mm.egPS</a></code><br />Annotations of Mouse Entrez Genes (EG) by phylostratific age (PS).</li>
             
       <li>
-        <code><a href="org.Mm.string.html">org.Mm.string</a></code><br />Mouse functional protein association network from STRING (version 9.0.5).</li>
+        <code><a href="org.Mm.string.html">org.Mm.string</a></code><br />Mouse functional protein association network from STRING (version 9.1).</li>
     
     </ul>
     <h3>Built-in databases in arabidopsis</h3>
-    <p>These databases are used for analysis (e.g. enrichment analysis using ontologies) in arabidopsis</p>
+    <p>These databases are used for analysis (i.e. enrichment, evolution and network analysis) in arabidopsis (At; tax_id=3702)</p>
 
     
     <ul class="index">
@@ -370,7 +390,132 @@
         <code><a href="org.At.egPS.html">org.At.egPS</a></code><br />Annotations of Arabidopsis Entrez Genes (EG) by phylostratific age (PS).</li>
             
       <li>
-        <code><a href="org.At.string.html">org.At.string</a></code><br />Arabidopsis functional protein association network from STRING (version 9.0.5).</li>
+        <code><a href="org.At.string.html">org.At.string</a></code><br />Arabidopsis functional protein association network from STRING (version 9.1).</li>
+    
+    </ul>
+    <h3>Built-in databases in c.elegans</h3>
+    <p>These databases are used for analysis (i.e. enrichment, evolution and network analysis) in c.elegans (Ce; tax_id=6239)</p>
+
+    
+    <ul class="index">
+        
+      <li>
+        <code><a href="org.Ce.eg.html">org.Ce.eg</a></code><br />C.elegans Entrez Genes (EG).</li>
+            
+      <li>
+        <code><a href="org.Ce.egGOBP.html">org.Ce.egGOBP</a></code><br />Annotations of C.elegans Entrez Genes (EG) by Gene Ontology Biological Process (GOBP).</li>
+            
+      <li>
+        <code><a href="org.Ce.egGOCC.html">org.Ce.egGOCC</a></code><br />Annotations of C.elegans Entrez Genes (EG) by Gene Ontology Cellular Component (GOCC).</li>
+            
+      <li>
+        <code><a href="org.Ce.egGOMF.html">org.Ce.egGOMF</a></code><br />Annotations of C.elegans Entrez Genes (EG) by Gene Ontology Molecular Function (GOMF).</li>
+            
+      <li>
+        <code><a href="org.Ce.egPS.html">org.Ce.egPS</a></code><br />Annotations of C.elegans Entrez Genes (EG) by phylostratific age (PS).</li>
+            
+      <li>
+        <code><a href="org.Ce.string.html">org.Ce.string</a></code><br />C.elegans functional protein association network from STRING (version 9.1).</li>
+    
+    </ul>
+    <h3>Built-in databases in fruitfly</h3>
+    <p>These databases are used for analysis (i.e. enrichment, evolution and network analysis) in fruitfly (Dm; tax_id=7227)</p>
+
+    
+    <ul class="index">
+        
+      <li>
+        <code><a href="org.Dm.eg.html">org.Dm.eg</a></code><br />Fruitfly Entrez Genes (EG).</li>
+            
+      <li>
+        <code><a href="org.Dm.egGOBP.html">org.Dm.egGOBP</a></code><br />Annotations of Fruitfly Entrez Genes (EG) by Gene Ontology Biological Process (GOBP).</li>
+            
+      <li>
+        <code><a href="org.Dm.egGOCC.html">org.Dm.egGOCC</a></code><br />Annotations of Fruitfly Entrez Genes (EG) by Gene Ontology Cellular Component (GOCC).</li>
+            
+      <li>
+        <code><a href="org.Dm.egGOMF.html">org.Dm.egGOMF</a></code><br />Annotations of Fruitfly Entrez Genes (EG) by Gene Ontology Molecular Function (GOMF).</li>
+            
+      <li>
+        <code><a href="org.Dm.egPS.html">org.Dm.egPS</a></code><br />Annotations of Fruitfly Entrez Genes (EG) by phylostratific age (PS).</li>
+            
+      <li>
+        <code><a href="org.Dm.string.html">org.Dm.string</a></code><br />Fruitfly functional protein association network from STRING (version 9.1).</li>
+    
+    </ul>
+    <h3>Built-in databases in zebrafish</h3>
+    <p>These databases are used for analysis (i.e. enrichment, evolution and network analysis) in zebrafish (Da; tax_id=7955)</p>
+
+    
+    <ul class="index">
+        
+      <li>
+        <code><a href="org.Da.eg.html">org.Da.eg</a></code><br />Zebrafish Entrez Genes (EG).</li>
+            
+      <li>
+        <code><a href="org.Da.egGOBP.html">org.Da.egGOBP</a></code><br />Annotations of Zebrafish Entrez Genes (EG) by Gene Ontology Biological Process (GOBP).</li>
+            
+      <li>
+        <code><a href="org.Da.egGOCC.html">org.Da.egGOCC</a></code><br />Annotations of Zebrafish Entrez Genes (EG) by Gene Ontology Cellular Component (GOCC).</li>
+            
+      <li>
+        <code><a href="org.Da.egGOMF.html">org.Da.egGOMF</a></code><br />Annotations of Zebrafish Entrez Genes (EG) by Gene Ontology Molecular Function (GOMF).</li>
+            
+      <li>
+        <code><a href="org.Da.egPS.html">org.Da.egPS</a></code><br />Annotations of Zebrafish Entrez Genes (EG) by phylostratific age (PS).</li>
+            
+      <li>
+        <code><a href="org.Da.string.html">org.Da.string</a></code><br />Zebrafish functional protein association network from STRING (version 9.1).</li>
+    
+    </ul>
+    <h3>Built-in databases in rat</h3>
+    <p>These databases are used for analysis (i.e. enrichment, evolution and network analysis) in rat (Rn; tax_id=10116)</p>
+
+    
+    <ul class="index">
+        
+      <li>
+        <code><a href="org.Rn.eg.html">org.Rn.eg</a></code><br />Rat Entrez Genes (EG).</li>
+            
+      <li>
+        <code><a href="org.Rn.egGOBP.html">org.Rn.egGOBP</a></code><br />Annotations of Rat Entrez Genes (EG) by Gene Ontology Biological Process (GOBP).</li>
+            
+      <li>
+        <code><a href="org.Rn.egGOCC.html">org.Rn.egGOCC</a></code><br />Annotations of Rat Entrez Genes (EG) by Gene Ontology Cellular Component (GOCC).</li>
+            
+      <li>
+        <code><a href="org.Rn.egGOMF.html">org.Rn.egGOMF</a></code><br />Annotations of Rat Entrez Genes (EG) by Gene Ontology Molecular Function (GOMF).</li>
+            
+      <li>
+        <code><a href="org.Rn.egPS.html">org.Rn.egPS</a></code><br />Annotations of Rat Entrez Genes (EG) by phylostratific age (PS).</li>
+            
+      <li>
+        <code><a href="org.Rn.string.html">org.Rn.string</a></code><br />Rat functional protein association network from STRING (version 9.1).</li>
+    
+    </ul>
+    <h3>Built-in databases in chicken</h3>
+    <p>These databases are used for analysis (i.e. enrichment, evolution and network analysis) in chicken (Gg; tax_id=9031)</p>
+
+    
+    <ul class="index">
+        
+      <li>
+        <code><a href="org.Gg.eg.html">org.Gg.eg</a></code><br />Chicken Entrez Genes (EG).</li>
+            
+      <li>
+        <code><a href="org.Gg.egGOBP.html">org.Gg.egGOBP</a></code><br />Annotations of Chicken Entrez Genes (EG) by Gene Ontology Biological Process (GOBP).</li>
+            
+      <li>
+        <code><a href="org.Gg.egGOCC.html">org.Gg.egGOCC</a></code><br />Annotations of Chicken Entrez Genes (EG) by Gene Ontology Cellular Component (GOCC).</li>
+            
+      <li>
+        <code><a href="org.Gg.egGOMF.html">org.Gg.egGOMF</a></code><br />Annotations of Chicken Entrez Genes (EG) by Gene Ontology Molecular Function (GOMF).</li>
+            
+      <li>
+        <code><a href="org.Gg.egPS.html">org.Gg.egPS</a></code><br />Annotations of Chicken Entrez Genes (EG) by phylostratific age (PS).</li>
+            
+      <li>
+        <code><a href="org.Gg.string.html">org.Gg.string</a></code><br />Chicken functional protein association network from STRING (version 9.1).</li>
     
     </ul>
     <h3>Built-in datasets</h3>
@@ -400,7 +545,7 @@
     </ul>
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network, expression and ontology data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <h2>Author</h2>

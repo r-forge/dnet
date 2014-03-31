@@ -102,9 +102,7 @@
         
       </header>
       
-      <h2>Function to transform p-values into scores according to the
-fitted beta-uniform mixture model and/or after controlling false
-discovery rate</h2>
+      <h2>Function to transform p-values into scores according to the fitted beta-uniform mixture model and/or after controlling false discovery rate</h2>
 
 <div class="row">
   <div class="span8">
@@ -214,7 +212,30 @@ reset to the maximum end of that constraint </li>
 </ul></p>
       <p></p>
     </div>
-      </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) generate an vector consisting of random values from beta distribution
+x <- rbeta(1000, shape1=0.5, shape2=1)
+
+# 2) fit a p-value distribution under beta-uniform mixture model
+fit <- dBUMfit(x)
+</div>
+<strong class='message'>	A total of p-values: 1000</strong>
+<strong class='message'>	Maximum Log-Likelihood: 309.2</strong>
+<strong class='message'>	Mixture parameter (lambda): 0.000</strong>
+<strong class='message'>	Shape parameter (a): 0.499</strong>
+<a href="javascript:newWin('dBUMscore-6.png', 'dBUMscore-6.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='dBUMscore-6.png', width="400" /></a>
+<div class='input'>
+# 3) calculate the scores according to the fitted BUM and fdr=0.01
+# using "pdf" method
+scores <- dBUMscore(fit, method="pdf", fdr=0.01)
+</div>
+<a href="javascript:newWin('dBUMscore-8.png', 'dBUMscore-8.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='dBUMscore-8.png', width="400" /></a>
+<div class='input'># using "cdf" method
+scores <- dBUMscore(fit, method="cdf", fdr=0.01)
+</div>
+<a href="javascript:newWin('dBUMscore-10.png', 'dBUMscore-10.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='dBUMscore-10.png', width="400" /></a></pre>
+  </div>
   
   <div class="span4">
     
@@ -233,7 +254,7 @@ reset to the maximum end of that constraint </li>
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of biological networks and high-throughput digitised data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network, expression and ontology data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--
