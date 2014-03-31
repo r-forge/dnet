@@ -1,7 +1,6 @@
 \name{visGSEA}
 \alias{visGSEA}
-\title{Function to visualise running enrichment score for a given
-sample and a gene set}
+\title{Function to visualise running enrichment score for a given sample and a gene set}
 \usage{
 visGSEA(eTerm, which_sample = 1, which_term = "GO:0006281", weight = 1,
 orientation = c("vertical", "horizontal"), newpage = T)

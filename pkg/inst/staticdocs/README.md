@@ -2,9 +2,11 @@
 
 ## Introduction
 
-`dnet` is an open-source R package for analysing biological networks and high-throughput biological data in an integrative manner.
+`dnet` is an open-source R package for integrative analysis of network, expression, evolution and ontology data. 
 
-`dnet` intends to analyse the biological network whose nodes/genes are associated with dynamic information such as expression levels across samples.
+`dnet` intends to analyse the biological network whose nodes/genes are associated with dynamic information such as expression levels across samples, with aims to identify expression-active dynamic subnetworks.
+
+`dnet` also supports enrichment analysis using ontologies including Gene Ontology, Disease Ontology, Human Phenotype and Mammalian Phenotype. Evolution analysis is also possible by providing gene phylostratific age information. Both analyses can be carried out in a variety of organisms: human, mouse, rat, chicken, c.elegans, fruitfly, zebrafish and arabidopsis.
 
 `dnet` aims to deliver an eye-intuitive tool for network-based sample stratifications.
 
@@ -14,7 +16,7 @@
 * Identification of expression-active dynamic subnetworks
 * Network-based sample stratifications 
 * Visualisations of network-based sample stratifications on 2D landscape
-* Enrichment analysis using a wide variety of ontologies
+* Enrichment analysis using a wide variety of [ontologies](http://dnet.r-forge.r-project.org/data/Obo) plus phylostratific age information in model organisms including [human](http://dnet.r-forge.r-project.org/data/Hs), [mouse](http://dnet.r-forge.r-project.org/data/Mm), [rat](http://dnet.r-forge.r-project.org/data/Rn), [chicken](http://dnet.r-forge.r-project.org/data/Gg), [c.elegans](http://dnet.r-forge.r-project.org/data/Ce), [fruitfly](http://dnet.r-forge.r-project.org/data/Dm), [zebrafish](http://dnet.r-forge.r-project.org/data/Da) and [arabidopsis](http://dnet.r-forge.r-project.org/data/At). For details, please refer to [Readme](http://dnet.r-forge.r-project.org/data/Readme.txt)  and [Documentations](http://dnet.r-forge.r-project.org/docs.html)
 * This package can run on `Windows`, `Mac` and `Linux`
 
 ## See also

@@ -1,7 +1,6 @@
 \name{dNetReorder}
 \alias{dNetReorder}
-\title{Function to reorder the multiple graph colorings within a
-sheet-shape rectangle grid}
+\title{Function to reorder the multiple graph colorings within a sheet-shape rectangle grid}
 \usage{
 dNetReorder(g, data, feature = c("node", "edge"), node.normalise =
 c("none",

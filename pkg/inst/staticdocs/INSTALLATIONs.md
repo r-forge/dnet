@@ -41,8 +41,9 @@ To install [stable release version](http://cran.r-project.org/package=dnet), run
 
 To install [latest development version](http://r-forge.r-project.org/projects/dnet) (`highly recommended` for benefits of latest improvements), run:
 
-    if(!require(hexbin)) install.packages("hexbin",repos="http://www.stats.bris.ac.uk/R")
-    if(!require(ape)) install.packages("ape",repos="http://www.stats.bris.ac.uk/R")
-    if(!require(igraph)) install.packages("igraph",repos="http://www.stats.bris.ac.uk/R")
+    list.pkg <- c("hexbin","ape","igraph", "graph", "Rgraphviz")
+    for(pkg in list.pkg){
+        if(!require(pkg, character.only=T)) install.packages(pkg,repos="http://www.stats.bris.ac.uk/R",dependencies=T)
+    }
     install.packages("supraHex",repos="http://R-Forge.R-project.org", type="source")
     install.packages("dnet",repos="http://R-Forge.R-project.org", type="source")

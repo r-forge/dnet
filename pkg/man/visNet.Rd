@@ -1,7 +1,6 @@
 \name{visNet}
 \alias{visNet}
-\title{Function to visualise a graph object of class "igraph" or
-"graphNEL"}
+\title{Function to visualise a graph object of class "igraph" or "graphNEL"}
 \usage{
 visNet(g, pattern = NULL, colormap = c("bwr", "jet", "gbr", "wyr",
 "br",

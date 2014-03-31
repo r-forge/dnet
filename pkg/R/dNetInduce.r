@@ -1,6 +1,6 @@
 #' Function to generate a subgraph induced by given vertices and their k nearest neighbors
 #'
-#' \code{dNetInduce} is supposed to produce a subgraph induced by given vertices and its k nearest neighbors. The input is a graph of "igraph" or "graphNET" object, a list of the vertices of the graph, and a k value for finding k nearest neighbors for these vertices. The output is a subgraph induced by given veretices plus their k neighbours. The resultant subgraph inherits the class from the input one. The induced subgraph conatins exactly the vertices of interest, and all the edges between them. 
+#' \code{dNetInduce} is supposed to produce a subgraph induced by given vertices and its k nearest neighbors. The input is a graph of "igraph" or "graphNET" object, a list of the vertices of the graph, and a k value for finding k nearest neighbors for these vertices. The output is a subgraph induced by given vertices plus their k neighbours. The resultant subgraph inherits the class from the input one. The induced subgraph contains exactly the vertices of interest, and all the edges between them. 
 #'
 #' @param g an object of class "igraph" or "graphNEL"
 #' @param nodes_query the vertices for which the calculation is performed
@@ -19,7 +19,7 @@
 #' # 1) generate a random graph according to the ER model
 #' g <- erdos.renyi.game(100, 1/100)
 #'
-#' # 2) select the frist 10 vertices as the query nodes
+#' # 2) select the first 10 vertices as the query nodes
 #' nodes_query <- V(g)[1:10]
 #'
 #' # 3) produce the induced subgraph only based on the nodes in query

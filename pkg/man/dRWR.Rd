@@ -1,7 +1,6 @@
 \name{dRWR}
 \alias{dRWR}
-\title{Function to implement Random Walk with Restart (RWR) on the
-input graph. to pre-compute affinity matrix for the input graph}
+\title{Function to implement Random Walk with Restart (RWR) on the input graph. to pre-compute affinity matrix for the input graph}
 \usage{
 dRWR(g, normalise = c("laplacian", "row", "column", "none"),
 setSeeds = NULL, restart = 0.75)

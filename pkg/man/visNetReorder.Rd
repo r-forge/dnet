@@ -1,7 +1,6 @@
 \name{visNetReorder}
 \alias{visNetReorder}
-\title{Function to visualise the multiple graph colorings reorded
-within a sheet-shape rectangle grid}
+\title{Function to visualise the multiple graph colorings reorded within a sheet-shape rectangle grid}
 \usage{
 visNetReorder(g, data, sReorder, height = 7, margin = rep(0.1, 4),
 border.color = "#EEEEEE", colormap = c("bwr", "jet", "gbr", "wyr",

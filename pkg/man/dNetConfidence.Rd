@@ -1,7 +1,6 @@
 \name{dNetConfidence}
 \alias{dNetConfidence}
-\title{Function to append the confidence information from the source
-graphs into the target graph}
+\title{Function to append the confidence information from the source graphs into the target graph}
 \usage{
 dNetConfidence(target, sources, plot = F)
 }

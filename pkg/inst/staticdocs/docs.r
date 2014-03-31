@@ -41,8 +41,22 @@ list(
                 'visTreeBootstrap'
             )
         ),
+        sd_section("Built-in databases and functions for ontologies",
+            "These databases and functions are used to deal with a variety of ontologies, each represented as a direct acyclic graph (DAG). DAG is stored as an object of the class 'igraph'.",
+            c(
+                "ig.GOMF",
+                "ig.GOBP",
+                "ig.GOCC",
+                "ig.HPPA",
+                "ig.HPON",
+                "ig.HPMI",
+                "ig.DO",
+                "ig.MP",
+                "dDagInduce"
+            )
+        ),
         sd_section("Built-in databases in human",
-            "These databases are used for enrichment analysis in human",
+            "These databases are used for analysis (i.e. enrichment, evolution and network analysis) in human (Hs; tax_id=10090)",
             c(
                 "org.Hs.eg",
                 "org.Hs.egDO", 
@@ -58,7 +72,7 @@ list(
             )
         ),
         sd_section("Built-in genesets in human",
-            "These genesets are derived from the molecular signatures database (Msigdb)",
+            "These genesets are derived from the molecular signatures database (Msigdb) in human (Hs)",
             c(
                 "org.Hs.egMsigdbC1",
                 "org.Hs.egMsigdbC2CGP", 
@@ -78,7 +92,7 @@ list(
             )
         ),
         sd_section("Built-in databases in mouse",
-            "These databases are used for enrichment analysis in mouse",
+            "These databases are used for analysis (i.e. enrichment, evolution and network analysis) in mouse (Mm; tax_id=10090)",
             c(
                 "org.Mm.eg",
                 "org.Mm.egDO", 
@@ -94,7 +108,7 @@ list(
             )
         ),
         sd_section("Built-in databases in arabidopsis",
-            "These databases are used for enrichment analysis in arabidopsis",
+            "These databases are used for analysis (i.e. enrichment, evolution and network analysis) in arabidopsis (At; tax_id=3702)",
             c(
                 "org.At.eg",
                 "org.At.egGOBP",
@@ -102,6 +116,61 @@ list(
                 "org.At.egGOMF",
                 "org.At.egPS",
                 "org.At.string"
+            )
+        ),
+        sd_section("Built-in databases in c.elegans",
+            "These databases are used for analysis (i.e. enrichment, evolution and network analysis) in c.elegans (Ce; tax_id=6239)",
+            c(
+                "org.Ce.eg",
+                "org.Ce.egGOBP",
+                "org.Ce.egGOCC",
+                "org.Ce.egGOMF",
+                "org.Ce.egPS",
+                "org.Ce.string"
+            )
+        ),
+        sd_section("Built-in databases in fruitfly",
+            "These databases are used for analysis (i.e. enrichment, evolution and network analysis) in fruitfly (Dm; tax_id=7227)",
+            c(
+                "org.Dm.eg",
+                "org.Dm.egGOBP",
+                "org.Dm.egGOCC",
+                "org.Dm.egGOMF",
+                "org.Dm.egPS",
+                "org.Dm.string"
+            )
+        ),
+        sd_section("Built-in databases in zebrafish",
+            "These databases are used for analysis (i.e. enrichment, evolution and network analysis) in zebrafish (Da; tax_id=7955)",
+            c(
+                "org.Da.eg",
+                "org.Da.egGOBP",
+                "org.Da.egGOCC",
+                "org.Da.egGOMF",
+                "org.Da.egPS",
+                "org.Da.string"
+            )
+        ),
+        sd_section("Built-in databases in rat",
+            "These databases are used for analysis (i.e. enrichment, evolution and network analysis) in rat (Rn; tax_id=10116)",
+            c(
+                "org.Rn.eg",
+                "org.Rn.egGOBP",
+                "org.Rn.egGOCC",
+                "org.Rn.egGOMF",
+                "org.Rn.egPS",
+                "org.Rn.string"
+            )
+        ),
+        sd_section("Built-in databases in chicken",
+            "These databases are used for analysis (i.e. enrichment, evolution and network analysis) in chicken (Gg; tax_id=9031)",
+            c(
+                "org.Gg.eg",
+                "org.Gg.egGOBP",
+                "org.Gg.egGOCC",
+                "org.Gg.egGOMF",
+                "org.Gg.egPS",
+                "org.Gg.string"
             )
         ),
         sd_section("Built-in datasets",

@@ -137,13 +137,9 @@
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'>load(url("http://dnet.r-forge.r-project.org/data/Datasets/Hiratani_TableS1.RData"))
+ls() # you should see three variables: 'RT', 'CpG' and 'EX'
 </div>
-<strong class='warning'>Warning message:
-cannot open: HTTP status was '404 Not Found'</strong>
-<strong class='error'>Error in load(url("http://dnet.r-forge.r-project.org/data/Datasets/Hiratani_TableS1.RData")): cannot open the connection</strong>
-<div class='input'>ls() # you should see three variables: 'RT', 'CpG' and 'EX'
-</div>
-<div class='output'>character(0)
+<div class='output'>[1] "CpG" "EX"  "RT" 
 </div></pre>
   </div>
   

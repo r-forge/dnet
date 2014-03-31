@@ -1,7 +1,6 @@
 \name{dBUMfit}
 \alias{dBUMfit}
-\title{Function to fit a p-value distribution under beta-uniform
-mixture model}
+\title{Function to fit a p-value distribution under beta-uniform mixture model}
 \usage{
 dBUMfit(x, ntry = 1, hist.bum = T, contour.bum = T, verbose = T)
 }

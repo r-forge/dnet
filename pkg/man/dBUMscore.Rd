@@ -1,8 +1,6 @@
 \name{dBUMscore}
 \alias{dBUMscore}
-\title{Function to transform p-values into scores according to the
-fitted beta-uniform mixture model and/or after controlling false
-discovery rate}
+\title{Function to transform p-values into scores according to the fitted beta-uniform mixture model and/or after controlling false discovery rate}
 \usage{
 dBUMscore(fit, method = c("pdf", "cdf"), fdr = NULL, scatter.bum = T)
 }

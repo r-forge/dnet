@@ -1,7 +1,6 @@
 \name{visNetMul}
 \alias{visNetMul}
-\title{Function to visualise the same graph but with multiple graph
-node colorings according to input data matrix}
+\title{Function to visualise the same graph but with multiple graph node colorings according to input data matrix}
 \usage{
 visNetMul(g, data, height = 7, margin = rep(0.1, 4),
 border.color = "#EEEEEE", colormap = c("bwr", "jet", "gbr", "wyr",

@@ -1,8 +1,6 @@
 \name{dFDRscore}
 \alias{dFDRscore}
-\title{Function to transform fdr into scores according to
-log-likelihood ratio between the true positives and the false
-positivies and/or after controlling false discovery rate}
+\title{Function to transform fdr into scores according to log-likelihood ratio between the true positives and the false positivies and/or after controlling false discovery rate}
 \usage{
 dFDRscore(fdr, fdr.threshold = NULL, scatter = F)
 }

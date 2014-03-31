@@ -1,7 +1,6 @@
 \name{dGSEA}
 \alias{dGSEA}
-\title{Function to conduct gene set enrichment analysis given the input
-data and the ontology in query}
+\title{Function to conduct gene set enrichment analysis given the input data and the ontology in query}
 \usage{
 dGSEA(data, identity = c("symbol", "entrez"), genome = c("mm", "hs"),
 ontology = c("GOBP", "GOMF", "GOCC", "MP", "DO", "PS"), sizeRange =
