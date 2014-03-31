@@ -86,73 +86,73 @@ dGSEA <- function(data, identity=c("symbol","entrez"), genome=c("mm", "hs"), ont
     if(genome == "mm"){
         
         #data("org.Mm.eg", package="dnet")
-        load(url("http://dnet.r-forge.r-project.org/data/org.Mm.eg.RData"))
+        load(url("http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData"))
         eval(parse(text="EG <- org.Mm.eg"))
         #do.call(assign, list("EG", org.Mm.eg))
         
         if(ontology == "GOBP"){
             #data("org.Mm.egGOBP", package="dnet")
-            load(url("http://dnet.r-forge.r-project.org/data/org.Mm.egGOBP.RData"))
+            load(url("http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egGOBP.RData"))
             eval(parse(text="GS <- org.Mm.egGOBP"))
         }else if(ontology == "GOMF"){
             #data("org.Mm.egGOMF", package="dnet")
-            load(url("http://dnet.r-forge.r-project.org/data/org.Mm.egGOMF.RData"))
+            load(url("http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egGOMF.RData"))
             eval(parse(text="GS <- org.Mm.egGOMF"))
         }else if(ontology == "GOCC"){
             #data("org.Mm.egGOCC", package="dnet")
-            load(url("http://dnet.r-forge.r-project.org/data/org.Mm.egGOCC.RData"))
+            load(url("http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egGOCC.RData"))
             eval(parse(text="GS <- org.Mm.egGOCC"))
         }else if(ontology == "MP"){
             #data("org.Mm.egMP", package="dnet")
-            load(url("http://dnet.r-forge.r-project.org/data/org.Mm.egMP.RData"))
+            load(url("http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egMP.RData"))
             eval(parse(text="GS <- org.Mm.egMP"))
         }else if(ontology == "HP"){
             #data("org.Mm.egHP", package="dnet")
-            load(url("http://dnet.r-forge.r-project.org/data/org.Mm.egHP.RData"))
+            load(url("http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egHP.RData"))
             eval(parse(text="GS <- org.Mm.egHP"))
         }else if(ontology == "DO"){
             #data("org.Mm.egDO", package="dnet")
-            load(url("http://dnet.r-forge.r-project.org/data/org.Mm.egDO.RData"))
+            load(url("http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egDO.RData"))
             eval(parse(text="GS <- org.Mm.egDO"))
         }else if(ontology == "PS"){
             #data("org.Mm.egPS", package="dnet")
-            load(url("http://dnet.r-forge.r-project.org/data/org.Mm.egPS.RData"))
+            load(url("http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egPS.RData"))
             eval(parse(text="GS <- org.Mm.egPS"))
         }
     }else if(genome == "hs"){
         
         #data("org.Hs.eg", package="dnet")
-        load(url("http://dnet.r-forge.r-project.org/data/org.Hs.eg.RData"))
+        load(url("http://dnet.r-forge.r-project.org/data/Hs/org.Hs.eg.RData"))
         eval(parse(text="EG <- org.Hs.eg"))
         #do.call(assign, list("EG", org.Hs.eg))
         
         if(ontology == "GOBP"){
             #data("org.Hs.egGOBP", package="dnet")
-            load(url("http://dnet.r-forge.r-project.org/data/org.Hs.egGOBP.RData"))
+            load(url("http://dnet.r-forge.r-project.org/data/Hs/org.Hs.egGOBP.RData"))
             eval(parse(text="GS <- org.Hs.egGOBP"))
         }else if(ontology == "GOMF"){
             #data("org.Hs.egGOMF", package="dnet")
-            load(url("http://dnet.r-forge.r-project.org/data/org.Hs.egGOMF.RData"))
+            load(url("http://dnet.r-forge.r-project.org/data/Hs/org.Hs.egGOMF.RData"))
             eval(parse(text="GS <- org.Hs.egGOMF"))
         }else if(ontology == "GOCC"){
             #data("org.Hs.egGOCC", package="dnet")
-            load(url("http://dnet.r-forge.r-project.org/data/org.Hs.egGOCC.RData"))
+            load(url("http://dnet.r-forge.r-project.org/data/Hs/org.Hs.egGOCC.RData"))
             eval(parse(text="GS <- org.Hs.egGOCC"))
         }else if(ontology == "MP"){
             #data("org.Hs.egMP", package="dnet")
-            load(url("http://dnet.r-forge.r-project.org/data/org.Hs.egMP.RData"))
+            load(url("http://dnet.r-forge.r-project.org/data/Hs/org.Hs.egMP.RData"))
             eval(parse(text="GS <- org.Hs.egMP"))
         }else if(ontology == "HP"){
             #data("org.Hs.egMP", package="dnet")
-            load(url("http://dnet.r-forge.r-project.org/data/org.Hs.egHP.RData"))
+            load(url("http://dnet.r-forge.r-project.org/data/Hs/org.Hs.egHP.RData"))
             eval(parse(text="GS <- org.Hs.egHP"))
         }else if(ontology == "DO"){
             #data("org.Hs.egDO", package="dnet")
-            load(url("http://dnet.r-forge.r-project.org/data/org.Hs.egDO.RData"))
+            load(url("http://dnet.r-forge.r-project.org/data/Hs/org.Hs.egDO.RData"))
             eval(parse(text="GS <- org.Hs.egDO"))
         }else if(ontology == "PS"){
             #data("org.Hs.egPS", package="dnet")
-            load(url("http://dnet.r-forge.r-project.org/data/org.Hs.egPS.RData"))
+            load(url("http://dnet.r-forge.r-project.org/data/Hs/org.Hs.egPS.RData"))
             eval(parse(text="GS <- org.Hs.egPS"))
         }
     }

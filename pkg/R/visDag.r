@@ -3,7 +3,7 @@
 #' \code{visDag} is supposed to visualise a direct acyclic graph (DAG) with node colorings according to a named input data vector (if provided)
 #'
 #' @param g an object of class "igraph"
-#' @param data a named input data verctor used to color-code vertices/nodes. The input data vector must have names, and these names should include all node names of input graph, i.e. V(g)$name, since there is a mapping operation. After mapping, the length of the data vector should be the same as the number of nodes of input graph. The way of how to color-code is to map values in the data onto the whole colormap (see the next arguments: colormap, ncolors, zlim and colorbar)
+#' @param data a named input data verctor used to color-code vertices/nodes. The input data vector must have names, and these names should include all node names of input graph, i.e. V(g)$name, since there is a mapping operation. The way of how to color-code is to map values in the data onto the whole colormap (see the next arguments: colormap, ncolors, zlim and colorbar)
 #' @param height a numeric value specifying the height of device
 #' @param width a numeric value specifying the width of device
 #' @param margin margins as units of length 4 or 1
@@ -113,11 +113,11 @@ visDag <- function (g, data=NULL, height=7, width=7, margin=rep(0.1,4), colormap
         ind <- match(names(data), V(ig)$name)
         nodes_mapped <- V(ig)$name[ind[!is.na(ind)]]
         if(length(nodes_mapped)!=vcount(ig)){
-            stop("The function must require that the row names of input data contain all those in the input graph.\n")
-            flag <- 0
+            #stop("The function must require that the row names of input data contain all those in the input graph.\n")
+            #flag <- 0
         }
         data <- data[nodes_mapped]
-            
+        
         if(flag==1){
             ## determine the color range
             if(is.null(zlim)){
@@ -296,6 +296,12 @@ visDag <- function (g, data=NULL, height=7, width=7, margin=rep(0.1,4), colormap
     ## set the local node attributes    
     if(is.null(data)){
         node.fillcolor <- rep(graph.node.attrs.default$fillcolor, length(dag@nodes))
+    }else{
+        ## those nodes without data will be assigned with default colors
+        tmp <- rep(graph.node.attrs.default$fillcolor, length(dag@nodes))
+        names(tmp) <- dag@nodes
+        tmp[names(node.fillcolor)] <- node.fillcolor
+        node.fillcolor <- tmp
     }
     if(is.null(nodeInfo)) {
         node.label <- character(length(dag@nodes))

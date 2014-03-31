@@ -19,11 +19,9 @@ node.attrs = NULL)
 vertices/nodes. The input data vector must have names,
 and these names should include all node names of input
 graph, i.e. V(g)$name, since there is a mapping
-operation. After mapping, the length of the data vector
-should be the same as the number of nodes of input graph.
-The way of how to color-code is to map values in the data
-onto the whole colormap (see the next arguments:
-colormap, ncolors, zlim and colorbar)}
+operation. The way of how to color-code is to map values
+in the data onto the whole colormap (see the next
+arguments: colormap, ncolors, zlim and colorbar)}
 
 \item{height}{a numeric value specifying the height of
 device}
