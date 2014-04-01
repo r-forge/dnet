@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dCommSignif @ dnet 1.0.0</title>
+<title>dDAGinduce @ dnet 1.0.0</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -102,32 +102,38 @@
         
       </header>
       
-      <h2>Function to test the significance of communities within a graph</h2>
+      <h2>Function to generate a subgraph of a direct acyclic graph (DAG) induced by given vertices</h2>
 
 <div class="row">
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>dCommSignif</code> is supposed to test the significance of
-communities within a graph. For a community of the graph,
-it first calculates two types of degrees for each node:
-degrees based on parters only within the community itself,
-and the degrees based on its parters NOT in the community
-but in the graph. Then, it performs two-sample Wilcoxon
-tests on these two types of degrees to produce the
-signficance level (p-value)</p>
+    <p><code>dDAGinduce</code> is supposed to produce a subgraph induced
+by given vertices, given a direct acyclic graph (DAG; an
+ontology). The input is a graph of "igraph" or "graphNET"
+object, a list of the vertices of the graph, and the mode
+defining the paths to the root of DAG. The resultant
+subgraph inherits the class from the input one. The induced
+subgraph contains exactly the vertices of interest and
+their defined paths to the root of DAG.</p>
   
     <h3>Usage</h3>
-    <pre>dCommSignif(g, comm)</pre>
+    <pre>dDAGinduce(g, nodes_query, path.mode = c("all_paths", "shortest_paths", "all_shortest_paths"))</pre>
     
     <h3>Arguments</h3>
     <dl>
       <dt>g</dt>
       <dd>an object of class "igraph" or "graphNEL"</dd>
-      <dt>comm</dt>
-      <dd>an object of class "communities". Details on
-this class can be found at
-<a href = 'http://igraph.sourceforge.net/doc/R/communities.html'>http://igraph.sourceforge.net/doc/R/communities.html</a></dd>
+      <dt>nodes_query</dt>
+      <dd>the vertices for which the calculation
+is performed</dd>
+      <dt>path.mode</dt>
+      <dd>the mode of paths induced by nodes in
+query. It can be "all_paths" for all possible paths to
+the root, "shortest_paths" for only one path to the root
+(for each node in query), "all_shortest_paths" for all
+shortest paths to the root (i.e. for each node, find all
+shortest paths with the equal lengths)</dd>
     </dl>
     <!-- 
     -->
@@ -136,46 +142,36 @@ this class can be found at
       <h3>Value</h3>
       
       <p><ul>
-<li><code>significance</code>: a vector of p-values
-(significance) </li>
+<li><code>subg</code>: an induced subgraph, an object
+of class "igraph" or "graphNEL" </li>
 </ul></p>
       <p></p>
     </div>
     <div class="Note">
       <h3>Note</h3>
       
-      <p>none</p>
+      <p>For the mode "shortest_paths", the induced subgraph is the
+most concise, and thus informative for visualisation when
+there are many nodes in query, while the mode "all_paths"
+results in the complete subgraph.</p>
     </div>
     
     <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'># 1) generate an vector consisting of random values from beta distribution
-x <- rbeta(1000, shape1=0.5, shape2=1)
+    <pre class="examples"><div class='input'># 1) load GO Molelular Function as igraph object
+load(url("http://dnet.r-forge.r-project.org/data/Obo/ig.GOMF.RData"))
+g <- ig.GOMF
 
-# 2) fit a p-value distribution under beta-uniform mixture model
-fit <- dBUMfit(x, ntry=1, hist.bum=FALSE, contour.bum=FALSE)
-</div>
-<strong class='message'>	A total of p-values: 1000</strong>
-<strong class='message'>	Maximum Log-Likelihood: 258.7</strong>
-<strong class='message'>	Mixture parameter (lambda): 0.045</strong>
-<strong class='message'>	Shape parameter (a): 0.514</strong>
-<div class='input'>
-# 3) calculate the scores according to the fitted BUM and fdr=0.01
-# using "pdf" method
-scores <- dBUMscore(fit, method="pdf", fdr=0.05, scatter.bum=FALSE)
-names(scores) <- as.character(1:length(scores))
+# 2) randomly select vertices as the query nodes
+# the query nodes can be igraph vertex sequences
+nodes_query <- sample(V(g),5)
+# more commonly, the query nodes can be term id
+nodes_query <- sample(V(g),5)$name
 
-# 4) generate a random graph according to the ER model
-g <- erdos.renyi.game(1000, 1/100)
-
-# 5) produce the induced subgraph only based on the nodes in query
-subg <- dNetInduce(g, V(g), knn=0)
-
-# 6) find the module with the maximum score
-module <- dNetFind(subg, scores)
-
-# 7) find the module and test its signficance
-comm <- walktrap.community(module, modularity=TRUE)
-significance <- dCommSignif(module, comm)
+# 3) obtain the induced subgraph
+# 3a) based on all possible paths (i.e. the complete subgraph induced)
+subg <- dDAGinduce(g, nodes_query, path.mode="all_paths")
+# 3b) based on shortest paths (i.e. the most concise subgraph induced)
+subg <- dDAGinduce(g, nodes_query, path.mode="shortest_paths")
 </div></pre>
   </div>
   
@@ -183,7 +179,7 @@ significance <- dCommSignif(module, comm)
     
     <!-- 
     <ul>
-      <li>dCommSignif</li>
+      <li>dDAGinduce</li>
     </ul>
     <ul>
       
@@ -192,7 +188,7 @@ significance <- dCommSignif(module, comm)
       
     <h2>See also</h2>
     
-<code><a href='dCommSignif.html'>dCommSignif</a></code>
+<code><a href='dDAGinduce.html'>dDAGinduce</a></code>
 
     
     <h2>Citation</h2>

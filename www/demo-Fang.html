@@ -292,7 +292,7 @@ apply(adjpvals<1e-2, 2, sum)
 # obtain gene significance from the given gene-sample matrix according to singular value decomposition-based method
 fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.eigen=NULL, pval.eigen=1e-2, signif="fdr", orient.permutation="row", num.permutation=200, fdr.procedure="stepup", verbose=T)
 </div>
-<strong class='message'>Start at 2014-03-31 14:29:39</strong>
+<strong class='message'>Start at 2014-04-01 16:54:03</strong>
 <strong class='message'></strong>
 <strong class='message'>First, singular value decomposition of the input matrix (with 4139 rows and 18 columns)...</strong>
 <strong class='message'>Second, determinate the eigens...</strong>
@@ -302,27 +302,27 @@ fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.ei
 <strong class='message'>Finally, obtain gene significance (fdr) based on 200 permutations...</strong>
 <strong class='message'>	doing row-wise permutations...</strong>
 <strong class='message'>	estimating fdr...</strong>
-<strong class='message'>1 (out of 4139) at 2014-03-31 14:30:02</strong>
-<strong class='message'>414 (out of 4139) at 2014-03-31 14:30:11</strong>
-<strong class='message'>828 (out of 4139) at 2014-03-31 14:30:21</strong>
-<strong class='message'>1242 (out of 4139) at 2014-03-31 14:30:30</strong>
-<strong class='message'>1656 (out of 4139) at 2014-03-31 14:30:40</strong>
-<strong class='message'>2070 (out of 4139) at 2014-03-31 14:30:49</strong>
-<strong class='message'>2484 (out of 4139) at 2014-03-31 14:30:58</strong>
-<strong class='message'>2898 (out of 4139) at 2014-03-31 14:31:08</strong>
-<strong class='message'>3312 (out of 4139) at 2014-03-31 14:31:17</strong>
-<strong class='message'>3726 (out of 4139) at 2014-03-31 14:31:26</strong>
-<strong class='message'>4139 (out of 4139) at 2014-03-31 14:31:36</strong>
+<strong class='message'>1 (out of 4139) at 2014-04-01 16:54:25</strong>
+<strong class='message'>414 (out of 4139) at 2014-04-01 16:54:35</strong>
+<strong class='message'>828 (out of 4139) at 2014-04-01 16:54:44</strong>
+<strong class='message'>1242 (out of 4139) at 2014-04-01 16:54:54</strong>
+<strong class='message'>1656 (out of 4139) at 2014-04-01 16:55:04</strong>
+<strong class='message'>2070 (out of 4139) at 2014-04-01 16:55:13</strong>
+<strong class='message'>2484 (out of 4139) at 2014-04-01 16:55:23</strong>
+<strong class='message'>2898 (out of 4139) at 2014-04-01 16:55:33</strong>
+<strong class='message'>3312 (out of 4139) at 2014-04-01 16:55:42</strong>
+<strong class='message'>3726 (out of 4139) at 2014-04-01 16:55:52</strong>
+<strong class='message'>4139 (out of 4139) at 2014-04-01 16:56:02</strong>
 <strong class='message'>	using stepup procedure...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-03-31 14:31:36</strong>
-<strong class='message'>Runtime in total is: 117 secs
+<strong class='message'>Finish at 2014-04-01 16:56:02</strong>
+<strong class='message'>Runtime in total is: 119 secs
 </strong>
 <div class='input'>
 # 2) identification of module
 g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network, pval=fdr, method="fdr", nsize=30)
 </div>
-<strong class='message'>Start at 2014-03-31 14:31:36</strong>
+<strong class='message'>Start at 2014-04-01 16:56:02</strong>
 <strong class='message'></strong>
 <strong class='message'>First, consider the fdr distribution</strong>
 <strong class='message'>Second, determine FDR threshold...</strong>
@@ -339,7 +339,7 @@ g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network,
 <strong class='message'>Finally, find the subnetwork from the input network with 3385 nodes and 39961 edges...</strong>
 <strong class='message'>	Size of the module: 54 nodes and 226 edges</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-03-31 14:32:11</strong>
+<strong class='message'>Finish at 2014-04-01 16:56:37</strong>
 <strong class='message'>Runtime in total is: 35 secs
 </strong>
 <div class='input'>glayout <- layout.fruchterman.reingold(g)
@@ -407,7 +407,7 @@ data <- as.matrix(fit2$coefficients[V(g)$name,])
 # 11) color by additional data (be reordered)
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="edge", node.normalise="degree", amplifier=2, metric="none")
 </div>
-<strong class='message'>Start at 2014-03-31 14:33:45</strong>
+<strong class='message'>Start at 2014-04-01 16:58:12</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -434,8 +434,8 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-31 14:33:46</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>End at 2014-04-01 16:58:12</strong>
+<strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap=colormap, vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)
 </div>
@@ -475,7 +475,7 @@ write.table(sif, file=paste("Fang_whole.sif", sep=""), quote=F, row.names=F,col.
     </ul>
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network, expression and ontology data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network, expression, evolution and ontology data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--
