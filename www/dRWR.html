@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>dRWR @ dnet 1.0.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+
+<style type="text/css">
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 8px 20px 12px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #999999;
+}
+
+.navbar .brand:hover {
+  color: #F87217;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar .nav > li > a:hover {
+  color: #F87217;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+</style>
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17338744-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- Enlarge image -->
+<script type="text/javascript">
+    function newWin(url, name, width, height) { 
+       
+        var left = (screen.width/2)-(width/2);
+        var top = (screen.height/2)-(height/2); 
+        
+        window.open(url,name,'scrollbars=yes,resizable=yes,fullscreen=yes, width=' + width + ', height='+height+', top='+top+', left='+left);
+    }
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">dnet 1.0.0</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="install.html"><i class="icon-wrench icon-white"></i> Installation</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h2>Function to implement Random Walk with Restart (RWR) on the input graph. to pre-compute affinity matrix for the input graph</h2>
+
+<div class="row">
+  <div class="span8">
+  
+    <h3>Description</h3>
+    <p><code>dRWR</code> is supposed to implement Random Walk with
+Restart (RWR) on the input graph. If the seeds (i.e. a set
+of starting nodes) are given, it intends to calculate the
+affinity score of all nodes in the graph to the given
+seeds. If the seeds are not give, it will pre-compute
+affinity matrix for nodes in the input graph with respect
+to each starting node (rather than a set of nodes) by
+looping over every node in the graph.</p>
+  
+    <h3>Usage</h3>
+    <pre>dRWR(g, normalise = c("laplacian", "row", "column", "none"), setSeeds = NULL, restart = 0.75)</pre>
+    
+    <h3>Arguments</h3>
+    <dl>
+      <dt>g</dt>
+      <dd>an object of class "igraph" or "graphNEL"</dd>
+      <dt>normalise</dt>
+      <dd>the way to normalise the adjacency
+matrix of the input graph. It can be 'laplacian' for
+laplacian normalisation, 'row' for row-wise
+normalisation, 'column' for column-wise normalisation, or
+'none'</dd>
+      <dt>setSeeds</dt>
+      <dd>an input matrix used to define sets of
+starting seeds. One column corresponds to one set of
+seeds that a walker starts with. The input matrix must
+have row names, coming from node names of input graph,
+i.e. V(g)$name, since there is a mapping operation. The
+non-zero entries mean that the corresonding rows (i.e.
+the gene/row names) are used as the seeds, and non-zero
+values can be viewed as how to weight the relative
+importance of seeds. By default, this option sets to
+"NULL" for the codebook matrix, suggesting each node in
+the graph will be used as a set of the seed to
+pre-compute affinity matrix for the input graph. This
+default does not scale for large input graphs since it
+will loop over every node in the graph; however, the
+pre-computed affinity matrix can be extensively reused
+for obtaining affinity scores between any combinations of
+nodes/seeds, allows for some flexibility in the
+downstream use, in particular when sampling a large
+number of random node combinations for statistical
+testing</dd>
+      <dt>restart</dt>
+      <dd>the restart probability used for RWR. The
+restart probability takes the value from 0 to 1,
+controlling the range from the starting nodes/seeds that
+the walker will explore. The higher the value, the more
+likely the walker is to visit the nodes centered on the
+starting nodes. At the extreme when the restart
+probability is zero, the walker moves freely to the
+neighbors at each step without restarting from seeds,
+i.e., following a random walk (RW)</dd>
+    </dl>
+    <!-- 
+    -->
+    
+    <div class="Value">
+      <h3>Value</h3>
+      
+      <p>When the seeds are NOT given, it returns: <ul>
+<li><code>PTmatrix</code>: pre-computated affinity matrix with
+the dimension of n X n, where n is the number of nodes in
+the input graph. Columns stand for starting nodes walking
+from, and rows for ending nodes walking to. Therefore, a
+column for a starting node represents a steady-state
+affinity vector that the starting node will visit all the
+ending nodes in the graph </li>
+</ul>
+ When the seeds are given, it
+returns: <ul>
+<li><code>PTmatrix</code>: affinity matrix
+with the dimension of n X nset, where n is the number of
+nodes in the input graph, and nset for the number of the
+sets of seeds (i.e. the number of columns in setSeeds).
+Each column stands for the steady probability vector,
+storing the affinity score of all nodes in the graph to the
+starting nodes/seeds. This steady probability vector can be
+viewed as the "influential impact" over the graph imposed
+by the starting nodes/seeds. </li>
+</ul></p>
+      <p></p>
+    </div>
+    <div class="Note">
+      <h3>Note</h3>
+      
+      <p>The input graph will treat as an unweighted graph if there
+is no 'weight' edge attribute associated with</p>
+    </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) generate a random graph according to the ER model
+g <- erdos.renyi.game(100, 1/100)
+
+# 2) produce the induced subgraph only based on the nodes in query
+subg <- dNetInduce(g, V(g), knn=0)
+V(subg)$name <- 1:vcount(subg)
+
+# 3) obtain the pre-computated affinity matrix
+PTmatrix <- dRWR(subg, normalise="laplacian", restart=0.75)
+# visualise affinity matrix
+visHeatmapAdv(PTmatrix, Rowv=FALSE, Colv=FALSE, colormap="wyr",
+KeyValueName="Affinity")
+</div>
+<a href="javascript:newWin('dRWR-2.png', 'dRWR-2.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='dRWR-2.png', width="400" /></a>
+<div class='input'>
+# 4) obtain affinity matrix given sets of seeds
+# define sets of seeds
+# each seed with equal weight (i.e. all non-zero entries are '1')
+aSeeds <- c(1,0,1,0,1)
+bSeeds <- c(0,0,1,0,1)
+setSeeds <- data.frame(aSeeds,bSeeds)
+rownames(setSeeds) <- 1:5
+# calcualte affinity matrix
+PTmatrix <- dRWR(subg, normalise="laplacian", setSeeds=setSeeds,
+restart=0.75)
+</div>
+<strong class='warning'>Warning message:
+The row names of input setSeeds do not contain all those in the input graph.
+</strong>
+<div class='input'>PTmatrix
+</div>
+<div class='output'>        aSeeds      bSeeds
+1  0.273208489 0.001135639
+2  0.002865965 0.004204145
+3  0.270493778 0.401098701
+4  0.025633966 0.037603019
+5  0.274441705 0.408020930
+6  0.053002633 0.006424146
+7  0.048514898 0.072128592
+8  0.002865965 0.004204145
+9  0.046106638 0.060976537
+10 0.002865965 0.004204145
+</div></pre>
+  </div>
+  
+  <div class="span4">
+    
+    <!-- 
+    <ul>
+      <li>dRWR</li>
+    </ul>
+    <ul>
+      
+    </ul> 
+    -->
+      
+    <h2>See also</h2>
+    
+<code><a href='dNetInduce.html'>dNetInduce</a></code>
+
+    
+    <h2>Citation</h2>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network, expression, evolution and ontology data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+
+    
+    <!--
+    
+    <h2>URL</h2>
+    <ul>
+      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
+    </ul>
+    
+    
+    -->
+    
+  </div>
+  
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+
+<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
+
+
+      </footer>
+    </div>
+  </body>
+</html>

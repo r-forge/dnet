@@ -52,8 +52,12 @@ list(
                 "ig.HPMI",
                 "ig.DO",
                 "ig.MP",
-                "dDagInduce",
-                "visDag"
+                "dDAGinduce",
+                'dDAGreverse',
+                'dDAGroot',
+                'dDAGtip',
+                'dDAGlevel',
+                "visDAG"
             )
         ),
         sd_section("Built-in databases in human",

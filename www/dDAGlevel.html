@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>dDAGlevel @ dnet 1.0.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+
+<style type="text/css">
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 8px 20px 12px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #999999;
+}
+
+.navbar .brand:hover {
+  color: #F87217;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar .nav > li > a:hover {
+  color: #F87217;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+</style>
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17338744-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- Enlarge image -->
+<script type="text/javascript">
+    function newWin(url, name, width, height) { 
+       
+        var left = (screen.width/2)-(width/2);
+        var top = (screen.height/2)-(height/2); 
+        
+        window.open(url,name,'scrollbars=yes,resizable=yes,fullscreen=yes, width=' + width + ', height='+height+', top='+top+', left='+left);
+    }
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">dnet 1.0.0</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="install.html"><i class="icon-wrench icon-white"></i> Installation</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h2>Function to define/calculate the level of nodes in a direct acyclic graph (DAG)</h2>
+
+<div class="row">
+  <div class="span8">
+  
+    <h3>Description</h3>
+    <p><code>dDAGlevel</code> is supposed to calculate the level of
+nodes, given a direct acyclic graph (DAG; an ontology). The
+input is a graph of "igraph" or "graphNET" object, and the
+definition of the node level. The return can be the level
+for each node or the nodes for each level.</p>
+  
+    <h3>Usage</h3>
+    <pre>dDAGlevel(g, level.mode = c("longest_path", "shortest_path"), return.mode = c("node2level", 
+  "level2node"))</pre>
+    
+    <h3>Arguments</h3>
+    <dl>
+      <dt>g</dt>
+      <dd>an object of class "igraph" or "graphNEL"</dd>
+      <dt>level.mode</dt>
+      <dd>the mode of how to define the level of
+nodes in DAG. It can be "longest_path" for defining the
+node level as the length of the longest path from the
+node to the root, and "shortest_paths" for defining the
+node level as the length of the shortest path from the
+node to the root</dd>
+      <dt>return.mode</dt>
+      <dd>the mode of how to return the node
+level information. It can be "node2level" for returning a
+named vector (i.e. the level for each node), and
+"level2node" for returning a named list (i.e. nodes for
+each level)</dd>
+    </dl>
+    <!-- 
+    -->
+    
+    <div class="Value">
+      <h3>Value</h3>
+      
+      <p>When "return.mode" is "node2level", it returns a named
+vector: for each named node (i.e. Term ID), it stores its
+level When "return.mode" is "level2node", it returns a
+named list: for each named level, it contains the names
+(i.e. Term ID) of nodes belonging to this level</p>
+    </div>
+    <div class="Note">
+      <h3>Note</h3>
+      
+      <p>The level for the root is 1. The level based on the longest
+path will ensure that nodes at the same level will never be
+reachable (i.e. in the same path), while the level based on
+the shortest path will not be necessary. The "longest path"
+based level can be useful in visiting nodes from the
+tipmost level to the root: 1) for the current node, all
+chilren have been visited; 2) nodes at the same level can
+be looked at independantly. The "shortest path" based level
+can be useful in deriving nodes according to their
+closeness to the root.</p>
+    </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) load GO Molelular Function as igraph object
+load(url("http://dnet.r-forge.r-project.org/data/Obo/ig.GOMF.RData"))
+g <- ig.GOMF
+
+# 2) randomly select vertices as the query nodes
+nodes_query <- sample(V(g),5)$name
+
+# 3) obtain the complete subgraph induced
+subg <- dDAGinduce(g, nodes_query)
+
+# 4) calculate the node levels
+# 4a) definition based on the longest path
+dDAGlevel(subg, level.mode="longest_path")
+</div>
+<div class='output'>GO:0003674 GO:0003824 GO:0005488 GO:0016740 GO:0016787 GO:0030246 GO:0016741 
+         1          2          2          3          3          3          4 
+GO:0016746 GO:0016798 GO:0046508 GO:0070492 GO:0004553 GO:0008168 GO:0016747 
+         4          4          4          4          5          5          5 
+GO:2001064 GO:0008757 GO:0015929 GO:0016407 GO:0004561 GO:0030731 GO:0043869 
+         5          6          6          6          7          7          7 
+</div>
+<div class='input'># 4b) definition based on the shortest path
+dDAGlevel(subg, level.mode="shortest_path")
+</div>
+<div class='output'>GO:0003674 GO:0003824 GO:0005488 GO:0016740 GO:0016787 GO:0030246 GO:0016741 
+         1          2          2          3          3          3          4 
+GO:0016746 GO:0016798 GO:0046508 GO:0070492 GO:0004553 GO:0008168 GO:0016747 
+         4          4          4          4          5          5          5 
+GO:2001064 GO:0008757 GO:0015929 GO:0016407 GO:0004561 GO:0030731 GO:0043869 
+         5          6          6          6          7          7          7 
+</div>
+<div class='input'># 4b) definition based on the longest path, and return nodes for each level
+dDAGlevel(subg, level.mode="longest_path", return.mode="level2node")
+</div>
+<div class='output'>$`1`
+[1] "GO:0003674"
+
+$`2`
+[1] "GO:0003824" "GO:0005488"
+
+$`3`
+[1] "GO:0016740" "GO:0016787" "GO:0030246"
+
+$`4`
+[1] "GO:0016741" "GO:0016746" "GO:0016798" "GO:0046508" "GO:0070492"
+
+$`5`
+[1] "GO:0004553" "GO:0008168" "GO:0016747" "GO:2001064"
+
+$`6`
+[1] "GO:0008757" "GO:0015929" "GO:0016407"
+
+$`7`
+[1] "GO:0004561" "GO:0030731" "GO:0043869"
+
+</div></pre>
+  </div>
+  
+  <div class="span4">
+    
+    <!-- 
+    <ul>
+      <li>dDAGlevel</li>
+    </ul>
+    <ul>
+      
+    </ul> 
+    -->
+      
+    <h2>See also</h2>
+    
+<code><a href='dDAGroot.html'>dDAGroot</a></code>, <code><a href='dDAGreverse.html'>dDAGreverse</a></code>
+
+    
+    <h2>Citation</h2>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network, expression, evolution and ontology data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+
+    
+    <!--
+    
+    <h2>URL</h2>
+    <ul>
+      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
+    </ul>
+    
+    
+    -->
+    
+  </div>
+  
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+
+<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
+
+
+      </footer>
+    </div>
+  </body>
+</html>

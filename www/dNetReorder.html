@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>dNetReorder @ dnet 1.0.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+
+<style type="text/css">
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 8px 20px 12px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #999999;
+}
+
+.navbar .brand:hover {
+  color: #F87217;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar .nav > li > a:hover {
+  color: #F87217;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+</style>
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17338744-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- Enlarge image -->
+<script type="text/javascript">
+    function newWin(url, name, width, height) { 
+       
+        var left = (screen.width/2)-(width/2);
+        var top = (screen.height/2)-(height/2); 
+        
+        window.open(url,name,'scrollbars=yes,resizable=yes,fullscreen=yes, width=' + width + ', height='+height+', top='+top+', left='+left);
+    }
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">dnet 1.0.0</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="install.html"><i class="icon-wrench icon-white"></i> Installation</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h2>Function to reorder the multiple graph colorings within a sheet-shape rectangle grid</h2>
+
+<div class="row">
+  <div class="span8">
+  
+    <h3>Description</h3>
+    <p><code>dNetReorder</code> is reorder the multiple graph colorings
+within a sheet-shape rectangle grid</p>
+  
+    <h3>Usage</h3>
+    <pre>dNetReorder(g, data, feature = c("node", "edge"), node.normalise = c("none", "degree"), 
+  xdim = NULL, ydim = NULL, amplifier = NULL, metric = c("none", "pearson", "spearman", 
+          "kendall", "euclidean", "manhattan", "cos", "mi"), init = c("linear", "uniform", 
+          "sample"), algorithm = c("sequential", "batch"), alphaType = c("invert", 
+          "linear", "power"), neighKernel = c("gaussian", "bubble", "cutgaussian", 
+          "ep", "gamma"))</pre>
+    
+    <h3>Arguments</h3>
+    <dl>
+      <dt>g</dt>
+      <dd>an object of class "igraph" or "graphNEL"</dd>
+      <dt>data</dt>
+      <dd>an input data matrix used to color-code
+vertices/nodes. One column corresponds to one graph node
+coloring. The input matrix must have row names, and these
+names should include all node names of input graph, i.e.
+V(g)$name, since there is a mapping operation. After
+mapping, the length of the patern vector should be the
+same as the number of nodes of input graph. The way of
+how to color-code is to map values in the pattern onto
+the whole colormap (see the next arguments: colormap,
+ncolors, zlim and colorbar)</dd>
+      <dt>feature</dt>
+      <dd>the type of the features used. It can be
+one of either 'edge' for the edge feature or 'node' for
+the node feature.</dd>
+      <dt>node.normalise</dt>
+      <dd>the normalisation of the nodes. It
+can be one of either 'none' for no normalisation or
+'degree' for a node being penalised by its degree.</dd>
+      <dt>xdim</dt>
+      <dd>an integer specifying x-dimension of the
+grid</dd>
+      <dt>ydim</dt>
+      <dd>an integer specifying y-dimension of the
+grid</dd>
+      <dt>amplifier</dt>
+      <dd>an integer specifying the amplifier (3
+by default) of the number of component planes. The
+product of the component number and the amplifier
+constitutes the number of rectangles in the sheet grid</dd>
+      <dt>metric</dt>
+      <dd>distance metric used to define the
+similarity between component planes. It can be "none",
+which means directly using column-wise vectors of
+codebook/data matrix. Otherwise, first calculate the
+covariance matrix from the codebook/data matrix. The
+distance metric used for calculating the covariance
+matrix between component planes can be: "pearson" for
+pearson correlation, "spearman" for spearman rank
+correlation, "kendall" for kendall tau rank correlation,
+"euclidean" for euclidean distance, "manhattan" for
+cityblock distance, "cos" for cosine similarity, "mi" for
+mutual information.</dd>
+      <dt>init</dt>
+      <dd>an initialisation method. It can be one of
+"uniform", "sample" and "linear" initialisation methods</dd>
+      <dt>algorithm</dt>
+      <dd>the training algorithm. Currently, only
+"sequential" algorithm has been implemented</dd>
+      <dt>alphaType</dt>
+      <dd>the alpha type. It can be one of
+"invert", "linear" and "power" alpha types</dd>
+      <dt>neighKernel</dt>
+      <dd>the training neighbor kernel. It can
+be one of "gaussian", "bubble", "cutgaussian", "ep" and
+"gamma" kernels</dd>
+    </dl>
+    <!-- 
+    -->
+    
+    <div class="Value">
+      <h3>Value</h3>
+      
+      <p>an object of class "sReorder", a list with following
+components: <ul>
+<li><code>nHex</code>: the total number
+of rectanges in the grid </li>
+<li><code>xdim</code>: x-dimension of
+the grid </li>
+<li><code>ydim</code>: y-dimension of the grid
+</li>
+<li><code>uOrder</code>: the unique order/placement for each
+component plane that is reordered to the "sheet"-shape grid
+with rectangular lattice </li>
+<li><code>coord</code>: a matrix of
+nHex x 2, with each row corresponding to the coordinates of
+each "uOrder" rectangle in the 2D map grid
+</li>
+<li><code>call</code>: the call that produced this result </li>
+</ul></p>
+      <p></p>
+    </div>
+    <div class="Note">
+      <h3>Note</h3>
+      
+      <p>According to which features are used and whether nodes
+should be penalised by degrees, the feature data are
+constructed differently from the input data and input
+graph. When the node features are used, the feature data is
+the input data (or penalised data) with the same dimension.
+When the edge featrues are used, each entry (i.e. given an
+edge and a sample) in the feature data is the absolute
+difference between its two-end nodes (or after being
+penalised). Then, the constructed feature are subject to
+sample correlation analysis by supraHex. That is, a map
+grid (with sheet shape consisting of a rectangular lattice)
+is used to train either column-wise vectors of the feature
+data matrix or the covariance matrix thereof. As a result,
+similar samples are placed closer to each other within this
+map grid. More precisely, to ensure the unique placement,
+each sample mapped to the "sheet"-shape grid with
+rectangular lattice is determinied iteratively in an order
+from the best matched to the next compromised one. If
+multiple samples are hit in the same rectangular lattice,
+the worse one is always sacrificed by moving to the next
+best one till all samples are placed somewhere exclusively
+on their own.</p>
+    </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) generate a random graph according to the ER model
+g <- erdos.renyi.game(100, 1/100)
+
+# 2) produce the induced subgraph only based on the nodes in query
+subg <- dNetInduce(g, V(g), knn=0)
+
+# 3) reorder the module with vertices being color-coded by input data
+nnodes <- vcount(subg)
+nsamples <- 10
+data <- matrix(runif(nnodes*nsamples), nrow=nnodes, ncol=nsamples)
+rownames(data) <- V(subg)$name
+sReorder <- dNetReorder(g=subg, data, feature="node",
+node.normalise="none")
+</div>
+<strong class='message'>Start at 2014-04-01 16:13:47</strong>
+<strong class='message'></strong>
+<strong class='message'>First, define topology of a map grid...</strong>
+<strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
+<strong class='message'>Third, get training at the rough stage...</strong>
+<strong class='message'>Fourth, get training at the finetune stage...</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object...</strong>
+<strong class='message'></strong>
+<strong class='message'>Below are the summaries of the training results:</strong>
+<strong class='message'>   dimension of input data: 10x8
+   xy-dimension of map grid: xdim=6, ydim=6
+   grid lattice: rect
+   grid shape: sheet
+   dimension of grid coord: 36x2
+   initialisation method: linear
+   dimension of codebook matrix: 36x8
+   mean quantization error: 0.165527131883557
+</strong>
+<strong class='message'>Below are the details of trainology:</strong>
+<strong class='message'>   training algorithm: sequential
+   alpha type: invert
+   training neighborhood kernel: gaussian
+   trainlength (x input data length): 36 at rough stage; 144 at finetune stage
+   radius (at rough stage): from 1 to 1
+   radius (at finetune stage): from 1 to 1
+</strong>
+<strong class='message'>End at 2014-04-01 16:13:48</strong>
+<strong class='message'>Runtime in total is: 1 secs
+</strong></pre>
+  </div>
+  
+  <div class="span4">
+    
+    <!-- 
+    <ul>
+      <li>dNetReorder</li>
+    </ul>
+    <ul>
+      
+    </ul> 
+    -->
+      
+    <h2>See also</h2>
+    
+<code><a href='visNetReorder.html'>visNetReorder</a></code>
+
+    
+    <h2>Citation</h2>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network, expression, evolution and ontology data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+
+    
+    <!--
+    
+    <h2>URL</h2>
+    <ul>
+      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
+    </ul>
+    
+    
+    -->
+    
+  </div>
+  
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+
+<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
+
+
+      </footer>
+    </div>
+  </body>
+</html>
