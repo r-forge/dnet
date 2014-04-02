@@ -201,15 +201,22 @@ subg <- dNetInduce(g, V(g), knn=0)
 # 4) find maximum-scoring module based on fdr=0.1 threshold
 module <- dNetPipeline(g=subg, pval=x, fdr=0.1)
 </div>
-<strong class='message'>Start at 2014-04-02 15:22:26</strong>
+<strong class='message'>Start at 2014-04-02 17:48:07</strong>
 <strong class='message'></strong>
 <strong class='message'>First, fit the p-value distribution under beta-uniform mixture model...</strong>
-<strong class='warning'>Warning message:
-BUM model could not be fitted to data</strong>
+<strong class='message'>	A total of p-values: 1000</strong>
+<strong class='message'>	Maximum Log-Likelihood: 298.8</strong>
+<strong class='message'>	Mixture parameter (lambda): 0.000</strong>
+<strong class='message'>	Shape parameter (a): 0.504</strong>
 <strong class='message'>Second, determine FDR threshold...</strong>
 <strong class='message'>	FDR threshold: 1.00e-01</strong>
 <strong class='message'>Third, calculate the scores according to the fitted BUM and FDR threshold (if any)...</strong>
-<strong class='error'>Error in dBUMscore(fit = fit, method = method, fdr = fdr_final, scatter.bum = F): The funciton must apply to 'BUM' object.
+<strong class='message'>	Amongst 1000 scores, there are 184 positives.</strong>
+<strong class='message'>Finally, find the subnetwork from the input network with 1000 nodes and 5010 edges...</strong>
+<strong class='message'>	Size of the module: 152 nodes and 176 edges</strong>
+<strong class='message'></strong>
+<strong class='message'>Finish at 2014-04-02 17:48:08</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'>
 ## <strong>Not run</strong>: 
@@ -237,7 +244,7 @@ BUM model could not be fitted to data</strong>
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via an integrative analysis of network, expression, evolution and ontology data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of network, expression, evolution and ontology data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

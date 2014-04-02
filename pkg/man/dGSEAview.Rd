@@ -56,7 +56,7 @@ none
 \examples{
 \dontrun{
 dGSEAview(eTerm, which_sample=1, top_num=10, sortBy="adjp",
-decreasing=F, details=T)
+decreasing=FALSE, details=TRUE)
 }
 }
 \seealso{
