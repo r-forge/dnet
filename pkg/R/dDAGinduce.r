@@ -11,7 +11,7 @@
 #' }
 #' @note For the mode "shortest_paths", the induced subgraph is the most concise, and thus informative for visualisation when there are many nodes in query, while the mode "all_paths" results in the complete subgraph.
 #' @export
-#' @seealso \code{\link{dDAGinduce}}
+#' @seealso \code{\link{dDAGroot}}
 #' @include dDAGinduce.r
 #' @examples
 #' # 1) load GO Molelular Function as igraph object
@@ -59,21 +59,25 @@ dDAGinduce <- function (g, nodes_query, path.mode=c("all_paths","shortest_paths"
 
     ## DAG being induced from nodes in query
     if(path.mode=="all_paths"){
-        edgelist <- get.data.frame(ig, what="edges")
+        #edgelist <- get.data.frame(ig, what="edges")
         
-        ## create a new (empty) environment
-        nodeLookUp <- new.env(hash=T, parent=emptyenv())
+        ## create a new (empty) hash environment: key (node), value (TRUE)
+        node.Hash <- new.env(hash=T, parent=emptyenv())
         ## A function to iterate to the root, given a node
         buildInducedGraph <- function(node) {
             ## exists: true if and only if an object of the correct name and mode is found
-            if (exists(node, envir=nodeLookUp, mode="logical", inherits=FALSE)){
+            if (exists(node, envir=node.Hash, mode="logical", inherits=FALSE)){
                 ## for node already visited
                 return(1)
             }else{
-                ## assign the node (with the value 'TRUE') into nodeLookUp
-                assign(node, TRUE, envir=nodeLookUp)
+                ## assign the node (with the value 'TRUE') into node.Hash
+                assign(node, TRUE, envir=node.Hash)
                 ## get its direct parents
-                adjNodes <- edgelist[edgelist[,2]==node, 1]
+                
+                ## get the incoming neighbors (including self) that are reachable
+                neighs.in <- igraph::neighborhood(ig, order=1, nodes=node, mode="in")
+                adjNodes <- setdiff(V(ig)[unlist(neighs.in)]$name, node)
+                #adjNodes <- edgelist[edgelist[,2]==node, 1]
                 ## iterate until there are no direct parents
                 if (length(adjNodes)>0){
                     for (i in 1:length(adjNodes)){
@@ -85,7 +89,7 @@ dDAGinduce <- function (g, nodes_query, path.mode=c("all_paths","shortest_paths"
             }
         }
         tmp <- lapply(nodes_query$name, buildInducedGraph)
-        nodeInduced <- ls(nodeLookUp)
+        nodeInduced <- ls(node.Hash)
             
     }else if(path.mode=="all_shortest_paths"){
         root <- dDAGroot(ig)

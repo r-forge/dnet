@@ -56,6 +56,6 @@ subg <- dDAGinduce(g, nodes_query, path.mode="all_paths")
 subg <- dDAGinduce(g, nodes_query, path.mode="shortest_paths")
 }
 \seealso{
-\code{\link{dDAGinduce}}
+\code{\link{dDAGroot}}
 }
 

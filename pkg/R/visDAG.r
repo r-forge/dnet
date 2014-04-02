@@ -252,11 +252,18 @@ visDAG <- function (g, data=NULL, height=7, width=7, margin=rep(0.1,4), colormap
     
     ########################################################################
 
-
+    flag <- 0
+    if(length(dev.list())==0){
+        flag <- 1
+    }
     ## global Graphviz attributes
-    opar <- par() # make a copy of current settings
+    #opar <- par() # make a copy of current settings
     par("fin"=c(0.69,0.69))
     graphAttrs <- Rgraphviz::getDefaultAttrs(curAttrs=list(), layoutType='dot')
+    
+    if(flag==1){
+        dev.off(which=dev.cur())
+    }
     
     graphAttrs$cluster <- NULL
     # http://svitsrv25.epfl.ch/R-doc/library/Rgraphviz/html/GraphvizAttributes.html

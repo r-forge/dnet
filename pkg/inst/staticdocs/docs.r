@@ -57,6 +57,7 @@ list(
                 'dDAGroot',
                 'dDAGtip',
                 'dDAGlevel',
+                'dDAGannotate',
                 "visDAG"
             )
         ),

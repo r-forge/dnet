@@ -201,22 +201,15 @@ subg <- dNetInduce(g, V(g), knn=0)
 # 4) find maximum-scoring module based on fdr=0.1 threshold
 module <- dNetPipeline(g=subg, pval=x, fdr=0.1)
 </div>
-<strong class='message'>Start at 2014-04-01 16:59:50</strong>
+<strong class='message'>Start at 2014-04-02 15:22:26</strong>
 <strong class='message'></strong>
 <strong class='message'>First, fit the p-value distribution under beta-uniform mixture model...</strong>
-<strong class='message'>	A total of p-values: 1000</strong>
-<strong class='message'>	Maximum Log-Likelihood: 263.3</strong>
-<strong class='message'>	Mixture parameter (lambda): 0.000</strong>
-<strong class='message'>	Shape parameter (a): 0.523</strong>
+<strong class='warning'>Warning message:
+BUM model could not be fitted to data</strong>
 <strong class='message'>Second, determine FDR threshold...</strong>
 <strong class='message'>	FDR threshold: 1.00e-01</strong>
 <strong class='message'>Third, calculate the scores according to the fitted BUM and FDR threshold (if any)...</strong>
-<strong class='message'>	Amongst 1000 scores, there are 148 positives.</strong>
-<strong class='message'>Finally, find the subnetwork from the input network with 1000 nodes and 4997 edges...</strong>
-<strong class='message'>	Size of the module: 88 nodes and 94 edges</strong>
-<strong class='message'></strong>
-<strong class='message'>Finish at 2014-04-01 16:59:51</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='error'>Error in dBUMscore(fit = fit, method = method, fdr = fdr_final, scatter.bum = F): The funciton must apply to 'BUM' object.
 </strong>
 <div class='input'>
 ## <strong>Not run</strong>: 
