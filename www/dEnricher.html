@@ -279,31 +279,31 @@ data <- rownames(RT)[1:1000]
 eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
 RData.location="./RData_Rd")
 </div>
-<strong class='message'>Start at 2014-04-03 17:52:25</strong>
+<strong class='message'>Start at 2014-04-03 18:53:01</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-03 17:52:25) ...</strong>
+<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-03 18:53:01) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egMP.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-04-03 17:52:27) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-03 18:53:03) ...</strong>
 <strong class='message'>	Among 1000 symbols of input data, there are 853 mappable via official gene symbols but 147 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using FisherTest (2014-04-03 17:52:28) ...</strong>
+<strong class='message'>Third, perform enrichment analysis using FisherTest (2014-04-03 18:53:03) ...</strong>
 <strong class='message'>	There are 4519 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-04-03 17:52:31) ...</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-03 18:53:07) ...</strong>
 <strong class='message'>
-End at 2014-04-03 17:52:31</strong>
+End at 2014-04-03 18:53:07</strong>
 <strong class='message'>Runtime in total is: 6 secs
 </strong>
 <div class='input'>eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
 ontology.algorithm="elim", RData.location="./RData_Rd")
 </div>
-<strong class='message'>Start at 2014-04-03 17:52:31</strong>
+<strong class='message'>Start at 2014-04-03 18:53:07</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-03 17:52:31) ...</strong>
+<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-03 18:53:07) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egMP.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-04-03 17:52:33) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-03 18:53:08) ...</strong>
 <strong class='message'>	Among 1000 symbols of input data, there are 853 mappable via official gene symbols but 147 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using FisherTest based on elim algorithm to respect ontology structure (2014-04-03 17:52:33) ...</strong>
+<strong class='message'>Third, perform enrichment analysis using FisherTest based on elim algorithm to respect ontology structure (2014-04-03 18:53:08) ...</strong>
 <strong class='message'>	Load ontology information from http://dnet.r-forge.r-project.org/data/Obo/ig.MP.RData</strong>
 <strong class='message'>	There are 4609 terms being used</strong>
 <strong class='message'>	At level 15, there are 4 nodes/terms: so far, a total of 0 nodes called significant, and 0 ancestral nodes changed (0 genes eliminated)</strong>
@@ -321,10 +321,10 @@ ontology.algorithm="elim", RData.location="./RData_Rd")
 <strong class='message'>	At level 3, there are 70 nodes/terms: so far, a total of 62 nodes called significant, and 221 ancestral nodes changed (5196 genes eliminated)</strong>
 <strong class='message'>	At level 2, there are 29 nodes/terms: so far, a total of 62 nodes called significant, and 221 ancestral nodes changed (5196 genes eliminated)</strong>
 <strong class='message'>	At level 1, there are 1 nodes/terms: so far, a total of 62 nodes called significant, and 221 ancestral nodes changed (5196 genes eliminated)</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-04-03 17:52:56) ...</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-03 18:53:29) ...</strong>
 <strong class='message'>
-End at 2014-04-03 17:52:56</strong>
-<strong class='message'>Runtime in total is: 25 secs
+End at 2014-04-03 18:53:29</strong>
+<strong class='message'>Runtime in total is: 22 secs
 </strong>
 <div class='input'>cbind(eTerm$set_info[which(eTerm$pvalue < 1e-3), c(1,2)],
 eTerm$pvalue[which(eTerm$pvalue < 1e-3)])
