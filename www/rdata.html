@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Demos @ dnet 1.0.0</title>
+<title>RData @ dnet 1.0.0</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Hai Fang and Julian Gough">
 
@@ -107,18 +107,41 @@
       
       <div class="row">
   <div class="span8">
+    
+    <h1>Built-in RData</h1><p>
+    
+    <h2>Introduction</h2>
 
-    <h1>Demos</h1><p>
-    
-    <ul>
-      <li><a href="demo-CLL.html">Demo for patient omics dataset</a></li>
-      <li><a href="demo-Hiratani.html">Demo for multilayer omics dataset</a></li>
-      <li><a href="demo-Fang.html">Demo for time-course omics dataset</a></li>
-    </ul>
+<p>As part of the package, the built-in RData (with <code>.RData</code> extension; available at <a href="http://dnet.r-forge.r-project.org/data">http://dnet.r-forge.r-project.org/data</a>) contain curated/compiled data, which can be broadly grouped into the following categories:</p>
+
+<ol>
+<li><p><code>Ontologies</code>
+Locate in the subdirectory <a href="http://dnet.r-forge.r-project.org/data/Obo">Obo</a>, containing information on ontology terms and their relationships. Ontologies include Gene Ontology (GO) and its three subontologies (BP: Biological Process; MF: Molecular Function; CC: Cellular Component), Human Phenotype (HP) and its three subontologies (PA: Phenotypic Abnormality; ON: ONset and clinical course; MI: Mode of Inheritance), Disease Ontology (DO), and Mammalian Phenotype (MP). Terms in an ontology are organised as a direct acyclic graph (DAG), which is further stored as an object of the class <a href="http://igraph.sourceforge.net/doc/R/aaa-igraph-package.html">igraph</a>.</p></li>
+<li><p><code>Organism-specific databases</code>
+Organisms supported are: <a href="http://dnet.r-forge.r-project.org/data/Hs">human</a> (<code>Hs</code>; tax_id=10090), <a href="http://dnet.r-forge.r-project.org/data/Mm">mouse</a> (<code>Mm</code>; tax_id=10090), <a href="http://dnet.r-forge.r-project.org/data/At">arabidopsis</a> (<code>At</code>; tax_id=3702), <a href="http://dnet.r-forge.r-project.org/data/Ce">c.elegans</a> (<code>Ce</code>; tax_id=6239), <a href="http://dnet.r-forge.r-project.org/data/Dm">fruitfly</a> (<code>Dm</code>; tax_id=7227), <a href="http://dnet.r-forge.r-project.org/data/Da">zebrafish</a> (<code>Da</code>; tax_id=7955), <a href="http://dnet.r-forge.r-project.org/data/Rn">rat</a> (<code>Rn</code>; tax_id=10116) and <a href="http://dnet.r-forge.r-project.org/data/Gg">chicken</a> (<code>Gg</code>; tax_id=9031). For example, human-specific databases contain information on Entrez Genes, their annotations by a variety of ontologies, their phylostratific age (PS), and their interacting network derived from STRING.</p></li>
+<li><p><code>Genesets in human</code>
+Locate in the subdirectory <a href="http://dnet.r-forge.r-project.org/data/Msigdb">Msigdb</a>. These genesets are derived from the molecular signatures database.</p></li>
+<li><p><code>Datasets as demos</code>
+Locate in the subdirectory <a href="http://dnet.r-forge.r-project.org/data/Datasets">Datasets</a>. They used in <a href="http://dnet.r-forge.r-project.org/demos.html">Demos</a></p></li>
+</ol>
+
+<h2>Documentations and Download</h2>
+
+<p>For details, please refer to <a href="http://dnet.r-forge.r-project.org/docs.html">Documentations</a>.</p>
+
+<p>In addition to download individually (as shown above), the <code>Linux/Mac</code> user can use these commands for download as a whole:</p>
+
+<pre><code># recursively download all &quot;.RData&quot; files with the preserving directory structure
+wget -r -l2 -A &quot;*.RData&quot; -np -nH --cut-dirs=0 &quot;http://dnet.r-forge.r-project.org/data&quot; 
+# view the download
+ls -lh -R data
+</code></pre>
+
+
   </div>
-  
+
   <div class="span4">
-    
+
     <!--
     
     
@@ -137,7 +160,7 @@
     -->
     
   </div>
-  
+
 </div>
       
       <footer>

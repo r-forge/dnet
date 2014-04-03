@@ -41,8 +41,8 @@ list(
                 'visTreeBootstrap'
             )
         ),
-        sd_section("Built-in databases and functions for ontologies",
-            "These databases and functions are used to deal with a variety of ontologies, each represented as a direct acyclic graph (DAG). DAG is stored as an object of the class 'igraph'.",
+        sd_section("Built-in ontologies and analysis functions",
+            "These ontologies each are represent as a direct acyclic graph (DAG). DAG is stored as an object of the class 'igraph', which can be processed by various analysis and visualisation functions.",
             c(
                 "ig.GOMF",
                 "ig.GOBP",

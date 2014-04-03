@@ -2,11 +2,13 @@
 
 ## Introduction
 
-`dnet` is an open-source R package for integrative analysis of network, expression, evolution and ontology data. 
+`dnet` is an open-source R package for integrative analysis of `network`, `expression`, `evolution` and `ontology` data. 
 
 `dnet` intends to analyse the biological network whose nodes/genes are associated with dynamic information such as expression levels across samples, with aims to identify expression-active dynamic subnetworks.
 
-`dnet` also supports enrichment analysis using ontologies including Gene Ontology (GO), Disease Ontology (DO), Human Phenotype (HP) and Mammalian Phenotype (MP). Evolution analysis is also possible using gene phylostratific age information. Both analyses can be carried out in a variety of organisms: human, mouse, rat, chicken, c.elegans, fruitfly, zebrafish and arabidopsis.
+`dnet` also supports enrichment analysis using a variety of ontologies and using gene phylostratific age information. 
+
+`dnet` is able to conduct analyses in `human` but also many common model organisms: `mouse`, `rat`, `chicken`, `c.elegans`, `fruitfly`, `zebrafish` and `arabidopsis`.
 
 `dnet` aims to deliver an eye-intuitive tool for network-based sample stratifications.
 
@@ -16,7 +18,8 @@
 * Identification of expression-active dynamic subnetworks
 * Network-based sample stratifications 
 * Visualisations of network-based sample stratifications on 2D landscape
-* Enrichment analysis using a wide variety of [ontologies](http://dnet.r-forge.r-project.org/data/Obo) plus phylostratific age information in model organisms including [human](http://dnet.r-forge.r-project.org/data/Hs), [mouse](http://dnet.r-forge.r-project.org/data/Mm), [rat](http://dnet.r-forge.r-project.org/data/Rn), [chicken](http://dnet.r-forge.r-project.org/data/Gg), [c.elegans](http://dnet.r-forge.r-project.org/data/Ce), [fruitfly](http://dnet.r-forge.r-project.org/data/Dm), [zebrafish](http://dnet.r-forge.r-project.org/data/Da) and [arabidopsis](http://dnet.r-forge.r-project.org/data/At). For details, please refer to [Readme](http://dnet.r-forge.r-project.org/data/Readme.txt)  and [Documentations](http://dnet.r-forge.r-project.org/docs.html)
+* Enrichment analysis (Fisher's exact test and GSEA) that can respect the hierarchy of the ontology
+* A wide variety of built-in data: ontologies (including `Gene Ontology`, `Disease Ontology`, `Human Phenotype` and `Mammalian Phenotype`), phylostratific age information and gene association networks in human and common organisms. On details, please refer to [RData](http://dnet.r-forge.r-project.org/rdata.html).
 * This package can run on `Windows`, `Mac` and `Linux`
 
 ## See also

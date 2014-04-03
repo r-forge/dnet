@@ -43,14 +43,12 @@
 #' @seealso \code{\link{dGSEAview}}, \code{\link{dGSEAwrite}}, \code{\link{visGSEA}}
 #' @include dGSEA.r
 #' @examples
-#' \dontrun{
 #' load(url("http://dnet.r-forge.r-project.org/data/Datasets/Hiratani_TableS1.RData"))
 #' data <- RT[1:1000,1:2]
 #' eTerm <- dGSEA(data, identity="symbol", genome="Mm", ontology="MP", which_distance=c(1,2))
 #' res <- dGSEAview(eTerm, which_sample=1, top_num=5, sortBy="adjp", decreasing=FALSE, details=TRUE)
 #' visGSEA(eTerm, which_sample=1, which_term=rownames(res)[1])
 #' output <- dGSEAwrite(eTerm, which_content="gadjp", which_score="gadjp", filename="eTerm.txt")
-#' }
 
 dGSEA <- function(data, identity=c("symbol","entrez"), check.symbol.identity=FALSE, genome=c("Hs", "Mm", "Rn", "Gg", "Ce", "Dm", "Da", "At"), ontology=c("GOBP","GOMF","GOCC","PS","DO","HPPA","HPMI","HPON","MP", "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7"), sizeRange=c(10,1000), which_distance=NULL, weight=1, nperm=100, fast=T, sigTail=c("two-tails","one-tail"), verbose=T)
 {
@@ -221,12 +219,12 @@ dGSEA <- function(data, identity=c("symbol","entrez"), check.symbol.identity=FAL
             
             if(verbose){
                 now <- Sys.time()
-                message(sprintf("\tAmong %d symbols of input data, there are %d mappable via official gene symbols, %d mappable via gene alias and %d unmappable", length(Symbol), (length(Symbol)-length(a)), sum(!is.na(b)), sum(is.na(b))), appendLF=T)
+                message(sprintf("\tAmong %d symbols of input data, there are %d mappable via official gene symbols, %d mappable via gene alias but %d left unmappable", length(Symbol), (length(Symbol)-length(a)), sum(!is.na(b)), sum(is.na(b))), appendLF=T)
             }
         }else{
             if(verbose){
                 now <- Sys.time()
-                message(sprintf("\tAmong %d symbols of input data, there are %d mappable via official gene symbols and %d unmappable", length(Symbol), (sum(!is.na(match_flag))), (sum(is.na(match_flag)))), appendLF=T)
+                message(sprintf("\tAmong %d symbols of input data, there are %d mappable via official gene symbols but %d left unmappable", length(Symbol), (sum(!is.na(match_flag))), (sum(is.na(match_flag)))), appendLF=T)
             }
         
         }
@@ -239,7 +237,7 @@ dGSEA <- function(data, identity=c("symbol","entrez"), check.symbol.identity=FAL
         match_flag <- match(GeneID,allGeneID)
         GeneID <- allGeneID[match_flag]
     }
-       
+    
     flag <- !is.na(GeneID)
     data <- as.matrix(data[flag,])
     GeneID <- GeneID[flag]
@@ -641,10 +639,10 @@ dGSEA <- function(data, identity=c("symbol","entrez"), check.symbol.identity=FAL
     
     ####################################################################################
     endT <- Sys.time()
-    message(paste(c("End at ",as.character(endT)), collapse=""), appendLF=T)
+    message(paste(c("\nEnd at ",as.character(endT)), collapse=""), appendLF=T)
     
     runTime <- as.numeric(difftime(strptime(endT, "%Y-%m-%d %H:%M:%S"), strptime(startT, "%Y-%m-%d %H:%M:%S"), units="secs"))
-    message(paste(c("\nRuntime in total is: ",runTime," secs\n"), collapse=""), appendLF=T)
+    message(paste(c("Runtime in total is: ",runTime," secs\n"), collapse=""), appendLF=T)
     
     eTerm <- list(set_info = set_info,
                   gs       = gs,
