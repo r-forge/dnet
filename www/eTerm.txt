@@ -1,10 +1,10 @@
 setID	setSize	name	namespace	distance	ESC_46C	ESC_D3
 MP:0000003	30	abnormal adipose tissue morphology	Mammalian_phenotype	2	-1	-1
-MP:0002102	21	abnormal ear morphology	Mammalian_phenotype	2	-1	NA
+MP:0000516	56	abnormal renal/urinary system morphology	Mammalian_phenotype	2	NA	-1
+MP:0001663	35	abnormal digestive system physiology	Mammalian_phenotype	2	-1	NA
 MP:0002164	31	abnormal gland physiology	Mammalian_phenotype	2	-1	NA
-MP:0003878	15	abnormal ear physiology	Mammalian_phenotype	2	-1	NA
+MP:0004196	54	abnormal prenatal growth/weight/body size	Mammalian_phenotype	2	1	NA
 MP:0005375	31	adipose tissue phenotype	Mammalian_phenotype	1	-1	NA
-MP:0005376	207	homeostasis/metabolism phenotype	Mammalian_phenotype	1	NA	1
-MP:0005377	27	hearing/vestibular/ear phenotype	Mammalian_phenotype	1	-1	NA
+MP:0005377	27	hearing/vestibular/ear phenotype	Mammalian_phenotype	1	NA	-1
 MP:0005502	47	abnormal renal/urinary system physiology	Mammalian_phenotype	2	-1	NA
-MP:0009701	12	abnormal birth body size	Mammalian_phenotype	2	-1	-1
+MP:0009701	12	abnormal birth body size	Mammalian_phenotype	2	NA	-1
