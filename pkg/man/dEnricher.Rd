@@ -1,25 +1,26 @@
-\name{dGSEA}
-\alias{dGSEA}
-\title{Function to conduct gene set enrichment analysis given the input data and the ontology in query}
+\name{dEnricher}
+\alias{dEnricher}
+\title{Function to conduct enrichment analysis given the input data and the ontology in query}
 \usage{
-dGSEA(data, identity = c("symbol", "entrez"), check.symbol.identity =
-FALSE,
-genome = c("Hs", "Mm", "Rn", "Gg", "Ce", "Dm", "Da", "At"),
-ontology = c("GOBP", "GOMF", "GOCC", "PS", "DO", "HPPA", "HPMI",
-"HPON",
-"MP", "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG",
+dEnricher(data, identity = c("symbol", "entrez"),
+check.symbol.identity = FALSE, genome = c("Hs", "Mm", "Rn", "Gg", "Ce",
+"Dm", "Da", "At"), ontology = c("GOBP", "GOMF", "GOCC", "PS", "DO",
+"HPPA",
+"HPMI", "HPON", "MP", "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP",
+"MsigdbC2KEGG",
 "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR",
 "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC",
 "MsigdbC6", "MsigdbC7"), sizeRange = c(10, 1000), which_distance =
 NULL,
-weight = 1, nperm = 100, fast = T, sigTail = c("two-tails",
-"one-tail"), p.adjust.method = c("BH", "BY", "bonferroni", "holm",
-"hochberg", "hommel"), verbose = T,
+test = c("FisherTest", "HypergeoTest"), p.adjust.method = c("BH", "BY",
+"bonferroni", "holm", "hochberg", "hommel"), ontology.algorithm =
+c("none",
+"elim"), verbose = T,
 RData.location = "http://dnet.r-forge.r-project.org/data")
 }
 \arguments{
-\item{data}{a data frame or matrix of input data. It must
-have row names, either Entrez Gene ID or Symbol}
+\item{data}{an input vector. It contains either Entrez
+Gene ID or Symbol}
 
 \item{identity}{the type of gene identity (i.e. row names
 of input data), either "symbol" for gene symbols (by
@@ -69,24 +70,17 @@ a minimum of 10 but no more than 1000}
 ontology is used to restrict terms in consideration. By
 default, it sets to 'NULL' to consider all distances}
 
-\item{weight}{type of score weigth. It can be "0" for
-unweighted (an equivalent to Kolmogorov-Smirnov, only
-considering the rank), "1" for weighted by input gene
-score (by default), and "2" for over-weighted, and so on}
-
-\item{nperm}{the number of random permutations. For each
-permutation, gene-score associations will be permutated
-so that permutation of gene-term associations is
-realised}
-
-\item{fast}{logical to indicate whether to fast calculate
-expected results from permutated data. By default, it
-sets to true}
-
-\item{sigTail}{the tail used to calculate the statistical
-significance. It can be either "two-tails" for the
-significance based on two-tails or "one-tail" for the
-significance based on one tail}
+\item{test}{the statistic test used. It can be
+"FisherTest" for using fisher's exact test, or
+"HypergeoTest" for using hypergeometric test.
+Hypergeometric test is to sample at random from the
+background containing annotated and non-annotated genes,
+and thus compare sampling to background. Fisher's exact
+test is to test the independence between gene group
+(genes belonging to a group or not) and gene annotation
+(genes annotated by a term or not), and thus compare
+sampling to the left part of background (after sampling
+without replacement)}
 
 \item{p.adjust.method}{the method used to adjust
 p-values. It can be one of "BH", "BY", "bonferroni",
@@ -98,6 +92,15 @@ amongst the rejected hypotheses); the last four methods
 designed to give strong control of the family-wise error
 rate (FWER). Notes: FDR is a less stringent condition
 than FWER}
+
+\item{ontology.algorithm}{the algorithm used to respect
+the hierarchy of the ontology. It can be "none" for not
+considering the ontology heirarchy, "elim" for the
+alogrithm to computer the significance of a term in terms
+of the significance of its children (precisely, once
+genes are already annotated to a signficantly enriched
+term, all these genes are eliminated from the ancestors
+of that term)}
 
 \item{verbose}{logical to indicate whether the messages
 will be displayed in the screen. By default, it sets to
@@ -132,73 +135,46 @@ number of gene set in consideration, and the 4 columns are
 "namespace" and "distance"} \item{\code{gs}: a list of gene
 sets, each storing gene members. Always, gene sets are
 identified by "setID" and gene members identified by
-"Entrez ID"} \item{\code{data}: a matrix of nGene X nSample
-containing input data in consideration. It is not always
-the same as the input data as only those mappable are
-retained} \item{\code{es}: a matrix of nSet X nSample
-containing enrichment score, where nSample is the number of
-samples (i.e. the number of columns in input data}
-\item{\code{nes}: a matrix of nSet X nSample containing
-normalised enrichment score. It is the version of
-enrichment score but after being normalised by gene set
-size} \item{\code{pvalue}: a matrix of nSet X nSample
-containing nominal p value} \item{\code{adjp}: a matrix of
-nSet X nSample containing adjusted p value. It is the p
-value but after being adjusted for multiple comparisons}
-\item{\code{gadjp}: a matrix of nSet X nSample containing
-globally adjusted p value in terms of all samples}
-\item{\code{fdr}: a matrix of nSet X nSample containing
-false discovery rate (FDR). It is the estimated probability
-that the normalised enrichment score represents a false
-positive finding} \item{\code{qvalue}: a matrix of nSet X
-nSample containing q value. It is the monotunically
-increasing FDR} \item{\code{call}: the call that produced
-this result} }
+"Entrez ID"} \item{\code{data}: a vector containing input
+data in consideration. It is not always the same as the
+input data as only those mappable are retained}
+\item{\code{pvalue}: a vector containing p-values}
+\item{\code{adjp}: a vector containing adjusted p-values.
+It is the p value but after being adjusted for multiple
+comparisons} \item{\code{call}: the call that produced this
+result} }
 }
 \description{
-\code{dGSEA} is supposed to conduct gene set enrichment
-analysis given the input data and the ontology in query. It
-returns an object of class "eTerm".
+\code{dEnricher} is supposed to conduct enrichment analysis
+given the input data and the ontology in query. It returns
+an object of class "eTerm".
 }
 \note{
-The interpretation of returned components: \itemize{
-\item{"es": enrichment score for the gene set is the degree
-to which this gene set is overrepresented at the top or
-bottom of the ranked list of genes in each column of input
-data;} \item{"nes": normalised enrichment score for the
-gene set is enrichment score that has already normalised by
-gene set size. It is comparable across analysed gene sets;}
-\item{"pvalue": nominal p value is the statistical
-significance of the enrichment score. It is not adjusted
-for multiple hypothesis testing, and thus is of limited use
-in comparing gene sets;} \item{"adjp": adjusted p value by
-Benjamini & Hochberg method. It is comparable across gene
-sets;} \item{"gadjp": globally adjusted p value by
-Benjamini & Hochberg method. Unlike "adjp", it is adjusted
-in terms of all samples;} \item{"fdr": false discovery rate
-is the estimated probability that the normalised enrichment
-score represents a false positive finding. Unlike "adjp" or
-"gadjp" (also aliased as "fdr") that is derived from a list
-of p values, this version of fdr is directly calculate from
-the statistic (i.e. normalised enrichment score);}
-\item{"qvalue": q value is the monotunically increasing FDR
-so that the higher "nes", the lower "qvalue".} }
+None
 }
 \examples{
 \dontrun{
 load(url("http://dnet.r-forge.r-project.org/data/Datasets/Hiratani_TableS1.RData"))
-data <- RT[1:1000,1:2]
-eTerm <- dGSEA(data, identity="symbol", genome="Mm", ontology="MP",
-which_distance=c(1,2))
-res <- dGSEAview(eTerm, which_sample=1, top_num=5, sortBy="adjp",
-decreasing=FALSE, details=TRUE)
-visGSEA(eTerm, which_sample=1, which_term=rownames(res)[1])
-output <- dGSEAwrite(eTerm, which_content="gadjp", which_score="gadjp",
-filename="eTerm.txt")
+data <- rownames(RT)[1:1000]
+eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
+RData.location="./RData_Rd")
+eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
+ontology.algorithm="elim", RData.location="./RData_Rd")
+cbind(eTerm$set_info[which(eTerm$pvalue < 1e-3), c(1,2)],
+eTerm$pvalue[which(eTerm$pvalue < 1e-3)])
+
+# highlight the top significant terms and also color-code all terms according to the adjust p-values
+load(url("http://dnet.r-forge.r-project.org/data/Obo/ig.MP.RData"))
+g <- ig.MP
+nodes_query <- names(sort(eTerm$adjp)[1:5])
+nodes.highlight <- rep("red", length(nodes_query))
+names(nodes.highlight) <- nodes_query
+subg <- dDAGinduce(g, nodes_query)
+visDAG(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]),
+node.info="both", zlim=c(0,2), node.attrs=list(color=nodes.highlight))
 }
 }
 \seealso{
-\code{\link{dGSEAview}}, \code{\link{dGSEAwrite}},
-\code{\link{visGSEA}}
+\code{\link{dEnricher}}
 }
 

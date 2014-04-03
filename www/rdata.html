@@ -136,15 +136,15 @@
 <li><code>Datasets as demos</code></li>
 </ul>
 
-<p>Locate in the subdirectory <a href="http://dnet.r-forge.r-project.org/data/Datasets">Datasets</a>. They used in <a href="http://dnet.r-forge.r-project.org/demos.html">Demos</a></p>
+<p>Locate in the subdirectory <a href="http://dnet.r-forge.r-project.org/data/Datasets">Datasets</a>. They are used in <a href="http://dnet.r-forge.r-project.org/demos.html">Demos</a></p>
 
 <h2>Documentations and Download</h2>
 
 <p>For details, please refer to <a href="http://dnet.r-forge.r-project.org/docs.html">Documentations</a>.</p>
 
-<p>In addition to download individually (as shown above), the <code>Linux/Mac</code> user can use these commands for download as a whole:</p>
+<p>In addition to download (as shown above), the <code>Linux/Mac</code> user can use shell commands in Terminal for download in one go:</p>
 
-<pre><code># recursively download all &quot;.RData&quot; files with the preserving directory structure
+<pre><code># recursively download all RData files (preserving the whole directory structure)
 wget -r -l2 -A &quot;*.RData&quot; -np -nH --cut-dirs=0 &quot;http://dnet.r-forge.r-project.org/data&quot; 
 # view the download
 ls -lh -R data

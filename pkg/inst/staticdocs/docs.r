@@ -7,6 +7,7 @@ list(
         sd_section("Analysis functions",
             "These functions are used for analysis",
             c(
+                'dEnricher',
                 'dGSEA',
                 'dGSEAview',
                 'dGSEAwrite',

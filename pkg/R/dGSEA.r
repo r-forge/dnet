@@ -13,7 +13,9 @@
 #' @param nperm the number of random permutations. For each permutation, gene-score associations will be permutated so that permutation of gene-term associations is realised
 #' @param fast logical to indicate whether to fast calculate expected results from permutated data. By default, it sets to true
 #' @param sigTail the tail used to calculate the statistical significance. It can be either "two-tails" for the significance based on two-tails  or "one-tail" for the significance based on one tail
+#' @param p.adjust.method the method used to adjust p-values. It can be one of "BH", "BY", "bonferroni", "holm", "hochberg" and "hommel". The first two methods "BH" (widely used) and "BY" control the false discovery rate (FDR: the expected proportion of false discoveries amongst the rejected hypotheses); the last four methods "bonferroni", "holm", "hochberg" and "hommel" are designed to give strong control of the family-wise error rate (FWER). Notes: FDR is a less stringent condition than FWER
 #' @param verbose logical to indicate whether the messages will be displayed in the screen. By default, it sets to false for no display
+#' @param RData.location the characters to tell the location of built-in RData files. By default, it remotely locates at \url{"http://dnet.r-forge.r-project.org/data"}. For the user equipped with fast internet connection, this option can be just left as default. But it is always advisable to download these files locally. Especially when the user needs to run this function many times, there is no need to ask the function to remotely download every time (also it will unnecessarily increase the runtime). For examples, these files (as a whole or part of them) can be first downloaded into your current working directory, and then set this option as: \eqn{RData.location="."}. Surely, the location can be anywhere as long as the user provides the correct path pointing to (otherwise, the script will have to remote download each time). Here is the UNIX command for downloading all RData files (preserving the directory structure): \eqn{wget -r -l2 -A "*.RData" -np -nH --cut-dirs=0 "http://dnet.r-forge.r-project.org/data"}
 #' @return 
 #' an object of class "eTerm", a list with following components:
 #' \itemize{
@@ -43,14 +45,16 @@
 #' @seealso \code{\link{dGSEAview}}, \code{\link{dGSEAwrite}}, \code{\link{visGSEA}}
 #' @include dGSEA.r
 #' @examples
+#' \dontrun{
 #' load(url("http://dnet.r-forge.r-project.org/data/Datasets/Hiratani_TableS1.RData"))
 #' data <- RT[1:1000,1:2]
 #' eTerm <- dGSEA(data, identity="symbol", genome="Mm", ontology="MP", which_distance=c(1,2))
 #' res <- dGSEAview(eTerm, which_sample=1, top_num=5, sortBy="adjp", decreasing=FALSE, details=TRUE)
 #' visGSEA(eTerm, which_sample=1, which_term=rownames(res)[1])
 #' output <- dGSEAwrite(eTerm, which_content="gadjp", which_score="gadjp", filename="eTerm.txt")
+#' }
 
-dGSEA <- function(data, identity=c("symbol","entrez"), check.symbol.identity=FALSE, genome=c("Hs", "Mm", "Rn", "Gg", "Ce", "Dm", "Da", "At"), ontology=c("GOBP","GOMF","GOCC","PS","DO","HPPA","HPMI","HPON","MP", "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7"), sizeRange=c(10,1000), which_distance=NULL, weight=1, nperm=100, fast=T, sigTail=c("two-tails","one-tail"), verbose=T)
+dGSEA <- function(data, identity=c("symbol","entrez"), check.symbol.identity=FALSE, genome=c("Hs", "Mm", "Rn", "Gg", "Ce", "Dm", "Da", "At"), ontology=c("GOBP","GOMF","GOCC","PS","DO","HPPA","HPMI","HPON","MP", "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7"), sizeRange=c(10,1000), which_distance=NULL, weight=1, nperm=100, fast=T, sigTail=c("two-tails","one-tail"), p.adjust.method=c("BH", "BY", "bonferroni", "holm", "hochberg", "hommel"), verbose=T, RData.location="http://dnet.r-forge.r-project.org/data")
 {
     startT <- Sys.time()
     message(paste(c("Start at ",as.character(startT)), collapse=""), appendLF=T)
@@ -62,6 +66,7 @@ dGSEA <- function(data, identity=c("symbol","entrez"), check.symbol.identity=FAL
     genome <- match.arg(genome)
     ontology <- match.arg(ontology)
     sigTail <- match.arg(sigTail)
+    p.adjust.method <- match.arg(p.adjust.method)
     
     if (is.vector(data)){
         data <- matrix(data, nrow=length(data), ncol=1)
@@ -83,71 +88,92 @@ dGSEA <- function(data, identity=c("symbol","entrez"), check.symbol.identity=FAL
         message(sprintf("First, load the ontology %s and its gene associations in the genome %s (%s) ...", ontology, genome, as.character(now)), appendLF=T)
     }
     
-    
     ###############################
     ## check the eligibility for pairs of input genome and ontology
-    
+    all.ontologies <- c("GOBP","GOMF","GOCC","PS","DO","HPPA","HPMI","HPON","MP", "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7")
     possible.ontologies <- switch(genome,
-                       Hs = c("GOBP","GOMF","GOCC","PS","DO","HPPA","HPMI","HPON","MP", "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7")[c(1:4, 5:9, 10:24)],
-                       Mm = c("GOBP","GOMF","GOCC","PS","DO","HPPA","HPMI","HPON","MP", "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7")[c(1:4, 5:9)],
-                       Rn = c("GOBP","GOMF","GOCC","PS","DO","HPPA","HPMI","HPON","MP", "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7")[c(1:4)],
-                       Gg = c("GOBP","GOMF","GOCC","PS","DO","HPPA","HPMI","HPON","MP", "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7")[c(1:4)],
-                       Ce = c("GOBP","GOMF","GOCC","PS","DO","HPPA","HPMI","HPON","MP", "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7")[c(1:4)],
-                       Dm = c("GOBP","GOMF","GOCC","PS","DO","HPPA","HPMI","HPON","MP", "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7")[c(1:4)],
-                       Da = c("GOBP","GOMF","GOCC","PS","DO","HPPA","HPMI","HPON","MP", "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7")[c(1:4)],
-                       At = c("GOBP","GOMF","GOCC","PS","DO","HPPA","HPMI","HPON","MP", "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7")[c(1:4)]
+                       Hs = all.ontologies[c(1:4, 5:9, 10:24)],
+                       Mm = all.ontologies[c(1:4, 5:9)],
+                       Rn = all.ontologies[c(1:4)],
+                       Gg = all.ontologies[c(1:4)],
+                       Ce = all.ontologies[c(1:4)],
+                       Dm = all.ontologies[c(1:4)],
+                       Da = all.ontologies[c(1:4)],
+                       At = all.ontologies[c(1:4)]
                        )
-    
     if(!(ontology %in% possible.ontologies)){
         stop(sprintf("The input pair of genome (%s) and ontology (%s) are not supported.\nThe supported ontologies in genome (%s): %s.\n", genome, ontology, genome, paste(possible.ontologies,collapse=", ")))
     }
 
     ###############################
+    ## make sure there is no "/" at the end
+    path_host <- gsub("/$", "", RData.location)
+    if(path_host=="" || length(path_host)==0 || is.na(path_host)){
+        path_host <- "http://dnet.r-forge.r-project.org/data"
+    }
+
+    #########
     ## load Enterz Gene information
     EG <- list()
-    load_EG_remote <- paste("http://dnet.r-forge.r-project.org/data/", genome, "/org.", genome, ".eg.RData", sep="")
-    load_EG_local1 <- paste("./data/", genome, "/org.", genome, ".eg.RData", sep="")
-    load_EG_local2 <- paste("./", genome, "/org.", genome, ".eg.RData", sep="")
-    load_EG_local3 <- paste("./org.", genome, "/org.", genome, ".eg.RData", sep="")
+    load_EG_remote <- paste(path_host, "/", genome, "/org.", genome, ".eg.RData", sep="")
+    load_EG_local1 <- file.path(path_host, paste("data/", genome, "/org.", genome, ".eg.RData", sep=""))
+    load_EG_local2 <- file.path(path_host, paste(genome, "/org.", genome, ".eg.RData", sep=""))
+    load_EG_local3 <- file.path(path_host, paste("org.", genome, "/org.", genome, ".eg.RData", sep=""))
     ## first, load local R files
     EG_local <- c(load_EG_local1, load_EG_local2, load_EG_local3)
     load_flag <- sapply(EG_local, function(x){
-        if(file.exists(x)){
-            load(x)
-            eval(parse(text=paste("EG <- org.", genome, ".eg", sep="")))
-            return(TRUE)
-        }else{
-            return(FALSE)
-        }
+        if(.Platform$OS.type=="windows") x <- gsub("/", "\\\\", x)
+        ifelse(file.exists(x), TRUE, FALSE)
     })
     ## otherwise, load remote R files
     if(sum(load_flag)==0){
-        load(url(load_EG_remote))
-        eval(parse(text=paste("EG <- org.", genome, ".eg", sep="")))
+        if(class(try(load(url(load_EG_remote)), T))=="try-error"){
+            load_EG_remote <- paste("http://dnet.r-forge.r-project.org/data/", genome, "/org.", genome, ".eg.RData", sep="")
+            if(class(try(load(url(load_EG_remote)), T))=="try-error"){
+                stop("Built-in Rdata files cannot be loaded. Please check your internet connection or their location in your local machine.\n")
+            }
+        }
+        load_EG <- load_EG_remote
+    }else{
+        load_EG <- EG_local[load_flag]
+        load(load_EG)
+    }
+    eval(parse(text=paste("EG <- org.", genome, ".eg", sep="")))
+    
+    if(verbose){
+        message(sprintf("\tLoad Enterz Gene information from %s", load_EG), appendLF=T)
     }
     
-    ###############################
+    #########
     ## load annotation information
     GS <- list()
-    load_GS_remote <- paste("http://dnet.r-forge.r-project.org/data/", genome, "/org.", genome, ".eg", ontology, ".RData", sep="")
-    load_GS_local1 <- paste("./data/", genome, "/org.", genome, ".eg", ontology, ".RData", sep="")
-    load_GS_local2 <- paste("./", genome, "/org.", genome, ".eg", ontology, ".RData", sep="")
-    load_GS_local3 <- paste("./org.", genome, ".eg", ontology, ".RData", sep="")
+    load_GS_remote <- paste(path_host, "/", genome, "/org.", genome, ".eg", ontology, ".RData", sep="")
+    load_GS_local1 <- file.path(path_host, paste("data/", genome, "/org.", genome, ".eg", ontology, ".RData", sep=""))
+    load_GS_local2 <- file.path(path_host, paste(genome, "/org.", genome, ".eg", ontology, ".RData", sep=""))
+    load_GS_local3 <- file.path(path_host, paste("org.", genome, ".eg", ontology, ".RData", sep=""))
     ## first, load local R files
     GS_local <- c(load_GS_local1, load_GS_local2, load_GS_local3)
     load_flag <- sapply(GS_local, function(x){
-        if(file.exists(x)){
-            load(x)
-            eval(parse(text=paste("EG <- org.", genome, ".eg", sep="")))
-            return(TRUE)
-        }else{
-            return(FALSE)
-        }
+        if(.Platform$OS.type=="windows") x <- gsub("/", "\\\\", x)
+        ifelse(file.exists(x), TRUE, FALSE)
     })
     ## otherwise, load remote R files
     if(sum(load_flag)==0){
-        load(url(load_GS_remote))
-        eval(parse(text=paste("GS <- org.", genome, ".eg", ontology, sep="")))
+        if(class(try(load(url(load_GS_remote)), T))=="try-error"){
+            load_GS_remote <- paste("http://dnet.r-forge.r-project.org/data/", genome, "/org.", genome, ".eg", ontology, ".RData", sep="")
+            if(class(try(load(url(load_GS_remote)), T))=="try-error"){
+                stop("Built-in Rdata files cannot be loaded. Please check your internet connection or their location in your local machine.\n")
+            }
+        }
+        load_GS <- load_GS_remote
+    }else{
+        load_GS <- GS_local[load_flag]
+        load(load_GS)
+    }
+    eval(parse(text=paste("GS <- org.", genome, ".eg", ontology, sep="")))
+    
+    if(verbose){
+        message(sprintf("\tLoad annotation information from %s", load_GS), appendLF=T)
     }
     
     ###############################
@@ -366,8 +392,7 @@ dGSEA <- function(data, identity=c("symbol","entrez"), check.symbol.identity=FAL
             
             if(verbose){
                 if(k %% 100==0 | k==nSet){
-                    now <- Sys.time()
-                    message(sprintf("\t\t %d of %d gene sets have been processed (%s) ...", k, nSet, as.character(now)), appendLF=T)
+                    message(sprintf("\t\t %d of %d gene sets have been processed", k, nSet), appendLF=T)
                 }
             }
             
@@ -493,7 +518,7 @@ dGSEA <- function(data, identity=c("symbol","entrez"), check.symbol.identity=FAL
         }
 
         ## adjusted p-value
-        adjP <- p.adjust(pES, method="BH")
+        adjP <- stats::p.adjust(pES, method=p.adjust.method)
         
         ##########        
         ## normalised ES score
