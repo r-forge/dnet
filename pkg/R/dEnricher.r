@@ -1,6 +1,6 @@
 #' Function to conduct enrichment analysis given the input data and the ontology in query
 #'
-#' \code{dEnricher} is supposed to conduct enrichment analysis given the input data and the ontology in query. It returns an object of class "eTerm". 
+#' \code{dEnricher} is supposed to conduct enrichment analysis given the input data and the ontology in query. It returns an object of class "eTerm". Enrichment analysis is based on either Fisher's exact test or Hypergeometric test. The test can respect the hierarchy of the ontology.
 #'
 #' @param data an input vector. It contains either Entrez Gene ID or Symbol
 #' @param identity the type of gene identity (i.e. row names of input data), either "symbol" for gene symbols (by default) or "entrez" for Entrez Gene ID. The option "symbol" is preferred as it is relatively stable from one update to another; also it is possible to search against synonyms (see the next parameter)
@@ -9,9 +9,11 @@
 #' @param ontology the ontology supported currently. It can be "GOBP" for Gene Ontology Biological Process, "GOMF" for Gene Ontology Molecular Function, "GOCC" for Gene Ontology Cellular Component, "PS" for phylostratific age information, "DO" for Disease Ontology, "HPPA" for Human Phenotype Phenotypic Abnormality, "HPMI" for Human Phenotype Mode of Inheritance, "HPON" for Human Phenotype ONset and clinical course, "MP" for Mammalian Phenotype, and the molecular signatures database (Msigdb) in human (including "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7"). Note: These four ("GOBP", "GOMF", "GOCC" and "PS") are availble for all genomes/species; for "Hs" and "Mm", these five ("DO", "HPPA", "HPMI", "HPON" and "MP") are also supported; all "Msigdb" are only supported in "Hs". For details on the eligibility for pairs of input genome and ontology, please refer to the online Documentations at \url{http://dnet.r-forge.r-project.org/docs.html}
 #' @param sizeRange the minimum and maximum size of members of each gene set in consideration. By default, it sets to a minimum of 10 but no more than 1000
 #' @param which_distance which distance of terms in the ontology is used to restrict terms in consideration. By default, it sets to 'NULL' to consider all distances
-#' @param test the statistic test used. It can be "FisherTest" for using fisher's exact test, or "HypergeoTest" for using hypergeometric test. Hypergeometric test is to sample at random from the background containing annotated and non-annotated genes, and thus compare sampling to background. Fisher's exact test is to test the independence between gene group (genes belonging to a group or not) and gene annotation (genes annotated by a term or not), and thus compare sampling to the left part of background (after sampling without replacement)
+#' @param test the statistic test used. It can be "FisherTest" for using fisher's exact test, "HypergeoTest" for using hypergeometric test, or "BinomialTest" for using binomial test. Fisher's exact test is to test the independence between gene group (genes belonging to a group or not) and gene annotation (genes annotated by a term or not), and thus compare sampling to the left part of background (after sampling without replacement). Hypergeometric test is to sample at random (without replacement)  from the background containing annotated and non-annotated genes, and thus compare sampling to background. Unlike hypergeometric test, binomial test is to sample at random (with replacement) from the background with the constant probability. In terms of the ease of finding the significance, they are in order: hypergeometric test > binomial test > fisher's exact test. In other words, in terms of the calculated p-value, hypergeometric test < binomial test < fisher's exact test
 #' @param p.adjust.method the method used to adjust p-values. It can be one of "BH", "BY", "bonferroni", "holm", "hochberg" and "hommel". The first two methods "BH" (widely used) and "BY" control the false discovery rate (FDR: the expected proportion of false discoveries amongst the rejected hypotheses); the last four methods "bonferroni", "holm", "hochberg" and "hommel" are designed to give strong control of the family-wise error rate (FWER). Notes: FDR is a less stringent condition than FWER
-#' @param ontology.algorithm the algorithm used to respect the hierarchy of the ontology. It can be "none" for not considering the ontology heirarchy, "elim" for the alogrithm to computer the significance of a term in terms of the significance of its children (precisely, once genes are already annotated to a signficantly enriched term, all these genes are eliminated from the ancestors of that term)
+#' @param ontology.algorithm the algorithm used to account for the hierarchy of the ontology. It can be one of "none", "pc", "elim" and "lea". For details, please see 'Note'
+#' @param elim.pvalue the parameter only used when "ontology.algorithm" is "elim". It is used to control how to declare a signficantly enriched term (and subsequently all genes in this term are eliminated from all its ancestors)
+#' @param lea.depth the parameter only used when "ontology.algorithm" is "lea". It is used to control how many maximum depth is uded to consider the children of a term (and subsequently all genes in these children term are eliminated from the use for the recalculation of the signifance at this term)
 #' @param verbose logical to indicate whether the messages will be displayed in the screen. By default, it sets to false for no display
 #' @param RData.location the characters to tell the location of built-in RData files. By default, it remotely locates at \url{"http://dnet.r-forge.r-project.org/data"}. For the user equipped with fast internet connection, this option can be just left as default. But it is always advisable to download these files locally. Especially when the user needs to run this function many times, there is no need to ask the function to remotely download every time (also it will unnecessarily increase the runtime). For examples, these files (as a whole or part of them) can be first downloaded into your current working directory, and then set this option as: \eqn{RData.location="."}. Surely, the location can be anywhere as long as the user provides the correct path pointing to (otherwise, the script will have to remote download each time). Here is the UNIX command for downloading all RData files (preserving the directory structure): \eqn{wget -r -l2 -A "*.RData" -np -nH --cut-dirs=0 "http://dnet.r-forge.r-project.org/data"}
 #' @return 
@@ -24,16 +26,24 @@
 #'  \item{\code{adjp}: a vector containing adjusted p-values. It is the p value but after being adjusted for multiple comparisons}
 #'  \item{\code{call}: the call that produced this result}
 #' }
-#' @note None
+#' @note The interpretation of the algorithms used to account for the hierarchy of the ontology:
+#' \itemize{
+#' \item{"none": does not consider the ontology hierarchy at all;}
+#' \item{"lea": computers the significance of a term in terms of the significance of its children at the maximum depth (e.g. 2). Precisely, once genes are already annotated to any children terms with a more signficance than itself, then all these genes are eliminated from the use for the recalculation of the signifance at that term. The final p-values takes the maximum of the original p-value and the recalculated p-value}
+#' \item{"elim": computers the significance of a term in terms of the significance of its all children. Precisely, once genes are already annotated to a signficantly enriched term under the cutoff of e.g. pvalue<1e-2, all these genes are eliminated from the ancestors of that term);}
+#' \item{"pc": requires the significance of a term not only using the whole genes as background but also using genes annotated to all its direct parents/ancestors as background. The final p-value takes the maximum of both p-values in these two calculations;}
+#' \item{"Notes": the order of the number of significant terms is: "none" > "lea" > "elim" > "pc".}
+#' }
 #' @export
 #' @seealso \code{\link{dEnricher}}
 #' @include dEnricher.r
 #' @examples
-#' \dontrun{
 #' load(url("http://dnet.r-forge.r-project.org/data/Datasets/Hiratani_TableS1.RData"))
 #' data <- rownames(RT)[1:1000]
 #' eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP", RData.location="./RData_Rd")
+#' eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP", ontology.algorithm="pc", RData.location="./RData_Rd")
 #' eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP", ontology.algorithm="elim", RData.location="./RData_Rd")
+#' eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP", ontology.algorithm="lea", RData.location="./RData_Rd")
 #' cbind(eTerm$set_info[which(eTerm$pvalue < 1e-3), c(1,2)], eTerm$pvalue[which(eTerm$pvalue < 1e-3)])
 #'
 #' # highlight the top significant terms and also color-code all terms according to the adjust p-values
@@ -44,9 +54,8 @@
 #' names(nodes.highlight) <- nodes_query
 #' subg <- dDAGinduce(g, nodes_query)
 #' visDAG(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]), node.info="both", zlim=c(0,2), node.attrs=list(color=nodes.highlight))
-#' }
 
-dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity=FALSE, genome=c("Hs", "Mm", "Rn", "Gg", "Ce", "Dm", "Da", "At"), ontology=c("GOBP","GOMF","GOCC","PS","DO","HPPA","HPMI","HPON","MP", "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7"), sizeRange=c(10,1000), which_distance=NULL, test=c("FisherTest","HypergeoTest"), p.adjust.method=c("BH", "BY", "bonferroni", "holm", "hochberg", "hommel"), ontology.algorithm=c("none","elim"), verbose=T, RData.location="http://dnet.r-forge.r-project.org/data")
+dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity=FALSE, genome=c("Hs", "Mm", "Rn", "Gg", "Ce", "Dm", "Da", "At"), ontology=c("GOBP","GOMF","GOCC","PS","DO","HPPA","HPMI","HPON","MP", "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7"), sizeRange=c(10,1000), which_distance=NULL, test=c("FisherTest","HypergeoTest","BinomialTest"), p.adjust.method=c("BH", "BY", "bonferroni", "holm", "hochberg", "hommel"), ontology.algorithm=c("none","pc","elim","lea"), elim.pvalue=1e-2, lea.depth=2, verbose=T, RData.location="http://dnet.r-forge.r-project.org/data")
 {
     startT <- Sys.time()
     message(paste(c("Start at ",as.character(startT)), collapse=""), appendLF=T)
@@ -275,10 +284,7 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
     }
 
     ##############################################################################################
-    # the statistical tests used to compare a set of genes of interest to a set of reference genes
-    # two distinct ways to model the problem:
-    # Hypergeometric test: sampling at random from the background containing annotated and non-annotated genes (hypergeometric test); thus compare sampling to background
-    # Fisher's exact test: testing the independence between gene group (genes belonging to a group or not) and gene annotation (genes annotated by a term or not); thus compare sampling to the left part of background (after sampling without replacement)
+    ## Fisher's exact test: testing the independence between gene group (genes belonging to a group or not) and gene annotation (genes annotated by a term or not); thus compare sampling to the left part of background (after sampling without replacement)
     doFisherTest <- function(genes.group, genes.term, genes.universe){
         genes.hit <- intersect(genes.group, genes.term)
         # num of success in sampling
@@ -295,6 +301,7 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
         return(p.value)
     }
 
+    ## Hypergeometric test: sampling at random from the background containing annotated and non-annotated genes (without replacement); thus compare sampling to background
     doHypergeoTest <- function(genes.group, genes.term, genes.universe){
         genes.hit <- intersect(genes.group, genes.term)
         # num of success in sampling
@@ -310,7 +317,24 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
         m <- M
         n <- N-M # num of failure in background
         k <- K
-        p.value <- ifelse(m==0 | k==0, 1, stats::phyper(x,m,n,k, lower.tail=F, log.p=F))
+        p.value <- ifelse(m==0 || k==0, 1, stats::phyper(x,m,n,k, lower.tail=F, log.p=F))
+        return(p.value)
+    }
+    
+    
+    ## Binomial test: sampling at random from the background with the constant probability of having annotated genes (with replacement)
+    doBinomialTest <- function(genes.group, genes.term, genes.universe){
+        genes.hit <- intersect(genes.group, genes.term)
+        # num of success in sampling
+        X <- length(genes.hit)
+        # num of sampling
+        K <- length(genes.group)
+        # num of success in background
+        M <- length(genes.term)
+        # num in background
+        N <- length(genes.universe)
+    
+        p.value <- ifelse(K==0 || M==0 || N==0, 1, stats::pbinom(X,K,M/N, lower.tail=F, log.p=F))
         return(p.value)
     }
     ##############################################################################################
@@ -344,11 +368,12 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
             genes.term <- as.numeric(unique(unlist(gs[term])))
             p.value <- switch(test,
                 FisherTest =  doFisherTest(genes.group, genes.term, genes.universe),
-                HypergeoTest = doHypergeoTest(genes.group, genes.term, genes.universe)
+                HypergeoTest = doHypergeoTest(genes.group, genes.term, genes.universe),
+                BinomialTest = doBinomialTest(genes.group, genes.term, genes.universe)
             )
         })
 
-    }else if(ontology.algorithm=="elim"){
+    }else if(ontology.algorithm=="pc" || ontology.algorithm=="elim" || ontology.algorithm=="lea"){
 
         if(verbose){
             now <- Sys.time()
@@ -400,78 +425,232 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
         ## level2node.Hash: key (level), value (a list of nodes/terms)
         level2node.Hash <- list2env(level2node)
         ## ls(level2node.Hash)
-
-        ## create a new (empty) hash environment
-        ## sigNode2pval.Hash: key (node called significant), value (pvalue)
-        sigNode2pval.Hash <- new.env(hash=T, parent=emptyenv())
-        ## node2pval.Hash: key (node at ancestor), value (genes to be eliminated)
-        ancNode2gene.Hash <- new.env(hash=T, parent=emptyenv())
-        ## node2pval.Hash: key (node), value (pvalue)
-        node2pval.Hash <- new.env(hash=T, parent=emptyenv())
-
         nLevels <- length(level2node)
-        pval.cutoff <- 0.01
-        for(i in nLevels:1) {
-            currNodes <- get(as.character(i), envir=level2node.Hash, mode="character")
-            currAnno <- GS$gs[currNodes]
+        
+        ## create a new (empty) hash environment
+        ## node2pval.Hash: key (node), value (pvalue)
+        node2pval.Hash <- new.env(hash=T, parent=emptyenv())        
+
+        if(ontology.algorithm=="pc"){
+        
+            for(i in nLevels:2) {
+                currNodes <- get(as.character(i), envir=level2node.Hash, mode="character")
     
-            ## update "ancNode2gene.Hash" for each node/term
-            for(currNode in currNodes){
-                genes.term <- unique(unlist(GS$gs[currNode]))
-        
-                ## remove the genes (if any already marked) from annotations by the current node/term
-                if(exists(currNode, envir=ancNode2gene.Hash, mode="numeric")){
-                    genes.elim <- get(currNode, envir=ancNode2gene.Hash, mode="numeric")
-                    genes.term <- setdiff(genes.term, genes.elim)
-                    #message(sprintf("\t\t%d %d", length(genes.elim), length(genes.term)), appendLF=T)
-                }
-        
-                ## do fisher exact test
-                pvalue <- doFisherTest(genes.group, genes.term, genes.universe)
-        
-                ## store the result (the p-value)
-                assign(currNode, pvalue, envir=node2pval.Hash)
-        
-                ## condition to update "ancNode2gene.Hash"
-                if(pvalue < pval.cutoff) {
-                    ## mark the significant node
-                    assign(currNode, pvalue, envir=sigNode2pval.Hash)
-
-                    ## retrieve genes annotated by the significant node for the subsequent eliminating
-                    elimGenesID <- currAnno[[currNode]]
-
-                    ## find all the ancestors of the significant node
-                    dag.ancestors <- dDAGinduce(subg, currNode, path.mode="all_paths")
-                    ancestors <- setdiff(V(dag.ancestors)$name, currNode)
+                for(currNode in currNodes){
+                    genes.term <- unique(unlist(GS$gs[currNode]))
+                
+                    ## do test based on the whole genes as background
+                    pvalue_whole <- switch(test,
+                        FisherTest =  doFisherTest(genes.group, genes.term, genes.universe),
+                        HypergeoTest = doHypergeoTest(genes.group, genes.term, genes.universe),
+                        BinomialTest = doBinomialTest(genes.group, genes.term, genes.universe)
+                    )
             
-                    ## get only those ancestors that are already in "ancNode2gene.Hash"
-                    oldAncestors2GenesID <- sapply(ancestors, function(ancestor){
-                        if(exists(ancestor, envir=ancNode2gene.Hash, mode="numeric")){
-                            get(ancestor, envir=ancNode2gene.Hash, mode='numeric')
-                        }
-                    })
+                    ## get the incoming neighbors/parents (including self) that are reachable
+                    neighs.in <- igraph::neighborhood(subg, order=1, nodes=currNode, mode="in")
+                    adjNodes <- setdiff(V(subg)[unlist(neighs.in)]$name, currNode)
+                
+                    ## genes annotated in parents are as background
+                    genes.parent <- unique(unlist(GS$gs[adjNodes]))
+        
+                    ## make sure genes in group (genes in term) are also in parents
+                    genes.group.parent <- intersect(genes.group, genes.parent)
+                    genes.term.parent <- intersect(genes.term, genes.parent)
 
-                    ## add the new GenesID to the ancestors
-                    newAncestors2GenesID <- lapply(oldAncestors2GenesID, function(oldGenes){
-                        union(oldGenes, elimGenesID)
-                    })
+                    ## do test based on the genes in parents as background
+                    pvalue_relative <- switch(test,
+                        FisherTest =  doFisherTest(genes.group.parent, genes.term.parent, genes.parent),
+                        HypergeoTest = doHypergeoTest(genes.group.parent, genes.term.parent, genes.parent),
+                        BinomialTest = doBinomialTest(genes.group.parent, genes.term.parent, genes.parent)
+                    )
+                
+                    ## take the maximum value of pvalue_whole and pvalue_relative
+                    pvalue <- max(pvalue_whole, pvalue_relative)
+                
+                    ## store the result (the p-value)
+                    assign(currNode, pvalue, envir=node2pval.Hash)
+                }
+                
+                if(verbose){
+                    message(sprintf("\tAt level %d, there are %d nodes/terms", i, length(currNodes), appendLF=T))
+                }
+            }
+            
+            ## the root always has p-value=1
+            root <- dDAGroot(subg)
+            assign(root, 1, envir=node2pval.Hash)
+        
+        }else if(ontology.algorithm=="elim"){
+        
+            ## sigNode2pval.Hash: key (node called significant), value (pvalue)
+            sigNode2pval.Hash <- new.env(hash=T, parent=emptyenv())
+            ## ancNode2gene.Hash: key (node at ancestor), value (genes to be eliminated)
+            ancNode2gene.Hash <- new.env(hash=T, parent=emptyenv())
+            
+            if(is.null(elim.pvalue) || is.na(elim.pvalue) || elim.pvalue>1 || elim.pvalue<0){
+                elim.pvalue <- 1e-2
+            }
+            pval.cutoff <- elim.pvalue
 
-                    ## update the "ancNode2gene.Hash" table
-                    if(length(newAncestors2GenesID) > 0){
-                        sapply(names(newAncestors2GenesID), function(ancestor){
-                            assign(ancestor, newAncestors2GenesID[[ancestor]], envir=ancNode2gene.Hash)
+            #pval.cutoff <- 1e-2 / length(V(subg))
+            
+            for(i in nLevels:1) {
+                currNodes <- get(as.character(i), envir=level2node.Hash, mode="character")
+                currAnno <- GS$gs[currNodes]
+    
+                ## update "ancNode2gene.Hash" for each node/term
+                for(currNode in currNodes){
+                    genes.term <- unique(unlist(GS$gs[currNode]))
+        
+                    ## remove the genes (if any already marked) from annotations by the current node/term
+                    if(exists(currNode, envir=ancNode2gene.Hash, mode="numeric")){
+                        genes.elim <- get(currNode, envir=ancNode2gene.Hash, mode="numeric")
+                        genes.term <- setdiff(genes.term, genes.elim)
+                        #message(sprintf("\t\t%d %d", length(genes.elim), length(genes.term)), appendLF=T)
+                    }
+        
+                    ## do test
+                    pvalue <- switch(test,
+                        FisherTest =  doFisherTest(genes.group, genes.term, genes.universe),
+                        HypergeoTest = doHypergeoTest(genes.group, genes.term, genes.universe),
+                        BinomialTest = doBinomialTest(genes.group, genes.term, genes.universe)
+                    )
+        
+                    ## store the result (the p-value)
+                    assign(currNode, pvalue, envir=node2pval.Hash)
+        
+                    ## condition to update "ancNode2gene.Hash"
+                    if(pvalue < pval.cutoff) {
+                        ## mark the significant node
+                        assign(currNode, pvalue, envir=sigNode2pval.Hash)
+
+                        ## retrieve genes annotated by the significant node for the subsequent eliminating
+                        elimGenesID <- currAnno[[currNode]]
+
+                        ## find all the ancestors of the significant node
+                        dag.ancestors <- dDAGinduce(subg, currNode, path.mode="all_paths")
+                        ancestors <- setdiff(V(dag.ancestors)$name, currNode)
+            
+                        ## get only those ancestors that are already in "ancNode2gene.Hash"
+                        oldAncestors2GenesID <- sapply(ancestors, function(ancestor){
+                            if(exists(ancestor, envir=ancNode2gene.Hash, mode="numeric")){
+                                get(ancestor, envir=ancNode2gene.Hash, mode='numeric')
+                            }
                         })
+
+                        ## add the new GenesID to the ancestors
+                        newAncestors2GenesID <- lapply(oldAncestors2GenesID, function(oldGenes){
+                            union(oldGenes, elimGenesID)
+                        })
+
+                        ## update the "ancNode2gene.Hash" table
+                        if(length(newAncestors2GenesID) > 0){
+                            sapply(names(newAncestors2GenesID), function(ancestor){
+                                assign(ancestor, newAncestors2GenesID[[ancestor]], envir=ancNode2gene.Hash)
+                            })
+                        }
                     }
                 }
-            }
     
-            if(verbose){
-                num.signodes <- length(ls(sigNode2pval.Hash))
-                num.ancnodes <- length(ls(ancNode2gene.Hash))
-                num.elimgenes <- length(unique(unlist(as.list(ancNode2gene.Hash))))
-                message(sprintf("\tAt level %d, there are %d nodes/terms: so far, a total of %d nodes called significant, and %d ancestral nodes changed (%d genes eliminated)", i, length(currNodes), num.signodes, num.ancnodes, num.elimgenes), appendLF=T)
+                if(verbose){
+                    num.signodes <- length(ls(sigNode2pval.Hash))
+                    num.ancnodes <- length(ls(ancNode2gene.Hash))
+                    num.elimgenes <- length(unique(unlist(as.list(ancNode2gene.Hash))))
+                    message(sprintf("\tAt level %d, there are %d nodes/terms: so far, a total of %d nodes called significant, and %d ancestral nodes changed (%d genes eliminated)", i, length(currNodes), num.signodes, num.ancnodes, num.elimgenes), appendLF=T)
+                }
+            }
+            
+        }else if(ontology.algorithm=="lea"){
+        
+            ## node2pvalo.Hash: key (node called significant), value (original pvalue)
+            node2pvalo.Hash <- new.env(hash=T, parent=emptyenv())
+        
+            if(is.null(lea.depth) || is.na(lea.depth) || lea.depth<0){
+                lea.depth <- 2
+            }
+            depth.cutoff <- as.integer(lea.depth)
+            
+            for(i in nLevels:1) {
+                currNodes <- get(as.character(i), envir=level2node.Hash, mode="character")
+                currAnno <- GS$gs[currNodes]
+                
+                num.recalculate <- 0
+                
+                ## update "node2pval.Hash" for each node/term
+                for(currNode in currNodes){
+                    genes.term <- unique(unlist(GS$gs[currNode]))
+                    
+                    ## do test
+                    pvalue.old <- switch(test,
+                        FisherTest =  doFisherTest(genes.group, genes.term, genes.universe),
+                        HypergeoTest = doHypergeoTest(genes.group, genes.term, genes.universe),
+                        BinomialTest = doBinomialTest(genes.group, genes.term, genes.universe)
+                    )
+                    
+                    ## store the result (old pvalue)
+                    assign(currNode, pvalue.old, envir=node2pvalo.Hash)
+                    
+                    ## get the outgoing neighbors/children (including self) that are reachable at most of given depth
+                    neighs.out <- igraph::neighborhood(subg, order=depth.cutoff, nodes=currNode, mode="out")
+                    adjNodes <- setdiff(V(subg)[unlist(neighs.out)]$name, currNode)
+                        
+                    if(length(adjNodes)!=0){
+                        ## get children with the lower p-value
+                        if(1){
+                            pvalue.children <- sapply(adjNodes, function(child){
+                                if(exists(child, envir=node2pvalo.Hash, mode="numeric")){
+                                    get(child, envir=node2pvalo.Hash, mode="numeric")
+                                }
+                            })
+                        }else{
+                            pvalue.children <- sapply(adjNodes, function(child){
+                                if(exists(child, envir=node2pval.Hash, mode="numeric")){
+                                    get(child, envir=node2pval.Hash, mode="numeric")
+                                }
+                            })
+                        }
+                        
+                        chNodes <- names(pvalue.children[pvalue.children < pvalue.old])
+                        
+                        ## whether there exist any children with the lower p-value
+                        if(length(chNodes)>0){
+                            num.recalculate <- num.recalculate + 1
+                        
+                            ## if yes, get genes that are annotated by children with the lower p-value
+                            ## they will be removed
+                            genes.elim <- unique(unlist(GS$gs[chNodes]))
+                            genes.term.new <- setdiff(genes.term, genes.elim)
+                            
+                            ## recalculate the significance
+                            pvalue.new <- switch(test,
+                                FisherTest =  doFisherTest(genes.group, genes.term.new, genes.universe),
+                                HypergeoTest = doHypergeoTest(genes.group, genes.term.new, genes.universe),
+                                BinomialTest = doBinomialTest(genes.group, genes.term.new, genes.universe)
+                            )
+                            
+                            ## take the maximum value of pvalue_new and the original pvalue
+                            pvalue <- max(pvalue.new, pvalue.old)
+                            
+                        }else{
+                            pvalue <- pvalue.old
+                        }
+                        
+                    }else{
+                        pvalue <- pvalue.old
+                    }
+                    
+                    ## store the result (recalculated pvalue)
+                    assign(currNode, pvalue, envir=node2pval.Hash)
+                }
+    
+                if(verbose){
+                    message(sprintf("\tAt level %d, there are %d nodes/terms and %d being recalculated", i, length(currNodes), num.recalculate), appendLF=T)
+                }
+            
             }
         }
+        
+        
         pvals <- unlist(as.list(node2pval.Hash))
     
     }

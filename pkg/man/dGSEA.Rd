@@ -185,7 +185,6 @@ the statistic (i.e. normalised enrichment score);}
 so that the higher "nes", the lower "qvalue".} }
 }
 \examples{
-\dontrun{
 load(url("http://dnet.r-forge.r-project.org/data/Datasets/Hiratani_TableS1.RData"))
 data <- RT[1:1000,1:2]
 eTerm <- dGSEA(data, identity="symbol", genome="Mm", ontology="MP",
@@ -195,7 +194,6 @@ decreasing=FALSE, details=TRUE)
 visGSEA(eTerm, which_sample=1, which_term=rownames(res)[1])
 output <- dGSEAwrite(eTerm, which_content="gadjp", which_score="gadjp",
 filename="eTerm.txt")
-}
 }
 \seealso{
 \code{\link{dGSEAview}}, \code{\link{dGSEAwrite}},
