@@ -110,23 +110,14 @@
 
     <h1>Documentations</h1><p>
 
-    <h3>Analysis functions</h3>
-    <p>These functions are used for analysis</p>
+    <h3>Network analysis and visualisation functions</h3>
+    <p>These functions are used for network analysis and visualisation, including: identification of expression-active dynamic networks; network-based sample classifications and visualisations on 2D sample landscape; and random walk with restart (RWR) for network affinity calculation</p>
 
     
     <ul class="index">
         
       <li>
-        <code><a href="dEnricher.html">dEnricher</a></code><br />Function to conduct enrichment analysis given the input data and the ontology in query</li>
-            
-      <li>
-        <code><a href="dGSEA.html">dGSEA</a></code><br />Function to conduct gene set enrichment analysis given the input data and the ontology in query</li>
-            
-      <li>
-        <code><a href="dGSEAview.html">dGSEAview</a></code><br />Function to view enrichment results in a sample-specific manner</li>
-            
-      <li>
-        <code><a href="dGSEAwrite.html">dGSEAwrite</a></code><br />Function to write out enrichment results</li>
+        <code><a href="dRWR.html">dRWR</a></code><br />Function to implement Random Walk with Restart (RWR) on the input graph</li>
             
       <li>
         <code><a href="dPvalAggregate.html">dPvalAggregate</a></code><br />Function to aggregate p values</li>
@@ -165,19 +156,6 @@
         <code><a href="dContrast.html">dContrast</a></code><br />Function to help build the contrast matrix</li>
             
       <li>
-        <code><a href="dRWR.html">dRWR</a></code><br />Function to implement Random Walk with Restart (RWR) on the input graph</li>
-    
-    </ul>
-    <h3>Visualisation functions</h3>
-    <p>These functions are used for visualisation</p>
-
-    
-    <ul class="index">
-        
-      <li>
-        <code><a href="visGSEA.html">visGSEA</a></code><br />Function to visualise running enrichment score for a given sample and a gene set</li>
-            
-      <li>
         <code><a href="visNet.html">visNet</a></code><br />Function to visualise a graph object of class "igraph" or "graphNEL"</li>
             
       <li>
@@ -208,8 +186,30 @@
         <code><a href="visTreeBootstrap.html">visTreeBootstrap</a></code><br />Function to build and visualise the bootstrapped tree</li>
     
     </ul>
-    <h3>Built-in ontologies and analysis functions</h3>
-    <p>These ontologies each are represent as a direct acyclic graph (DAG). DAG is stored as an object of the class &#39;igraph&#39;, which can be processed by various analysis and visualisation functions.</p>
+    <h3>Enrichment analysis and visualisation functions</h3>
+    <p>These functions are used for enrichment analysis and visualisation, including: enrichment analysis (Fisher&#39;s exact test, Hypergeometric test or Binomial test) that can account for the hierarchy of the ontology; and gene set enrichment analysis (GSEA)</p>
+
+    
+    <ul class="index">
+        
+      <li>
+        <code><a href="dEnricher.html">dEnricher</a></code><br />Function to conduct enrichment analysis given the input data and the ontology in query</li>
+            
+      <li>
+        <code><a href="dGSEA.html">dGSEA</a></code><br />Function to conduct gene set enrichment analysis given the input data and the ontology in query</li>
+            
+      <li>
+        <code><a href="dGSEAview.html">dGSEAview</a></code><br />Function to view enrichment results in a sample-specific manner</li>
+            
+      <li>
+        <code><a href="dGSEAwrite.html">dGSEAwrite</a></code><br />Function to write out enrichment results</li>
+            
+      <li>
+        <code><a href="visGSEA.html">visGSEA</a></code><br />Function to visualise running enrichment score for a given sample and a gene set</li>
+    
+    </ul>
+    <h3>Built-in ontologies, and analysis and visualisation functions</h3>
+    <p>These ontologies each are represented as a direct acyclic graph (DAG). DAG is stored as an object of the class &#39;igraph&#39;, which can be processed by various analysis and visualisation functions.</p>
 
     
     <ul class="index">
