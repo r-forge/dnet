@@ -85,18 +85,24 @@ dRWR <- function(g, normalise=c("laplacian","row","column","none"), setSeeds=NUL
     }
     
     A <- adjM!=0
+    ## library(Matrix) 
+    ## vignette("Intro2Matrix")
     if(normalise == "row"){
-        D <- diag(apply(A,1,sum)^(-1))
+        #D <- diag(apply(A,1,sum)^(-1))
+        D <- Matrix::Diagonal(x=(Matrix::rowSums(A))^(-1))
         nadjM <- adjM %*% D
     }else if(normalise == "column"){
-        D <- diag(apply(A,1,sum)^(-1))
+        #D <- diag(apply(A,1,sum)^(-1))
+        D <- Matrix::Diagonal(x=(Matrix::colSums(A))^(-1))
         nadjM <- D %*% adjM
     }else if(normalise == "laplacian"){
-        D <- diag(apply(A,1,sum)^(-0.5))
+        #D <- diag(apply(A,1,sum)^(-0.5))
+        D <- Matrix::Diagonal(x=(Matrix::colSums(A))^(-0.5))
         nadjM <- D %*% adjM %*% D
     }else{
         nadjM <- adjM
     }
+    #nadjM <- as.matrix(nadjM)
     
     #nig <- graph.adjacency(nadjM, mode=c("undirected"), weighted=T, diag=F, add.colnames=NULL, add.rownames=NA)
     ## update the vertex attributes
@@ -171,33 +177,39 @@ dRWR <- function(g, normalise=c("laplacian","row","column","none"), setSeeds=NUL
     }
     
     PTmatrix <- matrix(0, nrow=nrow(P0matrix), ncol=ncol(P0matrix))
-    for(j in 1:ncol(P0matrix)){
-        P0 <- as.matrix(P0matrix[,j],ncol=1)
-        
-        ## Initializing variables
-        step <- 0
-        delta <- 1
-        
-        PT <- P0
-        ## Iterative update till convergence (delta<=1e-10)
-        while (delta>stop_delta && step<=stop_step){
-            PX <- (1-r) * nadjM %*% PT + r * P0
+    if(restart==1){
+        ## just seeds themselves
+        PTmatrix <- P0matrix
+    }else{
     
-            # p-norm of v: sum((abs(v).p)^(1/p))
-            delta <- sum(abs(PX-PT))
+        for(j in 1:ncol(P0matrix)){
+            P0 <- as.matrix(P0matrix[,j],ncol=1)
+        
+            ## Initializing variables
+            step <- 0
+            delta <- 1
+        
+            PT <- P0
+            ## Iterative update till convergence (delta<=1e-10)
+            while (delta>stop_delta && step<=stop_step){
+                PX <- (1-r) * nadjM %*% PT + r * P0
     
-            PT <- PX
-            step <- step+1
-        }
-        PTmatrix[,j] <- matrix(PT, ncol=1)
+                # p-norm of v: sum((abs(v).p)^(1/p))
+                delta <- sum(abs(PX-PT))
+    
+                PT <- PX
+                step <- step+1
+            }
+            PTmatrix[,j] <- matrix(PT, ncol=1)
 
-        if(verbose){
-            now <- Sys.time()
-            message(sprintf("\tUsing the seed set %d (%s) ...", j, as.character(now)), appendLF=T)
+            if(verbose){
+                now <- Sys.time()
+                message(sprintf("\tUsing the seed set %d (%s) ...", j, as.character(now)), appendLF=T)
+            }
+        
         }
         
     }
-    
     ## make sure the sum of elements in each steady probability vector is one
     PTmatrix <- sapply(1:ncol(PTmatrix), function(i){
         PTmatrix[,i]/sum(PTmatrix[,i])
@@ -267,7 +279,6 @@ dRWR <- function(g, normalise=c("laplacian","row","column","none"), setSeeds=NUL
     ####################################################################################
     endT <- Sys.time()
     if(verbose){
-        message("", appendLF=T)
         message(paste(c("\nFinish at ",as.character(endT)), collapse=""), appendLF=T)
     }
     

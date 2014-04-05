@@ -14,7 +14,7 @@
 
 ## Features
 
-* Identification of expression-active dynamic subnetworks
+* Identification of expression-active dynamic networks
 * Network-based sample classifications and visualisations on 2D sample landscape
 * Random walk with restart for network affinity calculation
 * Enrichment analysis (Fisher's exact test, Hypergeometric test, Binomial test or KS-like test) that can account for the hierarchy of the ontology

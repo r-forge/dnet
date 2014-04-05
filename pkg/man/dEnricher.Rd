@@ -195,6 +195,7 @@ the maximum of both p-values in these two calculations;}
 is: "none" > "lea" > "elim" > "pc".} }
 }
 \examples{
+\dontrun{
 load(url("http://dnet.r-forge.r-project.org/data/Datasets/Hiratani_TableS1.RData"))
 data <- rownames(RT)[1:1000]
 eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
@@ -217,6 +218,7 @@ names(nodes.highlight) <- nodes_query
 subg <- dDAGinduce(g, nodes_query)
 visDAG(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]),
 node.info="both", zlim=c(0,2), node.attrs=list(color=nodes.highlight))
+}
 }
 \seealso{
 \code{\link{dEnricher}}

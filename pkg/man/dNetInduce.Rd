@@ -19,8 +19,7 @@ considered for inducing the subgraph. The same is true
 when knn is 2, etc}
 
 \item{remove.loops}{logical to indicate whether the loop
-edges are to be removed. By default, it sets to true for
-self-loops being removed}
+edges are to be removed. By default, it sets to false}
 
 \item{largest.comp}{logical to indicate whether the
 largest component is only retained. By default, it sets

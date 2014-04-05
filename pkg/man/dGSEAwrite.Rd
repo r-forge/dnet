@@ -5,7 +5,7 @@
 dGSEAwrite(eTerm, which_content = c("gadjp", "adjp", "pvalue", "FWER",
 "FDR",
 "qvalue", "nES", "ES"), which_score = c("gadjp", "adjp", "FWER", "FDR",
-"qvalue"), cutoff = 0.1, filename = NULL, keep.significance = T)
+"qvalue", "nES"), cutoff = 0.1, filename = NULL, keep.significance = T)
 }
 \arguments{
 \item{eTerm}{an object of class "eTerm"}

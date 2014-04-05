@@ -190,7 +190,6 @@ dNetPipeline <- function(g, pval, method=c("pdf","cdf","fdr"), fdr=NULL, nsize=N
     ####################################################################################
     endT <- Sys.time()
     if(verbose){
-        message("", appendLF=T)
         message(paste(c("\nFinish at ",as.character(endT)), collapse=""), appendLF=T)
     }
     

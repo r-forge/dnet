@@ -5,7 +5,7 @@
 #' @param g an object of class "igraph" or "graphNEL"
 #' @param nodes_query the vertices for which the calculation is performed
 #' @param knn an integeter specifying how many k steps are used to find the nearest neighbours of the given vertices. By default, knn is set to zero; it means no neighbors will be considered. When knn is 1, the immediate neighbors of the given vertices will be also considered for inducing the subgraph. The same is true when knn is 2, etc
-#' @param remove.loops logical to indicate whether the loop edges are to be removed. By default, it sets to true for self-loops being removed
+#' @param remove.loops logical to indicate whether the loop edges are to be removed. By default, it sets to false
 #' @param largest.comp logical to indicate whether the largest component is only retained. By default, it sets to true for the largest component being left
 #' @return 
 #' \itemize{
@@ -56,16 +56,16 @@ dNetInduce <- function(g, nodes_query, knn=0, remove.loops=F, largest.comp=T)
     nodes_mapped <- V(ig)$name[ind[!is.na(ind)]]
     
     nei <- unique(unlist(neighborhood(ig, nodes=nodes_mapped, order=knn)))
-    subg <- induced.subgraph(ig, vids=nei)
+    subg <- igraph::induced.subgraph(ig, vids=nei)
     
     if(remove.loops){
-        subg <- simplify(subg, remove.loops=T)
+        subg <- igraph::simplify(subg, remove.loops=T)
     }
     
     if(largest.comp){
-        clust <- clusters(subg)
+        clust <- igraph::clusters(subg)
         cid <- which.max(clust$csize)
-        subg <- induced.subgraph(subg, V(subg)[clust$membership==cid])
+        subg <- igraph::induced.subgraph(subg, V(subg)[clust$membership==cid])
     }
     
     if(class(g)=="graphNEL"){

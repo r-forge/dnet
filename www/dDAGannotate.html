@@ -189,21 +189,15 @@ annotations <- GS$gs[sample(1:length(GS$gs),5)]
 # 4a) based on all possible paths (i.e. the complete subgraph induced)
 dDAGannotate(g, annotations, path.mode="all_paths", verbose=TRUE)
 </div>
-<strong class='message'>	At level 14, there are 1 nodes, and 2 incoming neighbors.</strong>
-<strong class='message'>	At level 13, there are 1 nodes, and 1 incoming neighbors.</strong>
-<strong class='message'>	At level 12, there are 1 nodes, and 2 incoming neighbors.</strong>
-<strong class='message'>	At level 11, there are 1 nodes, and 3 incoming neighbors.</strong>
-<strong class='message'>	At level 10, there are 1 nodes, and 1 incoming neighbors.</strong>
-<strong class='message'>	At level 9, there are 2 nodes, and 2 incoming neighbors.</strong>
-<strong class='message'>	At level 8, there are 3 nodes, and 4 incoming neighbors.</strong>
-<strong class='message'>	At level 7, there are 4 nodes, and 5 incoming neighbors.</strong>
+<strong class='message'>	At level 8, there are 1 nodes, and 2 incoming neighbors.</strong>
+<strong class='message'>	At level 7, there are 3 nodes, and 4 incoming neighbors.</strong>
 <strong class='message'>	At level 6, there are 7 nodes, and 6 incoming neighbors.</strong>
-<strong class='message'>	At level 5, there are 8 nodes, and 8 incoming neighbors.</strong>
-<strong class='message'>	At level 4, there are 7 nodes, and 5 incoming neighbors.</strong>
-<strong class='message'>	At level 3, there are 6 nodes, and 4 incoming neighbors.</strong>
-<strong class='message'>	At level 2, there are 4 nodes, and 1 incoming neighbors.</strong>
+<strong class='message'>	At level 5, there are 6 nodes, and 6 incoming neighbors.</strong>
+<strong class='message'>	At level 4, there are 6 nodes, and 4 incoming neighbors.</strong>
+<strong class='message'>	At level 3, there are 3 nodes, and 2 incoming neighbors.</strong>
+<strong class='message'>	At level 2, there are 3 nodes, and 1 incoming neighbors.</strong>
 <strong class='message'>	At level 1, there are 1 nodes, and 0 incoming neighbors.</strong>
-<div class='output'>IGRAPH DN-- 47 56 -- 
+<div class='output'>IGRAPH DN-- 30 34 -- 
 + attr: name (v/c), term_id (v/c), term_name (v/c), term_distance
   (v/n), annotations (v/x), relation (e/c)
 </div>
@@ -211,13 +205,12 @@ dDAGannotate(g, annotations, path.mode="all_paths", verbose=TRUE)
 dag <- dDAGannotate(g, annotations, path.mode="shortest_paths",
 verbose=TRUE)
 </div>
-<strong class='message'>	At level 8, there are 2 nodes, and 2 incoming neighbors.</strong>
-<strong class='message'>	At level 7, there are 3 nodes, and 3 incoming neighbors.</strong>
-<strong class='message'>	At level 6, there are 3 nodes, and 3 incoming neighbors.</strong>
-<strong class='message'>	At level 5, there are 4 nodes, and 4 incoming neighbors.</strong>
-<strong class='message'>	At level 4, there are 4 nodes, and 3 incoming neighbors.</strong>
-<strong class='message'>	At level 3, there are 4 nodes, and 4 incoming neighbors.</strong>
-<strong class='message'>	At level 2, there are 4 nodes, and 1 incoming neighbors.</strong>
+<strong class='message'>	At level 7, there are 2 nodes, and 2 incoming neighbors.</strong>
+<strong class='message'>	At level 6, there are 5 nodes, and 5 incoming neighbors.</strong>
+<strong class='message'>	At level 5, there are 5 nodes, and 5 incoming neighbors.</strong>
+<strong class='message'>	At level 4, there are 5 nodes, and 3 incoming neighbors.</strong>
+<strong class='message'>	At level 3, there are 3 nodes, and 2 incoming neighbors.</strong>
+<strong class='message'>	At level 2, there are 2 nodes, and 1 incoming neighbors.</strong>
 <strong class='message'>	At level 1, there are 1 nodes, and 0 incoming neighbors.</strong>
 <div class='input'>
 # 5) color-code nodes/terms according to the number of annotations
@@ -232,7 +225,7 @@ Attaching package: ‘graph’
 
     degree, edges
 </strong>
-<a href="javascript:newWin('dDAGannotate-29.png', 'dDAGannotate-29.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='dDAGannotate-29.png', width="400" /></a></pre>
+<a href="javascript:newWin('dDAGannotate-22.png', 'dDAGannotate-22.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='dDAGannotate-22.png', width="400" /></a></pre>
   </div>
   
   <div class="span4">

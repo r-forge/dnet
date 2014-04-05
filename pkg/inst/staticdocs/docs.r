@@ -4,13 +4,10 @@ list(
     readme = "",
     
     index = list(
-        sd_section("Analysis functions",
-            "These functions are used for analysis",
+        sd_section("Network analysis and visualisation functions",
+            "These functions are used for network analysis and visualisation, including: identification of expression-active dynamic networks; network-based sample classifications and visualisations on 2D sample landscape; and random walk with restart (RWR) for network affinity calculation",
             c(
-                'dEnricher',
-                'dGSEA',
-                'dGSEAview',
-                'dGSEAwrite',
+                'dRWR',
                 'dPvalAggregate',
                 'dNetInduce',
                 'dBUMfit',
@@ -23,13 +20,6 @@ list(
                 'dCommSignif',
                 'dNetConfidence',
                 'dContrast',
-                'dRWR'
-            )
-        ),
-        sd_section("Visualisation functions",
-            "These functions are used for visualisation",
-            c(
-                'visGSEA',
                 'visNet',
                 'visNetMul',
                 'visNetReorder',
@@ -42,8 +32,18 @@ list(
                 'visTreeBootstrap'
             )
         ),
-        sd_section("Built-in ontologies and analysis functions",
-            "These ontologies each are represent as a direct acyclic graph (DAG). DAG is stored as an object of the class 'igraph', which can be processed by various analysis and visualisation functions.",
+        sd_section("Enrichment analysis and visualisation functions",
+            "These functions are used for enrichment analysis and visualisation, including: enrichment analysis (Fisher's exact test, Hypergeometric test or Binomial test) that can account for the hierarchy of the ontology; and gene set enrichment analysis (GSEA)",
+            c(
+                'dEnricher',
+                'dGSEA',
+                'dGSEAview',
+                'dGSEAwrite',
+                'visGSEA'
+            )
+        ),
+        sd_section("Built-in ontologies, and analysis and visualisation functions",
+            "These ontologies each are represented as a direct acyclic graph (DAG). DAG is stored as an object of the class 'igraph', which can be processed by various analysis and visualisation functions.",
             c(
                 "ig.GOMF",
                 "ig.GOBP",
