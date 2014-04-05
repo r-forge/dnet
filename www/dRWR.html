@@ -105,7 +105,7 @@
         
       </header>
       
-      <h2>Function to implement Random Walk with Restart (RWR) on the input graph. to pre-compute affinity matrix for the input graph</h2>
+      <h2>Function to implement Random Walk with Restart (RWR) on the input graph</h2>
 
 <div class="row">
   <div class="span8">
@@ -114,14 +114,14 @@
     <p><code>dRWR</code> is supposed to implement Random Walk with
 Restart (RWR) on the input graph. If the seeds (i.e. a set
 of starting nodes) are given, it intends to calculate the
-affinity score of all nodes in the graph to the given
-seeds. If the seeds are not give, it will pre-compute
-affinity matrix for nodes in the input graph with respect
-to each starting node (rather than a set of nodes) by
-looping over every node in the graph.</p>
+affinity score of all nodes in the graph to the seeds. If
+the seeds are not give, it will pre-compute affinity matrix
+for nodes in the input graph with respect to each starting
+node (as a seed) by looping over every node in the graph.</p>
   
     <h3>Usage</h3>
-    <pre>dRWR(g, normalise = c("laplacian", "row", "column", "none"), setSeeds = NULL, restart = 0.75)</pre>
+    <pre>dRWR(g, normalise = c("laplacian", "row", "column", "none"), setSeeds = NULL, restart = 0.75, 
+  normalise.affinity.matrix = c("none", "quantile"), verbose = T)</pre>
     
     <h3>Arguments</h3>
     <dl>
@@ -143,17 +143,16 @@ non-zero entries mean that the corresonding rows (i.e.
 the gene/row names) are used as the seeds, and non-zero
 values can be viewed as how to weight the relative
 importance of seeds. By default, this option sets to
-"NULL" for the codebook matrix, suggesting each node in
-the graph will be used as a set of the seed to
-pre-compute affinity matrix for the input graph. This
-default does not scale for large input graphs since it
-will loop over every node in the graph; however, the
-pre-computed affinity matrix can be extensively reused
-for obtaining affinity scores between any combinations of
-nodes/seeds, allows for some flexibility in the
-downstream use, in particular when sampling a large
-number of random node combinations for statistical
-testing</dd>
+"NULL", suggesting each node in the graph will be used as
+a set of the seed to pre-compute affinity matrix for the
+input graph. This default does not scale for large input
+graphs since it will loop over every node in the graph;
+however, the pre-computed affinity matrix can be
+extensively reused for obtaining affinity scores between
+any combinations of nodes/seeds, allows for some
+flexibility in the downstream use, in particular when
+sampling a large number of random node combinations for
+statistical testing</dd>
       <dt>restart</dt>
       <dd>the restart probability used for RWR. The
 restart probability takes the value from 0 to 1,
@@ -164,6 +163,16 @@ starting nodes. At the extreme when the restart
 probability is zero, the walker moves freely to the
 neighbors at each step without restarting from seeds,
 i.e., following a random walk (RW)</dd>
+      <dt>normalise.affinity.matrix</dt>
+      <dd>the way to normalise the
+output affinity matrix. It can be 'none' for no
+normalisation, 'quantile' for quantile normalisation to
+ensure that columns (if multiple) of the output affinity
+matrix have the same quantiles</dd>
+      <dt>verbose</dt>
+      <dd>logical to indicate whether the messages
+will be displayed in the screen. By default, it sets to
+true for display</dd>
     </dl>
     <!-- 
     -->
@@ -211,11 +220,33 @@ V(subg)$name <- 1:vcount(subg)
 
 # 3) obtain the pre-computated affinity matrix
 PTmatrix <- dRWR(subg, normalise="laplacian", restart=0.75)
-# visualise affinity matrix
+</div>
+<strong class='message'>Start at 2014-04-05 13:29:25</strong>
+<strong class='message'></strong>
+<strong class='message'>First, get the adjacency matrix of the input graph (2014-04-05 13:29:25) ...</strong>
+<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-04-05 13:29:25) ...</strong>
+<strong class='message'>Third, RWR of 10 sets of seeds using 7.5e-01 restart probability (2014-04-05 13:29:25) ...</strong>
+<strong class='message'>	Using the seed set 1 (2014-04-05 13:29:26) ...</strong>
+<strong class='message'>	Using the seed set 2 (2014-04-05 13:29:26) ...</strong>
+<strong class='message'>	Using the seed set 3 (2014-04-05 13:29:26) ...</strong>
+<strong class='message'>	Using the seed set 4 (2014-04-05 13:29:26) ...</strong>
+<strong class='message'>	Using the seed set 5 (2014-04-05 13:29:26) ...</strong>
+<strong class='message'>	Using the seed set 6 (2014-04-05 13:29:26) ...</strong>
+<strong class='message'>	Using the seed set 7 (2014-04-05 13:29:26) ...</strong>
+<strong class='message'>	Using the seed set 8 (2014-04-05 13:29:26) ...</strong>
+<strong class='message'>	Using the seed set 9 (2014-04-05 13:29:26) ...</strong>
+<strong class='message'>	Using the seed set 10 (2014-04-05 13:29:26) ...</strong>
+<strong class='message'>Finally, output 10 by 10 affinity matrix normalised by none (2014-04-05 13:29:26) ...</strong>
+<strong class='message'></strong>
+<strong class='message'>
+Finish at 2014-04-05 13:29:26</strong>
+<strong class='message'>Runtime in total is: 1 secs
+</strong>
+<div class='input'># visualise affinity matrix
 visHeatmapAdv(PTmatrix, Rowv=FALSE, Colv=FALSE, colormap="wyr",
 KeyValueName="Affinity")
 </div>
-<a href="javascript:newWin('dRWR-2.png', 'dRWR-2.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='dRWR-2.png', width="400" /></a>
+<a href="javascript:newWin('dRWR-22.png', 'dRWR-22.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='dRWR-22.png', width="400" /></a>
 <div class='input'>
 # 4) obtain affinity matrix given sets of seeds
 # define sets of seeds
@@ -228,8 +259,21 @@ rownames(setSeeds) <- 1:5
 PTmatrix <- dRWR(subg, normalise="laplacian", setSeeds=setSeeds,
 restart=0.75)
 </div>
+<strong class='message'>Start at 2014-04-05 13:29:26</strong>
+<strong class='message'></strong>
+<strong class='message'>First, get the adjacency matrix of the input graph (2014-04-05 13:29:26) ...</strong>
+<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-04-05 13:29:26) ...</strong>
 <strong class='warning'>Warning message:
 The row names of input setSeeds do not contain all those in the input graph.
+</strong>
+<strong class='message'>Third, RWR of 2 sets of seeds using 7.5e-01 restart probability (2014-04-05 13:29:26) ...</strong>
+<strong class='message'>	Using the seed set 1 (2014-04-05 13:29:26) ...</strong>
+<strong class='message'>	Using the seed set 2 (2014-04-05 13:29:26) ...</strong>
+<strong class='message'>Finally, output 10 by 2 affinity matrix normalised by none (2014-04-05 13:29:26) ...</strong>
+<strong class='message'></strong>
+<strong class='message'>
+Finish at 2014-04-05 13:29:26</strong>
+<strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>PTmatrix
 </div>

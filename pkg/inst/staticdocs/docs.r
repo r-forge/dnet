@@ -184,7 +184,8 @@ list(
             "These datasets are used for the demo",
             c(
                 "Hiratani_TableS1",
-                "CLL"
+                "CLL",
+                "TCGA_mutations"
             )
         )
     ),

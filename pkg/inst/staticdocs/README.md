@@ -10,14 +10,15 @@
 
 `dnet` is able to conduct analyses in human but also common model organisms: mouse, rat, chicken, c.elegans, fruitfly, zebrafish and arabidopsis.
 
-`dnet` aims to deliver an eye-intuitive tool with rich visuals but less inputs.
+`dnet` aims to deliver a tool with rich visuals but less inputs.
 
 ## Features
 
 * Identification of expression-active dynamic subnetworks
 * Network-based sample classifications and visualisations on 2D sample landscape
-* Enrichment analysis (Fisher's exact test, Hypergeometric test or KS-like test) that can respect the hierarchy of the ontology
-* A wide variety of data supported: ontologies (including `Gene Ontology`, `Disease Ontology`, `Human Phenotype` and `Mammalian Phenotype`), phylostratific age information and gene association networks in many organisms. On details, please refer to [RData](http://dnet.r-forge.r-project.org/rdata.html).
+* Random walk with restart for network affinity calculation
+* Enrichment analysis (Fisher's exact test, Hypergeometric test, Binomial test or KS-like test) that can account for the hierarchy of the ontology
+* A wide variety of data supported: ontologies (including `Gene Ontology`, `Disease Ontology`, `Human Phenotype` and `Mammalian Phenotype`), phylostratific age information and gene association networks in many organisms. For details, please refer to [RData](http://dnet.r-forge.r-project.org/rdata.html).
 * This package can run on `Windows`, `Mac` and `Linux`
 
 ## See also

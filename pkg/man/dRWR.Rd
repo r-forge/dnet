@@ -1,9 +1,10 @@
 \name{dRWR}
 \alias{dRWR}
-\title{Function to implement Random Walk with Restart (RWR) on the input graph. to pre-compute affinity matrix for the input graph}
+\title{Function to implement Random Walk with Restart (RWR) on the input graph}
 \usage{
 dRWR(g, normalise = c("laplacian", "row", "column", "none"),
-setSeeds = NULL, restart = 0.75)
+setSeeds = NULL, restart = 0.75, normalise.affinity.matrix = c("none",
+"quantile"), verbose = T)
 }
 \arguments{
 \item{g}{an object of class "igraph" or "graphNEL"}
@@ -23,17 +24,16 @@ non-zero entries mean that the corresonding rows (i.e.
 the gene/row names) are used as the seeds, and non-zero
 values can be viewed as how to weight the relative
 importance of seeds. By default, this option sets to
-"NULL" for the codebook matrix, suggesting each node in
-the graph will be used as a set of the seed to
-pre-compute affinity matrix for the input graph. This
-default does not scale for large input graphs since it
-will loop over every node in the graph; however, the
-pre-computed affinity matrix can be extensively reused
-for obtaining affinity scores between any combinations of
-nodes/seeds, allows for some flexibility in the
-downstream use, in particular when sampling a large
-number of random node combinations for statistical
-testing}
+"NULL", suggesting each node in the graph will be used as
+a set of the seed to pre-compute affinity matrix for the
+input graph. This default does not scale for large input
+graphs since it will loop over every node in the graph;
+however, the pre-computed affinity matrix can be
+extensively reused for obtaining affinity scores between
+any combinations of nodes/seeds, allows for some
+flexibility in the downstream use, in particular when
+sampling a large number of random node combinations for
+statistical testing}
 
 \item{restart}{the restart probability used for RWR. The
 restart probability takes the value from 0 to 1,
@@ -44,6 +44,16 @@ starting nodes. At the extreme when the restart
 probability is zero, the walker moves freely to the
 neighbors at each step without restarting from seeds,
 i.e., following a random walk (RW)}
+
+\item{normalise.affinity.matrix}{the way to normalise the
+output affinity matrix. It can be 'none' for no
+normalisation, 'quantile' for quantile normalisation to
+ensure that columns (if multiple) of the output affinity
+matrix have the same quantiles}
+
+\item{verbose}{logical to indicate whether the messages
+will be displayed in the screen. By default, it sets to
+true for display}
 }
 \value{
 When the seeds are NOT given, it returns: \itemize{
@@ -68,11 +78,10 @@ by the starting nodes/seeds.} }
 \code{dRWR} is supposed to implement Random Walk with
 Restart (RWR) on the input graph. If the seeds (i.e. a set
 of starting nodes) are given, it intends to calculate the
-affinity score of all nodes in the graph to the given
-seeds. If the seeds are not give, it will pre-compute
-affinity matrix for nodes in the input graph with respect
-to each starting node (rather than a set of nodes) by
-looping over every node in the graph.
+affinity score of all nodes in the graph to the seeds. If
+the seeds are not give, it will pre-compute affinity matrix
+for nodes in the input graph with respect to each starting
+node (as a seed) by looping over every node in the graph.
 }
 \note{
 The input graph will treat as an unweighted graph if there

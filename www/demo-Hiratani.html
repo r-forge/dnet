@@ -274,7 +274,7 @@ pval <- pvals[,my_contrast]
 # 2) identification of module
 g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network, pval=pval, nsize=40)
 </div>
-<strong class='message'>Start at 2014-04-04 16:43:17</strong>
+<strong class='message'>Start at 2014-04-05 12:51:48</strong>
 <strong class='message'></strong>
 <strong class='message'>First, fit the p-value distribution under beta-uniform mixture model...</strong>
 <strong class='message'>	A total of p-values: 17292</strong>
@@ -310,8 +310,9 @@ g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network,
 <strong class='message'>Finally, find the subnetwork from the input network with 13062 nodes and 290589 edges...</strong>
 <strong class='message'>	Size of the module: 46 nodes and 61 edges</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-04-04 16:52:30</strong>
-<strong class='message'>Runtime in total is: 553 secs
+<strong class='message'>
+Finish at 2014-04-05 13:01:05</strong>
+<strong class='message'>Runtime in total is: 557 secs
 </strong>
 <div class='input'>glayout <- layout.fruchterman.reingold(g)
 
@@ -383,7 +384,7 @@ data <- exprs(esetGene)[V(g)$name,]
 # 11) color by additional data (be reordered)
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="edge", node.normalise="degree", amplifier=3, metric="none")
 </div>
-<strong class='message'>Start at 2014-04-04 16:54:02</strong>
+<strong class='message'>Start at 2014-04-05 13:02:37</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -410,7 +411,7 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    radius (at rough stage): from 2 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-04-04 16:54:08</strong>
+<strong class='message'>End at 2014-04-05 13:02:43</strong>
 <strong class='message'>Runtime in total is: 6 secs
 </strong>
 <div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap=colormap, vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.4,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)

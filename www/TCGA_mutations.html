@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>CLL @ dnet 1.0.0</title>
+<title>TCGA_mutations @ dnet 1.0.0</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -105,16 +105,16 @@
         
       </header>
       
-      <h2>Transcriptome dataset for Chronic Lymphocytic Leukemia patients from Chuang et al. (2012)</h2>
+      <h2>TCGA mutational profiles across 12 major cancer types from Kandoth et al. (2013)</h2>
 
 <div class="row">
   <div class="span8">
   
     <h3>Description</h3>
-    <p>This dataset involves 130 patients with chronic lymphocytic leukemia (CLL). When enrolled in the study, these CLL patients had not received prior therapy for CLL. Additional covariate about the time to treatment (i.e. prognosis) is available. The dataset has been normalised and log2-transformed, and provided as an 'ExpressionSet' object.</p>
+    <p>This dataset is available from TCGA, containing somatic mutational profiles for 3130 cancer samples (along with clinical data). For each patient sample, somatic mutations are represented as a profile of binary (1, 0) states on genes, where '1' indicates a gene for which mutation has occurred in the tumor relative to germ line. The dataset is provided as an 'ExpressionSet' object.</p>
   
     <h3>Usage</h3>
-    <pre>load(url("http://dnet.r-forge.r-project.org/data/CLL.RData"))</pre>
+    <pre>load(url("http://dnet.r-forge.r-project.org/data/Datasets/TCGA_mutations.RData"))</pre>
         <!-- 
     -->
     
@@ -123,11 +123,11 @@
       
       <p>an object of class "ExpressionSet". It has slots for "assayData", "phenoData", and "featureData": 
     <ul>
-<li><code>assayData</code>: a matrix of 54675 features X 130 samples
+<li><code>assayData</code>: a matrix of 19477 genes X 3130 samples
         </li>
-<li><code>phenoData</code>: variables describing sample phenotypes (i.e. columns in assayData), including information about samples: "Name" for sample names, "Time" for sampling time to first treatment (years) and "Treatment" for treatment event (1:yes, 0:no)
+<li><code>phenoData</code>: variables describing sample phenotypes (i.e. columns in assayData), including information about samples: "Age", "Days_to_death", "Days_to_last_followup", "Vita_status", "Gender", "Date_diagnosis", "TCGA_tumor_type", "Tumor_stage", "Tumor_grade"
         </li>
-<li><code>featureData</code>: variables describing features (i.e. rows in assayData), including information about features/genes: "EntrezID" for gene EntrezID, "Symbol" for gene symbol and "Desc" for gene description
+<li><code>featureData</code>: variables describing features (i.e. rows in assayData), including information about features/genes: "EntrezID" for gene EntrezID, "Symbol" for gene symbol, "Desc" for gene description, "Synonyms" for gene symbol alias
     </li>
 </ul></p>
       <p></p>
@@ -135,86 +135,75 @@
     <div class="References">
       <h3>References</h3>
       
-      <p>Chuang et al. (2012). Subnetwork-based analysis of chronic lymphocytic leukemia identifies pathways that associate with disease progression. <em>Blood</em>, 120(13):2639-49.</p>
+      <p>Kandoth et al. (2013). Mutational landscape and significance across 12 major cancer types. <em>Nature</em>, 502(7471):333-9.</p>
     </div>
     
     <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'>load(url("http://dnet.r-forge.r-project.org/data/Datasets/CLL.RData"))
-CLL
+    <pre class="examples"><div class='input'>load(url("http://dnet.r-forge.r-project.org/data/Datasets/TCGA_mutations.RData"))
+TCGA_mutations
 </div>
-<strong class='message'>Loading required package: Biobase</strong>
-<strong class='message'>Loading required package: BiocGenerics</strong>
-<strong class='message'>Loading required package: parallel</strong>
-<strong class='message'>
-Attaching package: ‘BiocGenerics’
-</strong>
-<strong class='message'>The following objects are masked from ‘package:parallel’:
-
-    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
-    clusterExport, clusterMap, parApply, parCapply, parLapply,
-    parLapplyLB, parRapply, parSapply, parSapplyLB
-</strong>
-<strong class='message'>The following object is masked from ‘package:stats’:
-
-    xtabs
-</strong>
-<strong class='message'>The following objects are masked from ‘package:base’:
-
-    anyDuplicated, append, as.data.frame, as.vector, cbind, colnames,
-    duplicated, eval, evalq, Filter, Find, get, intersect, is.unsorted,
-    lapply, Map, mapply, match, mget, order, paste, pmax, pmax.int,
-    pmin, pmin.int, Position, rank, rbind, Reduce, rep.int, rownames,
-    sapply, setdiff, sort, table, tapply, union, unique, unlist
-</strong>
-<strong class='message'>Welcome to Bioconductor
-
-    Vignettes contain introductory material; view with
-    'browseVignettes()'. To cite Bioconductor, see
-    'citation("Biobase")', and for packages 'citation("pkgname")'.
-</strong>
 <div class='output'>ExpressionSet (storageMode: lockedEnvironment)
-assayData: 54675 features, 130 samples 
+assayData: 19477 features, 3130 samples 
   element names: exprs 
 protocolData: none
 phenoData
-  sampleNames: GSM977137 GSM977138 ... GSM977266 (130 total)
-  varLabels: Name Time Treatment
+  sampleNames: TCGA-B8-4153-01B-11D-1669-08
+    TCGA-24-1469-01A-01W-0553-09 ... TCGA-34-5241-01A-01D-1441-08 (3130
+    total)
+  varLabels: Age Days_to_death ... Tumor_grade (9 total)
   varMetadata: labelDescription
 featureData
-  featureNames: 1007_s_at 1053_at ... AFFX-TrpnX-M_at (54675 total)
-  fvarLabels: EntrezID Symbol Desc
+  featureNames: A1BG A1CF ... ZZZ3 (19477 total)
+  fvarLabels: EntrezID Symbol Desc Synonyms
   fvarMetadata: labelDescription
 experimentData: use 'experimentData(object)'
 Annotation:  
 </div>
 <div class='input'># extract information about the first 5 samples
-pData(CLL)[1:5,]
+pData(TCGA_mutations)[1:5,]
 </div>
-<div class='output'>          Name     Time Treatment
-GSM977137 CLL1 2.487671         1
-GSM977138 CLL2 3.084932         1
-GSM977139 CLL3 2.882192         1
-GSM977140 CLL4 0.109589         1
-GSM977141 CLL5 3.249315         0
+<div class='output'>                             Age Days_to_death Days_to_last_followup
+TCGA-B8-4153-01B-11D-1669-08  74            NA                   404
+TCGA-24-1469-01A-01W-0553-09  71            NA                   277
+TCGA-06-5411-01A-01D-1696-08  51           254                   254
+TCGA-05-4249-01A-01D-1105-08  67            NA                  1158
+TCGA-18-3406-01A-01D-0983-08  67           371                   370
+                             Vita_status Gender Date_diagnosis TCGA_tumor_type
+TCGA-B8-4153-01B-11D-1669-08           0   male           2010            kirc
+TCGA-24-1469-01A-01W-0553-09           0 female           2008              ov
+TCGA-06-5411-01A-01D-1696-08           1   male           2010             gbm
+TCGA-05-4249-01A-01D-1105-08           0   male           2007            luad
+TCGA-18-3406-01A-01D-0983-08           1   male           2003            lusc
+                             Tumor_stage Tumor_grade
+TCGA-B8-4153-01B-11D-1669-08           3           3
+TCGA-24-1469-01A-01W-0553-09           3           3
+TCGA-06-5411-01A-01D-1696-08          NA          NA
+TCGA-05-4249-01A-01D-1105-08           1          NA
+TCGA-18-3406-01A-01D-0983-08           1          NA
 </div>
 <div class='input'># extract information about the first 5 features
-fData(CLL)[1:5,]
+fData(TCGA_mutations)[1:5,]
 </div>
-<div class='output'>          EntrezID Symbol                                        Desc
-1007_s_at     <NA>   <NA>                                          NA
-1053_at       5982   RFC2 replication factor C (activator 1) 2, 40kDa
-117_at        3310  HSPA6        heat shock 70kDa protein 6 (HSP70B')
-121_at        7849   PAX8                                paired box 8
-1255_g_at     2978 GUCA1A     guanylate cyclase activator 1A (retina)
-</div>
-<div class='input'></div></pre>
+<div class='output'>       EntrezID Symbol                            Desc
+A1BG          1   A1BG          alpha-1-B glycoprotein
+A1CF      29974   A1CF  APOBEC1 complementation factor
+A2M           2    A2M           alpha-2-macroglobulin
+A2ML1    144568  A2ML1    alpha-2-macroglobulin-like 1
+A4GALT    53947 A4GALT alpha 1,4-galactosyltransferase
+                                   Synonyms
+A1BG                   A1B|ABG|GAB|HYST2477
+A1CF          ACF|ACF64|ACF65|APOBEC1CF|ASP
+A2M               A2MD|CPAMD5|FWP007|S863-7
+A2ML1                                CPAMD9
+A4GALT A14GALT|A4GALT1|Gb3S|P(k)|P1|P1PK|PK
+</div></pre>
   </div>
   
   <div class="span4">
     
     <!-- 
     <ul>
-      <li>CLL</li>
+      <li>TCGA_mutations</li>
     </ul>
     <ul>
       <li>datasets</li>

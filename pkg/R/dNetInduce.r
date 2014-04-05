@@ -28,7 +28,7 @@
 #' # 4) produce the induced subgraph based on the nodes in query ane their immediate neighbours
 #' subg <- dNetInduce(g, nodes_query, knn=1)
 
-dNetInduce <- function(g, nodes_query, knn=0, remove.loops=T, largest.comp=T) 
+dNetInduce <- function(g, nodes_query, knn=0, remove.loops=F, largest.comp=T) 
 {
     
     if(class(g)=="graphNEL"){
