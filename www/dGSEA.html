@@ -325,21 +325,21 @@ data <- RT[1:1000,1:2]
 eTerm <- dGSEA(data, identity="symbol", genome="Mm", ontology="MP",
 which_distance=c(1,2))
 </div>
-<strong class='message'>Start at 2014-04-07 11:16:44</strong>
+<strong class='message'>Start at 2014-04-07 17:25:21</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-07 11:16:44) ...</strong>
+<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-07 17:25:21) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egMP.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-04-07 11:16:46) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-07 17:25:25) ...</strong>
 <strong class='message'>	Among 1000 symbols of input data, there are 853 mappable via official gene symbols but 147 left unmappable</strong>
-<strong class='message'>Third, perform GSEA analysis (2014-04-07 11:16:46) ...</strong>
-<strong class='message'>	Sample 1 is being processed at (2014-04-07 11:16:46) ...</strong>
+<strong class='message'>Third, perform GSEA analysis (2014-04-07 17:25:25) ...</strong>
+<strong class='message'>	Sample 1 is being processed at (2014-04-07 17:25:25) ...</strong>
 <strong class='message'>		 81 of 81 gene sets have been processed</strong>
-<strong class='message'>	Sample 2 is being processed at (2014-04-07 11:16:48) ...</strong>
+<strong class='message'>	Sample 2 is being processed at (2014-04-07 17:25:27) ...</strong>
 <strong class='message'>		 81 of 81 gene sets have been processed</strong>
 <strong class='message'>
-End at 2014-04-07 11:16:50</strong>
-<strong class='message'>Runtime in total is: 6 secs
+End at 2014-04-07 17:25:28</strong>
+<strong class='message'>Runtime in total is: 7 secs
 </strong>
 <div class='input'>res <- dGSEAview(eTerm, which_sample=1, top_num=5, sortBy="adjp",
 decreasing=FALSE, details=TRUE)

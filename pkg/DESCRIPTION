@@ -2,7 +2,7 @@ Package: dnet
 Type: Package
 Title: Dynamic NETworks via integrative analysis of network, expression, evolution and ontology data
 Version: 1.0.0
-Date: 2014-4-5
+Date: 2014-4-7
 Author: Hai Fang and Julian Gough
 Maintainer: Hai Fang <hfang@cs.bris.ac.uk>
 Depends: R (>= 3.0.2), igraph, supraHex

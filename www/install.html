@@ -144,25 +144,39 @@ make install
 /home/hfang/R-3.0.3/bin/R # start R
 </code></pre>
 
-<h2>2. Install the packages from CRAN and R-Forge</h2>
+<h2>2. Install the packages from CRAN (Bioconductor &amp; R-Forge)</h2>
 
 <p>Notes: below are <code>R command lines (NOT shell command lines in Terminal)</code>.</p>
 
 <p>To install <a href="http://cran.r-project.org/package=dnet">stable release version</a>, run:</p>
 
 <pre><code>source(&quot;http://bioconductor.org/biocLite.R&quot;)
-biocLite(&quot;supraHex&quot;)
+biocLite(pkgs=c(&quot;supraHex&quot;,&quot;graph&quot;,&quot;Rgraphviz&quot;))
 install.packages(&quot;dnet&quot;,repos=&quot;http://cran.r-project.org&quot;,type=&quot;source&quot;)
 </code></pre>
 
 <p>To install <a href="http://r-forge.r-project.org/projects/dnet">latest development version</a> (<code>highly recommended</code> for benefits of latest improvements), run:</p>
 
-<pre><code>list.pkg &lt;- c(&quot;hexbin&quot;,&quot;ape&quot;,&quot;igraph&quot;, &quot;graph&quot;, &quot;Rgraphviz&quot;)
+<pre><code>## First, install from CRAN
+list.pkg &lt;- c(&quot;ape&quot;,&quot;igraph&quot;)
 for(pkg in list.pkg){
-    if(!require(pkg, character.only=T)) install.packages(pkg,repos=&quot;http://www.stats.bris.ac.uk/R&quot;,dependencies=T)
+    if(!require(pkg, character.only=T)){
+        install.packages(pkg,repos=&quot;http://www.stats.bris.ac.uk/R&quot;,dependencies=T)
+    }
 }
-install.packages(&quot;supraHex&quot;,repos=&quot;http://R-Forge.R-project.org&quot;, type=&quot;source&quot;)
-install.packages(&quot;dnet&quot;,repos=&quot;http://R-Forge.R-project.org&quot;, type=&quot;source&quot;)
+
+## Second, install from Bioconductor
+list.pkg &lt;- c(&quot;graph&quot;,&quot;Rgraphviz&quot;)
+source(&quot;http://bioconductor.org/biocLite.R&quot;)
+for(pkg in list.pkg){
+    if(!require(pkg, character.only=T)) biocLite(pkg)
+}
+
+## Last, install from R-Forge
+list.pkg &lt;- c(&quot;supraHex&quot;,&quot;dnet&quot;)
+for(pkg in list.pkg){
+    install.packages(pkg,repos=&quot;http://R-Forge.R-project.org&quot;, type=&quot;source&quot;)
+}
 </code></pre>
 
 

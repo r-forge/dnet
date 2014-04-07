@@ -29,21 +29,35 @@ Assume you do not have a ROOT privilege and want R installation under your home 
     make install
     /home/hfang/R-3.0.3/bin/R # start R
 
-## 2. Install the packages from CRAN and R-Forge
+## 2. Install the packages from CRAN (Bioconductor & R-Forge)
 
 Notes: below are `R command lines (NOT shell command lines in Terminal)`.
 
 To install [stable release version](http://cran.r-project.org/package=dnet), run:
 
     source("http://bioconductor.org/biocLite.R")
-    biocLite("supraHex")
+    biocLite(pkgs=c("supraHex","graph","Rgraphviz"))
     install.packages("dnet",repos="http://cran.r-project.org",type="source")
 
 To install [latest development version](http://r-forge.r-project.org/projects/dnet) (`highly recommended` for benefits of latest improvements), run:
 
-    list.pkg <- c("hexbin","ape","igraph", "graph", "Rgraphviz")
+    ## First, install from CRAN
+    list.pkg <- c("ape","igraph")
     for(pkg in list.pkg){
-        if(!require(pkg, character.only=T)) install.packages(pkg,repos="http://www.stats.bris.ac.uk/R",dependencies=T)
+        if(!require(pkg, character.only=T)){
+            install.packages(pkg,repos="http://www.stats.bris.ac.uk/R",dependencies=T)
+        }
     }
-    install.packages("supraHex",repos="http://R-Forge.R-project.org", type="source")
-    install.packages("dnet",repos="http://R-Forge.R-project.org", type="source")
+    
+    ## Second, install from Bioconductor
+    list.pkg <- c("graph","Rgraphviz")
+    source("http://bioconductor.org/biocLite.R")
+    for(pkg in list.pkg){
+        if(!require(pkg, character.only=T)) biocLite(pkg)
+    }
+    
+    ## Last, install from R-Forge
+    list.pkg <- c("supraHex","dnet")
+    for(pkg in list.pkg){
+        install.packages(pkg,repos="http://R-Forge.R-project.org", type="source")
+    }

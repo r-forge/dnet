@@ -25,7 +25,6 @@ ALB	interaction	FOS
 ALB	interaction	APOA2
 ALB	interaction	APOB
 ALB	interaction	AQP1
-ALB	interaction	PAH
 ALB	interaction	APOA1
 ALB	interaction	AMBP
 ALB	interaction	AHSG
@@ -71,7 +70,6 @@ NTS	interaction	AFP
 NTS	interaction	FOS
 NTS	interaction	APOA2
 NTS	interaction	APOB
-NTS	interaction	PAH
 NTS	interaction	APOA1
 NTS	interaction	AMBP
 NTS	interaction	AHSG
@@ -105,7 +103,6 @@ FGG	interaction	ITIH2
 FGG	interaction	AFP
 FGG	interaction	APOA2
 FGG	interaction	APOB
-FGG	interaction	PAH
 FGG	interaction	APOA1
 FGG	interaction	AMBP
 FGG	interaction	AHSG
@@ -125,7 +122,6 @@ FGB	interaction	RBP4
 FGB	interaction	ITIH2
 FGB	interaction	APOA2
 FGB	interaction	APOB
-FGB	interaction	PAH
 FGB	interaction	APOA1
 FGB	interaction	AMBP
 FGB	interaction	AHSG
@@ -154,7 +150,6 @@ APOH	interaction	ITIH2
 APOH	interaction	AFP
 APOH	interaction	APOA2
 APOH	interaction	APOB
-APOH	interaction	PAH
 APOH	interaction	APOA1
 APOH	interaction	AMBP
 APOH	interaction	AHSG
@@ -165,7 +160,6 @@ APOC3	interaction	ITIH2
 APOC3	interaction	AFP
 APOC3	interaction	APOA2
 APOC3	interaction	APOB
-APOC3	interaction	PAH
 APOC3	interaction	APOA1
 APOC3	interaction	AMBP
 APOC3	interaction	AHSG
@@ -190,7 +184,6 @@ TTR	interaction	AHSG
 ITIH2	interaction	AFP
 ITIH2	interaction	APOA2
 ITIH2	interaction	APOB
-ITIH2	interaction	PAH
 ITIH2	interaction	APOA1
 ITIH2	interaction	AMBP
 ITIH2	interaction	AHSG
@@ -199,7 +192,6 @@ MYH6	interaction	MYL7
 L1TD1	interaction	AFP
 AFP	interaction	APOA2
 AFP	interaction	APOB
-AFP	interaction	PAH
 AFP	interaction	APOA1
 AFP	interaction	AMBP
 AFP	interaction	AHSG
@@ -210,14 +202,10 @@ APOA2	interaction	APOA1
 APOA2	interaction	AMBP
 APOA2	interaction	AHSG
 APOA2	interaction	AGT
-APOB	interaction	PAH
 APOB	interaction	APOA1
 APOB	interaction	AMBP
 APOB	interaction	AHSG
 APOB	interaction	AGT
-PAH	interaction	APOA1
-PAH	interaction	AMBP
-PAH	interaction	AHSG
 APOA1	interaction	AMBP
 APOA1	interaction	AHSG
 APOA1	interaction	AGT

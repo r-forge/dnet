@@ -5,7 +5,7 @@ list(
     
     index = list(
         sd_section("Network analysis and visualisation functions",
-            "These functions are used for network analysis and visualisation, including: identification of expression-active dynamic networks; network-based sample classifications and visualisations on 2D sample landscape; and random walk with restart (RWR) for network affinity calculation",
+            "These functions are used for network analysis and visualisation, including: identification of expression-active dynamic networks; network-based sample classifications and visualisations on 2D sample landscape; and random walk with restart (RWR) for network affinity calculation.",
             c(
                 'dRWR',
                 'dPvalAggregate',
@@ -33,7 +33,7 @@ list(
             )
         ),
         sd_section("Enrichment analysis and visualisation functions",
-            "These functions are used for enrichment analysis and visualisation, including: enrichment analysis (Fisher's exact test, Hypergeometric test or Binomial test) that can account for the hierarchy of the ontology; and gene set enrichment analysis (GSEA)",
+            "These functions are used for enrichment analysis and visualisation, including: enrichment analysis (Fisher's exact test, Hypergeometric test or Binomial test) that can account for the hierarchy of the ontology; and gene set enrichment analysis (GSEA).",
             c(
                 'dEnricher',
                 'dGSEA',
@@ -63,7 +63,7 @@ list(
             )
         ),
         sd_section("Built-in databases in human",
-            "These databases are used for analysis (i.e. enrichment, evolution and network analysis) in human (Hs; tax_id=10090)",
+            "These databases are used for analysis (i.e. enrichment, evolution and network analysis) in human (Hs; tax_id=10090).",
             c(
                 "org.Hs.eg",
                 "org.Hs.egDO", 
@@ -79,7 +79,7 @@ list(
             )
         ),
         sd_section("Built-in genesets in human",
-            "These genesets are derived from the molecular signatures database (Msigdb) in human (Hs)",
+            "These genesets are derived from the molecular signatures database (Msigdb) in human (Hs).",
             c(
                 "org.Hs.egMsigdbC1",
                 "org.Hs.egMsigdbC2CGP", 
@@ -99,7 +99,7 @@ list(
             )
         ),
         sd_section("Built-in databases in mouse",
-            "These databases are used for analysis (i.e. enrichment, evolution and network analysis) in mouse (Mm; tax_id=10090)",
+            "These databases are used for analysis (i.e. enrichment, evolution and network analysis) in mouse (Mm; tax_id=10090).",
             c(
                 "org.Mm.eg",
                 "org.Mm.egDO", 
@@ -115,7 +115,7 @@ list(
             )
         ),
         sd_section("Built-in databases in arabidopsis",
-            "These databases are used for analysis (i.e. enrichment, evolution and network analysis) in arabidopsis (At; tax_id=3702)",
+            "These databases are used for analysis (i.e. enrichment, evolution and network analysis) in arabidopsis (At; tax_id=3702).",
             c(
                 "org.At.eg",
                 "org.At.egGOBP",
@@ -126,7 +126,7 @@ list(
             )
         ),
         sd_section("Built-in databases in c.elegans",
-            "These databases are used for analysis (i.e. enrichment, evolution and network analysis) in c.elegans (Ce; tax_id=6239)",
+            "These databases are used for analysis (i.e. enrichment, evolution and network analysis) in c.elegans (Ce; tax_id=6239).",
             c(
                 "org.Ce.eg",
                 "org.Ce.egGOBP",
@@ -137,7 +137,7 @@ list(
             )
         ),
         sd_section("Built-in databases in fruitfly",
-            "These databases are used for analysis (i.e. enrichment, evolution and network analysis) in fruitfly (Dm; tax_id=7227)",
+            "These databases are used for analysis (i.e. enrichment, evolution and network analysis) in fruitfly (Dm; tax_id=7227).",
             c(
                 "org.Dm.eg",
                 "org.Dm.egGOBP",
@@ -148,7 +148,7 @@ list(
             )
         ),
         sd_section("Built-in databases in zebrafish",
-            "These databases are used for analysis (i.e. enrichment, evolution and network analysis) in zebrafish (Da; tax_id=7955)",
+            "These databases are used for analysis (i.e. enrichment, evolution and network analysis) in zebrafish (Da; tax_id=7955).",
             c(
                 "org.Da.eg",
                 "org.Da.egGOBP",
@@ -159,7 +159,7 @@ list(
             )
         ),
         sd_section("Built-in databases in rat",
-            "These databases are used for analysis (i.e. enrichment, evolution and network analysis) in rat (Rn; tax_id=10116)",
+            "These databases are used for analysis (i.e. enrichment, evolution and network analysis) in rat (Rn; tax_id=10116).",
             c(
                 "org.Rn.eg",
                 "org.Rn.egGOBP",
@@ -170,7 +170,7 @@ list(
             )
         ),
         sd_section("Built-in databases in chicken",
-            "These databases are used for analysis (i.e. enrichment, evolution and network analysis) in chicken (Gg; tax_id=9031)",
+            "These databases are used for analysis (i.e. enrichment, evolution and network analysis) in chicken (Gg; tax_id=9031).",
             c(
                 "org.Gg.eg",
                 "org.Gg.egGOBP",
@@ -181,7 +181,7 @@ list(
             )
         ),
         sd_section("Built-in datasets",
-            "These datasets are used for the demo",
+            "These datasets are used for the demos.",
             c(
                 "Hiratani_TableS1",
                 "CLL",
