@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Demo for TCGA mutational profile dataset @ dnet 1.0.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Hai Fang and Julian Gough">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+
+<style type="text/css">
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 8px 20px 12px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #999999;
+}
+
+.navbar .brand:hover {
+  color: #F87217;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar .nav > li > a:hover {
+  color: #F87217;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+</style>
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17338744-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- Enlarge image -->
+<script type="text/javascript">
+    function newWin(url, name, width, height) { 
+       
+        var left = (screen.width/2)-(width/2);
+        var top = (screen.height/2)-(height/2); 
+        
+        window.open(url,name,'scrollbars=yes,resizable=yes,fullscreen=yes, width=' + width + ', height='+height+', top='+top+', left='+left);
+    }
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">dnet 1.0.0</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="install.html"><i class="icon-wrench icon-white"></i> Installation</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="rdata.html"><i class="icon-file icon-white"></i> RData</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h2>Demo for TCGA mutational profile dataset</h2>
+
+Notes:
+<li> All results are based on dnet (version 1.0.0). </li>
+<li> Images displayed below may be distorted, and they should be normal in your screen. </li>
+<li> Functions contained in dnet 1.0.0 are hyperlinked in-place and also listed on the right side. </li>
+
+<div class="row">
+    <div class="span8">
+      <pre>
+      <div class='input'># This is a demo for TCGA mutational profile dataset from Kandoth et al
+# 
+# This dataset is available from TCGA (see <a href="http://www.ncbi.nlm.nih.gov/pubmed/24132290" target="24132290">http://www.ncbi.nlm.nih.gov/pubmed/24132290</a>), containing somatic mutational profiles for 3130 cancer samples (i.e. only those having clinical data). These cancer samples belong to one of 12 major cancer types, including breast adenocarcinoma (BRCA), lung adenocarcinoma (LUAD), lung squamous cell carcinoma (LUSC), uterine corpus endometrial carcinoma (UCEC), glioblastoma multiforme (GBM), head and neck squamous cell carcinoma (HNSC), colon and rectal carcinoma (COAD/READ), bladder urothelial carcinoma (BLCA), kidney renal clear cell carcinoma (KIRC), ovarian serous carcinoma (OV) and acute myeloid leukaemia (LAML). For each patient sample, somatic mutations are represented as a profile of binary (1, 0) states on genes, where '1' indicates a gene for which mutation has occurred in the tumor relative to germ line. The dataset is stored in "TCGA_mutations" (as an 'ExpressionSet' object), including:
+## assayData: exprs(TCGA_mutations), a matrix of 19477 genes X 3130 samples;
+## phenoData: pData(TCGA_mutations), variables describing sample phenotypes (i.e. columns in assayData), including information about samples: "Age", "Days_to_death", "Days_to_last_followup", "Vita_status", "Gender", "Date_diagnosis", "TCGA_tumor_type", "Tumor_stage", "Tumor_grade"
+## featureData: fData(TCGA_mutations), variables describing features (i.e. rows in assayData), including information about features/genes: "EntrezID" for gene EntrezID, "Symbol" for gene symbol, "Desc" for gene description, "Synonyms" for gene symbol alias
+###############################################################################
+library(dnet)
+
+# Load or install packages specifically used in this demo
+list.pkg <- c("affy","limma")
+for(pkg in list.pkg){
+    if(!require(pkg, character.only=T)){
+        install.packages(pkg,repos="http://www.stats.bris.ac.uk/R",dependencies=TRUE)
+        lapply(pkg, library, character.only=T)
+    }
+}
+
+# load an "ExpressionSet" object
+load(url("http://dnet.r-forge.r-project.org/data/Datasets/TCGA_mutations.RData"))
+## remove those genes without mutations in any samples
+flag <- apply(exprs(TCGA_mutations)!=0, 1, sum)
+eset <- TCGA_mutations[which(flag!=0),]
+# extract information about the first 5 samples
+pData(eset)[1:5,]
+</div>
+<div class='output'>                             Age Days_to_death Days_to_last_followup
+TCGA-B8-4153-01B-11D-1669-08  74            NA                   404
+TCGA-24-1469-01A-01W-0553-09  71            NA                   277
+TCGA-06-5411-01A-01D-1696-08  51           254                   254
+TCGA-05-4249-01A-01D-1105-08  67            NA                  1158
+TCGA-18-3406-01A-01D-0983-08  67           371                   370
+                             Vita_status Gender Date_diagnosis TCGA_tumor_type
+TCGA-B8-4153-01B-11D-1669-08           0   male           2010            KIRC
+TCGA-24-1469-01A-01W-0553-09           0 female           2008              OV
+TCGA-06-5411-01A-01D-1696-08           1   male           2010             GBM
+TCGA-05-4249-01A-01D-1105-08           0   male           2007            LUAD
+TCGA-18-3406-01A-01D-0983-08           1   male           2003            LUSC
+                             Tumor_stage Tumor_grade
+TCGA-B8-4153-01B-11D-1669-08           3           3
+TCGA-24-1469-01A-01W-0553-09           3           3
+TCGA-06-5411-01A-01D-1696-08          NA          NA
+TCGA-05-4249-01A-01D-1105-08           1          NA
+TCGA-18-3406-01A-01D-0983-08           1          NA
+</div>
+<div class='input'># extract information about the first 5 features
+fData(eset)[1:5,]
+</div>
+<div class='output'>       EntrezID Symbol                            Desc
+A1BG          1   A1BG          alpha-1-B glycoprotein
+A1CF      29974   A1CF  APOBEC1 complementation factor
+A2M           2    A2M           alpha-2-macroglobulin
+A2ML1    144568  A2ML1    alpha-2-macroglobulin-like 1
+A4GALT    53947 A4GALT alpha 1,4-galactosyltransferase
+                                   Synonyms
+A1BG                   A1B|ABG|GAB|HYST2477
+A1CF          ACF|ACF64|ACF65|APOBEC1CF|ASP
+A2M               A2MD|CPAMD5|FWP007|S863-7
+A2ML1                                CPAMD9
+A4GALT A14GALT|A4GALT1|Gb3S|P(k)|P1|P1PK|PK
+</div>
+<div class='input'># number of samples for each cancer type
+table(pData(eset)$TCGA_tumor_type)
+</div>
+<div class='output'>
+    BLCA     BRCA COADREAD      GBM     HNSC     KIRC     LAML     LUAD 
+      94      763      193      275      301      417      196      171 
+    LUSC       OV     UCEC 
+     174      316      230 
+</div>
+<div class='input'>tumor_type <- sort(unique(pData(eset)$TCGA_tumor_type))
+
+# Entrez Gene information for the human
+load(url("http://dnet.r-forge.r-project.org/data/Hs/org.Hs.eg.RData"))
+gene_info <- org.Hs.eg$gene_info
+gene_info[1:2,]
+</div>
+<div class='output'>  GeneID Symbol            description chromosome map_location
+1      1   A1BG alpha-1-B glycoprotein         19      19q13.4
+2      2    A2M  alpha-2-macroglobulin         12     12p13.31
+                   Synonyms
+1      A1B|ABG|GAB|HYST2477
+2 A2MD|CPAMD5|FWP007|S863-7
+                                                                       dbXrefs
+1 HGNC:5|MIM:138670|Ensembl:ENSG00000121410|HPRD:00726|Vega:OTTHUMG00000183507
+2 HGNC:7|MIM:103950|Ensembl:ENSG00000175899|HPRD:00072|Vega:OTTHUMG00000150267
+</div>
+<div class='input'>
+# An igraph object that contains a functional protein association network in human. The network is extracted from the STRING database (version 9.1). Only those associations with medium confidence (score>=400) are retained.
+load(url("http://dnet.r-forge.r-project.org/data/Hs/org.Hs.string.RData"))
+org.Hs.string
+</div>
+<div class='output'>IGRAPH UN-- 16973 410824 -- 
++ attr: name (v/c), seqid (v/c), geneid (v/n), symbol (v/c),
+  description (v/c), neighborhood_score (e/n), fusion_score (e/n),
+  cooccurence_score (e/n), coexpression_score (e/n), experimental_score
+  (e/n), database_score (e/n), textmining_score (e/n), combined_score
+  (e/n)
+</div>
+<div class='input'># restrict to those edges with high confidence (score>=700)
+g <- subgraph.edges(org.Hs.string, eids=E(org.Hs.string)[combined_score>=700])
+g
+</div>
+<div class='output'>IGRAPH UN-- 13026 198516 -- 
++ attr: name (v/c), seqid (v/c), geneid (v/n), symbol (v/c),
+  description (v/c), neighborhood_score (e/n), fusion_score (e/n),
+  cooccurence_score (e/n), coexpression_score (e/n), experimental_score
+  (e/n), database_score (e/n), textmining_score (e/n), combined_score
+  (e/n)
+</div>
+<div class='input'>
+# extract network that only contains genes in eset
+ind <- match(V(g)$symbol, rownames(eset))
+## for extracted expression
+esetGene <- eset[ind[!is.na(ind)],]
+esetGene
+</div>
+<div class='output'>ExpressionSet (storageMode: lockedEnvironment)
+assayData: 12688 features, 3130 samples 
+  element names: exprs 
+protocolData: none
+phenoData
+  sampleNames: TCGA-B8-4153-01B-11D-1669-08
+    TCGA-24-1469-01A-01W-0553-09 ... TCGA-34-5241-01A-01D-1441-08 (3130
+    total)
+  varLabels: Age Days_to_death ... Tumor_grade (9 total)
+  varMetadata: labelDescription
+featureData
+  featureNames: PTPN3 MVP ... PEX5L (12688 total)
+  fvarLabels: EntrezID Symbol Desc Synonyms
+  fvarMetadata: labelDescription
+experimentData: use 'experimentData(object)'
+Annotation:  
+</div>
+<div class='input'>## for extracted graph
+nodes_mapped <- V(g)$name[!is.na(ind)]
+network <- <a href='dNetInduce.html' target=dNetInduce>dNetInduce</a>(g, nodes_query=nodes_mapped, knn=0, remove.loops=F, largest.comp=F)
+V(network)$name <- V(network)$symbol
+#E(network)$weight <- E(network)$combined_score
+network
+</div>
+<div class='output'>IGRAPH UN-- 12688 192645 -- 
++ attr: name (v/c), seqid (v/c), geneid (v/n), symbol (v/c),
+  description (v/c), neighborhood_score (e/n), fusion_score (e/n),
+  cooccurence_score (e/n), coexpression_score (e/n), experimental_score
+  (e/n), database_score (e/n), textmining_score (e/n), combined_score
+  (e/n)
+</div>
+<div class='input'>
+# For each gene, calculate number of samples (within a tumor type) having the mutated gene 
+num_mutated <- sapply(tumor_type, function(x) {
+    e <- esetGene[, which(pData(esetGene)$TCGA_tumor_type==x)]
+    apply(exprs(e)!=0,1,sum)
+})
+rownames(num_mutated) <- fData(esetGene)$Symbol
+num_mutated[1:10,]
+</div>
+<div class='output'>         BLCA BRCA COADREAD GBM HNSC KIRC LAML LUAD LUSC OV UCEC
+PTPN3       4    2        2   4    4    3    0    7    4  3    4
+MVP         2    3        2   3    3    4    0    3    1  2    1
+OR2G2       3    2        1   3    4    4    0   12    8  0    3
+KIAA0226    1    5        1   0    5    3    0    2    7  1    6
+PAK1IP1     0    0        0   0    3    0    0    3    0  0    0
+RORC        2    4        0   3    0    1    0    0    4  1    4
+SEPT14      1    5        0   3    2    1    1    5    7  0    2
+RAB7L1      1    1        0   0    0    0    0    1    0  1    1
+CMTM2       4    1        1   1    2    1    0    1    1  1    1
+JAKMIP1     2    3        5   2    9    2    0    6    7  1    2
+</div>
+<div class='input'>
+# For each gene, calculate fraction of samples (within a tumor type) having the mutated gene 
+frac_mutated <- sapply(tumor_type, function(x) {
+    e <- esetGene[, which(pData(esetGene)$TCGA_tumor_type==x)]
+    apply(exprs(e)!=0,1,sum)/ncol(e)
+})
+rownames(frac_mutated) <- fData(esetGene)$Symbol
+frac_mutated[1:10,]
+</div>
+<div class='output'>               BLCA        BRCA    COADREAD         GBM        HNSC        KIRC
+PTPN3    0.04255319 0.002621232 0.010362694 0.014545455 0.013289037 0.007194245
+MVP      0.02127660 0.003931848 0.010362694 0.010909091 0.009966777 0.009592326
+OR2G2    0.03191489 0.002621232 0.005181347 0.010909091 0.013289037 0.009592326
+KIAA0226 0.01063830 0.006553080 0.005181347 0.000000000 0.016611296 0.007194245
+PAK1IP1  0.00000000 0.000000000 0.000000000 0.000000000 0.009966777 0.000000000
+RORC     0.02127660 0.005242464 0.000000000 0.010909091 0.000000000 0.002398082
+SEPT14   0.01063830 0.006553080 0.000000000 0.010909091 0.006644518 0.002398082
+RAB7L1   0.01063830 0.001310616 0.000000000 0.000000000 0.000000000 0.000000000
+CMTM2    0.04255319 0.001310616 0.005181347 0.003636364 0.006644518 0.002398082
+JAKMIP1  0.02127660 0.003931848 0.025906736 0.007272727 0.029900332 0.004796163
+                LAML        LUAD        LUSC          OV        UCEC
+PTPN3    0.000000000 0.040935673 0.022988506 0.009493671 0.017391304
+MVP      0.000000000 0.017543860 0.005747126 0.006329114 0.004347826
+OR2G2    0.000000000 0.070175439 0.045977011 0.000000000 0.013043478
+KIAA0226 0.000000000 0.011695906 0.040229885 0.003164557 0.026086957
+PAK1IP1  0.000000000 0.017543860 0.000000000 0.000000000 0.000000000
+RORC     0.000000000 0.000000000 0.022988506 0.003164557 0.017391304
+SEPT14   0.005102041 0.029239766 0.040229885 0.000000000 0.008695652
+RAB7L1   0.000000000 0.005847953 0.000000000 0.003164557 0.004347826
+CMTM2    0.000000000 0.005847953 0.005747126 0.003164557 0.004347826
+JAKMIP1  0.000000000 0.035087719 0.040229885 0.003164557 0.008695652
+</div>
+<div class='input'>
+# define the "mutation sparseness" of genes in terms of a vector which stores the fraction of samples (within a tumor type) having the mutated gene 
+# sparseness for a vector is: 1) one if the vector contains only a single non-zero value; 2) zero if and only if all elements are equal; 3) otherwise, the value interpolates smoothly between the two extremes
+sparseness <- sapply(1:nrow(frac_mutated), function(i){
+    v <- frac_mutated[i,]
+    n <- length(v)
+    norm1 <- sum(abs(v))
+    norm2 <- sqrt(sum(v^2))
+    (sqrt(n)-norm1/norm2) / (sqrt(n)-1)
+})
+sparseness <- matrix(sparseness, ncol=1)
+rownames(sparseness) <- rownames(frac_mutated)
+# derive the "mutation denseness" of genes
+denseness <- 1- sparseness
+hist(denseness,100)
+</div>
+<a href="javascript:newWin('TCGA-22.png', 'TCGA-22.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='TCGA-22.png', width="400" /></a>
+<div class='input'>
+# random walk with restart using denseness as seeds
+PTmatrix <- <a href='dRWR.html' target=dRWR>dRWR</a>(g=network, normalise=c("laplacian","row","column","none")[1], setSeeds=data.frame(frac_mutated, denseness), restart=0.5, normalise.affinity.matrix=c("none","quantile")[1], verbose=T)
+</div>
+<strong class='message'>Start at 2014-04-07 11:14:32</strong>
+<strong class='message'></strong>
+<strong class='message'>First, get the adjacency matrix of the input graph (2014-04-07 11:14:32) ...</strong>
+<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-04-07 11:14:32) ...</strong>
+<strong class='message'>Third, RWR of 12 sets of seeds using 5.0e-01 restart probability (2014-04-07 11:14:32) ...</strong>
+<strong class='message'>	Using the seed set 1 (2014-04-07 11:14:32) ...</strong>
+<strong class='message'>	Using the seed set 2 (2014-04-07 11:14:33) ...</strong>
+<strong class='message'>	Using the seed set 3 (2014-04-07 11:14:33) ...</strong>
+<strong class='message'>	Using the seed set 4 (2014-04-07 11:14:33) ...</strong>
+<strong class='message'>	Using the seed set 5 (2014-04-07 11:14:33) ...</strong>
+<strong class='message'>	Using the seed set 6 (2014-04-07 11:14:33) ...</strong>
+<strong class='message'>	Using the seed set 7 (2014-04-07 11:14:33) ...</strong>
+<strong class='message'>	Using the seed set 8 (2014-04-07 11:14:34) ...</strong>
+<strong class='message'>	Using the seed set 9 (2014-04-07 11:14:34) ...</strong>
+<strong class='message'>	Using the seed set 10 (2014-04-07 11:14:34) ...</strong>
+<strong class='message'>	Using the seed set 11 (2014-04-07 11:14:34) ...</strong>
+<strong class='message'>	Using the seed set 12 (2014-04-07 11:14:34) ...</strong>
+<strong class='message'>Finally, output 12688 by 12 affinity matrix normalised by none (2014-04-07 11:14:34) ...</strong>
+<strong class='message'>
+Finish at 2014-04-07 11:14:34</strong>
+<strong class='message'>Runtime in total is: 2 secs
+</strong>
+<div class='input'>
+# GSEA using PS
+eTerm <- <a href='dGSEA.html' target=dGSEA>dGSEA</a>(data=PTmatrix, identity="symbol", genome="Hs", ontology="PS", sizeRange=c(10,100000), which_distance=NULL, sigTail=c("two-tails","one-tail")[2])
+</div>
+<strong class='message'>Start at 2014-04-07 11:14:34</strong>
+<strong class='message'></strong>
+<strong class='message'>First, load the ontology PS and its gene associations in the genome Hs (2014-04-07 11:14:34) ...</strong>
+<strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.eg.RData</strong>
+<strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.egPS.RData</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-07 11:14:36) ...</strong>
+<strong class='message'>	Among 12688 symbols of input data, there are 12688 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Third, perform GSEA analysis (2014-04-07 11:14:37) ...</strong>
+<strong class='message'>	Sample 1 is being processed at (2014-04-07 11:14:37) ...</strong>
+<strong class='message'>		 26 of 26 gene sets have been processed</strong>
+<strong class='message'>	Sample 2 is being processed at (2014-04-07 11:14:38) ...</strong>
+<strong class='message'>		 26 of 26 gene sets have been processed</strong>
+<strong class='message'>	Sample 3 is being processed at (2014-04-07 11:14:39) ...</strong>
+<strong class='message'>		 26 of 26 gene sets have been processed</strong>
+<strong class='message'>	Sample 4 is being processed at (2014-04-07 11:14:40) ...</strong>
+<strong class='message'>		 26 of 26 gene sets have been processed</strong>
+<strong class='message'>	Sample 5 is being processed at (2014-04-07 11:14:41) ...</strong>
+<strong class='message'>		 26 of 26 gene sets have been processed</strong>
+<strong class='message'>	Sample 6 is being processed at (2014-04-07 11:14:41) ...</strong>
+<strong class='message'>		 26 of 26 gene sets have been processed</strong>
+<strong class='message'>	Sample 7 is being processed at (2014-04-07 11:14:42) ...</strong>
+<strong class='message'>		 26 of 26 gene sets have been processed</strong>
+<strong class='message'>	Sample 8 is being processed at (2014-04-07 11:14:43) ...</strong>
+<strong class='message'>		 26 of 26 gene sets have been processed</strong>
+<strong class='message'>	Sample 9 is being processed at (2014-04-07 11:14:44) ...</strong>
+<strong class='message'>		 26 of 26 gene sets have been processed</strong>
+<strong class='message'>	Sample 10 is being processed at (2014-04-07 11:14:45) ...</strong>
+<strong class='message'>		 26 of 26 gene sets have been processed</strong>
+<strong class='message'>	Sample 11 is being processed at (2014-04-07 11:14:46) ...</strong>
+<strong class='message'>		 26 of 26 gene sets have been processed</strong>
+<strong class='message'>	Sample 12 is being processed at (2014-04-07 11:14:47) ...</strong>
+<strong class='message'>		 26 of 26 gene sets have been processed</strong>
+<strong class='message'>
+End at 2014-04-07 11:14:47</strong>
+<strong class='message'>Runtime in total is: 13 secs
+</strong>
+<div class='input'>which_sample=12
+res <- <a href='dGSEAview.html' target=dGSEAview>dGSEAview</a>(eTerm, which_sample=1, top_num=5, sortBy="nES", decreasing=T, details=TRUE)
+<a href='visGSEA.html' target=visGSEA>visGSEA</a>(eTerm, which_sample=which_sample, which_term=rownames(res)[1])
+</div>
+<a href="javascript:newWin('TCGA-80.png', 'TCGA-80.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='TCGA-80.png', width="400" /></a>
+<div class='input'>output <- <a href='dGSEAwrite.html' target=dGSEAwrite>dGSEAwrite</a>(eTerm, which_content="nES", which_score="nES", cutoff=0, filename="eTerm.txt",keep.significance=F)
+</div>
+<strong class='message'>A file called eTerm.txt has been successfully written!
+</strong>
+<div class='input'>
+# visualise using advanced heatmap
+data <- output[,6:ncol(output)]
+rownames(data) <- paste(output$setID,output$setSize,output$name, sep="_")
+<a href='visHeatmapAdv.html' target=visHeatmapAdv>visHeatmapAdv</a>(data, Rowv=F, Colv=T, colormap="darkgreen-lightgreen-lightpink-darkred", zlim=c(0,2), margins = c(7,14),cexRow=1,cexCol=1)</div>
+<a href="javascript:newWin('TCGA-84.png', 'TCGA-84.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='TCGA-84.png', width="400" /></a>
+      </pre>
+    </div>
+
+  <div class="span4">
+    
+    <h2>Functions used in this demo</h2>
+    <ul>
+      <li><a href="dNetInduce.html">dNetInduce</a></li>
+      <li><a href="dRWR.html">dRWR</a></li>
+      <li><a href="dGSEA.html">dGSEA</a></li>
+      <li><a href="dGSEAview.html">dGSEAview</a></li>
+      <li><a href="visGSEA.html">visGSEA</a></li>
+      <li><a href="dGSEAwrite.html">dGSEAwrite</a></li>
+      <li><a href="visHeatmapAdv.html">visHeatmapAdv</a></li>
+    </ul>
+    
+    <h2>Citation</h2>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of network, expression, evolution and ontology data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+
+    
+    <!--
+    
+    <h2>URL</h2>
+    <ul>
+      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
+    </ul>
+    
+    <h2>Author</h2>
+    Hai Fang and Julian Gough
+    
+    -->
+    
+  </div>
+
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+
+<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
+
+
+      </footer>
+    </div>
+  </body>
+</html>
