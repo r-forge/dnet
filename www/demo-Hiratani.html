@@ -274,7 +274,7 @@ pval <- pvals[,my_contrast]
 # 2) identification of module
 g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network, pval=pval, nsize=40)
 </div>
-<strong class='message'>Start at 2014-04-05 12:51:48</strong>
+<strong class='message'>Start at 2014-04-08 09:50:58</strong>
 <strong class='message'></strong>
 <strong class='message'>First, fit the p-value distribution under beta-uniform mixture model...</strong>
 <strong class='message'>	A total of p-values: 17292</strong>
@@ -309,10 +309,9 @@ g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network,
 <strong class='message'>	Amongst 17292 scores, there are 188 positives.</strong>
 <strong class='message'>Finally, find the subnetwork from the input network with 13062 nodes and 290589 edges...</strong>
 <strong class='message'>	Size of the module: 46 nodes and 61 edges</strong>
-<strong class='message'></strong>
 <strong class='message'>
-Finish at 2014-04-05 13:01:05</strong>
-<strong class='message'>Runtime in total is: 557 secs
+Finish at 2014-04-08 10:00:12</strong>
+<strong class='message'>Runtime in total is: 554 secs
 </strong>
 <div class='input'>glayout <- layout.fruchterman.reingold(g)
 
@@ -337,17 +336,17 @@ ordering <- tmp[order(vgroups,vdegrees),]$ind
 # 6) visualise graph using 1-dimensional arc diagram
 <a href='visNetArc.html' target=visNetArc>visNetArc</a>(g, ordering=ordering, labels=V(g)$geneSymbol, vertex.label.color=vcolors, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.size=log(vdegrees)+0.1, vertex.label.cex=0.4)
 </div>
-<a href="javascript:newWin('Hiratani-55.png', 'Hiratani-55.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Hiratani-55.png', width="400" /></a>
+<a href="javascript:newWin('Hiratani-54.png', 'Hiratani-54.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-54.png', width="400" /></a>
 <div class='input'>
 # 7) visualise graph using circle diagram
 # 7a) drawn into a single circle 
 <a href='visNetCircle.html' target=visNetCircle>visNetCircle</a>(g=g, com=com, ordering=ordering, colormap=colormap, vertex.label=V(g)$symbol, vertex.size=igraph::degree(g)+5, vertex.label.color="black", vertex.label.cex=0.6, vertex.label.dist=0.75, vertex.shape="sphere", edge.color.within="grey", edge.color.crossing="black", edge.width=1, edge.lty=1, mark.shape=1, mark.expand=10)
 </div>
-<a href="javascript:newWin('Hiratani-57.png', 'Hiratani-57.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Hiratani-57.png', width="400" /></a>
+<a href="javascript:newWin('Hiratani-56.png', 'Hiratani-56.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-56.png', width="400" /></a>
 <div class='input'># 7b) drawn into multiple circles
 <a href='visNetCircle.html' target=visNetCircle>visNetCircle</a>(g=g, com=com, circles="multiple", ordering=ordering, colormap=colormap, vertex.label=V(g)$symbol, vertex.size=igraph::degree(g)+5, vertex.label.color="black", vertex.label.cex=0.6, vertex.label.dist=0.25, vertex.shape="sphere", edge.color.within="grey", edge.color.crossing="black", edge.width=1, edge.lty=1, mark.shape=1, mark.expand=10)
 </div>
-<a href="javascript:newWin('Hiratani-59.png', 'Hiratani-59.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Hiratani-59.png', width="400" /></a>
+<a href="javascript:newWin('Hiratani-58.png', 'Hiratani-58.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-58.png', width="400" /></a>
 <div class='input'>
 # 8) as comparison, also visualise graph on 2-dimensional layout 
 mark.groups <- communities(com)
@@ -356,35 +355,35 @@ mark.border <- <a href='visColoralpha.html' target=visColoralpha>visColoralpha</
 edge.color <- c("grey", "black")[crossing(com,g)+1]
 <a href='visNet.html' target=visNet>visNet</a>(g, glayout=glayout, vertex.label=V(g)$geneSymbol, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.shape="sphere", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
 </div>
-<a href="javascript:newWin('Hiratani-61.png', 'Hiratani-61.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Hiratani-61.png', width="400" /></a>
+<a href="javascript:newWin('Hiratani-60.png', 'Hiratani-60.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-60.png', width="400" /></a>
 <div class='input'>
 legend_name <- paste("C",1:length(mcolors)," (n=",com$csize,", pval=",signif(com$significance,digits=2),")",sep='')
 legend("bottomleft", legend=legend_name, fill=mcolors, bty="n", cex=0.6)
 </div>
-<a href="javascript:newWin('Hiratani-63.png', 'Hiratani-63.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Hiratani-63.png', width="400" /></a>
+<a href="javascript:newWin('Hiratani-62.png', 'Hiratani-62.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-62.png', width="400" /></a>
 <div class='input'>
 # 9) color by score and FC
 # colored by score
 <a href='visNet.html' target=visNet>visNet</a>(g, glayout=glayout, pattern=V(g)$score, zlim=c(-1*ceiling(max(abs(V(g)$score))),ceiling(max(abs(V(g)$score)))), vertex.shape="circle", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
 </div>
-<a href="javascript:newWin('Hiratani-65.png', 'Hiratani-65.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Hiratani-65.png', width="400" /></a>
+<a href="javascript:newWin('Hiratani-64.png', 'Hiratani-64.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-64.png', width="400" /></a>
 <div class='input'># colored by FC
 colormap <- "darkgreen-lightgreen-lightpink-darkred"
 logFC <- fit2$coefficients[V(g)$name,my_contrast]
 <a href='visNet.html' target=visNet>visNet</a>(g, glayout=glayout, pattern=logFC, colormap=colormap, vertex.shape="circle", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
 </div>
-<a href="javascript:newWin('Hiratani-67.png', 'Hiratani-67.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Hiratani-67.png', width="400" /></a>
+<a href="javascript:newWin('Hiratani-66.png', 'Hiratani-66.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-66.png', width="400" /></a>
 <div class='input'>
 # 10) color by additional data
 data <- exprs(esetGene)[V(g)$name,]
 <a href='visNetMul.html' target=visNetMul>visNetMul</a>(g=g, data=data, height=ceiling(sqrt(ncol(data)))*2, newpage=T,glayout=glayout,colormap=colormap,vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.7,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
 </div>
-<a href="javascript:newWin('Hiratani-69.png', 'Hiratani-69.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Hiratani-69.png', width="400" /></a>
+<a href="javascript:newWin('Hiratani-68.png', 'Hiratani-68.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-68.png', width="400" /></a>
 <div class='input'>
 # 11) color by additional data (be reordered)
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="edge", node.normalise="degree", amplifier=3, metric="none")
 </div>
-<strong class='message'>Start at 2014-04-05 13:02:37</strong>
+<strong class='message'>Start at 2014-04-08 10:01:44</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -411,17 +410,17 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    radius (at rough stage): from 2 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-04-05 13:02:43</strong>
+<strong class='message'>End at 2014-04-08 10:01:50</strong>
 <strong class='message'>Runtime in total is: 6 secs
 </strong>
 <div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap=colormap, vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.4,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)
 </div>
-<a href="javascript:newWin('Hiratani-87.png', 'Hiratani-87.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Hiratani-87.png', width="400" /></a>
+<a href="javascript:newWin('Hiratani-86.png', 'Hiratani-86.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-86.png', width="400" /></a>
 <div class='input'>
 # 12) heatmap of subnetwork
 <a href='visHeatmapAdv.html' target=visHeatmapAdv>visHeatmapAdv</a>(data, colormap=colormap)
 </div>
-<a href="javascript:newWin('Hiratani-89.png', 'Hiratani-89.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Hiratani-89.png', width="400" /></a>
+<a href="javascript:newWin('Hiratani-88.png', 'Hiratani-88.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-88.png', width="400" /></a>
 <div class='input'>hmap <- data.frame(Symbol=rownames(data), data)
 write.table(hmap, file=paste(my_contrast,".txt", sep=""), quote=F, row.names=F,col.names=T,sep="\t")
 
