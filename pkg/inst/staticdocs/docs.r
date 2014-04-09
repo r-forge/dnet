@@ -5,9 +5,8 @@ list(
     
     index = list(
         sd_section("Network analysis and visualisation functions",
-            "These functions are used for network analysis and visualisation, including: identification of expression-active dynamic networks; network-based sample classifications and visualisations on 2D sample landscape; and random walk with restart (RWR) for network affinity calculation.",
+            "These functions are used for network analysis and visualisation, including: identification of gene-active dynamic networks; network-based sample classifications and visualisations on 2D sample landscape; and random walk with restart (RWR) for network affinity calculation.",
             c(
-                'dRWR',
                 'dPvalAggregate',
                 'dNetInduce',
                 'dBUMfit',
@@ -29,7 +28,8 @@ list(
                 'visColoralpha',
                 'visHeatmap',
                 'visHeatmapAdv',
-                'visTreeBootstrap'
+                'visTreeBootstrap',
+                'dRWR'
             )
         ),
         sd_section("Enrichment analysis and visualisation functions",

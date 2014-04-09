@@ -29,11 +29,6 @@ fData(eset)[1:5,]
 table(pData(eset)$TCGA_tumor_type)
 tumor_type <- sort(unique(pData(eset)$TCGA_tumor_type))
 
-# Entrez Gene information for the human
-load(url("http://dnet.r-forge.r-project.org/data/Hs/org.Hs.eg.RData"))
-gene_info <- org.Hs.eg$gene_info
-gene_info[1:2,]
-
 # An igraph object that contains a functional protein association network in human. The network is extracted from the STRING database (version 9.1). Only those associations with medium confidence (score>=400) are retained.
 load(url("http://dnet.r-forge.r-project.org/data/Hs/org.Hs.string.RData"))
 org.Hs.string

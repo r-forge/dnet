@@ -407,7 +407,7 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
     
     ## force use classic ontology.algorithm when the ontology is derived from "Msigdb" or "PS"
     if(length(grep("Msigdb",ontology))>0 || ontology=="PS"){
-        ontology.algorithm <- "classic"
+        ontology.algorithm <- "none"
     }
     
     terms <- names(gs)
@@ -441,7 +441,7 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
         
         zscores <- sapply(terms, function(term){
             genes.term <- as.numeric(unique(unlist(gs[term])))
-            zscore <- zscoreHyper(genes.group, genes.term, genes.universe)
+            zscoreHyper(genes.group, genes.term, genes.universe)
         })
 
     }else if(ontology.algorithm=="pc" || ontology.algorithm=="elim" || ontology.algorithm=="lea"){
