@@ -109,7 +109,8 @@
 
 Notes:
 <li> All results are based on dnet (version 1.0.0). </li>
-<li> Images displayed below may be distorted, and they should be normal in your screen. </li>
+<li> R scripts (i.e. R expressions) plus necessary comments are highlighted in light cyan, and the rest are outputs in the screen. </li>
+<li> Images displayed below may be distorted, but should be normal in your screen. </li>
 <li> Functions contained in dnet 1.0.0 are hyperlinked in-place and also listed on the right side. </li>
 
 <div class="row">
@@ -274,7 +275,7 @@ pval <- pvals[,my_contrast]
 # 2) identification of module
 g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network, pval=pval, nsize=40)
 </div>
-<strong class='message'>Start at 2014-04-08 09:50:58</strong>
+<strong class='message'>Start at 2014-04-09 11:31:28</strong>
 <strong class='message'></strong>
 <strong class='message'>First, fit the p-value distribution under beta-uniform mixture model...</strong>
 <strong class='message'>	A total of p-values: 17292</strong>
@@ -310,8 +311,8 @@ g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network,
 <strong class='message'>Finally, find the subnetwork from the input network with 13062 nodes and 290589 edges...</strong>
 <strong class='message'>	Size of the module: 46 nodes and 61 edges</strong>
 <strong class='message'>
-Finish at 2014-04-08 10:00:12</strong>
-<strong class='message'>Runtime in total is: 554 secs
+Finish at 2014-04-09 11:40:56</strong>
+<strong class='message'>Runtime in total is: 568 secs
 </strong>
 <div class='input'>glayout <- layout.fruchterman.reingold(g)
 
@@ -383,7 +384,7 @@ data <- exprs(esetGene)[V(g)$name,]
 # 11) color by additional data (be reordered)
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="edge", node.normalise="degree", amplifier=3, metric="none")
 </div>
-<strong class='message'>Start at 2014-04-08 10:01:44</strong>
+<strong class='message'>Start at 2014-04-09 11:42:28</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -410,8 +411,8 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    radius (at rough stage): from 2 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-04-08 10:01:50</strong>
-<strong class='message'>Runtime in total is: 6 secs
+<strong class='message'>End at 2014-04-09 11:42:35</strong>
+<strong class='message'>Runtime in total is: 7 secs
 </strong>
 <div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap=colormap, vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.4,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)
 </div>

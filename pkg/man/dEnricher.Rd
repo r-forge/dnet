@@ -157,6 +157,7 @@ identified by "setID" and gene members identified by
 "Entrez ID"} \item{\code{data}: a vector containing input
 data in consideration. It is not always the same as the
 input data as only those mappable are retained}
+\item{\code{zscore}: a vector containing z-scores}
 \item{\code{pvalue}: a vector containing p-values}
 \item{\code{adjp}: a vector containing adjusted p-values.
 It is the p value but after being adjusted for multiple
@@ -172,25 +173,25 @@ can respect the hierarchy of the ontology.
 }
 \note{
 The interpretation of the algorithms used to account for
-the hierarchy of the ontology: \itemize{ \item{"none": does
-not consider the ontology hierarchy at all;} \item{"lea":
-computers the significance of a term in terms of the
-significance of its children at the maximum depth (e.g. 2).
-Precisely, once genes are already annotated to any children
-terms with a more signficance than itself, then all these
-genes are eliminated from the use for the recalculation of
-the signifance at that term. The final p-values takes the
-maximum of the original p-value and the recalculated
-p-value} \item{"elim": computers the significance of a term
-in terms of the significance of its all children.
-Precisely, once genes are already annotated to a
-signficantly enriched term under the cutoff of e.g.
+the hierarchy of the ontology is: \itemize{ \item{"none":
+does not consider the ontology hierarchy at all.}
+\item{"lea": computers the significance of a term in terms
+of the significance of its children at the maximum depth
+(e.g. 2). Precisely, once genes are already annotated to
+any children terms with a more signficance than itself,
+then all these genes are eliminated from the use for the
+recalculation of the signifance at that term. The final
+p-values takes the maximum of the original p-value and the
+recalculated p-value.} \item{"elim": computers the
+significance of a term in terms of the significance of its
+all children. Precisely, once genes are already annotated
+to a signficantly enriched term under the cutoff of e.g.
 pvalue<1e-2, all these genes are eliminated from the
-ancestors of that term);} \item{"pc": requires the
+ancestors of that term).} \item{"pc": requires the
 significance of a term not only using the whole genes as
 background but also using genes annotated to all its direct
 parents/ancestors as background. The final p-value takes
-the maximum of both p-values in these two calculations;}
+the maximum of both p-values in these two calculations.}
 \item{"Notes": the order of the number of significant terms
 is: "none" > "lea" > "elim" > "pc".} }
 }
@@ -198,26 +199,33 @@ is: "none" > "lea" > "elim" > "pc".} }
 \dontrun{
 load(url("http://dnet.r-forge.r-project.org/data/Datasets/Hiratani_TableS1.RData"))
 data <- rownames(RT)[1:1000]
+# fisher's exact test (witout accounting for ontology hierarchy)
 eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
 RData.location="./RData_Rd")
+# fisher's exact test (using 'pc' algorithm to account for ontology hierarchy)
 eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
 ontology.algorithm="pc", RData.location="./RData_Rd")
+# fisher's exact test (using 'elim' algorithm to account for ontology hierarchy)
 eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
 ontology.algorithm="elim", RData.location="./RData_Rd")
+# fisher's exact test (using 'lea' algorithm to account for ontology hierarchy)
 eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
 ontology.algorithm="lea", RData.location="./RData_Rd")
-cbind(eTerm$set_info[which(eTerm$pvalue < 1e-3), c(1,2)],
-eTerm$pvalue[which(eTerm$pvalue < 1e-3)])
 
-# highlight the top significant terms and also color-code all terms according to the adjust p-values
+# visualise the top significant terms in the ontology heirarchy
 load(url("http://dnet.r-forge.r-project.org/data/Obo/ig.MP.RData"))
 g <- ig.MP
 nodes_query <- names(sort(eTerm$adjp)[1:5])
 nodes.highlight <- rep("red", length(nodes_query))
 names(nodes.highlight) <- nodes_query
 subg <- dDAGinduce(g, nodes_query)
+# color-code terms according to the adjust p-values (taking the form of 10-based negative logarithm)
 visDAG(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]),
 node.info="both", zlim=c(0,2), node.attrs=list(color=nodes.highlight))
+# color-code terms according to the z-scores
+visDAG(g=subg, data=eTerm$zscore[V(subg)$name], node.info="both",
+colormap="darkblue-white-darkorange",
+node.attrs=list(color=nodes.highlight))
 }
 }
 \seealso{

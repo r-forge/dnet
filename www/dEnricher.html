@@ -276,6 +276,8 @@ identified by "setID" and gene members identified by
 data in consideration. It is not always the same as the
 input data as only those mappable are retained
 </li>
+<li><code>zscore</code>: a vector containing z-scores
+</li>
 <li><code>pvalue</code>: a vector containing p-values
 </li>
 <li><code>adjp</code>: a vector containing adjusted p-values.
@@ -290,29 +292,29 @@ result </li>
       <h3>Note</h3>
       
       <p>The interpretation of the algorithms used to account for
-the hierarchy of the ontology: <ul>
-<li>"none": does
-not consider the ontology hierarchy at all; </li>
-<li>"lea":
-computers the significance of a term in terms of the
-significance of its children at the maximum depth (e.g. 2).
-Precisely, once genes are already annotated to any children
-terms with a more signficance than itself, then all these
-genes are eliminated from the use for the recalculation of
-the signifance at that term. The final p-values takes the
-maximum of the original p-value and the recalculated
-p-value </li>
-<li>"elim": computers the significance of a term
-in terms of the significance of its all children.
-Precisely, once genes are already annotated to a
-signficantly enriched term under the cutoff of e.g.
+the hierarchy of the ontology is: <ul>
+<li>"none":
+does not consider the ontology hierarchy at all.
+</li>
+<li>"lea": computers the significance of a term in terms
+of the significance of its children at the maximum depth
+(e.g. 2). Precisely, once genes are already annotated to
+any children terms with a more signficance than itself,
+then all these genes are eliminated from the use for the
+recalculation of the signifance at that term. The final
+p-values takes the maximum of the original p-value and the
+recalculated p-value. </li>
+<li>"elim": computers the
+significance of a term in terms of the significance of its
+all children. Precisely, once genes are already annotated
+to a signficantly enriched term under the cutoff of e.g.
 pvalue<1e-2, all these genes are eliminated from the
-ancestors of that term); </li>
+ancestors of that term). </li>
 <li>"pc": requires the
 significance of a term not only using the whole genes as
 background but also using genes annotated to all its direct
 parents/ancestors as background. The final p-value takes
-the maximum of both p-values in these two calculations;
+the maximum of both p-values in these two calculations.
 </li>
 <li>"Notes": the order of the number of significant terms
 is: "none" > "lea" > "elim" > "pc". </li>
@@ -321,37 +323,38 @@ is: "none" > "lea" > "elim" > "pc". </li>
     </div>
     
     <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'>#\dontrun{
-load(url("http://dnet.r-forge.r-project.org/data/Datasets/Hiratani_TableS1.RData"))
+    <pre class="examples"><div class='input'>load(url("http://dnet.r-forge.r-project.org/data/Datasets/Hiratani_TableS1.RData"))
 data <- rownames(RT)[1:1000]
+# fisher's exact test (witout accounting for ontology hierarchy)
 eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
 RData.location="./RData_Rd")
 </div>
-<strong class='message'>Start at 2014-04-08 10:09:02</strong>
+<strong class='message'>Start at 2014-04-09 12:18:37</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-08 10:09:02) ...</strong>
+<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-09 12:18:37) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egMP.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-04-08 10:09:06) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-09 12:18:39) ...</strong>
 <strong class='message'>	Among 1000 symbols of input data, there are 853 mappable via official gene symbols but 147 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using FisherTest (2014-04-08 10:09:06) ...</strong>
+<strong class='message'>Third, perform enrichment analysis using FisherTest (2014-04-09 12:18:39) ...</strong>
 <strong class='message'>	There are 4519 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-04-08 10:09:09) ...</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-09 12:18:44) ...</strong>
 <strong class='message'>
-End at 2014-04-08 10:09:09</strong>
+End at 2014-04-09 12:18:44</strong>
 <strong class='message'>Runtime in total is: 7 secs
 </strong>
-<div class='input'>eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
+<div class='input'># fisher's exact test (using 'pc' algorithm to account for ontology hierarchy)
+eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
 ontology.algorithm="pc", RData.location="./RData_Rd")
 </div>
-<strong class='message'>Start at 2014-04-08 10:09:09</strong>
+<strong class='message'>Start at 2014-04-09 12:18:44</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-08 10:09:09) ...</strong>
+<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-09 12:18:44) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egMP.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-04-08 10:09:11) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-09 12:18:47) ...</strong>
 <strong class='message'>	Among 1000 symbols of input data, there are 853 mappable via official gene symbols but 147 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using FisherTest based on pc algorithm to respect ontology structure (2014-04-08 10:09:11) ...</strong>
+<strong class='message'>Third, perform enrichment analysis using FisherTest based on pc algorithm to respect ontology structure (2014-04-09 12:18:47) ...</strong>
 <strong class='message'>	Load ontology information from http://dnet.r-forge.r-project.org/data/Obo/ig.MP.RData</strong>
 <strong class='message'>	There are 4609 terms being used</strong>
 <strong class='message'>	At level 15, there are 4 nodes/terms</strong>
@@ -368,22 +371,23 @@ ontology.algorithm="pc", RData.location="./RData_Rd")
 <strong class='message'>	At level 4, there are 364 nodes/terms</strong>
 <strong class='message'>	At level 3, there are 70 nodes/terms</strong>
 <strong class='message'>	At level 2, there are 29 nodes/terms</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-04-08 10:09:32) ...</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-09 12:19:18) ...</strong>
 <strong class='message'>
-End at 2014-04-08 10:09:32</strong>
-<strong class='message'>Runtime in total is: 23 secs
+End at 2014-04-09 12:19:18</strong>
+<strong class='message'>Runtime in total is: 34 secs
 </strong>
-<div class='input'>eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
+<div class='input'># fisher's exact test (using 'elim' algorithm to account for ontology hierarchy)
+eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
 ontology.algorithm="elim", RData.location="./RData_Rd")
 </div>
-<strong class='message'>Start at 2014-04-08 10:09:32</strong>
+<strong class='message'>Start at 2014-04-09 12:19:18</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-08 10:09:32) ...</strong>
+<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-09 12:19:18) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egMP.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-04-08 10:09:34) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-09 12:19:19) ...</strong>
 <strong class='message'>	Among 1000 symbols of input data, there are 853 mappable via official gene symbols but 147 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using FisherTest based on elim algorithm to respect ontology structure (2014-04-08 10:09:35) ...</strong>
+<strong class='message'>Third, perform enrichment analysis using FisherTest based on elim algorithm to respect ontology structure (2014-04-09 12:19:20) ...</strong>
 <strong class='message'>	Load ontology information from http://dnet.r-forge.r-project.org/data/Obo/ig.MP.RData</strong>
 <strong class='message'>	There are 4609 terms being used</strong>
 <strong class='message'>	At level 15, there are 4 nodes/terms: so far, a total of 0 nodes called significant, and 0 ancestral nodes changed (0 genes eliminated)</strong>
@@ -401,22 +405,23 @@ ontology.algorithm="elim", RData.location="./RData_Rd")
 <strong class='message'>	At level 3, there are 70 nodes/terms: so far, a total of 62 nodes called significant, and 221 ancestral nodes changed (5196 genes eliminated)</strong>
 <strong class='message'>	At level 2, there are 29 nodes/terms: so far, a total of 62 nodes called significant, and 221 ancestral nodes changed (5196 genes eliminated)</strong>
 <strong class='message'>	At level 1, there are 1 nodes/terms: so far, a total of 62 nodes called significant, and 221 ancestral nodes changed (5196 genes eliminated)</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-04-08 10:09:49) ...</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-09 12:19:39) ...</strong>
 <strong class='message'>
-End at 2014-04-08 10:09:49</strong>
-<strong class='message'>Runtime in total is: 17 secs
+End at 2014-04-09 12:19:39</strong>
+<strong class='message'>Runtime in total is: 21 secs
 </strong>
-<div class='input'>eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
+<div class='input'># fisher's exact test (using 'lea' algorithm to account for ontology hierarchy)
+eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
 ontology.algorithm="lea", RData.location="./RData_Rd")
 </div>
-<strong class='message'>Start at 2014-04-08 10:09:49</strong>
+<strong class='message'>Start at 2014-04-09 12:19:39</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-08 10:09:49) ...</strong>
+<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-09 12:19:39) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egMP.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-04-08 10:09:51) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-09 12:19:41) ...</strong>
 <strong class='message'>	Among 1000 symbols of input data, there are 853 mappable via official gene symbols but 147 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using FisherTest based on lea algorithm to respect ontology structure (2014-04-08 10:09:52) ...</strong>
+<strong class='message'>Third, perform enrichment analysis using FisherTest based on lea algorithm to respect ontology structure (2014-04-09 12:19:41) ...</strong>
 <strong class='message'>	Load ontology information from http://dnet.r-forge.r-project.org/data/Obo/ig.MP.RData</strong>
 <strong class='message'>	There are 4609 terms being used</strong>
 <strong class='message'>	At level 15, there are 4 nodes/terms and 0 being recalculated</strong>
@@ -434,67 +439,30 @@ ontology.algorithm="lea", RData.location="./RData_Rd")
 <strong class='message'>	At level 3, there are 70 nodes/terms and 57 being recalculated</strong>
 <strong class='message'>	At level 2, there are 29 nodes/terms and 23 being recalculated</strong>
 <strong class='message'>	At level 1, there are 1 nodes/terms and 1 being recalculated</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-04-08 10:10:11) ...</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-09 12:20:08) ...</strong>
 <strong class='message'>
-End at 2014-04-08 10:10:11</strong>
-<strong class='message'>Runtime in total is: 22 secs
+End at 2014-04-09 12:20:08</strong>
+<strong class='message'>Runtime in total is: 29 secs
 </strong>
-<div class='input'>cbind(eTerm$set_info[which(eTerm$pvalue < 1e-3), c(1,2)],
-eTerm$pvalue[which(eTerm$pvalue < 1e-3)])
-</div>
-<div class='output'>                setID                                                      name
-MP:0000520 MP:0000520                                             absent kidney
-MP:0000743 MP:0000743                                              muscle spasm
-MP:0001327 MP:0001327               decreased retinal photoreceptor cell number
-MP:0001970 MP:0001970                                   abnormal pain threshold
-MP:0002268 MP:0002268                   abnormal terminal bronchiole morphology
-MP:0002625 MP:0002625                          heart left ventricle hypertrophy
-MP:0002896 MP:0002896                              abnormal bone mineralization
-MP:0002966 MP:0002966          decreased circulating alkaline phosphatase level
-MP:0003015 MP:0003015                    abnormal circulating bicarbonate level
-MP:0003073 MP:0003073                       abnormal metacarpal bone morphology
-MP:0003290 MP:0003290                                intestinal hypoperistalsis
-MP:0008084 MP:0008084                            absent single-positive T cells
-MP:0008101 MP:0008101                                     lymph node hypoplasia
-MP:0008586 MP:0008586                  disorganized photoreceptor outer segment
-MP:0011059 MP:0011059                abnormal ependyma motile cilium morphology
-MP:0011117 MP:0011117                    abnormal susceptibility to weight gain
-MP:0011241 MP:0011241 abnormal fetal derived definitive erythrocyte cell number
-MP:0011368 MP:0011368                                increased kidney apoptosis
-           eTerm$pvalue[which(eTerm$pvalue < 0.001)]
-MP:0000520                              3.708892e-05
-MP:0000743                              1.131583e-04
-MP:0001327                              3.248387e-05
-MP:0001970                              9.439912e-06
-MP:0002268                              2.822217e-04
-MP:0002625                              9.706980e-04
-MP:0002896                              4.101757e-04
-MP:0002966                              6.874354e-06
-MP:0003015                              1.430607e-04
-MP:0003073                              6.741427e-06
-MP:0003290                              7.911911e-05
-MP:0008084                              2.195097e-04
-MP:0008101                              9.097551e-04
-MP:0008586                              3.380702e-04
-MP:0011059                              7.727206e-04
-MP:0011117                              3.931322e-04
-MP:0011241                              1.670333e-05
-MP:0011368                              5.674676e-04
-</div>
 <div class='input'>
-# highlight the top significant terms and also color-code all terms according to the adjust p-values
+# visualise the top significant terms in the ontology heirarchy
 load(url("http://dnet.r-forge.r-project.org/data/Obo/ig.MP.RData"))
 g <- ig.MP
 nodes_query <- names(sort(eTerm$adjp)[1:5])
 nodes.highlight <- rep("red", length(nodes_query))
 names(nodes.highlight) <- nodes_query
 subg <- dDAGinduce(g, nodes_query)
+# color-code terms according to the adjust p-values (taking the form of 10-based negative logarithm)
 visDAG(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]),
 node.info="both", zlim=c(0,2), node.attrs=list(color=nodes.highlight))
 </div>
-<a href="javascript:newWin('dEnricher-103.png', 'dEnricher-103.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dEnricher-103.png', width="400" /></a>
-<div class='input'>#}
-</div></pre>
+<a href="javascript:newWin('dEnricher-101.png', 'dEnricher-101.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dEnricher-101.png', width="400" /></a>
+<div class='input'># color-code terms according to the z-scores
+visDAG(g=subg, data=eTerm$zscore[V(subg)$name], node.info="both",
+colormap="darkblue-white-darkorange",
+node.attrs=list(color=nodes.highlight))
+</div>
+<a href="javascript:newWin('dEnricher-103.png', 'dEnricher-103.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dEnricher-103.png', width="400" /></a></pre>
   </div>
   
   <div class="span4">

@@ -8,7 +8,7 @@
 library(dnet)
 
 # Load or install packages specifically used in this demo
-list.pkg <- c("affy","limma")
+list.pkg <- c("affy")
 for(pkg in list.pkg){
     if(!require(pkg, character.only=T)){
         install.packages(pkg,repos="http://www.stats.bris.ac.uk/R",dependencies=TRUE)

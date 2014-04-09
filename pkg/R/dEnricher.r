@@ -22,16 +22,17 @@
 #'  \item{\code{set_info}: a matrix of nSet X 4 containing gene set information, where nSet is the number of gene set in consideration, and the 4 columns are "setID" (i.e. "Term ID"), "name" (i.e. "Term Name"), "namespace" and "distance"}
 #'  \item{\code{gs}: a list of gene sets, each storing gene members. Always, gene sets are identified by "setID" and gene members identified by "Entrez ID"}
 #'  \item{\code{data}: a vector containing input data in consideration. It is not always the same as the input data as only those mappable are retained}
+#'  \item{\code{zscore}: a vector containing z-scores}
 #'  \item{\code{pvalue}: a vector containing p-values}
 #'  \item{\code{adjp}: a vector containing adjusted p-values. It is the p value but after being adjusted for multiple comparisons}
 #'  \item{\code{call}: the call that produced this result}
 #' }
-#' @note The interpretation of the algorithms used to account for the hierarchy of the ontology:
+#' @note The interpretation of the algorithms used to account for the hierarchy of the ontology is:
 #' \itemize{
-#' \item{"none": does not consider the ontology hierarchy at all;}
-#' \item{"lea": computers the significance of a term in terms of the significance of its children at the maximum depth (e.g. 2). Precisely, once genes are already annotated to any children terms with a more signficance than itself, then all these genes are eliminated from the use for the recalculation of the signifance at that term. The final p-values takes the maximum of the original p-value and the recalculated p-value}
-#' \item{"elim": computers the significance of a term in terms of the significance of its all children. Precisely, once genes are already annotated to a signficantly enriched term under the cutoff of e.g. pvalue<1e-2, all these genes are eliminated from the ancestors of that term);}
-#' \item{"pc": requires the significance of a term not only using the whole genes as background but also using genes annotated to all its direct parents/ancestors as background. The final p-value takes the maximum of both p-values in these two calculations;}
+#' \item{"none": does not consider the ontology hierarchy at all.}
+#' \item{"lea": computers the significance of a term in terms of the significance of its children at the maximum depth (e.g. 2). Precisely, once genes are already annotated to any children terms with a more signficance than itself, then all these genes are eliminated from the use for the recalculation of the signifance at that term. The final p-values takes the maximum of the original p-value and the recalculated p-value.}
+#' \item{"elim": computers the significance of a term in terms of the significance of its all children. Precisely, once genes are already annotated to a signficantly enriched term under the cutoff of e.g. pvalue<1e-2, all these genes are eliminated from the ancestors of that term).}
+#' \item{"pc": requires the significance of a term not only using the whole genes as background but also using genes annotated to all its direct parents/ancestors as background. The final p-value takes the maximum of both p-values in these two calculations.}
 #' \item{"Notes": the order of the number of significant terms is: "none" > "lea" > "elim" > "pc".}
 #' }
 #' @export
@@ -41,20 +42,26 @@
 #' \dontrun{
 #' load(url("http://dnet.r-forge.r-project.org/data/Datasets/Hiratani_TableS1.RData"))
 #' data <- rownames(RT)[1:1000]
+#' # fisher's exact test (witout accounting for ontology hierarchy)
 #' eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP", RData.location="./RData_Rd")
+#' # fisher's exact test (using 'pc' algorithm to account for ontology hierarchy)
 #' eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP", ontology.algorithm="pc", RData.location="./RData_Rd")
+#' # fisher's exact test (using 'elim' algorithm to account for ontology hierarchy)
 #' eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP", ontology.algorithm="elim", RData.location="./RData_Rd")
+#' # fisher's exact test (using 'lea' algorithm to account for ontology hierarchy)
 #' eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP", ontology.algorithm="lea", RData.location="./RData_Rd")
-#' cbind(eTerm$set_info[which(eTerm$pvalue < 1e-3), c(1,2)], eTerm$pvalue[which(eTerm$pvalue < 1e-3)])
 #'
-#' # highlight the top significant terms and also color-code all terms according to the adjust p-values
+#' # visualise the top significant terms in the ontology heirarchy
 #' load(url("http://dnet.r-forge.r-project.org/data/Obo/ig.MP.RData"))
 #' g <- ig.MP
 #' nodes_query <- names(sort(eTerm$adjp)[1:5])
 #' nodes.highlight <- rep("red", length(nodes_query))
 #' names(nodes.highlight) <- nodes_query
 #' subg <- dDAGinduce(g, nodes_query)
+#' # color-code terms according to the adjust p-values (taking the form of 10-based negative logarithm)
 #' visDAG(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]), node.info="both", zlim=c(0,2), node.attrs=list(color=nodes.highlight))
+#' # color-code terms according to the z-scores
+#' visDAG(g=subg, data=eTerm$zscore[V(subg)$name], node.info="both", colormap="darkblue-white-darkorange", node.attrs=list(color=nodes.highlight))
 #' }
 
 dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity=FALSE, genome=c("Hs", "Mm", "Rn", "Gg", "Ce", "Dm", "Da", "At"), ontology=c("GOBP","GOMF","GOCC","PS","DO","HPPA","HPMI","HPON","MP", "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7"), sizeRange=c(10,1000), which_distance=NULL, test=c("FisherTest","HypergeoTest","BinomialTest"), p.adjust.method=c("BH", "BY", "bonferroni", "holm", "hochberg", "hommel"), ontology.algorithm=c("none","pc","elim","lea"), elim.pvalue=1e-2, lea.depth=2, verbose=T, RData.location="http://dnet.r-forge.r-project.org/data")
@@ -339,6 +346,63 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
         p.value <- ifelse(K==0 || M==0 || N==0, 1, stats::pbinom(X,K,M/N, lower.tail=F, log.p=F))
         return(p.value)
     }
+    
+    
+    ##  Z-score from hypergeometric distribution
+    zscoreHyper <- function(genes.group, genes.term, genes.universe){
+        genes.hit <- intersect(genes.group, genes.term)
+        # num of success in sampling
+        X <- length(genes.hit)
+        # num of sampling
+        K <- length(genes.group)
+        # num of success in background
+        M <- length(genes.term)
+        # num in background
+        N <- length(genes.universe)
+        
+        ## calculate z-score
+        if(1){
+            ## Z-score based on theoretical calculation
+            x.exp <- K*M/N
+            var.exp <- K*M/N*(N-M)/N*(N-K)/(N-1)
+            suppressWarnings(z <- (X-x.exp)/sqrt(var.exp))
+        }else{
+            ## Z-score equivalents for deviates from hypergeometric distribution
+            x <- X
+            m <- M
+            n <- N-M # num of failure in background
+            k <- K
+            
+            suppressWarnings(d <- stats::dhyper(x,m,n,k,log=TRUE)-log(2))
+            suppressWarnings(pupper <- stats::phyper(x,m,n,k,lower.tail=FALSE,log.p=TRUE))
+            suppressWarnings(plower <- stats::phyper(x-1,m,n,k,lower.tail=TRUE,log.p=TRUE))
+            d[is.na(d)] <- -Inf
+            pupper[is.na(pupper)] <- -Inf
+            plower[is.na(plower)] <- -Inf
+
+            # Add half point probability to upper tail probability preserving log-accuracy
+            a <- pupper
+            b <- d-pupper
+            a[b>0] <- d[b>0]
+            b <- -abs(b)
+            pmidupper <- a+log1p(exp(b))
+            pmidupper[is.infinite(a)] <- a[is.infinite(a)]
+
+            # Similarly for lower tail probability preserving log-accuracy
+            a <- plower
+            b <- d-plower
+            a[b>0] <- d[b>0]
+            b <- -abs(b)
+            pmidlower <- a+log1p(exp(b))
+            pmidlower[is.infinite(a)] <- a[is.infinite(a)]
+
+            up <- pmidupper<pmidlower
+            if(any(up)) z <- stats::qnorm(pmidupper,lower.tail=FALSE,log.p=TRUE)
+            if(any(!up)) z <- stats::qnorm(pmidlower,lower.tail=TRUE,log.p=TRUE)
+        }
+        
+        return(z)
+    }
     ##############################################################################################
     
     ## force use classic ontology.algorithm when the ontology is derived from "Msigdb" or "PS"
@@ -373,6 +437,11 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
                 HypergeoTest = doHypergeoTest(genes.group, genes.term, genes.universe),
                 BinomialTest = doBinomialTest(genes.group, genes.term, genes.universe)
             )
+        })
+        
+        zscores <- sapply(terms, function(term){
+            genes.term <- as.numeric(unique(unlist(gs[term])))
+            zscore <- zscoreHyper(genes.group, genes.term, genes.universe)
         })
 
     }else if(ontology.algorithm=="pc" || ontology.algorithm=="elim" || ontology.algorithm=="lea"){
@@ -432,7 +501,9 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
         ## create a new (empty) hash environment
         ## node2pval.Hash: key (node), value (pvalue)
         node2pval.Hash <- new.env(hash=T, parent=emptyenv())        
-
+        ## node2zscore.Hash: key (node), value (zscore)
+        node2zscore.Hash <- new.env(hash=T, parent=emptyenv())    
+        
         if(ontology.algorithm=="pc"){
         
             for(i in nLevels:2) {
@@ -447,6 +518,7 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
                         HypergeoTest = doHypergeoTest(genes.group, genes.term, genes.universe),
                         BinomialTest = doBinomialTest(genes.group, genes.term, genes.universe)
                     )
+                    zscore_whole <- zscoreHyper(genes.group, genes.term, genes.universe)
             
                     ## get the incoming neighbors/parents (including self) that are reachable
                     neighs.in <- igraph::neighborhood(subg, order=1, nodes=currNode, mode="in")
@@ -465,12 +537,17 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
                         HypergeoTest = doHypergeoTest(genes.group.parent, genes.term.parent, genes.parent),
                         BinomialTest = doBinomialTest(genes.group.parent, genes.term.parent, genes.parent)
                     )
+                    zscore_relative <- zscoreHyper(genes.group.parent, genes.term.parent, genes.parent)
                 
                     ## take the maximum value of pvalue_whole and pvalue_relative
                     pvalue <- max(pvalue_whole, pvalue_relative)
-                
                     ## store the result (the p-value)
                     assign(currNode, pvalue, envir=node2pval.Hash)
+                    
+                    ## take the miminum value of zscore_whole and zscore_relative
+                    zscore <- ifelse(pvalue_whole>pvalue_relative, zscore_whole, zscore_relative)
+                    ## store the result (the z-score)
+                    assign(currNode, zscore, envir=node2zscore.Hash)
                 }
                 
                 if(verbose){
@@ -478,9 +555,10 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
                 }
             }
             
-            ## the root always has p-value=1
+            ## the root always has p-value=1 and z-score=0
             root <- dDAGroot(subg)
             assign(root, 1, envir=node2pval.Hash)
+            assign(root, 0, envir=node2zscore.Hash)
         
         }else if(ontology.algorithm=="elim"){
         
@@ -517,10 +595,13 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
                         HypergeoTest = doHypergeoTest(genes.group, genes.term, genes.universe),
                         BinomialTest = doBinomialTest(genes.group, genes.term, genes.universe)
                     )
-        
+                    zscore <- zscoreHyper(genes.group, genes.term, genes.universe)
+                    
                     ## store the result (the p-value)
                     assign(currNode, pvalue, envir=node2pval.Hash)
-        
+                    ## store the result (the z-score)
+                    assign(currNode, zscore, envir=node2zscore.Hash)
+                    
                     ## condition to update "ancNode2gene.Hash"
                     if(pvalue < pval.cutoff) {
                         ## mark the significant node
@@ -588,6 +669,7 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
                         HypergeoTest = doHypergeoTest(genes.group, genes.term, genes.universe),
                         BinomialTest = doBinomialTest(genes.group, genes.term, genes.universe)
                     )
+                    zscore.old <- zscoreHyper(genes.group, genes.term, genes.universe)
                     
                     ## store the result (old pvalue)
                     assign(currNode, pvalue.old, envir=node2pvalo.Hash)
@@ -629,20 +711,29 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
                                 HypergeoTest = doHypergeoTest(genes.group, genes.term.new, genes.universe),
                                 BinomialTest = doBinomialTest(genes.group, genes.term.new, genes.universe)
                             )
+                            zscore.new <- zscoreHyper(genes.group, genes.term.new, genes.universe)
                             
                             ## take the maximum value of pvalue_new and the original pvalue
                             pvalue <- max(pvalue.new, pvalue.old)
                             
+                            ## take the minimum value of zscore_new and the original zscore
+                            zscore <- ifelse(pvalue.new>pvalue.old, zscore.new, zscore.old)
+                            
                         }else{
                             pvalue <- pvalue.old
+                            zscore <- zscore.old
                         }
                         
                     }else{
                         pvalue <- pvalue.old
+                        zscore <- zscore.old
                     }
                     
-                    ## store the result (recalculated pvalue)
+                    ## store the result (recalculated pvalue if have to)
                     assign(currNode, pvalue, envir=node2pval.Hash)
+                    
+                    ## store the result (recalculated zscore if have to)
+                    assign(currNode, zscore, envir=node2zscore.Hash)
                 }
     
                 if(verbose){
@@ -654,6 +745,7 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
         
         
         pvals <- unlist(as.list(node2pval.Hash))
+        zscores <- unlist(as.list(node2zscore.Hash))
     
     }
 
@@ -672,9 +764,17 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
     runTime <- as.numeric(difftime(strptime(endT, "%Y-%m-%d %H:%M:%S"), strptime(startT, "%Y-%m-%d %H:%M:%S"), units="secs"))
     message(paste(c("Runtime in total is: ",runTime," secs\n"), collapse=""), appendLF=T)
     
+    zscores[is.na(zscores)] <- 0
+    zscores <- signif(zscores, digits=3)
+    pvals <- sapply(pvals, function(x) min(x,1))
+    pvals <- signif(pvals, digits=2)
+    adjpvals <- sapply(adjpvals, function(x) min(x,1))
+    adjpvals <- signif(adjpvals, digits=2)
+    
     eTerm <- list(set_info = set_info,
                   gs       = gs,
                   data     = data,
+                  zscore   = zscores,
                   pvalue   = pvals,
                   adjp     = adjpvals,
                   call     = match.call()
