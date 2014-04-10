@@ -1,7 +1,7 @@
 library(staticdocs)
 library(grid)
 list(
-    readme = "",
+    readme = "<p><a href=\"javascript:newWin('dnet_workflow.png', 'dnet_workflow.png', '1200', '600')\" title='Click to enlarge'><img style='max-width:95%;border:1px solid #0000FF;box-shadow:5px 5px 2px #C0C0FF;' src='dnet_workflow.png', width='700px' /></a></p>",
     
     index = list(
         sd_section("Network analysis and visualisation functions",

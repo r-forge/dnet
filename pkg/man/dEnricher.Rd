@@ -10,7 +10,7 @@ check.symbol.identity = FALSE, genome = c("Hs", "Mm", "Rn", "Gg", "Ce",
 "MsigdbC2KEGG",
 "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR",
 "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC",
-"MsigdbC6", "MsigdbC7"), sizeRange = c(10, 1000), which_distance =
+"MsigdbC6", "MsigdbC7"), sizeRange = c(10, 20000), which_distance =
 NULL,
 test = c("FisherTest", "HypergeoTest", "BinomialTest"),
 p.adjust.method = c("BH", "BY", "bonferroni", "holm", "hochberg",

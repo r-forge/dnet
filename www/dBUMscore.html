@@ -164,7 +164,7 @@ score <code class = 'eq'>S(x)</code> is based on the fitted beta-uniform
 mixture model with two parameters <code class = 'eq'>\lambda</code> and
 <code class = 'eq'>a</code>: <code class = 'eq'>f(x|\lambda,a) = \lambda +
 (1-\lambda)*a*x^{a-1}</code>. Specifically, it considers the
-log-likehood ratio between the signal and noise compoment
+log-likelyhood ratio between the signal and noise compoment
 of the model. The probability density function (pdf) of the
 signal component and the noise component are
 <code class = 'eq'>(1-\lambda)*a*(x^{a-1}-1)</code> and <code class = 'eq'>\lambda +
@@ -206,7 +206,7 @@ purpose of down-weighting scores, it must ensure
 <li>Where <code class = 'eq'>\tau
 =\big[\frac{\lambda+(1-\lambda)*a-fdr*\lambda}{fdr*(1-\lambda)}\big]^{\frac{1}{a-1}}</code>,
 i.e. the p-value corresponding to the exact <code class = 'eq'>fdr</code>
-threshold. It can be duduced from the definition of the
+threshold. It can be deduced from the definition of the
 false discovery rate: <code class = 'eq'>fdr \doteq \frac{\int_0^\tau
 \lambda+(1-\lambda)*a \, \mathrm{d}x}{\int_0^\tau
 \lambda+(1-\lambda)*a*x^{a-1} \, \mathrm{d}x}</code>. Notably, if
@@ -224,9 +224,9 @@ x <- rbeta(1000, shape1=0.5, shape2=1)
 fit <- dBUMfit(x)
 </div>
 <strong class='message'>	A total of p-values: 1000</strong>
-<strong class='message'>	Maximum Log-Likelihood: 402.7</strong>
-<strong class='message'>	Mixture parameter (lambda): 0.000</strong>
-<strong class='message'>	Shape parameter (a): 0.458</strong>
+<strong class='message'>	Maximum Log-Likelihood: 356.5</strong>
+<strong class='message'>	Mixture parameter (lambda): 0.011</strong>
+<strong class='message'>	Shape parameter (a): 0.474</strong>
 <a href="javascript:newWin('dBUMscore-6.png', 'dBUMscore-6.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dBUMscore-6.png', width="400" /></a>
 <div class='input'>
 # 3) calculate the scores according to the fitted BUM and fdr=0.01
@@ -257,7 +257,7 @@ scores <- dBUMscore(fit, method="cdf", fdr=0.01)
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of network, expression, evolution and ontology data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of digitised data in terms of network, ontology and evolution. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

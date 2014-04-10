@@ -189,15 +189,14 @@ annotations <- GS$gs[sample(1:length(GS$gs),5)]
 # 4a) based on all possible paths (i.e. the complete subgraph induced)
 dDAGannotate(g, annotations, path.mode="all_paths", verbose=TRUE)
 </div>
-<strong class='message'>	At level 8, there are 1 nodes, and 1 incoming neighbors.</strong>
-<strong class='message'>	At level 7, there are 1 nodes, and 2 incoming neighbors.</strong>
-<strong class='message'>	At level 6, there are 4 nodes, and 3 incoming neighbors.</strong>
-<strong class='message'>	At level 5, there are 5 nodes, and 6 incoming neighbors.</strong>
-<strong class='message'>	At level 4, there are 6 nodes, and 5 incoming neighbors.</strong>
-<strong class='message'>	At level 3, there are 5 nodes, and 3 incoming neighbors.</strong>
+<strong class='message'>	At level 7, there are 3 nodes, and 3 incoming neighbors.</strong>
+<strong class='message'>	At level 6, there are 3 nodes, and 3 incoming neighbors.</strong>
+<strong class='message'>	At level 5, there are 4 nodes, and 4 incoming neighbors.</strong>
+<strong class='message'>	At level 4, there are 5 nodes, and 3 incoming neighbors.</strong>
+<strong class='message'>	At level 3, there are 3 nodes, and 3 incoming neighbors.</strong>
 <strong class='message'>	At level 2, there are 3 nodes, and 1 incoming neighbors.</strong>
 <strong class='message'>	At level 1, there are 1 nodes, and 0 incoming neighbors.</strong>
-<div class='output'>IGRAPH DN-- 26 28 -- 
+<div class='output'>IGRAPH DN-- 22 21 -- 
 + attr: name (v/c), term_id (v/c), term_name (v/c), term_distance
   (v/n), annotations (v/x), relation (e/c)
 </div>
@@ -205,12 +204,11 @@ dDAGannotate(g, annotations, path.mode="all_paths", verbose=TRUE)
 dag <- dDAGannotate(g, annotations, path.mode="shortest_paths",
 verbose=TRUE)
 </div>
-<strong class='message'>	At level 8, there are 1 nodes, and 1 incoming neighbors.</strong>
-<strong class='message'>	At level 7, there are 1 nodes, and 1 incoming neighbors.</strong>
+<strong class='message'>	At level 7, there are 3 nodes, and 3 incoming neighbors.</strong>
 <strong class='message'>	At level 6, there are 3 nodes, and 3 incoming neighbors.</strong>
-<strong class='message'>	At level 5, there are 5 nodes, and 5 incoming neighbors.</strong>
-<strong class='message'>	At level 4, there are 5 nodes, and 4 incoming neighbors.</strong>
-<strong class='message'>	At level 3, there are 4 nodes, and 3 incoming neighbors.</strong>
+<strong class='message'>	At level 5, there are 4 nodes, and 4 incoming neighbors.</strong>
+<strong class='message'>	At level 4, there are 5 nodes, and 3 incoming neighbors.</strong>
+<strong class='message'>	At level 3, there are 3 nodes, and 3 incoming neighbors.</strong>
 <strong class='message'>	At level 2, there are 3 nodes, and 1 incoming neighbors.</strong>
 <strong class='message'>	At level 1, there are 1 nodes, and 0 incoming neighbors.</strong>
 <div class='input'>
@@ -226,7 +224,7 @@ Attaching package: ‘graph’
 
     degree, edges
 </strong>
-<a href="javascript:newWin('dDAGannotate-23.png', 'dDAGannotate-23.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dDAGannotate-23.png', width="400" /></a></pre>
+<a href="javascript:newWin('dDAGannotate-21.png', 'dDAGannotate-21.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dDAGannotate-21.png', width="400" /></a></pre>
   </div>
   
   <div class="span4">
@@ -246,7 +244,7 @@ Attaching package: ‘graph’
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of network, expression, evolution and ontology data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of digitised data in terms of network, ontology and evolution. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

@@ -21,6 +21,6 @@
 * A wide variety of data supported: ontologies (including `Gene Ontology`, `Disease Ontology`, `Human Phenotype` and `Mammalian Phenotype`), phylostratific age information and gene association networks in many organisms. For details, please refer to [RData](http://dnet.r-forge.r-project.org/rdata.html).
 * This package can run on `Windows`, `Mac` and `Linux`
 
-## Workflow
+## User I/O
 
-<a href="javascript:newWin('dnet_workflow.png', 'dnet_workflow.png', '1200', '600')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #0000FF;box-shadow:5px 5px 2px #C0C0FF;" src='dnet_workflow.png', width="800px" /></a>
+<a href="javascript:newWin('dnet_userIO.png', 'dnet_workflow.png', '800', '800')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #0000FF;box-shadow:5px 5px 2px #C0C0FF;" src='dnet_userIO.png', width="400px" /></a>

@@ -136,7 +136,7 @@ ls() # you should see three variables: 'RT', 'CpG' and 'EX'
 # Load the package 'dnet'
 library(dnet)
 
-# Load or/and install packages "affy" and "limma" that specifically used in this demo
+# Load or/and install packages "affy" and "limma" that are specifically used in this demo
 list.pkg <- c("affy","limma")
 for(pkg in list.pkg){
     if(!require(pkg, character.only=T)){
@@ -367,7 +367,7 @@ hist(pval)
 ## restrict the identified subnetwork to have the node size of 40 or so
 g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network, pval=pval, nsize=40)
 </div>
-<strong class='message'>Start at 2014-04-09 18:00:22</strong>
+<strong class='message'>Start at 2014-04-10 14:10:17</strong>
 <strong class='message'></strong>
 <strong class='message'>First, fit the p-value distribution under beta-uniform mixture model...</strong>
 <strong class='message'>	A total of p-values: 17292</strong>
@@ -403,8 +403,8 @@ g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network,
 <strong class='message'>Finally, find the subnetwork from the input network with 13062 nodes and 290589 edges...</strong>
 <strong class='message'>	Size of the module: 46 nodes and 61 edges</strong>
 <strong class='message'>
-Finish at 2014-04-09 18:09:48</strong>
-<strong class='message'>Runtime in total is: 566 secs
+Finish at 2014-04-10 14:19:55</strong>
+<strong class='message'>Runtime in total is: 578 secs
 </strong>
 <div class='input'>g
 </div>
@@ -436,34 +436,26 @@ edge.color <- c("grey", "black")[crossing(com,g)+1]
 <a href='visNet.html' target=visNet>visNet</a>(g, glayout=glayout, vertex.label=V(g)$geneSymbol, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.shape="sphere", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
 </div>
 <a href="javascript:newWin('Hiratani-75.png', 'Hiratani-75.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-75.png', width="400" /></a>
-<div class='input'>## add the community information
-legend_name <- paste("C",1:length(mcolors)," (n=",com$csize,", pval=",signif(com$significance,digits=2),")",sep='')
-legend("topleft", legend=legend_name, fill=mcolors, bty="n", cex=0.6)
-</div>
-<a href="javascript:newWin('Hiratani-77.png', 'Hiratani-77.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-77.png', width="400" /></a>
 <div class='input'>
 # 4) visualisation of the gene-active subnetwork overlaid by the node/gene score
-<a href='visNet.html' target=visNet>visNet</a>(g, glayout=glayout, pattern=V(g)$score, zlim=c(-1*ceiling(max(abs(V(g)$score))),ceiling(max(abs(V(g)$score)))), vertex.shape="circle")
+max_colorbar <- ceiling(quantile(abs(V(g)$score),0.75))
+<a href='visNet.html' target=visNet>visNet</a>(g, glayout=glayout, pattern=V(g)$score, zlim=c(-1*max_colorbar,max_colorbar), vertex.shape="circle")
 </div>
-<a href="javascript:newWin('Hiratani-79.png', 'Hiratani-79.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-79.png', width="400" /></a>
+<a href="javascript:newWin('Hiratani-77.png', 'Hiratani-77.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-77.png', width="400" /></a>
 <div class='input'>
 # 5) visualisation of the gene-active subnetwork overlaid by the differential replication timing
 colormap <- "darkgreen-lightgreen-lightpink-darkred"
 logFC <- fit2$coefficients[V(g)$name,my_contrast]
 <a href='visNet.html' target=visNet>visNet</a>(g, glayout=glayout, pattern=logFC, colormap=colormap, vertex.shape="circle")
 </div>
-<a href="javascript:newWin('Hiratani-81.png', 'Hiratani-81.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-81.png', width="400" /></a>
+<a href="javascript:newWin('Hiratani-79.png', 'Hiratani-79.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-79.png', width="400" /></a>
 <div class='input'>
-# 6) visualisation of the gene-active subnetwork overlaid by all replication timing data
+# 6) Network-based sample classifications and visualisations on 2D sample landscape
+# it uses the gene-active subnetwork overlaid by all replication timing data
 data <- exprs(esetGene)[V(g)$name,]
-<a href='visNetMul.html' target=visNetMul>visNetMul</a>(g=g, data=data, height=ceiling(sqrt(ncol(data)))*2, newpage=T,glayout=glayout,colormap=colormap,vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.7,border.color="888888")
-</div>
-<a href="javascript:newWin('Hiratani-83.png', 'Hiratani-83.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-83.png', width="400" /></a>
-<div class='input'>
-# 7) Network-based sample classifications and visualisations on 2D sample landscape
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="edge", node.normalise="degree", amplifier=3, metric="none")
 </div>
-<strong class='message'>Start at 2014-04-09 18:11:09</strong>
+<strong class='message'>Start at 2014-04-10 14:20:04</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -490,19 +482,19 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    radius (at rough stage): from 2 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-04-09 18:11:15</strong>
+<strong class='message'>End at 2014-04-10 14:20:10</strong>
 <strong class='message'>Runtime in total is: 6 secs
 </strong>
 <div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap=colormap, vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.4,border.color="888888")
 </div>
-<a href="javascript:newWin('Hiratani-101.png', 'Hiratani-101.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-101.png', width="400" /></a>
+<a href="javascript:newWin('Hiratani-97.png', 'Hiratani-97.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-97.png', width="400" /></a>
 <div class='input'>
-# 8) heatmap of replication timing data in the subnetwork
+# 7) heatmap of replication timing data in the subnetwork
 <a href='visHeatmapAdv.html' target=visHeatmapAdv>visHeatmapAdv</a>(data, colormap=colormap, KeyValueName="log2(Early/Late)")
 </div>
-<a href="javascript:newWin('Hiratani-103.png', 'Hiratani-103.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-103.png', width="400" /></a>
+<a href="javascript:newWin('Hiratani-99.png', 'Hiratani-99.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-99.png', width="400" /></a>
 <div class='input'>
-# 9) output the subnetwork and their replication timing data
+# 8) output the subnetwork and their replication timing data
 ## Write the subnetwork into a SIF-formatted file (Simple Interaction File)
 sif <- data.frame(source=get.edgelist(g)[,1], type="interaction", target=get.edgelist(g)[,2])
 write.table(sif, file=paste(my_contrast,".sif", sep=""), quote=F, row.names=F,col.names=F,sep="\t")
@@ -510,7 +502,7 @@ write.table(sif, file=paste(my_contrast,".sif", sep=""), quote=F, row.names=F,co
 hmap <- data.frame(Symbol=rownames(data), data)
 write.table(hmap, file=paste(my_contrast,".txt", sep=""), quote=F, row.names=F,col.names=T,sep="\t")
 
-# 10) enrichment analysis for genes in the subnetwork
+# 9) enrichment analysis for genes in the subnetwork
 ## get a list of genes in the subnetwork
 data <- V(g)$name
 data
@@ -525,22 +517,22 @@ data
 [43] "Abcg2"    "Dppa2"    "Zfp42"    "Grik3"   
 </div>
 <div class='input'>
-## 10a) GOBP enrichment analysis
+## 9a) GOBP enrichment analysis
 eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data, identity="symbol", genome="Mm", ontology="GOBP")
 </div>
-<strong class='message'>Start at 2014-04-09 18:12:30</strong>
+<strong class='message'>Start at 2014-04-10 14:21:25</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology GOBP and its gene associations in the genome Mm (2014-04-09 18:12:30) ...</strong>
+<strong class='message'>First, load the ontology GOBP and its gene associations in the genome Mm (2014-04-10 14:21:25) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egGOBP.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-04-09 18:12:32) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-10 14:21:26) ...</strong>
 <strong class='message'>	Among 46 symbols of input data, there are 46 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using FisherTest (2014-04-09 18:12:32) ...</strong>
-<strong class='message'>	There are 1821 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-04-09 18:12:33) ...</strong>
+<strong class='message'>Third, perform enrichment analysis using FisherTest (2014-04-10 14:21:26) ...</strong>
+<strong class='message'>	There are 1830 terms being used, each restricted within [10,20000] annotations</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-10 14:21:27) ...</strong>
 <strong class='message'>
-End at 2014-04-09 18:12:33</strong>
-<strong class='message'>Runtime in total is: 3 secs
+End at 2014-04-10 14:21:27</strong>
+<strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'>## visualise the top significant terms in the GOBP heirarchy
 ## first, load the GOBP ontology
@@ -550,7 +542,20 @@ g <- ig.GOBP
 nodes_query <- names(sort(eTerm$adjp)[1:10])
 nodes.highlight <- rep("red", length(nodes_query))
 names(nodes.highlight) <- nodes_query
-## induce the shortest paths (one for each significant term) to the ontology root
+V(g)[nodes_query]$term_name
+</div>
+<div class='output'> [1] "negative regulation of apoptotic process"               
+ [2] "stem cell maintenance"                                  
+ [3] "apoptotic process"                                      
+ [4] "epidermal growth factor receptor signaling pathway"     
+ [5] "cell aging"                                             
+ [6] "negative regulation of smooth muscle cell proliferation"
+ [7] "neuron apoptotic process"                               
+ [8] "regulation of cell cycle"                               
+ [9] "osteoblast differentiation"                             
+[10] "transcription from RNA polymerase II promoter"          
+</div>
+<div class='input'>## induce the shortest paths (one for each significant term) to the ontology root
 subg <- <a href='dDAGinduce.html' target=dDAGinduce>dDAGinduce</a>(g, nodes_query, path.mode="shortest_paths")
 ## color-code terms according to the adjust p-values (taking the form of 10-based negative logarithm)
 <a href='visDAG.html' target=visDAG>visDAG</a>(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]), node.info="both", node.attrs=list(color=nodes.highlight))
@@ -562,24 +567,24 @@ Attaching package: ‘graph’
 
     degree, edges
 </strong>
-<a href="javascript:newWin('Hiratani-122.png', 'Hiratani-122.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-122.png', width="400" /></a>
+<a href="javascript:newWin('Hiratani-120.png', 'Hiratani-120.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-120.png', width="400" /></a>
 <div class='input'>
-## 10b) GOMF enrichment analysis
+## 9b) GOMF enrichment analysis
 eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data, identity="symbol", genome="Mm", ontology="GOMF")
 </div>
-<strong class='message'>Start at 2014-04-09 18:12:38</strong>
+<strong class='message'>Start at 2014-04-10 14:21:32</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology GOMF and its gene associations in the genome Mm (2014-04-09 18:12:38) ...</strong>
+<strong class='message'>First, load the ontology GOMF and its gene associations in the genome Mm (2014-04-10 14:21:32) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egGOMF.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-04-09 18:12:41) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-10 14:21:34) ...</strong>
 <strong class='message'>	Among 46 symbols of input data, there are 46 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using FisherTest (2014-04-09 18:12:41) ...</strong>
-<strong class='message'>	There are 622 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-04-09 18:12:41) ...</strong>
+<strong class='message'>Third, perform enrichment analysis using FisherTest (2014-04-10 14:21:34) ...</strong>
+<strong class='message'>	There are 634 terms being used, each restricted within [10,20000] annotations</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-10 14:21:34) ...</strong>
 <strong class='message'>
-End at 2014-04-09 18:12:41</strong>
-<strong class='message'>Runtime in total is: 3 secs
+End at 2014-04-10 14:21:34</strong>
+<strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'>## visualise the top significant terms in the GOMF heirarchy
 ## first, load the GOMF ontology
@@ -589,61 +594,42 @@ g <- ig.GOMF
 nodes_query <- names(sort(eTerm$adjp)[1:10])
 nodes.highlight <- rep("red", length(nodes_query))
 names(nodes.highlight) <- nodes_query
-## induce the shortest paths (one for each significant term) to the ontology root
+V(g)[nodes_query]$term_name
+</div>
+<div class='output'> [1] "epidermal growth factor receptor binding"                                                            
+ [2] "protein phosphatase 2A binding"                                                                      
+ [3] "RNA polymerase II core promoter proximal region sequence-specific DNA binding transcription factor a"
+ [4] "RNA polymerase II transcription factor binding"                                                      
+ [5] "DNA binding"                                                                                         
+ [6] "transcription factor binding"                                                                        
+ [7] "sequence-specific DNA binding RNA polymerase II transcription factor activity"                       
+ [8] "transcription regulatory region DNA binding"                                                         
+ [9] "protease binding"                                                                                    
+[10] "sequence-specific DNA binding"                                                                       
+</div>
+<div class='input'>## induce the shortest paths (one for each significant term) to the ontology root
 subg <- <a href='dDAGinduce.html' target=dDAGinduce>dDAGinduce</a>(g, nodes_query, path.mode="shortest_paths")
 ## color-code terms according to the adjust p-values (taking the form of 10-based negative logarithm)
 <a href='visDAG.html' target=visDAG>visDAG</a>(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]), node.info="both", node.attrs=list(color=nodes.highlight))
 </div>
 <a href="javascript:newWin('Hiratani-137.png', 'Hiratani-137.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-137.png', width="400" /></a>
 <div class='input'>
-## 10c) GOCC enrichment analysis
-eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data, identity="symbol", genome="Mm", ontology="GOCC")
-</div>
-<strong class='message'>Start at 2014-04-09 18:12:45</strong>
-<strong class='message'></strong>
-<strong class='message'>First, load the ontology GOCC and its gene associations in the genome Mm (2014-04-09 18:12:45) ...</strong>
-<strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
-<strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egGOCC.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-04-09 18:12:46) ...</strong>
-<strong class='message'>	Among 46 symbols of input data, there are 46 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using FisherTest (2014-04-09 18:12:47) ...</strong>
-<strong class='message'>	There are 388 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-04-09 18:12:47) ...</strong>
-<strong class='message'>
-End at 2014-04-09 18:12:47</strong>
-<strong class='message'>Runtime in total is: 2 secs
-</strong>
-<div class='input'>## visualise the top significant terms in the GOCC heirarchy
-## first, load the GOCC ontology
-load(url("http://dnet.r-forge.r-project.org/data/Obo/ig.GOCC.RData"))
-g <- ig.GOCC
-## select the top most significant 10 terms
-nodes_query <- names(sort(eTerm$adjp)[1:10])
-nodes.highlight <- rep("red", length(nodes_query))
-names(nodes.highlight) <- nodes_query
-## induce the shortest paths (one for each significant term) to the ontology root
-subg <- <a href='dDAGinduce.html' target=dDAGinduce>dDAGinduce</a>(g, nodes_query, path.mode="shortest_paths")
-## color-code terms according to the adjust p-values (taking the form of 10-based negative logarithm)
-<a href='visDAG.html' target=visDAG>visDAG</a>(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]), node.info="both", node.attrs=list(color=nodes.highlight))
-</div>
-<a href="javascript:newWin('Hiratani-152.png', 'Hiratani-152.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-152.png', width="400" /></a>
-<div class='input'>
-## 10d) MP enrichment analysis
+## 9c) MP enrichment analysis
 eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data, identity="symbol", genome="Mm", ontology="MP")
 </div>
-<strong class='message'>Start at 2014-04-09 18:12:51</strong>
+<strong class='message'>Start at 2014-04-10 14:21:38</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-09 18:12:51) ...</strong>
+<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-10 14:21:38) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egMP.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-04-09 18:12:52) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-10 14:21:40) ...</strong>
 <strong class='message'>	Among 46 symbols of input data, there are 46 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using FisherTest (2014-04-09 18:12:52) ...</strong>
-<strong class='message'>	There are 4519 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-04-09 18:12:56) ...</strong>
+<strong class='message'>Third, perform enrichment analysis using FisherTest (2014-04-10 14:21:40) ...</strong>
+<strong class='message'>	There are 4609 terms being used, each restricted within [10,20000] annotations</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-10 14:21:44) ...</strong>
 <strong class='message'>
-End at 2014-04-09 18:12:56</strong>
-<strong class='message'>Runtime in total is: 5 secs
+End at 2014-04-10 14:21:44</strong>
+<strong class='message'>Runtime in total is: 6 secs
 </strong>
 <div class='input'>## visualise the top significant terms in the MP heirarchy
 ## first, load the MP ontology
@@ -653,28 +639,41 @@ g <- ig.MP
 nodes_query <- names(sort(eTerm$adjp)[1:10])
 nodes.highlight <- rep("red", length(nodes_query))
 names(nodes.highlight) <- nodes_query
-## induce all possible paths to the ontology root
+V(g)[nodes_query]$term_name
+</div>
+<div class='output'> [1] "abnormal gland morphology"                               
+ [2] "abnormal small intestine crypts of Lieberkuhn morphology"
+ [3] "endocrine/exocrine gland phenotype"                      
+ [4] "abnormal trabecular bone morphology"                     
+ [5] "abnormal body weight"                                    
+ [6] "decreased body weight"                                   
+ [7] "decreased body size"                                     
+ [8] "abnormal tumor incidence"                                
+ [9] "abnormal postnatal growth/weight/body size"              
+[10] "altered tumor susceptibility"                            
+</div>
+<div class='input'>## induce all possible paths to the ontology root
 subg <- <a href='dDAGinduce.html' target=dDAGinduce>dDAGinduce</a>(g, nodes_query)
 ## color-code terms according to the adjust p-values (taking the form of 10-based negative logarithm)
-<a href='visDAG.html' target=visDAG>visDAG</a>(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]), node.info = c("none","term_id","term_name","both","full_term_name")[5], layout.orientation = c("left_right","top_bottom","bottom_top","right_left")[2], node.attrs=list(color=nodes.highlight))
+<a href='visDAG.html' target=visDAG>visDAG</a>(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]), node.info=c("none","term_id","term_name","both","full_term_name")[5], layout.orientation=c("left_right","top_bottom","bottom_top","right_left")[1], node.attrs=list(color=nodes.highlight))
 </div>
-<a href="javascript:newWin('Hiratani-167.png', 'Hiratani-167.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-167.png', width="400" /></a>
+<a href="javascript:newWin('Hiratani-154.png', 'Hiratani-154.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-154.png', width="400" /></a>
 <div class='input'>
-## 10e) DO enrichment analysis
+## 9d) DO enrichment analysis
 eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data, identity="symbol", genome="Mm", ontology="DO")
 </div>
-<strong class='message'>Start at 2014-04-09 18:13:00</strong>
+<strong class='message'>Start at 2014-04-10 14:21:47</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology DO and its gene associations in the genome Mm (2014-04-09 18:13:00) ...</strong>
+<strong class='message'>First, load the ontology DO and its gene associations in the genome Mm (2014-04-10 14:21:47) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egDO.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-04-09 18:13:02) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-10 14:21:48) ...</strong>
 <strong class='message'>	Among 46 symbols of input data, there are 46 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using FisherTest (2014-04-09 18:13:02) ...</strong>
-<strong class='message'>	There are 902 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-04-09 18:13:02) ...</strong>
+<strong class='message'>Third, perform enrichment analysis using FisherTest (2014-04-10 14:21:49) ...</strong>
+<strong class='message'>	There are 924 terms being used, each restricted within [10,20000] annotations</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-10 14:21:49) ...</strong>
 <strong class='message'>
-End at 2014-04-09 18:13:02</strong>
+End at 2014-04-10 14:21:49</strong>
 <strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'>## visualise the top significant terms in the DO heirarchy
@@ -685,84 +684,69 @@ g <- ig.DO
 nodes_query <- names(sort(eTerm$adjp)[1:10])
 nodes.highlight <- rep("red", length(nodes_query))
 names(nodes.highlight) <- nodes_query
-## induce all possible shortest paths to the ontology root
+V(g)[nodes_query]$term_name
+</div>
+<div class='output'> [1] "stomach cancer"                "gastric adenocarcinoma"       
+ [3] "stomach carcinoma"             "connective tissue cancer"     
+ [5] "seminoma"                      "musculoskeletal system cancer"
+ [7] "pharynx cancer"                "integumentary system cancer"  
+ [9] "larynx cancer"                 "laryngeal carcinoma"          
+</div>
+<div class='input'>## induce all possible shortest paths to the ontology root
 subg <- <a href='dDAGinduce.html' target=dDAGinduce>dDAGinduce</a>(g, nodes_query)
 ## color-code terms according to the adjust p-values (taking the form of 10-based negative logarithm)
 <a href='visDAG.html' target=visDAG>visDAG</a>(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]), node.info="both", zlim=c(0,4), node.attrs=list(color=nodes.highlight))
 </div>
-<a href="javascript:newWin('Hiratani-182.png', 'Hiratani-182.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-182.png', width="400" /></a>
+<a href="javascript:newWin('Hiratani-171.png', 'Hiratani-171.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Hiratani-171.png', width="400" /></a>
 <div class='input'>
-## 10f) PS enrichment analysis
+## 9e) PS enrichment analysis
 eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data, identity="symbol", genome="Mm", ontology="PS")
 </div>
-<strong class='message'>Start at 2014-04-09 18:13:05</strong>
+<strong class='message'>Start at 2014-04-10 14:21:52</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology PS and its gene associations in the genome Mm (2014-04-09 18:13:05) ...</strong>
+<strong class='message'>First, load the ontology PS and its gene associations in the genome Mm (2014-04-10 14:21:52) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egPS.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-04-09 18:13:06) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-10 14:21:53) ...</strong>
 <strong class='message'>	Among 46 symbols of input data, there are 46 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using FisherTest (2014-04-09 18:13:06) ...</strong>
-<strong class='message'>	There are 25 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-04-09 18:13:06) ...</strong>
+<strong class='message'>Third, perform enrichment analysis using FisherTest (2014-04-10 14:21:53) ...</strong>
+<strong class='message'>	There are 27 terms being used, each restricted within [10,20000] annotations</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-10 14:21:53) ...</strong>
 <strong class='message'>
-End at 2014-04-09 18:13:06</strong>
+End at 2014-04-10 14:21:53</strong>
 <strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'>## Loot at the evolution relevance along the path to the eukaryotic common ancestor
-cbind(eTerm$set_info, nSet=sapply(eTerm$gs,length), eTerm$zscore, eTerm$pvalue, eTerm$adjp)</div>
-<div class='output'>   setID                  name namespace   distance nSet eTerm$zscore
-5      5    33154:Opisthokonta   no rank 0.02677301  458       0.6080
-6      6    33154:Opisthokonta   no rank 0.03026936  139      -0.6480
-7      7    33154:Opisthokonta   no rank 0.03573534  173       0.7130
-8      8    33154:Opisthokonta   no rank 0.03880849  169      -0.7170
-9      9         33208:Metazoa   kingdom 0.04949159  106      -0.5630
-10    10         33208:Metazoa   kingdom 0.06686750  123       2.7800
-11    11         33208:Metazoa   kingdom 0.09260898  371      -0.0821
-12    12        6072:Eumetazoa   no rank 0.10459007  326      -1.0100
-13    13        6072:Eumetazoa   no rank 0.11176118  123       1.0900
-14    14       33213:Bilateria   no rank 0.12058364  273      -0.9220
-15    15       33213:Bilateria   no rank 0.12660301  122      -0.6060
-16    16   33511:Deuterostomia   no rank 0.13884801  583      -0.5760
-17    17   33511:Deuterostomia   no rank 0.14852778   91       1.4400
-18    18         7711:Chordata    phylum 0.15759842   73      -0.4660
-19    19       7742:Vertebrata   no rank 0.16953129  107      -0.5660
-20    20   117571:Euteleostomi   no rank 0.18295445  575      -0.5600
-21    21    8287:Sarcopterygii   no rank 0.18554672   74      -0.4690
-22    22       32523:Tetrapoda   no rank 0.18855901   92      -0.5240
-23    23         32524:Amniota   no rank 0.19241034  170      -0.7190
-24    24        40674:Mammalia     class 0.19552877   21      -0.2480
-25    25          32525:Theria   no rank 0.19917128   88      -0.5120
-26    26         9347:Eutheria   no rank 0.20262687   65      -0.4390
-27    27 1437010:Boreoeutheria   no rank 0.20409224   57       4.5300
-29    29         314147:Glires   no rank 0.20521882   16      -0.2170
-75    75    10090:Mus musculus   species 0.23690599   64       1.9000
-   eTerm$pvalue eTerm$adjp
-5         0.390       1.00
-6         1.000       1.00
-7         0.400       1.00
-8         1.000       1.00
-9         1.000       1.00
-10        0.048       0.60
-11        0.680       1.00
-12        1.000       1.00
-13        0.310       1.00
-14        1.000       1.00
-15        1.000       1.00
-16        0.840       1.00
-17        0.240       1.00
-18        1.000       1.00
-19        1.000       1.00
-20        0.830       1.00
-21        1.000       1.00
-22        1.000       1.00
-23        1.000       1.00
-24        1.000       1.00
-25        1.000       1.00
-26        1.000       1.00
-27        0.011       0.29
-29        1.000       1.00
-75        0.170       1.00
+cbind(eTerm$set_info[,2:3], nSet=sapply(eTerm$gs,length), zscore=eTerm$zscore, pvalue=eTerm$pvalue, adjp=eTerm$adjp)
+</div>
+<div class='output'>                    name    namespace nSet  zscore pvalue adjp
+3         2759:Eukaryota superkingdom 8213 -2.1700  0.990 1.00
+4     33154:Opisthokonta      no rank 2436  2.1500  0.033 0.34
+5     33154:Opisthokonta      no rank  458  0.8030  0.320 1.00
+6     33154:Opisthokonta      no rank  139 -0.5950  1.000 1.00
+7     33154:Opisthokonta      no rank  173  0.8620  0.350 1.00
+8     33154:Opisthokonta      no rank  169 -0.6560  1.000 1.00
+9          33208:Metazoa      kingdom  106 -0.5190  1.000 1.00
+10         33208:Metazoa      kingdom  123  3.0600  0.038 0.34
+11         33208:Metazoa      kingdom  371  0.0702  0.610 1.00
+12        6072:Eumetazoa      no rank  326 -0.9170  1.000 1.00
+13        6072:Eumetazoa      no rank  123  1.2500  0.270 1.00
+14       33213:Bilateria      no rank  273 -0.8370  1.000 1.00
+15       33213:Bilateria      no rank  122 -0.5570  1.000 1.00
+16   33511:Deuterostomia      no rank  583 -0.3930  0.780 1.00
+17   33511:Deuterostomia      no rank   91  1.6200  0.210 1.00
+18         7711:Chordata       phylum   73 -0.4300  1.000 1.00
+19       7742:Vertebrata      no rank  107 -0.5210  1.000 1.00
+20   117571:Euteleostomi      no rank  575 -0.3790  0.770 1.00
+21    8287:Sarcopterygii      no rank   74 -0.4330  1.000 1.00
+22       32523:Tetrapoda      no rank   92 -0.4830  1.000 1.00
+23         32524:Amniota      no rank  170 -0.6580  1.000 1.00
+24        40674:Mammalia        class   21 -0.2300  1.000 1.00
+25          32525:Theria      no rank   88 -0.4720  1.000 1.00
+26         9347:Eutheria      no rank   65 -0.4060  1.000 1.00
+27 1437010:Boreoeutheria      no rank   57  4.9200  0.009 0.24
+29         314147:Glires      no rank   16 -0.2010  1.000 1.00
+75    10090:Mus musculus      species   64  2.1000  0.150 1.00
 </div>
       </pre>
     </div>
@@ -778,7 +762,6 @@ cbind(eTerm$set_info, nSet=sapply(eTerm$gs,length), eTerm$zscore, eTerm$pvalue, 
       <li><a href="dCommSignif.html">dCommSignif</a></li>
       <li><a href="visColoralpha.html">visColoralpha</a></li>
       <li><a href="visNet.html">visNet</a></li>
-      <li><a href="visNetMul.html">visNetMul</a></li>
       <li><a href="dNetReorder.html">dNetReorder</a></li>
       <li><a href="visNetReorder.html">visNetReorder</a></li>
       <li><a href="visHeatmapAdv.html">visHeatmapAdv</a></li>

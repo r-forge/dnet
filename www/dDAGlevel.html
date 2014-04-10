@@ -181,30 +181,30 @@ subg <- dDAGinduce(g, nodes_query)
 # 4a) definition based on the longest path
 dDAGlevel(subg, level.mode="longest_path")
 </div>
-<div class='output'>GO:0003674 GO:0003824 GO:0005488 GO:0016247 GO:0005515 GO:0016248 GO:0016740 
-         1          2          2          2          3          3          3 
-GO:0016853 GO:0017081 GO:0060090 GO:0097159 GO:1901363 GO:0003676 GO:0005102 
-         3          3          3          3          3          4          4 
-GO:0008200 GO:0016772 GO:0016866 GO:0019869 GO:0030533 GO:0000496 GO:0001664 
-         4          4          4          5          8          5          5 
-GO:0003723 GO:0016301 GO:0090438 GO:0000498 GO:0019200 GO:0031628 GO:0000499 
-         5          5          5          6          6          6          7 
-GO:0031852 GO:0033411 
-         7          9 
+<div class='output'>GO:0003674 GO:0003824 GO:0004872 GO:0005215 GO:0060089 GO:0004871 GO:0016740 
+         1          2          2          2          2          3          3 
+GO:0016829 GO:0022857 GO:0022892 GO:0038023 GO:0016757 GO:0016835 GO:0022803 
+         3          3          3          4          4          4          4 
+GO:0022891 GO:0004888 GO:0015075 GO:0015267 GO:0015932 GO:0016758 GO:0016836 
+         4          5          5          5          5          5          5 
+GO:0022838 GO:0004645 GO:0005216 GO:0015205 GO:0022836 GO:0038131 GO:0050005 
+         6          6          7          6          6          6          6 
+GO:0005350 GO:0009018 GO:0022834 GO:0015210 GO:0015276 GO:0005230 GO:0036081 
+         7          7          7          8          8          9         10 
 </div>
 <div class='input'># 4b) definition based on the shortest path
 dDAGlevel(subg, level.mode="shortest_path")
 </div>
-<div class='output'>GO:0003674 GO:0003824 GO:0005488 GO:0016247 GO:0005515 GO:0016248 GO:0016740 
-         1          2          2          2          3          3          3 
-GO:0016853 GO:0017081 GO:0060090 GO:0097159 GO:1901363 GO:0003676 GO:0005102 
-         3          3          3          3          3          4          4 
-GO:0008200 GO:0016772 GO:0016866 GO:0019869 GO:0030533 GO:0000496 GO:0001664 
-         4          4          4          4          4          5          5 
-GO:0003723 GO:0016301 GO:0090438 GO:0000498 GO:0019200 GO:0031628 GO:0000499 
-         5          5          5          6          6          6          7 
-GO:0031852 GO:0033411 
-         7          5 
+<div class='output'>GO:0003674 GO:0003824 GO:0004872 GO:0005215 GO:0060089 GO:0004871 GO:0016740 
+         1          2          2          2          2          3          3 
+GO:0016829 GO:0022857 GO:0022892 GO:0038023 GO:0016757 GO:0016835 GO:0022803 
+         3          3          3          3          4          4          4 
+GO:0022891 GO:0004888 GO:0015075 GO:0015267 GO:0015932 GO:0016758 GO:0016836 
+         4          4          5          5          5          5          5 
+GO:0022838 GO:0004645 GO:0005216 GO:0015205 GO:0022836 GO:0038131 GO:0050005 
+         5          6          6          6          6          5          6 
+GO:0005350 GO:0009018 GO:0022834 GO:0015210 GO:0015276 GO:0005230 GO:0036081 
+         7          7          7          8          7          8          9 
 </div>
 <div class='input'># 4b) definition based on the longest path, and return nodes for each level
 dDAGlevel(subg, level.mode="longest_path", return.mode="level2node")
@@ -213,30 +213,33 @@ dDAGlevel(subg, level.mode="longest_path", return.mode="level2node")
 [1] "GO:0003674"
 
 $`2`
-[1] "GO:0003824" "GO:0005488" "GO:0016247"
+[1] "GO:0003824" "GO:0004872" "GO:0005215" "GO:0060089"
 
 $`3`
-[1] "GO:0005515" "GO:0016248" "GO:0016740" "GO:0016853" "GO:0017081"
-[6] "GO:0060090" "GO:0097159" "GO:1901363"
+[1] "GO:0004871" "GO:0016740" "GO:0016829" "GO:0022857" "GO:0022892"
 
 $`4`
-[1] "GO:0003676" "GO:0005102" "GO:0008200" "GO:0016772" "GO:0016866"
+[1] "GO:0038023" "GO:0016757" "GO:0016835" "GO:0022803" "GO:0022891"
 
 $`5`
-[1] "GO:0019869" "GO:0000496" "GO:0001664" "GO:0003723" "GO:0016301"
-[6] "GO:0090438"
+[1] "GO:0004888" "GO:0015075" "GO:0015267" "GO:0015932" "GO:0016758"
+[6] "GO:0016836"
 
 $`6`
-[1] "GO:0000498" "GO:0019200" "GO:0031628"
+[1] "GO:0022838" "GO:0004645" "GO:0015205" "GO:0022836" "GO:0038131"
+[6] "GO:0050005"
 
 $`7`
-[1] "GO:0000499" "GO:0031852"
+[1] "GO:0005216" "GO:0005350" "GO:0009018" "GO:0022834"
 
 $`8`
-[1] "GO:0030533"
+[1] "GO:0015210" "GO:0015276"
 
 $`9`
-[1] "GO:0033411"
+[1] "GO:0005230"
+
+$`10`
+[1] "GO:0036081"
 
 </div></pre>
   </div>
@@ -258,7 +261,7 @@ $`9`
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of network, expression, evolution and ontology data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of digitised data in terms of network, ontology and evolution. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

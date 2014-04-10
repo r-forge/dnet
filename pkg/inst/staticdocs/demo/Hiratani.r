@@ -15,7 +15,7 @@ ls() # you should see three variables: 'RT', 'CpG' and 'EX'
 # Load the package 'dnet'
 library(dnet)
 
-# Load or/and install packages "affy" and "limma" that specifically used in this demo
+# Load or/and install packages "affy" and "limma" that are specifically used in this demo
 list.pkg <- c("affy","limma")
 for(pkg in list.pkg){
     if(!require(pkg, character.only=T)){
@@ -113,30 +113,26 @@ mark.border <- visColoralpha(mcolors, alpha=0.2)
 edge.color <- c("grey", "black")[crossing(com,g)+1]
 ## visualise the subnetwrok
 visNet(g, glayout=glayout, vertex.label=V(g)$geneSymbol, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.shape="sphere", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
-## add the community information
-legend_name <- paste("C",1:length(mcolors)," (n=",com$csize,", pval=",signif(com$significance,digits=2),")",sep='')
-legend("topleft", legend=legend_name, fill=mcolors, bty="n", cex=0.6)
 
 # 4) visualisation of the gene-active subnetwork overlaid by the node/gene score
-visNet(g, glayout=glayout, pattern=V(g)$score, zlim=c(-1*ceiling(max(abs(V(g)$score))),ceiling(max(abs(V(g)$score)))), vertex.shape="circle")
+max_colorbar <- ceiling(quantile(abs(V(g)$score),0.75))
+visNet(g, glayout=glayout, pattern=V(g)$score, zlim=c(-1*max_colorbar,max_colorbar), vertex.shape="circle")
 
 # 5) visualisation of the gene-active subnetwork overlaid by the differential replication timing
 colormap <- "darkgreen-lightgreen-lightpink-darkred"
 logFC <- fit2$coefficients[V(g)$name,my_contrast]
 visNet(g, glayout=glayout, pattern=logFC, colormap=colormap, vertex.shape="circle")
 
-# 6) visualisation of the gene-active subnetwork overlaid by all replication timing data
+# 6) Network-based sample classifications and visualisations on 2D sample landscape
+# it uses the gene-active subnetwork overlaid by all replication timing data
 data <- exprs(esetGene)[V(g)$name,]
-visNetMul(g=g, data=data, height=ceiling(sqrt(ncol(data)))*2, newpage=T,glayout=glayout,colormap=colormap,vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.7,border.color="888888")
-
-# 7) Network-based sample classifications and visualisations on 2D sample landscape
 sReorder <- dNetReorder(g, data, feature="edge", node.normalise="degree", amplifier=3, metric="none")
 visNetReorder(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap=colormap, vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.4,border.color="888888")
 
-# 8) heatmap of replication timing data in the subnetwork
+# 7) heatmap of replication timing data in the subnetwork
 visHeatmapAdv(data, colormap=colormap, KeyValueName="log2(Early/Late)")
 
-# 9) output the subnetwork and their replication timing data
+# 8) output the subnetwork and their replication timing data
 ## Write the subnetwork into a SIF-formatted file (Simple Interaction File)
 sif <- data.frame(source=get.edgelist(g)[,1], type="interaction", target=get.edgelist(g)[,2])
 write.table(sif, file=paste(my_contrast,".sif", sep=""), quote=F, row.names=F,col.names=F,sep="\t")
@@ -144,12 +140,12 @@ write.table(sif, file=paste(my_contrast,".sif", sep=""), quote=F, row.names=F,co
 hmap <- data.frame(Symbol=rownames(data), data)
 write.table(hmap, file=paste(my_contrast,".txt", sep=""), quote=F, row.names=F,col.names=T,sep="\t")
 
-# 10) enrichment analysis for genes in the subnetwork
+# 9) enrichment analysis for genes in the subnetwork
 ## get a list of genes in the subnetwork
 data <- V(g)$name
 data
 
-## 10a) GOBP enrichment analysis
+## 9a) GOBP enrichment analysis
 eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="GOBP")
 ## visualise the top significant terms in the GOBP heirarchy
 ## first, load the GOBP ontology
@@ -159,12 +155,13 @@ g <- ig.GOBP
 nodes_query <- names(sort(eTerm$adjp)[1:10])
 nodes.highlight <- rep("red", length(nodes_query))
 names(nodes.highlight) <- nodes_query
+V(g)[nodes_query]$term_name
 ## induce the shortest paths (one for each significant term) to the ontology root
 subg <- dDAGinduce(g, nodes_query, path.mode="shortest_paths")
 ## color-code terms according to the adjust p-values (taking the form of 10-based negative logarithm)
 visDAG(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]), node.info="both", node.attrs=list(color=nodes.highlight))
 
-## 10b) GOMF enrichment analysis
+## 9b) GOMF enrichment analysis
 eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="GOMF")
 ## visualise the top significant terms in the GOMF heirarchy
 ## first, load the GOMF ontology
@@ -174,27 +171,13 @@ g <- ig.GOMF
 nodes_query <- names(sort(eTerm$adjp)[1:10])
 nodes.highlight <- rep("red", length(nodes_query))
 names(nodes.highlight) <- nodes_query
+V(g)[nodes_query]$term_name
 ## induce the shortest paths (one for each significant term) to the ontology root
 subg <- dDAGinduce(g, nodes_query, path.mode="shortest_paths")
 ## color-code terms according to the adjust p-values (taking the form of 10-based negative logarithm)
 visDAG(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]), node.info="both", node.attrs=list(color=nodes.highlight))
 
-## 10c) GOCC enrichment analysis
-eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="GOCC")
-## visualise the top significant terms in the GOCC heirarchy
-## first, load the GOCC ontology
-load(url("http://dnet.r-forge.r-project.org/data/Obo/ig.GOCC.RData"))
-g <- ig.GOCC
-## select the top most significant 10 terms
-nodes_query <- names(sort(eTerm$adjp)[1:10])
-nodes.highlight <- rep("red", length(nodes_query))
-names(nodes.highlight) <- nodes_query
-## induce the shortest paths (one for each significant term) to the ontology root
-subg <- dDAGinduce(g, nodes_query, path.mode="shortest_paths")
-## color-code terms according to the adjust p-values (taking the form of 10-based negative logarithm)
-visDAG(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]), node.info="both", node.attrs=list(color=nodes.highlight))
-
-## 10d) MP enrichment analysis
+## 9c) MP enrichment analysis
 eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP")
 ## visualise the top significant terms in the MP heirarchy
 ## first, load the MP ontology
@@ -204,12 +187,13 @@ g <- ig.MP
 nodes_query <- names(sort(eTerm$adjp)[1:10])
 nodes.highlight <- rep("red", length(nodes_query))
 names(nodes.highlight) <- nodes_query
+V(g)[nodes_query]$term_name
 ## induce all possible paths to the ontology root
 subg <- dDAGinduce(g, nodes_query)
 ## color-code terms according to the adjust p-values (taking the form of 10-based negative logarithm)
-visDAG(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]), node.info = c("none","term_id","term_name","both","full_term_name")[5], layout.orientation = c("left_right","top_bottom","bottom_top","right_left")[2], node.attrs=list(color=nodes.highlight))
+visDAG(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]), node.info=c("none","term_id","term_name","both","full_term_name")[5], layout.orientation=c("left_right","top_bottom","bottom_top","right_left")[1], node.attrs=list(color=nodes.highlight))
 
-## 10e) DO enrichment analysis
+## 9d) DO enrichment analysis
 eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="DO")
 ## visualise the top significant terms in the DO heirarchy
 ## first, load the DO ontology
@@ -219,12 +203,14 @@ g <- ig.DO
 nodes_query <- names(sort(eTerm$adjp)[1:10])
 nodes.highlight <- rep("red", length(nodes_query))
 names(nodes.highlight) <- nodes_query
+V(g)[nodes_query]$term_name
 ## induce all possible shortest paths to the ontology root
 subg <- dDAGinduce(g, nodes_query)
 ## color-code terms according to the adjust p-values (taking the form of 10-based negative logarithm)
 visDAG(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]), node.info="both", zlim=c(0,4), node.attrs=list(color=nodes.highlight))
 
-## 10f) PS enrichment analysis
+## 9e) PS enrichment analysis
 eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="PS")
 ## Loot at the evolution relevance along the path to the eukaryotic common ancestor
-cbind(eTerm$set_info, nSet=sapply(eTerm$gs,length), eTerm$zscore, eTerm$pvalue, eTerm$adjp)
+cbind(eTerm$set_info[,2:3], nSet=sapply(eTerm$gs,length), zscore=eTerm$zscore, pvalue=eTerm$pvalue, adjp=eTerm$adjp)
+

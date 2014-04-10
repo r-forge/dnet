@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Demo for patient omics dataset @ dnet 1.0.0</title>
+<title>Demo for patient expression dataset @ dnet 1.0.0</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Hai Fang and Julian Gough">
 
@@ -105,7 +105,7 @@
         
       </header>
       
-      <h2>Demo for patient omics dataset</h2>
+      <h2>Demo for patient expression dataset</h2>
 
 Notes:
 <li> All results are based on dnet (version 1.0.0). </li>
@@ -305,7 +305,7 @@ pval <- pvals[,my_contrast]
 # 2) identification of module
 g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network, pval=pval, nsize=20)
 </div>
-<strong class='message'>Start at 2014-04-08 17:27:00</strong>
+<strong class='message'>Start at 2014-04-10 12:50:19</strong>
 <strong class='message'></strong>
 <strong class='message'>First, fit the p-value distribution under beta-uniform mixture model...</strong>
 <strong class='message'>	A total of p-values: 9367</strong>
@@ -333,8 +333,8 @@ g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network,
 <strong class='message'>Finally, find the subnetwork from the input network with 8133 nodes and 158729 edges...</strong>
 <strong class='message'>	Size of the module: 50 nodes and 67 edges</strong>
 <strong class='message'>
-Finish at 2014-04-08 17:31:41</strong>
-<strong class='message'>Runtime in total is: 281 secs
+Finish at 2014-04-10 12:54:55</strong>
+<strong class='message'>Runtime in total is: 276 secs
 </strong>
 <div class='input'>glayout <- layout.fruchterman.reingold(g)
 
@@ -409,7 +409,7 @@ colnames(data) <- EIL[ind]
 # 11) color by additional data (be reordered)
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="edge", node.normalise="degree", amplifier=2, metric="none")
 </div>
-<strong class='message'>Start at 2014-04-08 17:32:36</strong>
+<strong class='message'>Start at 2014-04-10 12:55:50</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -426,7 +426,7 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    dimension of grid coord: 25x2
    initialisation method: linear
    dimension of codebook matrix: 25x67
-   mean quantization error: 3.69416513488327
+   mean quantization error: 4.8585992038757
 </strong>
 <strong class='message'>Below are the details of trainology:</strong>
 <strong class='message'>   training algorithm: sequential
@@ -436,7 +436,7 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-04-08 17:32:37</strong>
+<strong class='message'>End at 2014-04-10 12:55:51</strong>
 <strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap=colormap, vertex.label=NA,vertex.shape="sphere", vertex.size=18,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)</div>
@@ -462,7 +462,7 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
     </ul>
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of network, expression, evolution and ontology data. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of digitised data in terms of network, ontology and evolution. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--
