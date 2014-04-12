@@ -50,7 +50,7 @@ To install [latest development version](http://r-forge.r-project.org/projects/dn
     }
     
     ## Second, install from Bioconductor
-    list.pkg <- c("graph","Rgraphviz")
+    list.pkg <- c("graph","Rgraphviz","affy","limma")
     source("http://bioconductor.org/biocLite.R")
     for(pkg in list.pkg){
         if(!require(pkg, character.only=T)) biocLite(pkg)

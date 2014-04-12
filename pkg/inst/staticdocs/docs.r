@@ -1,7 +1,7 @@
 library(staticdocs)
 library(grid)
 list(
-    readme = "<p><a href=\"javascript:newWin('dnet_workflow.png', 'dnet_workflow.png', '1200', '600')\" title='Click to enlarge'><img style='max-width:95%;border:1px solid #0000FF;box-shadow:5px 5px 2px #C0C0FF;' src='dnet_workflow.png', width='700px' /></a></p>",
+    readme = "",
     
     index = list(
         sd_section("Network analysis and visualisation functions",
@@ -75,6 +75,7 @@ list(
                 "org.Hs.egHPPA",
                 "org.Hs.egMP",
                 "org.Hs.egPS",
+                "org.Hs.egSF",                
                 "org.Hs.string"
             )
         ),
@@ -111,6 +112,7 @@ list(
                 "org.Mm.egHPPA",
                 "org.Mm.egMP",
                 "org.Mm.egPS",
+                "org.Mm.egSF",
                 "org.Mm.string"
             )
         ),
@@ -122,6 +124,7 @@ list(
                 "org.At.egGOCC",
                 "org.At.egGOMF",
                 "org.At.egPS",
+                "org.At.egSF",
                 "org.At.string"
             )
         ),
@@ -133,6 +136,7 @@ list(
                 "org.Ce.egGOCC",
                 "org.Ce.egGOMF",
                 "org.Ce.egPS",
+                "org.Ce.egSF",
                 "org.Ce.string"
             )
         ),
@@ -144,6 +148,7 @@ list(
                 "org.Dm.egGOCC",
                 "org.Dm.egGOMF",
                 "org.Dm.egPS",
+                "org.Dm.egSF",
                 "org.Dm.string"
             )
         ),
@@ -155,6 +160,7 @@ list(
                 "org.Da.egGOCC",
                 "org.Da.egGOMF",
                 "org.Da.egPS",
+                "org.Da.egSF",
                 "org.Da.string"
             )
         ),
@@ -166,6 +172,7 @@ list(
                 "org.Rn.egGOCC",
                 "org.Rn.egGOMF",
                 "org.Rn.egPS",
+                "org.Rn.egSF",
                 "org.Rn.string"
             )
         ),
@@ -177,6 +184,7 @@ list(
                 "org.Gg.egGOCC",
                 "org.Gg.egGOMF",
                 "org.Gg.egPS",
+                "org.Gg.egSF",
                 "org.Gg.string"
             )
         ),

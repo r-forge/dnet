@@ -296,7 +296,7 @@ apply(adjpvals<1e-2, 2, sum)
 # obtain gene significance from the given gene-sample matrix according to singular value decomposition-based method
 fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.eigen=NULL, pval.eigen=1e-2, signif="fdr", orient.permutation="row", num.permutation=200, fdr.procedure="stepup", verbose=T)
 </div>
-<strong class='message'>Start at 2014-04-10 12:56:44</strong>
+<strong class='message'>Start at 2014-04-11 13:19:42</strong>
 <strong class='message'></strong>
 <strong class='message'>First, singular value decomposition of the input matrix (with 4139 rows and 18 columns)...</strong>
 <strong class='message'>Second, determinate the eigens...</strong>
@@ -306,27 +306,27 @@ fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.ei
 <strong class='message'>Finally, obtain gene significance (fdr) based on 200 permutations...</strong>
 <strong class='message'>	doing row-wise permutations...</strong>
 <strong class='message'>	estimating fdr...</strong>
-<strong class='message'>1 (out of 4139) at 2014-04-10 12:57:07</strong>
-<strong class='message'>414 (out of 4139) at 2014-04-10 12:57:16</strong>
-<strong class='message'>828 (out of 4139) at 2014-04-10 12:57:25</strong>
-<strong class='message'>1242 (out of 4139) at 2014-04-10 12:57:35</strong>
-<strong class='message'>1656 (out of 4139) at 2014-04-10 12:57:44</strong>
-<strong class='message'>2070 (out of 4139) at 2014-04-10 12:57:54</strong>
-<strong class='message'>2484 (out of 4139) at 2014-04-10 12:58:03</strong>
-<strong class='message'>2898 (out of 4139) at 2014-04-10 12:58:12</strong>
-<strong class='message'>3312 (out of 4139) at 2014-04-10 12:58:22</strong>
-<strong class='message'>3726 (out of 4139) at 2014-04-10 12:58:31</strong>
-<strong class='message'>4139 (out of 4139) at 2014-04-10 12:58:40</strong>
+<strong class='message'>1 (out of 4139) at 2014-04-11 13:20:04</strong>
+<strong class='message'>414 (out of 4139) at 2014-04-11 13:20:14</strong>
+<strong class='message'>828 (out of 4139) at 2014-04-11 13:20:23</strong>
+<strong class='message'>1242 (out of 4139) at 2014-04-11 13:20:33</strong>
+<strong class='message'>1656 (out of 4139) at 2014-04-11 13:20:43</strong>
+<strong class='message'>2070 (out of 4139) at 2014-04-11 13:20:53</strong>
+<strong class='message'>2484 (out of 4139) at 2014-04-11 13:21:02</strong>
+<strong class='message'>2898 (out of 4139) at 2014-04-11 13:21:12</strong>
+<strong class='message'>3312 (out of 4139) at 2014-04-11 13:21:22</strong>
+<strong class='message'>3726 (out of 4139) at 2014-04-11 13:21:31</strong>
+<strong class='message'>4139 (out of 4139) at 2014-04-11 13:21:41</strong>
 <strong class='message'>	using stepup procedure...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-04-10 12:58:41</strong>
-<strong class='message'>Runtime in total is: 117 secs
+<strong class='message'>Finish at 2014-04-11 13:21:41</strong>
+<strong class='message'>Runtime in total is: 119 secs
 </strong>
 <div class='input'>
 # 2) identification of module
 g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network, pval=fdr, method="fdr", nsize=30)
 </div>
-<strong class='message'>Start at 2014-04-10 12:58:41</strong>
+<strong class='message'>Start at 2014-04-11 13:21:41</strong>
 <strong class='message'></strong>
 <strong class='message'>First, consider the fdr distribution</strong>
 <strong class='message'>Second, determine FDR threshold...</strong>
@@ -343,8 +343,8 @@ g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network,
 <strong class='message'>Finally, find the subnetwork from the input network with 3385 nodes and 39961 edges...</strong>
 <strong class='message'>	Size of the module: 54 nodes and 226 edges</strong>
 <strong class='message'>
-Finish at 2014-04-10 12:59:16</strong>
-<strong class='message'>Runtime in total is: 35 secs
+Finish at 2014-04-11 13:22:15</strong>
+<strong class='message'>Runtime in total is: 34 secs
 </strong>
 <div class='input'>glayout <- layout.fruchterman.reingold(g)
 
@@ -411,7 +411,7 @@ data <- as.matrix(fit2$coefficients[V(g)$name,])
 # 11) color by additional data (be reordered)
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="edge", node.normalise="degree", amplifier=2, metric="none")
 </div>
-<strong class='message'>Start at 2014-04-10 13:00:50</strong>
+<strong class='message'>Start at 2014-04-11 13:23:50</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -438,8 +438,8 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-04-10 13:00:51</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>End at 2014-04-11 13:23:50</strong>
+<strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap=colormap, vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)
 </div>

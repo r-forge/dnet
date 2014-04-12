@@ -6,7 +6,7 @@
 #' @param identity the type of gene identity (i.e. row names of input data), either "symbol" for gene symbols (by default) or "entrez" for Entrez Gene ID. The option "symbol" is preferred as it is relatively stable from one update to another; also it is possible to search against synonyms (see the next parameter)
 #' @param check.symbol.identity logical to indicate whether synonyms will be searched against when gene symbols cannot be matched. By default, it sets to FALSE since it may take a while to do such check using all possible synoyms
 #' @param genome the genome identity. It can be one of "Hs" for human, "Mm" for mouse, "Rn" for rat, "Gg" for chicken, "Ce" for c.elegans, "Dm" for fruitfly, "Da" for zebrafish, and "At" for arabidopsis
-#' @param ontology the ontology supported currently. It can be "GOBP" for Gene Ontology Biological Process, "GOMF" for Gene Ontology Molecular Function, "GOCC" for Gene Ontology Cellular Component, "PS" for phylostratific age information, "DO" for Disease Ontology, "HPPA" for Human Phenotype Phenotypic Abnormality, "HPMI" for Human Phenotype Mode of Inheritance, "HPON" for Human Phenotype ONset and clinical course, "MP" for Mammalian Phenotype, and the molecular signatures database (Msigdb) in human (including "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7"). Note: These four ("GOBP", "GOMF", "GOCC" and "PS") are availble for all genomes/species; for "Hs" and "Mm", these five ("DO", "HPPA", "HPMI", "HPON" and "MP") are also supported; all "Msigdb" are only supported in "Hs". For details on the eligibility for pairs of input genome and ontology, please refer to the online Documentations at \url{http://dnet.r-forge.r-project.org/docs.html}
+#' @param ontology the ontology supported currently. It can be "GOBP" for Gene Ontology Biological Process, "GOMF" for Gene Ontology Molecular Function, "GOCC" for Gene Ontology Cellular Component, "PS" for phylostratific age information, "PS2" for another version of "PS" (collapsed the inferred ancestors into one with the known taxonomy information), "SF" for domain superfamily assignments, "DO" for Disease Ontology, "HPPA" for Human Phenotype Phenotypic Abnormality, "HPMI" for Human Phenotype Mode of Inheritance, "HPON" for Human Phenotype ONset and clinical course, "MP" for Mammalian Phenotype, and the molecular signatures database (Msigdb) in human (including "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7"). Note: These four ("GOBP", "GOMF", "GOCC" and "PS") are availble for all genomes/species; for "Hs" and "Mm", these five ("DO", "HPPA", "HPMI", "HPON" and "MP") are also supported; all "Msigdb" are only supported in "Hs". For details on the eligibility for pairs of input genome and ontology, please refer to the online Documentations at \url{http://dnet.r-forge.r-project.org/docs.html}
 #' @param sizeRange the minimum and maximum size of members of each gene set in consideration. By default, it sets to a minimum of 10 but no more than 1000
 #' @param which_distance which distance of terms in the ontology is used to restrict terms in consideration. By default, it sets to 'NULL' to consider all distances
 #' @param test the statistic test used. It can be "FisherTest" for using fisher's exact test, "HypergeoTest" for using hypergeometric test, or "BinomialTest" for using binomial test. Fisher's exact test is to test the independence between gene group (genes belonging to a group or not) and gene annotation (genes annotated by a term or not), and thus compare sampling to the left part of background (after sampling without replacement). Hypergeometric test is to sample at random (without replacement)  from the background containing annotated and non-annotated genes, and thus compare sampling to background. Unlike hypergeometric test, binomial test is to sample at random (with replacement) from the background with the constant probability. In terms of the ease of finding the significance, they are in order: hypergeometric test > binomial test > fisher's exact test. In other words, in terms of the calculated p-value, hypergeometric test < binomial test < fisher's exact test
@@ -22,6 +22,7 @@
 #'  \item{\code{set_info}: a matrix of nSet X 4 containing gene set information, where nSet is the number of gene set in consideration, and the 4 columns are "setID" (i.e. "Term ID"), "name" (i.e. "Term Name"), "namespace" and "distance"}
 #'  \item{\code{gs}: a list of gene sets, each storing gene members. Always, gene sets are identified by "setID" and gene members identified by "Entrez ID"}
 #'  \item{\code{data}: a vector containing input data in consideration. It is not always the same as the input data as only those mappable are retained}
+#'  \item{\code{overlap}: a list of overlapped gene sets, each storing genes overlapped between a gene set and the given input data (i.e. the genes of interest). Always, gene sets are identified by "setID" and gene members identified by "Entrez ID"}
 #'  \item{\code{zscore}: a vector containing z-scores}
 #'  \item{\code{pvalue}: a vector containing p-values}
 #'  \item{\code{adjp}: a vector containing adjusted p-values. It is the p value but after being adjusted for multiple comparisons}
@@ -64,7 +65,7 @@
 #' visDAG(g=subg, data=eTerm$zscore[V(subg)$name], node.info="both", colormap="darkblue-white-darkorange", node.attrs=list(color=nodes.highlight))
 #' }
 
-dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity=FALSE, genome=c("Hs", "Mm", "Rn", "Gg", "Ce", "Dm", "Da", "At"), ontology=c("GOBP","GOMF","GOCC","PS","DO","HPPA","HPMI","HPON","MP", "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7"), sizeRange=c(10,20000), which_distance=NULL, test=c("FisherTest","HypergeoTest","BinomialTest"), p.adjust.method=c("BH", "BY", "bonferroni", "holm", "hochberg", "hommel"), ontology.algorithm=c("none","pc","elim","lea"), elim.pvalue=1e-2, lea.depth=2, verbose=T, RData.location="http://dnet.r-forge.r-project.org/data")
+dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity=FALSE, genome=c("Hs", "Mm", "Rn", "Gg", "Ce", "Dm", "Da", "At"), ontology=c("GOBP","GOMF","GOCC","PS","PS2","SF","DO","HPPA","HPMI","HPON","MP", "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7"), sizeRange=c(10,20000), which_distance=NULL, test=c("HypergeoTest","FisherTest","BinomialTest"), p.adjust.method=c("BH", "BY", "bonferroni", "holm", "hochberg", "hommel"), ontology.algorithm=c("none","pc","elim","lea"), elim.pvalue=1e-2, lea.depth=2, verbose=T, RData.location="http://dnet.r-forge.r-project.org/data")
 {
     startT <- Sys.time()
     message(paste(c("Start at ",as.character(startT)), collapse=""), appendLF=T)
@@ -92,16 +93,16 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
     
     ###############################
     ## check the eligibility for pairs of input genome and ontology
-    all.ontologies <- c("GOBP","GOMF","GOCC","PS","DO","HPPA","HPMI","HPON","MP", "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7")
+    all.ontologies <- c("GOBP","GOMF","GOCC","PS","PS2","SF","DO","HPPA","HPMI","HPON","MP", "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7")
     possible.ontologies <- switch(genome,
-                       Hs = all.ontologies[c(1:4, 5:9, 10:24)],
-                       Mm = all.ontologies[c(1:4, 5:9)],
-                       Rn = all.ontologies[c(1:4)],
-                       Gg = all.ontologies[c(1:4)],
-                       Ce = all.ontologies[c(1:4)],
-                       Dm = all.ontologies[c(1:4)],
-                       Da = all.ontologies[c(1:4)],
-                       At = all.ontologies[c(1:4)]
+                       Hs = all.ontologies[c(1:6, 7:11, 12:26)],
+                       Mm = all.ontologies[c(1:6, 7:11)],
+                       Rn = all.ontologies[c(1:6)],
+                       Gg = all.ontologies[c(1:6)],
+                       Ce = all.ontologies[c(1:6)],
+                       Dm = all.ontologies[c(1:6)],
+                       Da = all.ontologies[c(1:6)],
+                       At = all.ontologies[c(1:6)]
                        )
     if(!(ontology %in% possible.ontologies)){
         stop(sprintf("The input pair of genome (%s) and ontology (%s) are not supported.\nThe supported ontologies in genome (%s): %s.\n", genome, ontology, genome, paste(possible.ontologies,collapse=", ")))
@@ -148,10 +149,22 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
     
     #########
     ## load annotation information
+    genome_location <- genome
+    if(length(grep("Msigdb",ontology))>0){
+        genome_location <- "Msigdb"
+    }
+    
+    ## flag the simplified version of PS
+    flag_PS2 <- FALSE
+    if(ontology=="PS2"){
+        flag_PS2 <- TRUE
+        ontology <- "PS"
+    }
+    
     GS <- list()
-    load_GS_remote <- paste(path_host, "/", genome, "/org.", genome, ".eg", ontology, ".RData", sep="")
-    load_GS_local1 <- file.path(path_host, paste("data/", genome, "/org.", genome, ".eg", ontology, ".RData", sep=""))
-    load_GS_local2 <- file.path(path_host, paste(genome, "/org.", genome, ".eg", ontology, ".RData", sep=""))
+    load_GS_remote <- paste(path_host, "/", genome_location, "/org.", genome, ".eg", ontology, ".RData", sep="")
+    load_GS_local1 <- file.path(path_host, paste("data/", genome_location, "/org.", genome, ".eg", ontology, ".RData", sep=""))
+    load_GS_local2 <- file.path(path_host, paste(genome_location, "/org.", genome, ".eg", ontology, ".RData", sep=""))
     load_GS_local3 <- file.path(path_host, paste("org.", genome, ".eg", ontology, ".RData", sep=""))
     ## first, load local R files
     GS_local <- c(load_GS_local1, load_GS_local2, load_GS_local3)
@@ -162,7 +175,7 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
     ## otherwise, load remote R files
     if(sum(load_flag)==0){
         if(class(try(load(url(load_GS_remote)), T))=="try-error"){
-            load_GS_remote <- paste("http://dnet.r-forge.r-project.org/data/", genome, "/org.", genome, ".eg", ontology, ".RData", sep="")
+            load_GS_remote <- paste("http://dnet.r-forge.r-project.org/data/", genome_location, "/org.", genome, ".eg", ontology, ".RData", sep="")
             if(class(try(load(url(load_GS_remote)), T))=="try-error"){
                 stop("Built-in Rdata files cannot be loaded. Please check your internet connection or their location in your local machine.\n")
             }
@@ -177,6 +190,31 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
     if(verbose){
         message(sprintf("\tLoad annotation information from %s", load_GS), appendLF=T)
     }
+    
+    
+    ################
+    if(flag_PS2){
+        tmp <- as.character(unique(GS$set_info$name))
+        inds <- sapply(tmp,function(x) which(GS$set_info$name==x))
+        
+        ## new set_info
+        set_info <- data.frame()
+        for(i in 1:length(inds)){
+            set_info<- rbind(set_info,as.matrix(GS$set_info[max(inds[[i]]),]))
+        }
+        ## new gs
+        gs <- list()
+        for(i in 1:length(inds)){
+            gs[[i]] <- unlist(GS$gs[inds[[i]]], use.names=F)
+        }
+        names(gs) <- rownames(set_info)
+        
+        ## new GS
+        GS$set_info <- set_info
+        GS$gs <- gs
+    }
+    
+    ################
     
     ###############################
     allGeneID <- EG$gene_info$GeneID
@@ -406,7 +444,7 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
     ##############################################################################################
     
     ## force use classic ontology.algorithm when the ontology is derived from "Msigdb" or "PS"
-    if(length(grep("Msigdb",ontology))>0 || ontology=="PS"){
+    if(length(grep("Msigdb",ontology))>0 || ontology=="PS" || ontology=="SF"){
         ontology.algorithm <- "none"
     }
     
@@ -771,9 +809,16 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
     adjpvals <- sapply(adjpvals, function(x) min(x,1))
     adjpvals <- signif(adjpvals, digits=2)
     
+    overlaps <- sapply(terms, function(term){
+        genes.term <- as.numeric(unique(unlist(gs[term])))
+        intersect(genes.group, genes.term)
+
+    })
+    
     eTerm <- list(set_info = set_info,
                   gs       = gs,
                   data     = data,
+                  overlap  = overlaps,
                   zscore   = zscores,
                   pvalue   = pvals,
                   adjp     = adjpvals,

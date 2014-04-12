@@ -133,39 +133,7 @@ for(pkg in list.pkg){
         lapply(pkg, library, character.only=T)
     }
 }
-</div>
-<strong class='message'>Loading required package: affy</strong>
-<strong class='message'>Loading required package: BiocGenerics</strong>
-<strong class='message'>Loading required package: parallel</strong>
-<strong class='message'>
-Attaching package: ‘BiocGenerics’
-</strong>
-<strong class='message'>The following objects are masked from ‘package:parallel’:
 
-    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
-    clusterExport, clusterMap, parApply, parCapply, parLapply,
-    parLapplyLB, parRapply, parSapply, parSapplyLB
-</strong>
-<strong class='message'>The following object is masked from ‘package:stats’:
-
-    xtabs
-</strong>
-<strong class='message'>The following objects are masked from ‘package:base’:
-
-    anyDuplicated, append, as.data.frame, as.vector, cbind, colnames,
-    duplicated, eval, evalq, Filter, Find, get, intersect, is.unsorted,
-    lapply, Map, mapply, match, mget, order, paste, pmax, pmax.int,
-    pmin, pmin.int, Position, rank, rbind, Reduce, rep.int, rownames,
-    sapply, setdiff, sort, table, tapply, union, unique, unlist
-</strong>
-<strong class='message'>Loading required package: Biobase</strong>
-<strong class='message'>Welcome to Bioconductor
-
-    Vignettes contain introductory material; view with
-    'browseVignettes()'. To cite Bioconductor, see
-    'citation("Biobase")', and for packages 'citation("pkgname")'.
-</strong>
-<div class='input'>
 # load an "ExpressionSet" object
 load(url("http://dnet.r-forge.r-project.org/data/Datasets/TCGA_mutations.RData"))
 ## remove those genes without mutations in any samples
@@ -349,78 +317,175 @@ rownames(sparseness) <- rownames(frac_mutated)
 denseness <- 1- sparseness
 hist(denseness,100)
 </div>
-<a href="javascript:newWin('TCGA-30.png', 'TCGA-30.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-30.png', width="400" /></a>
+<a href="javascript:newWin('TCGA-20.png', 'TCGA-20.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-20.png', width="400" /></a>
 <div class='input'>
 # random walk with restart using denseness as seeds
 PTmatrix <- <a href='dRWR.html' target=dRWR>dRWR</a>(g=network, normalise=c("laplacian","row","column","none")[1], setSeeds=data.frame(frac_mutated, denseness), restart=0.5, normalise.affinity.matrix=c("none","quantile")[1], verbose=T)
 </div>
-<strong class='message'>Start at 2014-04-10 12:49:13</strong>
+<strong class='message'>Start at 2014-04-11 13:11:59</strong>
 <strong class='message'></strong>
-<strong class='message'>First, get the adjacency matrix of the input graph (2014-04-10 12:49:13) ...</strong>
-<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-04-10 12:49:13) ...</strong>
-<strong class='message'>Third, RWR of 12 sets of seeds using 5.0e-01 restart probability (2014-04-10 12:49:13) ...</strong>
-<strong class='message'>	Using the seed set 1 (2014-04-10 12:49:13) ...</strong>
-<strong class='message'>	Using the seed set 2 (2014-04-10 12:49:13) ...</strong>
-<strong class='message'>	Using the seed set 3 (2014-04-10 12:49:13) ...</strong>
-<strong class='message'>	Using the seed set 4 (2014-04-10 12:49:13) ...</strong>
-<strong class='message'>	Using the seed set 5 (2014-04-10 12:49:14) ...</strong>
-<strong class='message'>	Using the seed set 6 (2014-04-10 12:49:14) ...</strong>
-<strong class='message'>	Using the seed set 7 (2014-04-10 12:49:14) ...</strong>
-<strong class='message'>	Using the seed set 8 (2014-04-10 12:49:14) ...</strong>
-<strong class='message'>	Using the seed set 9 (2014-04-10 12:49:14) ...</strong>
-<strong class='message'>	Using the seed set 10 (2014-04-10 12:49:15) ...</strong>
-<strong class='message'>	Using the seed set 11 (2014-04-10 12:49:15) ...</strong>
-<strong class='message'>	Using the seed set 12 (2014-04-10 12:49:15) ...</strong>
-<strong class='message'>Finally, output 12688 by 12 affinity matrix normalised by none (2014-04-10 12:49:15) ...</strong>
+<strong class='message'>First, get the adjacency matrix of the input graph (2014-04-11 13:11:59) ...</strong>
+<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-04-11 13:11:59) ...</strong>
+<strong class='message'>Third, RWR of 12 sets of seeds using 5.0e-01 restart probability (2014-04-11 13:11:59) ...</strong>
+<strong class='message'>	Using the seed set 1 (2014-04-11 13:11:59) ...</strong>
+<strong class='message'>	Using the seed set 2 (2014-04-11 13:11:59) ...</strong>
+<strong class='message'>	Using the seed set 3 (2014-04-11 13:12:00) ...</strong>
+<strong class='message'>	Using the seed set 4 (2014-04-11 13:12:00) ...</strong>
+<strong class='message'>	Using the seed set 5 (2014-04-11 13:12:00) ...</strong>
+<strong class='message'>	Using the seed set 6 (2014-04-11 13:12:00) ...</strong>
+<strong class='message'>	Using the seed set 7 (2014-04-11 13:12:01) ...</strong>
+<strong class='message'>	Using the seed set 8 (2014-04-11 13:12:01) ...</strong>
+<strong class='message'>	Using the seed set 9 (2014-04-11 13:12:01) ...</strong>
+<strong class='message'>	Using the seed set 10 (2014-04-11 13:12:01) ...</strong>
+<strong class='message'>	Using the seed set 11 (2014-04-11 13:12:01) ...</strong>
+<strong class='message'>	Using the seed set 12 (2014-04-11 13:12:01) ...</strong>
+<strong class='message'>Finally, output 12688 by 12 affinity matrix normalised by none (2014-04-11 13:12:01) ...</strong>
 <strong class='message'>
-Finish at 2014-04-10 12:49:15</strong>
+Finish at 2014-04-11 13:12:01</strong>
 <strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'>
+PTmatrix <- <a href='dRWR.html' target=dRWR>dRWR</a>(g=network, normalise=c("laplacian","row","column","none")[1], setSeeds=frac_mutated, restart=0.5, normalise.affinity.matrix=c("none","quantile")[1], verbose=T)
+</div>
+<strong class='message'>Start at 2014-04-11 13:12:01</strong>
+<strong class='message'></strong>
+<strong class='message'>First, get the adjacency matrix of the input graph (2014-04-11 13:12:01) ...</strong>
+<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-04-11 13:12:02) ...</strong>
+<strong class='message'>Third, RWR of 11 sets of seeds using 5.0e-01 restart probability (2014-04-11 13:12:02) ...</strong>
+<strong class='message'>	Using the seed set 1 (2014-04-11 13:12:02) ...</strong>
+<strong class='message'>	Using the seed set 2 (2014-04-11 13:12:02) ...</strong>
+<strong class='message'>	Using the seed set 3 (2014-04-11 13:12:02) ...</strong>
+<strong class='message'>	Using the seed set 4 (2014-04-11 13:12:02) ...</strong>
+<strong class='message'>	Using the seed set 5 (2014-04-11 13:12:02) ...</strong>
+<strong class='message'>	Using the seed set 6 (2014-04-11 13:12:03) ...</strong>
+<strong class='message'>	Using the seed set 7 (2014-04-11 13:12:03) ...</strong>
+<strong class='message'>	Using the seed set 8 (2014-04-11 13:12:03) ...</strong>
+<strong class='message'>	Using the seed set 9 (2014-04-11 13:12:03) ...</strong>
+<strong class='message'>	Using the seed set 10 (2014-04-11 13:12:03) ...</strong>
+<strong class='message'>	Using the seed set 11 (2014-04-11 13:12:04) ...</strong>
+<strong class='message'>Finally, output 12688 by 11 affinity matrix normalised by none (2014-04-11 13:12:04) ...</strong>
+<strong class='message'>
+Finish at 2014-04-11 13:12:04</strong>
+<strong class='message'>Runtime in total is: 3 secs
+</strong>
+<div class='input'>
+
+data <- t(PTmatrix)
+n <- nrow(data)
+res <- matrix(0, nrow = n, ncol = n)
+for (i in 1:n) {
+    res[i, ] <- (data[i, ] %*% t(data))
+}
+rownames(res) <- rownames(data)
+colnames(res) <- rownames(data)
+<a href='visHeatmapAdv.html' target=visHeatmapAdv>visHeatmapAdv</a>(res, Rowv=F, Colv=F, zlim=c(0.0001,0.0004))
+</div>
+<a href="javascript:newWin('TCGA-63.png', 'TCGA-63.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-63.png', width="400" /></a>
+<div class='input'>
+adjmatrix <- res > quantile(res[lower.tri(res)], 0.75)
+
+sg <- graph.adjacency(adjmatrix, mode="undirected", weighted=T, diag=F, add.colnames=NULL, add.rownames=NA)
+<a href='visNet.html' target=visNet>visNet</a>(sg, edge.width=E(sg)$weight)
+</div>
+<a href="javascript:newWin('TCGA-65.png', 'TCGA-65.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-65.png', width="400" /></a>
+<div class='input'>
+
+
+ind <- sample(1:nrow(frac_mutated))
+seeds_random <- frac_mutated[ind,]
+rownames(seeds_random) <- rownames(frac_mutated)
+PT_random <- <a href='dRWR.html' target=dRWR>dRWR</a>(g=network, normalise=c("laplacian","row","column","none")[1], setSeeds=seeds_random, restart=0.5, normalise.affinity.matrix=c("none","quantile")[1], verbose=T)
+</div>
+<strong class='message'>Start at 2014-04-11 13:12:05</strong>
+<strong class='message'></strong>
+<strong class='message'>First, get the adjacency matrix of the input graph (2014-04-11 13:12:05) ...</strong>
+<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-04-11 13:12:05) ...</strong>
+<strong class='message'>Third, RWR of 11 sets of seeds using 5.0e-01 restart probability (2014-04-11 13:12:05) ...</strong>
+<strong class='message'>	Using the seed set 1 (2014-04-11 13:12:05) ...</strong>
+<strong class='message'>	Using the seed set 2 (2014-04-11 13:12:05) ...</strong>
+<strong class='message'>	Using the seed set 3 (2014-04-11 13:12:05) ...</strong>
+<strong class='message'>	Using the seed set 4 (2014-04-11 13:12:05) ...</strong>
+<strong class='message'>	Using the seed set 5 (2014-04-11 13:12:06) ...</strong>
+<strong class='message'>	Using the seed set 6 (2014-04-11 13:12:06) ...</strong>
+<strong class='message'>	Using the seed set 7 (2014-04-11 13:12:06) ...</strong>
+<strong class='message'>	Using the seed set 8 (2014-04-11 13:12:06) ...</strong>
+<strong class='message'>	Using the seed set 9 (2014-04-11 13:12:07) ...</strong>
+<strong class='message'>	Using the seed set 10 (2014-04-11 13:12:07) ...</strong>
+<strong class='message'>	Using the seed set 11 (2014-04-11 13:12:07) ...</strong>
+<strong class='message'>Finally, output 12688 by 11 affinity matrix normalised by none (2014-04-11 13:12:07) ...</strong>
+<strong class='message'>
+Finish at 2014-04-11 13:12:07</strong>
+<strong class='message'>Runtime in total is: 2 secs
+</strong>
+<div class='input'>data <- t(PT_random)
+n <- nrow(data)
+res_random <- matrix(0, nrow = n, ncol = n)
+for (i in 1:n) {
+    res_random[i, ] <- (data[i, ] %*% t(data))
+}
+rownames(res_random) <- rownames(data)
+colnames(res_random) <- rownames(data)
+res_random[lower.tri(res_random)]
+</div>
+<div class='output'> [1] 0.0001274944 0.0001253960 0.0001260143 0.0001238487 0.0001145259
+ [6] 0.0001215470 0.0001165137 0.0001207864 0.0001366924 0.0001140137
+[11] 0.0001521140 0.0001508501 0.0001423279 0.0001263604 0.0001487220
+[16] 0.0001244142 0.0001327047 0.0001850023 0.0001331996 0.0001456770
+[21] 0.0001430760 0.0001171892 0.0001504355 0.0001309641 0.0001369660
+[26] 0.0001846499 0.0001244892 0.0001395716 0.0001241446 0.0001471991
+[31] 0.0001327031 0.0001366963 0.0001673212 0.0001308518 0.0001178864
+[36] 0.0001369057 0.0001278362 0.0001345418 0.0001649771 0.0001192642
+[41] 0.0001150614 0.0001128977 0.0001163148 0.0001194205 0.0001130343
+[46] 0.0001255872 0.0001306687 0.0001879516 0.0001185984 0.0001313155
+[51] 0.0001359136 0.0001129322 0.0001490115 0.0001165172 0.0001276682
+</div>
+<div class='input'>
+
+a <- cbind(res[lower.tri(res)], res_random[lower.tri(res_random)])
+
+
 # GSEA using PS
 eTerm <- <a href='dGSEA.html' target=dGSEA>dGSEA</a>(data=PTmatrix, identity="symbol", genome="Hs", ontology="PS", sizeRange=c(10,100000), which_distance=NULL, sigTail=c("two-tails","one-tail")[2])
 </div>
-<strong class='message'>Start at 2014-04-10 12:49:15</strong>
+<strong class='message'>Start at 2014-04-11 13:12:07</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology PS and its gene associations in the genome Hs (2014-04-10 12:49:15) ...</strong>
+<strong class='message'>First, load the ontology PS and its gene associations in the genome Hs (2014-04-11 13:12:07) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.egPS.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-04-10 12:49:16) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-11 13:12:09) ...</strong>
 <strong class='message'>	Among 12688 symbols of input data, there are 12688 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Third, perform GSEA analysis (2014-04-10 12:49:17) ...</strong>
-<strong class='message'>	Sample 1 is being processed at (2014-04-10 12:49:17) ...</strong>
+<strong class='message'>Third, perform GSEA analysis (2014-04-11 13:12:10) ...</strong>
+<strong class='message'>	Sample 1 is being processed at (2014-04-11 13:12:10) ...</strong>
 <strong class='message'>		 26 of 26 gene sets have been processed</strong>
-<strong class='message'>	Sample 2 is being processed at (2014-04-10 12:49:18) ...</strong>
+<strong class='message'>	Sample 2 is being processed at (2014-04-11 13:12:11) ...</strong>
 <strong class='message'>		 26 of 26 gene sets have been processed</strong>
-<strong class='message'>	Sample 3 is being processed at (2014-04-10 12:49:19) ...</strong>
+<strong class='message'>	Sample 3 is being processed at (2014-04-11 13:12:12) ...</strong>
 <strong class='message'>		 26 of 26 gene sets have been processed</strong>
-<strong class='message'>	Sample 4 is being processed at (2014-04-10 12:49:20) ...</strong>
+<strong class='message'>	Sample 4 is being processed at (2014-04-11 13:12:13) ...</strong>
 <strong class='message'>		 26 of 26 gene sets have been processed</strong>
-<strong class='message'>	Sample 5 is being processed at (2014-04-10 12:49:21) ...</strong>
+<strong class='message'>	Sample 5 is being processed at (2014-04-11 13:12:14) ...</strong>
 <strong class='message'>		 26 of 26 gene sets have been processed</strong>
-<strong class='message'>	Sample 6 is being processed at (2014-04-10 12:49:22) ...</strong>
+<strong class='message'>	Sample 6 is being processed at (2014-04-11 13:12:15) ...</strong>
 <strong class='message'>		 26 of 26 gene sets have been processed</strong>
-<strong class='message'>	Sample 7 is being processed at (2014-04-10 12:49:22) ...</strong>
+<strong class='message'>	Sample 7 is being processed at (2014-04-11 13:12:15) ...</strong>
 <strong class='message'>		 26 of 26 gene sets have been processed</strong>
-<strong class='message'>	Sample 8 is being processed at (2014-04-10 12:49:23) ...</strong>
+<strong class='message'>	Sample 8 is being processed at (2014-04-11 13:12:16) ...</strong>
 <strong class='message'>		 26 of 26 gene sets have been processed</strong>
-<strong class='message'>	Sample 9 is being processed at (2014-04-10 12:49:24) ...</strong>
+<strong class='message'>	Sample 9 is being processed at (2014-04-11 13:12:17) ...</strong>
 <strong class='message'>		 26 of 26 gene sets have been processed</strong>
-<strong class='message'>	Sample 10 is being processed at (2014-04-10 12:49:25) ...</strong>
+<strong class='message'>	Sample 10 is being processed at (2014-04-11 13:12:18) ...</strong>
 <strong class='message'>		 26 of 26 gene sets have been processed</strong>
-<strong class='message'>	Sample 11 is being processed at (2014-04-10 12:49:26) ...</strong>
-<strong class='message'>		 26 of 26 gene sets have been processed</strong>
-<strong class='message'>	Sample 12 is being processed at (2014-04-10 12:49:27) ...</strong>
+<strong class='message'>	Sample 11 is being processed at (2014-04-11 13:12:19) ...</strong>
 <strong class='message'>		 26 of 26 gene sets have been processed</strong>
 <strong class='message'>
-End at 2014-04-10 12:49:28</strong>
+End at 2014-04-11 13:12:20</strong>
 <strong class='message'>Runtime in total is: 13 secs
 </strong>
 <div class='input'>which_sample=12
 res <- <a href='dGSEAview.html' target=dGSEAview>dGSEAview</a>(eTerm, which_sample=1, top_num=5, sortBy="nES", decreasing=T, details=TRUE)
 <a href='visGSEA.html' target=visGSEA>visGSEA</a>(eTerm, which_sample=which_sample, which_term=rownames(res)[1])
 </div>
-<a href="javascript:newWin('TCGA-88.png', 'TCGA-88.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-88.png', width="400" /></a>
+<a href="javascript:newWin('TCGA-122.png', 'TCGA-122.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-122.png', width="400" /></a>
 <div class='input'>output <- <a href='dGSEAwrite.html' target=dGSEAwrite>dGSEAwrite</a>(eTerm, which_content="nES", which_score="nES", cutoff=0, filename="eTerm.txt",keep.significance=F)
 </div>
 <strong class='message'>A file called eTerm.txt has been successfully written!
@@ -429,8 +494,10 @@ res <- <a href='dGSEAview.html' target=dGSEAview>dGSEAview</a>(eTerm, which_samp
 # visualise using advanced heatmap
 data <- output[,6:ncol(output)]
 rownames(data) <- paste(output$setID,output$setSize,output$name, sep="_")
-<a href='visHeatmapAdv.html' target=visHeatmapAdv>visHeatmapAdv</a>(data, Rowv=F, Colv=T, colormap="darkgreen-lightgreen-lightpink-darkred", zlim=c(0,2), margins = c(7,14),cexRow=1,cexCol=1)</div>
-<a href="javascript:newWin('TCGA-92.png', 'TCGA-92.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-92.png', width="400" /></a>
+<a href='visHeatmapAdv.html' target=visHeatmapAdv>visHeatmapAdv</a>(data, Rowv=F, Colv=T, colormap="darkgreen-lightgreen-lightpink-darkred", zlim=c(0,2), margins = c(7,14),cexRow=1,cexCol=1)
+</div>
+<a href="javascript:newWin('TCGA-126.png', 'TCGA-126.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-126.png', width="400" /></a>
+<div class='input'></div>
       </pre>
     </div>
 
@@ -440,11 +507,12 @@ rownames(data) <- paste(output$setID,output$setSize,output$name, sep="_")
     <ul>
       <li><a href="dNetInduce.html">dNetInduce</a></li>
       <li><a href="dRWR.html">dRWR</a></li>
+      <li><a href="visHeatmapAdv.html">visHeatmapAdv</a></li>
+      <li><a href="visNet.html">visNet</a></li>
       <li><a href="dGSEA.html">dGSEA</a></li>
       <li><a href="dGSEAview.html">dGSEAview</a></li>
       <li><a href="visGSEA.html">visGSEA</a></li>
       <li><a href="dGSEAwrite.html">dGSEAwrite</a></li>
-      <li><a href="visHeatmapAdv.html">visHeatmapAdv</a></li>
     </ul>
     
     <h2>Citation</h2>

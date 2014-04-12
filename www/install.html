@@ -166,7 +166,7 @@ for(pkg in list.pkg){
 }
 
 ## Second, install from Bioconductor
-list.pkg &lt;- c(&quot;graph&quot;,&quot;Rgraphviz&quot;)
+list.pkg &lt;- c(&quot;graph&quot;,&quot;Rgraphviz&quot;,&quot;affy&quot;,&quot;limma&quot;)
 source(&quot;http://bioconductor.org/biocLite.R&quot;)
 for(pkg in list.pkg){
     if(!require(pkg, character.only=T)) biocLite(pkg)

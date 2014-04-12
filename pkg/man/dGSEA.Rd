@@ -5,9 +5,9 @@
 dGSEA(data, identity = c("symbol", "entrez"), check.symbol.identity =
 FALSE,
 genome = c("Hs", "Mm", "Rn", "Gg", "Ce", "Dm", "Da", "At"),
-ontology = c("GOBP", "GOMF", "GOCC", "PS", "DO", "HPPA", "HPMI",
-"HPON",
-"MP", "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG",
+ontology = c("GOBP", "GOMF", "GOCC", "PS", "PS2", "SF", "DO", "HPPA",
+"HPMI", "HPON", "MP", "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP",
+"MsigdbC2KEGG",
 "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR",
 "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC",
 "MsigdbC6", "MsigdbC7"), sizeRange = c(10, 20000), which_distance =
@@ -43,11 +43,14 @@ zebrafish, and "At" for arabidopsis}
 be "GOBP" for Gene Ontology Biological Process, "GOMF"
 for Gene Ontology Molecular Function, "GOCC" for Gene
 Ontology Cellular Component, "PS" for phylostratific age
-information, "DO" for Disease Ontology, "HPPA" for Human
-Phenotype Phenotypic Abnormality, "HPMI" for Human
-Phenotype Mode of Inheritance, "HPON" for Human Phenotype
-ONset and clinical course, "MP" for Mammalian Phenotype,
-and the molecular signatures database (Msigdb) in human
+information, "PS2" for another version of "PS" (collapsed
+the inferred ancestors into one with the known taxonomy
+information), "SF" for domain superfamily assignments,
+"DO" for Disease Ontology, "HPPA" for Human Phenotype
+Phenotypic Abnormality, "HPMI" for Human Phenotype Mode
+of Inheritance, "HPON" for Human Phenotype ONset and
+clinical course, "MP" for Mammalian Phenotype, and the
+molecular signatures database (Msigdb) in human
 (including "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP",
 "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA",
 "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN",
