@@ -24,11 +24,6 @@ list(
                 'visNetReorder',
                 'visNetArc',
                 'visNetCircle',
-                'visColormap',
-                'visColoralpha',
-                'visHeatmap',
-                'visHeatmapAdv',
-                'visTreeBootstrap',
                 'dRWR'
             )
         ),

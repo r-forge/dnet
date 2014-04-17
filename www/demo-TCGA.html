@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Demo for TCGA mutational profile dataset @ dnet 1.0.0</title>
+<title>Demo for TCGA mutation and survival dataset @ dnet 1.0.1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Hai Fang and Julian Gough">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.0</a>
+      <a class="brand" href="index.html">dnet 1.0.1</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -105,64 +105,58 @@
         
       </header>
       
-      <h2>Demo for TCGA mutational profile dataset</h2>
+      <h2>Demo for TCGA mutation and survival dataset</h2>
 
 Notes:
-<li> All results are based on dnet (version 1.0.0). </li>
+<li> All results are based on dnet (version 1.0.1). </li>
 <li> R scripts (i.e. R expressions) plus necessary comments are highlighted in light cyan, and the rest are outputs in the screen. </li>
 <li> Images displayed below may be distorted, but should be normal in your screen. </li>
-<li> Functions contained in dnet 1.0.0 are hyperlinked in-place and also listed on the right side. </li>
+<li> Functions contained in dnet 1.0.1 are hyperlinked in-place and also listed on the right side. </li>
 
 <div class="row">
     <div class="span8">
       <pre>
       <div class='input'># This is a demo for TCGA mutational profile dataset from Kandoth et al
 # 
-# This dataset is available from TCGA (see <a href="http://www.ncbi.nlm.nih.gov/pubmed/24132290" target="24132290">http://www.ncbi.nlm.nih.gov/pubmed/24132290</a>), containing somatic mutational profiles for 3130 cancer samples (i.e. only those having clinical data). These cancer samples belong to one of 12 major cancer types, including breast adenocarcinoma (BRCA), lung adenocarcinoma (LUAD), lung squamous cell carcinoma (LUSC), uterine corpus endometrial carcinoma (UCEC), glioblastoma multiforme (GBM), head and neck squamous cell carcinoma (HNSC), colon and rectal carcinoma (COAD/READ), bladder urothelial carcinoma (BLCA), kidney renal clear cell carcinoma (KIRC), ovarian serous carcinoma (OV) and acute myeloid leukaemia (LAML). For each patient sample, somatic mutations are represented as a profile of binary (1, 0) states on genes, where '1' indicates a gene for which mutation has occurred in the tumor relative to germ line. The dataset is stored in "TCGA_mutations" (as an 'ExpressionSet' object), including:
-## assayData: exprs(TCGA_mutations), a matrix of 19477 genes X 3130 samples;
-## phenoData: pData(TCGA_mutations), variables describing sample phenotypes (i.e. columns in assayData), including information about samples: "Age", "Days_to_death", "Days_to_last_followup", "Vita_status", "Gender", "Date_diagnosis", "TCGA_tumor_type", "Tumor_stage", "Tumor_grade"
+# This dataset is available from TCGA (see <a href="http://www.ncbi.nlm.nih.gov/pubmed/24132290" target="24132290">http://www.ncbi.nlm.nih.gov/pubmed/24132290</a>), containing somatic mutational profiles for 3096 cancer samples with survival data. These cancer samples belong to one of 12 major cancer types, including breast adenocarcinoma (BRCA), lung adenocarcinoma (LUAD), lung squamous cell carcinoma (LUSC), uterine corpus endometrial carcinoma (UCEC), glioblastoma multiforme (GBM), head and neck squamous cell carcinoma (HNSC), colon and rectal carcinoma (COAD/READ), bladder urothelial carcinoma (BLCA), kidney renal clear cell carcinoma (KIRC), ovarian serous carcinoma (OV) and acute myeloid leukaemia (LAML). For each patient sample, somatic mutations are represented as a profile of  states on genes, where non-zero entry indicates a gene for which how many mutations have occurred in the tumor relative to germ line. The dataset is provided as an 'ExpressionSet' object.
+## assayData: exprs(TCGA_mutations), a matrix of 19171 genes X 3096 samples;
+## phenoData: pData(TCGA_mutations), variables describing sample phenotypes (i.e. columns in assayData), including clinical/survival information about samples: "time" (i.e. survival time in days), "status" (i.e., survival status: 0=alive; 1=dead), "Age" (the patient age in years), "Gender" (the patient gender: male/female), "TCGA_tumor_type", "Tumor_stage", "Tumor_grade"
 ## featureData: fData(TCGA_mutations), variables describing features (i.e. rows in assayData), including information about features/genes: "EntrezID" for gene EntrezID, "Symbol" for gene symbol, "Desc" for gene description, "Synonyms" for gene symbol alias
 ###############################################################################
 library(dnet)
 
 # Load or install packages specifically used in this demo
-list.pkg <- c("affy")
-for(pkg in list.pkg){
+for(pkg in c("affy","survival","beeswarm")){
     if(!require(pkg, character.only=T)){
         install.packages(pkg,repos="http://www.stats.bris.ac.uk/R",dependencies=TRUE)
-        lapply(pkg, library, character.only=T)
     }
+    lapply(pkg, library, character.only=T)
 }
 
 # load an "ExpressionSet" object
 load(url("http://dnet.r-forge.r-project.org/data/Datasets/TCGA_mutations.RData"))
-## remove those genes without mutations in any samples
-flag <- apply(exprs(TCGA_mutations)!=0, 1, sum)
-eset <- TCGA_mutations[which(flag!=0),]
-# extract information about the first 5 samples
-pData(eset)[1:5,]
+#load("RData_Rd/data/Datasets/TCGA_mutations.RData")
+eset <- TCGA_mutations
+# extract information about phenotype data
+pd <- pData(eset)
+pd[1:5,]
 </div>
-<div class='output'>                             Age Days_to_death Days_to_last_followup
-TCGA-B8-4153-01B-11D-1669-08  74            NA                   404
-TCGA-24-1469-01A-01W-0553-09  71            NA                   277
-TCGA-06-5411-01A-01D-1696-08  51           254                   254
-TCGA-05-4249-01A-01D-1105-08  67            NA                  1158
-TCGA-18-3406-01A-01D-0983-08  67           371                   370
-                             Vita_status Gender Date_diagnosis TCGA_tumor_type
-TCGA-B8-4153-01B-11D-1669-08           0   male           2010            KIRC
-TCGA-24-1469-01A-01W-0553-09           0 female           2008              OV
-TCGA-06-5411-01A-01D-1696-08           1   male           2010             GBM
-TCGA-05-4249-01A-01D-1105-08           0   male           2007            LUAD
-TCGA-18-3406-01A-01D-0983-08           1   male           2003            LUSC
-                             Tumor_stage Tumor_grade
-TCGA-B8-4153-01B-11D-1669-08           3           3
-TCGA-24-1469-01A-01W-0553-09           3           3
-TCGA-06-5411-01A-01D-1696-08          NA          NA
-TCGA-05-4249-01A-01D-1105-08           1          NA
-TCGA-18-3406-01A-01D-0983-08           1          NA
+<div class='output'>                             time status Age Gender TCGA_tumor_type Tumor_stage
+TCGA-B8-4153-01B-11D-1669-08  404      0  74   male            KIRC           3
+TCGA-24-1469-01A-01W-0553-09  277      0  71 female              OV           3
+TCGA-06-5411-01A-01D-1696-08  254      1  51   male             GBM          NA
+TCGA-05-4249-01A-01D-1105-08 1158      0  67   male            LUAD           1
+TCGA-18-3406-01A-01D-0983-08  371      1  67   male            LUSC           1
+                             Tumor_grade
+TCGA-B8-4153-01B-11D-1669-08           3
+TCGA-24-1469-01A-01W-0553-09           3
+TCGA-06-5411-01A-01D-1696-08          NA
+TCGA-05-4249-01A-01D-1105-08          NA
+TCGA-18-3406-01A-01D-0983-08          NA
 </div>
-<div class='input'># extract information about the first 5 features
-fData(eset)[1:5,]
+<div class='input'># extract information about feature/gene data
+fd <- fData(eset)
+fd[1:5,]
 </div>
 <div class='output'>       EntrezID Symbol                            Desc
 A1BG          1   A1BG          alpha-1-B glycoprotein
@@ -177,29 +171,72 @@ A2M               A2MD|CPAMD5|FWP007|S863-7
 A2ML1                                CPAMD9
 A4GALT A14GALT|A4GALT1|Gb3S|P(k)|P1|P1PK|PK
 </div>
+<div class='input'># extract information about mutational data
+md <- exprs(eset)
+md[1:5,1:5]
+</div>
+<div class='output'>       TCGA-B8-4153-01B-11D-1669-08 TCGA-24-1469-01A-01W-0553-09
+A1BG                              0                            0
+A1CF                              0                            0
+A2M                               0                            0
+A2ML1                             0                            0
+A4GALT                            0                            0
+       TCGA-06-5411-01A-01D-1696-08 TCGA-05-4249-01A-01D-1105-08
+A1BG                              1                            1
+A1CF                              0                            0
+A2M                               0                            0
+A2ML1                             0                            0
+A4GALT                            0                            0
+       TCGA-18-3406-01A-01D-0983-08
+A1BG                              1
+A1CF                              0
+A2M                               0
+A2ML1                             0
+A4GALT                            0
+</div>
 <div class='input'># number of samples for each cancer type
 table(pData(eset)$TCGA_tumor_type)
 </div>
 <div class='output'>
     BLCA     BRCA COADREAD      GBM     HNSC     KIRC     LAML     LUAD 
-      94      763      193      275      301      417      196      171 
+      92      763      193      275      300      417      185      155 
     LUSC       OV     UCEC 
-     174      316      230 
+     171      315      230 
 </div>
 <div class='input'>tumor_type <- sort(unique(pData(eset)$TCGA_tumor_type))
 
+# Kaplan-Meier survival curves for individual tumor types
+fit <- survfit(Surv(time, status) ~ TCGA_tumor_type, data=pd, type=c("kaplan-meier","fh")[1])
+plot(fit, xscale=365.25, xlab = "Years", ylab="Survival", lty=1:2, col=rainbow(length(tumor_type))) 
+</div>
+<a href="javascript:newWin('TCGA-10.png', 'TCGA-10.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-10.png', width="400" /></a>
+<div class='input'>legend("topright", tumor_type, lty=1:2, col=rainbow(length(tumor_type)))
+</div>
+<a href="javascript:newWin('TCGA-12.png', 'TCGA-12.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-12.png', width="400" /></a>
+<div class='input'>
+# Survival analysis across tumor types using Cox proportional hazards model
+# Cox regression yields an equation for the hazard/risk as a function of several explanatory variables
+# Except for the gene mutational data in subject,  other explanatory variables (or called covariates) include: age, gender, and tumor type
+## only those genes with mutations at least 1% of samples will be analysed
+flag <- sapply(1:nrow(md), function(i) ifelse(sum(md[i,]!=0)>=0.01*ncol(md), T, F))
+esetGene <- eset[flag, ]
+md_selected <- md[flag,]
+## survival analysis to obtain hazard ratio (HR) and pvaules
+gene_signif <- matrix(1, nrow=nrow(md_selected), ncol=2)
+rownames(gene_signif) <- rownames(md_selected)
+colnames(gene_signif) <- c("HR", "pvalue")
+for(i in 1:nrow(md_selected)){
+    ## fit a Cox proportional hazards model
+    data <- cbind(pd, gene=md_selected[i,])
+    fit <- coxph(formula=Surv(time,status) ~ Age + Gender + TCGA_tumor_type + gene, data=data)
+    gene_signif[i,] <- as.matrix(anova(fit))[5,c(2,4)]
+}
+HR <- gene_signif[,1]
+pvals <- gene_signif[,2]
+
 # An igraph object that contains a functional protein association network in human. The network is extracted from the STRING database (version 9.1). Only those associations with medium confidence (score>=400) are retained.
 load(url("http://dnet.r-forge.r-project.org/data/Hs/org.Hs.string.RData"))
-org.Hs.string
-</div>
-<div class='output'>IGRAPH UN-- 16973 410824 -- 
-+ attr: name (v/c), seqid (v/c), geneid (v/n), symbol (v/c),
-  description (v/c), neighborhood_score (e/n), fusion_score (e/n),
-  cooccurence_score (e/n), coexpression_score (e/n), experimental_score
-  (e/n), database_score (e/n), textmining_score (e/n), combined_score
-  (e/n)
-</div>
-<div class='input'># restrict to those edges with high confidence (score>=700)
+# restrict to those edges with high confidence (score>=700)
 g <- subgraph.edges(org.Hs.string, eids=E(org.Hs.string)[combined_score>=700])
 g
 </div>
@@ -212,36 +249,14 @@ g
 </div>
 <div class='input'>
 # extract network that only contains genes in eset
-ind <- match(V(g)$symbol, rownames(eset))
-## for extracted expression
-esetGene <- eset[ind[!is.na(ind)],]
-esetGene
-</div>
-<div class='output'>ExpressionSet (storageMode: lockedEnvironment)
-assayData: 12688 features, 3130 samples 
-  element names: exprs 
-protocolData: none
-phenoData
-  sampleNames: TCGA-B8-4153-01B-11D-1669-08
-    TCGA-24-1469-01A-01W-0553-09 ... TCGA-34-5241-01A-01D-1441-08 (3130
-    total)
-  varLabels: Age Days_to_death ... Tumor_grade (9 total)
-  varMetadata: labelDescription
-featureData
-  featureNames: PTPN3 MVP ... PEX5L (12688 total)
-  fvarLabels: EntrezID Symbol Desc Synonyms
-  fvarMetadata: labelDescription
-experimentData: use 'experimentData(object)'
-Annotation:  
-</div>
-<div class='input'>## for extracted graph
+ind <- match(V(g)$symbol, names(pvals))
+## for extracted graph
 nodes_mapped <- V(g)$name[!is.na(ind)]
-network <- <a href='dNetInduce.html' target=dNetInduce>dNetInduce</a>(g, nodes_query=nodes_mapped, knn=0, remove.loops=F, largest.comp=F)
+network <- <a href='dNetInduce.html' target=dNetInduce>dNetInduce</a>(g, nodes_query=nodes_mapped, knn=0, remove.loops=F, largest.comp=T)
 V(network)$name <- V(network)$symbol
-#E(network)$weight <- E(network)$combined_score
 network
 </div>
-<div class='output'>IGRAPH UN-- 12688 192645 -- 
+<div class='output'>IGRAPH UN-- 1601 9283 -- 
 + attr: name (v/c), seqid (v/c), geneid (v/n), symbol (v/c),
   description (v/c), neighborhood_score (e/n), fusion_score (e/n),
   cooccurence_score (e/n), coexpression_score (e/n), experimental_score
@@ -249,60 +264,173 @@ network
   (e/n)
 </div>
 <div class='input'>
-# For each gene, calculate number of samples (within a tumor type) having the mutated gene 
-num_mutated <- sapply(tumor_type, function(x) {
-    e <- esetGene[, which(pData(esetGene)$TCGA_tumor_type==x)]
-    apply(exprs(e)!=0,1,sum)
-})
-rownames(num_mutated) <- fData(esetGene)$Symbol
-num_mutated[1:10,]
+# Identification of gene-active network
+net <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network, pval=pvals, method="fdr", fdr=3e-02)
 </div>
-<div class='output'>         BLCA BRCA COADREAD GBM HNSC KIRC LAML LUAD LUSC OV UCEC
-PTPN3       4    2        2   4    4    3    0    7    4  3    4
-MVP         2    3        2   3    3    4    0    3    1  2    1
-OR2G2       3    2        1   3    4    4    0   12    8  0    3
-KIAA0226    1    5        1   0    5    3    0    2    7  1    6
-PAK1IP1     0    0        0   0    3    0    0    3    0  0    0
-RORC        2    4        0   3    0    1    0    0    4  1    4
-SEPT14      1    5        0   3    2    1    1    5    7  0    2
-RAB7L1      1    1        0   0    0    0    0    1    0  1    1
-CMTM2       4    1        1   1    2    1    0    1    1  1    1
-JAKMIP1     2    3        5   2    9    2    0    6    7  1    2
+<strong class='message'>Start at 2014-04-17 22:02:07</strong>
+<strong class='message'></strong>
+<strong class='message'>First, consider the fdr distribution</strong>
+<strong class='message'>Second, determine FDR threshold...</strong>
+<strong class='message'>	FDR threshold: 3.00e-02</strong>
+<strong class='message'>Third, calculate the scores according to the given fdr and the threshold (if any)...</strong>
+<strong class='message'>	Amongst 2837 scores, there are 175 positives.</strong>
+<strong class='message'>Finally, find the subnetwork from the input network with 1601 nodes and 9283 edges...</strong>
+<strong class='message'>	Size of the module: 42 nodes and 54 edges</strong>
+<strong class='message'>
+Finish at 2014-04-17 22:02:09</strong>
+<strong class='message'>Runtime in total is: 2 secs
+</strong>
+<div class='input'>g <- net
+g
+</div>
+<div class='output'>IGRAPH UN-- 42 54 -- 
++ attr: name (v/c), seqid (v/c), geneid (v/n), symbol (v/c),
+  description (v/c), score (v/n), neighborhood_score (e/n),
+  fusion_score (e/n), cooccurence_score (e/n), coexpression_score
+  (e/n), experimental_score (e/n), database_score (e/n),
+  textmining_score (e/n), combined_score (e/n)
 </div>
 <div class='input'>
-# For each gene, calculate fraction of samples (within a tumor type) having the mutated gene 
+# visualisation of the gene-active subnetwork itself
+## the layout of the network visualisation (fixed in different visuals) 
+glayout <- layout.fruchterman.reingold(g)
+## color nodes according to communities (identified via a spin-glass model and simulated annealing)
+com <- spinglass.community(g, spins=7)
+com$csize <- sapply(1:length(com),function(x) sum(com$membership==x))
+vgroups <- com$membership
+colormap <- "yellow-darkorange"
+palette.name <- visColormap(colormap=colormap)
+mcolors <- palette.name(length(com))
+vcolors <- mcolors[vgroups]
+com$significance <- <a href='dCommSignif.html' target=dCommSignif>dCommSignif</a>(g, com)
+## node sizes according to degrees
+vdegrees <- igraph::degree(g)
+## highlight different communities
+mark.groups <- communities(com)
+mark.col <- visColoralpha(mcolors, alpha=0.2)
+mark.border <- visColoralpha(mcolors, alpha=0.2)
+edge.color <- c("#C0C0C0", "#000000")[crossing(com,g)+1]
+edge.color <- visColoralpha(edge.color, alpha=0.5)
+## visualise the subnetwrok
+<a href='visNet.html' target=visNet>visNet</a>(g, glayout=glayout, vertex.label=V(g)$geneSymbol, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.shape="sphere", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color, newpage=F, vertex.label.color="blue", vertex.label.dist=0.4, vertex.label.font=2)
+</div>
+<a href="javascript:newWin('TCGA-32.png', 'TCGA-32.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-32.png', width="400" /></a>
+<div class='input'>legend_name <- paste("C",1:length(mcolors)," (n=",com$csize,", pval=",signif(com$significance,digits=2),")",sep='')
+legend("topleft", legend=legend_name, fill=mcolors, bty="n", cex=0.6)
+</div>
+<a href="javascript:newWin('TCGA-34.png', 'TCGA-34.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-34.png', width="400" /></a>
+<div class='input'>
+# fit a Cox proportional hazards model using the subnetwork
+## for the whole network
+data_g <- t(md[V(g)$name,])
+data_g <- apply(data_g!=0, 1, sum)
+data <- cbind(pd, net=data_g)
+fit <- coxph(formula=Surv(time,status) ~ Age + Gender + TCGA_tumor_type + net, data=data)
+res <- as.matrix(anova(fit))
+HR_g <- res[5,2]
+pvals_g <- res[5,4]
+## for the cumulative nodes from the network
+cg_names <- names(sort(HR[V(g)$name], decreasing=T))
+cg_signif <- matrix(1, nrow=length(cg_names), ncol=2)
+rownames(cg_signif) <- cg_names
+colnames(cg_signif) <- c("HR", "pvalue")
+for(i in 1:length(cg_names)){
+    data_g <- t(md[cg_names[1:i],])
+    if(i!=1){
+        data_g <- apply(data_g!=0, 1, sum)
+    }else{
+        data_g <- as.vector(data_g!=0)
+    }
+    data <- cbind(pd, cnet=data_g)
+    fit <- coxph(formula=Surv(time,status) ~ Age + Gender + TCGA_tumor_type + cnet, data=data)
+    res <- as.matrix(anova(fit))
+    cg_signif[i,] <- res[5,c(2,4)]
+}
+cg_signif[cg_signif[,2]==0,2] <- min(cg_signif[cg_signif[,2]!=0,2])
+bp.HR.list <- list(All=HR, Neti=HR[cg_names], Netc=cg_signif[2:nrow(cg_signif),1])
+par(las=2, mar=c(10,8,4,2)) # all axis labels horizontal
+boxplot(bp.HR.list, outline=F, horizontal=F, names=c("All genes", "Genes in the network\n(used individually)", "Genes in the network\n(used in combination)"), col=c("red","green","blue"), ylab="Hazard ratio", log="y", ylim=c(0.1,100))
+</div>
+<a href="javascript:newWin('TCGA-36.png', 'TCGA-36.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-36.png', width="400" /></a>
+<div class='input'># Two-sample Kolmogorov-Smirnov test
+## All genes versus genes in the network (used individually)
+stats::ks.test(x=HR, y=HR[cg_names], alternative="two.sided", exact=NULL)
+</div>
+<strong class='warning'>Warning message:
+p-value will be approximate in the presence of ties</strong>
+<div class='output'>
+	Two-sample Kolmogorov-Smirnov test
+
+data:  HR and HR[cg_names]
+D = 0.8479, p-value < 2.2e-16
+alternative hypothesis: two-sided
+
+</div>
+<div class='input'>## Genes in the network (used individually) versuse genes in the network (used in combination)
+stats::ks.test(x=HR[cg_names], y=cg_signif[2:nrow(cg_signif),1], alternative="two.sided", exact=NULL)
+</div>
+<div class='output'>
+	Two-sample Kolmogorov-Smirnov test
+
+data:  HR[cg_names] and cg_signif[2:nrow(cg_signif), 1]
+D = 1, p-value < 2.2e-16
+alternative hypothesis: two-sided
+
+</div>
+<div class='input'>
+# Network-based sample classifications and visualisations on 2D sample landscape
+# it uses the gene-active subnetwork overlaid by all replication timing data
 frac_mutated <- sapply(tumor_type, function(x) {
-    e <- esetGene[, which(pData(esetGene)$TCGA_tumor_type==x)]
+    e <- eset[, which(pData(eset)$TCGA_tumor_type==x)]
     apply(exprs(e)!=0,1,sum)/ncol(e)
 })
-rownames(frac_mutated) <- fData(esetGene)$Symbol
-frac_mutated[1:10,]
+rownames(frac_mutated) <- fData(eset)$Symbol
+data <- frac_mutated[V(g)$name,]
+sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="edge", node.normalise="degree", amplifier=3, metric="none")
 </div>
-<div class='output'>               BLCA        BRCA    COADREAD         GBM        HNSC        KIRC
-PTPN3    0.04255319 0.002621232 0.010362694 0.014545455 0.013289037 0.007194245
-MVP      0.02127660 0.003931848 0.010362694 0.010909091 0.009966777 0.009592326
-OR2G2    0.03191489 0.002621232 0.005181347 0.010909091 0.013289037 0.009592326
-KIAA0226 0.01063830 0.006553080 0.005181347 0.000000000 0.016611296 0.007194245
-PAK1IP1  0.00000000 0.000000000 0.000000000 0.000000000 0.009966777 0.000000000
-RORC     0.02127660 0.005242464 0.000000000 0.010909091 0.000000000 0.002398082
-SEPT14   0.01063830 0.006553080 0.000000000 0.010909091 0.006644518 0.002398082
-RAB7L1   0.01063830 0.001310616 0.000000000 0.000000000 0.000000000 0.000000000
-CMTM2    0.04255319 0.001310616 0.005181347 0.003636364 0.006644518 0.002398082
-JAKMIP1  0.02127660 0.003931848 0.025906736 0.007272727 0.029900332 0.004796163
-                LAML        LUAD        LUSC          OV        UCEC
-PTPN3    0.000000000 0.040935673 0.022988506 0.009493671 0.017391304
-MVP      0.000000000 0.017543860 0.005747126 0.006329114 0.004347826
-OR2G2    0.000000000 0.070175439 0.045977011 0.000000000 0.013043478
-KIAA0226 0.000000000 0.011695906 0.040229885 0.003164557 0.026086957
-PAK1IP1  0.000000000 0.017543860 0.000000000 0.000000000 0.000000000
-RORC     0.000000000 0.000000000 0.022988506 0.003164557 0.017391304
-SEPT14   0.005102041 0.029239766 0.040229885 0.000000000 0.008695652
-RAB7L1   0.000000000 0.005847953 0.000000000 0.003164557 0.004347826
-CMTM2    0.000000000 0.005847953 0.005747126 0.003164557 0.004347826
-JAKMIP1  0.000000000 0.035087719 0.040229885 0.003164557 0.008695652
+<strong class='message'>Start at 2014-04-17 22:02:19</strong>
+<strong class='message'></strong>
+<strong class='message'>First, define topology of a map grid...</strong>
+<strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
+<strong class='message'>Third, get training at the rough stage...</strong>
+<strong class='message'>Fourth, get training at the finetune stage...</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object...</strong>
+<strong class='message'></strong>
+<strong class='message'>Below are the summaries of the training results:</strong>
+<strong class='message'>   dimension of input data: 11x54
+   xy-dimension of map grid: xdim=6, ydim=6
+   grid lattice: rect
+   grid shape: sheet
+   dimension of grid coord: 36x2
+   initialisation method: linear
+   dimension of codebook matrix: 36x54
+   mean quantization error: 0.0028412561272337
+</strong>
+<strong class='message'>Below are the details of trainology:</strong>
+<strong class='message'>   training algorithm: sequential
+   alpha type: invert
+   training neighborhood kernel: gaussian
+   trainlength (x input data length): 33 at rough stage; 131 at finetune stage
+   radius (at rough stage): from 1 to 1
+   radius (at finetune stage): from 1 to 1
+</strong>
+<strong class='message'>End at 2014-04-17 22:02:21</strong>
+<strong class='message'>Runtime in total is: 2 secs
+</strong>
+<div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*3, newpage=T, glayout=glayout, colormap="lightyellow-orange", vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.8,border.color="888888", zlim=c(0,0.12), mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
 </div>
+<a href="javascript:newWin('TCGA-59.png', 'TCGA-59.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-59.png', width="400" /></a>
 <div class='input'>
-# define the "mutation sparseness" of genes in terms of a vector which stores the fraction of samples (within a tumor type) having the mutated gene 
+# output the subnetwork and their replication timing data
+## Write the subnetwork into a SIF-formatted file (Simple Interaction File)
+sif <- data.frame(source=get.edgelist(g)[,1], type="interaction", target=get.edgelist(g)[,2])
+write.table(sif, file=paste("Survival_TCGA.sif", sep=""), quote=F, row.names=F,col.names=F,sep="\t")
+## Output the corresponding replication timing data
+hmap <- data.frame(Symbol=rownames(data), data)
+write.table(hmap, file=paste("Survival_TCGA.txt", sep=""), quote=F, row.names=F,col.names=T,sep="\t")
+
+# define the "mutation ubiquity" of genes in terms of a vector which stores the fraction of samples (within a tumor type) having the mutated gene 
 # sparseness for a vector is: 1) one if the vector contains only a single non-zero value; 2) zero if and only if all elements are equal; 3) otherwise, the value interpolates smoothly between the two extremes
 sparseness <- sapply(1:nrow(frac_mutated), function(i){
     v <- frac_mutated[i,]
@@ -313,191 +441,770 @@ sparseness <- sapply(1:nrow(frac_mutated), function(i){
 })
 sparseness <- matrix(sparseness, ncol=1)
 rownames(sparseness) <- rownames(frac_mutated)
-# derive the "mutation denseness" of genes
-denseness <- 1- sparseness
-hist(denseness,100)
+# derive the "mutation ubiquity" of genes: mutational fraction with the same type, and fraction consistent across different types
+ubiquity <- 1- sparseness
+dev.new()
+hist(ubiquity,20, xlab="Cross-tumor mutation ubiquity", xlim=c(0,1))
 </div>
-<a href="javascript:newWin('TCGA-20.png', 'TCGA-20.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-20.png', width="400" /></a>
+<a href="javascript:newWin('TCGA-61.png', 'TCGA-61.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-61.png', width="400" /></a>
 <div class='input'>
-# random walk with restart using denseness as seeds
-PTmatrix <- <a href='dRWR.html' target=dRWR>dRWR</a>(g=network, normalise=c("laplacian","row","column","none")[1], setSeeds=data.frame(frac_mutated, denseness), restart=0.5, normalise.affinity.matrix=c("none","quantile")[1], verbose=T)
+# GSEA using the network as a gene set against the cross-tumor mutation ubiquity and each tumor type
+eTerm <- <a href='dGSEA.html' target=dGSEA>dGSEA</a>(data=cbind(frac_mutated,ubiquity), identity="symbol", genome="Hs", ontology="Customised", customised.genesets=V(g)$name, weight=0, nperm=2000)
 </div>
-<strong class='message'>Start at 2014-04-11 13:11:59</strong>
+<strong class='message'>Start at 2014-04-17 22:02:54</strong>
 <strong class='message'></strong>
-<strong class='message'>First, get the adjacency matrix of the input graph (2014-04-11 13:11:59) ...</strong>
-<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-04-11 13:11:59) ...</strong>
-<strong class='message'>Third, RWR of 12 sets of seeds using 5.0e-01 restart probability (2014-04-11 13:11:59) ...</strong>
-<strong class='message'>	Using the seed set 1 (2014-04-11 13:11:59) ...</strong>
-<strong class='message'>	Using the seed set 2 (2014-04-11 13:11:59) ...</strong>
-<strong class='message'>	Using the seed set 3 (2014-04-11 13:12:00) ...</strong>
-<strong class='message'>	Using the seed set 4 (2014-04-11 13:12:00) ...</strong>
-<strong class='message'>	Using the seed set 5 (2014-04-11 13:12:00) ...</strong>
-<strong class='message'>	Using the seed set 6 (2014-04-11 13:12:00) ...</strong>
-<strong class='message'>	Using the seed set 7 (2014-04-11 13:12:01) ...</strong>
-<strong class='message'>	Using the seed set 8 (2014-04-11 13:12:01) ...</strong>
-<strong class='message'>	Using the seed set 9 (2014-04-11 13:12:01) ...</strong>
-<strong class='message'>	Using the seed set 10 (2014-04-11 13:12:01) ...</strong>
-<strong class='message'>	Using the seed set 11 (2014-04-11 13:12:01) ...</strong>
-<strong class='message'>	Using the seed set 12 (2014-04-11 13:12:01) ...</strong>
-<strong class='message'>Finally, output 12688 by 12 affinity matrix normalised by none (2014-04-11 13:12:01) ...</strong>
+<strong class='message'>First, load the ontology Customised and its gene associations in the genome Hs (2014-04-17 22:02:54) ...</strong>
+<strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.eg.RData</strong>
+<strong class='message'>	Among 42 symbols of input data, there are 42 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-17 22:02:54) ...</strong>
+<strong class='message'>	Among 19171 symbols of input data, there are 19171 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Third, perform GSEA analysis (2014-04-17 22:02:57) ...</strong>
+<strong class='message'>	Sample 1 is being processed at (2014-04-17 22:02:57) ...</strong>
+<strong class='message'>		 1 of 1 gene sets have been processed</strong>
+<strong class='message'>	Sample 2 is being processed at (2014-04-17 22:02:59) ...</strong>
+<strong class='message'>		 1 of 1 gene sets have been processed</strong>
+<strong class='message'>	Sample 3 is being processed at (2014-04-17 22:03:02) ...</strong>
+<strong class='message'>		 1 of 1 gene sets have been processed</strong>
+<strong class='message'>	Sample 4 is being processed at (2014-04-17 22:03:05) ...</strong>
+<strong class='message'>		 1 of 1 gene sets have been processed</strong>
+<strong class='message'>	Sample 5 is being processed at (2014-04-17 22:03:07) ...</strong>
+<strong class='message'>		 1 of 1 gene sets have been processed</strong>
+<strong class='message'>	Sample 6 is being processed at (2014-04-17 22:03:10) ...</strong>
+<strong class='message'>		 1 of 1 gene sets have been processed</strong>
+<strong class='message'>	Sample 7 is being processed at (2014-04-17 22:03:12) ...</strong>
+<strong class='message'>		 1 of 1 gene sets have been processed</strong>
+<strong class='message'>	Sample 8 is being processed at (2014-04-17 22:03:15) ...</strong>
+<strong class='message'>		 1 of 1 gene sets have been processed</strong>
+<strong class='message'>	Sample 9 is being processed at (2014-04-17 22:03:17) ...</strong>
+<strong class='message'>		 1 of 1 gene sets have been processed</strong>
+<strong class='message'>	Sample 10 is being processed at (2014-04-17 22:03:20) ...</strong>
+<strong class='message'>		 1 of 1 gene sets have been processed</strong>
+<strong class='message'>	Sample 11 is being processed at (2014-04-17 22:03:22) ...</strong>
+<strong class='message'>		 1 of 1 gene sets have been processed</strong>
+<strong class='message'>	Sample 12 is being processed at (2014-04-17 22:03:25) ...</strong>
+<strong class='message'>		 1 of 1 gene sets have been processed</strong>
 <strong class='message'>
-Finish at 2014-04-11 13:12:01</strong>
-<strong class='message'>Runtime in total is: 2 secs
+End at 2014-04-17 22:03:27</strong>
+<strong class='message'>Runtime in total is: 33 secs
 </strong>
-<div class='input'>
-PTmatrix <- <a href='dRWR.html' target=dRWR>dRWR</a>(g=network, normalise=c("laplacian","row","column","none")[1], setSeeds=frac_mutated, restart=0.5, normalise.affinity.matrix=c("none","quantile")[1], verbose=T)
+<div class='input'>frac_pvalue <- as.vector(eTerm$pvalue)
+frac_fdr <- stats::p.adjust(frac_pvalue, method="BH")
+frac_nes <- as.vector(eTerm$nes)
+frac_es <- as.vector(eTerm$es)
+df <- cbind(frac_es, frac_nes, frac_pvalue, frac_fdr)
+rownames(df) <- colnames(eTerm$es)
+rownames(df)[nrow(df)] <- "Mutation\nubiquity"
+ind <- sort.int(frac_es, index.return=T)$ix
+data <- df[ind,]
+par(las=1) # make label text perpendicular to axis
+par(mar=c(5,8,4,2)) # increase y-axis margin.
+z <- data[,2]
+barY <- barplot(z, xlab="Normalised enrichment score (NES)", horiz=TRUE, names.arg=rownames(data), cex.names=0.7, cex.lab=0.7, cex.axis=0.7, col="transparent")
 </div>
-<strong class='message'>Start at 2014-04-11 13:12:01</strong>
+<a href="javascript:newWin('TCGA-98.png', 'TCGA-98.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-98.png', width="400" /></a>
+<div class='input'>
+# Evolutionary analysis for genes in the subnetwork
+## get a list of genes in the subnetwork
+data <- V(net)$name
+eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data, identity="symbol", genome="Hs", ontology="PS2")
+</div>
+<strong class='message'>Start at 2014-04-17 22:03:27</strong>
 <strong class='message'></strong>
-<strong class='message'>First, get the adjacency matrix of the input graph (2014-04-11 13:12:01) ...</strong>
-<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-04-11 13:12:02) ...</strong>
-<strong class='message'>Third, RWR of 11 sets of seeds using 5.0e-01 restart probability (2014-04-11 13:12:02) ...</strong>
-<strong class='message'>	Using the seed set 1 (2014-04-11 13:12:02) ...</strong>
-<strong class='message'>	Using the seed set 2 (2014-04-11 13:12:02) ...</strong>
-<strong class='message'>	Using the seed set 3 (2014-04-11 13:12:02) ...</strong>
-<strong class='message'>	Using the seed set 4 (2014-04-11 13:12:02) ...</strong>
-<strong class='message'>	Using the seed set 5 (2014-04-11 13:12:02) ...</strong>
-<strong class='message'>	Using the seed set 6 (2014-04-11 13:12:03) ...</strong>
-<strong class='message'>	Using the seed set 7 (2014-04-11 13:12:03) ...</strong>
-<strong class='message'>	Using the seed set 8 (2014-04-11 13:12:03) ...</strong>
-<strong class='message'>	Using the seed set 9 (2014-04-11 13:12:03) ...</strong>
-<strong class='message'>	Using the seed set 10 (2014-04-11 13:12:03) ...</strong>
-<strong class='message'>	Using the seed set 11 (2014-04-11 13:12:04) ...</strong>
-<strong class='message'>Finally, output 12688 by 11 affinity matrix normalised by none (2014-04-11 13:12:04) ...</strong>
-<strong class='message'>
-Finish at 2014-04-11 13:12:04</strong>
-<strong class='message'>Runtime in total is: 3 secs
-</strong>
-<div class='input'>
-
-data <- t(PTmatrix)
-n <- nrow(data)
-res <- matrix(0, nrow = n, ncol = n)
-for (i in 1:n) {
-    res[i, ] <- (data[i, ] %*% t(data))
-}
-rownames(res) <- rownames(data)
-colnames(res) <- rownames(data)
-<a href='visHeatmapAdv.html' target=visHeatmapAdv>visHeatmapAdv</a>(res, Rowv=F, Colv=F, zlim=c(0.0001,0.0004))
-</div>
-<a href="javascript:newWin('TCGA-63.png', 'TCGA-63.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-63.png', width="400" /></a>
-<div class='input'>
-adjmatrix <- res > quantile(res[lower.tri(res)], 0.75)
-
-sg <- graph.adjacency(adjmatrix, mode="undirected", weighted=T, diag=F, add.colnames=NULL, add.rownames=NA)
-<a href='visNet.html' target=visNet>visNet</a>(sg, edge.width=E(sg)$weight)
-</div>
-<a href="javascript:newWin('TCGA-65.png', 'TCGA-65.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-65.png', width="400" /></a>
-<div class='input'>
-
-
-ind <- sample(1:nrow(frac_mutated))
-seeds_random <- frac_mutated[ind,]
-rownames(seeds_random) <- rownames(frac_mutated)
-PT_random <- <a href='dRWR.html' target=dRWR>dRWR</a>(g=network, normalise=c("laplacian","row","column","none")[1], setSeeds=seeds_random, restart=0.5, normalise.affinity.matrix=c("none","quantile")[1], verbose=T)
-</div>
-<strong class='message'>Start at 2014-04-11 13:12:05</strong>
-<strong class='message'></strong>
-<strong class='message'>First, get the adjacency matrix of the input graph (2014-04-11 13:12:05) ...</strong>
-<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-04-11 13:12:05) ...</strong>
-<strong class='message'>Third, RWR of 11 sets of seeds using 5.0e-01 restart probability (2014-04-11 13:12:05) ...</strong>
-<strong class='message'>	Using the seed set 1 (2014-04-11 13:12:05) ...</strong>
-<strong class='message'>	Using the seed set 2 (2014-04-11 13:12:05) ...</strong>
-<strong class='message'>	Using the seed set 3 (2014-04-11 13:12:05) ...</strong>
-<strong class='message'>	Using the seed set 4 (2014-04-11 13:12:05) ...</strong>
-<strong class='message'>	Using the seed set 5 (2014-04-11 13:12:06) ...</strong>
-<strong class='message'>	Using the seed set 6 (2014-04-11 13:12:06) ...</strong>
-<strong class='message'>	Using the seed set 7 (2014-04-11 13:12:06) ...</strong>
-<strong class='message'>	Using the seed set 8 (2014-04-11 13:12:06) ...</strong>
-<strong class='message'>	Using the seed set 9 (2014-04-11 13:12:07) ...</strong>
-<strong class='message'>	Using the seed set 10 (2014-04-11 13:12:07) ...</strong>
-<strong class='message'>	Using the seed set 11 (2014-04-11 13:12:07) ...</strong>
-<strong class='message'>Finally, output 12688 by 11 affinity matrix normalised by none (2014-04-11 13:12:07) ...</strong>
-<strong class='message'>
-Finish at 2014-04-11 13:12:07</strong>
-<strong class='message'>Runtime in total is: 2 secs
-</strong>
-<div class='input'>data <- t(PT_random)
-n <- nrow(data)
-res_random <- matrix(0, nrow = n, ncol = n)
-for (i in 1:n) {
-    res_random[i, ] <- (data[i, ] %*% t(data))
-}
-rownames(res_random) <- rownames(data)
-colnames(res_random) <- rownames(data)
-res_random[lower.tri(res_random)]
-</div>
-<div class='output'> [1] 0.0001274944 0.0001253960 0.0001260143 0.0001238487 0.0001145259
- [6] 0.0001215470 0.0001165137 0.0001207864 0.0001366924 0.0001140137
-[11] 0.0001521140 0.0001508501 0.0001423279 0.0001263604 0.0001487220
-[16] 0.0001244142 0.0001327047 0.0001850023 0.0001331996 0.0001456770
-[21] 0.0001430760 0.0001171892 0.0001504355 0.0001309641 0.0001369660
-[26] 0.0001846499 0.0001244892 0.0001395716 0.0001241446 0.0001471991
-[31] 0.0001327031 0.0001366963 0.0001673212 0.0001308518 0.0001178864
-[36] 0.0001369057 0.0001278362 0.0001345418 0.0001649771 0.0001192642
-[41] 0.0001150614 0.0001128977 0.0001163148 0.0001194205 0.0001130343
-[46] 0.0001255872 0.0001306687 0.0001879516 0.0001185984 0.0001313155
-[51] 0.0001359136 0.0001129322 0.0001490115 0.0001165172 0.0001276682
-</div>
-<div class='input'>
-
-a <- cbind(res[lower.tri(res)], res_random[lower.tri(res_random)])
-
-
-# GSEA using PS
-eTerm <- <a href='dGSEA.html' target=dGSEA>dGSEA</a>(data=PTmatrix, identity="symbol", genome="Hs", ontology="PS", sizeRange=c(10,100000), which_distance=NULL, sigTail=c("two-tails","one-tail")[2])
-</div>
-<strong class='message'>Start at 2014-04-11 13:12:07</strong>
-<strong class='message'></strong>
-<strong class='message'>First, load the ontology PS and its gene associations in the genome Hs (2014-04-11 13:12:07) ...</strong>
+<strong class='message'>First, load the ontology PS2 and its gene associations in the genome Hs (2014-04-17 22:03:27) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.egPS.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-04-11 13:12:09) ...</strong>
-<strong class='message'>	Among 12688 symbols of input data, there are 12688 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Third, perform GSEA analysis (2014-04-11 13:12:10) ...</strong>
-<strong class='message'>	Sample 1 is being processed at (2014-04-11 13:12:10) ...</strong>
-<strong class='message'>		 26 of 26 gene sets have been processed</strong>
-<strong class='message'>	Sample 2 is being processed at (2014-04-11 13:12:11) ...</strong>
-<strong class='message'>		 26 of 26 gene sets have been processed</strong>
-<strong class='message'>	Sample 3 is being processed at (2014-04-11 13:12:12) ...</strong>
-<strong class='message'>		 26 of 26 gene sets have been processed</strong>
-<strong class='message'>	Sample 4 is being processed at (2014-04-11 13:12:13) ...</strong>
-<strong class='message'>		 26 of 26 gene sets have been processed</strong>
-<strong class='message'>	Sample 5 is being processed at (2014-04-11 13:12:14) ...</strong>
-<strong class='message'>		 26 of 26 gene sets have been processed</strong>
-<strong class='message'>	Sample 6 is being processed at (2014-04-11 13:12:15) ...</strong>
-<strong class='message'>		 26 of 26 gene sets have been processed</strong>
-<strong class='message'>	Sample 7 is being processed at (2014-04-11 13:12:15) ...</strong>
-<strong class='message'>		 26 of 26 gene sets have been processed</strong>
-<strong class='message'>	Sample 8 is being processed at (2014-04-11 13:12:16) ...</strong>
-<strong class='message'>		 26 of 26 gene sets have been processed</strong>
-<strong class='message'>	Sample 9 is being processed at (2014-04-11 13:12:17) ...</strong>
-<strong class='message'>		 26 of 26 gene sets have been processed</strong>
-<strong class='message'>	Sample 10 is being processed at (2014-04-11 13:12:18) ...</strong>
-<strong class='message'>		 26 of 26 gene sets have been processed</strong>
-<strong class='message'>	Sample 11 is being processed at (2014-04-11 13:12:19) ...</strong>
-<strong class='message'>		 26 of 26 gene sets have been processed</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-17 22:03:28) ...</strong>
+<strong class='message'>	Among 42 symbols of input data, there are 42 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2014-04-17 22:03:28) ...</strong>
+<strong class='message'>	There are 19 terms being used, each restricted within [10,20000] annotations</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-17 22:03:28) ...</strong>
 <strong class='message'>
-End at 2014-04-11 13:12:20</strong>
-<strong class='message'>Runtime in total is: 13 secs
+End at 2014-04-17 22:03:28</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
-<div class='input'>which_sample=12
-res <- <a href='dGSEAview.html' target=dGSEAview>dGSEAview</a>(eTerm, which_sample=1, top_num=5, sortBy="nES", decreasing=T, details=TRUE)
-<a href='visGSEA.html' target=visGSEA>visGSEA</a>(eTerm, which_sample=which_sample, which_term=rownames(res)[1])
+<div class='input'>## Look at the evolution relevance along the path to the eukaryotic common ancestor
+cbind(eTerm$set_info[,2:3], nSet=sapply(eTerm$gs,length), nOverlap=sapply(eTerm$overlap,length), zscore=eTerm$zscore, pvalue=eTerm$pvalue, adjp=eTerm$adjp)
 </div>
-<a href="javascript:newWin('TCGA-122.png', 'TCGA-122.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-122.png', width="400" /></a>
-<div class='input'>output <- <a href='dGSEAwrite.html' target=dGSEAwrite>dGSEAwrite</a>(eTerm, which_content="nES", which_score="nES", cutoff=0, filename="eTerm.txt",keep.significance=F)
+<div class='output'>                    name    namespace nSet nOverlap zscore  pvalue  adjp
+3         2759:Eukaryota superkingdom 7001        9 -3.770 1.00000 1.000
+8     33154:Opisthokonta      no rank 3259       12  0.777 0.17000 0.290
+11         33208:Metazoa      kingdom  612        6  3.120 0.00220 0.014
+13        6072:Eumetazoa      no rank  477        1 -0.377 0.43000 0.480
+15       33213:Bilateria      no rank  405        0 -1.130 0.71000 0.750
+17   33511:Deuterostomia      no rank  674        7  3.560 0.00081 0.014
+18         7711:Chordata       phylum   75        2  3.740 0.00150 0.014
+19       7742:Vertebrata      no rank   97        0 -0.545 0.26000 0.350
+20   117571:Euteleostomi      no rank  559        2  0.241 0.24000 0.350
+21    8287:Sarcopterygii      no rank  105        0 -0.567 0.27000 0.350
+22       32523:Tetrapoda      no rank  122        0 -0.611 0.31000 0.370
+23         32524:Amniota      no rank  203        2  1.780 0.02300 0.089
+24        40674:Mammalia        class   13        0 -0.199 0.03900 0.120
+25          32525:Theria      no rank   71        0 -0.466 0.19000 0.310
+26         9347:Eutheria      no rank   53        0 -0.402 0.15000 0.280
+27 1437010:Boreoeutheria      no rank   76        1  1.610 0.02200 0.089
+30         9443:Primates        order   22        0 -0.259 0.06500 0.150
+36      207598:Homininae    subfamily   15        0 -0.214 0.04400 0.120
+37     9606:Homo sapiens      species   30        0 -0.302 0.08700 0.180
 </div>
-<strong class='message'>A file called eTerm.txt has been successfully written!
+<div class='input'>## load Entrezgene info
+load(url("http://dnet.r-forge.r-project.org/data/Hs/org.Hs.eg.RData"))
+gene_info <- org.Hs.eg$gene_info
+entrez <- unlist(eTerm$overlap[6], use.names=F)
+## build neighbor-joining tree
+data <- frac_mutated[V(g)$name,]
+tree_bs <- visTreeBootstrap(t(data), nodelabels.arg=list(cex=0.4,bg="white-pink-violet"), metric=c("euclidean","pearson","spearman","cos","manhattan","kendall","mi")[3], num.bootstrap=2000, plot.phylo.arg=list(type="p", direction="downwards", cex=0.8, edge.width=1.2))
+</div>
+<strong class='message'>Start at 2014-04-17 22:03:29</strong>
+<strong class='message'></strong>
+<strong class='message'>First, build the tree (using nj algorithm and spearman distance) from input matrix (11 by 42)...</strong>
+<strong class='message'>Second, perform bootstrap analysis with 2000 replicates...</strong>
+<strong class='message'>Finally, visualise the bootstrapped tree...</strong>
+<strong class='message'></strong>
+<strong class='message'>Finish at 2014-04-17 22:03:32</strong>
+<strong class='message'>Runtime in total is: 3 secs
 </strong>
+<a href="javascript:newWin('TCGA-123.png', 'TCGA-123.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-123.png', width="400" /></a>
+<div class='input'>flag <- match(tree_bs$tip.label, colnames(data))
+base <- sapply(eTerm$overlap, function(x){
+    as.character(gene_info[match(x,rownames(gene_info)),2])
+})
+if(1){
+    ## reordering via hierarchical clustering
+    cluster_order <- matrix(1, nrow=length(base))
+    base_order <- matrix(1, nrow=length(base))
+    for(i in 1:length(base)){
+        tmp <- base[[i]]
+        ind <- match(tmp, rownames(data))
+        if(length(ind)>0){
+            base_order[ind] <- i
+            tmpD <- data[ind,]
+            if(length(tmp) != 1){
+                distance <- as.dist(sDistance(tmpD, metric="pearson"))
+                cluster <- hclust(distance, method="average")
+                cluster_order[ind] <- cluster$order
+            }else if(length(tmp) == 1){
+                cluster_order[ind] <- 1
+            }
+        }
+    }
+    ## contruct data frame including 1st column for temporary index, 2nd for cluster order, 3rd for base/cluster ID
+    df <- data.frame(ind=1:nrow(data), cluster_order, base_order)
+    # order by: first base, then hexagon
+    ordering <- df[order(base_order,cluster_order),]$ind
+}
+RowSideColors <- sapply(1:length(base), function(x) base_order==x)
+RowSideColors <- t(RowSideColors)
+rslab <- ifelse(eTerm$adjp<0.05," (FDR<0.05)","")
+rslab <- paste(gsub(".*:","",eTerm$set_info$name), rslab, sep="")
+rownames(RowSideColors) <- rslab
+colnames(RowSideColors) <- rownames(data)
+RowSideColors <- ifelse(RowSideColors==T, "gray","white")
+RowSideColors <- RowSideColors[, ordering]
+base_order1 <- base_order[ordering]
+basesep_index <- sapply(unique(base_order1), function(x) which(base_order1[length(base_order1):1]==x)[1])
+basesep_index <- basesep_index[1:length(basesep_index)-1]
+labRow <- sapply(pvals[match(V(g)$name, names(pvals))], function(x){
+    if(x < 0.005){
+        " ***"
+    }else if(x < 0.01){
+        " **"
+    }else if(x<0.05){
+        " *"
+    }else{
+        ""
+    }
+})
+labRow <- paste(rownames(data), labRow, sep="")
+visHeatmapAdv(data=data[ordering,flag], Rowv=F, Colv=F, colormap="lightyellow-orange", zlim=c(0,0.12), keysize=1.5, RowSideColors=RowSideColors, RowSideWidth=2, RowSideLabelLocation="top", add.expr=abline(h=(basesep_index-0.5), lty=2,lwd=1,col="black"), offsetRow=-0.5, labRow=labRow[ordering], KeyValueName="Frequency", margins = c(6,6))
+</div>
+<a href="javascript:newWin('TCGA-125.png', 'TCGA-125.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-125.png', width="400" /></a>
 <div class='input'>
-# visualise using advanced heatmap
-data <- output[,6:ncol(output)]
-rownames(data) <- paste(output$setID,output$setSize,output$name, sep="_")
-<a href='visHeatmapAdv.html' target=visHeatmapAdv>visHeatmapAdv</a>(data, Rowv=F, Colv=T, colormap="darkgreen-lightgreen-lightpink-darkred", zlim=c(0,2), margins = c(7,14),cexRow=1,cexCol=1)
+# Cross-tumor mutation ubiquity versus common ancestors
+g <- net
+ind <- match(V(g)$name, rownames(ubiquity))
+net_ubiquity <- ubiquity[ind]
+net_ubiquity <- net_ubiquity[ordering]
+names(net_ubiquity) <- rownames(data)[ordering]
+library(beeswarm)
+par(las=2, mar=c(12,8,4,2)) # all axis labels horizontal
+beeswarm(net_ubiquity ~ base_order1, col=4, pch=16, horizontal=F, "ylab"="Cross-tumor mutational ubiquity", "xlab"="", labels="", ylim=c(0,1))
 </div>
-<a href="javascript:newWin('TCGA-126.png', 'TCGA-126.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-126.png', width="400" /></a>
-<div class='input'></div>
+<a href="javascript:newWin('TCGA-127.png', 'TCGA-127.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-127.png', width="400" /></a>
+<div class='input'>lbls <- eTerm$set_info$name[unique(base_order1)]
+lbls <- gsub(".*:","",lbls)
+boxplot(net_ubiquity ~ base_order1, add=T, horizontal=F, names=lbls)
+</div>
+<a href="javascript:newWin('TCGA-129.png', 'TCGA-129.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-129.png', width="400" /></a>
+<div class='input'>## Deuterostomia versus all ancestors
+stats::ks.test(x=net_ubiquity[base_order1==6], y=net_ubiquity, alternative="two.sided", exact=NULL)
+</div>
+<strong class='warning'>Warning message:
+cannot compute exact p-value with ties</strong>
+<div class='output'>
+	Two-sample Kolmogorov-Smirnov test
+
+data:  net_ubiquity[base_order1 == 6] and net_ubiquity
+D = 0.5476, p-value = 0.05472
+alternative hypothesis: two-sided
+
+</div>
+<div class='input'>## Deuterostomia versus ancestors before Deuterostomia
+stats::ks.test(x=net_ubiquity[base_order1==6], y=net_ubiquity[base_order1<6], alternative="two.sided", exact=NULL)
+</div>
+<div class='output'>
+	Two-sample Kolmogorov-Smirnov test
+
+data:  net_ubiquity[base_order1 == 6] and net_ubiquity[base_order1 < 6]
+D = 0.6786, p-value = 0.006488
+alternative hypothesis: two-sided
+
+</div>
+<div class='input'>## Deuterostomia versus ancestors after Deuterostomia
+stats::ks.test(x=net_ubiquity[base_order1==6], y=net_ubiquity[base_order1>6], alternative="two.sided", exact=NULL)
+</div>
+<div class='output'>
+	Two-sample Kolmogorov-Smirnov test
+
+data:  net_ubiquity[base_order1 == 6] and net_ubiquity[base_order1 > 6]
+D = 0.5714, p-value = 0.2121
+alternative hypothesis: two-sided
+
+</div>
+<div class='input'>
+# GOBP enrichment analysis
+data <- V(net)$name
+eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data, identity="symbol", genome="Hs", ontology="GOBP")
+</div>
+<strong class='message'>Start at 2014-04-17 22:03:32</strong>
+<strong class='message'></strong>
+<strong class='message'>First, load the ontology GOBP and its gene associations in the genome Hs (2014-04-17 22:03:32) ...</strong>
+<strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.eg.RData</strong>
+<strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.egGOBP.RData</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-17 22:03:34) ...</strong>
+<strong class='message'>	Among 42 symbols of input data, there are 42 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2014-04-17 22:03:34) ...</strong>
+<strong class='message'>	There are 1958 terms being used, each restricted within [10,20000] annotations</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-17 22:03:34) ...</strong>
+<strong class='message'>
+End at 2014-04-17 22:03:34</strong>
+<strong class='message'>Runtime in total is: 2 secs
+</strong>
+<div class='input'>## visualise the top significant terms in the GOBP heirarchy
+## first, load the GOBP ontology
+load(url("http://dnet.r-forge.r-project.org/data/Obo/ig.GOBP.RData"))
+g <- ig.GOBP
+## select the top most significant 10 terms
+nodes_query <- names(sort(eTerm$adjp)[1:10])
+nodes.highlight <- rep("red", length(nodes_query))
+names(nodes.highlight) <- nodes_query
+## induce the shortest paths (one for each significant term) to the ontology root
+subg <- <a href='dDAGinduce.html' target=dDAGinduce>dDAGinduce</a>(g, nodes_query, path.mode="shortest_paths")
+## color-code terms according to the adjust p-values (taking the form of 10-based negative logarithm)
+<a href='visDAG.html' target=visDAG>visDAG</a>(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]), node.info="both", node.attrs=list(color=nodes.highlight))
+</div>
+<a href="javascript:newWin('TCGA-151.png', 'TCGA-151.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-151.png', width="400" /></a>
+<div class='input'>
+# GOMF enrichment analysis
+data <- V(net)$name
+eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data, identity="symbol", genome="Hs", ontology="GOMF")
+</div>
+<strong class='message'>Start at 2014-04-17 22:03:39</strong>
+<strong class='message'></strong>
+<strong class='message'>First, load the ontology GOMF and its gene associations in the genome Hs (2014-04-17 22:03:39) ...</strong>
+<strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.eg.RData</strong>
+<strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.egGOMF.RData</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-17 22:03:40) ...</strong>
+<strong class='message'>	Among 42 symbols of input data, there are 42 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2014-04-17 22:03:40) ...</strong>
+<strong class='message'>	There are 572 terms being used, each restricted within [10,20000] annotations</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-17 22:03:40) ...</strong>
+<strong class='message'>
+End at 2014-04-17 22:03:40</strong>
+<strong class='message'>Runtime in total is: 1 secs
+</strong>
+<div class='input'>## visualise the top significant terms in the GOMF heirarchy
+## first, load the GOMF ontology
+load(url("http://dnet.r-forge.r-project.org/data/Obo/ig.GOMF.RData"))
+g <- ig.GOMF
+## select the top most significant 10 terms
+nodes_query <- names(sort(eTerm$adjp)[1:10])
+nodes.highlight <- rep("red", length(nodes_query))
+names(nodes.highlight) <- nodes_query
+## induce the shortest paths (one for each significant term) to the ontology root
+subg <- <a href='dDAGinduce.html' target=dDAGinduce>dDAGinduce</a>(g, nodes_query, path.mode="shortest_paths")
+## color-code terms according to the adjust p-values (taking the form of 10-based negative logarithm)
+<a href='visDAG.html' target=visDAG>visDAG</a>(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]), node.info="both", node.attrs=list(color=nodes.highlight))
+</div>
+<a href="javascript:newWin('TCGA-166.png', 'TCGA-166.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-166.png', width="400" /></a>
+<div class='input'>
+# MP enrichment analysis
+data <- V(net)$name
+eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data, identity="symbol", genome="Hs", ontology="MP", ontology.algorithm="elim")
+</div>
+<strong class='message'>Start at 2014-04-17 22:03:45</strong>
+<strong class='message'></strong>
+<strong class='message'>First, load the ontology MP and its gene associations in the genome Hs (2014-04-17 22:03:45) ...</strong>
+<strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.eg.RData</strong>
+<strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.egMP.RData</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-17 22:03:46) ...</strong>
+<strong class='message'>	Among 42 symbols of input data, there are 42 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest based on elim algorithm to respect ontology structure (2014-04-17 22:03:47) ...</strong>
+<strong class='message'>	Load ontology information from http://dnet.r-forge.r-project.org/data/Obo/ig.MP.RData</strong>
+<strong class='message'>	There are 4457 terms being used</strong>
+<strong class='message'>	At level 15, there are 3 nodes/terms: so far, a total of 1 nodes called significant, and 32 ancestral nodes changed (10 genes eliminated)</strong>
+<strong class='message'>	At level 14, there are 16 nodes/terms: so far, a total of 2 nodes called significant, and 46 ancestral nodes changed (27 genes eliminated)</strong>
+<strong class='message'>	At level 13, there are 42 nodes/terms: so far, a total of 13 nodes called significant, and 86 ancestral nodes changed (319 genes eliminated)</strong>
+<strong class='message'>	At level 12, there are 89 nodes/terms: so far, a total of 31 nodes called significant, and 122 ancestral nodes changed (725 genes eliminated)</strong>
+<strong class='message'>	At level 11, there are 138 nodes/terms: so far, a total of 52 nodes called significant, and 174 ancestral nodes changed (1061 genes eliminated)</strong>
+<strong class='message'>	At level 10, there are 210 nodes/terms: so far, a total of 77 nodes called significant, and 253 ancestral nodes changed (1371 genes eliminated)</strong>
+<strong class='message'>	At level 9, there are 363 nodes/terms: so far, a total of 118 nodes called significant, and 321 ancestral nodes changed (1992 genes eliminated)</strong>
+<strong class='message'>	At level 8, there are 615 nodes/terms: so far, a total of 184 nodes called significant, and 472 ancestral nodes changed (2956 genes eliminated)</strong>
+<strong class='message'>	At level 7, there are 835 nodes/terms: so far, a total of 273 nodes called significant, and 600 ancestral nodes changed (3932 genes eliminated)</strong>
+<strong class='message'>	At level 6, there are 889 nodes/terms: so far, a total of 348 nodes called significant, and 668 ancestral nodes changed (4734 genes eliminated)</strong>
+<strong class='message'>	At level 5, there are 797 nodes/terms: so far, a total of 421 nodes called significant, and 707 ancestral nodes changed (4988 genes eliminated)</strong>
+<strong class='message'>	At level 4, there are 359 nodes/terms: so far, a total of 448 nodes called significant, and 710 ancestral nodes changed (5211 genes eliminated)</strong>
+<strong class='message'>	At level 3, there are 71 nodes/terms: so far, a total of 452 nodes called significant, and 711 ancestral nodes changed (5713 genes eliminated)</strong>
+<strong class='message'>	At level 2, there are 29 nodes/terms: so far, a total of 452 nodes called significant, and 711 ancestral nodes changed (5713 genes eliminated)</strong>
+<strong class='message'>	At level 1, there are 1 nodes/terms: so far, a total of 452 nodes called significant, and 711 ancestral nodes changed (5713 genes eliminated)</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-17 22:04:01) ...</strong>
+<strong class='message'>
+End at 2014-04-17 22:04:02</strong>
+<strong class='message'>Runtime in total is: 17 secs
+</strong>
+<div class='input'>## visualise the top significant terms in the MP heirarchy
+## first, load the MP ontology
+load(url("http://dnet.r-forge.r-project.org/data/Obo/ig.MP.RData"))
+g <- ig.MP
+## select the top most significant 10 terms
+nodes_query <- names(sort(eTerm$pvalue)[1:10])
+nodes.highlight <- rep("red", length(nodes_query))
+names(nodes.highlight) <- nodes_query
+## induce all possible paths to the ontology root
+subg <- <a href='dDAGinduce.html' target=dDAGinduce>dDAGinduce</a>(g, nodes_query)
+## color-code terms according to the adjust p-values (taking the form of 10-based negative logarithm)
+<a href='visDAG.html' target=visDAG>visDAG</a>(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]), node.info=c("none","term_id","term_name","both","full_term_name")[5], layout.orientation=c("left_right","top_bottom","bottom_top","right_left")[1], node.attrs=list(color=nodes.highlight))
+</div>
+<a href="javascript:newWin('TCGA-197.png', 'TCGA-197.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-197.png', width="400" /></a>
+<div class='input'>
+# DO enrichment analysis
+data <- V(net)$name
+eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data, identity="symbol", genome="Hs", ontology="DO", ontology.algorithm="pc")
+</div>
+<strong class='message'>Start at 2014-04-17 22:04:11</strong>
+<strong class='message'></strong>
+<strong class='message'>First, load the ontology DO and its gene associations in the genome Hs (2014-04-17 22:04:11) ...</strong>
+<strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.eg.RData</strong>
+<strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.egDO.RData</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-17 22:04:13) ...</strong>
+<strong class='message'>	Among 42 symbols of input data, there are 42 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest based on pc algorithm to respect ontology structure (2014-04-17 22:04:13) ...</strong>
+<strong class='message'>	Load ontology information from http://dnet.r-forge.r-project.org/data/Obo/ig.DO.RData</strong>
+<strong class='message'>	There are 937 terms being used</strong>
+<strong class='message'>	At level 11, there are 10 nodes/terms</strong>
+<strong class='message'>	At level 10, there are 14 nodes/terms</strong>
+<strong class='message'>	At level 9, there are 47 nodes/terms</strong>
+<strong class='message'>	At level 8, there are 113 nodes/terms</strong>
+<strong class='message'>	At level 7, there are 187 nodes/terms</strong>
+<strong class='message'>	At level 6, there are 235 nodes/terms</strong>
+<strong class='message'>	At level 5, there are 179 nodes/terms</strong>
+<strong class='message'>	At level 4, there are 106 nodes/terms</strong>
+<strong class='message'>	At level 3, there are 37 nodes/terms</strong>
+<strong class='message'>	At level 2, there are 8 nodes/terms</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-17 22:04:16) ...</strong>
+<strong class='message'>
+End at 2014-04-17 22:04:16</strong>
+<strong class='message'>Runtime in total is: 5 secs
+</strong>
+<div class='input'>## visualise the top significant terms in the DO heirarchy
+## first, load the DO ontology
+load(url("http://dnet.r-forge.r-project.org/data/Obo/ig.DO.RData"))
+g <- ig.DO
+## select the top most significant 10 terms
+nodes_query <- names(sort(eTerm$adjp)[1:10])
+nodes.highlight <- rep("red", length(nodes_query))
+names(nodes.highlight) <- nodes_query
+## induce all possible shortest paths to the ontology root
+subg <- <a href='dDAGinduce.html' target=dDAGinduce>dDAGinduce</a>(g, nodes_query)
+## color-code terms according to the adjust p-values (taking the form of 10-based negative logarithm)
+<a href='visDAG.html' target=visDAG>visDAG</a>(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]), node.info="both", zlim=c(0,4), node.attrs=list(color=nodes.highlight))
+</div>
+<a href="javascript:newWin('TCGA-223.png', 'TCGA-223.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-223.png', width="400" /></a>
+<div class='input'>
+# Pathway enrichment analysis
+data <- V(net)$name
+## uisng CP
+eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data, identity="symbol", genome="Hs", ontology="MsigdbC2CP")
+</div>
+<strong class='message'>Start at 2014-04-17 22:04:20</strong>
+<strong class='message'></strong>
+<strong class='message'>First, load the ontology MsigdbC2CP and its gene associations in the genome Hs (2014-04-17 22:04:20) ...</strong>
+<strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.eg.RData</strong>
+<strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Msigdb/org.Hs.egMsigdbC2CP.RData</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-17 22:04:22) ...</strong>
+<strong class='message'>	Among 42 symbols of input data, there are 42 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2014-04-17 22:04:22) ...</strong>
+<strong class='message'>	There are 236 terms being used, each restricted within [10,20000] annotations</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-17 22:04:22) ...</strong>
+<strong class='message'>
+End at 2014-04-17 22:04:22</strong>
+<strong class='message'>Runtime in total is: 2 secs
+</strong>
+<div class='input'>nodes_query <- names(sort(eTerm$pvalue)[1:10])
+cbind(eTerm$set_info[nodes_query,2:3], cbind(nSet=sapply(eTerm$gs,length), nOverlap=sapply(eTerm$overlap,length), zscore=eTerm$zscore, pvalue=eTerm$pvalue, adjp=eTerm$adjp)[nodes_query,])
+</div>
+<div class='output'>                                                                                     name
+ST_GA12_PATHWAY                                                        G alpha 12 Pathway
+PID_BARD1PATHWAY                                                   BARD1 signaling events
+PID_INTEGRIN_CS_PATHWAY                         Integrin family cell surface interactions
+PID_P53REGULATIONPATHWAY                                                      p53 pathway
+PID_LIS1PATHWAY           Lissencephaly gene (LIS1) in neuronal migration and development
+PID_CXCR4_PATHWAY                                         CXCR4-mediated signaling events
+PID_FCER1PATHWAY                            Fc-epsilon receptor I signaling in mast cells
+PID_SYNDECAN_4_PATHWAY                               Syndecan-4-mediated signaling events
+PID_INTEGRIN_A4B1_PATHWAY                          Alpha4 beta1 integrin signaling events
+PID_TELOMERASEPATHWAY                                            Regulation of Telomerase
+                          namespace nSet nOverlap zscore  pvalue  adjp
+ST_GA12_PATHWAY                  C2   23        3   5.97 5.2e-05 0.012
+PID_BARD1PATHWAY                 C2   29        3   5.21 1.4e-04 0.016
+PID_INTEGRIN_CS_PATHWAY          C2   26        2   3.54 1.8e-03 0.065
+PID_P53REGULATIONPATHWAY         C2   59        3   3.28 2.1e-03 0.065
+PID_LIS1PATHWAY                  C2   28        2   3.37 2.2e-03 0.065
+PID_CXCR4_PATHWAY                C2  102        4   3.13 2.4e-03 0.065
+PID_FCER1PATHWAY                 C2   62        3   3.17 2.6e-03 0.065
+PID_SYNDECAN_4_PATHWAY           C2   32        2   3.09 3.2e-03 0.065
+PID_INTEGRIN_A4B1_PATHWAY        C2   33        2   3.02 3.5e-03 0.065
+PID_TELOMERASEPATHWAY            C2   68        3   2.95 3.6e-03 0.065
+</div>
+<div class='input'>## using KEGG
+eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data, identity="symbol", genome="Hs", ontology="MsigdbC2KEGG")
+</div>
+<strong class='message'>Start at 2014-04-17 22:04:22</strong>
+<strong class='message'></strong>
+<strong class='message'>First, load the ontology MsigdbC2KEGG and its gene associations in the genome Hs (2014-04-17 22:04:22) ...</strong>
+<strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.eg.RData</strong>
+<strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Msigdb/org.Hs.egMsigdbC2KEGG.RData</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-17 22:04:24) ...</strong>
+<strong class='message'>	Among 42 symbols of input data, there are 42 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2014-04-17 22:04:24) ...</strong>
+<strong class='message'>	There are 186 terms being used, each restricted within [10,20000] annotations</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-17 22:04:24) ...</strong>
+<strong class='message'>
+End at 2014-04-17 22:04:24</strong>
+<strong class='message'>Runtime in total is: 2 secs
+</strong>
+<div class='input'>nodes_query <- names(sort(eTerm$pvalue)[1:10])
+cbind(eTerm$set_info[nodes_query,2:3], cbind(nSet=sapply(eTerm$gs,length), nOverlap=sapply(eTerm$overlap,length), zscore=eTerm$zscore, pvalue=eTerm$pvalue, adjp=eTerm$adjp)[nodes_query,])
+</div>
+<div class='output'>                                                                                  name
+KEGG_ECM_RECEPTOR_INTERACTION                                 ECM-receptor interaction
+KEGG_AXON_GUIDANCE                                                       Axon guidance
+KEGG_HOMOLOGOUS_RECOMBINATION                                 Homologous recombination
+KEGG_LEUKOCYTE_TRANSENDOTHELIAL_MIGRATION         Leukocyte transendothelial migration
+KEGG_PANCREATIC_CANCER                                               Pancreatic cancer
+KEGG_LEISHMANIA_INFECTION                                         Leishmania infection
+KEGG_CELL_ADHESION_MOLECULES_CAMS                       Cell adhesion molecules (CAMs)
+KEGG_FOCAL_ADHESION                                                     Focal adhesion
+KEGG_PRION_DISEASES                                                     Prion diseases
+KEGG_VASOPRESSIN_REGULATED_WATER_REABSORPTION Vasopressin-regulated water reabsorption
+                                              namespace nSet nOverlap zscore
+KEGG_ECM_RECEPTOR_INTERACTION                        C2   84        5   6.22
+KEGG_AXON_GUIDANCE                                   C2  129        5   4.72
+KEGG_HOMOLOGOUS_RECOMBINATION                        C2   28        2   4.37
+KEGG_LEUKOCYTE_TRANSENDOTHELIAL_MIGRATION            C2  115        4   3.91
+KEGG_PANCREATIC_CANCER                               C2   70        3   3.89
+KEGG_LEISHMANIA_INFECTION                            C2   72        3   3.82
+KEGG_CELL_ADHESION_MOLECULES_CAMS                    C2  132        4   3.53
+KEGG_FOCAL_ADHESION                                  C2  199        5   3.42
+KEGG_PRION_DISEASES                                  C2   35        2   3.82
+KEGG_VASOPRESSIN_REGULATED_WATER_REABSORPTION        C2   44        2   3.30
+                                               pvalue   adjp
+KEGG_ECM_RECEPTOR_INTERACTION                 1.1e-05 0.0021
+KEGG_AXON_GUIDANCE                            1.3e-04 0.0120
+KEGG_HOMOLOGOUS_RECOMBINATION                 6.7e-04 0.0270
+KEGG_LEUKOCYTE_TRANSENDOTHELIAL_MIGRATION     6.8e-04 0.0270
+KEGG_PANCREATIC_CANCER                        8.9e-04 0.0270
+KEGG_LEISHMANIA_INFECTION                     9.9e-04 0.0270
+KEGG_CELL_ADHESION_MOLECULES_CAMS             1.3e-03 0.0270
+KEGG_FOCAL_ADHESION                           1.3e-03 0.0270
+KEGG_PRION_DISEASES                           1.3e-03 0.0270
+KEGG_VASOPRESSIN_REGULATED_WATER_REABSORPTION 2.5e-03 0.0470
+</div>
+<div class='input'>## uisng REACTOME
+eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data, identity="symbol", genome="Hs", ontology="MsigdbC2REACTOME")
+</div>
+<strong class='message'>Start at 2014-04-17 22:04:24</strong>
+<strong class='message'></strong>
+<strong class='message'>First, load the ontology MsigdbC2REACTOME and its gene associations in the genome Hs (2014-04-17 22:04:24) ...</strong>
+<strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.eg.RData</strong>
+<strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Msigdb/org.Hs.egMsigdbC2REACTOME.RData</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-17 22:04:26) ...</strong>
+<strong class='message'>	Among 42 symbols of input data, there are 42 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2014-04-17 22:04:26) ...</strong>
+<strong class='message'>	There are 662 terms being used, each restricted within [10,20000] annotations</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-17 22:04:26) ...</strong>
+<strong class='message'>
+End at 2014-04-17 22:04:26</strong>
+<strong class='message'>Runtime in total is: 2 secs
+</strong>
+<div class='input'>nodes_query <- names(sort(eTerm$pvalue)[1:10])
+cbind(eTerm$set_info[nodes_query,2:3], cbind(nSet=sapply(eTerm$gs,length), nOverlap=sapply(eTerm$overlap,length), zscore=eTerm$zscore, pvalue=eTerm$pvalue, adjp=eTerm$adjp)[nodes_query,])
+</div>
+<div class='output'>                                                                                                                                                                                      name
+REACTOME_NCAM_SIGNALING_FOR_NEURITE_OUT_GROWTH                                                                                     Genes involved in NCAM signaling for neurite out-growth
+REACTOME_AXON_GUIDANCE                                                                                                                                     Genes involved in Axon guidance
+REACTOME_NCAM1_INTERACTIONS                                                                                                                           Genes involved in NCAM1 interactions
+REACTOME_DEVELOPMENTAL_BIOLOGY                                                                                                                     Genes involved in Developmental Biology
+REACTOME_HOMOLOGOUS_RECOMBINATION_REPAIR_OF_REPLICATION_INDEPENDENT_DOUBLE_STRAND_BREAKS Genes involved in Homologous recombination repair of replication-independent double-strand breaks
+REACTOME_HS_GAG_DEGRADATION                                                                                                                           Genes involved in HS-GAG degradation
+REACTOME_DOUBLE_STRAND_BREAK_REPAIR                                                                                                           Genes involved in Double-Strand Break Repair
+REACTOME_A_TETRASACCHARIDE_LINKER_SEQUENCE_IS_REQUIRED_FOR_GAG_SYNTHESIS                                 Genes involved in A tetrasaccharide linker sequence is required for GAG synthesis
+REACTOME_LIPOPROTEIN_METABOLISM                                                                                                                   Genes involved in Lipoprotein metabolism
+REACTOME_ADAPTIVE_IMMUNE_SYSTEM                                                                                                                   Genes involved in Adaptive Immune System
+                                                                                         namespace
+REACTOME_NCAM_SIGNALING_FOR_NEURITE_OUT_GROWTH                                                  C2
+REACTOME_AXON_GUIDANCE                                                                          C2
+REACTOME_NCAM1_INTERACTIONS                                                                     C2
+REACTOME_DEVELOPMENTAL_BIOLOGY                                                                  C2
+REACTOME_HOMOLOGOUS_RECOMBINATION_REPAIR_OF_REPLICATION_INDEPENDENT_DOUBLE_STRAND_BREAKS        C2
+REACTOME_HS_GAG_DEGRADATION                                                                     C2
+REACTOME_DOUBLE_STRAND_BREAK_REPAIR                                                             C2
+REACTOME_A_TETRASACCHARIDE_LINKER_SEQUENCE_IS_REQUIRED_FOR_GAG_SYNTHESIS                        C2
+REACTOME_LIPOPROTEIN_METABOLISM                                                                 C2
+REACTOME_ADAPTIVE_IMMUNE_SYSTEM                                                                 C2
+                                                                                         nSet
+REACTOME_NCAM_SIGNALING_FOR_NEURITE_OUT_GROWTH                                             64
+REACTOME_AXON_GUIDANCE                                                                    242
+REACTOME_NCAM1_INTERACTIONS                                                                39
+REACTOME_DEVELOPMENTAL_BIOLOGY                                                            387
+REACTOME_HOMOLOGOUS_RECOMBINATION_REPAIR_OF_REPLICATION_INDEPENDENT_DOUBLE_STRAND_BREAKS   16
+REACTOME_HS_GAG_DEGRADATION                                                                20
+REACTOME_DOUBLE_STRAND_BREAK_REPAIR                                                        23
+REACTOME_A_TETRASACCHARIDE_LINKER_SEQUENCE_IS_REQUIRED_FOR_GAG_SYNTHESIS                   25
+REACTOME_LIPOPROTEIN_METABOLISM                                                            28
+REACTOME_ADAPTIVE_IMMUNE_SYSTEM                                                           523
+                                                                                         nOverlap
+REACTOME_NCAM_SIGNALING_FOR_NEURITE_OUT_GROWTH                                                  5
+REACTOME_AXON_GUIDANCE                                                                          8
+REACTOME_NCAM1_INTERACTIONS                                                                     4
+REACTOME_DEVELOPMENTAL_BIOLOGY                                                                  8
+REACTOME_HOMOLOGOUS_RECOMBINATION_REPAIR_OF_REPLICATION_INDEPENDENT_DOUBLE_STRAND_BREAKS        2
+REACTOME_HS_GAG_DEGRADATION                                                                     2
+REACTOME_DOUBLE_STRAND_BREAK_REPAIR                                                             2
+REACTOME_A_TETRASACCHARIDE_LINKER_SEQUENCE_IS_REQUIRED_FOR_GAG_SYNTHESIS                        2
+REACTOME_LIPOPROTEIN_METABOLISM                                                                 2
+REACTOME_ADAPTIVE_IMMUNE_SYSTEM                                                                 8
+                                                                                         zscore
+REACTOME_NCAM_SIGNALING_FOR_NEURITE_OUT_GROWTH                                             8.96
+REACTOME_AXON_GUIDANCE                                                                     6.88
+REACTOME_NCAM1_INTERACTIONS                                                                9.29
+REACTOME_DEVELOPMENTAL_BIOLOGY                                                             5.00
+REACTOME_HOMOLOGOUS_RECOMBINATION_REPAIR_OF_REPLICATION_INDEPENDENT_DOUBLE_STRAND_BREAKS   7.30
+REACTOME_HS_GAG_DEGRADATION                                                                6.47
+REACTOME_DOUBLE_STRAND_BREAK_REPAIR                                                        5.99
+REACTOME_A_TETRASACCHARIDE_LINKER_SEQUENCE_IS_REQUIRED_FOR_GAG_SYNTHESIS                   5.72
+REACTOME_LIPOPROTEIN_METABOLISM                                                            5.37
+REACTOME_ADAPTIVE_IMMUNE_SYSTEM                                                            3.94
+                                                                                          pvalue
+REACTOME_NCAM_SIGNALING_FOR_NEURITE_OUT_GROWTH                                           2.5e-07
+REACTOME_AXON_GUIDANCE                                                                   4.7e-07
+REACTOME_NCAM1_INTERACTIONS                                                              5.7e-07
+REACTOME_DEVELOPMENTAL_BIOLOGY                                                           2.3e-05
+REACTOME_HOMOLOGOUS_RECOMBINATION_REPAIR_OF_REPLICATION_INDEPENDENT_DOUBLE_STRAND_BREAKS 4.1e-05
+REACTOME_HS_GAG_DEGRADATION                                                              8.2e-05
+REACTOME_DOUBLE_STRAND_BREAK_REPAIR                                                      1.3e-04
+REACTOME_A_TETRASACCHARIDE_LINKER_SEQUENCE_IS_REQUIRED_FOR_GAG_SYNTHESIS                 1.6e-04
+REACTOME_LIPOPROTEIN_METABOLISM                                                          2.3e-04
+REACTOME_ADAPTIVE_IMMUNE_SYSTEM                                                          2.5e-04
+                                                                                            adjp
+REACTOME_NCAM_SIGNALING_FOR_NEURITE_OUT_GROWTH                                           0.00013
+REACTOME_AXON_GUIDANCE                                                                   0.00013
+REACTOME_NCAM1_INTERACTIONS                                                              0.00013
+REACTOME_DEVELOPMENTAL_BIOLOGY                                                           0.00380
+REACTOME_HOMOLOGOUS_RECOMBINATION_REPAIR_OF_REPLICATION_INDEPENDENT_DOUBLE_STRAND_BREAKS 0.00540
+REACTOME_HS_GAG_DEGRADATION                                                              0.00900
+REACTOME_DOUBLE_STRAND_BREAK_REPAIR                                                      0.01200
+REACTOME_A_TETRASACCHARIDE_LINKER_SEQUENCE_IS_REQUIRED_FOR_GAG_SYNTHESIS                 0.01300
+REACTOME_LIPOPROTEIN_METABOLISM                                                          0.01500
+REACTOME_ADAPTIVE_IMMUNE_SYSTEM                                                          0.01500
+</div>
+<div class='input'>## uisng BIOCARTA
+eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data, identity="symbol", genome="Hs", ontology="MsigdbC2BIOCARTA")
+</div>
+<strong class='message'>Start at 2014-04-17 22:04:26</strong>
+<strong class='message'></strong>
+<strong class='message'>First, load the ontology MsigdbC2BIOCARTA and its gene associations in the genome Hs (2014-04-17 22:04:26) ...</strong>
+<strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.eg.RData</strong>
+<strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Msigdb/org.Hs.egMsigdbC2BIOCARTA.RData</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-17 22:04:28) ...</strong>
+<strong class='message'>	Among 42 symbols of input data, there are 42 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2014-04-17 22:04:28) ...</strong>
+<strong class='message'>	There are 214 terms being used, each restricted within [10,20000] annotations</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-17 22:04:28) ...</strong>
+<strong class='message'>
+End at 2014-04-17 22:04:28</strong>
+<strong class='message'>Runtime in total is: 2 secs
+</strong>
+<div class='input'>nodes_query <- names(sort(eTerm$pvalue)[1:10])
+cbind(eTerm$set_info[nodes_query,2:3], cbind(nSet=sapply(eTerm$gs,length), nOverlap=sapply(eTerm$overlap,length), zscore=eTerm$zscore, pvalue=eTerm$pvalue, adjp=eTerm$adjp)[nodes_query,])
+</div>
+<div class='output'>                                                                           name
+BIOCARTA_ATM_PATHWAY                                      ATM Signaling Pathway
+BIOCARTA_ATRBRCA_PATHWAY  Role of BRCA1, BRCA2 and ATR in Cancer Susceptibility
+BIOCARTA_CHEMICAL_PATHWAY         Apoptotic Signaling in Response to DNA Damage
+BIOCARTA_MONOCYTE_PATHWAY                    Monocyte and its Surface Molecules
+BIOCARTA_ARF_PATHWAY         Tumor Suppressor Arf Inhibits Ribosomal Biogenesis
+BIOCARTA_G1_PATHWAY                                Cell Cycle: G1/S Check Point
+BIOCARTA_EPHA4_PATHWAY     Eph Kinases and ephrins support platelet aggregation
+BIOCARTA_RNA_PATHWAY                Double Stranded RNA Induced Gene Expression
+BIOCARTA_BCR_PATHWAY                                      BCR Signaling Pathway
+BIOCARTA_LYM_PATHWAY                     Adhesion and Diapedesis of Lymphocytes
+                          namespace nSet nOverlap zscore  pvalue   adjp
+BIOCARTA_ATM_PATHWAY             C2   20        3   5.96 4.3e-05 0.0045
+BIOCARTA_ATRBRCA_PATHWAY         C2   21        3   5.79 5.2e-05 0.0045
+BIOCARTA_CHEMICAL_PATHWAY        C2   22        3   5.64 6.3e-05 0.0045
+BIOCARTA_MONOCYTE_PATHWAY        C2   11        2   5.41 1.7e-04 0.0093
+BIOCARTA_ARF_PATHWAY             C2   17        2   4.21 6.9e-04 0.0290
+BIOCARTA_G1_PATHWAY              C2   28        2   3.07 3.1e-03 0.1100
+BIOCARTA_EPHA4_PATHWAY           C2   10        1   2.68 4.9e-03 0.1300
+BIOCARTA_RNA_PATHWAY             C2   10        1   2.68 4.9e-03 0.1300
+BIOCARTA_BCR_PATHWAY             C2   35        2   2.63 5.9e-03 0.1300
+BIOCARTA_LYM_PATHWAY             C2   11        1   2.53 6.0e-03 0.1300
+</div>
+<div class='input'>
+# SCOP superfamily domain enrichment analysis
+data <- V(net)$name
+eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data, identity="symbol", genome="Hs", ontology="SF")
+</div>
+<strong class='message'>Start at 2014-04-17 22:04:28</strong>
+<strong class='message'></strong>
+<strong class='message'>First, load the ontology SF and its gene associations in the genome Hs (2014-04-17 22:04:28) ...</strong>
+<strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.eg.RData</strong>
+<strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.egSF.RData</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-17 22:04:30) ...</strong>
+<strong class='message'>	Among 42 symbols of input data, there are 42 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2014-04-17 22:04:30) ...</strong>
+<strong class='message'>	There are 366 terms being used, each restricted within [10,20000] annotations</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-17 22:04:30) ...</strong>
+<strong class='message'>
+End at 2014-04-17 22:04:30</strong>
+<strong class='message'>Runtime in total is: 2 secs
+</strong>
+<div class='input'>nodes_query <- names(sort(eTerm$pvalue)[1:10])
+cbind(eTerm$set_info[nodes_query,2:3], cbind(nSet=sapply(eTerm$gs,length), nOverlap=sapply(eTerm$overlap,length), zscore=eTerm$zscore, pvalue=eTerm$pvalue, adjp=eTerm$adjp)[nodes_query,])
+</div>
+<div class='output'>                                   name namespace nSet nOverlap zscore  pvalue
+49265              Fibronectin type III        sf  567        6   6.87 2.4e-06
+117839                       WWE domain        sf   14        2  10.70 4.4e-06
+55550                        SH2 domain        sf  121        4   6.28 2.2e-05
+47769                SAM/Pointed domain        sf  135        4   6.15 2.6e-05
+69318  Integrin alpha N-terminal domain        sf   23        2   7.25 4.6e-05
+69179                  Integrin domains        sf   60        2   6.94 6.0e-05
+56204  Hect, E3 ligase catalytic domain        sf   27        2   6.65 7.6e-05
+49785     Galactose-binding domain-like        sf   84        3   5.73 8.5e-05
+50729                    PH domain-like        sf  503        6   4.19 2.7e-04
+49417    p53-like transcription factors        sf   43        2   5.14 3.1e-04
+          adjp
+49265  0.00081
+117839 0.00081
+55550  0.00240
+47769  0.00240
+69318  0.00340
+69179  0.00370
+56204  0.00390
+49785  0.00390
+50729  0.01100
+49417  0.01100
+</div>
+<div class='input'>
+# TFBS enrichment analysis
+data <- V(net)$name
+eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data, identity="symbol", genome="Hs", ontology="MsigdbC3TFT")
+</div>
+<strong class='message'>Start at 2014-04-17 22:04:30</strong>
+<strong class='message'></strong>
+<strong class='message'>First, load the ontology MsigdbC3TFT and its gene associations in the genome Hs (2014-04-17 22:04:30) ...</strong>
+<strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.eg.RData</strong>
+<strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Msigdb/org.Hs.egMsigdbC3TFT.RData</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-17 22:04:32) ...</strong>
+<strong class='message'>	Among 42 symbols of input data, there are 42 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2014-04-17 22:04:32) ...</strong>
+<strong class='message'>	There are 614 terms being used, each restricted within [10,20000] annotations</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-17 22:04:33) ...</strong>
+<strong class='message'>
+End at 2014-04-17 22:04:33</strong>
+<strong class='message'>Runtime in total is: 3 secs
+</strong>
+<div class='input'>nodes_query <- names(sort(eTerm$pvalue)[1:10])
+cbind(eTerm$set_info[nodes_query,2:3], cbind(nSet=sapply(eTerm$gs,length), nOverlap=sapply(eTerm$overlap,length), zscore=eTerm$zscore, pvalue=eTerm$pvalue, adjp=eTerm$adjp)[nodes_query,])
+</div>
+<div class='output'>                                                                                                                                                                                                                                                     name
+V$FOXM1_01                                                                                      Genes with promoter regions [-2kb,2kb] around transcription start site containing the motif ARATKGAST which matches annotation for FOXM1: forkhead box M1
+V$AHR_01                                                                       Genes with promoter regions [-2kb,2kb] around transcription start site containing the motif CCYCNRRSTNGCGTGASA which matches annotation for AHR: aryl hydrocarbon receptor
+V$EVI1_01                                                              Genes with promoter regions [-2kb,2kb] around transcription start site containing the motif WGAYAAGATAAGATAA which matches annotation for EVI1: ecotropic viral integration site 1
+RRCCGTTA_UNKNOWN                                                                                    Genes with promoter regions [-2kb,2kb] around transcription start site containing motif RRCCGTTA. Motif does not match any known transcription factor
+V$TCF11MAFG_01     Genes with promoter regions [-2kb,2kb] around transcription start site containing the motif NNNNNATGACTCAGCANTTNNG which matches annotation for TCF11&lt;br&gt; MAFG: v-maf musculoaponeurotic fibrosarcoma oncogene homolog G (avian)
+AACTTT_UNKNOWN                                                                                        Genes with promoter regions [-2kb,2kb] around transcription start site containing motif AACTTT. Motif does not match any known transcription factor
+KCCGNSWTTT_UNKNOWN                                                                                Genes with promoter regions [-2kb,2kb] around transcription start site containing motif KCCGNSWTTT. Motif does not match any known transcription factor
+V$E2F1_Q4_01                                                            Genes with promoter regions [-2kb,2kb] around transcription start site containing the motif TTTSGCGSG which matches annotation for E2F&lt;br&gt; TFDP1: transcription factor Dp-1
+V$E2F_Q3_01                                                             Genes with promoter regions [-2kb,2kb] around transcription start site containing the motif TTTSGCGSG which matches annotation for E2F&lt;br&gt; TFDP1: transcription factor Dp-1
+V$MEIS1_01                                 Genes with promoter regions [-2kb,2kb] around transcription start site containing the motif NNNTGACAGNNN which matches annotation for MEIS1: Meis1, myeloid ecotropic viral integration site 1 homolog (mouse)
+                   namespace nSet nOverlap zscore  pvalue adjp
+V$FOXM1_01                C3  246        4   4.17 0.00045 0.16
+V$AHR_01                  C3   64        2   4.45 0.00065 0.16
+V$EVI1_01                 C3   16        1   4.64 0.00081 0.16
+RRCCGTTA_UNKNOWN          C3   87        2   3.69 0.00160 0.16
+V$TCF11MAFG_01            C3  207        3   3.33 0.00210 0.16
+AACTTT_UNKNOWN            C3 1886       11   2.89 0.00240 0.16
+KCCGNSWTTT_UNKNOWN        C3  105        2   3.27 0.00270 0.16
+V$E2F1_Q4_01              C3  228        3   3.10 0.00300 0.16
+V$E2F_Q3_01               C3  235        3   3.03 0.00340 0.16
+V$MEIS1_01                C3  238        3   3.00 0.00350 0.16
+</div>
+<div class='input'>
+# miRNA target enrichment analysis
+data <- V(net)$name
+eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data, identity="symbol", genome="Hs", ontology="MsigdbC3MIR")
+</div>
+<strong class='message'>Start at 2014-04-17 22:04:33</strong>
+<strong class='message'></strong>
+<strong class='message'>First, load the ontology MsigdbC3MIR and its gene associations in the genome Hs (2014-04-17 22:04:33) ...</strong>
+<strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.eg.RData</strong>
+<strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Msigdb/org.Hs.egMsigdbC3MIR.RData</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-17 22:04:35) ...</strong>
+<strong class='message'>	Among 42 symbols of input data, there are 42 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2014-04-17 22:04:35) ...</strong>
+<strong class='message'>	There are 212 terms being used, each restricted within [10,20000] annotations</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-17 22:04:35) ...</strong>
+<strong class='message'>
+End at 2014-04-17 22:04:35</strong>
+<strong class='message'>Runtime in total is: 2 secs
+</strong>
+<div class='input'>nodes_query <- names(sort(eTerm$pvalue)[1:10])
+cbind(eTerm$set_info[nodes_query,2:3], cbind(nSet=sapply(eTerm$gs,length), nOverlap=sapply(eTerm$overlap,length), zscore=eTerm$zscore, pvalue=eTerm$pvalue, adjp=eTerm$adjp)[nodes_query,])
+</div>
+<div class='output'>                                                                   name
+GTCTTCC,MIR-7                         Targets of MicroRNA GTCTTCC,MIR-7
+TATCTGG,MIR-488                     Targets of MicroRNA TATCTGG,MIR-488
+ATACCTC,MIR-202                     Targets of MicroRNA ATACCTC,MIR-202
+AAGCCAT,MIR-135A,MIR-135B Targets of MicroRNA AAGCCAT,MIR-135A,MIR-135B
+AAAGGGA,MIR-204,MIR-211     Targets of MicroRNA AAAGGGA,MIR-204,MIR-211
+CACCAGC,MIR-138                     Targets of MicroRNA CACCAGC,MIR-138
+AGGAAGC,MIR-516-3P               Targets of MicroRNA AGGAAGC,MIR-516-3P
+CACTTTG,MIR-520G,MIR-520H Targets of MicroRNA CACTTTG,MIR-520G,MIR-520H
+CCTGAGT,MIR-510                     Targets of MicroRNA CCTGAGT,MIR-510
+CCATCCA,MIR-432                     Targets of MicroRNA CCATCCA,MIR-432
+                          namespace nSet nOverlap zscore  pvalue adjp
+GTCTTCC,MIR-7                    C3  169        4   4.07 0.00052 0.11
+TATCTGG,MIR-488                  C3   62        2   3.52 0.00190 0.20
+ATACCTC,MIR-202                  C3  179        3   2.72 0.00550 0.34
+AAGCCAT,MIR-135A,MIR-135B        C3  334        4   2.34 0.01000 0.34
+AAAGGGA,MIR-204,MIR-211          C3  224        3   2.24 0.01200 0.34
+CACCAGC,MIR-138                  C3  226        3   2.22 0.01200 0.34
+AGGAAGC,MIR-516-3P               C3  123        2   2.16 0.01300 0.34
+CACTTTG,MIR-520G,MIR-520H        C3  237        3   2.13 0.01400 0.34
+CCTGAGT,MIR-510                  C3   45        1   1.93 0.01400 0.34
+CCATCCA,MIR-432                  C3   60        1   1.55 0.02400 0.38
+</div>
       </pre>
     </div>
 
@@ -506,17 +1213,19 @@ rownames(data) <- paste(output$setID,output$setSize,output$name, sep="_")
     <h2>Functions used in this demo</h2>
     <ul>
       <li><a href="dNetInduce.html">dNetInduce</a></li>
-      <li><a href="dRWR.html">dRWR</a></li>
-      <li><a href="visHeatmapAdv.html">visHeatmapAdv</a></li>
+      <li><a href="dNetPipeline.html">dNetPipeline</a></li>
+      <li><a href="dCommSignif.html">dCommSignif</a></li>
       <li><a href="visNet.html">visNet</a></li>
+      <li><a href="dNetReorder.html">dNetReorder</a></li>
+      <li><a href="visNetReorder.html">visNetReorder</a></li>
       <li><a href="dGSEA.html">dGSEA</a></li>
-      <li><a href="dGSEAview.html">dGSEAview</a></li>
-      <li><a href="visGSEA.html">visGSEA</a></li>
-      <li><a href="dGSEAwrite.html">dGSEAwrite</a></li>
+      <li><a href="dEnricher.html">dEnricher</a></li>
+      <li><a href="dDAGinduce.html">dDAGinduce</a></li>
+      <li><a href="visDAG.html">visDAG</a></li>
     </ul>
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of digitised data in terms of network, ontology and evolution. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of digitised data in terms of network, ontology and evolution. R package version 1.0.1. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

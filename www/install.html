@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Install @ dnet 1.0.0</title>
+<title>Install @ dnet 1.0.1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Hai Fang and Julian Gough">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.0</a>
+      <a class="brand" href="index.html">dnet 1.0.1</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -110,21 +110,22 @@
   
     <h1>Installation</h1><p>
   
-    <h2>1. R requirement and installation</h2>
+    <h2>1. R requirement</h2>
 
-<p>R (<a href="http://www.r-project.org">http://www.r-project.org</a>) is a language and environment for statistical computing and graphics. We assume R (version 3.0.3) has been installed in your local machine. It can be installed following quick instructions below for different platforms (Windows, Mac, and Linux).</p>
+<p>R (<a href="http://www.r-project.org">http://www.r-project.org</a>) is a language and environment for statistical computing and graphics. We assume R (version 3.1.0) has been installed in your local machine. It can be installed following quick instructions below for different platforms (Windows, Mac, and Linux).</p>
 
 <ul>
-<li><p>Quick link for <code>Windows</code> and <code>Mac</code>: <a href="http://www.stats.bris.ac.uk/R/bin/windows/base/R-3.0.3-win.exe">Download R for Windows</a> and <a href="http://www.stats.bris.ac.uk/R/bin/macosx/R-latest.pkg">Download R for Mac</a>.</p></li>
+<li>Quick link for <code>Windows</code>: <a href="http://www.stats.bris.ac.uk/R/bin/windows/base/R-3.1.0-win.exe">Download R for Windows</a>.</li>
+<li><p>Quick link for <code>Mac</code>: <a href="http://cran.r-project.org/bin/macosx/R-3.1.0-snowleopard.pkg">Download R for Mac OS X 10.6 (Snow Leopard or higher)</a>.</p></li>
 <li><p>Below are <code>shell command lines in Terminal</code> (for <code>Linux</code>):</p></li>
 </ul>
 
 <p>Assume you have a <code>ROOT (sudo)</code> privilege:</p>
 
 <pre><code>sudo su
-wget http://www.stats.bris.ac.uk/R/src/base/R-3/R-3.0.3.tar.gz
-tar xvfz R-3.0.3.tar.gz
-cd R-3.0.3
+wget http://www.stats.bris.ac.uk/R/src/base/R-3/R-3.1.0.tar.gz
+tar xvfz R-3.1.0.tar.gz
+cd R-3.1.0
 ./configure
 make
 make check
@@ -134,50 +135,43 @@ R # start R
 
 <p>Assume you do not have a ROOT privilege and want R installation under your home directory (below <code>/home/hfang</code> should be replaced with yours):</p>
 
-<pre><code>wget http://www.stats.bris.ac.uk/R/src/base/R-3/R-3.0.3.tar.gz
-tar xvfz R-3.0.3.tar.gz
-cd R-3.0.3
-./configure --prefix=/home/hfang/R-3.0.3
+<pre><code>wget http://www.stats.bris.ac.uk/R/src/base/R-3/R-3.1.0.tar.gz
+tar xvfz R-3.1.0.tar.gz
+cd R-3.1.0
+./configure --prefix=/home/hfang/R-3.1.0
 make
 make check
 make install
-/home/hfang/R-3.0.3/bin/R # start R
+/home/hfang/R-3.1.0/bin/R # start R
 </code></pre>
 
-<h2>2. Install the packages from CRAN (Bioconductor &amp; R-Forge)</h2>
+<h2>2. Installation of the package</h2>
 
 <p>Notes: below are <code>R command lines (NOT shell command lines in Terminal)</code>.</p>
 
-<p>To install <a href="http://cran.r-project.org/package=dnet">stable release version</a>, run:</p>
+<p>First, install dependant/imported/suggested packages:</p>
 
 <pre><code>source(&quot;http://bioconductor.org/biocLite.R&quot;)
-biocLite(pkgs=c(&quot;supraHex&quot;,&quot;graph&quot;,&quot;Rgraphviz&quot;))
-install.packages(&quot;dnet&quot;,repos=&quot;http://cran.r-project.org&quot;,type=&quot;source&quot;)
-</code></pre>
-
-<p>To install <a href="http://r-forge.r-project.org/projects/dnet">latest development version</a> (<code>highly recommended</code> for benefits of latest improvements), run:</p>
-
-<pre><code>## First, install from CRAN
-list.pkg &lt;- c(&quot;ape&quot;,&quot;igraph&quot;)
-for(pkg in list.pkg){
-    if(!require(pkg, character.only=T)){
-        install.packages(pkg,repos=&quot;http://www.stats.bris.ac.uk/R&quot;,dependencies=T)
-    }
-}
-
-## Second, install from Bioconductor
-list.pkg &lt;- c(&quot;graph&quot;,&quot;Rgraphviz&quot;,&quot;affy&quot;,&quot;limma&quot;)
-source(&quot;http://bioconductor.org/biocLite.R&quot;)
-for(pkg in list.pkg){
+for(pkg in c(&quot;igraph&quot;,&quot;supraHex&quot;,&quot;hexbin&quot;,&quot;ape&quot;,&quot;graph&quot;,&quot;Rgraphviz&quot;,&quot;affy&quot;,&quot;limma&quot;,&quot;survival&quot;)){
     if(!require(pkg, character.only=T)) biocLite(pkg)
 }
-
-## Last, install from R-Forge
-list.pkg &lt;- c(&quot;supraHex&quot;,&quot;dnet&quot;)
-for(pkg in list.pkg){
-    install.packages(pkg,repos=&quot;http://R-Forge.R-project.org&quot;, type=&quot;source&quot;)
-}
 </code></pre>
+
+<p>Second, install the package <code>dnet</code> under <a href="http://cran.r-project.org/package=dnet">stable release version</a>:</p>
+
+<pre><code>install.packages(&quot;dnet&quot;,repos=&quot;http://cran.r-project.org&quot;,type=&quot;source&quot;)
+</code></pre>
+
+<p>Notes: to install the package <code>dnet</code> under <a href="http://r-forge.r-project.org/projects/dnet">latest development version</a>, please run:</p>
+
+<pre><code>install.packages(pkgs=c(&quot;dnet&quot;,&quot;supraHex&quot;),repos=&quot;http://R-Forge.R-project.org&quot;, type=&quot;source&quot;)
+</code></pre>
+
+<h2>3. Workflow of the package</h2>
+
+<p>It provides a brief overview of how the package operates and what you expect to get from it.</p>
+
+<p><a href="javascript:newWin('dnet_workflow.png', 'dnet_workflow.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #0000FF;box-shadow:5px 5px 2px #C0C0FF;" src='dnet_workflow.png', width="800px" /></a></p>
 
 
   </div>
@@ -193,7 +187,7 @@ for(pkg in list.pkg){
     </ul>
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of digitised data in terms of network, ontology and evolution. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of digitised data in terms of network, ontology and evolution. R package version 1.0.1. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <h2>Author</h2>

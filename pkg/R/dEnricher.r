@@ -217,19 +217,9 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
     ################
     
     ###############################
-    allGeneID <- EG$gene_info$GeneID
-    allSymbol <- as.vector(EG$gene_info$Symbol)
-    allSynonyms <- as.vector(EG$gene_info$Synonyms)
+    # A function converting from symbol to entrezgene
+    symbol2entrezgene <- function(Symbol, check.symbol.identity, allGeneID, allSymbol, allSynonyms, verbose){
     
-    if(verbose){
-        now <- Sys.time()
-        message(sprintf("Then, do mapping based on %s (%s) ...", identity, as.character(now)), appendLF=T)
-    }
-    
-    if(identity == "symbol"){
-    
-        Symbol <- data
-        
         ## correct for those symbols being shown as DATE format
         if(1){
             ## for those starting with 'Mar' in a excel-input date format
@@ -285,7 +275,7 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
             
             if(verbose){
                 now <- Sys.time()
-                message(sprintf("\tAmong %d symbols of input data, there are %d mappable via official gene symbols, %d mappable via gene alias, but %d left unmappable", length(Symbol), (length(Symbol)-length(a)), sum(!is.na(b)), sum(is.na(b))), appendLF=T)
+                message(sprintf("\tAmong %d symbols of input data, there are %d mappable via official gene symbols, %d mappable via gene alias but %d left unmappable", length(Symbol), (length(Symbol)-length(a)), sum(!is.na(b)), sum(is.na(b))), appendLF=T)
             }
         }else{
             if(verbose){
@@ -297,6 +287,25 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
         
         ## convert into GeneID
         GeneID <- allGeneID[match_flag]
+        
+        return(GeneID)
+    }
+    
+    ###############################
+    
+    allGeneID <- EG$gene_info$GeneID
+    allSymbol <- as.vector(EG$gene_info$Symbol)
+    allSynonyms <- as.vector(EG$gene_info$Synonyms)
+    
+    if(verbose){
+        now <- Sys.time()
+        message(sprintf("Then, do mapping based on %s (%s) ...", identity, as.character(now)), appendLF=T)
+    }
+    
+    if(identity == "symbol"){
+    
+        Symbol <- data
+        GeneID <- symbol2entrezgene(Symbol=Symbol, check.symbol.identity=check.symbol.identity, allGeneID=allGeneID, allSymbol=allSymbol, allSynonyms=allSynonyms, verbose=verbose)
         
     }else{
         GeneID <- data
@@ -792,8 +801,27 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
         message(sprintf("Last, adjust the p-values using the %s method (%s) ...", p.adjust.method, as.character(now)), appendLF=T)
     }
 
+    overlaps <- sapply(names(gs), function(term){
+        genes.term <- as.numeric(unique(unlist(gs[term])))
+        intersect(genes.group, genes.term)
+
+    })
+    ## for those with only 1 overlaps will be forced to pvalue=1
+    flag_filter <- sapply(overlaps, function(x) ifelse(length(x)>=0,T,F))
+    
+    zscores[is.na(zscores)] <- 0
+    zscores <- signif(zscores, digits=3)
+    zscores <- zscores[flag_filter]
+    
+    pvals <- sapply(pvals, function(x) min(x,1))
+    pvals <- pvals[flag_filter]
+    
     ## Adjust P-values for multiple comparisons
     adjpvals <- stats::p.adjust(pvals, method=p.adjust.method)
+    
+    pvals <- signif(pvals, digits=2)
+    adjpvals <- sapply(adjpvals, function(x) min(x,1))
+    adjpvals <- signif(adjpvals, digits=2)
     
     ####################################################################################
     endT <- Sys.time()
@@ -802,23 +830,10 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
     runTime <- as.numeric(difftime(strptime(endT, "%Y-%m-%d %H:%M:%S"), strptime(startT, "%Y-%m-%d %H:%M:%S"), units="secs"))
     message(paste(c("Runtime in total is: ",runTime," secs\n"), collapse=""), appendLF=T)
     
-    zscores[is.na(zscores)] <- 0
-    zscores <- signif(zscores, digits=3)
-    pvals <- sapply(pvals, function(x) min(x,1))
-    pvals <- signif(pvals, digits=2)
-    adjpvals <- sapply(adjpvals, function(x) min(x,1))
-    adjpvals <- signif(adjpvals, digits=2)
-    
-    overlaps <- sapply(terms, function(term){
-        genes.term <- as.numeric(unique(unlist(gs[term])))
-        intersect(genes.group, genes.term)
-
-    })
-    
-    eTerm <- list(set_info = set_info,
-                  gs       = gs,
+    eTerm <- list(set_info = set_info[flag_filter,],
+                  gs       = gs[flag_filter],
                   data     = data,
-                  overlap  = overlaps,
+                  overlap  = overlaps[flag_filter],
                   zscore   = zscores,
                   pvalue   = pvals,
                   adjp     = adjpvals,
