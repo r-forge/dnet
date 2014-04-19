@@ -21,13 +21,13 @@ load(url("http://dnet.r-forge.r-project.org/data/Datasets/TCGA_mutations.RData")
 eset <- TCGA_mutations
 # extract information about phenotype data
 pd <- pData(eset)
-pd[1:5,]
+pd[1:3,]
 # extract information about feature/gene data
 fd <- fData(eset)
-fd[1:5,]
+fd[1:3,]
 # extract information about mutational data
 md <- exprs(eset)
-md[1:5,1:5]
+md[1:3,1:3]
 # number of samples for each cancer type
 table(pData(eset)$TCGA_tumor_type)
 tumor_type <- sort(unique(pData(eset)$TCGA_tumor_type))
@@ -60,27 +60,27 @@ pvals <- gene_signif[,2]
 # An igraph object that contains a functional protein association network in human. The network is extracted from the STRING database (version 9.1). Only those associations with medium confidence (score>=400) are retained.
 load(url("http://dnet.r-forge.r-project.org/data/Hs/org.Hs.string.RData"))
 # restrict to those edges with high confidence (score>=700)
-g <- subgraph.edges(org.Hs.string, eids=E(org.Hs.string)[combined_score>=700])
-g
+network <- subgraph.edges(org.Hs.string, eids=E(org.Hs.string)[combined_score>=700])
+network
 
-# extract network that only contains genes in eset
-ind <- match(V(g)$symbol, names(pvals))
+# extract network that only contains genes in pvals
+ind <- match(V(network)$symbol, names(pvals))
 ## for extracted graph
-nodes_mapped <- V(g)$name[!is.na(ind)]
-network <- dNetInduce(g, nodes_query=nodes_mapped, knn=0, remove.loops=F, largest.comp=T)
+nodes_mapped <- V(network)$name[!is.na(ind)]
+network <- dNetInduce(g=network, nodes_query=nodes_mapped, knn=0, remove.loops=F, largest.comp=T)
 V(network)$name <- V(network)$symbol
 network
 
 # Identification of gene-active network
 net <- dNetPipeline(g=network, pval=pvals, method="fdr", fdr=3e-02)
-g <- net
-g
+net
 
-# visualisation of the gene-active subnetwork itself
+# visualisation of the gene-active network itself
 ## the layout of the network visualisation (fixed in different visuals) 
+g <- net
 glayout <- layout.fruchterman.reingold(g)
 ## color nodes according to communities (identified via a spin-glass model and simulated annealing)
-com <- spinglass.community(g, spins=7)
+com <- spinglass.community(g, spins=25)
 com$csize <- sapply(1:length(com),function(x) sum(com$membership==x))
 vgroups <- com$membership
 colormap <- "yellow-darkorange"
@@ -138,7 +138,7 @@ stats::ks.test(x=HR, y=HR[cg_names], alternative="two.sided", exact=NULL)
 stats::ks.test(x=HR[cg_names], y=cg_signif[2:nrow(cg_signif),1], alternative="two.sided", exact=NULL)
 
 # Network-based sample classifications and visualisations on 2D sample landscape
-# it uses the gene-active subnetwork overlaid by all replication timing data
+# it uses the gene-active subnetwork overlaid by mutation frequency data
 frac_mutated <- sapply(tumor_type, function(x) {
     e <- eset[, which(pData(eset)$TCGA_tumor_type==x)]
     apply(exprs(e)!=0,1,sum)/ncol(e)
@@ -148,11 +148,11 @@ data <- frac_mutated[V(g)$name,]
 sReorder <- dNetReorder(g, data, feature="edge", node.normalise="degree", amplifier=3, metric="none")
 visNetReorder(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*3, newpage=T, glayout=glayout, colormap="lightyellow-orange", vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.8,border.color="888888", zlim=c(0,0.12), mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
 
-# output the subnetwork and their replication timing data
+# output the subnetwork and their mutation frequency data
 ## Write the subnetwork into a SIF-formatted file (Simple Interaction File)
 sif <- data.frame(source=get.edgelist(g)[,1], type="interaction", target=get.edgelist(g)[,2])
 write.table(sif, file=paste("Survival_TCGA.sif", sep=""), quote=F, row.names=F,col.names=F,sep="\t")
-## Output the corresponding replication timing data
+## Output the corresponding mutation frequency data
 hmap <- data.frame(Symbol=rownames(data), data)
 write.table(hmap, file=paste("Survival_TCGA.txt", sep=""), quote=F, row.names=F,col.names=T,sep="\t")
 
@@ -200,7 +200,7 @@ gene_info <- org.Hs.eg$gene_info
 entrez <- unlist(eTerm$overlap[6], use.names=F)
 ## build neighbor-joining tree
 data <- frac_mutated[V(g)$name,]
-tree_bs <- visTreeBootstrap(t(data), nodelabels.arg=list(cex=0.4,bg="white-pink-violet"), metric=c("euclidean","pearson","spearman","cos","manhattan","kendall","mi")[3], num.bootstrap=2000, plot.phylo.arg=list(type="p", direction="downwards", cex=0.8, edge.width=1.2))
+tree_bs <- visTreeBootstrap(t(data), nodelabels.arg=list(cex=0.7,bg="white-pink-violet"), metric=c("euclidean","pearson","spearman","cos","manhattan","kendall","mi")[3], num.bootstrap=2000, plot.phylo.arg=list(cex=1, edge.width=1.2))
 flag <- match(tree_bs$tip.label, colnames(data))
 base <- sapply(eTerm$overlap, function(x){
     as.character(gene_info[match(x,rownames(gene_info)),2])

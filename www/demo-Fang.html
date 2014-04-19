@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Demo for time-course expression dataset @ dnet 1.0.0</title>
+<title>Demo for time-course expression dataset @ dnet 1.0.1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Hai Fang and Julian Gough">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.0</a>
+      <a class="brand" href="index.html">dnet 1.0.1</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -108,10 +108,10 @@
       <h2>Demo for time-course expression dataset</h2>
 
 Notes:
-<li> All results are based on dnet (version 1.0.0). </li>
+<li> All results are based on dnet (version 1.0.1). </li>
 <li> R scripts (i.e. R expressions) plus necessary comments are highlighted in light cyan, and the rest are outputs in the screen. </li>
 <li> Images displayed below may be distorted, but should be normal in your screen. </li>
-<li> Functions contained in dnet 1.0.0 are hyperlinked in-place and also listed on the right side. </li>
+<li> Functions contained in dnet 1.0.1 are hyperlinked in-place and also listed on the right side. </li>
 
 <div class="row">
     <div class="span8">
@@ -248,17 +248,17 @@ mat_data <- D[sorted$ix,]
 # color for stages (S9-S14)
 stages <- sub("_.*","",colnames(mat_data))
 lvs <- unique(stages)
-lvs_color <- <a href='visColormap.html' target=visColormap>visColormap</a>(colormap="rainbow")(length(lvs))
+lvs_color <- visColormap(colormap="rainbow")(length(lvs))
 col_stages <- sapply(stages, function(x) lvs_color[x==lvs])
 # color for replicates (R1-R3)
 replicates <- sub(".*_","",colnames(mat_data))
 lvs <- unique(replicates)
-lvs_color <- <a href='visColormap.html' target=visColormap>visColormap</a>(colormap="rainbow")(length(lvs))
+lvs_color <- visColormap(colormap="rainbow")(length(lvs))
 col_replicates <- sapply(replicates, function(x) lvs_color[x==lvs])
 # combine both color vectors
 ColSideColors <- cbind(col_stages,col_replicates)
 colnames(ColSideColors) <- c("Stages","Replicates")
-<a href='visHeatmapAdv.html' target=visHeatmapAdv>visHeatmapAdv</a>(mat_data, Rowv=FALSE, Colv=FALSE, colormap="gbr", zlim=c(-1,1), density.info="density", tracecol="yellow", ColSideColors=ColSideColors, labRow=NA)
+visHeatmapAdv(mat_data, Rowv=FALSE, Colv=FALSE, colormap="gbr", zlim=c(-1,1), density.info="density", tracecol="yellow", ColSideColors=ColSideColors, labRow=NA)
 </div>
 <a href="javascript:newWin('Fang-10.png', 'Fang-10.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-10.png', width="400" /></a>
 <div class='input'>#legend("topright", legend=lvs, col=lvs_color, lty=1, lwd=10)
@@ -296,7 +296,7 @@ apply(adjpvals<1e-2, 2, sum)
 # obtain gene significance from the given gene-sample matrix according to singular value decomposition-based method
 fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.eigen=NULL, pval.eigen=1e-2, signif="fdr", orient.permutation="row", num.permutation=200, fdr.procedure="stepup", verbose=T)
 </div>
-<strong class='message'>Start at 2014-04-11 13:19:42</strong>
+<strong class='message'>Start at 2014-04-19 15:30:58</strong>
 <strong class='message'></strong>
 <strong class='message'>First, singular value decomposition of the input matrix (with 4139 rows and 18 columns)...</strong>
 <strong class='message'>Second, determinate the eigens...</strong>
@@ -306,27 +306,27 @@ fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.ei
 <strong class='message'>Finally, obtain gene significance (fdr) based on 200 permutations...</strong>
 <strong class='message'>	doing row-wise permutations...</strong>
 <strong class='message'>	estimating fdr...</strong>
-<strong class='message'>1 (out of 4139) at 2014-04-11 13:20:04</strong>
-<strong class='message'>414 (out of 4139) at 2014-04-11 13:20:14</strong>
-<strong class='message'>828 (out of 4139) at 2014-04-11 13:20:23</strong>
-<strong class='message'>1242 (out of 4139) at 2014-04-11 13:20:33</strong>
-<strong class='message'>1656 (out of 4139) at 2014-04-11 13:20:43</strong>
-<strong class='message'>2070 (out of 4139) at 2014-04-11 13:20:53</strong>
-<strong class='message'>2484 (out of 4139) at 2014-04-11 13:21:02</strong>
-<strong class='message'>2898 (out of 4139) at 2014-04-11 13:21:12</strong>
-<strong class='message'>3312 (out of 4139) at 2014-04-11 13:21:22</strong>
-<strong class='message'>3726 (out of 4139) at 2014-04-11 13:21:31</strong>
-<strong class='message'>4139 (out of 4139) at 2014-04-11 13:21:41</strong>
+<strong class='message'>1 (out of 4139) at 2014-04-19 15:31:19</strong>
+<strong class='message'>414 (out of 4139) at 2014-04-19 15:31:30</strong>
+<strong class='message'>828 (out of 4139) at 2014-04-19 15:31:41</strong>
+<strong class='message'>1242 (out of 4139) at 2014-04-19 15:31:52</strong>
+<strong class='message'>1656 (out of 4139) at 2014-04-19 15:32:03</strong>
+<strong class='message'>2070 (out of 4139) at 2014-04-19 15:32:14</strong>
+<strong class='message'>2484 (out of 4139) at 2014-04-19 15:32:25</strong>
+<strong class='message'>2898 (out of 4139) at 2014-04-19 15:32:36</strong>
+<strong class='message'>3312 (out of 4139) at 2014-04-19 15:32:46</strong>
+<strong class='message'>3726 (out of 4139) at 2014-04-19 15:32:57</strong>
+<strong class='message'>4139 (out of 4139) at 2014-04-19 15:33:07</strong>
 <strong class='message'>	using stepup procedure...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-04-11 13:21:41</strong>
-<strong class='message'>Runtime in total is: 119 secs
+<strong class='message'>Finish at 2014-04-19 15:33:07</strong>
+<strong class='message'>Runtime in total is: 129 secs
 </strong>
 <div class='input'>
 # 2) identification of module
 g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network, pval=fdr, method="fdr", nsize=30)
 </div>
-<strong class='message'>Start at 2014-04-11 13:21:41</strong>
+<strong class='message'>Start at 2014-04-19 15:33:07</strong>
 <strong class='message'></strong>
 <strong class='message'>First, consider the fdr distribution</strong>
 <strong class='message'>Second, determine FDR threshold...</strong>
@@ -343,8 +343,8 @@ g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network,
 <strong class='message'>Finally, find the subnetwork from the input network with 3385 nodes and 39961 edges...</strong>
 <strong class='message'>	Size of the module: 54 nodes and 226 edges</strong>
 <strong class='message'>
-Finish at 2014-04-11 13:22:15</strong>
-<strong class='message'>Runtime in total is: 34 secs
+Finish at 2014-04-19 15:33:42</strong>
+<strong class='message'>Runtime in total is: 35 secs
 </strong>
 <div class='input'>glayout <- layout.fruchterman.reingold(g)
 
@@ -354,7 +354,7 @@ com <- walktrap.community(g, modularity=T)
 com$csize <- sapply(1:length(com),function(x) sum(com$membership==x))
 vgroups <- com$membership
 colormap <- "yellow-darkorange"
-palette.name <- <a href='visColormap.html' target=visColormap>visColormap</a>(colormap=colormap)
+palette.name <- visColormap(colormap=colormap)
 mcolors <- palette.name(length(com))
 vcolors <- mcolors[vgroups]
 com$significance <- <a href='dCommSignif.html' target=dCommSignif>dCommSignif</a>(g, com)
@@ -383,8 +383,8 @@ ordering <- tmp[order(vgroups,vdegrees),]$ind
 <div class='input'>
 # 8) as comparison, also visualise graph on 2-dimensional layout 
 mark.groups <- communities(com)
-mark.col <- <a href='visColoralpha.html' target=visColoralpha>visColoralpha</a>(mcolors, alpha=0.2)
-mark.border <- <a href='visColoralpha.html' target=visColoralpha>visColoralpha</a>(mcolors, alpha=0.2)
+mark.col <- visColoralpha(mcolors, alpha=0.2)
+mark.border <- visColoralpha(mcolors, alpha=0.2)
 edge.color <- c("grey", "black")[crossing(com,g)+1]
 <a href='visNet.html' target=visNet>visNet</a>(g, glayout=glayout, vertex.label=V(g)$geneSymbol, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.shape="sphere", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
 </div>
@@ -411,7 +411,7 @@ data <- as.matrix(fit2$coefficients[V(g)$name,])
 # 11) color by additional data (be reordered)
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="edge", node.normalise="degree", amplifier=2, metric="none")
 </div>
-<strong class='message'>Start at 2014-04-11 13:23:50</strong>
+<strong class='message'>Start at 2014-04-19 15:35:17</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -438,7 +438,7 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-04-11 13:23:50</strong>
+<strong class='message'>End at 2014-04-19 15:35:17</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap=colormap, vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)
@@ -446,7 +446,7 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
 <a href="javascript:newWin('Fang-89.png', 'Fang-89.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-89.png', width="400" /></a>
 <div class='input'>
 # 12) heatmap of subnetwork
-<a href='visHeatmapAdv.html' target=visHeatmapAdv>visHeatmapAdv</a>(data, colormap="gbr", row.cutree=3, column.cutree=3)
+visHeatmapAdv(data, colormap="gbr", row.cutree=3, column.cutree=3)
 </div>
 <a href="javascript:newWin('Fang-91.png', 'Fang-91.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-91.png', width="400" /></a>
 <div class='input'>hmap <- data.frame(Symbol=rownames(data), data)
@@ -463,15 +463,12 @@ write.table(sif, file=paste("Fang_whole.sif", sep=""), quote=F, row.names=F,col.
     <h2>Functions used in this demo</h2>
     <ul>
       <li><a href="dNetInduce.html">dNetInduce</a></li>
-      <li><a href="visColormap.html">visColormap</a></li>
-      <li><a href="visHeatmapAdv.html">visHeatmapAdv</a></li>
       <li><a href="dContrast.html">dContrast</a></li>
       <li><a href="dSVDsignif.html">dSVDsignif</a></li>
       <li><a href="dNetPipeline.html">dNetPipeline</a></li>
       <li><a href="dCommSignif.html">dCommSignif</a></li>
       <li><a href="visNetArc.html">visNetArc</a></li>
       <li><a href="visNetCircle.html">visNetCircle</a></li>
-      <li><a href="visColoralpha.html">visColoralpha</a></li>
       <li><a href="visNet.html">visNet</a></li>
       <li><a href="visNetMul.html">visNetMul</a></li>
       <li><a href="dNetReorder.html">dNetReorder</a></li>
@@ -479,7 +476,7 @@ write.table(sif, file=paste("Fang_whole.sif", sep=""), quote=F, row.names=F,col.
     </ul>
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of digitised data in terms of network, ontology and evolution. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of digitised data in terms of network, ontology and evolution. R package version 1.0.1. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

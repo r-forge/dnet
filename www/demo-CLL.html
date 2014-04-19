@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Demo for patient expression dataset @ dnet 1.0.0</title>
+<title>Demo for patient expression dataset @ dnet 1.0.1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Hai Fang and Julian Gough">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.0</a>
+      <a class="brand" href="index.html">dnet 1.0.1</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -108,10 +108,10 @@
       <h2>Demo for patient expression dataset</h2>
 
 Notes:
-<li> All results are based on dnet (version 1.0.0). </li>
+<li> All results are based on dnet (version 1.0.1). </li>
 <li> R scripts (i.e. R expressions) plus necessary comments are highlighted in light cyan, and the rest are outputs in the screen. </li>
 <li> Images displayed below may be distorted, but should be normal in your screen. </li>
-<li> Functions contained in dnet 1.0.0 are hyperlinked in-place and also listed on the right side. </li>
+<li> Functions contained in dnet 1.0.1 are hyperlinked in-place and also listed on the right side. </li>
 
 <div class="row">
     <div class="span8">
@@ -296,7 +296,7 @@ pval <- pvals[,my_contrast]
 # 2) identification of module
 g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network, pval=pval, nsize=20)
 </div>
-<strong class='message'>Start at 2014-04-11 13:13:25</strong>
+<strong class='message'>Start at 2014-04-19 15:24:48</strong>
 <strong class='message'></strong>
 <strong class='message'>First, fit the p-value distribution under beta-uniform mixture model...</strong>
 <strong class='message'>	A total of p-values: 9367</strong>
@@ -324,8 +324,8 @@ g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network,
 <strong class='message'>Finally, find the subnetwork from the input network with 8133 nodes and 158729 edges...</strong>
 <strong class='message'>	Size of the module: 50 nodes and 67 edges</strong>
 <strong class='message'>
-Finish at 2014-04-11 13:17:52</strong>
-<strong class='message'>Runtime in total is: 267 secs
+Finish at 2014-04-19 15:29:16</strong>
+<strong class='message'>Runtime in total is: 268 secs
 </strong>
 <div class='input'>glayout <- layout.fruchterman.reingold(g)
 
@@ -335,7 +335,7 @@ com <- walktrap.community(g, modularity=T)
 com$csize <- sapply(1:length(com),function(x) sum(com$membership==x))
 vgroups <- com$membership
 colormap <- "yellow-darkorange"
-palette.name <- <a href='visColormap.html' target=visColormap>visColormap</a>(colormap=colormap)
+palette.name <- visColormap(colormap=colormap)
 mcolors <- palette.name(length(com))
 vcolors <- mcolors[vgroups]
 com$significance <- <a href='dCommSignif.html' target=dCommSignif>dCommSignif</a>(g, com)
@@ -364,8 +364,8 @@ ordering <- tmp[order(vgroups,vdegrees),]$ind
 <div class='input'>
 # 8) as comparison, also visualise graph on 2-dimensional layout 
 mark.groups <- communities(com)
-mark.col <- <a href='visColoralpha.html' target=visColoralpha>visColoralpha</a>(mcolors, alpha=0.2)
-mark.border <- <a href='visColoralpha.html' target=visColoralpha>visColoralpha</a>(mcolors, alpha=0.2)
+mark.col <- visColoralpha(mcolors, alpha=0.2)
+mark.border <- visColoralpha(mcolors, alpha=0.2)
 edge.color <- c("grey", "black")[crossing(com,g)+1]
 <a href='visNet.html' target=visNet>visNet</a>(g, glayout=glayout, vertex.label=V(g)$geneSymbol, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.shape="sphere", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
 </div>
@@ -400,7 +400,7 @@ colnames(data) <- EIL[ind]
 # 11) color by additional data (be reordered)
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="edge", node.normalise="degree", amplifier=2, metric="none")
 </div>
-<strong class='message'>Start at 2014-04-11 13:18:47</strong>
+<strong class='message'>Start at 2014-04-19 15:30:11</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -417,7 +417,7 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    dimension of grid coord: 25x2
    initialisation method: linear
    dimension of codebook matrix: 25x67
-   mean quantization error: 5.11089187344264
+   mean quantization error: 5.36568850965824
 </strong>
 <strong class='message'>Below are the details of trainology:</strong>
 <strong class='message'>   training algorithm: sequential
@@ -427,7 +427,7 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-04-11 13:18:48</strong>
+<strong class='message'>End at 2014-04-19 15:30:12</strong>
 <strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap=colormap, vertex.label=NA,vertex.shape="sphere", vertex.size=18,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)</div>
@@ -441,11 +441,9 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
     <ul>
       <li><a href="dNetInduce.html">dNetInduce</a></li>
       <li><a href="dNetPipeline.html">dNetPipeline</a></li>
-      <li><a href="visColormap.html">visColormap</a></li>
       <li><a href="dCommSignif.html">dCommSignif</a></li>
       <li><a href="visNetArc.html">visNetArc</a></li>
       <li><a href="visNetCircle.html">visNetCircle</a></li>
-      <li><a href="visColoralpha.html">visColoralpha</a></li>
       <li><a href="visNet.html">visNet</a></li>
       <li><a href="visNetMul.html">visNetMul</a></li>
       <li><a href="dNetReorder.html">dNetReorder</a></li>
@@ -453,7 +451,7 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
     </ul>
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of digitised data in terms of network, ontology and evolution. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of digitised data in terms of network, ontology and evolution. R package version 1.0.1. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

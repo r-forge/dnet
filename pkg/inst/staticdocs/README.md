@@ -4,7 +4,7 @@
 
 ## User I/O
 
-<a href="demo-TCGA.html"><img style="max-width:95%;border:1px solid #0000FF;box-shadow:5px 5px 2px #C0C0FF;" src='dnet_userIO.png', width="700px"/></a>
+<a href="demo-TCGA.html"><img style="max-width:95%;border:1px solid #FF0000;box-shadow:5px 5px 2px #FFC0C0;" src='dnet_userIO.png', width="700px"/></a>
 
 
 ## Features
