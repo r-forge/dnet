@@ -91,8 +91,8 @@ dDAGlevel <- function (g, level.mode=c("longest_path","shortest_path"), return.m
         node2level <- node2level[V(ig)$name]
         
     }else if(level.mode=="shortest_path"){
-        #vpaths <- get.shortest.paths(ig, from=root, to=V(ig))$vpath
-        vpaths <- get.shortest.paths(ig, from=root, to=V(ig))
+        #vpaths <- get.shortest.paths(ig, from=root, to=V(ig), output="both")$vpath
+        vpaths <- get.shortest.paths(ig, from=root, to=V(ig), output="vpath")
         node2level <- sapply(1:length(vpaths), function(i) length(vpaths[[i]]))
         names(node2level) <- V(ig)$name
     }

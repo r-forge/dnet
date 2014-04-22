@@ -97,8 +97,8 @@ dDAGinduce <- function (g, nodes_query, path.mode=c("all_paths","shortest_paths"
         nodeInduced <- unique(unlist(aspaths$res))
     }else if(path.mode=="shortest_paths"){
         root <- dDAGroot(ig)
-        #vpaths <- get.shortest.paths(ig, from=root, to=nodes_query)$vpath
-        vpaths <- get.shortest.paths(ig, from=root, to=nodes_query)
+        #vpaths <- get.shortest.paths(ig, from=root, to=nodes_query, output="both")$vpath
+        vpaths <- get.shortest.paths(ig, from=root, to=nodes_query, output="vpath")
         nodeInduced <- unique(unlist(vpaths))
     }
     
