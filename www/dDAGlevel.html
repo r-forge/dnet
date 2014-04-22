@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dDAGlevel @ dnet 1.0.0</title>
+<title>dDAGlevel @ dnet 1.0.1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.0</a>
+      <a class="brand" href="index.html">dnet 1.0.1</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -167,9 +167,9 @@ closeness to the root.</p>
     </div>
     
     <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'># 1) load GO Molelular Function as igraph object
-load(url("http://dnet.r-forge.r-project.org/data/Obo/ig.GOMF.RData"))
-g <- ig.GOMF
+    <pre class="examples"><div class='input'># 1) load HPPA as igraph object
+data(ig.HPPA)
+g <- ig.HPPA
 
 # 2) randomly select vertices as the query nodes
 nodes_query <- sample(V(g),5)$name
@@ -181,51 +181,62 @@ subg <- dDAGinduce(g, nodes_query)
 # 4a) definition based on the longest path
 dDAGlevel(subg, level.mode="longest_path")
 </div>
-<div class='output'>GO:0003674 GO:0003824 GO:0005488 GO:0005515 GO:0016491 GO:0016740 GO:0016787 
-         1          2          2          3          3          3          3 
-GO:0005102 GO:0016614 GO:0016769 GO:0016772 GO:0016798 GO:0001664 GO:0004553 
-         4          4          4          4          4          5          5 
-GO:0005126 GO:0008483 GO:0016301 GO:0016616 GO:0016773 GO:0009024 GO:0042379 
-         5          5          5          5          5          6          6 
-GO:0047503 GO:0051669 GO:0070546 GO:0031738 GO:0047312 
-         6          6          6          7          7 
+<div class='output'>HP:0000118 HP:0000119 HP:0000152 HP:0000924 HP:0001438 HP:0002086 HP:0003011 
+         1          2          2          2          2          2          2 
+HP:0000078 HP:0000234 HP:0000775 HP:0011804 HP:0011842 HP:0012252 HP:0012243 
+         3          3          4          3          3          3          4 
+HP:0000271 HP:0000929 HP:0001324 HP:0009121 HP:0011844 HP:0000812 HP:0002813 
+         4          5          4          4          4          5          5 
+HP:0004439 HP:0009113 HP:0010461 HP:0000022 HP:0002817 HP:0011297 HP:0000035 
+         6          5          5          6          6          6          7 
+HP:0001155 HP:0001167 HP:0005321 HP:0010468 HP:0005918 
+         7          8          7          8          9 
 </div>
 <div class='input'># 4b) definition based on the shortest path
 dDAGlevel(subg, level.mode="shortest_path")
 </div>
-<div class='output'>GO:0003674 GO:0003824 GO:0005488 GO:0005515 GO:0016491 GO:0016740 GO:0016787 
-         1          2          2          3          3          3          3 
-GO:0005102 GO:0016614 GO:0016769 GO:0016772 GO:0016798 GO:0001664 GO:0004553 
+<div class='output'>HP:0000118 HP:0000119 HP:0000152 HP:0000924 HP:0001438 HP:0002086 HP:0003011 
+         1          2          2          2          2          2          2 
+HP:0000078 HP:0000234 HP:0000775 HP:0011804 HP:0011842 HP:0012252 HP:0012243 
+         3          3          3          3          3          3          4 
+HP:0000271 HP:0000929 HP:0001324 HP:0009121 HP:0011844 HP:0000812 HP:0002813 
          4          4          4          4          4          5          5 
-GO:0005126 GO:0008483 GO:0016301 GO:0016616 GO:0016773 GO:0009024 GO:0042379 
-         5          5          5          5          5          6          6 
-GO:0047503 GO:0051669 GO:0070546 GO:0031738 GO:0047312 
-         6          6          6          7          7 
+HP:0004439 HP:0009113 HP:0010461 HP:0000022 HP:0002817 HP:0011297 HP:0000035 
+         5          4          5          6          6          6          7 
+HP:0001155 HP:0001167 HP:0005321 HP:0010468 HP:0005918 
+         7          7          6          8          8 
 </div>
 <div class='input'># 4b) definition based on the longest path, and return nodes for each level
 dDAGlevel(subg, level.mode="longest_path", return.mode="level2node")
 </div>
 <div class='output'>$`1`
-[1] "GO:0003674"
+[1] "HP:0000118"
 
 $`2`
-[1] "GO:0003824" "GO:0005488"
+[1] "HP:0000119" "HP:0000152" "HP:0000924" "HP:0001438" "HP:0002086"
+[6] "HP:0003011"
 
 $`3`
-[1] "GO:0005515" "GO:0016491" "GO:0016740" "GO:0016787"
+[1] "HP:0000078" "HP:0000234" "HP:0011804" "HP:0011842" "HP:0012252"
 
 $`4`
-[1] "GO:0005102" "GO:0016614" "GO:0016769" "GO:0016772" "GO:0016798"
+[1] "HP:0000775" "HP:0012243" "HP:0000271" "HP:0001324" "HP:0009121"
+[6] "HP:0011844"
 
 $`5`
-[1] "GO:0001664" "GO:0004553" "GO:0005126" "GO:0008483" "GO:0016301"
-[6] "GO:0016616" "GO:0016773"
+[1] "HP:0000929" "HP:0000812" "HP:0002813" "HP:0009113" "HP:0010461"
 
 $`6`
-[1] "GO:0009024" "GO:0042379" "GO:0047503" "GO:0051669" "GO:0070546"
+[1] "HP:0004439" "HP:0000022" "HP:0002817" "HP:0011297"
 
 $`7`
-[1] "GO:0031738" "GO:0047312"
+[1] "HP:0000035" "HP:0001155" "HP:0005321"
+
+$`8`
+[1] "HP:0001167" "HP:0010468"
+
+$`9`
+[1] "HP:0005918"
 
 </div></pre>
   </div>
@@ -247,7 +258,7 @@ $`7`
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of digitised data in terms of network, ontology and evolution. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of digitised data in terms of network, ontology and evolution. R package version 1.0.1. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

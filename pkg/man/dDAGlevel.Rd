@@ -48,9 +48,9 @@ can be useful in deriving nodes according to their
 closeness to the root.
 }
 \examples{
-# 1) load GO Molelular Function as igraph object
-load(url("http://dnet.r-forge.r-project.org/data/Obo/ig.GOMF.RData"))
-g <- ig.GOMF
+# 1) load HPPA as igraph object
+data(ig.HPPA)
+g <- ig.HPPA
 
 # 2) randomly select vertices as the query nodes
 nodes_query <- sample(V(g),5)$name

@@ -8,7 +8,7 @@
 library(dnet)
 
 # Load or install packages specifically used in this demo
-for(pkg in c("affy","survival","beeswarm")){
+for(pkg in c("Biobase","survival")){
     if(!require(pkg, character.only=T)){
         install.packages(pkg,repos="http://www.stats.bris.ac.uk/R",dependencies=TRUE)
     }
@@ -16,8 +16,7 @@ for(pkg in c("affy","survival","beeswarm")){
 }
 
 # load an "ExpressionSet" object
-load(url("http://dnet.r-forge.r-project.org/data/Datasets/TCGA_mutations.RData"))
-#load("RData_Rd/data/Datasets/TCGA_mutations.RData")
+data(TCGA_mutations)
 eset <- TCGA_mutations
 # extract information about phenotype data
 pd <- pData(eset)
@@ -191,7 +190,7 @@ barY <- barplot(z, xlab="Normalised enrichment score (NES)", horiz=TRUE, names.a
 # Evolutionary analysis for genes in the subnetwork
 ## get a list of genes in the subnetwork
 data <- V(net)$name
-eTerm <- dEnricher(data, identity="symbol", genome="Hs", ontology="PS2")
+eTerm <- dEnricher(data, identity="symbol", genome="Hs", ontology="PS2", sizeRange=c(10,20000), min.overlap=0)
 ## Look at the evolution relevance along the path to the eukaryotic common ancestor
 cbind(eTerm$set_info[,2:3], nSet=sapply(eTerm$gs,length), nOverlap=sapply(eTerm$overlap,length), zscore=eTerm$zscore, pvalue=eTerm$pvalue, adjp=eTerm$adjp)
 ## load Entrezgene info
@@ -231,7 +230,7 @@ if(1){
 }
 RowSideColors <- sapply(1:length(base), function(x) base_order==x)
 RowSideColors <- t(RowSideColors)
-rslab <- ifelse(eTerm$adjp<0.05," (FDR<0.05)","")
+rslab <- ifelse(eTerm$adjp<0.05 & sapply(eTerm$overlap,length)>=3," (FDR<0.05)","")
 rslab <- paste(gsub(".*:","",eTerm$set_info$name), rslab, sep="")
 rownames(RowSideColors) <- rslab
 colnames(RowSideColors) <- rownames(data)
@@ -260,12 +259,11 @@ ind <- match(V(g)$name, rownames(ubiquity))
 net_ubiquity <- ubiquity[ind]
 net_ubiquity <- net_ubiquity[ordering]
 names(net_ubiquity) <- rownames(data)[ordering]
-library(beeswarm)
+data <- cbind(net_ubiquity, base_order1)
 par(las=2, mar=c(12,8,4,2)) # all axis labels horizontal
-beeswarm(net_ubiquity ~ base_order1, col=4, pch=16, horizontal=F, "ylab"="Cross-tumor mutational ubiquity", "xlab"="", labels="", ylim=c(0,1))
 lbls <- eTerm$set_info$name[unique(base_order1)]
 lbls <- gsub(".*:","",lbls)
-boxplot(net_ubiquity ~ base_order1, add=T, horizontal=F, names=lbls)
+visBoxplotAdv(formula=net_ubiquity ~ base_order1, data=data, pch=19, xlab="", ylab="Cross-tumor mutation ubiquity", ylim=c(0,1), labels=lbls)
 ## Deuterostomia versus all ancestors
 stats::ks.test(x=net_ubiquity[base_order1==6], y=net_ubiquity, alternative="two.sided", exact=NULL)
 ## Deuterostomia versus ancestors before Deuterostomia
@@ -340,7 +338,7 @@ visDAG(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]), node.info="both", zlim=c
 # Pathway enrichment analysis
 data <- V(net)$name
 ## uisng CP
-eTerm <- dEnricher(data, identity="symbol", genome="Hs", ontology="MsigdbC2CP")
+eTerm <- dEnricher(data, identity="symbol", genome="Hs", ontology="MsigdbC2CP", min.overlap=2)
 nodes_query <- names(sort(eTerm$pvalue)[1:10])
 cbind(eTerm$set_info[nodes_query,2:3], cbind(nSet=sapply(eTerm$gs,length), nOverlap=sapply(eTerm$overlap,length), zscore=eTerm$zscore, pvalue=eTerm$pvalue, adjp=eTerm$adjp)[nodes_query,])
 ## using KEGG
@@ -352,8 +350,8 @@ eTerm <- dEnricher(data, identity="symbol", genome="Hs", ontology="MsigdbC2REACT
 nodes_query <- names(sort(eTerm$pvalue)[1:10])
 cbind(eTerm$set_info[nodes_query,2:3], cbind(nSet=sapply(eTerm$gs,length), nOverlap=sapply(eTerm$overlap,length), zscore=eTerm$zscore, pvalue=eTerm$pvalue, adjp=eTerm$adjp)[nodes_query,])
 ## uisng BIOCARTA
-eTerm <- dEnricher(data, identity="symbol", genome="Hs", ontology="MsigdbC2BIOCARTA")
-nodes_query <- names(sort(eTerm$pvalue)[1:10])
+eTerm <- dEnricher(data, identity="symbol", genome="Hs", ontology="MsigdbC2BIOCARTA", min.overlap=2)
+nodes_query <- names(sort(eTerm$pvalue)[1:5])
 cbind(eTerm$set_info[nodes_query,2:3], cbind(nSet=sapply(eTerm$gs,length), nOverlap=sapply(eTerm$overlap,length), zscore=eTerm$zscore, pvalue=eTerm$pvalue, adjp=eTerm$adjp)[nodes_query,])
 
 # SCOP superfamily domain enrichment analysis

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>TCGA_mutations @ dnet 1.0.0</title>
+<title>TCGA_mutations @ dnet 1.0.1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.0</a>
+      <a class="brand" href="index.html">dnet 1.0.1</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -111,10 +111,10 @@
   <div class="span8">
   
     <h3>Description</h3>
-    <p>This dataset is available from TCGA, containing somatic mutational profiles for 3096 cancer samples with survival data. These cancer samples belong to one of 12 major cancer types, including breast adenocarcinoma (BRCA), lung adenocarcinoma (LUAD), lung squamous cell carcinoma (LUSC), uterine corpus endometrial carcinoma (UCEC), glioblastoma multiforme (GBM), head and neck squamous cell carcinoma (HNSC), colon and rectal carcinoma (COAD/READ), bladder urothelial carcinoma (BLCA), kidney renal clear cell carcinoma (KIRC), ovarian serous carcinoma (OV) and acute myeloid leukaemia (LAML). For each patient sample, somatic mutations are represented as a profile of binary (1, 0) states on genes, where '1' indicates a gene for which mutation has occurred in the tumor relative to germ line. The dataset is provided as an 'ExpressionSet' object.</p>
+    <p>This dataset is available from TCGA, containing somatic mutational profiles for 3096 cancer samples with survival data. These cancer samples belong to one of 12 major cancer types, including breast adenocarcinoma (BRCA), lung adenocarcinoma (LUAD), lung squamous cell carcinoma (LUSC), uterine corpus endometrial carcinoma (UCEC), glioblastoma multiforme (GBM), head and neck squamous cell carcinoma (HNSC), colon and rectal carcinoma (COAD/READ), bladder urothelial carcinoma (BLCA), kidney renal clear cell carcinoma (KIRC), ovarian serous carcinoma (OV) and acute myeloid leukaemia (LAML). For each patient sample, somatic mutations are represented as a profile of  states on genes, where non-zero entry indicates a gene for which how many mutations have occurred in the tumor relative to germ line. The dataset is provided as an 'ExpressionSet' object.</p>
   
     <h3>Usage</h3>
-    <pre>load(url("http://dnet.r-forge.r-project.org/data/Datasets/TCGA_mutations.RData"))</pre>
+    <pre>data(TCGA_mutations)</pre>
         <!-- 
     -->
     
@@ -139,47 +139,43 @@
     </div>
     
     <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'>load(url("http://dnet.r-forge.r-project.org/data/Datasets/TCGA_mutations.RData"))
+    <pre class="examples"><div class='input'>#load(url("http://dnet.r-forge.r-project.org/data/Datasets/TCGA_mutations.RData"))
+data(TCGA_mutations)
 TCGA_mutations
 </div>
 <div class='output'>ExpressionSet (storageMode: lockedEnvironment)
-assayData: 19477 features, 3130 samples 
+assayData: 19171 features, 3096 samples 
   element names: exprs 
 protocolData: none
 phenoData
   sampleNames: TCGA-B8-4153-01B-11D-1669-08
-    TCGA-24-1469-01A-01W-0553-09 ... TCGA-34-5241-01A-01D-1441-08 (3130
+    TCGA-24-1469-01A-01W-0553-09 ... TCGA-34-5241-01A-01D-1441-08 (3096
     total)
-  varLabels: Age Days_to_death ... Tumor_grade (9 total)
+  varLabels: time status ... Tumor_grade (7 total)
   varMetadata: labelDescription
 featureData
-  featureNames: A1BG A1CF ... ZZZ3 (19477 total)
+  featureNames: A1BG A1CF ... ZZZ3 (19171 total)
   fvarLabels: EntrezID Symbol Desc Synonyms
   fvarMetadata: labelDescription
 experimentData: use 'experimentData(object)'
 Annotation:  
 </div>
-<div class='input'># extract information about the first 5 samples
+<div class='input'>library(Biobase)
+# extract information about the first 5 samples
 pData(TCGA_mutations)[1:5,]
 </div>
-<div class='output'>                             Age Days_to_death Days_to_last_followup
-TCGA-B8-4153-01B-11D-1669-08  74            NA                   404
-TCGA-24-1469-01A-01W-0553-09  71            NA                   277
-TCGA-06-5411-01A-01D-1696-08  51           254                   254
-TCGA-05-4249-01A-01D-1105-08  67            NA                  1158
-TCGA-18-3406-01A-01D-0983-08  67           371                   370
-                             Vita_status Gender Date_diagnosis TCGA_tumor_type
-TCGA-B8-4153-01B-11D-1669-08           0   male           2010            KIRC
-TCGA-24-1469-01A-01W-0553-09           0 female           2008              OV
-TCGA-06-5411-01A-01D-1696-08           1   male           2010             GBM
-TCGA-05-4249-01A-01D-1105-08           0   male           2007            LUAD
-TCGA-18-3406-01A-01D-0983-08           1   male           2003            LUSC
-                             Tumor_stage Tumor_grade
-TCGA-B8-4153-01B-11D-1669-08           3           3
-TCGA-24-1469-01A-01W-0553-09           3           3
-TCGA-06-5411-01A-01D-1696-08          NA          NA
-TCGA-05-4249-01A-01D-1105-08           1          NA
-TCGA-18-3406-01A-01D-0983-08           1          NA
+<div class='output'>                             time status Age Gender TCGA_tumor_type Tumor_stage
+TCGA-B8-4153-01B-11D-1669-08  404      0  74   male            KIRC           3
+TCGA-24-1469-01A-01W-0553-09  277      0  71 female              OV           3
+TCGA-06-5411-01A-01D-1696-08  254      1  51   male             GBM          NA
+TCGA-05-4249-01A-01D-1105-08 1158      0  67   male            LUAD           1
+TCGA-18-3406-01A-01D-0983-08  371      1  67   male            LUSC           1
+                             Tumor_grade
+TCGA-B8-4153-01B-11D-1669-08           3
+TCGA-24-1469-01A-01W-0553-09           3
+TCGA-06-5411-01A-01D-1696-08          NA
+TCGA-05-4249-01A-01D-1105-08          NA
+TCGA-18-3406-01A-01D-0983-08          NA
 </div>
 <div class='input'># extract information about the first 5 features
 fData(TCGA_mutations)[1:5,]
@@ -202,9 +198,9 @@ table(pData(TCGA_mutations)$TCGA_tumor_type)
 </div>
 <div class='output'>
     BLCA     BRCA COADREAD      GBM     HNSC     KIRC     LAML     LUAD 
-      94      763      193      275      301      417      196      171 
+      92      763      193      275      300      417      185      155 
     LUSC       OV     UCEC 
-     174      316      230 
+     171      315      230 
 </div></pre>
   </div>
   
@@ -221,7 +217,7 @@ table(pData(TCGA_mutations)$TCGA_tumor_type)
       
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of digitised data in terms of network, ontology and evolution. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of digitised data in terms of network, ontology and evolution. R package version 1.0.1. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

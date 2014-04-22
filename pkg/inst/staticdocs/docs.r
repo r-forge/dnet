@@ -24,7 +24,8 @@ list(
                 'visNetReorder',
                 'visNetArc',
                 'visNetCircle',
-                'dRWR'
+                'dRWR',
+                'visBoxplotAdv'
             )
         ),
         sd_section("Enrichment analysis and visualisation functions",
@@ -71,7 +72,8 @@ list(
                 "org.Hs.egMP",
                 "org.Hs.egPS",
                 "org.Hs.egSF",                
-                "org.Hs.string"
+                "org.Hs.string",
+                "org.Hs.string900"
             )
         ),
         sd_section("Built-in genesets in human",

@@ -10,12 +10,13 @@ check.symbol.identity = FALSE, genome = c("Hs", "Mm", "Rn", "Gg", "Ce",
 "MsigdbC2CP",
 "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT",
 "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF",
-"MsigdbC5CC", "MsigdbC6", "MsigdbC7"), sizeRange = c(10, 20000),
-which_distance = NULL, test = c("HypergeoTest", "FisherTest",
-"BinomialTest"), p.adjust.method = c("BH", "BY", "bonferroni", "holm",
-"hochberg", "hommel"), ontology.algorithm = c("none", "pc", "elim",
-"lea"),
-elim.pvalue = 0.01, lea.depth = 2, verbose = T,
+"MsigdbC5CC", "MsigdbC6", "MsigdbC7"), sizeRange = c(10, 1000),
+min.overlap = 3, which_distance = NULL, test = c("HypergeoTest",
+"FisherTest", "BinomialTest"), p.adjust.method = c("BH", "BY",
+"bonferroni",
+"holm", "hochberg", "hommel"), ontology.algorithm = c("none", "pc",
+"elim",
+"lea"), elim.pvalue = 0.01, lea.depth = 2, verbose = T,
 RData.location = "http://dnet.r-forge.r-project.org/data")
 }
 \arguments{
@@ -68,6 +69,10 @@ please refer to the online Documentations at
 \item{sizeRange}{the minimum and maximum size of members
 of each gene set in consideration. By default, it sets to
 a minimum of 10 but no more than 1000}
+
+\item{min.overlap}{the minimum number of overlaps. Only
+those gene sets that overlap with input data at least
+min.overlap (3 by default) will be processed}
 
 \item{which_distance}{which distance of terms in the
 ontology is used to restrict terms in consideration. By

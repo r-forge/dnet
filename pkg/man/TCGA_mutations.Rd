@@ -4,7 +4,7 @@
 \title{TCGA mutational profiles across 12 major cancer types from Kandoth et al. (2013)}
 
 \usage{
-load(url("http://dnet.r-forge.r-project.org/data/Datasets/TCGA_mutations.RData"))
+data(TCGA_mutations)
 }
 
 \description{
@@ -26,8 +26,10 @@ Kandoth et al. (2013). Mutational landscape and significance across 12 major can
 
 \keyword{datasets}
 \examples{
-load(url("http://dnet.r-forge.r-project.org/data/Datasets/TCGA_mutations.RData"))
+#load(url("http://dnet.r-forge.r-project.org/data/Datasets/TCGA_mutations.RData"))
+data(TCGA_mutations)
 TCGA_mutations
+library(Biobase)
 # extract information about the first 5 samples
 pData(TCGA_mutations)[1:5,]
 # extract information about the first 5 features
