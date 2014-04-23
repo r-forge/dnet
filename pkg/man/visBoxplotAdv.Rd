@@ -1,6 +1,6 @@
 \name{visBoxplotAdv}
 \alias{visBoxplotAdv}
-\title{Function to visualise a data frame using advaced boxplot}
+\title{Function to visualise a data frame using advanced boxplot}
 \usage{
 visBoxplotAdv(formula, data, orientation = c("vertical", "horizontal"),
 method = c("center", "hex", "square", "swarm"), corral = c("none",
@@ -123,7 +123,7 @@ names as the input data
 }
 \description{
 \code{visBoxplotAdv} is supposed to visualise a data frame
-using advaced boxplot. In addition to boxplot, a scatter
+using advanced boxplot. In addition to boxplot, a scatter
 plot is also drawn with various methods to avoid
 co-incident points so that each point is visible (with
 fine-controling the color and plotting character). Also,

@@ -29,7 +29,7 @@
 #' dDAGlevel(subg, level.mode="longest_path")
 #' # 4b) definition based on the shortest path
 #' dDAGlevel(subg, level.mode="shortest_path")
-#' # 4b) definition based on the longest path, and return nodes for each level
+#' # 4c) definition based on the longest path, and return nodes for each level
 #' dDAGlevel(subg, level.mode="longest_path", return.mode="level2node")
 
 dDAGlevel <- function (g, level.mode=c("longest_path","shortest_path"), return.mode=c("node2level","level2node"))
@@ -91,8 +91,10 @@ dDAGlevel <- function (g, level.mode=c("longest_path","shortest_path"), return.m
         node2level <- node2level[V(ig)$name]
         
     }else if(level.mode=="shortest_path"){
-        #vpaths <- get.shortest.paths(ig, from=root, to=V(ig), output="both")$vpath
         vpaths <- get.shortest.paths(ig, from=root, to=V(ig), output="vpath")
+        if(length(vpaths)!=length(V(ig)$name)){
+            vpaths <- vpaths$vpath
+        }
         node2level <- sapply(1:length(vpaths), function(i) length(vpaths[[i]]))
         names(node2level) <- V(ig)$name
     }

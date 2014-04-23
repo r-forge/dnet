@@ -63,7 +63,7 @@ subg <- dDAGinduce(g, nodes_query)
 dDAGlevel(subg, level.mode="longest_path")
 # 4b) definition based on the shortest path
 dDAGlevel(subg, level.mode="shortest_path")
-# 4b) definition based on the longest path, and return nodes for each level
+# 4c) definition based on the longest path, and return nodes for each level
 dDAGlevel(subg, level.mode="longest_path", return.mode="level2node")
 }
 \seealso{

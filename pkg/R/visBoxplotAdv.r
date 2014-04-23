@@ -1,6 +1,6 @@
-#' Function to visualise a data frame using advaced boxplot
+#' Function to visualise a data frame using advanced boxplot
 #'
-#' \code{visBoxplotAdv} is supposed to visualise a data frame using advaced boxplot. In addition to boxplot, a scatter plot is also drawn with various methods to avoid co-incident points so that each point is visible (with fine-controling the color and plotting character). Also, these points can be pies or thermometers, which allows an additional proportation data to be visualised as well. 
+#' \code{visBoxplotAdv} is supposed to visualise a data frame using advanced boxplot. In addition to boxplot, a scatter plot is also drawn with various methods to avoid co-incident points so that each point is visible (with fine-controling the color and plotting character). Also, these points can be pies or thermometers, which allows an additional proportation data to be visualised as well. 
 #'
 #' @param formula a formula, such as 'y ~ grp', where 'y' is a numeric vector of data values to be split into groups according to the grouping variable 'grp' (usually a factor)
 #' @param data a data.frame (or list) from which the variables in 'formula' should be taken.
