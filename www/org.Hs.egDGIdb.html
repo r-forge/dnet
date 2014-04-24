@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>RData @ dnet 1.0</title>
+<title>org.Hs.egDGIdb @ dnet 1.0</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="author" content="Who wrote it">
+<meta name="author" content="">
 
 <link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/bootstrap-responsive.css" rel="stylesheet">
@@ -105,71 +105,65 @@
         
       </header>
       
-      <div class="row">
+      <h2>Annotations of Human Entrez Genes (EG) by DGIdb categories.</h2>
+
+<div class="row">
   <div class="span8">
+  
+    <h3>Description</h3>
+    <p>An R object that contains associations between DGIdb categories and Human Entrez Genes. This data is prepared based on <a href = 'http://dgidb.genome.wustl.edu/downloads/categories.tsv'>http://dgidb.genome.wustl.edu/downloads/categories.tsv</a>.</p>
+  
+    <h3>Usage</h3>
+    <pre>load(url("http://dnet.r-forge.r-project.org/data/Hs/org.Hs.egDGIdb.RData"))</pre>
+        <!-- 
+    -->
     
-    <h1>Built-in RData</h1><p>
+    <div class="Value">
+      <h3>Value</h3>
+      
+      <p>an object of class "GS", a list with following components:
+    <ul>
+<li><code>set_info</code>: a matrix of nSet X 4 containing gene set information, where nSet is the number of gene sets (i.e. MP terms), and the 4 columns are "setID" (i.e. "Term ID"), "name" (i.e. "Term Name"), "namespace" and "distance"
+        </li>
+<li><code>gs</code>: a list of gene sets, each storing gene members thereof. Always, gene sets are identified by "setID" and gene members identified by "Entrez ID"
+    </li>
+</ul></p>
+      <p></p>
+    </div>
+    <div class="References">
+      <h3>References</h3>
+      
+      <p>Griffith et al. (2009) DGIdb: mining the druggable genome. <em>Nature methods</em>, 10(12):1209-10.</p>
+    </div>
     
-    <h2>Introduction</h2>
-
-<p>As part of the package, the built-in RData (with <code>.RData</code> extension; available at <a href="http://dnet.r-forge.r-project.org/data">http://dnet.r-forge.r-project.org/data</a>) contain curated/compiled data, which can be broadly grouped into the following categories:</p>
-
-<ul>
-<li><code>Ontologies</code></li>
-</ul>
-
-<p>Locate in the subdirectory <a href="http://dnet.r-forge.r-project.org/data/Obo">Obo</a>, containing information on ontology terms and their relationships. Ontologies include Gene Ontology (GO) and its three subontologies (BP: Biological Process; MF: Molecular Function; CC: Cellular Component), Human Phenotype (HP) and its three subontologies (PA: Phenotypic Abnormality; ON: ONset and clinical course; MI: Mode of Inheritance), Disease Ontology (DO), and Mammalian Phenotype (MP). Terms in an ontology are organised as a direct acyclic graph (DAG), which is further stored as an object of the class <a href="http://igraph.sourceforge.net/doc/R/aaa-igraph-package.html">igraph</a>.</p>
-
-<ul>
-<li><code>Organism-specific databases</code></li>
-</ul>
-
-<p>Organisms supported are: <a href="http://dnet.r-forge.r-project.org/data/Hs">human</a> (<code>Hs</code>; tax_id=10090), <a href="http://dnet.r-forge.r-project.org/data/Mm">mouse</a> (<code>Mm</code>; tax_id=10090), <a href="http://dnet.r-forge.r-project.org/data/At">arabidopsis</a> (<code>At</code>; tax_id=3702), <a href="http://dnet.r-forge.r-project.org/data/Ce">c.elegans</a> (<code>Ce</code>; tax_id=6239), <a href="http://dnet.r-forge.r-project.org/data/Dm">fruitfly</a> (<code>Dm</code>; tax_id=7227), <a href="http://dnet.r-forge.r-project.org/data/Da">zebrafish</a> (<code>Da</code>; tax_id=7955), <a href="http://dnet.r-forge.r-project.org/data/Rn">rat</a> (<code>Rn</code>; tax_id=10116) and <a href="http://dnet.r-forge.r-project.org/data/Gg">chicken</a> (<code>Gg</code>; tax_id=9031). For example, human-specific databases contain information on Entrez Genes, their annotations by a variety of ontologies, their phylostratific age (PS), their assigned domain superfamilies (SF), and their interacting network derived from STRING.</p>
-
-<ul>
-<li><code>Genesets in human</code></li>
-</ul>
-
-<p>Locate in the subdirectory <a href="http://dnet.r-forge.r-project.org/data/Msigdb">Msigdb</a>. These genesets are derived from the molecular signatures database.</p>
-
-<ul>
-<li><code>Datasets as demos</code></li>
-</ul>
-
-<p>Locate in the subdirectory <a href="http://dnet.r-forge.r-project.org/data/Datasets">Datasets</a>. They are used in <a href="http://dnet.r-forge.r-project.org/demos.html">Demos</a></p>
-
-<h2>Documentations and Download</h2>
-
-<p>For details, please refer to <a href="http://dnet.r-forge.r-project.org/docs.html">Documentations</a>.</p>
-
-<p>In addition to download (as shown above), the <code>Linux/Mac</code> user can use shell commands in Terminal for download in one go:</p>
-
-<pre><code># recursively download all RData files (preserving the whole directory structure)
-wget -r -l2 -A &quot;*.RData&quot; -np -nH --cut-dirs=0 &quot;http://dnet.r-forge.r-project.org/data&quot; 
-# view the download
-ls -lh -R data
-</code></pre>
-
-
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'>## <strong>Not run</strong>: # load(url("http://dnet.r-forge.r-project.org/data/Hs/org.Hs.egDGIdb.RData"))# names(org.Hs.egDGIdb)# ## <strong>End(Not run)</strong></div></pre>
   </div>
-
+  
   <div class="span4">
-
-    <!--
     
-    
+    <!-- 
+    <ul>
+      <li>org.Hs.egDGIdb</li>
+    </ul>
+    <ul>
+      <li>datasets</li>
+    </ul> 
+    -->
+      
     
     <h2>Citation</h2>
     <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of digitised data in terms of network, ontology and evolution. R package version 1.0.1. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
-    <h2>Author</h2>
-    Who wrote it
+    <!--
+    
+    
     
     -->
     
   </div>
-
+  
 </div>
       
       <footer>

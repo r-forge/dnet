@@ -71,7 +71,8 @@ list(
                 "org.Hs.egHPPA",
                 "org.Hs.egMP",
                 "org.Hs.egPS",
-                "org.Hs.egSF",                
+                "org.Hs.egSF",  
+                "org.Hs.egDGIdb",              
                 "org.Hs.string",
                 "org.Hs.string900"
             )
