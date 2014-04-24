@@ -8,10 +8,10 @@
 library(dnet)
 
 # Load or install packages specifically used in this demo
-list.pkg <- c("affy","limma")
-for(pkg in list.pkg){
+source("http://bioconductor.org/biocLite.R")
+for(pkg in c("Biobase","limma")){
     if(!require(pkg, character.only=T)){
-        install.packages(pkg,repos="http://www.stats.bris.ac.uk/R",dependencies=TRUE)
+        biocLite(pkg)
         lapply(pkg, library, character.only=T)
     }
 }
@@ -128,7 +128,7 @@ apply(adjpvals<1e-2, 2, sum)
 fdr <- dSVDsignif(data=D, num.eigen=NULL, pval.eigen=1e-2, signif="fdr", orient.permutation="row", num.permutation=200, fdr.procedure="stepup", verbose=T)
 
 # 2) identification of module
-g <- dNetPipeline(g=network, pval=fdr, method="fdr", nsize=30)
+g <- dNetPipeline(g=network, pval=fdr, method="customised", nsize=30)
 glayout <- layout.fruchterman.reingold(g)
 
 # 3) color nodes according to communities identified via a spin-glass model and simulated annealing

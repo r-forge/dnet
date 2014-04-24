@@ -123,8 +123,8 @@ can respect the hierarchy of the ontology.</p>
           "GOMF", "GOCC", "PS", "PS2", "SF", "DO", "HPPA", "HPMI", "HPON", "MP", "MsigdbC1", 
           "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", 
           "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", 
-          "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7"), sizeRange = c(10, 20000), 
-      min.overlap = 0, which_distance = NULL, test = c("HypergeoTest", "FisherTest", 
+          "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7"), sizeRange = c(10, 1000), 
+      min.overlap = 3, which_distance = NULL, test = c("HypergeoTest", "FisherTest", 
           "BinomialTest"), p.adjust.method = c("BH", "BY", "bonferroni", "holm", "hochberg", 
           "hommel"), ontology.algorithm = c("none", "pc", "elim", "lea"), elim.pvalue = 0.01, 
       lea.depth = 2, verbose = T, RData.location = "http://dnet.r-forge.r-project.org/data")</pre>
@@ -184,7 +184,7 @@ a minimum of 10 but no more than 1000</dd>
       <dt>min.overlap</dt>
       <dd>the minimum number of overlaps. Only
 those gene sets that overlap with input data at least
-min.overlap will be processed</dd>
+min.overlap (3 by default) will be processed</dd>
       <dt>which_distance</dt>
       <dd>which distance of terms in the
 ontology is used to restrict terms in consideration. By
@@ -342,34 +342,34 @@ data <- rownames(RT)[1:1000]
 eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
 RData.location="./RData_Rd")
 </div>
-<strong class='message'>Start at 2014-04-22 14:49:31</strong>
+<strong class='message'>Start at 2014-04-24 16:36:28</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-22 14:49:31) ...</strong>
+<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-24 16:36:28) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egMP.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-04-22 14:49:33) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-24 16:36:30) ...</strong>
 <strong class='message'>	Among 1000 symbols of input data, there are 853 mappable via official gene symbols but 147 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2014-04-22 14:49:33) ...</strong>
-<strong class='message'>	There are 4609 terms being used, each restricted within [10,20000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-04-22 14:49:36) ...</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2014-04-24 16:36:30) ...</strong>
+<strong class='message'>	There are 4519 terms being used, each restricted within [10,1000] annotations</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-24 16:36:33) ...</strong>
 <strong class='message'>
-End at 2014-04-22 14:49:37</strong>
+End at 2014-04-24 16:36:34</strong>
 <strong class='message'>Runtime in total is: 6 secs
 </strong>
 <div class='input'># fisher's exact test (using 'pc' algorithm to account for ontology hierarchy)
 eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
 ontology.algorithm="pc", RData.location="./RData_Rd")
 </div>
-<strong class='message'>Start at 2014-04-22 14:49:37</strong>
+<strong class='message'>Start at 2014-04-24 16:36:34</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-22 14:49:37) ...</strong>
+<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-24 16:36:34) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egMP.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-04-22 14:49:38) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-24 16:36:36) ...</strong>
 <strong class='message'>	Among 1000 symbols of input data, there are 853 mappable via official gene symbols but 147 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest based on pc algorithm to respect ontology structure (2014-04-22 14:49:38) ...</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest based on pc algorithm to respect ontology structure (2014-04-24 16:36:36) ...</strong>
 <strong class='message'>	Load ontology information from http://dnet.r-forge.r-project.org/data/Obo/ig.MP.RData</strong>
-<strong class='message'>	There are 4610 terms being used</strong>
+<strong class='message'>	There are 4609 terms being used</strong>
 <strong class='message'>	At level 15, there are 4 nodes/terms</strong>
 <strong class='message'>	At level 14, there are 19 nodes/terms</strong>
 <strong class='message'>	At level 13, there are 43 nodes/terms</strong>
@@ -382,80 +382,80 @@ ontology.algorithm="pc", RData.location="./RData_Rd")
 <strong class='message'>	At level 6, there are 918 nodes/terms</strong>
 <strong class='message'>	At level 5, there are 820 nodes/terms</strong>
 <strong class='message'>	At level 4, there are 364 nodes/terms</strong>
-<strong class='message'>	At level 3, there are 71 nodes/terms</strong>
+<strong class='message'>	At level 3, there are 70 nodes/terms</strong>
 <strong class='message'>	At level 2, there are 29 nodes/terms</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-04-22 14:49:54) ...</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-24 16:36:58) ...</strong>
 <strong class='message'>
-End at 2014-04-22 14:49:55</strong>
-<strong class='message'>Runtime in total is: 18 secs
+End at 2014-04-24 16:36:59</strong>
+<strong class='message'>Runtime in total is: 25 secs
 </strong>
 <div class='input'># fisher's exact test (using 'elim' algorithm to account for ontology hierarchy)
 eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
 ontology.algorithm="elim", RData.location="./RData_Rd")
 </div>
-<strong class='message'>Start at 2014-04-22 14:49:55</strong>
+<strong class='message'>Start at 2014-04-24 16:36:59</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-22 14:49:55) ...</strong>
+<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-24 16:36:59) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egMP.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-04-22 14:49:58) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-24 16:37:01) ...</strong>
 <strong class='message'>	Among 1000 symbols of input data, there are 853 mappable via official gene symbols but 147 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest based on elim algorithm to respect ontology structure (2014-04-22 14:49:58) ...</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest based on elim algorithm to respect ontology structure (2014-04-24 16:37:02) ...</strong>
 <strong class='message'>	Load ontology information from http://dnet.r-forge.r-project.org/data/Obo/ig.MP.RData</strong>
-<strong class='message'>	There are 4610 terms being used</strong>
+<strong class='message'>	There are 4609 terms being used</strong>
 <strong class='message'>	At level 15, there are 4 nodes/terms: up to 0 significant nodes, 0 ancestral nodes changed (0 genes eliminated)</strong>
-<strong class='message'>	At level 14, there are 19 nodes/terms: up to 1 significant nodes, 28 ancestral nodes changed (18 genes eliminated)</strong>
-<strong class='message'>	At level 13, there are 43 nodes/terms: up to 4 significant nodes, 59 ancestral nodes changed (261 genes eliminated)</strong>
-<strong class='message'>	At level 12, there are 93 nodes/terms: up to 8 significant nodes, 95 ancestral nodes changed (329 genes eliminated)</strong>
-<strong class='message'>	At level 11, there are 143 nodes/terms: up to 22 significant nodes, 134 ancestral nodes changed (631 genes eliminated)</strong>
-<strong class='message'>	At level 10, there are 227 nodes/terms: up to 32 significant nodes, 180 ancestral nodes changed (768 genes eliminated)</strong>
-<strong class='message'>	At level 9, there are 373 nodes/terms: up to 55 significant nodes, 238 ancestral nodes changed (1120 genes eliminated)</strong>
-<strong class='message'>	At level 8, there are 640 nodes/terms: up to 79 significant nodes, 321 ancestral nodes changed (2115 genes eliminated)</strong>
-<strong class='message'>	At level 7, there are 865 nodes/terms: up to 120 significant nodes, 404 ancestral nodes changed (2629 genes eliminated)</strong>
-<strong class='message'>	At level 6, there are 918 nodes/terms: up to 144 significant nodes, 444 ancestral nodes changed (3015 genes eliminated)</strong>
-<strong class='message'>	At level 5, there are 820 nodes/terms: up to 167 significant nodes, 460 ancestral nodes changed (3807 genes eliminated)</strong>
-<strong class='message'>	At level 4, there are 364 nodes/terms: up to 172 significant nodes, 462 ancestral nodes changed (4314 genes eliminated)</strong>
-<strong class='message'>	At level 3, there are 71 nodes/terms: up to 173 significant nodes, 462 ancestral nodes changed (4463 genes eliminated)</strong>
-<strong class='message'>	At level 2, there are 29 nodes/terms: up to 173 significant nodes, 462 ancestral nodes changed (4463 genes eliminated)</strong>
-<strong class='message'>	At level 1, there are 1 nodes/terms: up to 173 significant nodes, 462 ancestral nodes changed (4463 genes eliminated)</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-04-22 14:50:10) ...</strong>
+<strong class='message'>	At level 14, there are 19 nodes/terms: up to 0 significant nodes, 0 ancestral nodes changed (0 genes eliminated)</strong>
+<strong class='message'>	At level 13, there are 43 nodes/terms: up to 3 significant nodes, 54 ancestral nodes changed (250 genes eliminated)</strong>
+<strong class='message'>	At level 12, there are 93 nodes/terms: up to 7 significant nodes, 90 ancestral nodes changed (319 genes eliminated)</strong>
+<strong class='message'>	At level 11, there are 143 nodes/terms: up to 19 significant nodes, 124 ancestral nodes changed (593 genes eliminated)</strong>
+<strong class='message'>	At level 10, there are 227 nodes/terms: up to 29 significant nodes, 173 ancestral nodes changed (764 genes eliminated)</strong>
+<strong class='message'>	At level 9, there are 373 nodes/terms: up to 53 significant nodes, 229 ancestral nodes changed (1182 genes eliminated)</strong>
+<strong class='message'>	At level 8, there are 640 nodes/terms: up to 72 significant nodes, 289 ancestral nodes changed (1504 genes eliminated)</strong>
+<strong class='message'>	At level 7, there are 865 nodes/terms: up to 107 significant nodes, 364 ancestral nodes changed (2130 genes eliminated)</strong>
+<strong class='message'>	At level 6, there are 918 nodes/terms: up to 127 significant nodes, 396 ancestral nodes changed (2410 genes eliminated)</strong>
+<strong class='message'>	At level 5, there are 820 nodes/terms: up to 147 significant nodes, 410 ancestral nodes changed (2857 genes eliminated)</strong>
+<strong class='message'>	At level 4, there are 364 nodes/terms: up to 150 significant nodes, 411 ancestral nodes changed (3025 genes eliminated)</strong>
+<strong class='message'>	At level 3, there are 70 nodes/terms: up to 151 significant nodes, 412 ancestral nodes changed (5285 genes eliminated)</strong>
+<strong class='message'>	At level 2, there are 29 nodes/terms: up to 151 significant nodes, 412 ancestral nodes changed (5285 genes eliminated)</strong>
+<strong class='message'>	At level 1, there are 1 nodes/terms: up to 151 significant nodes, 412 ancestral nodes changed (5285 genes eliminated)</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-24 16:37:16) ...</strong>
 <strong class='message'>
-End at 2014-04-22 14:50:11</strong>
-<strong class='message'>Runtime in total is: 16 secs
+End at 2014-04-24 16:37:17</strong>
+<strong class='message'>Runtime in total is: 18 secs
 </strong>
 <div class='input'># fisher's exact test (using 'lea' algorithm to account for ontology hierarchy)
 eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
 ontology.algorithm="lea", RData.location="./RData_Rd")
 </div>
-<strong class='message'>Start at 2014-04-22 14:50:11</strong>
+<strong class='message'>Start at 2014-04-24 16:37:17</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-22 14:50:11) ...</strong>
+<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-24 16:37:17) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egMP.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-04-22 14:50:12) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-24 16:37:20) ...</strong>
 <strong class='message'>	Among 1000 symbols of input data, there are 853 mappable via official gene symbols but 147 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest based on lea algorithm to respect ontology structure (2014-04-22 14:50:12) ...</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest based on lea algorithm to respect ontology structure (2014-04-24 16:37:20) ...</strong>
 <strong class='message'>	Load ontology information from http://dnet.r-forge.r-project.org/data/Obo/ig.MP.RData</strong>
-<strong class='message'>	There are 4610 terms being used</strong>
+<strong class='message'>	There are 4609 terms being used</strong>
 <strong class='message'>	At level 15, there are 4 nodes/terms and 0 being recalculated</strong>
 <strong class='message'>	At level 14, there are 19 nodes/terms and 4 being recalculated</strong>
-<strong class='message'>	At level 13, there are 43 nodes/terms and 13 being recalculated</strong>
+<strong class='message'>	At level 13, there are 43 nodes/terms and 15 being recalculated</strong>
 <strong class='message'>	At level 12, there are 93 nodes/terms and 27 being recalculated</strong>
 <strong class='message'>	At level 11, there are 143 nodes/terms and 48 being recalculated</strong>
 <strong class='message'>	At level 10, there are 227 nodes/terms and 58 being recalculated</strong>
-<strong class='message'>	At level 9, there are 373 nodes/terms and 108 being recalculated</strong>
+<strong class='message'>	At level 9, there are 373 nodes/terms and 109 being recalculated</strong>
 <strong class='message'>	At level 8, there are 640 nodes/terms and 159 being recalculated</strong>
-<strong class='message'>	At level 7, there are 865 nodes/terms and 301 being recalculated</strong>
-<strong class='message'>	At level 6, there are 918 nodes/terms and 335 being recalculated</strong>
-<strong class='message'>	At level 5, there are 820 nodes/terms and 376 being recalculated</strong>
-<strong class='message'>	At level 4, there are 364 nodes/terms and 249 being recalculated</strong>
-<strong class='message'>	At level 3, there are 71 nodes/terms and 61 being recalculated</strong>
-<strong class='message'>	At level 2, there are 29 nodes/terms and 22 being recalculated</strong>
+<strong class='message'>	At level 7, there are 865 nodes/terms and 303 being recalculated</strong>
+<strong class='message'>	At level 6, there are 918 nodes/terms and 340 being recalculated</strong>
+<strong class='message'>	At level 5, there are 820 nodes/terms and 379 being recalculated</strong>
+<strong class='message'>	At level 4, there are 364 nodes/terms and 252 being recalculated</strong>
+<strong class='message'>	At level 3, there are 70 nodes/terms and 61 being recalculated</strong>
+<strong class='message'>	At level 2, there are 29 nodes/terms and 23 being recalculated</strong>
 <strong class='message'>	At level 1, there are 1 nodes/terms and 1 being recalculated</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-04-22 14:50:27) ...</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-24 16:37:38) ...</strong>
 <strong class='message'>
-End at 2014-04-22 14:50:28</strong>
-<strong class='message'>Runtime in total is: 17 secs
+End at 2014-04-24 16:37:38</strong>
+<strong class='message'>Runtime in total is: 21 secs
 </strong>
 <div class='input'>
 # visualise the top significant terms in the ontology heirarchy

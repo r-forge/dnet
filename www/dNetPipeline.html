@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dNetPipeline @ dnet 1.0.0</title>
+<title>dNetPipeline @ dnet 1.0.1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.0</a>
+      <a class="brand" href="index.html">dnet 1.0.1</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -105,50 +105,53 @@
         
       </header>
       
-      <h2>Function to setup the pipeline for finding maximum-scoring module from an input graph and the signficance imposed on its nodes</h2>
+      <h2>Function to setup the pipeline for finding maximum-scoring subgraph from an input graph and the signficance imposed on its nodes</h2>
 
 <div class="row">
   <div class="span8">
   
     <h3>Description</h3>
     <p><code>dNetPipeline</code> is supposed to finish ab inito
-maximum-scoring module identification for the input graph
-with the node information on the significance (p-values).
-It returns an object of class "igraph" or "graphNEL".</p>
+maximum-scoring subgraph identification for the input graph
+with the node information on the significance (p-value or
+fdr). It returns an object of class "igraph" or "graphNEL".</p>
   
     <h3>Usage</h3>
-    <pre>dNetPipeline(g, pval, method = c("pdf", "cdf", "fdr"), fdr = NULL, nsize = NULL, 
-  plot = F, verbose = T)</pre>
+    <pre>dNetPipeline(g, pval, method = c("pdf", "cdf", "customised"), significance.threshold = NULL, 
+  nsize = NULL, plot = F, verbose = T)</pre>
     
     <h3>Arguments</h3>
     <dl>
       <dt>g</dt>
       <dd>an object of class "igraph" or "graphNEL"</dd>
       <dt>pval</dt>
-      <dd>a vector containing input p-values. For each
-element, it must have the name that could be mapped onto
-the input graph. Also, the names in input "pval" should
-contain all those in the input graph "g", but the reverse
-is not necessary</dd>
+      <dd>a vector containing input p-values (or fdr).
+For each element, it must have the name that could be
+mapped onto the input graph. Also, the names in input
+"pval" should contain all those in the input graph "g",
+but the reverse is not necessary</dd>
       <dt>method</dt>
       <dd>the method used for the transformation. It
 can be either "pdf" for the method based on the
 probability density function of the fitted model, or
 "cdf" for the method based on the cumulative distribution
 function of the fitted model</dd>
-      <dt>fdr</dt>
-      <dd>the given FDR threshold. By default, it is set
-to NULL, meaning there is no constraint. If given, those
-p-values with the FDR below this are considered
-significant and thus scored positively. Instead, those
-p-values with the FDR above this given FDR are considered
-insigificant and thus scored negatively</dd>
+      <dt>significance.threshold</dt>
+      <dd>the given significance
+threshold. By default, it is set to NULL, meaning there
+is no constraint. If given, those p-values below this are
+considered significant and thus scored positively.
+Instead, those p-values above this given significance
+threshold are considered insigificant and thus scored
+negatively</dd>
       <dt>nsize</dt>
       <dd>the desired number of nodes constrained to
-the resulting module. It is not nulll, a wide range of
-FDR will be scanned to find the FDR threshold leading to
-the desired number of nodes in the resulting module.
-Notably, the given FDR threshold will be overwritten.</dd>
+the resulting subgraph. It is not nulll, a wide range of
+significance thresholds will be scanned to find the
+optimal significance threshold leading to the desired
+number of nodes in the resulting subgraph. Notably, the
+given significance threshold will be overwritten by this
+option.</dd>
       <dt>plot</dt>
       <dd>logical to indicate whether the histogram
 plot, contour plot and scatter plot should be drawn. By
@@ -164,70 +167,38 @@ true for display</dd>
     <div class="Value">
       <h3>Value</h3>
       
-      <p>a module with a maximum score, an object of class "igraph"
-or "graphNEL"</p>
+      <p>a subgraph with a maximum score, an object of class
+"igraph" or "graphNEL"</p>
     </div>
     <div class="Note">
       <h3>Note</h3>
       
       <p>The pipeline sequentially consists of: <ul>
-<li>i)
+<li>ia)
+if the method is either "pdf" or "cdf",
 <code><a href='dBUMfit.html'>dBUMfit</a></code> used to fit the p-value distribution
-under beta-uniform mixture model. </li>
+under beta-uniform mixture model, and
+<code><a href='dBUMscore.html'>dBUMscore</a></code> used to calculate the scores
+according to the fitted BUM and the significance
+threshold. </li>
+<li>ib) if the method is either "customised",
+then the user input list of fdr (or p-values) and the
+significance threshold will be directly used for score
+transformation by <code>dFDRscore</code>. </li>
 <li>ii) if there is
 the desired number of nodes constrained to the resulting
-module, a wide range of FDR (including rough stage with
-large intervals, and finetune stage with smaller intervals)
-will be scanned to find the FDR threshold to meet the
-desired number of nodes. </li>
-<li>iii)
-<code><a href='dBUMscore.html'>dBUMscore</a></code> used to calculate the scores
-according to the fitted BUM and FDR threshold. </li>
-<li>iv)
-<code><a href='dNetFind.html'>dNetFind</a></code> used to find maximum-scoring module
-from the input graph and scores imposed on its nodes. </li>
+subgraph, a wide range of significance thresholds
+(including rough stage with large intervals, and finetune
+stage with smaller intervals) will be scanned to find the
+significance threshold to meet the desired number of
+nodes. </li>
+<li>iii) <code><a href='dNetFind.html'>dNetFind</a></code> used to find
+maximum-scoring subgraph from the input graph and scores
+imposed on its nodes. </li>
 </ul></p>
       <p></p>
     </div>
-    
-    <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'># 1) generate an vector consisting of random values from beta distribution
-x <- rbeta(1000, shape1=0.5, shape2=1)
-names(x) <- as.character(1:length(x))
-
-# 2) generate a random graph according to the ER model
-g <- erdos.renyi.game(1000, 1/100)
-
-# 3) produce the induced subgraph only based on the nodes in query
-subg <- dNetInduce(g, V(g), knn=0)
-
-# 4) find maximum-scoring module based on fdr=0.1 threshold
-module <- dNetPipeline(g=subg, pval=x, fdr=0.1)
-</div>
-<strong class='message'>Start at 2014-04-11 14:57:26</strong>
-<strong class='message'></strong>
-<strong class='message'>First, fit the p-value distribution under beta-uniform mixture model...</strong>
-<strong class='message'>	A total of p-values: 1000</strong>
-<strong class='message'>	Maximum Log-Likelihood: 298.9</strong>
-<strong class='message'>	Mixture parameter (lambda): 0.000</strong>
-<strong class='message'>	Shape parameter (a): 0.504</strong>
-<strong class='message'>Second, determine FDR threshold...</strong>
-<strong class='message'>	FDR threshold: 1.00e-01</strong>
-<strong class='message'>Third, calculate the scores according to the fitted BUM and FDR threshold (if any)...</strong>
-<strong class='message'>	Amongst 1000 scores, there are 192 positives.</strong>
-<strong class='message'>Finally, find the subnetwork from the input network with 1000 nodes and 5037 edges...</strong>
-<strong class='message'>	Size of the module: 165 nodes and 191 edges</strong>
-<strong class='message'>
-Finish at 2014-04-11 14:57:27</strong>
-<strong class='message'>Runtime in total is: 1 secs
-</strong>
-<div class='input'>
-## <strong>Not run</strong>: 
-# # 5) find maximum-scoring module with the desired node number nsize=20
-# # module <- dNetPipeline(g=subg, pval=x, nsize=20)
-# ## <strong>End(Not run)</strong>
-</div></pre>
-  </div>
+      </div>
   
   <div class="span4">
     
@@ -243,11 +214,11 @@ Finish at 2014-04-11 14:57:27</strong>
     <h2>See also</h2>
     
 <code><a href='dBUMfit.html'>dBUMfit</a></code>, <code><a href='dBUMscore.html'>dBUMscore</a></code>,
-<code><a href='dNetFind.html'>dNetFind</a></code>
+<code><a href='dFDRscore.html'>dFDRscore</a></code>, <code><a href='dNetFind.html'>dNetFind</a></code>
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of digitised data in terms of network, ontology and evolution. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of digitised data in terms of network, ontology and evolution. R package version 1.0.1. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

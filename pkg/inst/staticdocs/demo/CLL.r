@@ -4,13 +4,12 @@
 library(dnet)
 
 # Load or install packages specifically used in this demo
-if(!require(affy)){
-    install.packages("affy",repos="http://www.stats.bris.ac.uk/R")
-    library(affy)
-}
-if(!require(limma)){
-    install.packages("limma",repos="http://www.stats.bris.ac.uk/R")
-    library(limma)
+source("http://bioconductor.org/biocLite.R")
+for(pkg in c("Biobase","limma")){
+    if(!require(pkg, character.only=T)){
+        biocLite(pkg)
+        lapply(pkg, library, character.only=T)
+    }
 }
 
 # This dataset involves 130 patients with chronic lymphocytic leukemia (CLL). When enrolled in the study, these CLL patients had not received prior therapy for CLL. Additional covariate about sampling time to first treatment (years) is available. The dataset has been normalised and log2-transformed, and provided as an "ExpressionSet" object.

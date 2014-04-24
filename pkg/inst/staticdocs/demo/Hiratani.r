@@ -16,13 +16,14 @@ ls() # you should see three variables: 'RT', 'CpG' and 'EX'
 library(dnet)
 
 # Load or/and install packages "affy" and "limma" that are specifically used in this demo
-list.pkg <- c("affy","limma")
-for(pkg in list.pkg){
+source("http://bioconductor.org/biocLite.R")
+for(pkg in c("Biobase","limma")){
     if(!require(pkg, character.only=T)){
-        install.packages(pkg,repos="http://www.stats.bris.ac.uk/R",dependencies=TRUE)
+        biocLite(pkg)
         lapply(pkg, library, character.only=T)
     }
 }
+
 
 # Here, we are interested to analyse replication timing data and their difference between different sample groups
 # To this end, it is better to create the 'eset' object including sample grouping indication information
@@ -89,7 +90,9 @@ hist(pval)
 
 # 2) identification of gene-active subnetwork
 ## restrict the identified subnetwork to have the node size of 40 or so
-g <- dNetPipeline(g=network, pval=pval, nsize=40)
+#g <- dNetPipeline(g=network, pval=pval, nsize=40)
+## corresponding to fdr=5.50e-07
+g <- dNetPipeline(g=network, pval=pval, significance.threshold=5.50e-07)
 g
 
 # 3) visualisation of the gene-active subnetwork itself
@@ -210,7 +213,11 @@ subg <- dDAGinduce(g, nodes_query)
 visDAG(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]), node.info="both", zlim=c(0,4), node.attrs=list(color=nodes.highlight))
 
 ## 9e) PS enrichment analysis
-eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="PS")
-## Loot at the evolution relevance along the path to the eukaryotic common ancestor
+## use all common ancestors
+eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="PS", sizeRange=c(10,20000), min.overlap=0)
+## Look at the evolution relevance along the path to the eukaryotic common ancestor
 cbind(eTerm$set_info[,2:3], nSet=sapply(eTerm$gs,length), zscore=eTerm$zscore, pvalue=eTerm$pvalue, adjp=eTerm$adjp)
-
+## use common ancestors collapsed onto NCBI taxonomy
+eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="PS2", sizeRange=c(10,20000), min.overlap=0)
+## Look at the evolution relevance along the path to the eukaryotic common ancestor
+cbind(eTerm$set_info[,2:3], nSet=sapply(eTerm$gs,length), zscore=eTerm$zscore, pvalue=eTerm$pvalue, adjp=eTerm$adjp)

@@ -128,6 +128,7 @@ V(network)$name <- V(network)$symbol
 #E(network)$weight <- E(network)$combined_score
 network
 
+
 # Identification of gene-active subnetwork
 # 2) identification of gene-active subnetwork
 #pvals <- pvals[V(network)$symbol]
@@ -135,6 +136,145 @@ network
 #g <- dNetPipeline(g=network, pval=pvals, method="fdr", nsize=40)
 g <- dNetPipeline(g=network, pval=pvals, method="fdr", fdr=3e-02)
 g
+
+
+############################################################################
+# comparisons with jActiveModule
+
+load("a.RData")
+# output the whole network and pvals on nodes
+## Write the subnetwork into a SIF-formatted file (Simple Interaction File)
+sif <- data.frame(source=get.edgelist(network)[,1], type="gga", target=get.edgelist(network)[,2])
+write.table(sif, file=paste("Survival_TCGA.sif", sep=""), quote=F, row.names=F,col.names=F,sep="\t")
+## Output the corresponding mutation frequency data
+nodeAttrs <- data.frame(Symbol=names(pvals), pvals)
+write.table(nodeAttrs, file=paste("Survival_TCGA.nodeAttrs", sep=""), quote=F, row.names=F,col.names=T,sep="\t")
+
+
+
+relations <- read.table("Module2_H.sif",sep="\t",quote="",header=F)
+relations <- relations[,c(1,3)]
+colnames(relations) <- c("from","to")
+Module2_H <- graph.data.frame(d=relations, directed=F)
+
+relations <- read.table("Module2_Q.sif",sep="\t",quote="",header=F)
+relations <- relations[,c(1,3)]
+colnames(relations) <- c("from","to")
+Module2_Q <- graph.data.frame(d=relations, directed=F)
+
+relations <- read.table("Module2_QH.sif",sep="\t",quote="",header=F)
+relations <- relations[,c(1,3)]
+colnames(relations) <- c("from","to")
+Module2_QH <- graph.data.frame(d=relations, directed=F)
+
+relations <- read.table("Module2_None.sif",sep="\t",quote="",header=F)
+relations <- relations[,c(1,3)]
+colnames(relations) <- c("from","to")
+Module2_None <- graph.data.frame(d=relations, directed=F)
+
+# median: 0.61, 6.2 66.1
+bp.LR.list <- list(All=LR[sample(length(cg_names))], Neti=LR[cg_names], Netc=cg_signif[2:nrow(cg_signif),1], M_none=LR[V(Module2_None)$name], M_H=LR[V(Module2_H)$name], M_Q=LR[V(Module2_Q)$name], M_QH=LR[V(Module2_QH)$name])
+par(las=1, mar=c(5,8,4,2)) # all axis labels horizontal
+boxplot(bp.LR.list, outline=F, horizontal=F, border=par("fg"), ylab="Cox hazard ratio (HR)", log="y", ylim=c(0.1,100), yaxt="n",xaxt="n")
+axis(2, at=c(0.1,1,10,100), labels=c(0.1,1,10,100), las=2)
+axis(1, at=1:length(bp.LR.list), labels=c("naive", "dnet", "dnet (combined)", "Module2_None", "Module2_H", "Module2_Q", "Module2_QH"), las=2)
+
+bp.LR.list <- list(Neti=LR[cg_names], M_none=LR[V(Module2_None)$name], M_H=LR[V(Module2_H)$name], M_Q=LR[V(Module2_Q)$name], M_QH=LR[V(Module2_QH)$name])
+par(las=1, mar=c(5,8,4,2)) # all axis labels horizontal
+boxplot(bp.LR.list, outline=F, horizontal=F, border=par("fg"), ylab="Cox hazard ratio (HR)", log="", ylim=c(0,12), yaxt="n",xaxt="n")
+axis(2, at=seq(0,12,by=4), labels=seq(0,12,by=4), las=2)
+axis(1, at=1:length(bp.LR.list), labels=c("Individual genes\n in the network", "Module2_None", "Module2_H", "Module2_Q", "Module2_QH"), las=2)
+
+
+m <- matrix(0, nrow=length(LR), ncol=6)
+rownames(m) <- names(LR)
+colnames(m) <- c("dnet", "Module2", "Module2_H", "Module2_Q", "Module2_QH", "jActiveModules")
+a <- cg_names
+b <- V(Module2_None)$name
+c <- V(Module2_Q)$name
+d <- V(Module2_H)$name
+e <- V(Module2_QH)$name
+aa <- match(a,names(LR))
+bb <- match(b,names(LR))
+cc <- match(c,names(LR))
+dd <- match(d,names(LR))
+ee <- match(e,names(LR))
+m[aa,1] <- 1
+m[bb,2] <- 1
+m[cc,3] <- 1
+m[dd,4] <- 1
+m[ee,5] <- 1
+ind <- which(apply(m[,2:5],1,sum)==4)
+m[ind,6] <- 1
+
+gene_info <- org.Hs.eg$gene_info
+tmp <- gene_info[match(names(LR), gene_info$Symbol),c(1,2,3,4,5)]
+write.table(data.frame(Symbol=rownames(m), tmp, m, HR=LR, pval=pvals), file=paste("dnet_jActiveModules.txt", sep=""), quote=F, row.names=F,col.names=T,sep="\t")
+
+
+vennDiagram(m[,c(1,6)],cex=c(1,1,0.7))
+vennDiagram(m[,c(2,3,4,5)],cex=c(1,1,0.7))
+
+bp.LR.list <- list(Neti=LR[cg_names], M_none=LR[V(Module2_None)$name], M_H=LR[V(Module2_H)$name], M_Q=LR[V(Module2_Q)$name], M_QH=LR[V(Module2_QH)$name], M=LR[ind])
+par(las=1, mar=c(10,8,4,2)) # all axis labels horizontal
+boxplot(bp.LR.list, outline=F, horizontal=F, border=par("fg"), ylab="Cox hazard ratio (HR)", log="", ylim=c(0,12), yaxt="n",xaxt="n")
+axis(2, at=seq(0,12,by=4), labels=seq(0,12,by=4), las=2)
+labels <- c("dnet", "Module2_None", "Module2_H", "Module2_Q", "Module2_QH", "jActiveModule (consensus)")
+labels <- paste(labels, "_", sapply(bp.LR.list,length), sep="")
+axis(1, at=1:length(bp.LR.list), labels=labels, las=2)
+
+# median: 6.30 6.12 3.64
+bp.LR.list <- list(Neti=LR[cg_names], M=LR[ind])
+par(las=1, mar=c(10,8,4,2)) # all axis labels horizontal
+boxplot(bp.LR.list, outline=F, horizontal=F, border=par("fg"), ylab="Cox hazard ratio (HR)", log="", ylim=c(0,12), yaxt="n",xaxt="n")
+axis(2, at=seq(0,12,by=4), labels=seq(0,12,by=4), las=2)
+labels <- c("dnet", "jActiveModule (consensus)")
+labels <- paste(labels, "_", sapply(bp.LR.list,length), sep="")
+axis(1, at=1:length(bp.LR.list), labels=labels, las=2)
+
+both <- intersect(LR[cg_names], LR[ind])
+d_only <- setdiff(LR[cg_names], LR[ind])
+j_only <- setdiff(LR[ind], LR[cg_names])
+bp.LR.list <- list(d=d_only, both=both, j=j_only)
+par(las=1, mar=c(10,8,4,2)) # all axis labels horizontal
+boxplot(bp.LR.list, outline=F, horizontal=F, border=par("fg"), ylab="Cox hazard ratio (HR)", log="", ylim=c(0,15), yaxt="n",xaxt="n")
+axis(2, at=seq(0,15,by=5), labels=seq(0,15,by=5), las=2)
+labels <- c("dnet only", "both", "jActiveModule (consensus) only")
+labels <- paste(labels, "_", sapply(bp.LR.list,length), sep="")
+axis(1, at=1:length(bp.LR.list), labels=labels, las=2)
+
+## Two-sample Kolmogorov-Smirnov test
+# p-value = 2.161e-05
+stats::ks.test(x=LR[cg_names], y=LR[V(Module2_None)$name], alternative=c("two.sided","less", "greater")[1], exact=NULL)
+# p-value = 0.0007342
+stats::ks.test(x=LR[cg_names], y=LR[ind], alternative=c("two.sided","less", "greater")[1], exact=NULL)
+# p-value = 0.5079
+stats::ks.test(x=d_only, y=both, alternative=c("two.sided","less", "greater")[1], exact=NULL)
+# p-value = 3.897e-06
+stats::ks.test(x=d_only, y=j_only, alternative=c("two.sided","less", "greater")[1], exact=NULL)
+# p-value = 0.00015
+stats::ks.test(x=j_only, y=both, alternative=c("two.sided","less", "greater")[1], exact=NULL)
+
+
+# GSEA using the network as a gene set against the preranked LR
+data <- matrix(LR, ncol=1)
+rownames(data) <- names(LR)
+## for dnet
+eTerm <- dGSEA(data=data, identity="symbol", genome="Hs", ontology="Customised", customised.genesets=V(net)$name, weight=0, nperm=5000, RData.location="RData_Rd/data")
+visGSEA(eTerm)
+## for jActiveModule
+eTerm <- dGSEA(data=data, identity="symbol", genome="Hs", ontology="Customised", customised.genesets=names(LR)[ind], weight=0, nperm=5000, RData.location="RData_Rd/data")
+visGSEA(eTerm)
+
+
+############################################################################
+bionet <- dNetPipeline(g=network, pval=pvals, method="cdf", nsize=42)
+bionet
+
+## Two-sample Kolmogorov-Smirnov test
+# p-value = 2.161e-05
+stats::ks.test(x=LR[cg_names], y=LR[V(bionet)$name], alternative=c("two.sided","less", "greater")[1], exact=NULL)
+
 
 
 ############################################################################
@@ -295,20 +435,21 @@ for(i in 1:length(cg_names)){
 }
 cg_signif[cg_signif[,2]==0,2] <- min(cg_signif[cg_signif[,2]!=0,2])
 
-# median: 0.61, 6.2 66.1
-bp.LR.list <- list(All=LR, Neti=LR[cg_names], Netc=cg_signif[2:nrow(cg_signif),1])
+# median: 0.61 (0.56), 6.18 66.12
+naive <- LR[sample(length(cg_names))]
+bp.LR.list <- list(Naive=naive, Neti=LR[cg_names], Netc=cg_signif[2:nrow(cg_signif),1])
 par(las=1, mar=c(5,8,4,2)) # all axis labels horizontal
-boxplot(bp.LR.list, outline=F, horizontal=F, names=c("All genes", "Individual genes\n in the network", "Combined genes\n in the network"), col=c("red","green","blue"), border=par("fg"), ylab="Hazard ratio", log="y", ylim=c(0.1,100), yaxt="n",xaxt="n")
+boxplot(bp.LR.list, outline=F, horizontal=F, names=c("All genes", "Individual genes\n in the network", "Combined genes\n in the network"), col=c("red","green","blue"), border=par("fg"), ylab="Cox hazard ratio (HR)", log="y", ylim=c(0.1,100), yaxt="n",xaxt="n")
 axis(2, at=c(0.1,1,10,100), labels=c(0.1,1,10,100), las=2)
-axis(1, at=1:3, labels=c("All genes", "Individual genes\n in the network", "Combined genes\n in the network"), las=2)
+axis(1, at=1:3, labels=c("naive\n(using genes in random)", "dnet\n(using genes individually)", "dnet\n(using genes in combination"), las=2)
 
 ## Two-sample Kolmogorov-Smirnov test
-# p-value = p-value < 2.2e-16
-stats::ks.test(x=LR, y=LR[cg_names], alternative=c("two.sided","less", "greater")[1], exact=NULL)
-# p-value = p-value < 2.2e-16
+# p-value = 7.938e-14
+stats::ks.test(x=naive, y=LR[cg_names], alternative=c("two.sided","less", "greater")[1], exact=NULL)
+# p-value = 2.2e-16
 stats::ks.test(x=LR[cg_names], y=cg_signif[2:nrow(cg_signif),1], alternative=c("two.sided","less", "greater")[1], exact=NULL)
-# p-value = p-value < 2.2e-16
-stats::ks.test(x=LR, y=cg_signif[2:nrow(cg_signif),1], alternative=c("two.sided","less", "greater")[1], exact=NULL)
+# p-value = 2.2e-16
+stats::ks.test(x=naive, y=cg_signif[2:nrow(cg_signif),1], alternative=c("two.sided","less", "greater")[1], exact=NULL)
 
 
 plot(cg_signif[,1])

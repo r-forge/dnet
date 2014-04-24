@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dGSEA @ dnet 1.0.0</title>
+<title>dGSEA @ dnet 1.0.1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.0</a>
+      <a class="brand" href="index.html">dnet 1.0.1</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -121,9 +121,10 @@ returns an object of class "eTerm".</p>
       "PS", "PS2", "SF", "DO", "HPPA", "HPMI", "HPON", "MP", "MsigdbC1", "MsigdbC2CGP", 
       "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", 
       "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", 
-      "MsigdbC6", "MsigdbC7"), sizeRange = c(10, 20000), which_distance = NULL, weight = 1, 
-      nperm = 100, fast = T, sigTail = c("two-tails", "one-tail"), p.adjust.method = c("BH", 
-          "BY", "bonferroni", "holm", "hochberg", "hommel"), verbose = T, RData.location = "http://dnet.r-forge.r-project.org/data")</pre>
+      "MsigdbC6", "MsigdbC7", "Customised"), customised.genesets = NULL, sizeRange = c(10, 
+      20000), which_distance = NULL, weight = 1, nperm = 1000, fast = T, sigTail = c("two-tails", 
+      "one-tail"), p.adjust.method = c("BH", "BY", "bonferroni", "holm", "hochberg", 
+      "hommel"), verbose = T, RData.location = "http://dnet.r-forge.r-project.org/data")</pre>
     
     <h3>Arguments</h3>
     <dl>
@@ -172,7 +173,15 @@ genomes/species; for "Hs" and "Mm", these five ("DO",
 "Msigdb" are only supported in "Hs". For details on the
 eligibility for pairs of input genome and ontology,
 please refer to the online Documentations at
-<a href = 'http://dnet.r-forge.r-project.org/docs.html'>http://dnet.r-forge.r-project.org/docs.html</a></dd>
+<a href = 'http://dnet.r-forge.r-project.org/docs.html'>http://dnet.r-forge.r-project.org/docs.html</a>. Also
+supported are the user-customised gene sets; in doing so,
+the option "Customised" should be used together with the
+input of the next parameter "customised.genesets"</dd>
+      <dt>customised.genesets</dt>
+      <dd>an input vector/matrix/list
+which only works when the user chooses "Customised" in
+the previous parameter "ontology". It contains either
+Entrez Gene ID or Symbol</dd>
       <dt>sizeRange</dt>
       <dd>the minimum and maximum size of members
 of each gene set in consideration. By default, it sets to
@@ -327,21 +336,21 @@ data <- RT[1:1000,1:2]
 eTerm <- dGSEA(data, identity="symbol", genome="Mm", ontology="MP",
 which_distance=c(1,2))
 </div>
-<strong class='message'>Start at 2014-04-12 19:43:10</strong>
+<strong class='message'>Start at 2014-04-24 16:37:51</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-12 19:43:10) ...</strong>
+<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-24 16:37:51) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egMP.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-04-12 19:43:12) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-24 16:37:53) ...</strong>
 <strong class='message'>	Among 1000 symbols of input data, there are 853 mappable via official gene symbols but 147 left unmappable</strong>
-<strong class='message'>Third, perform GSEA analysis (2014-04-12 19:43:13) ...</strong>
-<strong class='message'>	Sample 1 is being processed at (2014-04-12 19:43:13) ...</strong>
+<strong class='message'>Third, perform GSEA analysis (2014-04-24 16:37:54) ...</strong>
+<strong class='message'>	Sample 1 is being processed at (2014-04-24 16:37:54) ...</strong>
 <strong class='message'>		 81 of 81 gene sets have been processed</strong>
-<strong class='message'>	Sample 2 is being processed at (2014-04-12 19:43:15) ...</strong>
+<strong class='message'>	Sample 2 is being processed at (2014-04-24 16:38:05) ...</strong>
 <strong class='message'>		 81 of 81 gene sets have been processed</strong>
 <strong class='message'>
-End at 2014-04-12 19:43:17</strong>
-<strong class='message'>Runtime in total is: 7 secs
+End at 2014-04-24 16:38:17</strong>
+<strong class='message'>Runtime in total is: 26 secs
 </strong>
 <div class='input'>res <- dGSEAview(eTerm, which_sample=1, top_num=5, sortBy="adjp",
 decreasing=FALSE, details=TRUE)
@@ -351,7 +360,32 @@ visGSEA(eTerm, which_sample=1, which_term=rownames(res)[1])
 <div class='input'>output <- dGSEAwrite(eTerm, which_content="gadjp", which_score="gadjp",
 filename="eTerm.txt")
 </div>
-<strong class='message'>A file called eTerm.txt has been successfully written!
+<strong class='warning'>Warning message:
+row names were found from a short variable and have been discarded</strong>
+<strong class='warning'>Warning message:
+non-unique value when setting 'row.names': ‘MP:0005502’</strong>
+<strong class='error'>Error in `row.names<-.data.frame`(`*tmp*`, value = value): duplicate 'row.names' are not allowed</strong>
+<div class='input'>
+## based on customised gene sets
+eTerm <- dGSEA(data, identity="symbol", genome="Mm",
+ontology="Customised", customised.genesets=rownames(data)[1:100],
+RData.location="RData_Rd/data")
+</div>
+<strong class='message'>Start at 2014-04-24 16:38:19</strong>
+<strong class='message'></strong>
+<strong class='message'>First, load the ontology Customised and its gene associations in the genome Mm (2014-04-24 16:38:19) ...</strong>
+<strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
+<strong class='message'>	Among 100 symbols of input data, there are 81 mappable via official gene symbols but 19 left unmappable</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-24 16:38:20) ...</strong>
+<strong class='message'>	Among 1000 symbols of input data, there are 853 mappable via official gene symbols but 147 left unmappable</strong>
+<strong class='message'>Third, perform GSEA analysis (2014-04-24 16:38:20) ...</strong>
+<strong class='message'>	Sample 1 is being processed at (2014-04-24 16:38:20) ...</strong>
+<strong class='message'>		 1 of 1 gene sets have been processed</strong>
+<strong class='message'>	Sample 2 is being processed at (2014-04-24 16:38:21) ...</strong>
+<strong class='message'>		 1 of 1 gene sets have been processed</strong>
+<strong class='message'>
+End at 2014-04-24 16:38:21</strong>
+<strong class='message'>Runtime in total is: 2 secs
 </strong></pre>
   </div>
   
@@ -373,7 +407,7 @@ filename="eTerm.txt")
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of digitised data in terms of network, ontology and evolution. R package version 1.0.0. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of digitised data in terms of network, ontology and evolution. R package version 1.0.1. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

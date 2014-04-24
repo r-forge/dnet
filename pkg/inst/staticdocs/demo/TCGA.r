@@ -8,11 +8,12 @@
 library(dnet)
 
 # Load or install packages specifically used in this demo
+source("http://bioconductor.org/biocLite.R")
 for(pkg in c("Biobase","survival")){
     if(!require(pkg, character.only=T)){
-        install.packages(pkg,repos="http://www.stats.bris.ac.uk/R",dependencies=TRUE)
+        biocLite(pkg)
+        lapply(pkg, library, character.only=T)
     }
-    lapply(pkg, library, character.only=T)
 }
 
 # load an "ExpressionSet" object
@@ -71,7 +72,7 @@ V(network)$name <- V(network)$symbol
 network
 
 # Identification of gene-active network
-net <- dNetPipeline(g=network, pval=pvals, method="fdr", fdr=3e-02)
+net <- dNetPipeline(g=network, pval=pvals, method="customised", significance.threshold=3e-02)
 net
 
 # visualisation of the gene-active network itself
@@ -129,9 +130,9 @@ for(i in 1:length(cg_names)){
 cg_signif[cg_signif[,2]==0,2] <- min(cg_signif[cg_signif[,2]!=0,2])
 bp.HR.list <- list(All=HR, Neti=HR[cg_names], Netc=cg_signif[2:nrow(cg_signif),1])
 par(las=2, mar=c(10,8,4,2)) # all axis labels horizontal
-boxplot(bp.HR.list, outline=F, horizontal=F, names=c("All genes", "Genes in the network\n(used individually)", "Genes in the network\n(used in combination)"), col=c("red","green","blue"), ylab="Hazard ratio", log="y", ylim=c(0.1,100))
+boxplot(bp.HR.list, outline=F, horizontal=F, names=c("naive\n(genes in random)", "dnet\n(genes individually)", "dnet \n(genes in combination)"), col=c("red","green","blue"), ylab="Cox hazard ratio (HR)", log="y", ylim=c(0.1,100))
 # Two-sample Kolmogorov-Smirnov test
-## All genes versus genes in the network (used individually)
+## Genes randomly choosen versus genes in the network (used individually)
 stats::ks.test(x=HR, y=HR[cg_names], alternative="two.sided", exact=NULL)
 ## Genes in the network (used individually) versuse genes in the network (used in combination)
 stats::ks.test(x=HR[cg_names], y=cg_signif[2:nrow(cg_signif),1], alternative="two.sided", exact=NULL)
