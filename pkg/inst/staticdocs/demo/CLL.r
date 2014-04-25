@@ -4,9 +4,9 @@
 library(dnet)
 
 # Load or install packages specifically used in this demo
-source("http://bioconductor.org/biocLite.R")
 for(pkg in c("Biobase","limma")){
     if(!require(pkg, character.only=T)){
+        source("http://bioconductor.org/biocLite.R")
         biocLite(pkg)
         lapply(pkg, library, character.only=T)
     }
@@ -53,7 +53,7 @@ prob2gene <- function(eset){
 esetGene <- prob2gene(esetNew)
 esetGene
 
-# An igraph object that contains a functional protein association network in human. The network is extracted from the STRING database (version 9.0.5). Only those associations with medium confidence (score>=0.4) are retained.
+# An igraph object that contains a functional protein association network in human. The network is extracted from the STRING database (version 9.1). Only those associations with medium confidence (score>=400) are retained.
 load(url("http://dnet.r-forge.r-project.org/data/Hs/org.Hs.string.RData"))
 org.Hs.string
 
@@ -107,8 +107,8 @@ g <- dNetPipeline(g=network, pval=pval, nsize=20)
 glayout <- layout.fruchterman.reingold(g)
 
 # 3) color nodes according to communities identified via a spin-glass model and simulated annealing
-#com <- spinglass.community(g, spins=3)
-com <- walktrap.community(g, modularity=T)
+#com <- walktrap.community(g, modularity=T)
+com <- spinglass.community(g, spins=25)
 com$csize <- sapply(1:length(com),function(x) sum(com$membership==x))
 vgroups <- com$membership
 colormap <- "yellow-darkorange"

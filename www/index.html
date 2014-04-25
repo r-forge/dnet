@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Home @ dnet 1.0</title>
+<title>Home @ dnet 1.0.1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="author" content="Who wrote it">
+<meta name="author" content="Hai Fang and Julian Gough">
 
 <link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/bootstrap-responsive.css" rel="stylesheet">
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0</a>
+      <a class="brand" href="index.html">dnet 1.0.1</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -121,8 +121,8 @@
 <li>Identification of gene-active networks from digitised data (eg <a href="http://dnet.r-forge.r-project.org/demo-Fang.html">expression</a>, <a href="http://dnet.r-forge.r-project.org/demo-TCGA.html">mutation</a> and <a href="http://dnet.r-forge.r-project.org/demo-Hiratani.html">replication timing</a>)</li>
 <li>Network-based sample classifications and visualisations on 2D sample landscape</li>
 <li>Random walk with restart for network affinity calculation</li>
-<li>Enrichment analysis using a variety of ontologies (their annotations) and using gene evolutionary age information</li>
-<li>A wide variety of built-in <a href="http://dnet.r-forge.r-project.org/rdata.html">RData</a>: ontologies (including <code>Gene Ontology</code>, <code>Disease Ontology</code>, <code>Human Phenotype</code> and <code>Mammalian Phenotype</code>), phylostratific age information and gene association networks in well-studied organisms, including human, mouse, rat, chicken, c.elegans, fruitfly, zebrafish and arabidopsis.</li>
+<li>Enrichment analysis using a variety of built-in databases</li>
+<li>A wide variety of built-in <a href="http://dnet.r-forge.r-project.org/rdata.html">RData</a>: ontologies (including <code>Gene Ontology</code>, <code>Disease Ontology</code>, <code>Human Phenotype</code> and <code>Mammalian Phenotype</code>), gene evolutionary age information and gene association networks in well-studied organisms, including human, mouse, rat, chicken, c.elegans, fruitfly, zebrafish and arabidopsis.</li>
 <li>A tool with rich visuals but less inputs, which can run on <code>Windows</code>, <code>Mac</code> and <code>Linux</code></li>
 </ul>
 
@@ -148,20 +148,25 @@
       <li><a href="demo-CLL.html">Demo for patient expression dataset</a></li>
       <li><a href="demo-Fang.html">Demo for time-course expression dataset</a></li>
     </ul>
-        
+    
+    <h2>URL</h2>
+    <ul>
+      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
+    </ul>
+    
     <h2>Dependency</h2>
     <ul>
-      <li><strong>Depends</strong>: </li>
-      <li><strong>Imports</strong>: </li>
-      <li><strong>Suggests</strong>: </li>
+      <li><strong>Depends</strong>: igraph, supraHex</li>
+      <li><strong>Imports</strong>: graph, Rgraphviz, Matrix, Biobase</li>
+      <li><strong>Suggests</strong>: limma, survival</li>
       <li><strong>Extends</strong>: </li>
     </ul>
     
     <h2>License</h2>
-    What license is it under?
+    GPL-2
     
     <h2>Author</h2>
-    Who wrote it
+    Hai Fang and Julian Gough
     
     <!--
     
@@ -172,7 +177,7 @@
     </ul>
     
     <h2>Maintainer</h2>
-    Who to complain to &lt;yourfault@somewhere.net&gt;
+    Hai Fang &lt;hfang@cs.bris.ac.uk&gt;
     
     -->
     

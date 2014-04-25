@@ -15,10 +15,10 @@ ls() # you should see three variables: 'RT', 'CpG' and 'EX'
 # Load the package 'dnet'
 library(dnet)
 
-# Load or/and install packages "affy" and "limma" that are specifically used in this demo
-source("http://bioconductor.org/biocLite.R")
+# Load or/and install packages "Biobase" and "limma" that are specifically used in this demo
 for(pkg in c("Biobase","limma")){
     if(!require(pkg, character.only=T)){
+        source("http://bioconductor.org/biocLite.R")
         biocLite(pkg)
         lapply(pkg, library, character.only=T)
     }
@@ -37,7 +37,7 @@ pData(esetGene)
 
 # Now, load the gene network in mouse
 # As part of dnet package, this network has been prepared and stored as an igraph object
-# The network is extracted from the STRING database (version 9.1). Only those associations with medium confidence (score>=0.4) are retained.
+# The network is extracted from the STRING database (version 9.1). Only those associations with medium confidence (score>=400) are retained.
 load(url("http://dnet.r-forge.r-project.org/data/Mm/org.Mm.string.RData"))
 org.Mm.string
 
@@ -217,7 +217,7 @@ visDAG(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]), node.info="both", zlim=c
 eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="PS", sizeRange=c(10,20000), min.overlap=0)
 ## Look at the evolution relevance along the path to the eukaryotic common ancestor
 cbind(eTerm$set_info[,2:3], nSet=sapply(eTerm$gs,length), zscore=eTerm$zscore, pvalue=eTerm$pvalue, adjp=eTerm$adjp)
-## use common ancestors collapsed onto NCBI taxonomy
+## use common ancestors collapsed onto the known NCBI taxonomy
 eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="PS2", sizeRange=c(10,20000), min.overlap=0)
 ## Look at the evolution relevance along the path to the eukaryotic common ancestor
 cbind(eTerm$set_info[,2:3], nSet=sapply(eTerm$gs,length), zscore=eTerm$zscore, pvalue=eTerm$pvalue, adjp=eTerm$adjp)

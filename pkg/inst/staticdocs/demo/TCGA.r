@@ -8,9 +8,9 @@
 library(dnet)
 
 # Load or install packages specifically used in this demo
-source("http://bioconductor.org/biocLite.R")
 for(pkg in c("Biobase","survival")){
     if(!require(pkg, character.only=T)){
+        source("http://bioconductor.org/biocLite.R")
         biocLite(pkg)
         lapply(pkg, library, character.only=T)
     }
@@ -252,7 +252,7 @@ labRow <- sapply(pvals[match(V(g)$name, names(pvals))], function(x){
     }
 })
 labRow <- paste(rownames(data), labRow, sep="")
-visHeatmapAdv(data=data[ordering,flag], Rowv=F, Colv=F, colormap="lightyellow-orange", zlim=c(0,0.12), keysize=1.5, RowSideColors=RowSideColors, RowSideWidth=2, RowSideLabelLocation="top", add.expr=abline(h=(basesep_index-0.5), lty=2,lwd=1,col="black"), offsetRow=-0.5, labRow=labRow[ordering], KeyValueName="Frequency", margins = c(6,6))
+visHeatmapAdv(data=data[ordering,flag], Rowv=F, Colv=F, colormap="lightyellow-orange", zlim=c(0,0.12), keysize=1.5, RowSideColors=RowSideColors, RowSideWidth=2, RowSideLabelLocation="top", add.expr=abline(h=(basesep_index-0.5), lty=2,lwd=1,col="black"), offsetRow=-0.5, labRow=labRow[ordering], KeyValueName="Frequency", margins=c(6,6))
 
 # Cross-tumor mutation ubiquity versus common ancestors
 g <- net
@@ -264,7 +264,7 @@ data <- cbind(net_ubiquity, base_order1)
 par(las=2, mar=c(12,8,4,2)) # all axis labels horizontal
 lbls <- eTerm$set_info$name[unique(base_order1)]
 lbls <- gsub(".*:","",lbls)
-visBoxplotAdv(formula=net_ubiquity ~ base_order1, data=data, pch=19, xlab="", ylab="Cross-tumor mutation ubiquity", ylim=c(0,1), labels=lbls)
+visBoxplotAdv(formula=net_ubiquity ~ base_order1, data=data, method=c("center","hex","square","swarm")[4], pch=19, xlab="", ylab="Cross-tumor mutation ubiquity", ylim=c(0,1), labels=lbls)
 ## Deuterostomia versus all ancestors
 stats::ks.test(x=net_ubiquity[base_order1==6], y=net_ubiquity, alternative="two.sided", exact=NULL)
 ## Deuterostomia versus ancestors before Deuterostomia
@@ -358,6 +358,12 @@ cbind(eTerm$set_info[nodes_query,2:3], cbind(nSet=sapply(eTerm$gs,length), nOver
 # SCOP superfamily domain enrichment analysis
 data <- V(net)$name
 eTerm <- dEnricher(data, identity="symbol", genome="Hs", ontology="SF")
+nodes_query <- names(sort(eTerm$pvalue)[1:10])
+cbind(eTerm$set_info[nodes_query,2:3], cbind(nSet=sapply(eTerm$gs,length), nOverlap=sapply(eTerm$overlap,length), zscore=eTerm$zscore, pvalue=eTerm$pvalue, adjp=eTerm$adjp)[nodes_query,])
+
+# DGIdb druggable gene category enrichment analysis
+data <- V(net)$name
+eTerm <- dEnricher(data, identity="symbol", genome="Hs", ontology="DGIdb", sizeRange=c(10,5000), min.overlap=2)
 nodes_query <- names(sort(eTerm$pvalue)[1:10])
 cbind(eTerm$set_info[nodes_query,2:3], cbind(nSet=sapply(eTerm$gs,length), nOverlap=sapply(eTerm$overlap,length), zscore=eTerm$zscore, pvalue=eTerm$pvalue, adjp=eTerm$adjp)[nodes_query,])
 
