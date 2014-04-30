@@ -38,7 +38,7 @@ pData(esetGene)
 # Now, load the gene network in mouse
 # As part of dnet package, this network has been prepared and stored as an igraph object
 # The network is extracted from the STRING database (version 9.1). Only those associations with medium confidence (score>=400) are retained.
-load(url("http://dnet.r-forge.r-project.org/data/Mm/org.Mm.string.RData"))
+org.Mm.string <- dRDataLoader(RData='org.Mm.string')
 org.Mm.string
 
 # Look at the first node information (gene symbols)
@@ -152,7 +152,7 @@ data
 eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="GOBP")
 ## visualise the top significant terms in the GOBP heirarchy
 ## first, load the GOBP ontology
-load(url("http://dnet.r-forge.r-project.org/data/Obo/ig.GOBP.RData"))
+ig.GOBP <- dRDataLoader(RData='ig.GOBP')
 g <- ig.GOBP
 ## select the top most significant 10 terms
 nodes_query <- names(sort(eTerm$adjp)[1:10])
@@ -168,7 +168,7 @@ visDAG(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]), node.info="both", node.a
 eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="GOMF")
 ## visualise the top significant terms in the GOMF heirarchy
 ## first, load the GOMF ontology
-load(url("http://dnet.r-forge.r-project.org/data/Obo/ig.GOMF.RData"))
+ig.GOMF <- dRDataLoader(RData='ig.GOMF')
 g <- ig.GOMF
 ## select the top most significant 10 terms
 nodes_query <- names(sort(eTerm$adjp)[1:10])
@@ -184,7 +184,7 @@ visDAG(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]), node.info="both", node.a
 eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP")
 ## visualise the top significant terms in the MP heirarchy
 ## first, load the MP ontology
-load(url("http://dnet.r-forge.r-project.org/data/Obo/ig.MP.RData"))
+ig.MP <- dRDataLoader(RData='ig.MP')
 g <- ig.MP
 ## select the top most significant 10 terms
 nodes_query <- names(sort(eTerm$adjp)[1:10])
@@ -200,7 +200,7 @@ visDAG(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]), node.info=c("none","term
 eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="DO")
 ## visualise the top significant terms in the DO heirarchy
 ## first, load the DO ontology
-load(url("http://dnet.r-forge.r-project.org/data/Obo/ig.DO.RData"))
+ig.DO <- dRDataLoader(RData='ig.DO')
 g <- ig.DO
 ## select the top most significant 10 terms
 nodes_query <- names(sort(eTerm$adjp)[1:10])

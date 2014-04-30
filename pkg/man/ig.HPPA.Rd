@@ -28,7 +28,7 @@ Robinson et al. (2012) The Human Phenotype Ontology: a tool for annotating and a
 \keyword{datasets}
 
 \examples{
-#load(url("http://dnet.r-forge.r-project.org/data/Obo/ig.HPPA.RData"))
+#ig.HPPA <- dRDataLoader(RData='ig.HPPA')
 data(ig.HPPA)
 ig.HPPA
 }

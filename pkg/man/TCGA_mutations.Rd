@@ -26,7 +26,7 @@ Kandoth et al. (2013). Mutational landscape and significance across 12 major can
 
 \keyword{datasets}
 \examples{
-#load(url("http://dnet.r-forge.r-project.org/data/Datasets/TCGA_mutations.RData"))
+#TCGA_mutations <- dRDataLoader(RData='TCGA_mutations')
 data(TCGA_mutations)
 TCGA_mutations
 library(Biobase)

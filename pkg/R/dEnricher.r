@@ -41,7 +41,6 @@
 #' @seealso \code{\link{dEnricher}}
 #' @include dEnricher.r
 #' @examples
-#' \dontrun{
 #' load(url("http://dnet.r-forge.r-project.org/data/Datasets/Hiratani_TableS1.RData"))
 #' data <- rownames(RT)[1:1000]
 #' # fisher's exact test (witout accounting for ontology hierarchy)
@@ -54,7 +53,7 @@
 #' eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP", ontology.algorithm="lea", RData.location="./RData_Rd")
 #'
 #' # visualise the top significant terms in the ontology heirarchy
-#' load(url("http://dnet.r-forge.r-project.org/data/Obo/ig.MP.RData"))
+#' ig.MP <- dRDataLoader(RData='ig.MP')
 #' g <- ig.MP
 #' nodes_query <- names(sort(eTerm$adjp)[1:5])
 #' nodes.highlight <- rep("red", length(nodes_query))
@@ -64,7 +63,6 @@
 #' visDAG(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]), node.info="both", zlim=c(0,2), node.attrs=list(color=nodes.highlight))
 #' # color-code terms according to the z-scores
 #' visDAG(g=subg, data=eTerm$zscore[V(subg)$name], node.info="both", colormap="darkblue-white-darkorange", node.attrs=list(color=nodes.highlight))
-#' }
 
 dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity=FALSE, genome=c("Hs", "Mm", "Rn", "Gg", "Ce", "Dm", "Da", "At"), ontology=c("GOBP","GOMF","GOCC","PS","PS2","SF","DO","HPPA","HPMI","HPON","MP", "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7", "DGIdb"), sizeRange=c(10,1000), min.overlap=3, which_distance=NULL, test=c("HypergeoTest","FisherTest","BinomialTest"), p.adjust.method=c("BH", "BY", "bonferroni", "holm", "hochberg", "hommel"), ontology.algorithm=c("none","pc","elim","lea"), elim.pvalue=1e-2, lea.depth=2, verbose=T, RData.location="http://dnet.r-forge.r-project.org/data")
 {
@@ -134,7 +132,10 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
         if(class(try(load(url(load_EG_remote)), T))=="try-error"){
             load_EG_remote <- paste("http://dnet.r-forge.r-project.org/data/", genome, "/org.", genome, ".eg.RData", sep="")
             if(class(try(load(url(load_EG_remote)), T))=="try-error"){
-                stop("Built-in Rdata files cannot be loaded. Please check your internet connection or their location in your local machine.\n")
+                load_EG_remote <- paste("http://supfam.org/dnet/data/", genome, "/org.", genome, ".eg.RData", sep="")
+                if(class(try(load(url(load_EG_remote)), T))=="try-error"){
+                    stop("Built-in Rdata files cannot be loaded. Please check your internet connection or their location in your local machine.\n")
+                }
             }
         }
         load_EG <- load_EG_remote
@@ -178,7 +179,10 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
         if(class(try(load(url(load_GS_remote)), T))=="try-error"){
             load_GS_remote <- paste("http://dnet.r-forge.r-project.org/data/", genome_location, "/org.", genome, ".eg", ontology, ".RData", sep="")
             if(class(try(load(url(load_GS_remote)), T))=="try-error"){
-                stop("Built-in Rdata files cannot be loaded. Please check your internet connection or their location in your local machine.\n")
+                load_GS_remote <- paste("http://supfam.org/dnet/data/", genome_location, "/org.", genome, ".eg", ontology, ".RData", sep="")
+                if(class(try(load(url(load_GS_remote)), T))=="try-error"){
+                    stop("Built-in Rdata files cannot be loaded. Please check your internet connection or their location in your local machine.\n")
+                }
             }
         }
         load_GS <- load_GS_remote
@@ -517,7 +521,10 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
             if(class(try(load(url(load_g_remote)), T))=="try-error"){
                 load_g_remote <- paste("http://dnet.r-forge.r-project.org/data/Obo/ig.", ontology, ".RData", sep="")
                 if(class(try(load(url(load_g_remote)), T))=="try-error"){
-                    stop("Built-in Rdata files cannot be loaded. Please check your internet connection or Rdata location in your local machine.\n")
+                    load_g_remote <- paste("http://supfam.org/dnet/data/Obo/ig.", ontology, ".RData", sep="")
+                    if(class(try(load(url(load_g_remote)), T))=="try-error"){
+                        stop("Built-in Rdata files cannot be loaded. Please check your internet connection or Rdata location in your local machine.\n")
+                    }
                 }
             }
             load_g <- load_g_remote

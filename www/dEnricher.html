@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dEnricher @ dnet 1.0.1</title>
+<title>dEnricher @ dnet 1.0.2</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.1</a>
+      <a class="brand" href="index.html">dnet 1.0.2</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -343,32 +343,32 @@ data <- rownames(RT)[1:1000]
 eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
 RData.location="./RData_Rd")
 </div>
-<strong class='message'>Start at 2014-04-25 11:01:17</strong>
+<strong class='message'>Start at 2014-04-30 13:45:52</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-25 11:01:17) ...</strong>
+<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-30 13:45:52) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egMP.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-04-25 11:01:20) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-30 13:45:53) ...</strong>
 <strong class='message'>	Among 1000 symbols of input data, there are 853 mappable via official gene symbols but 147 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2014-04-25 11:01:20) ...</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2014-04-30 13:45:54) ...</strong>
 <strong class='message'>	There are 4519 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-04-25 11:01:22) ...</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-30 13:45:56) ...</strong>
 <strong class='message'>
-End at 2014-04-25 11:01:23</strong>
-<strong class='message'>Runtime in total is: 6 secs
+End at 2014-04-30 13:45:57</strong>
+<strong class='message'>Runtime in total is: 5 secs
 </strong>
 <div class='input'># fisher's exact test (using 'pc' algorithm to account for ontology hierarchy)
 eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
 ontology.algorithm="pc", RData.location="./RData_Rd")
 </div>
-<strong class='message'>Start at 2014-04-25 11:01:23</strong>
+<strong class='message'>Start at 2014-04-30 13:45:57</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-25 11:01:23) ...</strong>
+<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-30 13:45:57) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egMP.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-04-25 11:01:26) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-30 13:46:00) ...</strong>
 <strong class='message'>	Among 1000 symbols of input data, there are 853 mappable via official gene symbols but 147 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest based on pc algorithm to respect ontology structure (2014-04-25 11:01:26) ...</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest based on pc algorithm to respect ontology structure (2014-04-30 13:46:00) ...</strong>
 <strong class='message'>	Load ontology information from http://dnet.r-forge.r-project.org/data/Obo/ig.MP.RData</strong>
 <strong class='message'>	There are 4609 terms being used</strong>
 <strong class='message'>	At level 15, there are 4 nodes/terms</strong>
@@ -385,23 +385,23 @@ ontology.algorithm="pc", RData.location="./RData_Rd")
 <strong class='message'>	At level 4, there are 364 nodes/terms</strong>
 <strong class='message'>	At level 3, there are 70 nodes/terms</strong>
 <strong class='message'>	At level 2, there are 29 nodes/terms</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-04-25 11:01:45) ...</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-30 13:46:18) ...</strong>
 <strong class='message'>
-End at 2014-04-25 11:01:45</strong>
-<strong class='message'>Runtime in total is: 22 secs
+End at 2014-04-30 13:46:20</strong>
+<strong class='message'>Runtime in total is: 23 secs
 </strong>
 <div class='input'># fisher's exact test (using 'elim' algorithm to account for ontology hierarchy)
 eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
 ontology.algorithm="elim", RData.location="./RData_Rd")
 </div>
-<strong class='message'>Start at 2014-04-25 11:01:45</strong>
+<strong class='message'>Start at 2014-04-30 13:46:20</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-25 11:01:45) ...</strong>
+<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-30 13:46:20) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egMP.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-04-25 11:01:47) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-30 13:46:22) ...</strong>
 <strong class='message'>	Among 1000 symbols of input data, there are 853 mappable via official gene symbols but 147 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest based on elim algorithm to respect ontology structure (2014-04-25 11:01:47) ...</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest based on elim algorithm to respect ontology structure (2014-04-30 13:46:22) ...</strong>
 <strong class='message'>	Load ontology information from http://dnet.r-forge.r-project.org/data/Obo/ig.MP.RData</strong>
 <strong class='message'>	There are 4609 terms being used</strong>
 <strong class='message'>	At level 15, there are 4 nodes/terms: up to 0 significant nodes, 0 ancestral nodes changed (0 genes eliminated)</strong>
@@ -419,23 +419,23 @@ ontology.algorithm="elim", RData.location="./RData_Rd")
 <strong class='message'>	At level 3, there are 70 nodes/terms: up to 151 significant nodes, 412 ancestral nodes changed (5285 genes eliminated)</strong>
 <strong class='message'>	At level 2, there are 29 nodes/terms: up to 151 significant nodes, 412 ancestral nodes changed (5285 genes eliminated)</strong>
 <strong class='message'>	At level 1, there are 1 nodes/terms: up to 151 significant nodes, 412 ancestral nodes changed (5285 genes eliminated)</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-04-25 11:02:00) ...</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-30 13:46:36) ...</strong>
 <strong class='message'>
-End at 2014-04-25 11:02:01</strong>
-<strong class='message'>Runtime in total is: 16 secs
+End at 2014-04-30 13:46:37</strong>
+<strong class='message'>Runtime in total is: 17 secs
 </strong>
 <div class='input'># fisher's exact test (using 'lea' algorithm to account for ontology hierarchy)
 eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
 ontology.algorithm="lea", RData.location="./RData_Rd")
 </div>
-<strong class='message'>Start at 2014-04-25 11:02:01</strong>
+<strong class='message'>Start at 2014-04-30 13:46:37</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-25 11:02:01) ...</strong>
+<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-30 13:46:37) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egMP.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-04-25 11:02:03) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-30 13:46:39) ...</strong>
 <strong class='message'>	Among 1000 symbols of input data, there are 853 mappable via official gene symbols but 147 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest based on lea algorithm to respect ontology structure (2014-04-25 11:02:04) ...</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest based on lea algorithm to respect ontology structure (2014-04-30 13:46:39) ...</strong>
 <strong class='message'>	Load ontology information from http://dnet.r-forge.r-project.org/data/Obo/ig.MP.RData</strong>
 <strong class='message'>	There are 4609 terms being used</strong>
 <strong class='message'>	At level 15, there are 4 nodes/terms and 0 being recalculated</strong>
@@ -453,15 +453,17 @@ ontology.algorithm="lea", RData.location="./RData_Rd")
 <strong class='message'>	At level 3, there are 70 nodes/terms and 61 being recalculated</strong>
 <strong class='message'>	At level 2, there are 29 nodes/terms and 23 being recalculated</strong>
 <strong class='message'>	At level 1, there are 1 nodes/terms and 1 being recalculated</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-04-25 11:02:21) ...</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-30 13:46:56) ...</strong>
 <strong class='message'>
-End at 2014-04-25 11:02:22</strong>
-<strong class='message'>Runtime in total is: 21 secs
+End at 2014-04-30 13:46:57</strong>
+<strong class='message'>Runtime in total is: 20 secs
 </strong>
 <div class='input'>
 # visualise the top significant terms in the ontology heirarchy
-load(url("http://dnet.r-forge.r-project.org/data/Obo/ig.MP.RData"))
-g <- ig.MP
+ig.MP <- dRDataLoader(RData='ig.MP')
+</div>
+<strong class='message'>'ig.MP' (from http://supfam.org/dnet/data/Obo/ig.MP.RData) has been loaded into the working environment</strong>
+<div class='input'>g <- ig.MP
 nodes_query <- names(sort(eTerm$adjp)[1:5])
 nodes.highlight <- rep("red", length(nodes_query))
 names(nodes.highlight) <- nodes_query
@@ -470,13 +472,13 @@ subg <- dDAGinduce(g, nodes_query)
 visDAG(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]),
 node.info="both", zlim=c(0,2), node.attrs=list(color=nodes.highlight))
 </div>
-<a href="javascript:newWin('dEnricher-101.png', 'dEnricher-101.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dEnricher-101.png', width="400" /></a>
+<a href="javascript:newWin('dEnricher-103.png', 'dEnricher-103.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dEnricher-103.png', width="400" /></a>
 <div class='input'># color-code terms according to the z-scores
 visDAG(g=subg, data=eTerm$zscore[V(subg)$name], node.info="both",
 colormap="darkblue-white-darkorange",
 node.attrs=list(color=nodes.highlight))
 </div>
-<a href="javascript:newWin('dEnricher-103.png', 'dEnricher-103.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dEnricher-103.png', width="400" /></a></pre>
+<a href="javascript:newWin('dEnricher-105.png', 'dEnricher-105.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dEnricher-105.png', width="400" /></a></pre>
   </div>
   
   <div class="span4">
@@ -496,7 +498,7 @@ node.attrs=list(color=nodes.highlight))
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of digitised data in terms of network, ontology and evolution. R package version 1.0.1. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) dnet: an open-source R package for integrative analysis of high-throughput digitised data in terms of network, ontology and evolution. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

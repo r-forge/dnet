@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>org.Hs.egMsigdbC1 @ dnet 1.0.1</title>
+<title>org.Hs.egMsigdbC1 @ dnet 1.0.2</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.1</a>
+      <a class="brand" href="index.html">dnet 1.0.2</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -114,7 +114,7 @@
     <p>This data is prepared based on the molecular signatures database (Msigdb; <a href = 'http://www.broadinstitute.org/gsea/msigdb/index.jsp'>http://www.broadinstitute.org/gsea/msigdb/index.jsp</a>). An R object that contains associations between Msigdb C1 positional gene sets and Human Entrez Genes. C1 collections are about positional gene sets for each human chromosome and cytogenetic band, each gene set corresponding to each human chromosome and each cytogenetic band that has at least one gene. These gene sets are helpful in identifying effects related to chromosomal deletions or amplifications, dosage compensation, epigenetic silencing, and other regional effects.</p>
   
     <h3>Usage</h3>
-    <pre>load(url("http://dnet.r-forge.r-project.org/data/Msigdb/org.Hs.egMsigdbC1.RData"))</pre>
+    <pre>org.Hs.egMsigdbC1 <- dRDataLoader(RData = "org.Hs.egMsigdbC1")</pre>
         <!-- 
     -->
     
@@ -137,8 +137,10 @@
     </div>
     
     <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'>load(url("http://dnet.r-forge.r-project.org/data/Msigdb/org.Hs.egMsigdbC1.RData"))
-names(org.Hs.egMsigdbC1)
+    <pre class="examples"><div class='input'>org.Hs.egMsigdbC1 <- dRDataLoader(RData='org.Hs.egMsigdbC1')
+</div>
+<strong class='message'>'org.Hs.egMsigdbC1' (from http://supfam.org/dnet/data/Msigdb/org.Hs.egMsigdbC1.RData) has been loaded into the working environment</strong>
+<div class='input'>names(org.Hs.egMsigdbC1)
 </div>
 <div class='output'>[1] "gs"       "set_info"
 </div></pre>
@@ -157,7 +159,7 @@ names(org.Hs.egMsigdbC1)
       
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of digitised data in terms of network, ontology and evolution. R package version 1.0.1. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) dnet: an open-source R package for integrative analysis of high-throughput digitised data in terms of network, ontology and evolution. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>org.Da.string @ dnet 1.0.1</title>
+<title>org.Da.string @ dnet 1.0.2</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.1</a>
+      <a class="brand" href="index.html">dnet 1.0.2</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -114,7 +114,7 @@
     <p>An igraph object that contains a functional protein association network in zebrafish. The network is extracted from the STRING database (version 9.1). Only those associations with medium confidence (score>=0.4) are retained.</p>
   
     <h3>Usage</h3>
-    <pre>load(url("http://dnet.r-forge.r-project.org/data/Da/org.Da.string.RData"))</pre>
+    <pre>org.Da.string <- dRDataLoader(RData = "org.Da.string")</pre>
         <!-- 
     -->
     
@@ -163,8 +163,10 @@
     </div>
     
     <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'>load(url("http://dnet.r-forge.r-project.org/data/Da/org.Da.string.RData"))
-org.Da.string
+    <pre class="examples"><div class='input'>org.Da.string <- dRDataLoader(RData='org.Da.string')
+</div>
+<strong class='message'>'org.Da.string' (from http://supfam.org/dnet/data/Da/org.Da.string.RData) has been loaded into the working environment</strong>
+<div class='input'>org.Da.string
 </div>
 <div class='output'>IGRAPH UN-- 13670 271936 -- 
 + attr: name (v/c), seqid (v/c), geneid (v/n), symbol (v/c),
@@ -188,7 +190,7 @@ org.Da.string
       
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of digitised data in terms of network, ontology and evolution. R package version 1.0.1. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) dnet: an open-source R package for integrative analysis of high-throughput digitised data in terms of network, ontology and evolution. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

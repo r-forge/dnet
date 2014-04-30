@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>org.At.egPS @ dnet 1.0.1</title>
+<title>org.At.egPS @ dnet 1.0.2</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.1</a>
+      <a class="brand" href="index.html">dnet 1.0.2</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -114,7 +114,7 @@
     <p>An R object that contains phylostratific age information for Arabidopsis Entrez Genes. This data is prepared based on 1) SUPERFAMILY database which provides domain architecture assignments to all completely sequenced genomes including eukaryotic genomes; 2) ancestral domain architecture repertoires inferred by applying Dollo parsimony to eukaryotic part of species tree of life (sTOL), from which the most recent common ancestor of each domain architecture is determined. The domain architecture for an Entrez gene is the protein product with the longest length of amino acids. Thus, phylostratific age for a Arabidopsis Entrez gene is the first appearance of its domain architecture along the branch from the eukaryotic ancestor to the arabidopsis, and thus can be measured by: i) the most recent common ancestor, ii) how many steps it is away starting from the eukaryotic ancestor, and how far it is in the terms of the branch length from the eukaryotic ancestor.</p>
   
     <h3>Usage</h3>
-    <pre>load(url("http://dnet.r-forge.r-project.org/data/At/org.At.egPS.RData"))</pre>
+    <pre>org.At.egPS <- dRDataLoader(RData = "org.At.egPS")</pre>
         <!-- 
     -->
     
@@ -138,8 +138,10 @@
     </div>
     
     <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'>load(url("http://dnet.r-forge.r-project.org/data/At/org.At.egPS.RData"))
-names(org.At.egPS)
+    <pre class="examples"><div class='input'>org.At.egPS <- dRDataLoader(RData='org.At.egPS')
+</div>
+<strong class='message'>'org.At.egPS' (from http://supfam.org/dnet/data/At/org.At.egPS.RData) has been loaded into the working environment</strong>
+<div class='input'>names(org.At.egPS)
 </div>
 <div class='output'>[1] "gs"       "set_info"
 </div></pre>
@@ -158,7 +160,7 @@ names(org.At.egPS)
       
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of digitised data in terms of network, ontology and evolution. R package version 1.0.1. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) dnet: an open-source R package for integrative analysis of high-throughput digitised data in terms of network, ontology and evolution. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

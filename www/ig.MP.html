@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>ig.MP @ dnet 1.0.1</title>
+<title>ig.MP @ dnet 1.0.2</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.1</a>
+      <a class="brand" href="index.html">dnet 1.0.2</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -114,7 +114,7 @@
     <p>An R object that contains information on Mammalian Phenotype terms. These terms are organised as a direct acyclic graph (DAG), which is further stored as an object of the class 'igraph' (see <a href = 'http://igraph.sourceforge.net/doc/R/aaa-igraph-package.html'>http://igraph.sourceforge.net/doc/R/aaa-igraph-package.html</a>). This data is prepared based on <a href = 'http://sourceforge.net/p/diseaseontology/code/HEAD/tree/trunk/HumanMP.obo'>http://sourceforge.net/p/diseaseontology/code/HEAD/tree/trunk/HumanMP.obo</a>.</p>
   
     <h3>Usage</h3>
-    <pre>load(url("http://dnet.r-forge.r-project.org/data/Obo/ig.MP.RData"))</pre>
+    <pre>ig.MP <- dRDataLoader(RData = "ig.MP")</pre>
         <!-- 
     -->
     
@@ -137,8 +137,10 @@
     </div>
     
     <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'>load(url("http://dnet.r-forge.r-project.org/data/Obo/ig.MP.RData"))
-ig.MP
+    <pre class="examples"><div class='input'>ig.MP <- dRDataLoader(RData='ig.MP')
+</div>
+<strong class='message'>'ig.MP' (from http://supfam.org/dnet/data/Obo/ig.MP.RData) has been loaded into the working environment</strong>
+<div class='input'>ig.MP
 </div>
 <div class='output'>IGRAPH DN-- 9159 11269 -- 
 + attr: name (v/c), term_id (v/c), term_name (v/c), term_distance
@@ -159,7 +161,7 @@ ig.MP
       
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of digitised data in terms of network, ontology and evolution. R package version 1.0.1. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) dnet: an open-source R package for integrative analysis of high-throughput digitised data in terms of network, ontology and evolution. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

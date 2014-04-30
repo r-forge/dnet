@@ -25,7 +25,8 @@ list(
                 'visNetReorder',
                 'visNetArc',
                 'visNetCircle',
-                'visBoxplotAdv'
+                'visBoxplotAdv',
+                'dRDataLoader'
             )
         ),
         sd_section("Enrichment analysis and visualisation functions",

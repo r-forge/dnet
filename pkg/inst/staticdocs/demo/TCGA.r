@@ -58,7 +58,7 @@ HR <- gene_signif[,1]
 pvals <- gene_signif[,2]
 
 # An igraph object that contains a functional protein association network in human. The network is extracted from the STRING database (version 9.1). Only those associations with medium confidence (score>=400) are retained.
-load(url("http://dnet.r-forge.r-project.org/data/Hs/org.Hs.string.RData"))
+org.Hs.string <- dRDataLoader(RData='org.Hs.string')
 # restrict to those edges with high confidence (score>=700)
 network <- subgraph.edges(org.Hs.string, eids=E(org.Hs.string)[combined_score>=700])
 network
@@ -195,7 +195,7 @@ eTerm <- dEnricher(data, identity="symbol", genome="Hs", ontology="PS2", sizeRan
 ## Look at the evolution relevance along the path to the eukaryotic common ancestor
 cbind(eTerm$set_info[,2:3], nSet=sapply(eTerm$gs,length), nOverlap=sapply(eTerm$overlap,length), zscore=eTerm$zscore, pvalue=eTerm$pvalue, adjp=eTerm$adjp)
 ## load Entrezgene info
-load(url("http://dnet.r-forge.r-project.org/data/Hs/org.Hs.eg.RData"))
+org.Hs.eg <- dRDataLoader(RData='org.Hs.eg')
 gene_info <- org.Hs.eg$gene_info
 entrez <- unlist(eTerm$overlap[6], use.names=F)
 ## build neighbor-joining tree
@@ -277,7 +277,7 @@ data <- V(net)$name
 eTerm <- dEnricher(data, identity="symbol", genome="Hs", ontology="GOBP")
 ## visualise the top significant terms in the GOBP heirarchy
 ## first, load the GOBP ontology
-load(url("http://dnet.r-forge.r-project.org/data/Obo/ig.GOBP.RData"))
+ig.GOBP <- dRDataLoader(RData='ig.GOBP')
 g <- ig.GOBP
 ## select the top most significant 10 terms
 nodes_query <- names(sort(eTerm$adjp)[1:10])
@@ -293,7 +293,7 @@ data <- V(net)$name
 eTerm <- dEnricher(data, identity="symbol", genome="Hs", ontology="GOMF")
 ## visualise the top significant terms in the GOMF heirarchy
 ## first, load the GOMF ontology
-load(url("http://dnet.r-forge.r-project.org/data/Obo/ig.GOMF.RData"))
+ig.GOMF <- dRDataLoader(RData='ig.GOMF')
 g <- ig.GOMF
 ## select the top most significant 10 terms
 nodes_query <- names(sort(eTerm$adjp)[1:10])
@@ -309,7 +309,7 @@ data <- V(net)$name
 eTerm <- dEnricher(data, identity="symbol", genome="Hs", ontology="MP", ontology.algorithm="elim")
 ## visualise the top significant terms in the MP heirarchy
 ## first, load the MP ontology
-load(url("http://dnet.r-forge.r-project.org/data/Obo/ig.MP.RData"))
+ig.MP <- dRDataLoader(RData='ig.MP')
 g <- ig.MP
 ## select the top most significant 10 terms
 nodes_query <- names(sort(eTerm$pvalue)[1:10])
@@ -325,7 +325,7 @@ data <- V(net)$name
 eTerm <- dEnricher(data, identity="symbol", genome="Hs", ontology="DO", ontology.algorithm="pc")
 ## visualise the top significant terms in the DO heirarchy
 ## first, load the DO ontology
-load(url("http://dnet.r-forge.r-project.org/data/Obo/ig.DO.RData"))
+ig.DO <- dRDataLoader(RData='ig.DO')
 g <- ig.DO
 ## select the top most significant 10 terms
 nodes_query <- names(sort(eTerm$adjp)[1:10])

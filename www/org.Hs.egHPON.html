@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>org.Hs.egHPON @ dnet 1.0.1</title>
+<title>org.Hs.egHPON @ dnet 1.0.2</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.1</a>
+      <a class="brand" href="index.html">dnet 1.0.2</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -114,7 +114,7 @@
     <p>An R object that contains associations between HPON terms and Human Entrez Genes. This data is first prepared based on <a href = 'http://compbio.charite.de/svn/hpo/trunk/src/ontology/human-phenotype-ontology.obo'>http://compbio.charite.de/svn/hpo/trunk/src/ontology/human-phenotype-ontology.obo</a> and  <a href = 'http://compbio.charite.de/hudson/job/hpo.annotations.monthly/lastStableBuild/artifact/annotation/ALL_SOURCES_ALL_FREQUENCIES_genes_to_phenotype.txt'>http://compbio.charite.de/hudson/job/hpo.annotations.monthly/lastStableBuild/artifact/annotation/ALL_SOURCES_ALL_FREQUENCIES_genes_to_phenotype.txt</a>.</p>
   
     <h3>Usage</h3>
-    <pre>load(url("http://dnet.r-forge.r-project.org/data/Hs/org.Hs.egHPON.RData"))</pre>
+    <pre>org.Hs.egHPON <- dRDataLoader(RData = "org.Hs.egHPON")</pre>
         <!-- 
     -->
     
@@ -137,8 +137,10 @@
     </div>
     
     <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'>load(url("http://dnet.r-forge.r-project.org/data/Hs/org.Hs.egHPON.RData"))
-names(org.Hs.egHPON)
+    <pre class="examples"><div class='input'>org.Hs.egHPON <- dRDataLoader(RData='org.Hs.egHPON')
+</div>
+<strong class='message'>'org.Hs.egHPON' (from http://supfam.org/dnet/data/Hs/org.Hs.egHPON.RData) has been loaded into the working environment</strong>
+<div class='input'>names(org.Hs.egHPON)
 </div>
 <div class='output'>[1] "gs"       "set_info"
 </div></pre>
@@ -157,7 +159,7 @@ names(org.Hs.egHPON)
       
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of digitised data in terms of network, ontology and evolution. R package version 1.0.1. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) dnet: an open-source R package for integrative analysis of high-throughput digitised data in terms of network, ontology and evolution. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

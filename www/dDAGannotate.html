@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dDAGannotate @ dnet 1.0.1</title>
+<title>dDAGannotate @ dnet 1.0.2</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.1</a>
+      <a class="brand" href="index.html">dnet 1.0.2</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -189,16 +189,18 @@ annotations <- GS$gs[sample(1:length(GS$gs),5)]
 # 4a) based on all possible paths (i.e. the complete subgraph induced)
 dDAGannotate(g, annotations, path.mode="all_paths", verbose=TRUE)
 </div>
-<strong class='message'>	At level 9, there are 2 nodes, and 2 incoming neighbors.</strong>
-<strong class='message'>	At level 8, there are 2 nodes, and 2 incoming neighbors.</strong>
-<strong class='message'>	At level 7, there are 2 nodes, and 2 incoming neighbors.</strong>
-<strong class='message'>	At level 6, there are 4 nodes, and 5 incoming neighbors.</strong>
-<strong class='message'>	At level 5, there are 6 nodes, and 6 incoming neighbors.</strong>
+<strong class='message'>	At level 11, there are 1 nodes, and 1 incoming neighbors.</strong>
+<strong class='message'>	At level 10, there are 1 nodes, and 2 incoming neighbors.</strong>
+<strong class='message'>	At level 9, there are 1 nodes, and 1 incoming neighbors.</strong>
+<strong class='message'>	At level 8, there are 1 nodes, and 1 incoming neighbors.</strong>
+<strong class='message'>	At level 7, there are 4 nodes, and 4 incoming neighbors.</strong>
+<strong class='message'>	At level 6, there are 5 nodes, and 6 incoming neighbors.</strong>
+<strong class='message'>	At level 5, there are 7 nodes, and 6 incoming neighbors.</strong>
 <strong class='message'>	At level 4, there are 6 nodes, and 5 incoming neighbors.</strong>
-<strong class='message'>	At level 3, there are 5 nodes, and 5 incoming neighbors.</strong>
-<strong class='message'>	At level 2, there are 5 nodes, and 1 incoming neighbors.</strong>
+<strong class='message'>	At level 3, there are 5 nodes, and 4 incoming neighbors.</strong>
+<strong class='message'>	At level 2, there are 4 nodes, and 1 incoming neighbors.</strong>
 <strong class='message'>	At level 1, there are 1 nodes, and 0 incoming neighbors.</strong>
-<div class='output'>IGRAPH DN-- 33 34 -- 
+<div class='output'>IGRAPH DN-- 36 37 -- 
 + attr: name (v/c), term_id (v/c), term_name (v/c), term_distance
   (v/n), annotations (v/x), relation (e/c)
 </div>
@@ -206,14 +208,12 @@ dDAGannotate(g, annotations, path.mode="all_paths", verbose=TRUE)
 dag <- dDAGannotate(g, annotations, path.mode="shortest_paths",
 verbose=TRUE)
 </div>
-<strong class='message'>	At level 9, there are 2 nodes, and 2 incoming neighbors.</strong>
-<strong class='message'>	At level 8, there are 2 nodes, and 2 incoming neighbors.</strong>
-<strong class='message'>	At level 7, there are 2 nodes, and 2 incoming neighbors.</strong>
-<strong class='message'>	At level 6, there are 4 nodes, and 4 incoming neighbors.</strong>
+<strong class='message'>	At level 7, there are 4 nodes, and 4 incoming neighbors.</strong>
+<strong class='message'>	At level 6, there are 5 nodes, and 5 incoming neighbors.</strong>
 <strong class='message'>	At level 5, there are 5 nodes, and 5 incoming neighbors.</strong>
-<strong class='message'>	At level 4, there are 5 nodes, and 5 incoming neighbors.</strong>
-<strong class='message'>	At level 3, there are 5 nodes, and 5 incoming neighbors.</strong>
-<strong class='message'>	At level 2, there are 5 nodes, and 1 incoming neighbors.</strong>
+<strong class='message'>	At level 4, there are 5 nodes, and 4 incoming neighbors.</strong>
+<strong class='message'>	At level 3, there are 4 nodes, and 4 incoming neighbors.</strong>
+<strong class='message'>	At level 2, there are 4 nodes, and 1 incoming neighbors.</strong>
 <strong class='message'>	At level 1, there are 1 nodes, and 0 incoming neighbors.</strong>
 <div class='input'>
 # 5) color-code nodes/terms according to the number of annotations
@@ -248,7 +248,7 @@ Attaching package: ‘graph’
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) DNET: dynamic networks via integrative analysis of digitised data in terms of network, ontology and evolution. R package version 1.0.1. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) dnet: an open-source R package for integrative analysis of high-throughput digitised data in terms of network, ontology and evolution. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

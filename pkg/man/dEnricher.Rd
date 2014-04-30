@@ -208,7 +208,6 @@ the maximum of both p-values in these two calculations.}
 is: "none" > "lea" > "elim" > "pc".} }
 }
 \examples{
-\dontrun{
 load(url("http://dnet.r-forge.r-project.org/data/Datasets/Hiratani_TableS1.RData"))
 data <- rownames(RT)[1:1000]
 # fisher's exact test (witout accounting for ontology hierarchy)
@@ -225,7 +224,7 @@ eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
 ontology.algorithm="lea", RData.location="./RData_Rd")
 
 # visualise the top significant terms in the ontology heirarchy
-load(url("http://dnet.r-forge.r-project.org/data/Obo/ig.MP.RData"))
+ig.MP <- dRDataLoader(RData='ig.MP')
 g <- ig.MP
 nodes_query <- names(sort(eTerm$adjp)[1:5])
 nodes.highlight <- rep("red", length(nodes_query))
@@ -238,7 +237,6 @@ node.info="both", zlim=c(0,2), node.attrs=list(color=nodes.highlight))
 visDAG(g=subg, data=eTerm$zscore[V(subg)$name], node.info="both",
 colormap="darkblue-white-darkorange",
 node.attrs=list(color=nodes.highlight))
-}
 }
 \seealso{
 \code{\link{dEnricher}}
