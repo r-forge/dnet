@@ -41,6 +41,7 @@ Collate:
     'dDAGannotate.r'
     'visDAG.r'
     'dEnricher.r'
+    'dEnricherView.r'
     'visBoxplotAdv.r'
     'dRDataLoader.r'
 License: GPL-2

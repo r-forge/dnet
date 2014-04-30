@@ -337,133 +337,71 @@ is: "none" > "lea" > "elim" > "pc". </li>
     </div>
     
     <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'>load(url("http://dnet.r-forge.r-project.org/data/Datasets/Hiratani_TableS1.RData"))
-data <- rownames(RT)[1:1000]
-# fisher's exact test (witout accounting for ontology hierarchy)
-eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
-RData.location="./RData_Rd")
+    <pre class="examples"><div class='input'># load data
+data(Fang)
+data <- as.character(Fang.geneinfo$Symbol[1:50])
+data
 </div>
-<strong class='message'>Start at 2014-04-30 13:45:52</strong>
-<strong class='message'></strong>
-<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-30 13:45:52) ...</strong>
-<strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
-<strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egMP.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-04-30 13:45:53) ...</strong>
-<strong class='message'>	Among 1000 symbols of input data, there are 853 mappable via official gene symbols but 147 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2014-04-30 13:45:54) ...</strong>
-<strong class='message'>	There are 4519 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-04-30 13:45:56) ...</strong>
-<strong class='message'>
-End at 2014-04-30 13:45:57</strong>
-<strong class='message'>Runtime in total is: 5 secs
-</strong>
-<div class='input'># fisher's exact test (using 'pc' algorithm to account for ontology hierarchy)
-eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
-ontology.algorithm="pc", RData.location="./RData_Rd")
+<div class='output'> [1] "RFC2"      "PAX8"      "GUCA1A"    "EPHB3"     "BAD"       "RPL35"    
+ [7] "RPL28"     "GDI2"      "ARF3"      "RPL24"     "HNRNPC"    "RPS27A"   
+[13] "TARDBP"    "RPL18"     "NARS"      "STARD7"    "RPL10A"    "JTB"      
+[19] "MYST2"     "ZNF259"    "C1D"       "RHOA"      "RNPS1"     "NPM1"     
+[25] "HSP90AB1"  "ARF1"      "CANX"      "SMNDC1"    "RPL14"     "C19orf50" 
+[31] "OAZ1"      "KARS"      "RPS6"      "TMED2"     "RPL12"     "RPL4"     
+[37] "RPL37"     "HINT1"     "RPS10"     "ATP6V0E1"  "LOC439992" "HSP90B1"  
+[43] "HSP90B1"   "MSN"       "APP"       "PRKAR1A"   "PRKAR1A"   "PRKAR1A"  
+[49] "DSP"       "WDR1"     
 </div>
-<strong class='message'>Start at 2014-04-30 13:45:57</strong>
-<strong class='message'></strong>
-<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-30 13:45:57) ...</strong>
-<strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
-<strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egMP.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-04-30 13:46:00) ...</strong>
-<strong class='message'>	Among 1000 symbols of input data, there are 853 mappable via official gene symbols but 147 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest based on pc algorithm to respect ontology structure (2014-04-30 13:46:00) ...</strong>
-<strong class='message'>	Load ontology information from http://dnet.r-forge.r-project.org/data/Obo/ig.MP.RData</strong>
-<strong class='message'>	There are 4609 terms being used</strong>
-<strong class='message'>	At level 15, there are 4 nodes/terms</strong>
-<strong class='message'>	At level 14, there are 19 nodes/terms</strong>
-<strong class='message'>	At level 13, there are 43 nodes/terms</strong>
-<strong class='message'>	At level 12, there are 93 nodes/terms</strong>
-<strong class='message'>	At level 11, there are 143 nodes/terms</strong>
-<strong class='message'>	At level 10, there are 227 nodes/terms</strong>
-<strong class='message'>	At level 9, there are 373 nodes/terms</strong>
-<strong class='message'>	At level 8, there are 640 nodes/terms</strong>
-<strong class='message'>	At level 7, there are 865 nodes/terms</strong>
-<strong class='message'>	At level 6, there are 918 nodes/terms</strong>
-<strong class='message'>	At level 5, there are 820 nodes/terms</strong>
-<strong class='message'>	At level 4, there are 364 nodes/terms</strong>
-<strong class='message'>	At level 3, there are 70 nodes/terms</strong>
-<strong class='message'>	At level 2, there are 29 nodes/terms</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-04-30 13:46:18) ...</strong>
-<strong class='message'>
-End at 2014-04-30 13:46:20</strong>
-<strong class='message'>Runtime in total is: 23 secs
-</strong>
-<div class='input'># fisher's exact test (using 'elim' algorithm to account for ontology hierarchy)
-eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
-ontology.algorithm="elim", RData.location="./RData_Rd")
+<div class='input'>
+# enrichment analysis
+eTerm <- dEnricher(data, identity="symbol", genome="Hs", ontology="DO")
 </div>
-<strong class='message'>Start at 2014-04-30 13:46:20</strong>
+<strong class='message'>Start at 2014-04-30 18:25:45</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-30 13:46:20) ...</strong>
-<strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
-<strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egMP.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-04-30 13:46:22) ...</strong>
-<strong class='message'>	Among 1000 symbols of input data, there are 853 mappable via official gene symbols but 147 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest based on elim algorithm to respect ontology structure (2014-04-30 13:46:22) ...</strong>
-<strong class='message'>	Load ontology information from http://dnet.r-forge.r-project.org/data/Obo/ig.MP.RData</strong>
-<strong class='message'>	There are 4609 terms being used</strong>
-<strong class='message'>	At level 15, there are 4 nodes/terms: up to 0 significant nodes, 0 ancestral nodes changed (0 genes eliminated)</strong>
-<strong class='message'>	At level 14, there are 19 nodes/terms: up to 0 significant nodes, 0 ancestral nodes changed (0 genes eliminated)</strong>
-<strong class='message'>	At level 13, there are 43 nodes/terms: up to 3 significant nodes, 54 ancestral nodes changed (250 genes eliminated)</strong>
-<strong class='message'>	At level 12, there are 93 nodes/terms: up to 7 significant nodes, 90 ancestral nodes changed (319 genes eliminated)</strong>
-<strong class='message'>	At level 11, there are 143 nodes/terms: up to 19 significant nodes, 124 ancestral nodes changed (593 genes eliminated)</strong>
-<strong class='message'>	At level 10, there are 227 nodes/terms: up to 29 significant nodes, 173 ancestral nodes changed (764 genes eliminated)</strong>
-<strong class='message'>	At level 9, there are 373 nodes/terms: up to 53 significant nodes, 229 ancestral nodes changed (1182 genes eliminated)</strong>
-<strong class='message'>	At level 8, there are 640 nodes/terms: up to 72 significant nodes, 289 ancestral nodes changed (1504 genes eliminated)</strong>
-<strong class='message'>	At level 7, there are 865 nodes/terms: up to 107 significant nodes, 364 ancestral nodes changed (2130 genes eliminated)</strong>
-<strong class='message'>	At level 6, there are 918 nodes/terms: up to 127 significant nodes, 396 ancestral nodes changed (2410 genes eliminated)</strong>
-<strong class='message'>	At level 5, there are 820 nodes/terms: up to 147 significant nodes, 410 ancestral nodes changed (2857 genes eliminated)</strong>
-<strong class='message'>	At level 4, there are 364 nodes/terms: up to 150 significant nodes, 411 ancestral nodes changed (3025 genes eliminated)</strong>
-<strong class='message'>	At level 3, there are 70 nodes/terms: up to 151 significant nodes, 412 ancestral nodes changed (5285 genes eliminated)</strong>
-<strong class='message'>	At level 2, there are 29 nodes/terms: up to 151 significant nodes, 412 ancestral nodes changed (5285 genes eliminated)</strong>
-<strong class='message'>	At level 1, there are 1 nodes/terms: up to 151 significant nodes, 412 ancestral nodes changed (5285 genes eliminated)</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-04-30 13:46:36) ...</strong>
+<strong class='message'>First, load the ontology DO and its gene associations in the genome Hs (2014-04-30 18:25:45) ...</strong>
+<strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.eg.RData</strong>
+<strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.egDO.RData</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-04-30 18:25:46) ...</strong>
+<strong class='message'>	Among 47 symbols of input data, there are 43 mappable via official gene symbols but 4 left unmappable</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2014-04-30 18:25:46) ...</strong>
+<strong class='message'>	There are 913 terms being used, each restricted within [10,1000] annotations</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-04-30 18:25:46) ...</strong>
 <strong class='message'>
-End at 2014-04-30 13:46:37</strong>
-<strong class='message'>Runtime in total is: 17 secs
+End at 2014-04-30 18:25:46</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
-<div class='input'># fisher's exact test (using 'lea' algorithm to account for ontology hierarchy)
-eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
-ontology.algorithm="lea", RData.location="./RData_Rd")
+<div class='input'>dEnricherView(eTerm, top_num=10, sortBy="adjp", decreasing=FALSE,
+details=TRUE)
 </div>
-<strong class='message'>Start at 2014-04-30 13:46:37</strong>
-<strong class='message'></strong>
-<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-04-30 13:46:37) ...</strong>
-<strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
-<strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egMP.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-04-30 13:46:39) ...</strong>
-<strong class='message'>	Among 1000 symbols of input data, there are 853 mappable via official gene symbols but 147 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest based on lea algorithm to respect ontology structure (2014-04-30 13:46:39) ...</strong>
-<strong class='message'>	Load ontology information from http://dnet.r-forge.r-project.org/data/Obo/ig.MP.RData</strong>
-<strong class='message'>	There are 4609 terms being used</strong>
-<strong class='message'>	At level 15, there are 4 nodes/terms and 0 being recalculated</strong>
-<strong class='message'>	At level 14, there are 19 nodes/terms and 4 being recalculated</strong>
-<strong class='message'>	At level 13, there are 43 nodes/terms and 15 being recalculated</strong>
-<strong class='message'>	At level 12, there are 93 nodes/terms and 27 being recalculated</strong>
-<strong class='message'>	At level 11, there are 143 nodes/terms and 48 being recalculated</strong>
-<strong class='message'>	At level 10, there are 227 nodes/terms and 58 being recalculated</strong>
-<strong class='message'>	At level 9, there are 373 nodes/terms and 109 being recalculated</strong>
-<strong class='message'>	At level 8, there are 640 nodes/terms and 159 being recalculated</strong>
-<strong class='message'>	At level 7, there are 865 nodes/terms and 303 being recalculated</strong>
-<strong class='message'>	At level 6, there are 918 nodes/terms and 340 being recalculated</strong>
-<strong class='message'>	At level 5, there are 820 nodes/terms and 379 being recalculated</strong>
-<strong class='message'>	At level 4, there are 364 nodes/terms and 252 being recalculated</strong>
-<strong class='message'>	At level 3, there are 70 nodes/terms and 61 being recalculated</strong>
-<strong class='message'>	At level 2, there are 29 nodes/terms and 23 being recalculated</strong>
-<strong class='message'>	At level 1, there are 1 nodes/terms and 1 being recalculated</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-04-30 13:46:56) ...</strong>
-<strong class='message'>
-End at 2014-04-30 13:46:57</strong>
-<strong class='message'>Runtime in total is: 20 secs
-</strong>
+<div class='output'>              setID nSet nOverlap zscore  pvalue   adjp
+DOID:1749 DOID:1749  719        8   3.94 0.00022 0.0025
+DOID:1909 DOID:1909  708        8   3.99 0.00019 0.0025
+DOID:231   DOID:231  185        4   4.47 0.00025 0.0025
+DOID:8566 DOID:8566   94        3   4.93 0.00021 0.0025
+DOID:332   DOID:332  154        3   3.59 0.00130 0.0100
+DOID:1115 DOID:1115  191        3   3.08 0.00300 0.0190
+DOID:3571 DOID:3571  883        7   2.63 0.00460 0.0200
+DOID:684   DOID:684  882        7   2.64 0.00460 0.0200
+DOID:686   DOID:686  882        7   2.64 0.00460 0.0200
+DOID:2355 DOID:2355  235        3   2.62 0.00620 0.0240
+                                   name        namespace distance
+DOID:1749       squamous cell carcinoma Disease_Ontology        5
+DOID:1909                      melanoma Disease_Ontology        4
+DOID:231           motor neuron disease Disease_Ontology        5
+DOID:8566                herpes simplex Disease_Ontology        3
+DOID:332  amyotrophic lateral sclerosis Disease_Ontology        6
+DOID:1115                       sarcoma Disease_Ontology        4
+DOID:3571                  liver cancer Disease_Ontology        5
+DOID:684       hepatocellular carcinoma Disease_Ontology        7
+DOID:686                liver carcinoma Disease_Ontology        6
+DOID:2355                        anemia Disease_Ontology        4
+</div>
 <div class='input'>
 # visualise the top significant terms in the ontology heirarchy
-ig.MP <- dRDataLoader(RData='ig.MP')
+ig.DO <- dRDataLoader(RData='ig.DO')
 </div>
-<strong class='message'>'ig.MP' (from http://supfam.org/dnet/data/Obo/ig.MP.RData) has been loaded into the working environment</strong>
-<div class='input'>g <- ig.MP
+<strong class='message'>'ig.DO' (from http://supfam.org/dnet/data/Obo/ig.DO.RData) has been loaded into the working environment</strong>
+<div class='input'>g <- ig.DO
 nodes_query <- names(sort(eTerm$adjp)[1:5])
 nodes.highlight <- rep("red", length(nodes_query))
 names(nodes.highlight) <- nodes_query
@@ -472,13 +410,13 @@ subg <- dDAGinduce(g, nodes_query)
 visDAG(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]),
 node.info="both", zlim=c(0,2), node.attrs=list(color=nodes.highlight))
 </div>
-<a href="javascript:newWin('dEnricher-103.png', 'dEnricher-103.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dEnricher-103.png', width="400" /></a>
+<a href="javascript:newWin('dEnricher-21.png', 'dEnricher-21.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dEnricher-21.png', width="400" /></a>
 <div class='input'># color-code terms according to the z-scores
 visDAG(g=subg, data=eTerm$zscore[V(subg)$name], node.info="both",
 colormap="darkblue-white-darkorange",
 node.attrs=list(color=nodes.highlight))
 </div>
-<a href="javascript:newWin('dEnricher-105.png', 'dEnricher-105.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dEnricher-105.png', width="400" /></a></pre>
+<a href="javascript:newWin('dEnricher-23.png', 'dEnricher-23.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dEnricher-23.png', width="400" /></a></pre>
   </div>
   
   <div class="span4">

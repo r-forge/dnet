@@ -46,6 +46,7 @@
 #' @seealso \code{\link{dGSEAview}}, \code{\link{dGSEAwrite}}, \code{\link{visGSEA}}
 #' @include dGSEA.r
 #' @examples
+#' \dontrun{
 #' load(url("http://dnet.r-forge.r-project.org/data/Datasets/Hiratani_TableS1.RData"))
 #' data <- RT[1:1000,1:2]
 #' eTerm <- dGSEA(data, identity="symbol", genome="Mm", ontology="MP", which_distance=c(1,2))
@@ -54,7 +55,8 @@
 #' output <- dGSEAwrite(eTerm, which_content="gadjp", which_score="gadjp", filename="eTerm.txt")
 #'
 #' ## based on customised gene sets
-#' eTerm <- dGSEA(data, identity="symbol", genome="Mm", ontology="Customised", customised.genesets=rownames(data)[1:100], RData.location="RData_Rd/data")
+#' eTerm <- dGSEA(data, identity="symbol", genome="Mm", ontology="Customised", customised.genesets=rownames(data)[1:100])
+#' }
 
 dGSEA <- function(data, identity=c("symbol","entrez"), check.symbol.identity=FALSE, genome=c("Hs", "Mm", "Rn", "Gg", "Ce", "Dm", "Da", "At"), ontology=c("GOBP","GOMF","GOCC","PS","PS2","SF","DO","HPPA","HPMI","HPON","MP", "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7", "DGIdb", "Customised"), customised.genesets=NULL, sizeRange=c(10,20000), which_distance=NULL, weight=1, nperm=1000, fast=T, sigTail=c("two-tails","one-tail"), p.adjust.method=c("BH", "BY", "bonferroni", "holm", "hochberg", "hommel"), verbose=T, RData.location="http://dnet.r-forge.r-project.org/data")
 {

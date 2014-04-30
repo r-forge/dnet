@@ -38,8 +38,10 @@
 #' # 4b) assume the input is a list of customised significance (eg FDR directly)
 #' subgraph <- dNetPipeline(g=subg, pval=x, method="customised", significance.threshold=0.1)
 #' 
+#' \dontrun{
 #' # 5) find maximum-scoring subgraph with the desired node number nsize=20
 #' subgraph <- dNetPipeline(g=subg, pval=x, nsize=20)
+#' }
 
 dNetPipeline <- function(g, pval, method=c("pdf","cdf","customised"), significance.threshold=NULL, nsize=NULL, plot=F, verbose=T)
 {

@@ -92,8 +92,10 @@ subgraph <- dNetPipeline(g=subg, pval=x, significance.threshold=0.1)
 subgraph <- dNetPipeline(g=subg, pval=x, method="customised",
 significance.threshold=0.1)
 
+\dontrun{
 # 5) find maximum-scoring subgraph with the desired node number nsize=20
 subgraph <- dNetPipeline(g=subg, pval=x, nsize=20)
+}
 }
 \seealso{
 \code{\link{dBUMfit}}, \code{\link{dBUMscore}},

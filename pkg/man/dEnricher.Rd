@@ -208,24 +208,20 @@ the maximum of both p-values in these two calculations.}
 is: "none" > "lea" > "elim" > "pc".} }
 }
 \examples{
-load(url("http://dnet.r-forge.r-project.org/data/Datasets/Hiratani_TableS1.RData"))
-data <- rownames(RT)[1:1000]
-# fisher's exact test (witout accounting for ontology hierarchy)
-eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
-RData.location="./RData_Rd")
-# fisher's exact test (using 'pc' algorithm to account for ontology hierarchy)
-eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
-ontology.algorithm="pc", RData.location="./RData_Rd")
-# fisher's exact test (using 'elim' algorithm to account for ontology hierarchy)
-eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
-ontology.algorithm="elim", RData.location="./RData_Rd")
-# fisher's exact test (using 'lea' algorithm to account for ontology hierarchy)
-eTerm <- dEnricher(data, identity="symbol", genome="Mm", ontology="MP",
-ontology.algorithm="lea", RData.location="./RData_Rd")
+\dontrun{
+# load data
+data(Fang)
+data <- as.character(Fang.geneinfo$Symbol[1:50])
+data
+
+# enrichment analysis
+eTerm <- dEnricher(data, identity="symbol", genome="Hs", ontology="DO")
+dEnricherView(eTerm, top_num=10, sortBy="adjp", decreasing=FALSE,
+details=TRUE)
 
 # visualise the top significant terms in the ontology heirarchy
-ig.MP <- dRDataLoader(RData='ig.MP')
-g <- ig.MP
+ig.DO <- dRDataLoader(RData='ig.DO')
+g <- ig.DO
 nodes_query <- names(sort(eTerm$adjp)[1:5])
 nodes.highlight <- rep("red", length(nodes_query))
 names(nodes.highlight) <- nodes_query
@@ -237,6 +233,7 @@ node.info="both", zlim=c(0,2), node.attrs=list(color=nodes.highlight))
 visDAG(g=subg, data=eTerm$zscore[V(subg)$name], node.info="both",
 colormap="darkblue-white-darkorange",
 node.attrs=list(color=nodes.highlight))
+}
 }
 \seealso{
 \code{\link{dEnricher}}

@@ -33,6 +33,7 @@ list(
             "These functions are used for enrichment analysis and visualisation, including: enrichment analysis (Fisher's exact test, Hypergeometric test or Binomial test) that can account for the hierarchy of the ontology; and gene set enrichment analysis (GSEA).",
             c(
                 'dEnricher',
+                'dEnricherView',
                 'dGSEA',
                 'dGSEAview',
                 'dGSEAwrite',
