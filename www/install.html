@@ -152,7 +152,7 @@ make install
 <p>First, install dependant/imported/suggested packages:</p>
 
 <pre><code>source(&quot;http://bioconductor.org/biocLite.R&quot;)
-for(pkg in c(&quot;igraph&quot;,&quot;supraHex&quot;,&quot;hexbin&quot;,&quot;ape&quot;,&quot;graph&quot;,&quot;Rgraphviz&quot;,&quot;affy&quot;,&quot;limma&quot;,&quot;survival&quot;)){
+for(pkg in c(&quot;hexbin&quot;,&quot;ape&quot;,&quot;supraHex&quot;,&quot;graph&quot;,&quot;Rgraphviz&quot;,&quot;igraph&quot;,&quot;Biobase&quot;,&quot;limma&quot;,&quot;survival&quot;)){
     if(!require(pkg, character.only=T)) biocLite(pkg)
 }
 </code></pre>

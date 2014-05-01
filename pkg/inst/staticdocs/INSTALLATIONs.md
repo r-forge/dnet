@@ -37,7 +37,7 @@ Notes: below are `R command lines (NOT shell command lines in Terminal)`.
 First, install dependant/imported/suggested packages:
 
     source("http://bioconductor.org/biocLite.R")
-    for(pkg in c("igraph","supraHex","hexbin","ape","graph","Rgraphviz","affy","limma","survival")){
+    for(pkg in c("hexbin","ape","supraHex","graph","Rgraphviz","igraph","Biobase","limma","survival")){
         if(!require(pkg, character.only=T)) biocLite(pkg)
     }
 

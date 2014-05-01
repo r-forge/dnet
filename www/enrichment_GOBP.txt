@@ -1,0 +1,39 @@
+setID	nSet	nOverlap	zscore	pvalue	adjp	name	namespace	distance
+GO:0007173	25	3	10.3	1.1e-06	1.4e-05	epidermal growth factor receptor signaling pathway	Process	10
+GO:0019827	54	4	9.19	7.9e-07	1.4e-05	stem cell maintenance	Process	4
+GO:0043066	415	9	6.73	6.1e-07	1.4e-05	negative regulation of apoptotic process	Process	8
+GO:0007569	27	3	9.88	1.6e-06	1.5e-05	cell aging	Process	4
+GO:0048662	34	3	8.74	4.1e-06	2.6e-05	negative regulation of smooth muscle cell proliferation	Process	7
+GO:0051402	34	3	8.74	4.1e-06	2.6e-05	neuron apoptotic process	Process	6
+GO:0021987	42	3	7.8	9.7e-06	5e-05	cerebral cortex development	Process	4
+GO:0051781	44	3	7.6	1.2e-05	5e-05	positive regulation of cell division	Process	6
+GO:0071363	44	3	7.6	1.2e-05	5e-05	cellular response to growth factor stimulus	Process	6
+GO:0001649	48	3	7.25	1.7e-05	5.8e-05	osteoblast differentiation	Process	5
+GO:0051726	98	4	6.58	1.5e-05	5.8e-05	regulation of cell cycle	Process	5
+GO:0033138	57	3	6.58	3.3e-05	1e-04	positive regulation of peptidyl-serine phosphorylation	Process	11
+GO:0006915	535	8	4.87	4.3e-05	0.00012	apoptotic process	Process	6
+GO:0032088	61	3	6.34	4.3e-05	0.00012	negative regulation of NF-kappaB transcription factor activity	Process	12
+GO:0043154	71	3	5.81	7.9e-05	2e-04	negative regulation of cysteine-type endopeptidase activity involved in apoptotic process	Process	7
+GO:0001503	80	3	5.41	0.00013	3e-04	ossification	Process	4
+GO:0001501	91	3	5.01	0.00021	0.00046	skeletal system development	Process	6
+GO:0006366	391	6	4.28	0.00023	0.00049	transcription from RNA polymerase II promoter	Process	10
+GO:0008284	398	6	4.22	0.00026	0.00052	positive regulation of cell proliferation	Process	6
+GO:0009887	102	3	4.67	0.00032	0.00061	organ morphogenesis	Process	4
+GO:0006979	109	3	4.48	0.00041	0.00075	response to oxidative stress	Process	4
+GO:0045892	437	6	3.93	0.00046	0.00079	negative regulation of transcription, DNA-templated	Process	8
+GO:0042493	128	3	4.05	0.00076	0.0013	response to drug	Process	4
+GO:0042127	146	3	3.71	0.0012	0.002	regulation of cell proliferation	Process	5
+GO:0045893	527	6	3.36	0.0014	0.0021	positive regulation of transcription, DNA-templated	Process	8
+GO:0008283	181	3	3.18	0.0027	0.004	cell proliferation	Process	3
+GO:0006357	318	4	2.97	0.0035	0.0048	regulation of transcription from RNA polymerase II promoter	Process	10
+GO:0007399	319	4	2.96	0.0035	0.0048	nervous system development	Process	6
+GO:0008285	328	4	2.89	0.004	0.0052	negative regulation of cell proliferation	Process	6
+GO:0007155	506	5	2.68	0.0055	0.0069	cell adhesion	Process	3
+GO:0006954	229	3	2.65	0.0063	0.0077	inflammatory response	Process	5
+GO:0001701	273	3	2.28	0.011	0.013	in utero embryonic development	Process	8
+GO:0045944	778	6	2.27	0.012	0.013	positive regulation of transcription from RNA polymerase II promoter	Process	11
+GO:0006974	376	3	1.64	0.033	0.037	cellular response to DNA damage stimulus	Process	5
+GO:0000122	575	4	1.61	0.037	0.039	negative regulation of transcription from RNA polymerase II promoter	Process	11
+GO:0007275	985	6	1.64	0.037	0.039	multicellular organismal development	Process	4
+GO:0055114	747	4	1.05	0.092	0.094	oxidation-reduction process	Process	4
+GO:0030154	655	3	0.622	0.16	0.16	cell differentiation	Process	5

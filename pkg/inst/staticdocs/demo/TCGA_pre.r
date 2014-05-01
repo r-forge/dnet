@@ -487,7 +487,7 @@ for(i in 1:length(cg_names)){
 cg_signif[cg_signif[,2]==0,2] <- min(cg_signif[cg_signif[,2]!=0,2])
 
 # median: 0.61 (0.56), 6.18 66.12
-naive <- LR[sample(length(cg_names))]
+naive <- sample(LR, length(cg_names))
 bp.LR.list <- list(Naive=naive, Neti=LR[cg_names], Netc=cg_signif[2:nrow(cg_signif),1])
 par(las=1, mar=c(5,8,4,2)) # all axis labels horizontal
 boxplot(bp.LR.list, outline=F, horizontal=F, names=c("All genes", "Individual genes\n in the network", "Combined genes\n in the network"), col=c("red","green","blue"), border=par("fg"), ylab="Cox hazard ratio (HR)", log="y", ylim=c(0.1,100), yaxt="n",xaxt="n")

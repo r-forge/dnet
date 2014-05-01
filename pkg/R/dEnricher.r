@@ -820,14 +820,27 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
     if(sum(flag_filter)==0){
         stop("It seems there are no terms meeting the specified 'sizeRange' and 'min.overlap'.\n")
     }
+    set_info <- set_info[flag_filter,]
+    gs <- gs[flag_filter]
+    overlaps <- overlaps[flag_filter]
+    
+    ## common terms
+    common <- intersect(names(gs), names(zscores))
+    ind_gs <- match(common,names(gs))
+    ind_zscores <- match(common, names(zscores))
+    
+    ## restrict to the common terms (and sorted too)
+    set_info <- set_info[ind_gs[!is.na(ind_gs)],]
+    gs <- gs[ind_gs[!is.na(ind_gs)]]
+    overlaps <- overlaps[ind_gs[!is.na(ind_gs)]]
+    zscores <- zscores[ind_zscores[!is.na(ind_zscores)]]
+    pvals <- pvals[ind_zscores[!is.na(ind_zscores)]]
+    
     
     zscores[is.na(zscores)] <- 0
     zscores <- signif(zscores, digits=3)
-    zscores <- zscores[flag_filter]
     
     pvals <- sapply(pvals, function(x) min(x,1))
-    pvals <- pvals[flag_filter]
-    
     ## Adjust P-values for multiple comparisons
     adjpvals <- stats::p.adjust(pvals, method=p.adjust.method)
     
@@ -842,10 +855,10 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
     runTime <- as.numeric(difftime(strptime(endT, "%Y-%m-%d %H:%M:%S"), strptime(startT, "%Y-%m-%d %H:%M:%S"), units="secs"))
     message(paste(c("Runtime in total is: ",runTime," secs\n"), collapse=""), appendLF=T)
     
-    eTerm <- list(set_info = set_info[flag_filter,],
-                  gs       = gs[flag_filter],
+    eTerm <- list(set_info = set_info,
+                  gs       = gs,
                   data     = data,
-                  overlap  = overlaps[flag_filter],
+                  overlap  = overlaps,
                   zscore   = zscores,
                   pvalue   = pvals,
                   adjp     = adjpvals,
