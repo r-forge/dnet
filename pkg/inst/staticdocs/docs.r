@@ -20,6 +20,7 @@ list(
                 'dCommSignif',
                 'dContrast',
                 'dRWR',
+                'dRWRdating',
                 'visNet',
                 'visNetMul',
                 'visNetReorder',

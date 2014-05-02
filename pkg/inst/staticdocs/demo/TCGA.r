@@ -34,11 +34,11 @@ table(pData(eset)$TCGA_tumor_type)
 
 # Survival analysis across tumor types using Cox proportional hazards model
 # Cox regression yields an equation for the hazard/risk as a function of several explanatory variables
-## Just for age, gender, tumor type
+
+## fit a Cox proportional hazards model for age, gender, tumor type
 data <- pd
 fit <- survival::coxph(Surv(time,status) ~ Age + Gender + TCGA_tumor_type, data=data)
-fit
-anova(fit, test="Chisq")
+res <- anova(fit, test="Chisq")
 
 ## Now with gene mutational data in subject, adjust for other explanatory variables (or called covariates) include: age, gender, and tumor type
 ## only those genes with mutations at least 1% of samples will be analysed

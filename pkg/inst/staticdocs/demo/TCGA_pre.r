@@ -1051,3 +1051,98 @@ rownames(data) <- paste(output$setID,output$setSize,output$name, sep="_")
 visHeatmapAdv(data, Rowv=F, Colv=T, colormap="darkgreen-lightgreen-lightpink-darkred", zlim=c(0,2), margins = c(7,14),cexRow=1,cexCol=1)
 
 
+
+
+
+
+# Network dating-based sample relationship and visualisations
+# it uses the gene-active subnetwork overlaid by all replication timing data
+frac_mutated <- sapply(tumor_type, function(x) {
+    e <- eset[, which(pData(eset)$TCGA_tumor_type==x)]
+    apply(exprs(e)!=0,1,sum)/ncol(e)
+})
+rownames(frac_mutated) <- fData(eset)$Symbol
+frac_mutated[1:10,]
+
+# An igraph object that contains a functional protein association network in human. The network is extracted from the STRING database (version 9.1). Only those associations with medium confidence (score>=400) are retained.
+org.Hs.string <- dRDataLoader(RData='org.Hs.string')
+# restrict to those edges with high confidence (score>=700)
+network <- subgraph.edges(org.Hs.string, eids=E(org.Hs.string)[combined_score>=700])
+network
+
+# extract network that only contains genes in frac_mutated
+ind <- match(V(network)$symbol, rownames(frac_mutated))
+## for extracted graph
+nodes_mapped <- V(network)$name[!is.na(ind)]
+network <- dNetInduce(g=network, nodes_query=nodes_mapped, knn=0, remove.loops=F, largest.comp=T)
+V(network)$name <- V(network)$symbol
+network
+
+data <- frac_mutated
+g <- network
+
+dContact <- dRWRdating(data, g, normalise=c("laplacian","row","column","none"), restart=0.5, normalise.affinity.matrix=c("none","quantile")[1], num.permutation=100, p.adjust.method=c("BH","BY","bonferroni","holm","hochberg","hommel"), adjp.cutoff=0.05, verbose=T)
+
+cgraph <- dContact$cgraph
+visNet(cgraph, edge.width=E(cgraph)$weight*2)
+
+
+PTmatrix <- dRWR(g=network, normalise=c("laplacian","row","column","none")[1], setSeeds=frac_mutated, restart=0.5, normalise.affinity.matrix=c("none","quantile")[1], verbose=T)
+data <- t(PTmatrix)
+n <- nrow(data)
+obs <- matrix(0, nrow=n, ncol=n)
+for (i in 1:n) {
+    obs[i, ] <- (data[i, ] %*% t(data))
+}
+rownames(obs) <- rownames(data)
+colnames(obs) <- rownames(data)
+visHeatmapAdv(obs, Rowv=F, Colv=F, zlim=c(0.0001,0.0004))
+
+B <- 100
+exp_b <- list()
+for (b in 1:B){
+    progress_indicate(b, B, 10, flag=T)
+    ind <- sample(1:nrow(frac_mutated))
+    seeds_random <- frac_mutated[ind,]
+    rownames(seeds_random) <- rownames(frac_mutated)
+    PT_random <- suppressMessages(dRWR(g=network, normalise=c("laplacian","row","column","none")[1], setSeeds=seeds_random, restart=0.5, normalise.affinity.matrix=c("none","quantile")[1], verbose=F))
+    data <- t(PT_random)
+    exp_random <- matrix(0, nrow=n, ncol=n)
+    for (i in 1:n) {
+        exp_random[i, ] <- (data[i, ] %*% t(data))
+    }
+    rownames(exp_random) <- rownames(data)
+    colnames(exp_random) <- rownames(data)
+    exp_b[[b]] <- exp_random
+}
+
+counts <- matrix(0, ncol=n, nrow=n)
+for(b in 1:B){
+    counts <- counts + (obs < exp_b[[b]])
+}
+pval <- counts/B
+
+p.adjust.method=c("BH", "BY", "bonferroni", "holm", "hochberg", "hommel")[1]
+adjpval <- stats::p.adjust(pval, method=p.adjust.method)
+adjpval <- matrix(adjpval, ncol=n, nrow=n)
+colnames(adjpval) <- colnames(pval)
+rownames(adjpval) <- rownames(pval)
+
+exp_mean <- matrix(0, ncol=n, nrow=n)
+exp_square <- matrix(0, ncol=n, nrow=n)
+for(b in 1:B){
+    exp_mean <- exp_mean + exp_b[[b]]
+    exp_square <- exp_square + exp_b[[b]]^2
+}
+exp_mean <- exp_mean/B
+exp_square <- exp_square/B
+exp_std <- sqrt(exp_square-exp_mean^2)
+
+zscore <- (obs-exp_mean)/exp_std
+
+cutoff <- 0.05
+flag <- adjpval < cutoff
+adjmatrix <- flag
+adjmatrix[flag] <- zscore[flag]
+sg <- igraph::graph.adjacency(adjmatrix, mode="undirected", weighted=T, diag=F, add.colnames=NULL, add.rownames=NA)
+visNet(sg, edge.width=E(sg)$weight*2)
