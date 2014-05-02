@@ -29,12 +29,18 @@ fd[1:3,]
 md <- exprs(eset)
 md[1:3,1:3]
 # number of samples for each cancer type
-table(pData(eset)$TCGA_tumor_type)
 tumor_type <- sort(unique(pData(eset)$TCGA_tumor_type))
+table(pData(eset)$TCGA_tumor_type)
 
 # Survival analysis across tumor types using Cox proportional hazards model
 # Cox regression yields an equation for the hazard/risk as a function of several explanatory variables
-# Except for the gene mutational data in subject,  other explanatory variables (or called covariates) include: age, gender, and tumor type
+## Just for age, gender, tumor type
+data <- pd
+fit <- survival::coxph(Surv(time,status) ~ Age + Gender + TCGA_tumor_type, data=data)
+fit
+anova(fit, test="Chisq")
+
+## Now with gene mutational data in subject, adjust for other explanatory variables (or called covariates) include: age, gender, and tumor type
 ## only those genes with mutations at least 1% of samples will be analysed
 flag <- sapply(1:nrow(md), function(i) ifelse(sum(md[i,]!=0)>=0.01*ncol(md), T, F))
 esetGene <- eset[flag, ]
@@ -45,8 +51,9 @@ pvals <- rep(1, nrow(md_selected))
 for(i in 1:nrow(md_selected)){
     ## fit a Cox proportional hazards model
     data <- cbind(pd, gene=md_selected[i,])
-    fit <- coxph(formula=Surv(time,status) ~ Age + Gender + TCGA_tumor_type + gene, data=data)
-    res <- as.matrix(stats::anova(fit))
+    fit <- survival::coxph(formula=Surv(time,status) ~ Age + Gender + TCGA_tumor_type + gene, data=data)
+    ## ANOVA (Chisq test)
+    res <- as.matrix(anova(fit, test="Chisq"))
     HR[i] <- res[5,2]
     pvals[i] <- res[5,4]
 }
@@ -383,5 +390,3 @@ dEnricherView(eTerm, top_num=10, sortBy="adjp", details=F)
 # miRNA target enrichment analysis
 eTerm <- dEnricher(data=V(net)$name, identity="symbol", genome="Hs", ontology="MsigdbC3MIR")
 dEnricherView(eTerm, top_num=10, sortBy="adjp", details=F)
-
-
