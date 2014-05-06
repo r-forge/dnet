@@ -56,23 +56,23 @@ will be displayed in the screen. By default, it sets to
 true for display}
 }
 \value{
-When the seeds are NOT given, it returns: \itemize{
-\item{\code{PTmatrix}: pre-computated affinity matrix with
+It returns a sparse matrix, called 'PTmatrix': When the
+seeds are NOT given, it returns: \itemize{ \item{When the
+seeds are NOT given: a pre-computated affinity matrix with
 the dimension of n X n, where n is the number of nodes in
 the input graph. Columns stand for starting nodes walking
 from, and rows for ending nodes walking to. Therefore, a
 column for a starting node represents a steady-state
 affinity vector that the starting node will visit all the
-ending nodes in the graph} } When the seeds are given, it
-returns: \itemize{ \item{\code{PTmatrix}: affinity matrix
-with the dimension of n X nset, where n is the number of
-nodes in the input graph, and nset for the number of the
-sets of seeds (i.e. the number of columns in setSeeds).
-Each column stands for the steady probability vector,
-storing the affinity score of all nodes in the graph to the
-starting nodes/seeds. This steady probability vector can be
-viewed as the "influential impact" over the graph imposed
-by the starting nodes/seeds.} }
+ending nodes in the graph} \item{When the seeds are given:
+an affinity matrix with the dimension of n X nset, where n
+is the number of nodes in the input graph, and nset for the
+number of the sets of seeds (i.e. the number of columns in
+setSeeds). Each column stands for the steady probability
+vector, storing the affinity score of all nodes in the
+graph to the starting nodes/seeds. This steady probability
+vector can be viewed as the "influential impact" over the
+graph imposed by the starting nodes/seeds.} }
 }
 \description{
 \code{dRWR} is supposed to implement Random Walk with
@@ -96,7 +96,7 @@ subg <- dNetInduce(g, V(g), knn=0)
 V(subg)$name <- 1:vcount(subg)
 
 # 3) obtain the pre-computated affinity matrix
-PTmatrix <- dRWR(subg, normalise="laplacian", restart=0.75)
+PTmatrix <- dRWR(g=subg, normalise="laplacian", restart=0.75)
 # visualise affinity matrix
 visHeatmapAdv(PTmatrix, Rowv=FALSE, Colv=FALSE, colormap="wyr",
 KeyValueName="Affinity")
@@ -109,11 +109,11 @@ bSeeds <- c(0,0,1,0,1)
 setSeeds <- data.frame(aSeeds,bSeeds)
 rownames(setSeeds) <- 1:5
 # calcualte affinity matrix
-PTmatrix <- dRWR(subg, normalise="laplacian", setSeeds=setSeeds,
+PTmatrix <- dRWR(g=subg, normalise="laplacian", setSeeds=setSeeds,
 restart=0.75)
 PTmatrix
 }
 \seealso{
-\code{\link{dNetInduce}}
+\code{\link{dRWRcontact}}, \code{\link{dRWRpipeline}}
 }
 

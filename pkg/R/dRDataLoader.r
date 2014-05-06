@@ -17,7 +17,7 @@
 #' org.Hs.egMsigdbC2KEGG <- dRDataLoader(RData='org.Hs.egMsigdbC2KEGG')
 #' ig.MP <- dRDataLoader(RData='ig.MP')
 
-dRDataLoader <- function(RData=c('CLL', 'Hiratani_TableS1', 'TCGA_mutations', 'org.Gg.string', 'org.Gg.egPS', 'org.Gg.egGOBP', 'org.Gg.egGOCC', 'org.Gg.egSF', 'org.Gg.eg', 'org.Gg.egGOMF', 'org.Rn.egGOCC', 'org.Rn.egGOMF', 'org.Rn.egSF', 'org.Rn.string', 'org.Rn.egPS', 'org.Rn.eg', 'org.Rn.egGOBP', 'org.Mm.egHPMI', 'org.Mm.eg', 'org.Mm.egGOCC', 'org.Mm.string', 'org.Mm.egGOBP', 'org.Mm.egGOMF', 'org.Mm.egHPPA', 'org.Mm.egSF', 'org.Mm.egMP', 'org.Mm.egHPON', 'org.Mm.egPS', 'org.Mm.egDO', 'ig.MP', 'ig.GOBP', 'ig.DO', 'ig.HPON', 'ig.HPPA', 'ig.GOCC', 'ig.GOMF', 'ig.HPMI', 'org.Ce.egPS', 'org.Ce.egGOMF', 'org.Ce.egGOCC', 'org.Ce.egGOBP', 'org.Ce.eg', 'org.Ce.string', 'org.Ce.egSF', 'org.Hs.egMsigdbC5MF', 'org.Hs.egMsigdbC1', 'org.Hs.egMsigdbC3TFT', 'org.Hs.egMsigdbC3MIR', 'org.Hs.egMsigdbC2REACTOME', 'org.Hs.egMsigdbC7', 'org.Hs.egMsigdbC5BP', 'org.Hs.egMsigdbC6', 'org.Hs.egMsigdbC2KEGG', 'org.Hs.egMsigdbC2CP', 'org.Hs.egMsigdbC5CC', 'org.Hs.egMsigdbC4CGN', 'org.Hs.egMsigdbC4CM', 'org.Hs.egMsigdbC2BIOCARTA', 'org.Hs.egMsigdbC2CGP', 'org.At.egSF', 'org.At.eg', 'org.At.egPS', 'org.At.egGOBP', 'org.At.egGOMF', 'org.At.string', 'org.At.egGOCC', 'org.Da.egGOBP', 'org.Da.egSF', 'org.Da.eg', 'org.Da.egPS', 'org.Da.string', 'org.Da.egGOMF', 'org.Da.egGOCC', 'org.Dm.egPS', 'org.Dm.egGOBP', 'org.Dm.egSF', 'org.Dm.eg', 'org.Dm.string', 'org.Dm.egGOCC', 'org.Dm.egGOMF', 'org.Hs.eg', 'org.Hs.egMP', 'org.Hs.egDGIdb', 'org.Hs.egHPPA', 'org.Hs.egSF', 'org.Hs.egGOCC', 'org.Hs.string', 'org.Hs.egGOBP', 'org.Hs.egGOMF', 'org.Hs.egHPMI', 'org.Hs.egDO', 'org.Hs.egHPON', 'org.Hs.egPS'), RData.location="http://supfam.org/dnet/data")
+dRDataLoader <- function(RData=c('CLL', 'Hiratani_TableS1', 'TCGA_mutations', 'org.Gg.string', 'org.Gg.egPS', 'org.Gg.egGOBP', 'org.Gg.egGOCC', 'org.Gg.egSF', 'org.Gg.eg', 'org.Gg.egGOMF', 'org.Rn.egGOCC', 'org.Rn.egGOMF', 'org.Rn.egSF', 'org.Rn.string', 'org.Rn.egPS', 'org.Rn.eg', 'org.Rn.egGOBP', 'org.Mm.egHPMI', 'org.Mm.eg', 'org.Mm.egGOCC', 'org.Mm.string', 'org.Mm.egGOBP', 'org.Mm.egGOMF', 'org.Mm.egHPPA', 'org.Mm.egSF', 'org.Mm.egMP', 'org.Mm.egHPON', 'org.Mm.egPS', 'org.Mm.egDO', 'ig.MP', 'ig.GOBP', 'ig.DO', 'ig.HPON', 'ig.HPPA', 'ig.GOCC', 'ig.GOMF', 'ig.HPMI', 'org.Ce.egPS', 'org.Ce.egGOMF', 'org.Ce.egGOCC', 'org.Ce.egGOBP', 'org.Ce.eg', 'org.Ce.string', 'org.Ce.egSF', 'org.Hs.egMsigdbC5MF', 'org.Hs.egMsigdbC1', 'org.Hs.egMsigdbC3TFT', 'org.Hs.egMsigdbC3MIR', 'org.Hs.egMsigdbC2REACTOME', 'org.Hs.egMsigdbC7', 'org.Hs.egMsigdbC5BP', 'org.Hs.egMsigdbC6', 'org.Hs.egMsigdbC2KEGG', 'org.Hs.egMsigdbC2CP', 'org.Hs.egMsigdbC5CC', 'org.Hs.egMsigdbC4CGN', 'org.Hs.egMsigdbC4CM', 'org.Hs.egMsigdbC2BIOCARTA', 'org.Hs.egMsigdbC2CGP', 'org.At.egSF', 'org.At.eg', 'org.At.egPS', 'org.At.egGOBP', 'org.At.egGOMF', 'org.At.string', 'org.At.egGOCC', 'org.Da.egGOBP', 'org.Da.egSF', 'org.Da.eg', 'org.Da.egPS', 'org.Da.string', 'org.Da.egGOMF', 'org.Da.egGOCC', 'org.Dm.egPS', 'org.Dm.egGOBP', 'org.Dm.egSF', 'org.Dm.eg', 'org.Dm.string', 'org.Dm.egGOCC', 'org.Dm.egGOMF', 'org.Hs.eg', 'org.Hs.egMP', 'org.Hs.egDGIdb', 'org.Hs.egHPPA', 'org.Hs.egSF', 'org.Hs.egGOCC', 'org.Hs.string', 'org.Hs.egGOBP', 'org.Hs.egGOMF', 'org.Hs.egHPMI', 'org.Hs.egDO', 'org.Hs.egHPON', 'org.Hs.egPS'), RData.location="http://dnet.r-forge.r-project.org/data")
 {
 
     ## match.arg matches arg against a table of candidate values as specified by choices, where NULL means to take the first one
@@ -74,21 +74,27 @@ dRDataLoader <- function(RData=c('CLL', 'Hiratani_TableS1', 'TCGA_mutations', 'o
     })
     ## otherwise, load remote R files
     if(sum(load_flag)==0){
-        if(class(try(load(url(load_remote)), T))=="try-error"){
+        
+        con <- url(load_remote)
+        if(class(try(load(con), T))=="try-error"){
             load_remote <- paste("http://dnet.r-forge.r-project.org/data/", subdir, "/", RData, ".RData", sep="")
             
-            if(class(try(load(url(load_remote)), T))=="try-error"){
+            con <- url(load_remote)
+            if(class(try(load(con), T))=="try-error"){
                 load_remote <- paste("http://supfam.org/dnet/data/", subdir, "/", RData, ".RData", sep="")
-                if(class(try(load(url(load_remote)), T))=="try-error"){
+                
+                con <- url(load_remote)
+                if(class(try(load(con), T))=="try-error"){
                     stop("Built-in Rdata files cannot be loaded. Please check your internet connection or their location in your local machine.\n")   
                 }
             }
         }
+        close(con)
+        
         load_RData <- load_remote
     }else{
         load_RData <- RData_local[load_flag]
         load(load_RData)
-        
     }
     
     out <- ''

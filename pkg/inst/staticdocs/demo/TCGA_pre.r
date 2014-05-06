@@ -18,8 +18,7 @@ for(pkg in list.pkg){
 }
 
 # load an "ExpressionSet" object
-load(url("http://dnet.r-forge.r-project.org/data/Datasets/TCGA_mutations.RData"))
-#load("RData_Rd/data/Datasets/TCGA_mutations.RData")
+data(TCGA_mutations)
 eset <- TCGA_mutations
 # extract information about phenotype data
 pd <- pData(eset)
@@ -971,7 +970,7 @@ wth <- 3600
 png("GSEA_samples_nes_pie.png", width=wth*3, height=wth, res=wth*72/480)
 par(mfrow=c(1,11), mar=c(2,2,2,2))
 for(i in 1:length(tmp)){
-    pie(tmp_df[i,1:2], col=c("red","green"), labels=paste(c("",""), tmp_df[i,1:2], sep=""), main=rownames(tmp_df)[i], cex=3)
+    pie(tmp_df[i,1:2], col=c("red","green"), labels=paste(c("",""), tmp_df[i,1:2], sep=""), main=rownames(tmp_df)[i], cex=2)
 }
 dev.off()
 
@@ -1054,6 +1053,8 @@ visHeatmapAdv(data, Rowv=F, Colv=T, colormap="darkgreen-lightgreen-lightpink-dar
 
 
 
+############################################################################
+############################################################################
 
 # Network dating-based sample relationship and visualisations
 # it uses the gene-active subnetwork overlaid by all replication timing data
@@ -1070,6 +1071,10 @@ org.Hs.string <- dRDataLoader(RData='org.Hs.string')
 network <- subgraph.edges(org.Hs.string, eids=E(org.Hs.string)[combined_score>=700])
 network
 
+data(org.Hs.string900)
+network <- org.Hs.string900
+network <- subgraph.edges(org.Hs.string900, eids=E(org.Hs.string900)[combined_score>=990])
+
 # extract network that only contains genes in frac_mutated
 ind <- match(V(network)$symbol, rownames(frac_mutated))
 ## for extracted graph
@@ -1078,71 +1083,28 @@ network <- dNetInduce(g=network, nodes_query=nodes_mapped, knn=0, remove.loops=F
 V(network)$name <- V(network)$symbol
 network
 
+normalise <- c("laplacian","row","column","none")[1]
+restart <- 0.5
+normalise.affinity.matrix <- c("none","quantile")[1]
+Amatrix <- dRWR(g=network, normalise=normalise, restart=restart, normalise.affinity.matrix=normalise.affinity.matrix)
+
 data <- frac_mutated
 g <- network
 
-dContact <- dRWRdating(data, g, normalise=c("laplacian","row","column","none"), restart=0.5, normalise.affinity.matrix=c("none","quantile")[1], num.permutation=100, p.adjust.method=c("BH","BY","bonferroni","holm","hochberg","hommel"), adjp.cutoff=0.05, verbose=T)
+dContact <- dRWRcontact(data=data, g=network, Amatrix=Amatrix, permutation=c("degree","none"), num.permutation=100, p.adjust.method=c("BH","BY","bonferroni","holm","hochberg","hommel"), adjp.cutoff=0.05, verbose=T)
+
+
+type <- 'LAML'
+ind <- match(pData(eset)$TCGA_tumor_type, type)
+data <- md[, !is.na(ind)]
+g <- network
+
+
+
+
+
+dContact <- dRWRdating(data, g, method=c("direct","indirect")[1], normalise=c("laplacian","row","column","none"), restart=0.5, normalise.affinity.matrix=c("none","quantile"), permutation=c("degree","none"), num.permutation=100, p.adjust.method=c("BH","BY","bonferroni","holm","hochberg","hommel"), adjp.cutoff=0.05, verbose=T)
 
 cgraph <- dContact$cgraph
+cgraph <- dNetInduce(g=cgraph, nodes_query=V(cgraph)$name, knn=0, remove.loops=F, largest.comp=T)
 visNet(cgraph, edge.width=E(cgraph)$weight*2)
-
-
-PTmatrix <- dRWR(g=network, normalise=c("laplacian","row","column","none")[1], setSeeds=frac_mutated, restart=0.5, normalise.affinity.matrix=c("none","quantile")[1], verbose=T)
-data <- t(PTmatrix)
-n <- nrow(data)
-obs <- matrix(0, nrow=n, ncol=n)
-for (i in 1:n) {
-    obs[i, ] <- (data[i, ] %*% t(data))
-}
-rownames(obs) <- rownames(data)
-colnames(obs) <- rownames(data)
-visHeatmapAdv(obs, Rowv=F, Colv=F, zlim=c(0.0001,0.0004))
-
-B <- 100
-exp_b <- list()
-for (b in 1:B){
-    progress_indicate(b, B, 10, flag=T)
-    ind <- sample(1:nrow(frac_mutated))
-    seeds_random <- frac_mutated[ind,]
-    rownames(seeds_random) <- rownames(frac_mutated)
-    PT_random <- suppressMessages(dRWR(g=network, normalise=c("laplacian","row","column","none")[1], setSeeds=seeds_random, restart=0.5, normalise.affinity.matrix=c("none","quantile")[1], verbose=F))
-    data <- t(PT_random)
-    exp_random <- matrix(0, nrow=n, ncol=n)
-    for (i in 1:n) {
-        exp_random[i, ] <- (data[i, ] %*% t(data))
-    }
-    rownames(exp_random) <- rownames(data)
-    colnames(exp_random) <- rownames(data)
-    exp_b[[b]] <- exp_random
-}
-
-counts <- matrix(0, ncol=n, nrow=n)
-for(b in 1:B){
-    counts <- counts + (obs < exp_b[[b]])
-}
-pval <- counts/B
-
-p.adjust.method=c("BH", "BY", "bonferroni", "holm", "hochberg", "hommel")[1]
-adjpval <- stats::p.adjust(pval, method=p.adjust.method)
-adjpval <- matrix(adjpval, ncol=n, nrow=n)
-colnames(adjpval) <- colnames(pval)
-rownames(adjpval) <- rownames(pval)
-
-exp_mean <- matrix(0, ncol=n, nrow=n)
-exp_square <- matrix(0, ncol=n, nrow=n)
-for(b in 1:B){
-    exp_mean <- exp_mean + exp_b[[b]]
-    exp_square <- exp_square + exp_b[[b]]^2
-}
-exp_mean <- exp_mean/B
-exp_square <- exp_square/B
-exp_std <- sqrt(exp_square-exp_mean^2)
-
-zscore <- (obs-exp_mean)/exp_std
-
-cutoff <- 0.05
-flag <- adjpval < cutoff
-adjmatrix <- flag
-adjmatrix[flag] <- zscore[flag]
-sg <- igraph::graph.adjacency(adjmatrix, mode="undirected", weighted=T, diag=F, add.colnames=NULL, add.rownames=NA)
-visNet(sg, edge.width=E(sg)$weight*2)

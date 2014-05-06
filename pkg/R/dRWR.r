@@ -8,19 +8,16 @@
 #' @param restart the restart probability used for RWR. The restart probability takes the value from 0 to 1, controlling the range from the starting nodes/seeds that the walker will explore. The higher the value, the more likely the walker is to visit the nodes centered on the starting nodes. At the extreme when the restart probability is zero, the walker moves freely to the neighbors at each step without restarting from seeds, i.e., following a random walk (RW)
 #' @param normalise.affinity.matrix the way to normalise the output affinity matrix. It can be 'none' for no normalisation, 'quantile' for quantile normalisation to ensure that columns (if multiple) of the output affinity matrix have the same quantiles
 #' @param verbose logical to indicate whether the messages will be displayed in the screen. By default, it sets to true for display
-#' @return 
+#' @return It returns a sparse matrix, called 'PTmatrix':
 #' When the seeds are NOT given, it returns:
 #' \itemize{
-#'  \item{\code{PTmatrix}: pre-computated affinity matrix with the dimension of n X n, where n is the number of nodes in the input graph. Columns stand for starting nodes walking from, and rows for ending nodes walking to. Therefore, a column for a starting node represents a steady-state affinity vector that the starting node will visit all the ending nodes in the graph}
-#' }
-#' When the seeds are given, it returns:
-#' \itemize{
-#'  \item{\code{PTmatrix}: affinity matrix with the dimension of n X nset, where n is the number of nodes in the input graph, and nset for the number of the sets of seeds (i.e. the number of columns in setSeeds). Each column stands for the steady probability vector, storing the affinity score of all nodes in the graph to the starting nodes/seeds. This steady probability vector can be viewed as the "influential impact" over the graph imposed by the starting nodes/seeds.}
+#'  \item{When the seeds are NOT given: a pre-computated affinity matrix with the dimension of n X n, where n is the number of nodes in the input graph. Columns stand for starting nodes walking from, and rows for ending nodes walking to. Therefore, a column for a starting node represents a steady-state affinity vector that the starting node will visit all the ending nodes in the graph}
+#'  \item{When the seeds are given: an affinity matrix with the dimension of n X nset, where n is the number of nodes in the input graph, and nset for the number of the sets of seeds (i.e. the number of columns in setSeeds). Each column stands for the steady probability vector, storing the affinity score of all nodes in the graph to the starting nodes/seeds. This steady probability vector can be viewed as the "influential impact" over the graph imposed by the starting nodes/seeds.}
 #' }
 #' @note The input graph will treat as an unweighted graph if there is no 'weight' edge attribute associated with
 #' @export
 #' @import Matrix
-#' @seealso \code{\link{dNetInduce}}
+#' @seealso \code{\link{dRWRcontact}}, \code{\link{dRWRpipeline}}
 #' @include dRWR.r
 #' @examples
 #' # 1) generate a random graph according to the ER model
@@ -31,7 +28,7 @@
 #' V(subg)$name <- 1:vcount(subg)
 #'
 #' # 3) obtain the pre-computated affinity matrix
-#' PTmatrix <- dRWR(subg, normalise="laplacian", restart=0.75)
+#' PTmatrix <- dRWR(g=subg, normalise="laplacian", restart=0.75)
 #' # visualise affinity matrix
 #' visHeatmapAdv(PTmatrix, Rowv=FALSE, Colv=FALSE, colormap="wyr", KeyValueName="Affinity")
 #' 
@@ -43,7 +40,7 @@
 #' setSeeds <- data.frame(aSeeds,bSeeds)
 #' rownames(setSeeds) <- 1:5
 #' # calcualte affinity matrix
-#' PTmatrix <- dRWR(subg, normalise="laplacian", setSeeds=setSeeds, restart=0.75)
+#' PTmatrix <- dRWR(g=subg, normalise="laplacian", setSeeds=setSeeds, restart=0.75)
 #' PTmatrix
 
 dRWR <- function(g, normalise=c("laplacian","row","column","none"), setSeeds=NULL, restart=0.75, normalise.affinity.matrix=c("none","quantile"), verbose=T)
@@ -118,6 +115,27 @@ dRWR <- function(g, normalise=c("laplacian","row","column","none"), setSeeds=NUL
         }
     }
     
+    
+    ####################################################
+    # A function to indicate the running progress
+    progress_indicate <- function(i, B, step, flag=F){
+        if(i %% ceiling(B/step) == 0 | i==B | i==1){
+            if(flag & verbose){
+                message(sprintf("\t%d out of %d seed sets (%s)", i, B, as.character(Sys.time())), appendLF=T)
+            }
+        }
+    }
+    
+    ## A function to make sure the sum of elements in each steady probability vector is one
+    sum2one <- function(PTmatrix){
+        col_sum <- apply(PTmatrix, 2, sum)
+        col_sum_matrix <- matrix(rep(col_sum, nrow(PTmatrix)), ncol=ncol(PTmatrix), nrow=nrow(PTmatrix), byrow =T)
+        res <- PTmatrix/col_sum_matrix
+        res[is.na(res)] <- 0
+        return(res)
+    }
+    ####################################################
+    
     ################## RWR
     ## restarting prob
     if(is.null(restart) || is.na(restart) || restart<0 || restart>100){
@@ -128,13 +146,14 @@ dRWR <- function(g, normalise=c("laplacian","row","column","none"), setSeeds=NUL
         r <- restart
     }
     ## stopping critera
-    stop_delta <- 1e-10   # L1 norm of successive estimates 'PT' below the threshold 'stop_delta'
-    stop_step <- 100      # maximum steps of iterations
+    stop_delta <- 1e-6   # L1 norm of successive estimates 'PT' below the threshold 'stop_delta'
+    stop_step <- 50      # maximum steps of iterations
     
     if(is.null(setSeeds)){
-        P0matrix <- matrix(as.numeric(nadjM>0),nrow=nrow(nadjM),ncol=ncol(nadjM))
+        P0matrix <- Matrix::Matrix(diag(vcount(ig)), sparse=T)
         rownames(P0matrix) <- V(ig)$name
         colnames(P0matrix) <- V(ig)$name
+        
     }else{
         ## check input data
         if(is.matrix(setSeeds) | is.data.frame(setSeeds)){
@@ -163,12 +182,24 @@ dRWR <- function(g, normalise=c("laplacian","row","column","none"), setSeeds=NUL
         P0matrix <- matrix(0,nrow=nrow(nadjM),ncol=ncol(data))
         P0matrix[ind[!is.na(ind)],] <- as.matrix(data[!is.na(ind),])
         
+        ## make sure the sum of elements in each steady probability vector is one
+        P0matrix <- sum2one(P0matrix)
+        
+        if(0){
         ## make sure the sum of elements in each starting probability vector is one
         P0matrix <- sapply(1:ncol(P0matrix), function(i){
-            P0matrix[,i]/sum(P0matrix[,i])
+            if(sum(P0matrix[,i]!=0)){
+                P0matrix[,i]/sum(P0matrix[,i])
+            }else{
+                P0matrix[,i]
+            }
         })
         rownames(P0matrix) <- V(ig)$name
         colnames(P0matrix) <- cnames
+        }
+        
+        ## convert to sparse matrix
+        P0matrix <- Matrix::Matrix(P0matrix, sparse=T)
     }
     
     if(verbose){
@@ -176,14 +207,16 @@ dRWR <- function(g, normalise=c("laplacian","row","column","none"), setSeeds=NUL
         message(sprintf("Third, RWR of %d sets of seeds using %1.1e restart probability (%s) ...", ncol(P0matrix), restart, as.character(now)), appendLF=T)
     }
     
-    PTmatrix <- matrix(0, nrow=nrow(P0matrix), ncol=ncol(P0matrix))
+    #PTmatrix <- matrix(0, nrow=nrow(P0matrix), ncol=ncol(P0matrix))
+    PTmatrix <- Matrix::Matrix(0, nrow=nrow(P0matrix), ncol=ncol(P0matrix), sparse=T)
     if(restart==1){
         ## just seeds themselves
         PTmatrix <- P0matrix
     }else{
     
         for(j in 1:ncol(P0matrix)){
-            P0 <- as.matrix(P0matrix[,j],ncol=1)
+            #P0 <- as.matrix(P0matrix[,j],ncol=1)
+            P0 <- P0matrix[,j]
         
             ## Initializing variables
             step <- 0
@@ -200,23 +233,31 @@ dRWR <- function(g, normalise=c("laplacian","row","column","none"), setSeeds=NUL
                 PT <- PX
                 step <- step+1
             }
-            PTmatrix[,j] <- matrix(PT, ncol=1)
-
-            if(verbose){
-                now <- Sys.time()
-                message(sprintf("\tUsing the seed set %d (%s) ...", j, as.character(now)), appendLF=T)
-            }
+            #PTmatrix[,j] <- as.matrix(PT, ncol=1)
+            PT[PT<1e-6] <- 0
+            PTmatrix[,j] <- Matrix::Matrix(PT, sparse=T)
+            
+            progress_indicate(j, ncol(P0matrix), 1000, flag=T)
         
         }
         
     }
+    
+    ## make sure the sum of elements in each steady probability vector is one
+    PTmatrix <- sum2one(PTmatrix)
+    
+    if(0){
     ## make sure the sum of elements in each steady probability vector is one
     PTmatrix <- sapply(1:ncol(PTmatrix), function(i){
-        PTmatrix[,i]/sum(PTmatrix[,i])
+        if(sum(PTmatrix[,i])!=0){
+            PTmatrix[,i]/sum(PTmatrix[,i])
+        }else{
+            PTmatrix[,i]
+        }
     })
     rownames(PTmatrix) <- rownames(P0matrix)
     colnames(PTmatrix) <- colnames(P0matrix)
-    
+    }
     ####################################################################################
     ## a function to normalize columns of a matrix to have the same Quantiles
     normalizeQuantiles <- function (A, ties=TRUE) {
@@ -275,7 +316,12 @@ dRWR <- function(g, normalise=c("laplacian","row","column","none"), setSeeds=NUL
         now <- Sys.time()
         message(sprintf("Finally, output %d by %d affinity matrix normalised by %s (%s) ...", nrow(PTmatrix), ncol(PTmatrix), normalise.affinity.matrix, as.character(now)), appendLF=T)
     }
-
+    
+    PTmatrix[PTmatrix<1e-6] <- 0
+    PTmatrix <- Matrix::Matrix(PTmatrix, sparse=T)
+    rownames(PTmatrix) <- rownames(P0matrix)
+    colnames(PTmatrix) <- colnames(P0matrix)
+    
     ####################################################################################
     endT <- Sys.time()
     if(verbose){

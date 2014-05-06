@@ -32,7 +32,7 @@ dRDataLoader(RData = c("CLL", "Hiratani_TableS1", "TCGA_mutations",
 "org.Hs.egHPPA", "org.Hs.egSF", "org.Hs.egGOCC", "org.Hs.string",
 "org.Hs.egGOBP", "org.Hs.egGOMF", "org.Hs.egHPMI", "org.Hs.egDO",
 "org.Hs.egHPON", "org.Hs.egPS"),
-RData.location = "http://supfam.org/dnet/data")
+RData.location = "http://dnet.r-forge.r-project.org/data")
 }
 \arguments{
 \item{RData}{which built-in RData to load. It can be one

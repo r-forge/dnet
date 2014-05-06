@@ -111,7 +111,7 @@
     <h1>Documentations</h1><p>
 
     <h3>Network analysis and visualisation functions</h3>
-    <p>These functions are used for network analysis and visualisation, including: identification of gene-active dynamic networks; network-based sample classifications and visualisations on 2D sample landscape; and random walk with restart (RWR) for network affinity calculation.</p>
+    <p>These functions are used for network analysis and visualisation, including: identification of gene-active networks, and network-based sample classifications and visualisations on 2D sample landscape.</p>
 
     
     <ul class="index">
@@ -153,12 +153,6 @@
         <code><a href="dContrast.html">dContrast</a></code><br />Function to help build the contrast matrix</li>
             
       <li>
-        <code><a href="dRWR.html">dRWR</a></code><br />Function to implement Random Walk with Restart (RWR) on the input graph</li>
-            
-      <li>
-        <code><a href="dRWRdating.html">dRWRdating</a></code><br />Function to estimate RWR dating based sample relationships from the input gene-sample matrix and graph</li>
-            
-      <li>
         <code><a href="visNet.html">visNet</a></code><br />Function to visualise a graph object of class "igraph" or "graphNEL"</li>
             
       <li>
@@ -178,6 +172,22 @@
             
       <li>
         <code><a href="dRDataLoader.html">dRDataLoader</a></code><br />Function to load dnet built-in RData</li>
+    
+    </ul>
+    <h3>RWR analysis</h3>
+    <p>These functions are used for analysis based on random walk with restart (RWR), including: calculation of network affinity and estimation of contact strength between samples.</p>
+
+    
+    <ul class="index">
+        
+      <li>
+        <code><a href="dRWR.html">dRWR</a></code><br />Function to implement Random Walk with Restart (RWR) on the input graph</li>
+            
+      <li>
+        <code><a href="dRWRcontact.html">dRWRcontact</a></code><br />Function to estimate RWR-based contact strength between samples from an input gene-sample data matrix, an input graph and its pre-computed affinity matrix</li>
+            
+      <li>
+        <code><a href="dRWRpipeline.html">dRWRpipeline</a></code><br />Function to setup a pipeine to estimate RWR-based contact strength between samples from an input gene-sample data matrix and an input graph</li>
     
     </ul>
     <h3>Enrichment analysis and visualisation functions</h3>

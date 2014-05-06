@@ -5,7 +5,7 @@ list(
     
     index = list(
         sd_section("Network analysis and visualisation functions",
-            "These functions are used for network analysis and visualisation, including: identification of gene-active dynamic networks; network-based sample classifications and visualisations on 2D sample landscape; and random walk with restart (RWR) for network affinity calculation.",
+            "These functions are used for network analysis and visualisation, including: identification of gene-active networks, and network-based sample classifications and visualisations on 2D sample landscape.",
             c(
                 'dNetPipeline',
                 'dNetReorder',
@@ -19,8 +19,6 @@ list(
                 'dNetFind',
                 'dCommSignif',
                 'dContrast',
-                'dRWR',
-                'dRWRdating',
                 'visNet',
                 'visNetMul',
                 'visNetReorder',
@@ -28,6 +26,14 @@ list(
                 'visNetCircle',
                 'visBoxplotAdv',
                 'dRDataLoader'
+            )
+        ),
+        sd_section("RWR analysis",
+            "These functions are used for analysis based on random walk with restart (RWR), including: calculation of network affinity and estimation of contact strength between samples.",
+            c(
+                'dRWR',
+                'dRWRcontact',
+                'dRWRpipeline'
             )
         ),
         sd_section("Enrichment analysis and visualisation functions",
