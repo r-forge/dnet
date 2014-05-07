@@ -8,7 +8,7 @@
 library(dnet)
 
 # Load or install packages specifically used in this demo
-list.pkg <- c("affy", "survival")
+list.pkg <- c("Biobase", "survival")
 source("http://bioconductor.org/biocLite.R")
 for(pkg in list.pkg){
     if(!require(pkg, character.only=T)){
@@ -1084,9 +1084,11 @@ V(network)$name <- V(network)$symbol
 network
 
 normalise <- c("laplacian","row","column","none")[1]
-restart <- 0.5
+restart <- 0.75
 normalise.affinity.matrix <- c("none","quantile")[1]
 Amatrix <- dRWR(g=network, normalise=normalise, restart=restart, normalise.affinity.matrix=normalise.affinity.matrix)
+save(list=c("Amatrix","network"), file="Amatrix_string700_r75.RData")
+
 
 data <- frac_mutated
 g <- network

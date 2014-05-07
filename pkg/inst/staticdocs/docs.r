@@ -64,6 +64,8 @@ list(
                 'dDAGtip',
                 'dDAGlevel',
                 'dDAGannotate',
+                'dDAGancestor',
+                'dDAGtermSim',
                 "visDAG"
             )
         ),

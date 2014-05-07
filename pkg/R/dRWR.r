@@ -9,7 +9,6 @@
 #' @param normalise.affinity.matrix the way to normalise the output affinity matrix. It can be 'none' for no normalisation, 'quantile' for quantile normalisation to ensure that columns (if multiple) of the output affinity matrix have the same quantiles
 #' @param verbose logical to indicate whether the messages will be displayed in the screen. By default, it sets to true for display
 #' @return It returns a sparse matrix, called 'PTmatrix':
-#' When the seeds are NOT given, it returns:
 #' \itemize{
 #'  \item{When the seeds are NOT given: a pre-computated affinity matrix with the dimension of n X n, where n is the number of nodes in the input graph. Columns stand for starting nodes walking from, and rows for ending nodes walking to. Therefore, a column for a starting node represents a steady-state affinity vector that the starting node will visit all the ending nodes in the graph}
 #'  \item{When the seeds are given: an affinity matrix with the dimension of n X nset, where n is the number of nodes in the input graph, and nset for the number of the sets of seeds (i.e. the number of columns in setSeeds). Each column stands for the steady probability vector, storing the affinity score of all nodes in the graph to the starting nodes/seeds. This steady probability vector can be viewed as the "influential impact" over the graph imposed by the starting nodes/seeds.}
@@ -237,7 +236,7 @@ dRWR <- function(g, normalise=c("laplacian","row","column","none"), setSeeds=NUL
             PT[PT<1e-6] <- 0
             PTmatrix[,j] <- Matrix::Matrix(PT, sparse=T)
             
-            progress_indicate(j, ncol(P0matrix), 1000, flag=T)
+            progress_indicate(j, ncol(P0matrix), 100, flag=T)
         
         }
         
