@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dDAGtermSim @ dnet 1.0.2</title>
+<title>dDAGgeneSim @ dnet 1.0.2</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -111,26 +111,49 @@
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>dDAGtermSim</code> is supposed to calculate pair-wise
+    <p><code>dDAGgeneSim</code> is supposed to calculate pair-wise
 semantic similarity between input terms based on a direct
 acyclic graph (DAG) with annotated data.</p>
   
     <h3>Usage</h3>
-    <pre>dDAGtermSim(g, terms = NULL, method = c("Resnik", "Lin", "Schlicker", "Jiang", "Pesquita")[3], 
-  fast = T, verbose = TRUE)</pre>
+    <pre>dDAGgeneSim(g, genes = NULL, method.gene = c("average", "max", "BM.average", "BM.max", 
+  "BM.complete")[3], method.term = c("Resnik", "Lin", "Schlicker", "Jiang", "Pesquita")[3], 
+      force = TRUE, verbose = TRUE)</pre>
     
     <h3>Arguments</h3>
     <dl>
       <dt>g</dt>
       <dd>an object of class "igraph" or "graphNEL"</dd>
-      <dt>terms</dt>
-      <dd>the terms/nodes between which pair-wise
-semantic similarity is calculated. If NULL, all terms in
-the input dag will be used for calcluation, which is very
-prohibitively expensive!</dd>
-      <dt>method</dt>
+      <dt>genes</dt>
+      <dd>the genes between which pair-wise semantic
+similarity is calculated. If NULL, all genes annotatable
+in the input dag will be used for calcluation, which is
+very prohibitively expensive!</dd>
+      <dt>method.gene</dt>
+      <dd>the method used for how to derive
+semantic similarity between genes from semantic
+similarity between terms. It can be "average" for average
+similarity between any two terms (one from gene 1, the
+other from gene 2), "max" for the maximum similarity
+between any two terms, "BM.average" for best-matching
+(BM) based average similarity (i.e. for each gene in a
+gene pair, first calculate maximum similarity for each
+term, then their average of maximum similarity; the final
+BM-based average similiary is the pre-calculated average
+between two genes in pair), "BM.max" for BM based maximum
+similarity (i.e. for each gene in a gene pair, first
+calculate maximum similarity for each term, then their
+average of maximum similarity; the final BM-based maximum
+similiary is the maximum of the pre-calculated average
+between two genes in pair), "BM.complete" for BM based
+complete-linkage similarity (inspired by complete-linkage
+procedure: for each gene in a gene pair, first calculate
+maximum similarity for each term; then take the mimumum
+of pre-calculated maximum similarity between two genes in
+pair). By default, it sets "BM.average"</dd>
+      <dt>method.term</dt>
       <dd>the method used to measure semantic
-similarity between input terms. It can be "Resnik" for
+similarity between terms. It can be "Resnik" for
 information content (IC) of most informative information
 ancestor (MICA) (see
 <a href = 'http://arxiv.org/pdf/cmp-lg/9511007.pdf'>http://arxiv.org/pdf/cmp-lg/9511007.pdf</a>), "Lin" for
@@ -147,14 +170,14 @@ of terms and 2*IC at MICA (see
 related to Tanimoto-Jacard index (ie. summed information
 content of common ancestors divided by summed information
 content of all ancestors of term1 and term2 (see
-<a href = 'http://www.ncbi.nlm.nih.gov/pubmed/18460186'>http://www.ncbi.nlm.nih.gov/pubmed/18460186</a>)). By
-default, it uses "Schlicker" method</dd>
-      <dt>fast</dt>
-      <dd>logical to indicate whether a vectorised fast
-computation is used. By default, it sets to true. It is
-always advisable to use this vectorised fast computation;
-since the conventional computation is just used for
-understanding scripts.</dd>
+<a href = 'http://www.ncbi.nlm.nih.gov/pubmed/18460186'>http://www.ncbi.nlm.nih.gov/pubmed/18460186</a>))</dd>
+      <dt>force</dt>
+      <dd>logical to indicate whether the only most
+specific terms (for each gene) will be used. By default,
+it sets to true. It is always advisable to use this since
+it is computationally fast but without compromising
+accuracy (considering the fact that true-path-rule has
+been applied when running <code><a href='dDAGannotate.html'>dDAGannotate</a></code>).</dd>
       <dt>verbose</dt>
       <dd>logical to indicate whether the messages
 will be displayed in the screen. By default, it sets to
@@ -172,7 +195,10 @@ similarity between input terms</p>
     <div class="Note">
       <h3>Note</h3>
       
-      <p>none</p>
+      <p>For the mode "shortest_paths", the induced subgraph is the
+most concise, and thus informative for visualisation when
+there are many nodes in query, while the mode "all_paths"
+results in the complete subgraph.</p>
     </div>
     
     <h3 id="examples">Examples</h3>
@@ -203,31 +229,36 @@ path.mode="all_paths", verbose=TRUE)
 <strong class='message'>	At level 1, there are 1 nodes, and 0 incoming neighbors.</strong>
 <div class='input'>
 # 4) calculate pair-wise semantic similarity between 5 randomly chosen terms
-terms <- sample(V(dag)$name, 5)
-sim <- dDAGtermSim(g=dag, terms=terms, method="Schlicker")
+allgenes <- unique(unlist(V(dag)$annotations))
+genes <- sample(allgenes,5)
+sim <- dDAGgeneSim(g=dag, genes=genes,
+method.gene=c("average","max","BM.average","BM.max","BM.complete")[3],
+method.term=c("Resnik","Lin","Schlicker","Jiang","Pesquita")[3],
+verbose=TRUE)
 </div>
-<strong class='message'>Start at 2014-05-08 17:47:09</strong>
+<strong class='message'>Start at 2014-05-08 17:46:58</strong>
 <strong class='message'></strong>
-<strong class='message'>Calculate semantic similarity between 5 terms using Schlicker method (2014-05-08 17:47:09)...</strong>
-<strong class='message'>Build a sparse matrix of children x ancestors (with 5 rows and 3156 columns (2014-05-08 17:47:09)...</strong>
-<strong class='message'>	1 out of 5 (2014-05-08 17:47:09)</strong>
-<strong class='message'>	2 out of 5 (2014-05-08 17:47:09)</strong>
-<strong class='message'>	3 out of 5 (2014-05-08 17:47:09)</strong>
-<strong class='message'>	4 out of 5 (2014-05-08 17:47:09)</strong>
-<strong class='message'>	5 out of 5 (2014-05-08 17:47:09)</strong>
+<strong class='message'>First, extract all annotatable genes (2014-05-08 17:46:58)...</strong>
+<strong class='message'>	there are 5 input genes amongst 2910 annotatable genes</strong>
+<strong class='message'>Second, pre-compute semantic similarity between 109 terms (forced to be the most specific for each gene) using Schlicker method (2014-05-08 17:46:59)...</strong>
+<strong class='message'>Last, calculate pair-wise semantic similarity between 5 genes using BM.average method (2014-05-08 17:47:00)...</strong>
+<strong class='message'>	1 out of 5 (2014-05-08 17:47:00)</strong>
+<strong class='message'>	2 out of 5 (2014-05-08 17:47:00)</strong>
+<strong class='message'>	3 out of 5 (2014-05-08 17:47:00)</strong>
+<strong class='message'>	4 out of 5 (2014-05-08 17:47:00)</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-05-08 17:47:09</strong>
-<strong class='message'>Runtime in total is: 0 secs
+<strong class='message'>Finish at 2014-05-08 17:47:00</strong>
+<strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'>sim
 </div>
 <div class='output'>5 x 5 sparse Matrix of class "dgCMatrix"
-           HP:0000482 HP:0003173 HP:0002085 HP:0008609 HP:0001507
-HP:0000482  0.9697595 .          .           .          .        
-HP:0003173  .         0.99759450 0.05749049  .          .        
-HP:0002085  .         0.05749049 0.99553265  .          .        
-HP:0008609  .         .          .           0.9965636  .        
-HP:0001507  .         .          .           .          0.6082474
+          7084      2767      8710      7486      3242
+7084 .         0.1849807 .         0.1133615 0.2996578
+2767 0.1849807 .         0.1687148 0.3280884 0.1821849
+8710 .         0.1687148 .         0.3527951 0.1482047
+7486 0.1133615 0.3280884 0.3527951 .         0.2107290
+3242 0.2996578 0.1821849 0.1482047 0.2107290 .        
 </div></pre>
   </div>
   
@@ -235,7 +266,7 @@ HP:0001507  .         .          .           .          0.6082474
     
     <!-- 
     <ul>
-      <li>dDAGtermSim</li>
+      <li>dDAGgeneSim</li>
     </ul>
     <ul>
       
@@ -244,7 +275,8 @@ HP:0001507  .         .          .           .          0.6082474
       
     <h2>See also</h2>
     
-<code><a href='dDAGinduce.html'>dDAGinduce</a></code>, <code><a href='dDAGancestor.html'>dDAGancestor</a></code>
+<code><a href='dDAGtermSim.html'>dDAGtermSim</a></code>, <code><a href='dDAGinduce.html'>dDAGinduce</a></code>,
+<code><a href='dDAGtip.html'>dDAGtip</a></code>
 
     
     <h2>Citation</h2>

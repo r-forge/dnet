@@ -114,7 +114,10 @@
     <p><code>dDAGancestor</code> is supposed to find a list of common
 ancestors shared by two terms/nodes, given a direct acyclic
 graph (DAG; an ontology). If two terms are given as NULL,
-then a sparse matrix of children x ancestors is built.</p>
+then a sparse matrix of children x ancestors is built for
+all terms. If one of them is null, then a sparse matrix of
+children x ancestors is built but only for non-null input
+terms.</p>
   
     <h3>Usage</h3>
     <pre>dDAGancestor(g, term1 = NULL, term2 = NULL, verbose = T)</pre>
@@ -143,8 +146,13 @@ true for display</dd>
 terms/nodes that are common ancestors for two input
 terms/nodes </li>
 <li>When two terms are given as NULL: a
-sparse matrix of children x ancestors is built, with '1'
-for the reachable and otherwise '0'. </li>
+sparse matrix of children x ancestors is built for all
+terms, with '1' for the reachable and otherwise '0'.
+</li>
+<li>When one of terms is given as NULL: a sparse matrix
+of children x ancestors is built but only for non-null
+input terms, with '1' for the reachable and otherwise '0'.
+</li>
 </ul></p>
       <p></p>
     </div>
@@ -166,7 +174,7 @@ term2 <- sample(V(g)$name,1)
 # 3) find common ancestors
 dDAGancestor(g, term1, term2)
 </div>
-<strong class='message'>Find common ancestors shared by HP:0002506 and HP:0006549 (2014-05-07 20:15:46)...</strong>
+<strong class='message'>Find common ancestors shared by HP:0100287 and HP:0005157 (2014-05-08 17:46:48)...</strong>
 <div class='output'>[1] "HP:0000118"
 </div></pre>
   </div>

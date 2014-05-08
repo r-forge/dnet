@@ -1,6 +1,6 @@
 #' Function to find common ancestors of two terms/nodes from a direct acyclic graph (DAG)
 #'
-#' \code{dDAGancestor} is supposed to find a list of common ancestors shared by two terms/nodes, given a direct acyclic graph (DAG; an ontology). If two terms are given as NULL, then a sparse matrix of children x ancestors is built.
+#' \code{dDAGancestor} is supposed to find a list of common ancestors shared by two terms/nodes, given a direct acyclic graph (DAG; an ontology). If two terms are given as NULL, then a sparse matrix of children x ancestors is built for all terms. If one of them is null, then a sparse matrix of children x ancestors is built but only for non-null input terms.
 #'
 #' @param g an object of class "igraph" or "graphNEL"
 #' @param term1 the first term/node as input
@@ -9,7 +9,8 @@
 #' @return 
 #' \itemize{
 #'  \item{When two terms are given: a list of terms/nodes that are common ancestors for two input terms/nodes}
-#'  \item{When two terms are given as NULL: a sparse matrix of children x ancestors is built, with '1' for the reachable and otherwise '0'.}
+#'  \item{When two terms are given as NULL: a sparse matrix of children x ancestors is built for all terms, with '1' for the reachable and otherwise '0'.}
+#'  \item{When one of terms is given as NULL: a sparse matrix of children x ancestors is built but only for non-null input terms, with '1' for the reachable and otherwise '0'.}
 #' }
 #' @note none
 #' @export
@@ -38,37 +39,58 @@ dDAGancestor <- function (g, term1=NULL, term2=NULL, verbose=T)
     if (class(ig) != "igraph"){
         stop("The function must apply to either 'igraph' or 'graphNEL' object.\n")
     }
-    
-    ####################################################
-    # A function to indicate the running progress
-    progress_indicate <- function(i, B, step, flag=F){
-        if(i %% ceiling(B/step) == 0 | i==B | i==1){
-            if(flag & verbose){
-                message(sprintf("\t%d out of %d (%s)", i, B, as.character(Sys.time())), appendLF=T)
-            }
-        }
-    }
-    ####################################################    
+ 
     allterms <- V(ig)$name
-    
     if(is.null(term1) & is.null(term2)){
     
         if(verbose){
             message(sprintf("Build a sparse matrix of children x ancestors (with %d rows and %d columns (%s)...", length(allterms), length(allterms), as.character(Sys.time())), appendLF=T)
         }
 
+        ## find all ancestors for any node
+        neighs.in <- igraph::neighborhood(ig, order=vcount(ig), nodes=V(ig), mode="in")
+        ## store in a sparse matrix of children X ancestors
         sCP <- Matrix::Matrix(0, nrow=length(allterms), ncol=length(allterms), sparse=T)
-        for(i in 1:length(allterms)){    
-    
-            progress_indicate(i, length(allterms), 100, flag=T)
-    
-            subg <- dDAGinduce(g=ig, nodes_query=allterms[i], path.mode="all_paths")
-            ind <- match(V(subg)$name, allterms)
-            sCP[i,ind] <- 1 
+        for(i in 1:length(neighs.in)){
+            sCP[i,neighs.in[[i]]] <- 1
         }
-        rownames(sCP) <- colnames(sCP) <- allterms    
+        rownames(sCP) <- colnames(sCP) <- allterms
+          
+        return(sCP)
+    
+    }else if( (!is.null(term1) & is.null(term2)) | (is.null(term1) & !is.null(term2)) ){
+        
+        if(( !is.null(term1) & is.null(term2)) ){
+            terms <- term1
+        }else if( is.null(term1) & !is.null(term2) ){
+            terms <- term2
+        }
+        
+        ## checking input term1
+        terms <- terms[!is.na(terms)]
+        flag <- terms %in% V(ig)$name
+        if(sum(flag)!=0){
+            terms <- terms[flag]
+        }else{
+            terms <- V(ig)$name
+        }
+        
+        if(verbose){
+            message(sprintf("Build a sparse matrix of children x ancestors (with %d rows and %d columns (%s)...", length(terms), length(allterms), as.character(Sys.time())), appendLF=T)
+        }
+        
+        ## find all ancestors for any node
+        neighs.in <- igraph::neighborhood(ig, order=vcount(ig), nodes=terms, mode="in")
+        ## store in a sparse matrix of children X ancestors
+        sCP <- Matrix::Matrix(0, nrow=length(terms), ncol=length(allterms), sparse=T)
+        for(i in 1:length(neighs.in)){
+            sCP[i,neighs.in[[i]]] <- 1
+        }
+        rownames(sCP) <- terms
+        colnames(sCP) <- allterms
         
         return(sCP)
+        
     }else{
     
         if(sum(c(term1,term2) %in% allterms)!=2){
@@ -83,6 +105,7 @@ dDAGancestor <- function (g, term1=NULL, term2=NULL, verbose=T)
         subg2 <- dDAGinduce(g=ig, nodes_query=term2, path.mode="all_paths")
     
         ancestors <- intersect(V(subg1)$name, V(subg2)$name)
+        
         return(ancestors)
     }
 }

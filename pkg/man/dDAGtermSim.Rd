@@ -3,7 +3,7 @@
 \title{Function to calculate pair-wise semantic similarity between input terms based on a direct acyclic graph (DAG) with annotated data}
 \usage{
 dDAGtermSim(g, terms = NULL, method = c("Resnik", "Lin", "Schlicker",
-"Jiang", "Pesquita"), precomputed = TRUE, verbose = TRUE)
+"Jiang", "Pesquita")[3], fast = T, verbose = TRUE)
 }
 \arguments{
 \item{g}{an object of class "igraph" or "graphNEL"}
@@ -31,13 +31,14 @@ of terms and 2*IC at MICA (see
 related to Tanimoto-Jacard index (ie. summed information
 content of common ancestors divided by summed information
 content of all ancestors of term1 and term2 (see
-\url{http://www.ncbi.nlm.nih.gov/pubmed/18460186}))}
+\url{http://www.ncbi.nlm.nih.gov/pubmed/18460186})). By
+default, it uses "Schlicker" method}
 
-\item{precomputed}{logical to indicate whether a sparse
-matrix of children x ancestors is pre-computed for the
-subsequent identification of common ancestors. By
-default, it sets to true. It is advisable to have enabled
-it when there are many input terms}
+\item{fast}{logical to indicate whether a vectorised fast
+computation is used. By default, it sets to true. It is
+always advisable to use this vectorised fast computation;
+since the conventional computation is just used for
+understanding scripts.}
 
 \item{verbose}{logical to indicate whether the messages
 will be displayed in the screen. By default, it sets to
@@ -53,9 +54,7 @@ semantic similarity between input terms based on a direct
 acyclic graph (DAG) with annotated data.
 }
 \note{
-When there are many input terms, 'precomputed' shoulb be
-true; otherwise keep it as FALSE for no more than a handful
-of input terms
+none
 }
 \examples{
 \dontrun{
@@ -72,9 +71,7 @@ path.mode="all_paths", verbose=TRUE)
 
 # 4) calculate pair-wise semantic similarity between 5 randomly chosen terms
 terms <- sample(V(dag)$name, 5)
-sim <- dDAGtermSim(g=dag, terms=terms,
-method=c("Resnik","Lin","Schlicker","Jiang","Pesquita"),
-precomputed=FALSE, verbose=TRUE)
+sim <- dDAGtermSim(g=dag, terms=terms, method="Schlicker")
 sim
 }
 }

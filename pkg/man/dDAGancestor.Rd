@@ -19,14 +19,21 @@ true for display}
 \itemize{ \item{When two terms are given: a list of
 terms/nodes that are common ancestors for two input
 terms/nodes} \item{When two terms are given as NULL: a
-sparse matrix of children x ancestors is built, with '1'
-for the reachable and otherwise '0'.} }
+sparse matrix of children x ancestors is built for all
+terms, with '1' for the reachable and otherwise '0'.}
+\item{When one of terms is given as NULL: a sparse matrix
+of children x ancestors is built but only for non-null
+input terms, with '1' for the reachable and otherwise '0'.}
+}
 }
 \description{
 \code{dDAGancestor} is supposed to find a list of common
 ancestors shared by two terms/nodes, given a direct acyclic
 graph (DAG; an ontology). If two terms are given as NULL,
-then a sparse matrix of children x ancestors is built.
+then a sparse matrix of children x ancestors is built for
+all terms. If one of them is null, then a sparse matrix of
+children x ancestors is built but only for non-null input
+terms.
 }
 \note{
 none
