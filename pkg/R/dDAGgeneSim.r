@@ -1,12 +1,13 @@
-#' Function to calculate pair-wise semantic similarity between input terms based on a direct acyclic graph (DAG) with annotated data
+#' Function to calculate pair-wise semantic similarity between genes based on a direct acyclic graph (DAG) with annotated data
 #'
-#' \code{dDAGgeneSim} is supposed to calculate pair-wise semantic similarity between input terms based on a direct acyclic graph (DAG) with annotated data.
+#' \code{dDAGgeneSim} is supposed to calculate pair-wise semantic similarity between genes based on a direct acyclic graph (DAG) with annotated data.
 #'
 #' @param g an object of class "igraph" or "graphNEL"
 #' @param genes the genes between which pair-wise semantic similarity is calculated. If NULL, all genes annotatable in the input dag will be used for calcluation, which is very prohibitively expensive!
-#' @param method.gene the method used for how to derive semantic similarity between genes from semantic similarity between terms. It can be "average" for average similarity between any two terms (one from gene 1, the other from gene 2), "max" for the maximum similarity between any two terms, "BM.average" for best-matching (BM) based average similarity (i.e. for each gene in a gene pair, first calculate maximum similarity for each term, then their average of maximum similarity; the final BM-based average similiary is the pre-calculated average between two genes in pair), "BM.max" for BM based maximum similarity (i.e. for each gene in a gene pair, first calculate maximum similarity for each term, then their average of maximum similarity; the final BM-based maximum similiary is the maximum of the pre-calculated average between two genes in pair), "BM.complete" for BM based complete-linkage similarity (inspired by complete-linkage procedure: for each gene in a gene pair, first calculate maximum similarity for each term; then take the mimumum of pre-calculated maximum similarity between two genes in pair). By default, it sets "BM.average"
-#' @param method.term the method used to measure semantic similarity between terms. It can be "Resnik" for information content (IC) of most informative information ancestor (MICA) (see \url{http://arxiv.org/pdf/cmp-lg/9511007.pdf}), "Lin" for 2*IC at MICA divided by the sum of IC at pairs of terms (see \url{http://webdocs.cs.ualberta.ca/~lindek/papers/sim.pdf}), "Schlicker" for weighted version of 'Lin' by the 1-prob(MICA) (see \url{http://www.ncbi.nlm.nih.gov/pubmed/16776819}), "Jiang" for 1 - diference between the sum of IC at pairs of terms and 2*IC at MICA (see \url{http://arxiv.org/pdf/cmp-lg/9709008.pdf}), "Pesquita" for graph information content similarity related to Tanimoto-Jacard index (ie. summed information content of common ancestors divided by summed information content of all ancestors of term1 and term2 (see \url{http://www.ncbi.nlm.nih.gov/pubmed/18460186}))
-#' @param force logical to indicate whether the only most specific terms (for each gene) will be used. By default, it sets to true. It is always advisable to use this since it is computationally fast but without compromising accuracy (considering the fact that true-path-rule has been applied when running \code{\link{dDAGannotate}}).
+#' @param method.gene the method used for how to derive semantic similarity between genes from semantic similarity between terms. It can be "average" for average similarity between any two terms (one from gene 1, the other from gene 2), "max" for the maximum similarity between any two terms, "BM.average" for best-matching (BM) based average similarity (i.e. for each term of either gene, first calculate maximum similarity to any term in the other gene, then take average of maximum similarity; the final BM-based average similiary is the pre-calculated average between two genes in pair), "BM.max" for BM based maximum similarity (i.e. the same as "BM.average", but the final BM-based maximum similiary is the maximum of the pre-calculated average between two genes in pair), "BM.complete" for BM-based complete-linkage similarity (inspired by complete-linkage concept: the least of any maximum similarity between a term of one gene and a term of the other gene). When comparing BM-based similarity between genes, "BM.average" and "BM.max" are sensitive to the number of terms invovled; instead, "BM.complete" is much robust in this aspect. By default, it uses "BM.average".
+#' @param method.term the method used to measure semantic similarity between terms. It can be "Resnik" for information content (IC) of most informative information ancestor (MICA) (see \url{http://arxiv.org/pdf/cmp-lg/9511007.pdf}), "Lin" for 2*IC at MICA divided by the sum of IC at pairs of terms (see \url{http://webdocs.cs.ualberta.ca/~lindek/papers/sim.pdf}), "Schlicker" for weighted version of 'Lin' by the 1-prob(MICA) (see \url{http://www.ncbi.nlm.nih.gov/pubmed/16776819}), "Jiang" for 1 - difference between the sum of IC at pairs of terms and 2*IC at MICA (see \url{http://arxiv.org/pdf/cmp-lg/9709008.pdf}), "Pesquita" for graph information content similarity related to Tanimoto-Jacard index (ie. summed information content of common ancestors divided by summed information content of all ancestors of term1 and term2 (see \url{http://www.ncbi.nlm.nih.gov/pubmed/18460186}))
+#' @param force logical to indicate whether the only most specific terms (for each gene) will be used. By default, it sets to true. It is always advisable to use this since it is computationally fast but without compromising accuracy (considering the fact that true-path-rule has been applied when running \code{\link{dDAGannotate}})
+#' @param fast logical to indicate whether a vectorised fast computation is used. By default, it sets to true. It is always advisable to use this vectorised fast computation; since the conventional computation is just used for understanding scripts
 #' @param verbose logical to indicate whether the messages will be displayed in the screen. By default, it sets to true for display
 #' @return It returns a sparse matrix containing pair-wise semantic similarity between input terms
 #' @note For the mode "shortest_paths", the induced subgraph is the most concise, and thus informative for visualisation when there are many nodes in query, while the mode "all_paths" results in the complete subgraph.
@@ -26,14 +27,14 @@
 #' # 3) prepare for ontology and its annotation information 
 #' dag <- dDAGannotate(g, annotations=org.Hs.egHPPA, path.mode="all_paths", verbose=TRUE)
 #'
-#' # 4) calculate pair-wise semantic similarity between 5 randomly chosen terms 
+#' # 4) calculate pair-wise semantic similarity between 5 randomly chosen genes 
 #' allgenes <- unique(unlist(V(dag)$annotations))
 #' genes <- sample(allgenes,5)
-#' sim <- dDAGgeneSim(g=dag, genes=genes, method.gene=c("average","max","BM.average","BM.max","BM.complete")[3], method.term=c("Resnik","Lin","Schlicker","Jiang","Pesquita")[3], verbose=TRUE)
+#' sim <- dDAGgeneSim(g=dag, genes=genes, method.gene="BM.average", method.term="Resnik", verbose=TRUE)
 #' sim
 #' }
 
-dDAGgeneSim <- function (g, genes=NULL, method.gene=c("average","max","BM.average","BM.max","BM.complete")[3], method.term=c("Resnik","Lin","Schlicker","Jiang","Pesquita")[3], force=TRUE, verbose=TRUE)
+dDAGgeneSim <- function (g, genes=NULL, method.gene=c("BM.average","BM.max","BM.complete","average","max"), method.term=c("Resnik","Lin","Schlicker","Jiang","Pesquita"), force=TRUE, fast=TRUE, verbose=TRUE)
 {
 
     startT <- Sys.time()
@@ -102,7 +103,7 @@ dDAGgeneSim <- function (g, genes=NULL, method.gene=c("average","max","BM.averag
     }
     colnames(sGT) <- V(ig)$name
     rownames(sGT) <- genes
-
+    
     if(verbose){
         message(sprintf("\tthere are %d input genes amongst %d annotatable genes", length(genes), length(allgenes)), appendLF=T)
     }
@@ -119,6 +120,12 @@ dDAGgeneSim <- function (g, genes=NULL, method.gene=c("average","max","BM.averag
     names(genes2terms) <- genes
     terms <- unique(unlist(genes2terms))
     
+    ## also instore index for terms (in genes2terms)
+    genes2terms_index <- sapply(genes2terms, function(x){
+        match(x, terms)
+    })
+    
+    
     if(verbose){
         if(force){
             message(sprintf("Second, pre-compute semantic similarity between %d terms (forced to be the most specific for each gene) using %s method (%s)...", length(terms), method.term, as.character(Sys.time())), appendLF=T)
@@ -134,30 +141,123 @@ dDAGgeneSim <- function (g, genes=NULL, method.gene=c("average","max","BM.averag
     }
     ## calculate pair-wise semantic similarity between input genes
     sim <- Matrix::Matrix(0, nrow=length(genes), ncol=length(genes), sparse=T)
-    for(i in 1:(length(genes2terms)-1)){
-        terms1 <- genes2terms[[i]]
-        ind1 <- match(terms1, terms)
-        
-        progress_indicate(i, length(genes2terms), 10, flag=T)
-        
-        for(j in (i+1):length(genes2terms)){
-            terms2 <- genes2terms[[j]]
-            ind2 <- match(terms2, terms)
-            
-            ## pairwise similarity between terms
-            sim12 <- as.matrix(sim.term[ind1, ind2])
-            
-            ## gene-gene similarity
-            switch(method.gene, 
-                average={res <- mean(sim12)},
-                max={res <- max(sim12)},
-                BM.average={Max_i2j <- apply(sim12,1,max); Max_j2i <- apply(sim12,2,max); res <- 0.5*(mean(Max_i2j) + mean(Max_j2i))},
-                BM.max={Max_i2j <- apply(sim12,1,max); Max_j2i <- apply(sim12,2,max); res <- max(mean(Max_i2j), mean(Max_j2i))},
-                BM.complete={Max_i2j <- apply(sim12,1,max); Max_j2i <- apply(sim12,2,max); res <- min(c(Max_i2j,Max_j2i))}
-            )
-            
-            sim[i,j] <- res
-            sim[j,i] <- res   
+    
+     ## print with possibly greater accuracy:
+     ##op <- options(digits.secs = 6)
+     ##options(op)
+     
+    if(method.gene=='average'){
+        for(i in 1:(length(genes2terms)-1)){
+            ind1 <- genes2terms_index[[i]]
+            progress_indicate(i, length(genes2terms), 10, flag=T)
+            if(fast){
+                js <- (i+1):length(genes2terms)
+                ind_js <- genes2terms_index[js]
+                sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
+                new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
+                res <- sapply(1:length(ind_js), function(k){
+                    mean(sim12[,new_ind_js==k])
+                })
+                sim[i,js] <- sim[js,i] <- res
+            }else{
+                for(j in (i+1):length(genes2terms)){
+                    ind2 <- genes2terms_index[[j]]
+                    ## pairwise similarity between terms
+                    sim12 <- as.matrix(sim.term[ind1, ind2])
+                    sim[i,j] <- sim[j,i] <- mean(sim12)
+                }
+            }
+        }
+    }else if(method.gene=='max'){
+        for(i in 1:(length(genes2terms)-1)){
+            ind1 <- genes2terms_index[[i]]
+            progress_indicate(i, length(genes2terms), 10, flag=T)
+            if(fast){
+                js <- (i+1):length(genes2terms)
+                ind_js <- genes2terms_index[js]
+                sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
+                new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
+                res <- sapply(1:length(ind_js), function(k){
+                    max(sim12[,new_ind_js==k])
+                })
+                sim[i,js] <- sim[js,i] <- res
+            }else{
+                for(j in (i+1):length(genes2terms)){
+                    ind2 <- genes2terms_index[[j]]
+                    ## pairwise similarity between terms
+                    sim12 <- as.matrix(sim.term[ind1, ind2])
+                    sim[i,j] <- sim[j,i] <- max(sim12)
+                }
+            }
+        }
+    }else if(method.gene=='BM.average'){
+        for(i in 1:(length(genes2terms)-1)){
+            ind1 <- genes2terms_index[[i]]
+            progress_indicate(i, length(genes2terms), 10, flag=T)
+            if(fast){
+                js <- (i+1):length(genes2terms)
+                ind_js <- genes2terms_index[js]
+                sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
+                new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
+                res <- sapply(1:length(ind_js), function(k){
+                    x <- as.matrix(sim12[,new_ind_js==k])
+                    0.5*(mean(apply(x,1,max)) + mean(apply(x,2,max)))
+                })
+                sim[i,js] <- sim[js,i] <- res
+            }else{
+                for(j in (i+1):length(genes2terms)){
+                    ind2 <- genes2terms_index[[j]]
+                    ## pairwise similarity between terms
+                    sim12 <- as.matrix(sim.term[ind1, ind2])
+                    sim[i,j] <- sim[j,i] <- 0.5*(mean(apply(sim12,1,max)) + mean(apply(sim12,2,max)))
+                }
+            }
+        }
+    }else if(method.gene=='BM.max'){
+        for(i in 1:(length(genes2terms)-1)){
+            ind1 <- genes2terms_index[[i]]
+            progress_indicate(i, length(genes2terms), 10, flag=T)
+            if(fast){
+                js <- (i+1):length(genes2terms)
+                ind_js <- genes2terms_index[js]
+                sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
+                new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
+                res <- sapply(1:length(ind_js), function(k){
+                    x <- as.matrix(sim12[,new_ind_js==k])
+                    max(mean(apply(x,1,max)), mean(apply(x,2,max)))
+                })
+                sim[i,js] <- sim[js,i] <- res
+            }else{
+                for(j in (i+1):length(genes2terms)){
+                    ind2 <- genes2terms_index[[j]]
+                    ## pairwise similarity between terms
+                    sim12 <- as.matrix(sim.term[ind1, ind2])
+                    sim[i,j] <- sim[j,i] <- max(mean(apply(sim12,1,max)), mean(apply(sim12,2,max)))
+                }
+            }
+        }
+    }else if(method.gene=='BM.complete'){
+        for(i in 1:(length(genes2terms)-1)){
+            ind1 <- genes2terms_index[[i]]
+            progress_indicate(i, length(genes2terms), 10, flag=T)
+            if(fast){
+                js <- (i+1):length(genes2terms)
+                ind_js <- genes2terms_index[js]
+                sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
+                new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
+                res <- sapply(1:length(ind_js), function(k){
+                    x <- as.matrix(sim12[,new_ind_js==k])
+                    min(c(apply(x,1,max),apply(x,2,max)))
+                })
+                sim[i,js] <- sim[js,i] <- res
+            }else{
+                for(j in (i+1):length(genes2terms)){
+                    ind2 <- genes2terms_index[[j]]
+                    ## pairwise similarity between terms
+                    sim12 <- as.matrix(sim.term[ind1, ind2])
+                    sim[i,j] <- sim[j,i] <- min(c(apply(sim12,1,max),apply(sim12,2,max)))
+                }
+            }
         }
     }
     rownames(sim) <- colnames(sim) <- genes
@@ -174,4 +274,3 @@ dDAGgeneSim <- function (g, genes=NULL, method.gene=c("average","max","BM.averag
     
     return(sim)
 }
-

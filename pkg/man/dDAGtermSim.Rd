@@ -3,14 +3,14 @@
 \title{Function to calculate pair-wise semantic similarity between input terms based on a direct acyclic graph (DAG) with annotated data}
 \usage{
 dDAGtermSim(g, terms = NULL, method = c("Resnik", "Lin", "Schlicker",
-"Jiang", "Pesquita")[3], fast = T, verbose = TRUE)
+"Jiang", "Pesquita"), fast = T, verbose = T)
 }
 \arguments{
 \item{g}{an object of class "igraph" or "graphNEL"}
 
 \item{terms}{the terms/nodes between which pair-wise
 semantic similarity is calculated. If NULL, all terms in
-the input dag will be used for calcluation, which is very
+the input DAG will be used for calcluation, which is very
 prohibitively expensive!}
 
 \item{method}{the method used to measure semantic
@@ -24,7 +24,7 @@ ancestor (MICA) (see
 "Schlicker" for weighted version of 'Lin' by the
 1-prob(MICA) (see
 \url{http://www.ncbi.nlm.nih.gov/pubmed/16776819}),
-"Jiang" for 1 - diference between the sum of IC at pairs
+"Jiang" for 1 - difference between the sum of IC at pairs
 of terms and 2*IC at MICA (see
 \url{http://arxiv.org/pdf/cmp-lg/9709008.pdf}),
 "Pesquita" for graph information content similarity
@@ -38,7 +38,7 @@ default, it uses "Schlicker" method}
 computation is used. By default, it sets to true. It is
 always advisable to use this vectorised fast computation;
 since the conventional computation is just used for
-understanding scripts.}
+understanding scripts}
 
 \item{verbose}{logical to indicate whether the messages
 will be displayed in the screen. By default, it sets to
@@ -76,6 +76,7 @@ sim
 }
 }
 \seealso{
-\code{\link{dDAGinduce}}, \code{\link{dDAGancestor}}
+\code{\link{dDAGinduce}}, \code{\link{dDAGancestor}},
+\code{\link{dDAGgeneSim}}
 }
 

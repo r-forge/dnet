@@ -3,15 +3,15 @@
 #' \code{dDAGtermSim} is supposed to calculate pair-wise semantic similarity between input terms based on a direct acyclic graph (DAG) with annotated data.
 #'
 #' @param g an object of class "igraph" or "graphNEL"
-#' @param terms the terms/nodes between which pair-wise semantic similarity is calculated. If NULL, all terms in the input dag will be used for calcluation, which is very prohibitively expensive!
-#' @param method the method used to measure semantic similarity between input terms. It can be "Resnik" for information content (IC) of most informative information ancestor (MICA) (see \url{http://arxiv.org/pdf/cmp-lg/9511007.pdf}), "Lin" for 2*IC at MICA divided by the sum of IC at pairs of terms (see \url{http://webdocs.cs.ualberta.ca/~lindek/papers/sim.pdf}), "Schlicker" for weighted version of 'Lin' by the 1-prob(MICA) (see \url{http://www.ncbi.nlm.nih.gov/pubmed/16776819}), "Jiang" for 1 - diference between the sum of IC at pairs of terms and 2*IC at MICA (see \url{http://arxiv.org/pdf/cmp-lg/9709008.pdf}), "Pesquita" for graph information content similarity related to Tanimoto-Jacard index (ie. summed information content of common ancestors divided by summed information content of all ancestors of term1 and term2 (see \url{http://www.ncbi.nlm.nih.gov/pubmed/18460186})). By default, it uses "Schlicker" method
-#' @param fast logical to indicate whether a vectorised fast computation is used. By default, it sets to true. It is always advisable to use this vectorised fast computation; since the conventional computation is just used for understanding scripts.
+#' @param terms the terms/nodes between which pair-wise semantic similarity is calculated. If NULL, all terms in the input DAG will be used for calcluation, which is very prohibitively expensive!
+#' @param method the method used to measure semantic similarity between input terms. It can be "Resnik" for information content (IC) of most informative information ancestor (MICA) (see \url{http://arxiv.org/pdf/cmp-lg/9511007.pdf}), "Lin" for 2*IC at MICA divided by the sum of IC at pairs of terms (see \url{http://webdocs.cs.ualberta.ca/~lindek/papers/sim.pdf}), "Schlicker" for weighted version of 'Lin' by the 1-prob(MICA) (see \url{http://www.ncbi.nlm.nih.gov/pubmed/16776819}), "Jiang" for 1 - difference between the sum of IC at pairs of terms and 2*IC at MICA (see \url{http://arxiv.org/pdf/cmp-lg/9709008.pdf}), "Pesquita" for graph information content similarity related to Tanimoto-Jacard index (ie. summed information content of common ancestors divided by summed information content of all ancestors of term1 and term2 (see \url{http://www.ncbi.nlm.nih.gov/pubmed/18460186})). By default, it uses "Schlicker" method
+#' @param fast logical to indicate whether a vectorised fast computation is used. By default, it sets to true. It is always advisable to use this vectorised fast computation; since the conventional computation is just used for understanding scripts
 #' @param verbose logical to indicate whether the messages will be displayed in the screen. By default, it sets to true for display
 #' @return It returns a sparse matrix containing pair-wise semantic similarity between input terms
 #' @note none
 #' @export
 #' @import Matrix
-#' @seealso \code{\link{dDAGinduce}}, \code{\link{dDAGancestor}}
+#' @seealso \code{\link{dDAGinduce}}, \code{\link{dDAGancestor}}, \code{\link{dDAGgeneSim}}
 #' @include dDAGtermSim.r
 #' @examples
 #' \dontrun{
@@ -31,7 +31,7 @@
 #' sim
 #' }
 
-dDAGtermSim <- function (g, terms=NULL, method=c("Resnik","Lin","Schlicker","Jiang","Pesquita")[3], fast=T, verbose=TRUE)
+dDAGtermSim <- function (g, terms=NULL, method=c("Resnik","Lin","Schlicker","Jiang","Pesquita"), fast=T, verbose=T)
 {
     
     startT <- Sys.time()
@@ -98,7 +98,7 @@ dDAGtermSim <- function (g, terms=NULL, method=c("Resnik","Lin","Schlicker","Jia
     for(i in 1:length(terms)){
         ancestor_i <- which(sCP[i,]==1)
         
-        progress_indicate(i, length(terms), 100, flag=T)
+        progress_indicate(i, length(terms), 10, flag=T)
         
         if(fast){
             
@@ -176,7 +176,7 @@ dDAGtermSim <- function (g, terms=NULL, method=c("Resnik","Lin","Schlicker","Jia
     }
     rownames(sim) <- colnames(sim) <- terms
     
-    sim[is.na(sim)] <- 0
+    sim[as.matrix(is.na(sim))] <- 0
     
     ####################################################################################
     endT <- Sys.time()

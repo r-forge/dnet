@@ -116,8 +116,8 @@ semantic similarity between input terms based on a direct
 acyclic graph (DAG) with annotated data.</p>
   
     <h3>Usage</h3>
-    <pre>dDAGtermSim(g, terms = NULL, method = c("Resnik", "Lin", "Schlicker", "Jiang", "Pesquita")[3], 
-  fast = T, verbose = TRUE)</pre>
+    <pre>dDAGtermSim(g, terms = NULL, method = c("Resnik", "Lin", "Schlicker", "Jiang", "Pesquita"), 
+  fast = T, verbose = T)</pre>
     
     <h3>Arguments</h3>
     <dl>
@@ -126,7 +126,7 @@ acyclic graph (DAG) with annotated data.</p>
       <dt>terms</dt>
       <dd>the terms/nodes between which pair-wise
 semantic similarity is calculated. If NULL, all terms in
-the input dag will be used for calcluation, which is very
+the input DAG will be used for calcluation, which is very
 prohibitively expensive!</dd>
       <dt>method</dt>
       <dd>the method used to measure semantic
@@ -140,7 +140,7 @@ ancestor (MICA) (see
 "Schlicker" for weighted version of 'Lin' by the
 1-prob(MICA) (see
 <a href = 'http://www.ncbi.nlm.nih.gov/pubmed/16776819'>http://www.ncbi.nlm.nih.gov/pubmed/16776819</a>),
-"Jiang" for 1 - diference between the sum of IC at pairs
+"Jiang" for 1 - difference between the sum of IC at pairs
 of terms and 2*IC at MICA (see
 <a href = 'http://arxiv.org/pdf/cmp-lg/9709008.pdf'>http://arxiv.org/pdf/cmp-lg/9709008.pdf</a>),
 "Pesquita" for graph information content similarity
@@ -206,28 +206,28 @@ path.mode="all_paths", verbose=TRUE)
 terms <- sample(V(dag)$name, 5)
 sim <- dDAGtermSim(g=dag, terms=terms, method="Schlicker")
 </div>
-<strong class='message'>Start at 2014-05-08 17:47:09</strong>
+<strong class='message'>Start at 2014-05-11 20:54:48</strong>
 <strong class='message'></strong>
-<strong class='message'>Calculate semantic similarity between 5 terms using Schlicker method (2014-05-08 17:47:09)...</strong>
-<strong class='message'>Build a sparse matrix of children x ancestors (with 5 rows and 3156 columns (2014-05-08 17:47:09)...</strong>
-<strong class='message'>	1 out of 5 (2014-05-08 17:47:09)</strong>
-<strong class='message'>	2 out of 5 (2014-05-08 17:47:09)</strong>
-<strong class='message'>	3 out of 5 (2014-05-08 17:47:09)</strong>
-<strong class='message'>	4 out of 5 (2014-05-08 17:47:09)</strong>
-<strong class='message'>	5 out of 5 (2014-05-08 17:47:09)</strong>
+<strong class='message'>Calculate semantic similarity between 5 terms using Schlicker method (2014-05-11 20:54:48)...</strong>
+<strong class='message'>Build a sparse matrix of children x ancestors (with 5 rows and 3156 columns (2014-05-11 20:54:48)...</strong>
+<strong class='message'>	1 out of 5 (2014-05-11 20:54:48)</strong>
+<strong class='message'>	2 out of 5 (2014-05-11 20:54:48)</strong>
+<strong class='message'>	3 out of 5 (2014-05-11 20:54:48)</strong>
+<strong class='message'>	4 out of 5 (2014-05-11 20:54:48)</strong>
+<strong class='message'>	5 out of 5 (2014-05-11 20:54:48)</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-05-08 17:47:09</strong>
+<strong class='message'>Finish at 2014-05-11 20:54:48</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>sim
 </div>
 <div class='output'>5 x 5 sparse Matrix of class "dgCMatrix"
-           HP:0000482 HP:0003173 HP:0002085 HP:0008609 HP:0001507
-HP:0000482  0.9697595 .          .           .          .        
-HP:0003173  .         0.99759450 0.05749049  .          .        
-HP:0002085  .         0.05749049 0.99553265  .          .        
-HP:0008609  .         .          .           0.9965636  .        
-HP:0001507  .         .          .           .          0.6082474
+           HP:0010013 HP:0002109 HP:0004444 HP:0002888 HP:0007787
+HP:0010013  0.9982818   .         .          .          .        
+HP:0002109  .           0.975945  .          .          .        
+HP:0004444  .           .         0.9982818  .          .        
+HP:0002888  .           .         .          0.9972509  .        
+HP:0007787  .           .         .          .          0.9975945
 </div></pre>
   </div>
   
@@ -244,7 +244,8 @@ HP:0001507  .         .          .           .          0.6082474
       
     <h2>See also</h2>
     
-<code><a href='dDAGinduce.html'>dDAGinduce</a></code>, <code><a href='dDAGancestor.html'>dDAGancestor</a></code>
+<code><a href='dDAGinduce.html'>dDAGinduce</a></code>, <code><a href='dDAGancestor.html'>dDAGancestor</a></code>,
+<code><a href='dDAGgeneSim.html'>dDAGgeneSim</a></code>
 
     
     <h2>Citation</h2>

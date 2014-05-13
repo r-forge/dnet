@@ -1110,3 +1110,119 @@ dContact <- dRWRdating(data, g, method=c("direct","indirect")[1], normalise=c("l
 cgraph <- dContact$cgraph
 cgraph <- dNetInduce(g=cgraph, nodes_query=V(cgraph)$name, knn=0, remove.loops=F, largest.comp=T)
 visNet(cgraph, edge.width=E(cgraph)$weight*2)
+
+
+
+
+
+##########################################################################################
+
+org.Hs.egPS <- dRDataLoader(RData='org.Hs.egPS', RData.location="RData_Rd/data")
+GS <- org.Hs.egPS
+flag_PS2 <- T
+    if(flag_PS2){
+        tmp <- as.character(unique(GS$set_info$name))
+        inds <- sapply(tmp,function(x) which(GS$set_info$name==x))
+        
+        ## new set_info
+        set_info <- data.frame()
+        for(i in 1:length(inds)){
+            set_info<- rbind(set_info,as.matrix(GS$set_info[max(inds[[i]]),]))
+        }
+        ## new gs
+        gs <- list()
+        for(i in 1:length(inds)){
+            gs[[i]] <- unlist(GS$gs[inds[[i]]], use.names=F)
+        }
+        names(gs) <- rownames(set_info)
+        
+        ## new GS
+        GS$set_info <- set_info
+        GS$gs <- gs
+    }
+
+genes_in_PS <- unlist(GS$gs)
+
+# 1) load HPPA as igraph object
+data(ig.HPPA)
+g <- ig.HPPA
+
+# 2) load human genes annotated by HPPA
+data(org.Hs.egHPPA)
+
+# 3) prepare for ontology and its annotation information
+dag <- dDAGannotate(g, annotations=org.Hs.egHPPA, path.mode="all_paths", verbose=TRUE)
+
+# 4) calculate pair-wise semantic similarity between genes having PS
+allgenes <- unique(unlist(V(dag)$annotations))
+genes <- intersect(allgenes, genes_in_PS)
+sim <- dDAGgeneSim(g=dag, genes=genes, method.gene="BM.average", method.term="Resnik", verbose=TRUE)
+
+
+a <- sapply(GS$gs, function(x){
+    ind <- match(x,genes)
+    flag <- ind[!is.na(ind)]
+    if(length(flag)>0){
+        mean(matrix(sim[flag, flag], nrow=length(flag)) )
+    }else{
+        NA
+    }
+})
+
+b <- sapply(GS$gs, function(x){
+    ind <- match(x,genes)
+    flag <- ind[!is.na(ind)]
+    length(flag)
+})
+
+a <- rep(NA, length(GS$gs))
+for(i in 1:length(GS$gs)){
+    x <- unlist(GS$gs[i:length(GS$gs)])
+    ind <- match(x,genes)
+    flag <- ind[!is.na(ind)]
+    if(length(flag)>0){
+        tmp <- matrix(sim[flag, flag], nrow=length(flag)) 
+        a[i] <- mean(tmp[lower.tri(tmp)])
+    }
+}
+
+
+a <- rep(NA, length(GS$gs))
+for(i in 1:length(GS$gs)){
+    x <- unlist(GS$gs[1:i])
+    ind <- match(x,genes)
+    flag <- ind[!is.na(ind)]
+    if(length(flag)>0){
+        tmp <- matrix(sim[flag, flag], nrow=length(flag)) 
+        a[i] <- mean(tmp[lower.tri(tmp)])
+    }
+}
+
+
+a <- rep(NA, length(GS$gs))
+a <- list()
+for(i in 2:length(GS$gs)){
+    x <- unlist(GS$gs[i])
+    y <- unlist(GS$gs[1:(i-1)])
+    
+    ind_x <- match(x,genes)
+    flag_x <- ind_x[!is.na(ind_x)]
+    
+    ind_y <- match(y,genes)
+    flag_y <- ind_y[!is.na(ind_y)]
+    
+    if(length(flag_x)>0){
+        tmp <- matrix(sim[flag_x, flag_y], nrow=length(flag_x))        
+        #a[i] <- mean(apply(tmp,1,max))
+        a[[i]] <- apply(tmp,1,max)
+    }
+}
+
+dev.new()
+plot(a, type='b')
+
+
+bb <- rep(1:length(a), sapply(a, length))
+data <- data.frame(id=bb, value=unlist(a))
+
+visBoxplotAdv(formula=value ~ id, data=data)

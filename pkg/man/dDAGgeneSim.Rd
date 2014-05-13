@@ -1,12 +1,11 @@
 \name{dDAGgeneSim}
 \alias{dDAGgeneSim}
-\title{Function to calculate pair-wise semantic similarity between input terms based on a direct acyclic graph (DAG) with annotated data}
+\title{Function to calculate pair-wise semantic similarity between genes based on a direct acyclic graph (DAG) with annotated data}
 \usage{
-dDAGgeneSim(g, genes = NULL, method.gene = c("average", "max",
-"BM.average",
-"BM.max", "BM.complete")[3], method.term = c("Resnik", "Lin",
-"Schlicker",
-"Jiang", "Pesquita")[3], force = TRUE, verbose = TRUE)
+dDAGgeneSim(g, genes = NULL, method.gene = c("BM.average", "BM.max",
+"BM.complete", "average", "max"), method.term = c("Resnik", "Lin",
+"Schlicker", "Jiang", "Pesquita"), force = TRUE, fast = TRUE,
+verbose = TRUE)
 }
 \arguments{
 \item{g}{an object of class "igraph" or "graphNEL"}
@@ -22,21 +21,22 @@ similarity between terms. It can be "average" for average
 similarity between any two terms (one from gene 1, the
 other from gene 2), "max" for the maximum similarity
 between any two terms, "BM.average" for best-matching
-(BM) based average similarity (i.e. for each gene in a
-gene pair, first calculate maximum similarity for each
-term, then their average of maximum similarity; the final
-BM-based average similiary is the pre-calculated average
-between two genes in pair), "BM.max" for BM based maximum
-similarity (i.e. for each gene in a gene pair, first
-calculate maximum similarity for each term, then their
-average of maximum similarity; the final BM-based maximum
-similiary is the maximum of the pre-calculated average
-between two genes in pair), "BM.complete" for BM based
+(BM) based average similarity (i.e. for each term of
+either gene, first calculate maximum similarity to any
+term in the other gene, then take average of maximum
+similarity; the final BM-based average similiary is the
+pre-calculated average between two genes in pair),
+"BM.max" for BM based maximum similarity (i.e. the same
+as "BM.average", but the final BM-based maximum similiary
+is the maximum of the pre-calculated average between two
+genes in pair), "BM.complete" for BM-based
 complete-linkage similarity (inspired by complete-linkage
-procedure: for each gene in a gene pair, first calculate
-maximum similarity for each term; then take the mimumum
-of pre-calculated maximum similarity between two genes in
-pair). By default, it sets "BM.average"}
+concept: the least of any maximum similarity between a
+term of one gene and a term of the other gene). When
+comparing BM-based similarity between genes, "BM.average"
+and "BM.max" are sensitive to the number of terms
+invovled; instead, "BM.complete" is much robust in this
+aspect. By default, it uses "BM.average".}
 
 \item{method.term}{the method used to measure semantic
 similarity between terms. It can be "Resnik" for
@@ -49,7 +49,7 @@ ancestor (MICA) (see
 "Schlicker" for weighted version of 'Lin' by the
 1-prob(MICA) (see
 \url{http://www.ncbi.nlm.nih.gov/pubmed/16776819}),
-"Jiang" for 1 - diference between the sum of IC at pairs
+"Jiang" for 1 - difference between the sum of IC at pairs
 of terms and 2*IC at MICA (see
 \url{http://arxiv.org/pdf/cmp-lg/9709008.pdf}),
 "Pesquita" for graph information content similarity
@@ -63,7 +63,13 @@ specific terms (for each gene) will be used. By default,
 it sets to true. It is always advisable to use this since
 it is computationally fast but without compromising
 accuracy (considering the fact that true-path-rule has
-been applied when running \code{\link{dDAGannotate}}).}
+been applied when running \code{\link{dDAGannotate}})}
+
+\item{fast}{logical to indicate whether a vectorised fast
+computation is used. By default, it sets to true. It is
+always advisable to use this vectorised fast computation;
+since the conventional computation is just used for
+understanding scripts}
 
 \item{verbose}{logical to indicate whether the messages
 will be displayed in the screen. By default, it sets to
@@ -75,8 +81,8 @@ similarity between input terms
 }
 \description{
 \code{dDAGgeneSim} is supposed to calculate pair-wise
-semantic similarity between input terms based on a direct
-acyclic graph (DAG) with annotated data.
+semantic similarity between genes based on a direct acyclic
+graph (DAG) with annotated data.
 }
 \note{
 For the mode "shortest_paths", the induced subgraph is the
@@ -97,13 +103,11 @@ data(org.Hs.egHPPA)
 dag <- dDAGannotate(g, annotations=org.Hs.egHPPA,
 path.mode="all_paths", verbose=TRUE)
 
-# 4) calculate pair-wise semantic similarity between 5 randomly chosen terms
+# 4) calculate pair-wise semantic similarity between 5 randomly chosen genes
 allgenes <- unique(unlist(V(dag)$annotations))
 genes <- sample(allgenes,5)
-sim <- dDAGgeneSim(g=dag, genes=genes,
-method.gene=c("average","max","BM.average","BM.max","BM.complete")[3],
-method.term=c("Resnik","Lin","Schlicker","Jiang","Pesquita")[3],
-verbose=TRUE)
+sim <- dDAGgeneSim(g=dag, genes=genes, method.gene="BM.average",
+method.term="Resnik", verbose=TRUE)
 sim
 }
 }

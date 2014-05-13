@@ -105,20 +105,20 @@
         
       </header>
       
-      <h2>Function to calculate pair-wise semantic similarity between input terms based on a direct acyclic graph (DAG) with annotated data</h2>
+      <h2>Function to calculate pair-wise semantic similarity between genes based on a direct acyclic graph (DAG) with annotated data</h2>
 
 <div class="row">
   <div class="span8">
   
     <h3>Description</h3>
     <p><code>dDAGgeneSim</code> is supposed to calculate pair-wise
-semantic similarity between input terms based on a direct
-acyclic graph (DAG) with annotated data.</p>
+semantic similarity between genes based on a direct acyclic
+graph (DAG) with annotated data.</p>
   
     <h3>Usage</h3>
-    <pre>dDAGgeneSim(g, genes = NULL, method.gene = c("average", "max", "BM.average", "BM.max", 
-  "BM.complete")[3], method.term = c("Resnik", "Lin", "Schlicker", "Jiang", "Pesquita")[3], 
-      force = TRUE, verbose = TRUE)</pre>
+    <pre>dDAGgeneSim(g, genes = NULL, method.gene = c("BM.average", "BM.max", "BM.complete", 
+  "average", "max"), method.term = c("Resnik", "Lin", "Schlicker", "Jiang", "Pesquita"), 
+      force = TRUE, fast = TRUE, verbose = TRUE)</pre>
     
     <h3>Arguments</h3>
     <dl>
@@ -136,21 +136,22 @@ similarity between terms. It can be "average" for average
 similarity between any two terms (one from gene 1, the
 other from gene 2), "max" for the maximum similarity
 between any two terms, "BM.average" for best-matching
-(BM) based average similarity (i.e. for each gene in a
-gene pair, first calculate maximum similarity for each
-term, then their average of maximum similarity; the final
-BM-based average similiary is the pre-calculated average
-between two genes in pair), "BM.max" for BM based maximum
-similarity (i.e. for each gene in a gene pair, first
-calculate maximum similarity for each term, then their
-average of maximum similarity; the final BM-based maximum
-similiary is the maximum of the pre-calculated average
-between two genes in pair), "BM.complete" for BM based
+(BM) based average similarity (i.e. for each term of
+either gene, first calculate maximum similarity to any
+term in the other gene, then take average of maximum
+similarity; the final BM-based average similiary is the
+pre-calculated average between two genes in pair),
+"BM.max" for BM based maximum similarity (i.e. the same
+as "BM.average", but the final BM-based maximum similiary
+is the maximum of the pre-calculated average between two
+genes in pair), "BM.complete" for BM-based
 complete-linkage similarity (inspired by complete-linkage
-procedure: for each gene in a gene pair, first calculate
-maximum similarity for each term; then take the mimumum
-of pre-calculated maximum similarity between two genes in
-pair). By default, it sets "BM.average"</dd>
+concept: the least of any maximum similarity between a
+term of one gene and a term of the other gene). When
+comparing BM-based similarity between genes, "BM.average"
+and "BM.max" are sensitive to the number of terms
+invovled; instead, "BM.complete" is much robust in this
+aspect. By default, it uses "BM.average".</dd>
       <dt>method.term</dt>
       <dd>the method used to measure semantic
 similarity between terms. It can be "Resnik" for
@@ -163,7 +164,7 @@ ancestor (MICA) (see
 "Schlicker" for weighted version of 'Lin' by the
 1-prob(MICA) (see
 <a href = 'http://www.ncbi.nlm.nih.gov/pubmed/16776819'>http://www.ncbi.nlm.nih.gov/pubmed/16776819</a>),
-"Jiang" for 1 - diference between the sum of IC at pairs
+"Jiang" for 1 - difference between the sum of IC at pairs
 of terms and 2*IC at MICA (see
 <a href = 'http://arxiv.org/pdf/cmp-lg/9709008.pdf'>http://arxiv.org/pdf/cmp-lg/9709008.pdf</a>),
 "Pesquita" for graph information content similarity
@@ -177,7 +178,13 @@ specific terms (for each gene) will be used. By default,
 it sets to true. It is always advisable to use this since
 it is computationally fast but without compromising
 accuracy (considering the fact that true-path-rule has
-been applied when running <code><a href='dDAGannotate.html'>dDAGannotate</a></code>).</dd>
+been applied when running <code><a href='dDAGannotate.html'>dDAGannotate</a></code>)</dd>
+      <dt>fast</dt>
+      <dd>logical to indicate whether a vectorised fast
+computation is used. By default, it sets to true. It is
+always advisable to use this vectorised fast computation;
+since the conventional computation is just used for
+understanding scripts</dd>
       <dt>verbose</dt>
       <dd>logical to indicate whether the messages
 will be displayed in the screen. By default, it sets to
@@ -228,37 +235,35 @@ path.mode="all_paths", verbose=TRUE)
 <strong class='message'>	At level 2, there are 20 nodes, and 1 incoming neighbors.</strong>
 <strong class='message'>	At level 1, there are 1 nodes, and 0 incoming neighbors.</strong>
 <div class='input'>
-# 4) calculate pair-wise semantic similarity between 5 randomly chosen terms
+# 4) calculate pair-wise semantic similarity between 5 randomly chosen genes
 allgenes <- unique(unlist(V(dag)$annotations))
 genes <- sample(allgenes,5)
-sim <- dDAGgeneSim(g=dag, genes=genes,
-method.gene=c("average","max","BM.average","BM.max","BM.complete")[3],
-method.term=c("Resnik","Lin","Schlicker","Jiang","Pesquita")[3],
-verbose=TRUE)
+sim <- dDAGgeneSim(g=dag, genes=genes, method.gene="BM.average",
+method.term="Resnik", verbose=TRUE)
 </div>
-<strong class='message'>Start at 2014-05-08 17:46:58</strong>
+<strong class='message'>Start at 2014-05-13 14:40:44</strong>
 <strong class='message'></strong>
-<strong class='message'>First, extract all annotatable genes (2014-05-08 17:46:58)...</strong>
+<strong class='message'>First, extract all annotatable genes (2014-05-13 14:40:44)...</strong>
 <strong class='message'>	there are 5 input genes amongst 2910 annotatable genes</strong>
-<strong class='message'>Second, pre-compute semantic similarity between 109 terms (forced to be the most specific for each gene) using Schlicker method (2014-05-08 17:46:59)...</strong>
-<strong class='message'>Last, calculate pair-wise semantic similarity between 5 genes using BM.average method (2014-05-08 17:47:00)...</strong>
-<strong class='message'>	1 out of 5 (2014-05-08 17:47:00)</strong>
-<strong class='message'>	2 out of 5 (2014-05-08 17:47:00)</strong>
-<strong class='message'>	3 out of 5 (2014-05-08 17:47:00)</strong>
-<strong class='message'>	4 out of 5 (2014-05-08 17:47:00)</strong>
+<strong class='message'>Second, pre-compute semantic similarity between 91 terms (forced to be the most specific for each gene) using Resnik method (2014-05-13 14:40:44)...</strong>
+<strong class='message'>Last, calculate pair-wise semantic similarity between 5 genes using BM.average method (2014-05-13 14:40:45)...</strong>
+<strong class='message'>	1 out of 5 (2014-05-13 14:40:45)</strong>
+<strong class='message'>	2 out of 5 (2014-05-13 14:40:45)</strong>
+<strong class='message'>	3 out of 5 (2014-05-13 14:40:45)</strong>
+<strong class='message'>	4 out of 5 (2014-05-13 14:40:45)</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-05-08 17:47:00</strong>
-<strong class='message'>Runtime in total is: 2 secs
+<strong class='message'>Finish at 2014-05-13 14:40:45</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'>sim
 </div>
 <div class='output'>5 x 5 sparse Matrix of class "dgCMatrix"
-          7084      2767      8710      7486      3242
-7084 .         0.1849807 .         0.1133615 0.2996578
-2767 0.1849807 .         0.1687148 0.3280884 0.1821849
-8710 .         0.1687148 .         0.3527951 0.1482047
-7486 0.1133615 0.3280884 0.3527951 .         0.2107290
-3242 0.2996578 0.1821849 0.1482047 0.2107290 .        
+             7299      7399       4750      7153     115908
+7299   .          0.6052493 0.09829316 0.4255154 0.09952181
+7399   0.60524933 .         0.24407421 0.1103988 0.14851424
+4750   0.09829316 0.2440742 .          0.1018560 0.27722327
+7153   0.42551537 0.1103988 0.10185604 .         0.46050377
+115908 0.09952181 0.1485142 0.27722327 0.4605038 .         
 </div></pre>
   </div>
   
