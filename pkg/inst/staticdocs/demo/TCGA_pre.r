@@ -1117,8 +1117,13 @@ visNet(cgraph, edge.width=E(cgraph)$weight*2)
 
 ##########################################################################################
 
-org.Hs.egPS <- dRDataLoader(RData='org.Hs.egPS', RData.location="RData_Rd/data")
+# org.Hs.egPS <- dRDataLoader(RData='org.Hs.egPS', RData.location="RData_Rd/data")
+org.Hs.egPS <- dRDataLoader(RData='org.Hs.egPS')
 GS <- org.Hs.egPS
+
+org.Mm.egPS <- dRDataLoader(RData='org.Mm.egPS')
+GS <- org.Mm.egPS
+
 flag_PS2 <- T
     if(flag_PS2){
         tmp <- as.character(unique(GS$set_info$name))
@@ -1143,6 +1148,31 @@ flag_PS2 <- T
 
 genes_in_PS <- unlist(GS$gs)
 
+
+####################################
+# 1) load MP as igraph object
+ig.MP <- dRDataLoader(RData='ig.MP')
+g <- ig.MP
+
+# 2) load mouse genes annotated by MP
+org.Mm.egMP <- dRDataLoader(RData='org.Mm.egMP')
+
+# 3) prepare for ontology and its annotation information
+dag <- dDAGannotate(g, annotations=org.Mm.egMP, path.mode="all_paths", verbose=TRUE)
+
+####################################
+# 1) load DO as igraph object
+ig.DO <- dRDataLoader(RData='ig.DO')
+g <- ig.DO
+
+# 2) load human genes annotated by DO
+org.Hs.egDO <- dRDataLoader(RData='org.Hs.egDO')
+
+# 3) prepare for ontology and its annotation information
+dag <- dDAGannotate(g, annotations=org.Hs.egDO, path.mode="all_paths", verbose=TRUE)
+
+
+####################################
 # 1) load HPPA as igraph object
 data(ig.HPPA)
 g <- ig.HPPA
@@ -1153,11 +1183,15 @@ data(org.Hs.egHPPA)
 # 3) prepare for ontology and its annotation information
 dag <- dDAGannotate(g, annotations=org.Hs.egHPPA, path.mode="all_paths", verbose=TRUE)
 
+####################################
+
 # 4) calculate pair-wise semantic similarity between genes having PS
 allgenes <- unique(unlist(V(dag)$annotations))
 genes <- intersect(allgenes, genes_in_PS)
 sim <- dDAGgeneSim(g=dag, genes=genes, method.gene="BM.average", method.term="Resnik", verbose=TRUE)
 
+save(list=c("sim","genes","GS","dag"),file="sim.HPPA.RData")
+load("sim.HPPA.RData")
 
 a <- sapply(GS$gs, function(x){
     ind <- match(x,genes)
@@ -1199,6 +1233,10 @@ for(i in 1:length(GS$gs)){
 }
 
 
+dev.new()
+plot(a, type='b')
+
+
 a <- rep(NA, length(GS$gs))
 a <- list()
 for(i in 2:length(GS$gs)){
@@ -1214,15 +1252,25 @@ for(i in 2:length(GS$gs)){
     if(length(flag_x)>0){
         tmp <- matrix(sim[flag_x, flag_y], nrow=length(flag_x))        
         #a[i] <- mean(apply(tmp,1,max))
-        a[[i]] <- apply(tmp,1,max)
+        #a[[i]] <- apply(tmp,1,max)
+        a[[i]] <- apply(tmp,1,mean)
     }
 }
 
-dev.new()
-plot(a, type='b')
-
-
 bb <- rep(1:length(a), sapply(a, length))
 data <- data.frame(id=bb, value=unlist(a))
+id <- data$id
+num <- sapply(split(id,id),length)
+set_info <- as.character(GS$set_info$name[sort(unique(id))])
+labels <- paste(set_info,' (n=', num, ')', sep='')
+par(las=2, mar=c(5,15,2,2)) # all axis labels horizontal
+visBoxplotAdv(formula=value ~ id, data=data, orientation="horizontal", spacing=0.5, labels=labels, ylab=NA, xlab="Average of HP-based semantic similarity to ancestors", boxplot.border = "#0000FF", boxplot.col = "transparent")
 
-visBoxplotAdv(formula=value ~ id, data=data)
+
+source("http://bioconductor.org/biocLite.R")
+biocLite(c("foreach","doMC"))
+library(foreach)
+library(doMC)
+registerDoMC(2)
+
+# Parallel computation depends upon a _parallel backend_ that must be registered before performing the computation. The parallel backends available will be system-specific, but include 'doParallel', which uses R's built-in 'parallel' package, 'doMC' which uses the 'multicore' package, and 'doSNOW'. Each parallel backend has a specific registration function, such as 'registerDoParallel' or 'registerDoSNOW'

@@ -152,9 +152,7 @@ make install
 <p>First, install dependant/imported/suggested packages:</p>
 
 <pre><code>source(&quot;http://bioconductor.org/biocLite.R&quot;)
-for(pkg in c(&quot;hexbin&quot;,&quot;ape&quot;,&quot;supraHex&quot;,&quot;graph&quot;,&quot;Rgraphviz&quot;,&quot;igraph&quot;,&quot;Biobase&quot;,&quot;limma&quot;,&quot;survival&quot;)){
-    biocLite(pkg)
-}
+biocLite(c(&quot;hexbin&quot;,&quot;ape&quot;,&quot;supraHex&quot;,&quot;graph&quot;,&quot;Rgraphviz&quot;,&quot;igraph&quot;,&quot;Biobase&quot;,&quot;limma&quot;,&quot;survival&quot;,&quot;foreach&quot;,&quot;doMC&quot;))
 </code></pre>
 
 <p>Second, install the package <code>dnet</code> under <a href="http://cran.r-project.org/package=dnet">stable release version</a>:</p>

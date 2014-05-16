@@ -5,7 +5,7 @@
 dDAGgeneSim(g, genes = NULL, method.gene = c("BM.average", "BM.max",
 "BM.complete", "average", "max"), method.term = c("Resnik", "Lin",
 "Schlicker", "Jiang", "Pesquita"), force = TRUE, fast = TRUE,
-verbose = TRUE)
+parallel = TRUE, multicores = NULL, verbose = TRUE)
 }
 \arguments{
 \item{g}{an object of class "igraph" or "graphNEL"}
@@ -70,6 +70,22 @@ computation is used. By default, it sets to true. It is
 always advisable to use this vectorised fast computation;
 since the conventional computation is just used for
 understanding scripts}
+
+\item{parallel}{logical to indicate whether parallel
+computation with multicores is used. By default, it sets
+to true, but not necessarily does so. Partly because
+parallel backends available will be system-specific.
+Also, it will depend on whether these two packages
+"foreach" and "doMC" have been installed. It can be
+installed via:
+source("http://bioconductor.org/biocLite.R");
+biocLite(c("foreach","doMC")). If not yet installed, this
+option will be disabled}
+
+\item{multicores}{an integer to specify how many
+multicores will be registered as the multicore parallel
+backend with the 'foreach' package. If NULL, it will use
+a half of available cores of user's computer}
 
 \item{verbose}{logical to indicate whether the messages
 will be displayed in the screen. By default, it sets to

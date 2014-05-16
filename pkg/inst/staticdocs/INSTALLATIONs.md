@@ -37,9 +37,7 @@ Notes: below are `R command lines (NOT shell command lines in Terminal)`.
 First, install dependant/imported/suggested packages:
 
     source("http://bioconductor.org/biocLite.R")
-    for(pkg in c("hexbin","ape","supraHex","graph","Rgraphviz","igraph","Biobase","limma","survival")){
-        biocLite(pkg)
-    }
+    biocLite(c("hexbin","ape","supraHex","graph","Rgraphviz","igraph","Biobase","limma","survival","foreach","doMC"))
 
 Second, install the package `dnet` under [stable release version](http://cran.r-project.org/package=dnet):
 

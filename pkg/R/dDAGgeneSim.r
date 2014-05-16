@@ -8,6 +8,8 @@
 #' @param method.term the method used to measure semantic similarity between terms. It can be "Resnik" for information content (IC) of most informative information ancestor (MICA) (see \url{http://arxiv.org/pdf/cmp-lg/9511007.pdf}), "Lin" for 2*IC at MICA divided by the sum of IC at pairs of terms (see \url{http://webdocs.cs.ualberta.ca/~lindek/papers/sim.pdf}), "Schlicker" for weighted version of 'Lin' by the 1-prob(MICA) (see \url{http://www.ncbi.nlm.nih.gov/pubmed/16776819}), "Jiang" for 1 - difference between the sum of IC at pairs of terms and 2*IC at MICA (see \url{http://arxiv.org/pdf/cmp-lg/9709008.pdf}), "Pesquita" for graph information content similarity related to Tanimoto-Jacard index (ie. summed information content of common ancestors divided by summed information content of all ancestors of term1 and term2 (see \url{http://www.ncbi.nlm.nih.gov/pubmed/18460186}))
 #' @param force logical to indicate whether the only most specific terms (for each gene) will be used. By default, it sets to true. It is always advisable to use this since it is computationally fast but without compromising accuracy (considering the fact that true-path-rule has been applied when running \code{\link{dDAGannotate}})
 #' @param fast logical to indicate whether a vectorised fast computation is used. By default, it sets to true. It is always advisable to use this vectorised fast computation; since the conventional computation is just used for understanding scripts
+#' @param parallel logical to indicate whether parallel computation with multicores is used. By default, it sets to true, but not necessarily does so. Partly because parallel backends available will be system-specific. Also, it will depend on whether these two packages "foreach" and "doMC" have been installed. It can be installed via: source("http://bioconductor.org/biocLite.R"); biocLite(c("foreach","doMC")). If not yet installed, this option will be disabled
+#' @param multicores an integer to specify how many multicores will be registered as the multicore parallel backend with the 'foreach' package. If NULL, it will use a half of available cores of user's computer
 #' @param verbose logical to indicate whether the messages will be displayed in the screen. By default, it sets to true for display
 #' @return It returns a sparse matrix containing pair-wise semantic similarity between input terms
 #' @note For the mode "shortest_paths", the induced subgraph is the most concise, and thus informative for visualisation when there are many nodes in query, while the mode "all_paths" results in the complete subgraph.
@@ -34,7 +36,7 @@
 #' sim
 #' }
 
-dDAGgeneSim <- function (g, genes=NULL, method.gene=c("BM.average","BM.max","BM.complete","average","max"), method.term=c("Resnik","Lin","Schlicker","Jiang","Pesquita"), force=TRUE, fast=TRUE, verbose=TRUE)
+dDAGgeneSim <- function (g, genes=NULL, method.gene=c("BM.average","BM.max","BM.complete","average","max"), method.term=c("Resnik","Lin","Schlicker","Jiang","Pesquita"), force=TRUE, fast=TRUE, parallel=TRUE, multicores=NULL, verbose=TRUE)
 {
 
     startT <- Sys.time()
@@ -125,7 +127,6 @@ dDAGgeneSim <- function (g, genes=NULL, method.gene=c("BM.average","BM.max","BM.
         match(x, terms)
     })
     
-    
     if(verbose){
         if(force){
             message(sprintf("Second, pre-compute semantic similarity between %d terms (forced to be the most specific for each gene) using %s method (%s)...", length(terms), method.term, as.character(Sys.time())), appendLF=T)
@@ -139,127 +140,269 @@ dDAGgeneSim <- function (g, genes=NULL, method.gene=c("BM.average","BM.max","BM.
     if(verbose){
         message(sprintf("Last, calculate pair-wise semantic similarity between %d genes using %s method (%s)...", length(genes), method.gene, as.character(Sys.time())), appendLF=T)
     }
-    ## calculate pair-wise semantic similarity between input genes
-    sim <- Matrix::Matrix(0, nrow=length(genes), ncol=length(genes), sparse=T)
+    num_genes <- length(genes2terms)
     
-     ## print with possibly greater accuracy:
-     ##op <- options(digits.secs = 6)
-     ##options(op)
-     
-    if(method.gene=='average'){
-        for(i in 1:(length(genes2terms)-1)){
-            ind1 <- genes2terms_index[[i]]
-            progress_indicate(i, length(genes2terms), 10, flag=T)
-            if(fast){
-                js <- (i+1):length(genes2terms)
-                ind_js <- genes2terms_index[js]
-                sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
-                new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
-                res <- sapply(1:length(ind_js), function(k){
-                    mean(sim12[,new_ind_js==k])
-                })
-                sim[i,js] <- sim[js,i] <- res
-            }else{
-                for(j in (i+1):length(genes2terms)){
-                    ind2 <- genes2terms_index[[j]]
-                    ## pairwise similarity between terms
-                    sim12 <- as.matrix(sim.term[ind1, ind2])
-                    sim[i,j] <- sim[j,i] <- mean(sim12)
+    flag_parallel <- F
+    if(parallel==TRUE){
+        pkgs <- c("doMC","foreach")
+        if(any(pkgs %in% rownames(installed.packages()))){
+            tmp <- sapply(pkgs, function(pkg) {
+                suppressPackageStartupMessages(require(pkg, character.only=T))
+            })
+            
+            if(all(tmp)){
+                flag_parallel <- T
+                
+                registerDoMC()
+                cores <- getDoParWorkers()*2
+                if(is.null(multicores)){
+                    multicores <- max(1, ceiling(cores*0.5))
+                }else if(is.na(multicores)){
+                    multicores <- max(1, ceiling(cores*0.5))
+                }else if(multicores < 1 | multicores > cores){
+                    multicores <- max(1, ceiling(cores*0.5))
+                }else{
+                    multicores <- as.integer(multicores)
                 }
-            }
-        }
-    }else if(method.gene=='max'){
-        for(i in 1:(length(genes2terms)-1)){
-            ind1 <- genes2terms_index[[i]]
-            progress_indicate(i, length(genes2terms), 10, flag=T)
-            if(fast){
-                js <- (i+1):length(genes2terms)
-                ind_js <- genes2terms_index[js]
-                sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
-                new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
-                res <- sapply(1:length(ind_js), function(k){
-                    max(sim12[,new_ind_js==k])
-                })
-                sim[i,js] <- sim[js,i] <- res
-            }else{
-                for(j in (i+1):length(genes2terms)){
-                    ind2 <- genes2terms_index[[j]]
-                    ## pairwise similarity between terms
-                    sim12 <- as.matrix(sim.term[ind1, ind2])
-                    sim[i,j] <- sim[j,i] <- max(sim12)
+                registerDoMC(multicores) # register the multicore parallel backend with the 'foreach' package
+            
+                if(verbose){
+                    message(sprintf("\tdo parallel computation using %d cores ...", multicores, as.character(Sys.time())), appendLF=T)
                 }
-            }
-        }
-    }else if(method.gene=='BM.average'){
-        for(i in 1:(length(genes2terms)-1)){
-            ind1 <- genes2terms_index[[i]]
-            progress_indicate(i, length(genes2terms), 10, flag=T)
-            if(fast){
-                js <- (i+1):length(genes2terms)
-                ind_js <- genes2terms_index[js]
-                sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
-                new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
-                res <- sapply(1:length(ind_js), function(k){
-                    x <- as.matrix(sim12[,new_ind_js==k])
-                    0.5*(mean(apply(x,1,max)) + mean(apply(x,2,max)))
-                })
-                sim[i,js] <- sim[js,i] <- res
-            }else{
-                for(j in (i+1):length(genes2terms)){
-                    ind2 <- genes2terms_index[[j]]
-                    ## pairwise similarity between terms
-                    sim12 <- as.matrix(sim.term[ind1, ind2])
-                    sim[i,j] <- sim[j,i] <- 0.5*(mean(apply(sim12,1,max)) + mean(apply(sim12,2,max)))
+            
+                if(method.gene=='average'){
+                    sim <- foreach(i=1:(num_genes-1), .inorder=T, .combine=rbind) %dopar% {
+                        ind1 <- genes2terms_index[[i]]
+                        progress_indicate(i, num_genes, 10, flag=T)
+                        fast <- T
+                        if(fast){
+                            js <- (i+1):num_genes
+                            ind_js <- genes2terms_index[js]
+                            sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
+                            new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
+                            res <- sapply(1:length(ind_js), function(k){
+                                mean(sim12[,which(new_ind_js==k)])
+                            })
+                            x <- rep(0, num_genes)
+                            x[js] <- res
+                            x
+                        }
+                    }
+                }else if(method.gene=='max'){
+                    sim <- foreach(i=1:(num_genes-1), .inorder=T, .combine=rbind) %dopar% {
+                        ind1 <- genes2terms_index[[i]]
+                        progress_indicate(i, num_genes, 10, flag=T)
+                        fast <- T
+                        if(fast){
+                            js <- (i+1):num_genes
+                            ind_js <- genes2terms_index[js]
+                            sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
+                            new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
+                            res <- sapply(1:length(ind_js), function(k){
+                                max(sim12[,which(new_ind_js==k)])
+                            })
+                            x <- rep(0, num_genes)
+                            x[js] <- res
+                            x
+                        }
+                    }
+                }else if(method.gene=='BM.average'){
+                    sim <- foreach(i=1:(num_genes-1), .inorder=T, .combine=rbind) %dopar% {
+                        ind1 <- genes2terms_index[[i]]
+                        progress_indicate(i, num_genes, num_genes, flag=T)
+                        fast <- T
+                        if(fast){
+                            js <- (i+1):num_genes
+                            ind_js <- genes2terms_index[js]
+                            sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
+                            new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
+                            res <- sapply(1:length(ind_js), function(k){
+                                x <- as.matrix(sim12[,which(new_ind_js==k)])
+                                0.5*(mean(apply(x,1,max)) + mean(apply(x,2,max)))
+                            })
+                            x <- rep(0, num_genes)
+                            x[js] <- res
+                            x
+                        }
+                    }
+                }else if(method.gene=='BM.max'){
+                    sim <- foreach(i=1:(num_genes-1), .inorder=T, .combine=rbind) %dopar% {
+                        ind1 <- genes2terms_index[[i]]
+                        progress_indicate(i, num_genes, 10, flag=T)
+                        fast <- T
+                        if(fast){
+                            js <- (i+1):num_genes
+                            ind_js <- genes2terms_index[js]
+                            sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
+                            new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
+                            res <- sapply(1:length(ind_js), function(k){
+                                x <- as.matrix(sim12[,which(new_ind_js==k)])
+                                max(mean(apply(x,1,max)), mean(apply(x,2,max)))
+                            })
+                            x <- rep(0, num_genes)
+                            x[js] <- res
+                            x
+                        }
+                    }
+                }else if(method.gene=='BM.complete'){
+                    sim <- foreach(i=1:(num_genes-1), .inorder=T, .combine=rbind) %dopar% {
+                        ind1 <- genes2terms_index[[i]]
+                        progress_indicate(i, num_genes, 10, flag=T)
+                        fast <- T
+                        if(fast){
+                            js <- (i+1):num_genes
+                            ind_js <- genes2terms_index[js]
+                            sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
+                            new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
+                            res <- sapply(1:length(ind_js), function(k){
+                                x <- as.matrix(sim12[,which(new_ind_js==k)])
+                                min(c(apply(x,1,max),apply(x,2,max)))
+                            })
+                            x <- rep(0, num_genes)
+                            x[js] <- res
+                            x
+                        }
+                    }
                 }
+                
+                ## add the last row
+                sim <- rbind(sim, rep(0, num_genes))
+                
+                sim <- sim + t(sim)
+                
             }
+            
         }
-    }else if(method.gene=='BM.max'){
-        for(i in 1:(length(genes2terms)-1)){
-            ind1 <- genes2terms_index[[i]]
-            progress_indicate(i, length(genes2terms), 10, flag=T)
-            if(fast){
-                js <- (i+1):length(genes2terms)
-                ind_js <- genes2terms_index[js]
-                sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
-                new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
-                res <- sapply(1:length(ind_js), function(k){
-                    x <- as.matrix(sim12[,new_ind_js==k])
-                    max(mean(apply(x,1,max)), mean(apply(x,2,max)))
-                })
-                sim[i,js] <- sim[js,i] <- res
-            }else{
-                for(j in (i+1):length(genes2terms)){
-                    ind2 <- genes2terms_index[[j]]
-                    ## pairwise similarity between terms
-                    sim12 <- as.matrix(sim.term[ind1, ind2])
-                    sim[i,j] <- sim[j,i] <- max(mean(apply(sim12,1,max)), mean(apply(sim12,2,max)))
-                }
-            }
-        }
-    }else if(method.gene=='BM.complete'){
-        for(i in 1:(length(genes2terms)-1)){
-            ind1 <- genes2terms_index[[i]]
-            progress_indicate(i, length(genes2terms), 10, flag=T)
-            if(fast){
-                js <- (i+1):length(genes2terms)
-                ind_js <- genes2terms_index[js]
-                sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
-                new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
-                res <- sapply(1:length(ind_js), function(k){
-                    x <- as.matrix(sim12[,new_ind_js==k])
-                    min(c(apply(x,1,max),apply(x,2,max)))
-                })
-                sim[i,js] <- sim[js,i] <- res
-            }else{
-                for(j in (i+1):length(genes2terms)){
-                    ind2 <- genes2terms_index[[j]]
-                    ## pairwise similarity between terms
-                    sim12 <- as.matrix(sim.term[ind1, ind2])
-                    sim[i,j] <- sim[j,i] <- min(c(apply(sim12,1,max),apply(sim12,2,max)))
-                }
-            }
-        }
+        
     }
+    
+    if(flag_parallel==F){
+        ## calculate pair-wise semantic similarity between input genes
+        sim <- Matrix::Matrix(0, nrow=length(genes), ncol=length(genes), sparse=T)
+    
+        ## print with possibly greater accuracy:
+        ##op <- options(digits.secs = 6)
+        ##options(op)
+     
+        if(method.gene=='average'){
+            for(i in 1:(num_genes-1)){
+                ind1 <- genes2terms_index[[i]]
+                progress_indicate(i, num_genes, 10, flag=T)
+                if(fast){
+                    js <- (i+1):num_genes
+                    ind_js <- genes2terms_index[js]
+                    sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
+                    new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
+                    res <- sapply(1:length(ind_js), function(k){
+                        mean(sim12[,which(new_ind_js==k)])
+                    })
+                    sim[i,js] <- res
+                }else{
+                    for(j in (i+1):num_genes){
+                        ind2 <- genes2terms_index[[j]]
+                        ## pairwise similarity between terms
+                        sim12 <- as.matrix(sim.term[ind1, ind2])
+                        sim[i,j] <- mean(sim12)
+                    }
+                }
+            }
+        }else if(method.gene=='max'){
+            for(i in 1:(num_genes-1)){
+                ind1 <- genes2terms_index[[i]]
+                progress_indicate(i, num_genes, 10, flag=T)
+                if(fast){
+                    js <- (i+1):num_genes
+                    ind_js <- genes2terms_index[js]
+                    sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
+                    new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
+                    res <- sapply(1:length(ind_js), function(k){
+                        max(sim12[,which(new_ind_js==k)])
+                    })
+                    sim[i,js] <- res
+                }else{
+                    for(j in (i+1):num_genes){
+                        ind2 <- genes2terms_index[[j]]
+                        ## pairwise similarity between terms
+                        sim12 <- as.matrix(sim.term[ind1, ind2])
+                        sim[i,j] <- max(sim12)
+                    }
+                }
+            }
+        }else if(method.gene=='BM.average'){
+            for(i in 1:(num_genes-1)){
+                ind1 <- genes2terms_index[[i]]
+                progress_indicate(i, num_genes, 10, flag=T)
+                if(fast){
+                    js <- (i+1):num_genes
+                    ind_js <- genes2terms_index[js]
+                    sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
+                    new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
+                    res <- sapply(1:length(ind_js), function(k){
+                        x <- as.matrix(sim12[,which(new_ind_js==k)])
+                        0.5*(mean(apply(x,1,max)) + mean(apply(x,2,max)))
+                    })
+                    sim[i,js] <- res
+                }else{
+                    for(j in (i+1):num_genes){
+                        ind2 <- genes2terms_index[[j]]
+                        ## pairwise similarity between terms
+                        sim12 <- as.matrix(sim.term[ind1, ind2])
+                        sim[i,j] <- 0.5*(mean(apply(sim12,1,max)) + mean(apply(sim12,2,max)))
+                    }
+                }
+            }
+        
+        }else if(method.gene=='BM.max'){
+            for(i in 1:(num_genes-1)){
+                ind1 <- genes2terms_index[[i]]
+                progress_indicate(i, num_genes, 10, flag=T)
+                if(fast){
+                    js <- (i+1):num_genes
+                    ind_js <- genes2terms_index[js]
+                    sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
+                    new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
+                    res <- sapply(1:length(ind_js), function(k){
+                        x <- as.matrix(sim12[,which(new_ind_js==k)])
+                        max(mean(apply(x,1,max)), mean(apply(x,2,max)))
+                    })
+                    sim[i,js] <- res
+                }else{
+                    for(j in (i+1):num_genes){
+                        ind2 <- genes2terms_index[[j]]
+                        ## pairwise similarity between terms
+                        sim12 <- as.matrix(sim.term[ind1, ind2])
+                        sim[i,j] <- max(mean(apply(sim12,1,max)), mean(apply(sim12,2,max)))
+                    }
+                }
+            }
+        }else if(method.gene=='BM.complete'){
+            for(i in 1:(num_genes-1)){
+                ind1 <- genes2terms_index[[i]]
+                progress_indicate(i, num_genes, 10, flag=T)
+                if(fast){
+                    js <- (i+1):num_genes
+                    ind_js <- genes2terms_index[js]
+                    sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
+                    new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
+                    res <- sapply(1:length(ind_js), function(k){
+                        x <- as.matrix(sim12[,which(new_ind_js==k)])
+                        min(c(apply(x,1,max),apply(x,2,max)))
+                    })
+                    sim[i,js] <- res
+                }else{
+                    for(j in (i+1):num_genes){
+                        ind2 <- genes2terms_index[[j]]
+                        ## pairwise similarity between terms
+                        sim12 <- as.matrix(sim.term[ind1, ind2])
+                        sim[i,j] <- min(c(apply(sim12,1,max),apply(sim12,2,max)))
+                    }
+                }
+            }
+        }
+        sim <- sim + t(sim)
+    
+    }
+    
     rownames(sim) <- colnames(sim) <- genes
     
     ####################################################################################
