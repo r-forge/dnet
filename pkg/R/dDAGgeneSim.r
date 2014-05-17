@@ -18,6 +18,7 @@
 #' @seealso \code{\link{dDAGtermSim}}, \code{\link{dDAGinduce}}, \code{\link{dDAGtip}}
 #' @include dDAGgeneSim.r
 #' @examples
+#' \dontrun{
 #' # 1) load HPPA as igraph object
 #' data(ig.HPPA)
 #' g <- ig.HPPA
@@ -33,6 +34,7 @@
 #' genes <- sample(allgenes,5)
 #' sim <- dDAGgeneSim(g=dag, genes=genes, method.gene="BM.average", method.term="Resnik", parallel=FALSE, verbose=TRUE)
 #' sim
+#' }
 
 dDAGgeneSim <- function (g, genes=NULL, method.gene=c("BM.average","BM.max","BM.complete","average","max"), method.term=c("Resnik","Lin","Schlicker","Jiang","Pesquita"), force=TRUE, fast=TRUE, parallel=TRUE, multicores=NULL, verbose=TRUE)
 {

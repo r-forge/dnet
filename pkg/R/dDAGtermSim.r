@@ -16,6 +16,7 @@
 #' @seealso \code{\link{dDAGinduce}}, \code{\link{dDAGancestor}}, \code{\link{dDAGgeneSim}}
 #' @include dDAGtermSim.r
 #' @examples
+#' \dontrun{
 #' # 1) load HPPA as igraph object
 #' data(ig.HPPA)
 #' g <- ig.HPPA
@@ -30,6 +31,7 @@
 #' terms <- sample(V(dag)$name, 5)
 #' sim <- dDAGtermSim(g=dag, terms=terms, method="Schlicker", parallel=FALSE)
 #' sim
+#' }
 
 dDAGtermSim <- function (g, terms=NULL, method=c("Resnik","Lin","Schlicker","Jiang","Pesquita"), fast=T, parallel=TRUE, multicores=NULL, verbose=T)
 {
