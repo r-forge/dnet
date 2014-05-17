@@ -3,7 +3,8 @@
 \title{Function to calculate pair-wise semantic similarity between input terms based on a direct acyclic graph (DAG) with annotated data}
 \usage{
 dDAGtermSim(g, terms = NULL, method = c("Resnik", "Lin", "Schlicker",
-"Jiang", "Pesquita"), fast = T, verbose = T)
+"Jiang", "Pesquita"), fast = T, parallel = TRUE, multicores = NULL,
+verbose = T)
 }
 \arguments{
 \item{g}{an object of class "igraph" or "graphNEL"}
@@ -40,6 +41,23 @@ always advisable to use this vectorised fast computation;
 since the conventional computation is just used for
 understanding scripts}
 
+\item{parallel}{logical to indicate whether parallel
+computation with multicores is used. By default, it sets
+to true, but not necessarily does so. Partly because
+parallel backends available will be system-specific (now
+only Linux or Mac OS). Also, it will depend on whether
+these two packages "foreach" and "doMC" have been
+installed. It can be installed via:
+\code{source("http://bioconductor.org/biocLite.R");
+biocLite(c("foreach","doMC"))}. If not yet installed,
+this option will be disabled}
+
+\item{multicores}{an integer to specify how many cores
+will be registered as the multicore parallel backend to
+the 'foreach' package. If NULL, it will use a half of
+cores available in a user's computer. This option only
+works when parallel computation is enabled}
+
 \item{verbose}{logical to indicate whether the messages
 will be displayed in the screen. By default, it sets to
 true for display}
@@ -51,13 +69,13 @@ similarity between input terms
 \description{
 \code{dDAGtermSim} is supposed to calculate pair-wise
 semantic similarity between input terms based on a direct
-acyclic graph (DAG) with annotated data.
+acyclic graph (DAG) with annotated data. Parallel computing
+is also supported for Linux or Mac operating systems.
 }
 \note{
 none
 }
 \examples{
-\dontrun{
 # 1) load HPPA as igraph object
 data(ig.HPPA)
 g <- ig.HPPA
@@ -71,9 +89,9 @@ path.mode="all_paths", verbose=TRUE)
 
 # 4) calculate pair-wise semantic similarity between 5 randomly chosen terms
 terms <- sample(V(dag)$name, 5)
-sim <- dDAGtermSim(g=dag, terms=terms, method="Schlicker")
+sim <- dDAGtermSim(g=dag, terms=terms, method="Schlicker",
+parallel=FALSE)
 sim
-}
 }
 \seealso{
 \code{\link{dDAGinduce}}, \code{\link{dDAGancestor}},

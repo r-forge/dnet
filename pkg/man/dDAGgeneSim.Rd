@@ -74,18 +74,19 @@ understanding scripts}
 \item{parallel}{logical to indicate whether parallel
 computation with multicores is used. By default, it sets
 to true, but not necessarily does so. Partly because
-parallel backends available will be system-specific.
-Also, it will depend on whether these two packages
-"foreach" and "doMC" have been installed. It can be
-installed via:
-source("http://bioconductor.org/biocLite.R");
-biocLite(c("foreach","doMC")). If not yet installed, this
-option will be disabled}
+parallel backends available will be system-specific (now
+only Linux or Mac OS). Also, it will depend on whether
+these two packages "foreach" and "doMC" have been
+installed. It can be installed via:
+\code{source("http://bioconductor.org/biocLite.R");
+biocLite(c("foreach","doMC"))}. If not yet installed,
+this option will be disabled}
 
-\item{multicores}{an integer to specify how many
-multicores will be registered as the multicore parallel
-backend with the 'foreach' package. If NULL, it will use
-a half of available cores of user's computer}
+\item{multicores}{an integer to specify how many cores
+will be registered as the multicore parallel backend to
+the 'foreach' package. If NULL, it will use a half of
+cores available in a user's computer. This option only
+works when parallel computation is enabled}
 
 \item{verbose}{logical to indicate whether the messages
 will be displayed in the screen. By default, it sets to
@@ -98,7 +99,8 @@ similarity between input terms
 \description{
 \code{dDAGgeneSim} is supposed to calculate pair-wise
 semantic similarity between genes based on a direct acyclic
-graph (DAG) with annotated data.
+graph (DAG) with annotated data. Parallel computing is also
+supported for Linux or Mac operating systems.
 }
 \note{
 For the mode "shortest_paths", the induced subgraph is the
@@ -107,7 +109,6 @@ there are many nodes in query, while the mode "all_paths"
 results in the complete subgraph.
 }
 \examples{
-\dontrun{
 # 1) load HPPA as igraph object
 data(ig.HPPA)
 g <- ig.HPPA
@@ -123,9 +124,8 @@ path.mode="all_paths", verbose=TRUE)
 allgenes <- unique(unlist(V(dag)$annotations))
 genes <- sample(allgenes,5)
 sim <- dDAGgeneSim(g=dag, genes=genes, method.gene="BM.average",
-method.term="Resnik", verbose=TRUE)
+method.term="Resnik", parallel=FALSE, verbose=TRUE)
 sim
-}
 }
 \seealso{
 \code{\link{dDAGtermSim}}, \code{\link{dDAGinduce}},

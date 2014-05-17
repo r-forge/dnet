@@ -113,11 +113,12 @@
     <h3>Description</h3>
     <p><code>dDAGtermSim</code> is supposed to calculate pair-wise
 semantic similarity between input terms based on a direct
-acyclic graph (DAG) with annotated data.</p>
+acyclic graph (DAG) with annotated data. Parallel computing
+is also supported for Linux or Mac operating systems.</p>
   
     <h3>Usage</h3>
     <pre>dDAGtermSim(g, terms = NULL, method = c("Resnik", "Lin", "Schlicker", "Jiang", "Pesquita"), 
-  fast = T, verbose = T)</pre>
+  fast = T, parallel = TRUE, multicores = NULL, verbose = T)</pre>
     
     <h3>Arguments</h3>
     <dl>
@@ -154,7 +155,24 @@ default, it uses "Schlicker" method</dd>
 computation is used. By default, it sets to true. It is
 always advisable to use this vectorised fast computation;
 since the conventional computation is just used for
-understanding scripts.</dd>
+understanding scripts</dd>
+      <dt>parallel</dt>
+      <dd>logical to indicate whether parallel
+computation with multicores is used. By default, it sets
+to true, but not necessarily does so. Partly because
+parallel backends available will be system-specific (now
+only Linux or Mac OS). Also, it will depend on whether
+these two packages "foreach" and "doMC" have been
+installed. It can be installed via:
+<code>source("http://bioconductor.org/biocLite.R");
+biocLite(c("foreach","doMC"))</code>. If not yet installed,
+this option will be disabled</dd>
+      <dt>multicores</dt>
+      <dd>an integer to specify how many cores
+will be registered as the multicore parallel backend to
+the 'foreach' package. If NULL, it will use a half of
+cores available in a user's computer. This option only
+works when parallel computation is enabled</dd>
       <dt>verbose</dt>
       <dd>logical to indicate whether the messages
 will be displayed in the screen. By default, it sets to
@@ -204,30 +222,31 @@ path.mode="all_paths", verbose=TRUE)
 <div class='input'>
 # 4) calculate pair-wise semantic similarity between 5 randomly chosen terms
 terms <- sample(V(dag)$name, 5)
-sim <- dDAGtermSim(g=dag, terms=terms, method="Schlicker")
+sim <- dDAGtermSim(g=dag, terms=terms, method="Schlicker",
+parallel=FALSE)
 </div>
-<strong class='message'>Start at 2014-05-11 20:54:48</strong>
+<strong class='message'>Start at 2014-05-17 18:18:05</strong>
 <strong class='message'></strong>
-<strong class='message'>Calculate semantic similarity between 5 terms using Schlicker method (2014-05-11 20:54:48)...</strong>
-<strong class='message'>Build a sparse matrix of children x ancestors (with 5 rows and 3156 columns (2014-05-11 20:54:48)...</strong>
-<strong class='message'>	1 out of 5 (2014-05-11 20:54:48)</strong>
-<strong class='message'>	2 out of 5 (2014-05-11 20:54:48)</strong>
-<strong class='message'>	3 out of 5 (2014-05-11 20:54:48)</strong>
-<strong class='message'>	4 out of 5 (2014-05-11 20:54:48)</strong>
-<strong class='message'>	5 out of 5 (2014-05-11 20:54:48)</strong>
+<strong class='message'>Calculate semantic similarity between 5 terms using Schlicker method (2014-05-17 18:18:05)...</strong>
+<strong class='message'>Build a sparse matrix of children x ancestors (with 5 rows and 3156 columns (2014-05-17 18:18:05)...</strong>
+<strong class='message'>	1 out of 5 (2014-05-17 18:18:05)</strong>
+<strong class='message'>	2 out of 5 (2014-05-17 18:18:05)</strong>
+<strong class='message'>	3 out of 5 (2014-05-17 18:18:05)</strong>
+<strong class='message'>	4 out of 5 (2014-05-17 18:18:05)</strong>
+<strong class='message'>	5 out of 5 (2014-05-17 18:18:06)</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-05-11 20:54:48</strong>
-<strong class='message'>Runtime in total is: 0 secs
+<strong class='message'>Finish at 2014-05-17 18:18:06</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'>sim
 </div>
 <div class='output'>5 x 5 sparse Matrix of class "dgCMatrix"
-           HP:0010013 HP:0002109 HP:0004444 HP:0002888 HP:0007787
-HP:0010013  0.9982818   .         .          .          .        
-HP:0002109  .           0.975945  .          .          .        
-HP:0004444  .           .         0.9982818  .          .        
-HP:0002888  .           .         .          0.9972509  .        
-HP:0007787  .           .         .          .          0.9975945
+           HP:0011922 HP:0009465 HP:0100273 HP:0008002 HP:0000481
+HP:0011922   1.991753   .          .         .          .        
+HP:0009465   .          1.983505   .         .          .        
+HP:0100273   .          .          1.983505  .          .        
+HP:0008002   .          .          .         1.9924399  0.1560963
+HP:0000481   .          .          .         0.1560963  1.7422680
 </div></pre>
   </div>
   

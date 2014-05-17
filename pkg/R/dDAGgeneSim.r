@@ -1,6 +1,6 @@
 #' Function to calculate pair-wise semantic similarity between genes based on a direct acyclic graph (DAG) with annotated data
 #'
-#' \code{dDAGgeneSim} is supposed to calculate pair-wise semantic similarity between genes based on a direct acyclic graph (DAG) with annotated data.
+#' \code{dDAGgeneSim} is supposed to calculate pair-wise semantic similarity between genes based on a direct acyclic graph (DAG) with annotated data. Parallel computing is also supported for Linux or Mac operating systems.
 #'
 #' @param g an object of class "igraph" or "graphNEL"
 #' @param genes the genes between which pair-wise semantic similarity is calculated. If NULL, all genes annotatable in the input dag will be used for calcluation, which is very prohibitively expensive!
@@ -8,8 +8,8 @@
 #' @param method.term the method used to measure semantic similarity between terms. It can be "Resnik" for information content (IC) of most informative information ancestor (MICA) (see \url{http://arxiv.org/pdf/cmp-lg/9511007.pdf}), "Lin" for 2*IC at MICA divided by the sum of IC at pairs of terms (see \url{http://webdocs.cs.ualberta.ca/~lindek/papers/sim.pdf}), "Schlicker" for weighted version of 'Lin' by the 1-prob(MICA) (see \url{http://www.ncbi.nlm.nih.gov/pubmed/16776819}), "Jiang" for 1 - difference between the sum of IC at pairs of terms and 2*IC at MICA (see \url{http://arxiv.org/pdf/cmp-lg/9709008.pdf}), "Pesquita" for graph information content similarity related to Tanimoto-Jacard index (ie. summed information content of common ancestors divided by summed information content of all ancestors of term1 and term2 (see \url{http://www.ncbi.nlm.nih.gov/pubmed/18460186}))
 #' @param force logical to indicate whether the only most specific terms (for each gene) will be used. By default, it sets to true. It is always advisable to use this since it is computationally fast but without compromising accuracy (considering the fact that true-path-rule has been applied when running \code{\link{dDAGannotate}})
 #' @param fast logical to indicate whether a vectorised fast computation is used. By default, it sets to true. It is always advisable to use this vectorised fast computation; since the conventional computation is just used for understanding scripts
-#' @param parallel logical to indicate whether parallel computation with multicores is used. By default, it sets to true, but not necessarily does so. Partly because parallel backends available will be system-specific. Also, it will depend on whether these two packages "foreach" and "doMC" have been installed. It can be installed via: source("http://bioconductor.org/biocLite.R"); biocLite(c("foreach","doMC")). If not yet installed, this option will be disabled
-#' @param multicores an integer to specify how many multicores will be registered as the multicore parallel backend with the 'foreach' package. If NULL, it will use a half of available cores of user's computer
+#' @param parallel logical to indicate whether parallel computation with multicores is used. By default, it sets to true, but not necessarily does so. Partly because parallel backends available will be system-specific (now only Linux or Mac OS). Also, it will depend on whether these two packages "foreach" and "doMC" have been installed. It can be installed via: \code{source("http://bioconductor.org/biocLite.R"); biocLite(c("foreach","doMC"))}. If not yet installed, this option will be disabled
+#' @param multicores an integer to specify how many cores will be registered as the multicore parallel backend to the 'foreach' package. If NULL, it will use a half of cores available in a user's computer. This option only works when parallel computation is enabled
 #' @param verbose logical to indicate whether the messages will be displayed in the screen. By default, it sets to true for display
 #' @return It returns a sparse matrix containing pair-wise semantic similarity between input terms
 #' @note For the mode "shortest_paths", the induced subgraph is the most concise, and thus informative for visualisation when there are many nodes in query, while the mode "all_paths" results in the complete subgraph.
@@ -18,7 +18,6 @@
 #' @seealso \code{\link{dDAGtermSim}}, \code{\link{dDAGinduce}}, \code{\link{dDAGtip}}
 #' @include dDAGgeneSim.r
 #' @examples
-#' \dontrun{
 #' # 1) load HPPA as igraph object
 #' data(ig.HPPA)
 #' g <- ig.HPPA
@@ -32,9 +31,8 @@
 #' # 4) calculate pair-wise semantic similarity between 5 randomly chosen genes 
 #' allgenes <- unique(unlist(V(dag)$annotations))
 #' genes <- sample(allgenes,5)
-#' sim <- dDAGgeneSim(g=dag, genes=genes, method.gene="BM.average", method.term="Resnik", verbose=TRUE)
+#' sim <- dDAGgeneSim(g=dag, genes=genes, method.gene="BM.average", method.term="Resnik", parallel=FALSE, verbose=TRUE)
 #' sim
-#' }
 
 dDAGgeneSim <- function (g, genes=NULL, method.gene=c("BM.average","BM.max","BM.complete","average","max"), method.term=c("Resnik","Lin","Schlicker","Jiang","Pesquita"), force=TRUE, fast=TRUE, parallel=TRUE, multicores=NULL, verbose=TRUE)
 {
@@ -135,13 +133,14 @@ dDAGgeneSim <- function (g, genes=NULL, method.gene=c("BM.average","BM.max","BM.
         }
     }
     ## pre-compute semantic similarity between terms in subject
-    sim.term <- suppressMessages(dDAGtermSim(ig, terms=terms, method=method.term, verbose=T))
+    sim.term <- suppressMessages(dDAGtermSim(ig, terms=terms, method=method.term, parallel=parallel, multicores=multicores, verbose=T))
     
     if(verbose){
         message(sprintf("Last, calculate pair-wise semantic similarity between %d genes using %s method (%s)...", length(genes), method.gene, as.character(Sys.time())), appendLF=T)
     }
     num_genes <- length(genes2terms)
     
+    ###### parallel computing
     flag_parallel <- F
     if(parallel==TRUE){
         pkgs <- c("doMC","foreach")
@@ -276,6 +275,7 @@ dDAGgeneSim <- function (g, genes=NULL, method.gene=c("BM.average","BM.max","BM.
         
     }
     
+    ###### non-parallel computing
     if(flag_parallel==F){
         ## calculate pair-wise semantic similarity between input genes
         sim <- Matrix::Matrix(0, nrow=length(genes), ncol=length(genes), sparse=T)
