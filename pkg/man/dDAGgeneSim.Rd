@@ -94,7 +94,9 @@ true for display}
 }
 \value{
 It returns a sparse matrix containing pair-wise semantic
-similarity between input terms
+similarity between input genes. This sparse matrix can be
+converted to the full matrix via the function
+\code{as.matrix}
 }
 \description{
 \code{dDAGgeneSim} is supposed to calculate pair-wise

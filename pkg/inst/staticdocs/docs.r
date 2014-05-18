@@ -28,8 +28,8 @@ list(
                 'dRDataLoader'
             )
         ),
-        sd_section("RWR analysis",
-            "These functions are used for analysis based on random walk with restart (RWR), including: calculation of network affinity and estimation of contact strength between samples.",
+        sd_section("Random Walk with Restart (RWR)",
+            "These functions are used for RWR-based analysis, including: calculation of network affinity and estimation of contact strength between samples.",
             c(
                 'dRWR',
                 'dRWRcontact',
@@ -47,7 +47,7 @@ list(
                 'visGSEA'
             )
         ),
-        sd_section("Built-in ontologies, and analysis and visualisation functions",
+        sd_section("Built-in ontologies, and supporting functions for analysis and visualisation",
             "These ontologies each are represented as a direct acyclic graph (DAG). DAG is stored as an object of the class 'igraph', which can be processed by various analysis and visualisation functions.",
             c(
                 "ig.GOMF",

@@ -1,6 +1,6 @@
 <a href="index.html"><IMG src="dnet_logo1.png" height="100px" id="logo"></a>
 
-<B><h4>An open-source R package for integrative analysis of high-throughput digitised data in terms of `network`, `ontology` and `evolution`</h4></B>
+<B><h4>An open-source R package for high-throughput omics data integrative analysis in terms of `network`, `evolution` and `ontology`</h4></B>
 
 ## User I/O
 
