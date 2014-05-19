@@ -1,6 +1,6 @@
 #' Function to setup a pipeine to estimate RWR-based contact strength between samples from an input gene-sample data matrix and an input graph
 #'
-#' \code{dRWRpipeline} is supposed to estimate sample relationships (ie. contact strength between samples) from an input gene-sample matrix and an input graph. The pipeline includes: 1) random walk restart (RWR) of the input graph using the input matrix as seeds; 2) calculation of contact strength (inner products of RWR-smoothed columns of input matrix); 3) estimation of the contact signficance by a randomalisation procedure. It supports two methods how to use RWR: 'direct' for directly applying RWR in the given seeds; 'indirectly' for first pre-computing affinity matrix of the input graph, and then deriving the affinity score.
+#' \code{dRWRpipeline} is supposed to estimate sample relationships (ie. contact strength between samples) from an input gene-sample matrix and an input graph. The pipeline includes: 1) random walk restart (RWR) of the input graph using the input matrix as seeds; 2) calculation of contact strength (inner products of RWR-smoothed columns of input matrix); 3) estimation of the contact signficance by a randomalisation procedure. It supports two methods how to use RWR: 'direct' for directly applying RWR in the given seeds; 'indirectly' for first pre-computing affinity matrix of the input graph, and then deriving the affinity score. Parallel computing is also supported for Linux or Mac operating systems.
 #'
 #' @param data an input gene-sample data matrix used for seeds
 #' @param g an object of class "igraph" or "graphNEL"
@@ -8,10 +8,12 @@
 #' @param normalise the way to normalise the adjacency matrix of the input graph. It can be 'laplacian' for laplacian normalisation, 'row' for row-wise normalisation, 'column' for column-wise normalisation, or 'none'
 #' @param restart the restart probability used for RWR. The restart probability takes the value from 0 to 1, controlling the range from the starting nodes/seeds that the walker will explore. The higher the value, the more likely the walker is to visit the nodes centered on the starting nodes. At the extreme when the restart probability is zero, the walker moves freely to the neighbors at each step without restarting from seeds, i.e., following a random walk (RW)
 #' @param normalise.affinity.matrix the way to normalise the output affinity matrix. It can be 'none' for no normalisation, 'quantile' for quantile normalisation to ensure that columns (if multiple) of the output affinity matrix have the same quantiles
-#' @param permutation how to do permutation. It can be 'degree' for degree-preserving permutation, 'none' for permutation in random
+#' @param permutation how to do permutation. It can be 'degree' for degree-preserving permutation, 'random' for permutation in random
 #' @param num.permutation the number of permutations used to for generating the distribution of contact strength under randomalisation
 #' @param p.adjust.method the method used to adjust p-values. It can be one of "BH", "BY", "bonferroni", "holm", "hochberg" and "hommel". The first two methods "BH" (widely used) and "BY" control the false discovery rate (FDR: the expected proportion of false discoveries amongst the rejected hypotheses); the last four methods "bonferroni", "holm", "hochberg" and "hommel" are designed to give strong control of the family-wise error rate (FWER). Notes: FDR is a less stringent condition than FWER
 #' @param adjp.cutoff the cutoff of adjusted pvalue to construct the contact graph
+#' @param parallel logical to indicate whether parallel computation with multicores is used. By default, it sets to true, but not necessarily does so. Partly because parallel backends available will be system-specific (now only Linux or Mac OS). Also, it will depend on whether these two packages "foreach" and "doMC" have been installed. It can be installed via: \code{source("http://bioconductor.org/biocLite.R"); biocLite(c("foreach","doMC"))}. If not yet installed, this option will be disabled
+#' @param multicores an integer to specify how many cores will be registered as the multicore parallel backend to the 'foreach' package. If NULL, it will use a half of cores available in a user's computer. This option only works when parallel computation is enabled
 #' @param verbose logical to indicate whether the messages will be displayed in the screen. By default, it sets to true for display
 #' @return 
 #' an object of class "dContact", a list with following components:
@@ -21,14 +23,16 @@
 #'  \item{\code{pval}: a symmetric matrix storing pvalue between pairwise samples}
 #'  \item{\code{adjpval}: a symmetric matrix storing adjusted pvalue between pairwise samples}
 #'  \item{\code{cgraph}: the constructed contact graph (as a 'igraph' object) under the cutoff of adjusted value}
+#'  \item{\code{Amatrix}: a pre-computated affinity matrix when using 'inderect' method; NULL otherwise}
 #'  \item{\code{call}: the call that produced this result}
 #' }
 #' @note The choice of which method to use RWR depends on the number of seed sets and the number of permutations for statistical test. If the total product of both numbers are huge, it is better to use 'indrect' method (for a single run). However, if the user wants to re-use pre-computed affinity matrix (ie. re-use the input graph a lot), then it is highly recommended to sequentially use \code{\link{dRWR}} and \code{\link{dRWRcontact}} instead. 
 #' @export
 #' @import Matrix
-#' @seealso \code{\link{dRWR}}, \code{\link{dRWRcontact}}
+#' @seealso \code{\link{dRWR}}, \code{\link{dRWRcontact}}, \code{\link{dCheckParallel}}
 #' @include dRWRpipeline.r
 #' @examples
+#' \dontrun{
 #' # 1) generate a random graph according to the ER model
 #' g <- erdos.renyi.game(100, 1/100)
 #'
@@ -44,10 +48,11 @@
 #' data <- data.frame(aSeeds,bSeeds)
 #' rownames(data) <- 1:5
 #' # calcualte their two contact graph
-#' dContact <- dRWRpipeline(data=data, g=subg)
+#' dContact <- dRWRpipeline(data=data, g=subg, parallel=FALSE)
 #' dContact
+#' }
 
-dRWRpipeline <- function(data, g, method=c("direct","indirect"), normalise=c("laplacian","row","column","none"), restart=0.5, normalise.affinity.matrix=c("none","quantile"), permutation=c("degree","none"), num.permutation=10, p.adjust.method=c("BH","BY","bonferroni","holm","hochberg","hommel"), adjp.cutoff=0.05, verbose=T)
+dRWRpipeline <- function(data, g, method=c("direct","indirect"), normalise=c("laplacian","row","column","none"), restart=0.5, normalise.affinity.matrix=c("none","quantile"), permutation=c("random","degree"), num.permutation=10, p.adjust.method=c("BH","BY","bonferroni","holm","hochberg","hommel"), adjp.cutoff=0.05, parallel=TRUE, multicores=NULL, verbose=T)
 {
 
     startT <- Sys.time()
@@ -150,14 +155,8 @@ dRWRpipeline <- function(data, g, method=c("direct","indirect"), normalise=c("la
         if(verbose){
             message(sprintf("\tusing %s method to do RWR (%s)...", method, as.character(Sys.time())), appendLF=T)
         }
-        Amatrix <- suppressWarnings(suppressMessages(dRWR(g=ig, normalise=normalise, restart=restart, normalise.affinity.matrix=normalise.affinity.matrix)))
+        sAmatrix <- suppressWarnings(suppressMessages(dRWR(g=ig, normalise=normalise, restart=restart, normalise.affinity.matrix=normalise.affinity.matrix, parallel=parallel, multicores=multicores)))
         
-        sAmatrix <- Amatrix
-        sAmatrix[sAmatrix<1e-6] <- 0
-        sAmatrix <- Matrix::Matrix(sAmatrix, sparse=T)
-        
-        #PTmatrix <- Amatrix %*% P0matrix
-        #PTmatrix <- Amatrix %*% Matrix::Matrix(P0matrix, sparse=T)
         PTmatrix <- sAmatrix %*% Matrix::Matrix(P0matrix, sparse=T)
         
         ## make sure the sum of elements in each steady probability vector is one
@@ -165,10 +164,10 @@ dRWRpipeline <- function(data, g, method=c("direct","indirect"), normalise=c("la
         
     }else if(method=='direct'){
     
-        Amatrix <- NULL
+        sAmatrix <- NULL
         
         ## RWR of a Matrix
-        PTmatrix <- suppressWarnings(suppressMessages(dRWR(g=ig, normalise=normalise, setSeeds=P0matrix, restart=restart, normalise.affinity.matrix=normalise.affinity.matrix)))
+        PTmatrix <- suppressWarnings(suppressMessages(dRWR(g=ig, normalise=normalise, setSeeds=P0matrix, restart=restart, normalise.affinity.matrix=normalise.affinity.matrix, parallel=parallel, multicores=multicores)))
         
         PTmatrix <- Matrix::Matrix(PTmatrix, sparse=T)
     }
@@ -187,31 +186,54 @@ dRWRpipeline <- function(data, g, method=c("direct","indirect"), normalise=c("la
         message(sprintf("Third, generate the distribution of contact strength based on %d permutations on nodes respecting %s (%s)...", B, permutation, as.character(Sys.time())), appendLF=T)
     }
     
-    exp_b <- list()
-    for (b in 1:B){
-        progress_indicate(b, B, 1000, flag=T)
-        
-        if(permutation=="degree"){
-            seeds_random <- dp_randomisation(ig, P0matrix)
-        }else if(permutation=="none"){
-            seeds_random <- P0matrix[sample(1:nrow(P0matrix)),]
-            rownames(seeds_random) <- rownames(P0matrix)
+    ###### parallel computing
+    flag_parallel <- F
+    if(parallel==TRUE){
+        flag_parallel <- dCheckParallel(multicores=multicores, verbose=verbose)
+        if(flag_parallel){
+            exp_b <- foreach(b=1:B, .inorder=T) %dopar% {
+                progress_indicate(b, B, 10, flag=T)
+                if(permutation=="degree"){
+                    seeds_random <- dp_randomisation(ig, P0matrix)
+                }else if(permutation=="random"){
+                    seeds_random <- P0matrix[sample(1:nrow(P0matrix)),]
+                    rownames(seeds_random) <- rownames(P0matrix)
+                }
+                if(method=='indirect'){
+                    PT_random <- sAmatrix %*% Matrix::Matrix(seeds_random, sparse=T)
+                    ## make sure the sum of elements in each steady probability vector is one
+                    PT_random <- sum2one(PT_random)
+                }else if(method=='direct'){
+                    PT_random <- suppressWarnings(suppressMessages(dRWR(g=ig, normalise=normalise, setSeeds=seeds_random, restart=restart, normalise.affinity.matrix=normalise.affinity.matrix, parallel=parallel, multicores=multicores)))
+                    PTmatrix <- Matrix::Matrix(PTmatrix, sparse=T)
+                }
+                as.matrix(t(as.matrix(PT_random)) %*% PT_random)
+            }
         }
+    }
+    
+    ###### non-parallel computing
+    if(flag_parallel==F){
+        exp_b <- list()
+        for (b in 1:B){
+            progress_indicate(b, B, 10, flag=T)
+            if(permutation=="degree"){
+                seeds_random <- dp_randomisation(ig, P0matrix)
+            }else if(permutation=="random"){
+                seeds_random <- P0matrix[sample(1:nrow(P0matrix)),]
+                rownames(seeds_random) <- rownames(P0matrix)
+            }
         
-        if(method=='indirect'){
-            #PT_random <- Amatrix %*% seeds_random
-            #PT_random <- Amatrix %*% Matrix::Matrix(seeds_random, sparse=T)
-            PT_random <- sAmatrix %*% Matrix::Matrix(seeds_random, sparse=T)
-            
-            ## make sure the sum of elements in each steady probability vector is one
-            PT_random <- sum2one(PT_random)
-        }else if(method=='direct'){
-            PT_random <- suppressWarnings(suppressMessages(dRWR(g=ig, normalise=normalise, setSeeds=seeds_random, restart=restart, normalise.affinity.matrix=normalise.affinity.matrix)))
-            
-            PTmatrix <- Matrix::Matrix(PTmatrix, sparse=T)
+            if(method=='indirect'){
+                PT_random <- sAmatrix %*% Matrix::Matrix(seeds_random, sparse=T)
+                ## make sure the sum of elements in each steady probability vector is one
+                PT_random <- sum2one(PT_random)
+            }else if(method=='direct'){
+                PT_random <- suppressWarnings(suppressMessages(dRWR(g=ig, normalise=normalise, setSeeds=seeds_random, restart=restart, normalise.affinity.matrix=normalise.affinity.matrix)))
+                PTmatrix <- Matrix::Matrix(PTmatrix, sparse=T)
+            }
+            exp_b[[b]] <- as.matrix(t(as.matrix(PT_random)) %*% PT_random)
         }
-        
-        exp_b[[b]] <- as.matrix(t(as.matrix(PT_random)) %*% PT_random)
     }
 
     if(verbose){
@@ -281,7 +303,7 @@ dRWRpipeline <- function(data, g, method=c("direct","indirect"), normalise=c("la
                      pval       = pval,
                      adjpval    = adjpval, 
                      cgraph     = cgraph, 
-                     Amatrix    = Amatrix,
+                     Amatrix    = sAmatrix,
                      call       = match.call(), 
                      method     = "dnet")
     class(dContact) <- "dContact"

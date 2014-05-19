@@ -4,7 +4,7 @@
 \usage{
 dRWR(g, normalise = c("laplacian", "row", "column", "none"),
 setSeeds = NULL, restart = 0.75, normalise.affinity.matrix = c("none",
-"quantile"), verbose = T)
+"quantile"), parallel = TRUE, multicores = NULL, verbose = T)
 }
 \arguments{
 \item{g}{an object of class "igraph" or "graphNEL"}
@@ -51,6 +51,23 @@ normalisation, 'quantile' for quantile normalisation to
 ensure that columns (if multiple) of the output affinity
 matrix have the same quantiles}
 
+\item{parallel}{logical to indicate whether parallel
+computation with multicores is used. By default, it sets
+to true, but not necessarily does so. Partly because
+parallel backends available will be system-specific (now
+only Linux or Mac OS). Also, it will depend on whether
+these two packages "foreach" and "doMC" have been
+installed. It can be installed via:
+\code{source("http://bioconductor.org/biocLite.R");
+biocLite(c("foreach","doMC"))}. If not yet installed,
+this option will be disabled}
+
+\item{multicores}{an integer to specify how many cores
+will be registered as the multicore parallel backend to
+the 'foreach' package. If NULL, it will use a half of
+cores available in a user's computer. This option only
+works when parallel computation is enabled}
+
 \item{verbose}{logical to indicate whether the messages
 will be displayed in the screen. By default, it sets to
 true for display}
@@ -82,12 +99,15 @@ affinity score of all nodes in the graph to the seeds. If
 the seeds are not give, it will pre-compute affinity matrix
 for nodes in the input graph with respect to each starting
 node (as a seed) by looping over every node in the graph.
+Parallel computing is also supported for Linux or Mac
+operating systems.
 }
 \note{
 The input graph will treat as an unweighted graph if there
 is no 'weight' edge attribute associated with
 }
 \examples{
+\dontrun{
 # 1) generate a random graph according to the ER model
 g <- erdos.renyi.game(100, 1/100)
 
@@ -96,7 +116,8 @@ subg <- dNetInduce(g, V(g), knn=0)
 V(subg)$name <- 1:vcount(subg)
 
 # 3) obtain the pre-computated affinity matrix
-PTmatrix <- dRWR(g=subg, normalise="laplacian", restart=0.75)
+PTmatrix <- dRWR(g=subg, normalise="laplacian", restart=0.75,
+parallel=FALSE)
 # visualise affinity matrix
 visHeatmapAdv(PTmatrix, Rowv=FALSE, Colv=FALSE, colormap="wyr",
 KeyValueName="Affinity")
@@ -110,10 +131,12 @@ setSeeds <- data.frame(aSeeds,bSeeds)
 rownames(setSeeds) <- 1:5
 # calcualte affinity matrix
 PTmatrix <- dRWR(g=subg, normalise="laplacian", setSeeds=setSeeds,
-restart=0.75)
+restart=0.75, parallel=FALSE)
 PTmatrix
 }
+}
 \seealso{
-\code{\link{dRWRcontact}}, \code{\link{dRWRpipeline}}
+\code{\link{dRWRcontact}}, \code{\link{dRWRpipeline}},
+\code{\link{dCheckParallel}}
 }
 

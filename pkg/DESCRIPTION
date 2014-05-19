@@ -1,14 +1,14 @@
 Package: dnet
 Type: Package
 Title: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology
-Version: 1.0.2
-Date: 2014-5-18
+Version: 1.0.3
+Date: 2014-5-19
 Author: Hai Fang and Julian Gough
 Maintainer: Hai Fang <hfang@cs.bris.ac.uk>
 Depends: R (>= 3.1.0), igraph, supraHex
 Imports: graph, Rgraphviz, Matrix, Biobase
 Suggests: limma, survival, foreach, doMC
-Description: The 'dnet' package is initiated to fill in the need of an open-source tool for high-throughput omics data in an integrative manner in terms of network, evolution and ontology. More specifically, dnet intends to analyse the biological network whose nodes/genes are associated with digitised information such as expression levels across samples. To help make sense of identified networks, enrichment analysis is also supported using a wide variety of pre-compiled ontologies and phylostratific gene age information in major organisms including human, mouse, rat, chicken, C.elegans, fruit fly, zebrafish and arabidopsis. In summary, dnet aims to deliver an eye-intuitive tool with rich visuals but less inputs.
+Description: The 'dnet' package is initiated to fill in the need of an open-source tool for high-throughput omics data in an integrative manner in terms of network, evolution and ontology. More specifically, dnet intends to analyse the biological network whose nodes/genes are associated with digitised information such as expression levels across samples. To help make sense of identified networks, enrichment analysis is also supported using a wide variety of pre-compiled ontologies and phylostratific gene age information in major organisms including human, mouse, rat, chicken, C.elegans, fruit fly, zebrafish and arabidopsis. Add-on functionalities are supports for semantic similarity calculation between ontology terms (and genes), and network affinity calculation using Random Walk with Restart; both can be done via high-performance parallel computing. In summary, dnet aims to deliver an eye-intuitive tool with rich visuals but less inputs.
 URL: http://dnet.r-forge.r-project.org
 Collate: 
     'dGSEA.r'
@@ -49,5 +49,6 @@ Collate:
     'dEnricherView.r'
     'visBoxplotAdv.r'
     'dRDataLoader.r'
+    'dCheckParallel.r'
 License: GPL-2
 biocViews: Bioinformatics

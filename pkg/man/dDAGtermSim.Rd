@@ -99,6 +99,6 @@ sim
 }
 \seealso{
 \code{\link{dDAGinduce}}, \code{\link{dDAGancestor}},
-\code{\link{dDAGgeneSim}}
+\code{\link{dDAGgeneSim}}, \code{\link{dCheckParallel}}
 }
 

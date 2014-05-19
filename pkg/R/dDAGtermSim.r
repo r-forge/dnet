@@ -13,7 +13,7 @@
 #' @note none
 #' @export
 #' @import Matrix
-#' @seealso \code{\link{dDAGinduce}}, \code{\link{dDAGancestor}}, \code{\link{dDAGgeneSim}}
+#' @seealso \code{\link{dDAGinduce}}, \code{\link{dDAGancestor}}, \code{\link{dDAGgeneSim}}, \code{\link{dCheckParallel}}
 #' @include dDAGtermSim.r
 #' @examples
 #' \dontrun{
@@ -74,7 +74,7 @@ dDAGtermSim <- function (g, terms=NULL, method=c("Resnik","Lin","Schlicker","Jia
     }
     
     ####################################################
-    # A function to indicate the running progress
+    ## A function to indicate the running progress
     progress_indicate <- function(i, B, step, flag=F){
         if(i %% ceiling(B/step) == 0 | i==B | i==1){
             if(flag & verbose){
@@ -82,6 +82,7 @@ dDAGtermSim <- function (g, terms=NULL, method=c("Resnik","Lin","Schlicker","Jia
             }
         }
     }
+    
     ####################################################
     num_terms <- length(terms)
     if(verbose){
@@ -97,158 +98,134 @@ dDAGtermSim <- function (g, terms=NULL, method=c("Resnik","Lin","Schlicker","Jia
     ###### parallel computing
     flag_parallel <- F
     if(parallel==TRUE){
-        pkgs <- c("doMC","foreach")
-        if(any(pkgs %in% rownames(installed.packages()))){
-            tmp <- sapply(pkgs, function(pkg) {
-                suppressPackageStartupMessages(require(pkg, character.only=T))
-            })
-            
-            if(all(tmp)){
-                flag_parallel <- T
+        flag_parallel <- dCheckParallel(multicores=multicores, verbose=verbose)
+        if(flag_parallel){
                 
-                registerDoMC()
-                cores <- getDoParWorkers()
-                if(is.null(multicores)){
-                    multicores <- max(1, ceiling(cores*0.5))
-                }else if(is.na(multicores)){
-                    multicores <- max(1, ceiling(cores*0.5))
-                }else if(multicores < 1 | multicores > cores){
-                    multicores <- max(1, ceiling(cores*0.5))
-                }else{
-                    multicores <- as.integer(multicores)
+            if(method=="Resnik"){
+                sim <- foreach(i=1:num_terms, .inorder=T, .combine=rbind) %dopar% {
+                    ancestor_i <- which(sCP[i,]==1)
+                    progress_indicate(i, num_terms, 10, flag=T)
+                    fast <- T
+                    if(fast){
+                        mat <- sCP[i:num_terms,]
+                        ancestor_js <- which(matrix(mat==1, nrow=num_terms-i+1), arr.ind=T)
+                        flag <- is.element(ancestor_js[,2], ancestor_i)
+                        ca_js <- ancestor_js[flag,]
+                        ca_js_list <- split(ca_js[,2],ca_js[,1])
+                        mica_js <- sapply(ca_js_list, function(x){
+                            x[which.max(IC[x])]
+                        })
+                        js <- as.numeric(names(ca_js_list))+i-1
+                        res <- IC[mica_js]
+                        x <- rep(0, num_terms)
+                        x[js] <- res
+                        x
+                    }
                 }
-                registerDoMC(multicores) # register the multicore parallel backend with the 'foreach' package
-            
-                if(verbose){
-                    message(sprintf("\tdo parallel computation using %d cores ...", multicores, as.character(Sys.time())), appendLF=T)
+            }else if(method=="Lin"){
+                sim <- foreach(i=1:num_terms, .inorder=T, .combine=rbind) %dopar% {
+                    ancestor_i <- which(sCP[i,]==1)
+                    progress_indicate(i, num_terms, 10, flag=T)
+                    fast <- T
+                    if(fast){
+                        mat <- sCP[i:num_terms,]
+                        ancestor_js <- which(matrix(mat==1, nrow=num_terms-i+1), arr.ind=T)
+                        flag <- is.element(ancestor_js[,2], ancestor_i)
+                        ca_js <- ancestor_js[flag,]
+                        ca_js_list <- split(ca_js[,2],ca_js[,1])
+                        mica_js <- sapply(ca_js_list, function(x){
+                            x[which.max(IC[x])]
+                        })
+                        js <- as.numeric(names(ca_js_list))+i-1
+                        res <- 2*IC[mica_js]/(IC[ind[i]]+IC[ind[js]])
+                        x <- rep(0, num_terms)
+                        x[js] <- res
+                        x
+                    }
                 }
-                
-                if(method=="Resnik"){
-                    sim <- foreach(i=1:num_terms, .inorder=T, .combine=rbind) %dopar% {
-                        ancestor_i <- which(sCP[i,]==1)
-                        progress_indicate(i, num_terms, 10, flag=T)
-                        fast <- T
-                        if(fast){
-                            mat <- sCP[i:num_terms,]
-                            ancestor_js <- which(matrix(mat==1, nrow=num_terms-i+1), arr.ind=T)
-                            flag <- is.element(ancestor_js[,2], ancestor_i)
-                            ca_js <- ancestor_js[flag,]
-                            ca_js_list <- split(ca_js[,2],ca_js[,1])
-                            mica_js <- sapply(ca_js_list, function(x){
-                                x[which.max(IC[x])]
-                            })
-                            js <- as.numeric(names(ca_js_list))+i-1
-                            res <- IC[mica_js]
-                            x <- rep(0, num_terms)
-                            x[js] <- res
-                            x
-                        }
+            }else if(method=="Schlicker"){
+                sim <- foreach(i=1:num_terms, .inorder=T, .combine=rbind) %dopar% {
+                    ancestor_i <- which(sCP[i,]==1)
+                    progress_indicate(i, num_terms, 10, flag=T)
+                    fast <- T
+                    if(fast){
+                        mat <- sCP[i:num_terms,]
+                        ancestor_js <- which(matrix(mat==1, nrow=num_terms-i+1), arr.ind=T)
+                        flag <- is.element(ancestor_js[,2], ancestor_i)
+                        ca_js <- ancestor_js[flag,]
+                        ca_js_list <- split(ca_js[,2],ca_js[,1])
+                        mica_js <- sapply(ca_js_list, function(x){
+                            x[which.max(IC[x])]
+                        })
+                        js <- as.numeric(names(ca_js_list))+i-1
+                        res <- (2*IC[mica_js]/(IC[ind[i]]+IC[ind[js]])) * (1 - 10^(-IC[mica_js]))
+                        x <- rep(0, num_terms)
+                        x[js] <- res
+                        x
                     }
-                }else if(method=="Lin"){
-                    sim <- foreach(i=1:num_terms, .inorder=T, .combine=rbind) %dopar% {
-                        ancestor_i <- which(sCP[i,]==1)
-                        progress_indicate(i, num_terms, 10, flag=T)
-                        fast <- T
-                        if(fast){
-                            mat <- sCP[i:num_terms,]
-                            ancestor_js <- which(matrix(mat==1, nrow=num_terms-i+1), arr.ind=T)
-                            flag <- is.element(ancestor_js[,2], ancestor_i)
-                            ca_js <- ancestor_js[flag,]
-                            ca_js_list <- split(ca_js[,2],ca_js[,1])
-                            mica_js <- sapply(ca_js_list, function(x){
-                                x[which.max(IC[x])]
-                            })
-                            js <- as.numeric(names(ca_js_list))+i-1
-                            res <- 2*IC[mica_js]/(IC[ind[i]]+IC[ind[js]])
-                            x <- rep(0, num_terms)
-                            x[js] <- res
-                            x
-                        }
-                    }
-                }else if(method=="Schlicker"){
-                    sim <- foreach(i=1:num_terms, .inorder=T, .combine=rbind) %dopar% {
-                        ancestor_i <- which(sCP[i,]==1)
-                        progress_indicate(i, num_terms, 10, flag=T)
-                        fast <- T
-                        if(fast){
-                            mat <- sCP[i:num_terms,]
-                            ancestor_js <- which(matrix(mat==1, nrow=num_terms-i+1), arr.ind=T)
-                            flag <- is.element(ancestor_js[,2], ancestor_i)
-                            ca_js <- ancestor_js[flag,]
-                            ca_js_list <- split(ca_js[,2],ca_js[,1])
-                            mica_js <- sapply(ca_js_list, function(x){
-                                x[which.max(IC[x])]
-                            })
-                            js <- as.numeric(names(ca_js_list))+i-1
-                            res <- (2*IC[mica_js]/(IC[ind[i]]+IC[ind[js]])) * (1 - 10^(-IC[mica_js]))
-                            x <- rep(0, num_terms)
-                            x[js] <- res
-                            x
-                        }
-                    }
-                }else if(method=="Jiang"){
-                    sim <- foreach(i=1:num_terms, .inorder=T, .combine=rbind) %dopar% {
-                        ancestor_i <- which(sCP[i,]==1)
-                        progress_indicate(i, num_terms, 10, flag=T)
-                        fast <- T
-                        if(fast){
-                            mat <- sCP[i:num_terms,]
-                            ancestor_js <- which(matrix(mat==1, nrow=num_terms-i+1), arr.ind=T)
-                            flag <- is.element(ancestor_js[,2], ancestor_i)
-                            ca_js <- ancestor_js[flag,]
-                            ca_js_list <- split(ca_js[,2],ca_js[,1])
-                            mica_js <- sapply(ca_js_list, function(x){
-                                x[which.max(IC[x])]
-                            })
-                            js <- as.numeric(names(ca_js_list))+i-1
-                            tmp <- IC[ind[i]]+IC[ind[js]]-2*IC[mica_js]
-                            tmp[tmp>1] <- 1
-                            res <- 1- tmp
-                            x <- rep(0, num_terms)
-                            x[js] <- res
-                            x
-                        }
-                    }
-                }else if(method=="Pesquita"){
-                    sim <- foreach(i=1:num_terms, .inorder=T, .combine=rbind) %dopar% {
-                        ancestor_i <- which(sCP[i,]==1)
-                        progress_indicate(i, num_terms, 10, flag=T)
-                        fast <- T
-                        if(fast){
-                            mat <- sCP[i:num_terms,]
-                            ancestor_js <- which(matrix(mat==1, nrow=num_terms-i+1), arr.ind=T)
-                            flag <- is.element(ancestor_js[,2], ancestor_i)
-                            ca_js <- ancestor_js[flag,]
-                            ca_js_list <- split(ca_js[,2],ca_js[,1])
-                            mica_js <- sapply(ca_js_list, function(x){
-                                x[which.max(IC[x])]
-                            })
-                            js <- as.numeric(names(ca_js_list))+i-1
-                            ## graph information content similarity related to Tanimoto-Jacard index
-                            ## summed information content of common ancestors divided by summed information content of all ancestors of term1 and term2
-                            ## for all ancestors
-                            allan_js_list <- split(ancestor_js[,2],ancestor_js[,1])
-                            allan_union <- sapply(allan_js_list, function(x){
-                                ux <- union(x, ancestor_i)
-                                sum(IC[ux])
-                            })
-                            ## for all common ancestors
-                            allca_union <- sapply(ca_js_list, function(x){
-                                sum(IC[x])
-                            })
-                            ## their ratio
-                            res <- allca_union / allan_union
-                            x <- rep(0, num_terms)
-                            x[js] <- res
-                            x
-                        }
-                    }
-                    
                 }
-                
-                sim <- sim + t(sim)
-                sim <- Matrix::Matrix(sim, sparse=T)
+            }else if(method=="Jiang"){
+                sim <- foreach(i=1:num_terms, .inorder=T, .combine=rbind) %dopar% {
+                    ancestor_i <- which(sCP[i,]==1)
+                    progress_indicate(i, num_terms, 10, flag=T)
+                    fast <- T
+                    if(fast){
+                        mat <- sCP[i:num_terms,]
+                        ancestor_js <- which(matrix(mat==1, nrow=num_terms-i+1), arr.ind=T)
+                        flag <- is.element(ancestor_js[,2], ancestor_i)
+                        ca_js <- ancestor_js[flag,]
+                        ca_js_list <- split(ca_js[,2],ca_js[,1])
+                        mica_js <- sapply(ca_js_list, function(x){
+                            x[which.max(IC[x])]
+                        })
+                        js <- as.numeric(names(ca_js_list))+i-1
+                        tmp <- IC[ind[i]]+IC[ind[js]]-2*IC[mica_js]
+                        tmp[tmp>1] <- 1
+                        res <- 1- tmp
+                        x <- rep(0, num_terms)
+                        x[js] <- res
+                        x
+                    }
+                }
+            }else if(method=="Pesquita"){
+                sim <- foreach(i=1:num_terms, .inorder=T, .combine=rbind) %dopar% {
+                    ancestor_i <- which(sCP[i,]==1)
+                    progress_indicate(i, num_terms, 10, flag=T)
+                    fast <- T
+                    if(fast){
+                        mat <- sCP[i:num_terms,]
+                        ancestor_js <- which(matrix(mat==1, nrow=num_terms-i+1), arr.ind=T)
+                        flag <- is.element(ancestor_js[,2], ancestor_i)
+                        ca_js <- ancestor_js[flag,]
+                        ca_js_list <- split(ca_js[,2],ca_js[,1])
+                        mica_js <- sapply(ca_js_list, function(x){
+                            x[which.max(IC[x])]
+                        })
+                        js <- as.numeric(names(ca_js_list))+i-1
+                        ## graph information content similarity related to Tanimoto-Jacard index
+                        ## summed information content of common ancestors divided by summed information content of all ancestors of term1 and term2
+                        ## for all ancestors
+                        allan_js_list <- split(ancestor_js[,2],ancestor_js[,1])
+                        allan_union <- sapply(allan_js_list, function(x){
+                            ux <- union(x, ancestor_i)
+                            sum(IC[ux])
+                        })
+                        ## for all common ancestors
+                        allca_union <- sapply(ca_js_list, function(x){
+                            sum(IC[x])
+                        })
+                        ## their ratio
+                        res <- allca_union / allan_union
+                        x <- rep(0, num_terms)
+                        x[js] <- res
+                        x
+                    }
+                }
+    
             }
+
+            sim <- sim + Matrix::t(sim)
+            sim <- Matrix::Matrix(sim, sparse=T)
         }
     }
 
@@ -411,7 +388,7 @@ dDAGtermSim <- function (g, terms=NULL, method=c("Resnik","Lin","Schlicker","Jia
                 }
             }
         }
-        sim <- sim + t(sim)
+        sim <- sim + Matrix::t(sim)
     }
     rownames(sim) <- colnames(sim) <- terms
     
@@ -427,5 +404,5 @@ dDAGtermSim <- function (g, terms=NULL, method=c("Resnik","Lin","Schlicker","Jia
     runTime <- as.numeric(difftime(strptime(endT, "%Y-%m-%d %H:%M:%S"), strptime(startT, "%Y-%m-%d %H:%M:%S"), units="secs"))
     message(paste(c("Runtime in total is: ",runTime," secs\n"), collapse=""), appendLF=T)
     
-    return(sim)
+    invisible(sim)
 }

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dDAGgeneSim @ dnet 1.0.2</title>
+<title>dDAGgeneSim @ dnet 1.0.3</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.2</a>
+      <a class="brand" href="index.html">dnet 1.0.3</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -215,7 +215,9 @@ true for display</dd>
       <h3>Value</h3>
       
       <p>It returns a sparse matrix containing pair-wise semantic
-similarity between input terms</p>
+similarity between input genes. This sparse matrix can be
+converted to the full matrix via the function
+<code>as.matrix</code></p>
     </div>
     <div class="Note">
       <h3>Note</h3>
@@ -259,29 +261,29 @@ genes <- sample(allgenes,5)
 sim <- dDAGgeneSim(g=dag, genes=genes, method.gene="BM.average",
 method.term="Resnik", parallel=FALSE, verbose=TRUE)
 </div>
-<strong class='message'>Start at 2014-05-17 18:17:55</strong>
+<strong class='message'>Start at 2014-05-19 13:58:04</strong>
 <strong class='message'></strong>
-<strong class='message'>First, extract all annotatable genes (2014-05-17 18:17:55)...</strong>
+<strong class='message'>First, extract all annotatable genes (2014-05-19 13:58:04)...</strong>
 <strong class='message'>	there are 5 input genes amongst 2910 annotatable genes</strong>
-<strong class='message'>Second, pre-compute semantic similarity between 135 terms (forced to be the most specific for each gene) using Resnik method (2014-05-17 18:17:56)...</strong>
-<strong class='message'>Last, calculate pair-wise semantic similarity between 5 genes using BM.average method (2014-05-17 18:17:57)...</strong>
-<strong class='message'>	1 out of 5 (2014-05-17 18:17:57)</strong>
-<strong class='message'>	2 out of 5 (2014-05-17 18:17:57)</strong>
-<strong class='message'>	3 out of 5 (2014-05-17 18:17:57)</strong>
-<strong class='message'>	4 out of 5 (2014-05-17 18:17:57)</strong>
+<strong class='message'>Second, pre-compute semantic similarity between 246 terms (forced to be the most specific for each gene) using Resnik method (2014-05-19 13:58:06)...</strong>
+<strong class='message'>Last, calculate pair-wise semantic similarity between 5 genes using BM.average method (2014-05-19 13:58:09)...</strong>
+<strong class='message'>	1 out of 5 (2014-05-19 13:58:09)</strong>
+<strong class='message'>	2 out of 5 (2014-05-19 13:58:09)</strong>
+<strong class='message'>	3 out of 5 (2014-05-19 13:58:09)</strong>
+<strong class='message'>	4 out of 5 (2014-05-19 13:58:09)</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-05-17 18:17:57</strong>
-<strong class='message'>Runtime in total is: 2 secs
+<strong class='message'>Finish at 2014-05-19 13:58:09</strong>
+<strong class='message'>Runtime in total is: 5 secs
 </strong>
 <div class='input'>sim
 </div>
 <div class='output'>5 x 5 sparse Matrix of class "dgCMatrix"
-            3211      1312     83696       410    405753
-3211   .         0.5898195 0.6822546 0.1984223 0.2073325
-1312   0.5898195 .         0.6028561 0.4465971 0.7889138
-83696  0.6822546 0.6028561 .         0.3962191 0.3286142
-410    0.1984223 0.4465971 0.3962191 .         0.3732660
-405753 0.2073325 0.7889138 0.3286142 0.3732660 .        
+          79621      4010     50964     10682      5290
+79621 .         0.3528623 0.4570133 0.4724877 0.4806086
+4010  0.3528623 .         0.6601249 0.9977175 0.7206718
+50964 0.4570133 0.6601249 .         0.9803181 0.7981336
+10682 0.4724877 0.9977175 0.9803181 .         0.8602611
+5290  0.4806086 0.7206718 0.7981336 0.8602611 .        
 </div></pre>
   </div>
   
@@ -299,11 +301,11 @@ method.term="Resnik", parallel=FALSE, verbose=TRUE)
     <h2>See also</h2>
     
 <code><a href='dDAGtermSim.html'>dDAGtermSim</a></code>, <code><a href='dDAGinduce.html'>dDAGinduce</a></code>,
-<code><a href='dDAGtip.html'>dDAGtip</a></code>
+<code><a href='dDAGtip.html'>dDAGtip</a></code>, <code><a href='dCheckParallel.html'>dCheckParallel</a></code>
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) dnet: an open-source R package for integrative analysis of digitised data in terms of network, ontology and evolution. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

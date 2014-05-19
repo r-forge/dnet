@@ -15,7 +15,7 @@
 #' @note For the mode "shortest_paths", the induced subgraph is the most concise, and thus informative for visualisation when there are many nodes in query, while the mode "all_paths" results in the complete subgraph.
 #' @export
 #' @import Matrix
-#' @seealso \code{\link{dDAGtermSim}}, \code{\link{dDAGinduce}}, \code{\link{dDAGtip}}
+#' @seealso \code{\link{dDAGtermSim}}, \code{\link{dDAGinduce}}, \code{\link{dDAGtip}}, \code{\link{dCheckParallel}}
 #' @include dDAGgeneSim.r
 #' @examples
 #' \dontrun{
@@ -63,7 +63,7 @@ dDAGgeneSim <- function (g, genes=NULL, method.gene=c("BM.average","BM.max","BM.
     }
 
     ####################################################
-    # A function to indicate the running progress
+    ## A function to indicate the running progress
     progress_indicate <- function(i, B, step, flag=F){
         if(i %% ceiling(B/step) == 0 | i==B | i==1){
             if(flag & verbose){
@@ -71,6 +71,7 @@ dDAGgeneSim <- function (g, genes=NULL, method.gene=c("BM.average","BM.max","BM.
             }
         }
     }
+    
     ####################################################
 
     if(verbose){
@@ -145,136 +146,109 @@ dDAGgeneSim <- function (g, genes=NULL, method.gene=c("BM.average","BM.max","BM.
     ###### parallel computing
     flag_parallel <- F
     if(parallel==TRUE){
-        pkgs <- c("doMC","foreach")
-        if(any(pkgs %in% rownames(installed.packages()))){
-            tmp <- sapply(pkgs, function(pkg) {
-                suppressPackageStartupMessages(require(pkg, character.only=T))
-            })
-            
-            if(all(tmp)){
-                flag_parallel <- T
-                
-                registerDoMC()
-                cores <- getDoParWorkers()
-                if(is.null(multicores)){
-                    multicores <- max(1, ceiling(cores*0.5))
-                }else if(is.na(multicores)){
-                    multicores <- max(1, ceiling(cores*0.5))
-                }else if(multicores < 1 | multicores > cores){
-                    multicores <- max(1, ceiling(cores*0.5))
-                }else{
-                    multicores <- as.integer(multicores)
-                }
-                registerDoMC(multicores) # register the multicore parallel backend with the 'foreach' package
-            
-                if(verbose){
-                    message(sprintf("\tdo parallel computation using %d cores ...", multicores, as.character(Sys.time())), appendLF=T)
-                }
-            
-                if(method.gene=='average'){
-                    sim <- foreach(i=1:(num_genes-1), .inorder=T, .combine=rbind) %dopar% {
-                        ind1 <- genes2terms_index[[i]]
-                        progress_indicate(i, num_genes, 10, flag=T)
-                        fast <- T
-                        if(fast){
-                            js <- (i+1):num_genes
-                            ind_js <- genes2terms_index[js]
-                            sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
-                            new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
-                            res <- sapply(1:length(ind_js), function(k){
-                                mean(sim12[,which(new_ind_js==k)])
-                            })
-                            x <- rep(0, num_genes)
-                            x[js] <- res
-                            x
-                        }
-                    }
-                }else if(method.gene=='max'){
-                    sim <- foreach(i=1:(num_genes-1), .inorder=T, .combine=rbind) %dopar% {
-                        ind1 <- genes2terms_index[[i]]
-                        progress_indicate(i, num_genes, 10, flag=T)
-                        fast <- T
-                        if(fast){
-                            js <- (i+1):num_genes
-                            ind_js <- genes2terms_index[js]
-                            sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
-                            new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
-                            res <- sapply(1:length(ind_js), function(k){
-                                max(sim12[,which(new_ind_js==k)])
-                            })
-                            x <- rep(0, num_genes)
-                            x[js] <- res
-                            x
-                        }
-                    }
-                }else if(method.gene=='BM.average'){
-                    sim <- foreach(i=1:(num_genes-1), .inorder=T, .combine=rbind) %dopar% {
-                        ind1 <- genes2terms_index[[i]]
-                        progress_indicate(i, num_genes, 10, flag=T)
-                        fast <- T
-                        if(fast){
-                            js <- (i+1):num_genes
-                            ind_js <- genes2terms_index[js]
-                            sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
-                            new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
-                            res <- sapply(1:length(ind_js), function(k){
-                                x <- as.matrix(sim12[,which(new_ind_js==k)])
-                                0.5*(mean(apply(x,1,max)) + mean(apply(x,2,max)))
-                            })
-                            x <- rep(0, num_genes)
-                            x[js] <- res
-                            x
-                        }
-                    }
-                }else if(method.gene=='BM.max'){
-                    sim <- foreach(i=1:(num_genes-1), .inorder=T, .combine=rbind) %dopar% {
-                        ind1 <- genes2terms_index[[i]]
-                        progress_indicate(i, num_genes, 10, flag=T)
-                        fast <- T
-                        if(fast){
-                            js <- (i+1):num_genes
-                            ind_js <- genes2terms_index[js]
-                            sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
-                            new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
-                            res <- sapply(1:length(ind_js), function(k){
-                                x <- as.matrix(sim12[,which(new_ind_js==k)])
-                                max(mean(apply(x,1,max)), mean(apply(x,2,max)))
-                            })
-                            x <- rep(0, num_genes)
-                            x[js] <- res
-                            x
-                        }
-                    }
-                }else if(method.gene=='BM.complete'){
-                    sim <- foreach(i=1:(num_genes-1), .inorder=T, .combine=rbind) %dopar% {
-                        ind1 <- genes2terms_index[[i]]
-                        progress_indicate(i, num_genes, 10, flag=T)
-                        fast <- T
-                        if(fast){
-                            js <- (i+1):num_genes
-                            ind_js <- genes2terms_index[js]
-                            sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
-                            new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
-                            res <- sapply(1:length(ind_js), function(k){
-                                x <- as.matrix(sim12[,which(new_ind_js==k)])
-                                min(c(apply(x,1,max),apply(x,2,max)))
-                            })
-                            x <- rep(0, num_genes)
-                            x[js] <- res
-                            x
-                        }
+        flag_parallel <- dCheckParallel(multicores=multicores, verbose=verbose)
+        if(flag_parallel){
+            if(method.gene=='average'){
+                sim <- foreach(i=1:(num_genes-1), .inorder=T, .combine=rbind) %dopar% {
+                    ind1 <- genes2terms_index[[i]]
+                    progress_indicate(i, num_genes, 10, flag=T)
+                    fast <- T
+                    if(fast){
+                        js <- (i+1):num_genes
+                        ind_js <- genes2terms_index[js]
+                        sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
+                        new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
+                        res <- sapply(1:length(ind_js), function(k){
+            mean(sim12[,which(new_ind_js==k)])
+                        })
+                        x <- rep(0, num_genes)
+                        x[js] <- res
+                        x
                     }
                 }
-                
-                ## add the last row
-                sim <- rbind(sim, rep(0, num_genes))
-                
-                sim <- sim + t(sim)
-                sim <- Matrix::Matrix(sim, sparse=T)
+            }else if(method.gene=='max'){
+                sim <- foreach(i=1:(num_genes-1), .inorder=T, .combine=rbind) %dopar% {
+                    ind1 <- genes2terms_index[[i]]
+                    progress_indicate(i, num_genes, 10, flag=T)
+                    fast <- T
+                    if(fast){
+                        js <- (i+1):num_genes
+                        ind_js <- genes2terms_index[js]
+                        sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
+                        new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
+                        res <- sapply(1:length(ind_js), function(k){
+            max(sim12[,which(new_ind_js==k)])
+                        })
+                        x <- rep(0, num_genes)
+                        x[js] <- res
+                        x
+                    }
+                }
+            }else if(method.gene=='BM.average'){
+                sim <- foreach(i=1:(num_genes-1), .inorder=T, .combine=rbind) %dopar% {
+                    ind1 <- genes2terms_index[[i]]
+                    progress_indicate(i, num_genes, 10, flag=T)
+                    fast <- T
+                    if(fast){
+                        js <- (i+1):num_genes
+                        ind_js <- genes2terms_index[js]
+                        sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
+                        new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
+                        res <- sapply(1:length(ind_js), function(k){
+            x <- as.matrix(sim12[,which(new_ind_js==k)])
+            0.5*(mean(apply(x,1,max)) + mean(apply(x,2,max)))
+                        })
+                        x <- rep(0, num_genes)
+                        x[js] <- res
+                        x
+                    }
+                }
+            }else if(method.gene=='BM.max'){
+                sim <- foreach(i=1:(num_genes-1), .inorder=T, .combine=rbind) %dopar% {
+                    ind1 <- genes2terms_index[[i]]
+                    progress_indicate(i, num_genes, 10, flag=T)
+                    fast <- T
+                    if(fast){
+                        js <- (i+1):num_genes
+                        ind_js <- genes2terms_index[js]
+                        sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
+                        new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
+                        res <- sapply(1:length(ind_js), function(k){
+            x <- as.matrix(sim12[,which(new_ind_js==k)])
+            max(mean(apply(x,1,max)), mean(apply(x,2,max)))
+                        })
+                        x <- rep(0, num_genes)
+                        x[js] <- res
+                        x
+                    }
+                }
+            }else if(method.gene=='BM.complete'){
+                sim <- foreach(i=1:(num_genes-1), .inorder=T, .combine=rbind) %dopar% {
+                    ind1 <- genes2terms_index[[i]]
+                    progress_indicate(i, num_genes, 10, flag=T)
+                    fast <- T
+                    if(fast){
+                        js <- (i+1):num_genes
+                        ind_js <- genes2terms_index[js]
+                        sim12 <- matrix(sim.term[ind1, unlist(ind_js)], nrow=length(ind1))
+                        new_ind_js <- rep(1:length(ind_js), sapply(ind_js,length))
+                        res <- sapply(1:length(ind_js), function(k){
+            x <- as.matrix(sim12[,which(new_ind_js==k)])
+            min(c(apply(x,1,max),apply(x,2,max)))
+                        })
+                        x <- rep(0, num_genes)
+                        x[js] <- res
+                        x
+                    }
+                }
             }
-            
+
+            ## add the last row
+            sim <- rbind(sim, rep(0, num_genes))
+
+            sim <- sim + Matrix::t(sim)
+            sim <- Matrix::Matrix(sim, sparse=T)
         }
-        
     }
     
     ###### non-parallel computing
@@ -417,5 +391,5 @@ dDAGgeneSim <- function (g, genes=NULL, method.gene=c("BM.average","BM.max","BM.
     runTime <- as.numeric(difftime(strptime(endT, "%Y-%m-%d %H:%M:%S"), strptime(startT, "%Y-%m-%d %H:%M:%S"), units="secs"))
     message(paste(c("Runtime in total is: ",runTime," secs\n"), collapse=""), appendLF=T)
     
-    return(sim)
+    invisible(sim)
 }

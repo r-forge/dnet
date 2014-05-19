@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>RData @ dnet 1.0.3</title>
+<title>dCheckParallel @ dnet 1.0.3</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="author" content="Hai Fang and Julian Gough">
+<meta name="author" content="">
 
 <link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/bootstrap-responsive.css" rel="stylesheet">
@@ -105,69 +105,91 @@
         
       </header>
       
-      <div class="row">
+      <h2>Function to check whether parallel computing should be used and how</h2>
+
+<div class="row">
   <div class="span8">
+  
+    <h3>Description</h3>
+    <p><code>dCheckParallel</code> is used to check whether parallel
+computing should be used and how</p>
+  
+    <h3>Usage</h3>
+    <pre>dCheckParallel(multicores = NULL, verbose = T)</pre>
     
-    <h1>Built-in RData</h1><p>
+    <h3>Arguments</h3>
+    <dl>
+      <dt>multicores</dt>
+      <dd>an integer to specify how many cores
+will be registered as the multicore parallel backend to
+the 'foreach' package. If NULL, it will use a half of
+cores available in a user's computer</dd>
+      <dt>verbose</dt>
+      <dd>logical to indicate whether the messages
+will be displayed in the screen. By default, it sets to
+true for display</dd>
+    </dl>
+    <!-- 
+    -->
     
-    <h2>Introduction</h2>
-
-<p>As part of the package, the built-in RData (with <code>.RData</code> extension; available at 
-<a href="http://dnet.r-forge.r-project.org/data">http://dnet.r-forge.r-project.org/data</a> or 
-<a href="http://supfam.org/dnet/data.tar">http://supfam.org/dnet/data.tar</a>) contain curated/compiled data, which can be broadly grouped into the following categories:</p>
-
-<ul>
-<li><code>Ontologies</code></li>
-</ul>
-
-<p>Ontologies include Gene Ontology (GO) and its three subontologies (BP: Biological Process; MF: Molecular Function; CC: Cellular Component), Human Phenotype (HP) and its three subontologies (PA: Phenotypic Abnormality; ON: ONset and clinical course; MI: Mode of Inheritance), Disease Ontology (DO), and Mammalian Phenotype (MP). Terms in an ontology are organised as a direct acyclic graph (DAG), which is further stored as an object of the class <a href="http://igraph.sourceforge.net/doc/R/aaa-igraph-package.html">igraph</a>.</p>
-
-<ul>
-<li><code>Organism-specific databases</code></li>
-</ul>
-
-<p>Organisms supported are: human (<code>Hs</code>; tax_id=10090), mouse (<code>Mm</code>; tax_id=10090), arabidopsis (<code>At</code>; tax_id=3702), c.elegans (<code>Ce</code>; tax_id=6239), fruitfly (<code>Dm</code>; tax_id=7227), zebrafish (<code>Da</code>; tax_id=7955), rat (<code>Rn</code>; tax_id=10116) and chicken (<code>Gg</code>; tax_id=9031). For example, human-specific databases contain information on Entrez Genes, their annotations by a variety of ontologies, their evolutionary age (or called &#39;phylostratific age&#39;, PS), their assigned domain superfamilies (SF), and their interacting network derived from STRING.</p>
-
-<ul>
-<li><code>Genesets in human</code></li>
-</ul>
-
-<p>These genesets are derived from the molecular signatures database.</p>
-
-<ul>
-<li><code>Datasets as demos</code></li>
-</ul>
-
-<p>They are used in <a href="http://dnet.r-forge.r-project.org/demos.html">Demos</a></p>
-
-<h2>Documentations</h2>
-
-<p>For details, please refer to <a href="http://dnet.r-forge.r-project.org/docs.html">Documentations</a>.</p>
-
-
+    <div class="Value">
+      <h3>Value</h3>
+      
+      <p>TRUE for using parallel computing; FALSE otherwise</p>
+    </div>
+    <div class="Note">
+      <h3>Note</h3>
+      
+      <p>Whether parallel computation with multicores is used is
+system-specific (now only Linux or Mac OS). Also, it will
+depend on whether these two packages "foreach" and "doMC"
+have been installed. It can be installed via:
+<code>source("http://bioconductor.org/biocLite.R");
+biocLite(c("foreach","doMC"))</code>.</p>
+    </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'>dCheckParallel(multicores=2)
+</div>
+<strong class='message'>	do parallel computation using 2 cores ...</strong>
+<div class='output'>[1] TRUE
+</div></pre>
   </div>
-
+  
   <div class="span4">
-
-    <!--
     
+    <!-- 
+    <ul>
+      <li>dCheckParallel</li>
+    </ul>
+    <ul>
+      
+    </ul> 
+    -->
+      
+    <h2>See also</h2>
+    
+<code><a href='dRWR.html'>dRWR</a></code>, <code><a href='dRWRcontact.html'>dRWRcontact</a></code>,
+<code><a href='dRWRpipeline.html'>dRWRpipeline</a></code>, <code><a href='dDAGtermSim.html'>dDAGtermSim</a></code>,
+<code><a href='dDAGgeneSim.html'>dDAGgeneSim</a></code>
+
+    
+    <h2>Citation</h2>
+    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+
+    
+    <!--
     
     <h2>URL</h2>
     <ul>
       <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
     </ul>
     
-    <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
-
-    
-    <h2>Author</h2>
-    Hai Fang and Julian Gough
     
     -->
     
   </div>
-
+  
 </div>
       
       <footer>

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dRWR @ dnet 1.0.2</title>
+<title>dRWR @ dnet 1.0.3</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.2</a>
+      <a class="brand" href="index.html">dnet 1.0.3</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -117,11 +117,14 @@ of starting nodes) are given, it intends to calculate the
 affinity score of all nodes in the graph to the seeds. If
 the seeds are not give, it will pre-compute affinity matrix
 for nodes in the input graph with respect to each starting
-node (as a seed) by looping over every node in the graph.</p>
+node (as a seed) by looping over every node in the graph.
+Parallel computing is also supported for Linux or Mac
+operating systems.</p>
   
     <h3>Usage</h3>
     <pre>dRWR(g, normalise = c("laplacian", "row", "column", "none"), setSeeds = NULL, restart = 0.75, 
-  normalise.affinity.matrix = c("none", "quantile"), verbose = T)</pre>
+  normalise.affinity.matrix = c("none", "quantile"), parallel = TRUE, multicores = NULL, 
+      verbose = T)</pre>
     
     <h3>Arguments</h3>
     <dl>
@@ -169,6 +172,23 @@ output affinity matrix. It can be 'none' for no
 normalisation, 'quantile' for quantile normalisation to
 ensure that columns (if multiple) of the output affinity
 matrix have the same quantiles</dd>
+      <dt>parallel</dt>
+      <dd>logical to indicate whether parallel
+computation with multicores is used. By default, it sets
+to true, but not necessarily does so. Partly because
+parallel backends available will be system-specific (now
+only Linux or Mac OS). Also, it will depend on whether
+these two packages "foreach" and "doMC" have been
+installed. It can be installed via:
+<code>source("http://bioconductor.org/biocLite.R");
+biocLite(c("foreach","doMC"))</code>. If not yet installed,
+this option will be disabled</dd>
+      <dt>multicores</dt>
+      <dd>an integer to specify how many cores
+will be registered as the multicore parallel backend to
+the 'foreach' package. If NULL, it will use a half of
+cores available in a user's computer. This option only
+works when parallel computation is enabled</dd>
       <dt>verbose</dt>
       <dd>logical to indicate whether the messages
 will be displayed in the screen. By default, it sets to
@@ -180,25 +200,24 @@ true for display</dd>
     <div class="Value">
       <h3>Value</h3>
       
-      <p>It returns a sparse matrix, called 'PTmatrix': When the
-seeds are NOT given, it returns: <ul>
-<li>When the
-seeds are NOT given: a pre-computated affinity matrix with
-the dimension of n X n, where n is the number of nodes in
-the input graph. Columns stand for starting nodes walking
-from, and rows for ending nodes walking to. Therefore, a
-column for a starting node represents a steady-state
-affinity vector that the starting node will visit all the
-ending nodes in the graph </li>
-<li>When the seeds are given:
-an affinity matrix with the dimension of n X nset, where n
-is the number of nodes in the input graph, and nset for the
-number of the sets of seeds (i.e. the number of columns in
-setSeeds). Each column stands for the steady probability
-vector, storing the affinity score of all nodes in the
-graph to the starting nodes/seeds. This steady probability
-vector can be viewed as the "influential impact" over the
-graph imposed by the starting nodes/seeds. </li>
+      <p>It returns a sparse matrix, called 'PTmatrix': <ul>
+<li>When the seeds are NOT given: a pre-computated
+affinity matrix with the dimension of n X n, where n is the
+number of nodes in the input graph. Columns stand for
+starting nodes walking from, and rows for ending nodes
+walking to. Therefore, a column for a starting node
+represents a steady-state affinity vector that the starting
+node will visit all the ending nodes in the graph
+</li>
+<li>When the seeds are given: an affinity matrix with the
+dimension of n X nset, where n is the number of nodes in
+the input graph, and nset for the number of the sets of
+seeds (i.e. the number of columns in setSeeds). Each column
+stands for the steady probability vector, storing the
+affinity score of all nodes in the graph to the starting
+nodes/seeds. This steady probability vector can be viewed
+as the "influential impact" over the graph imposed by the
+starting nodes/seeds. </li>
 </ul></p>
       <p></p>
     </div>
@@ -218,26 +237,27 @@ subg <- dNetInduce(g, V(g), knn=0)
 V(subg)$name <- 1:vcount(subg)
 
 # 3) obtain the pre-computated affinity matrix
-PTmatrix <- dRWR(g=subg, normalise="laplacian", restart=0.75)
+PTmatrix <- dRWR(g=subg, normalise="laplacian", restart=0.75,
+parallel=FALSE)
 </div>
-<strong class='message'>Start at 2014-05-06 11:57:14</strong>
+<strong class='message'>Start at 2014-05-19 13:58:24</strong>
 <strong class='message'></strong>
-<strong class='message'>First, get the adjacency matrix of the input graph (2014-05-06 11:57:14) ...</strong>
-<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-05-06 11:57:14) ...</strong>
-<strong class='message'>Third, RWR of 10 sets of seeds using 7.5e-01 restart probability (2014-05-06 11:57:14) ...</strong>
-<strong class='message'>	1 out of 10 seed sets (2014-05-06 11:57:14)</strong>
-<strong class='message'>	2 out of 10 seed sets (2014-05-06 11:57:14)</strong>
-<strong class='message'>	3 out of 10 seed sets (2014-05-06 11:57:14)</strong>
-<strong class='message'>	4 out of 10 seed sets (2014-05-06 11:57:14)</strong>
-<strong class='message'>	5 out of 10 seed sets (2014-05-06 11:57:14)</strong>
-<strong class='message'>	6 out of 10 seed sets (2014-05-06 11:57:14)</strong>
-<strong class='message'>	7 out of 10 seed sets (2014-05-06 11:57:14)</strong>
-<strong class='message'>	8 out of 10 seed sets (2014-05-06 11:57:14)</strong>
-<strong class='message'>	9 out of 10 seed sets (2014-05-06 11:57:14)</strong>
-<strong class='message'>	10 out of 10 seed sets (2014-05-06 11:57:14)</strong>
-<strong class='message'>Finally, output 10 by 10 affinity matrix normalised by none (2014-05-06 11:57:14) ...</strong>
+<strong class='message'>First, get the adjacency matrix of the input graph (2014-05-19 13:58:24) ...</strong>
+<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-05-19 13:58:24) ...</strong>
+<strong class='message'>Third, RWR of 10 sets of seeds using 7.5e-01 restart probability (2014-05-19 13:58:24) ...</strong>
+<strong class='message'>	1 out of 10 seed sets (2014-05-19 13:58:24)</strong>
+<strong class='message'>	2 out of 10 seed sets (2014-05-19 13:58:24)</strong>
+<strong class='message'>	3 out of 10 seed sets (2014-05-19 13:58:24)</strong>
+<strong class='message'>	4 out of 10 seed sets (2014-05-19 13:58:24)</strong>
+<strong class='message'>	5 out of 10 seed sets (2014-05-19 13:58:24)</strong>
+<strong class='message'>	6 out of 10 seed sets (2014-05-19 13:58:24)</strong>
+<strong class='message'>	7 out of 10 seed sets (2014-05-19 13:58:24)</strong>
+<strong class='message'>	8 out of 10 seed sets (2014-05-19 13:58:24)</strong>
+<strong class='message'>	9 out of 10 seed sets (2014-05-19 13:58:24)</strong>
+<strong class='message'>	10 out of 10 seed sets (2014-05-19 13:58:24)</strong>
+<strong class='message'>Finally, output 10 by 10 affinity matrix normalised by none (2014-05-19 13:58:24) ...</strong>
 <strong class='message'>
-Finish at 2014-05-06 11:57:14</strong>
+Finish at 2014-05-19 13:58:24</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'># visualise affinity matrix
@@ -255,21 +275,21 @@ setSeeds <- data.frame(aSeeds,bSeeds)
 rownames(setSeeds) <- 1:5
 # calcualte affinity matrix
 PTmatrix <- dRWR(g=subg, normalise="laplacian", setSeeds=setSeeds,
-restart=0.75)
+restart=0.75, parallel=FALSE)
 </div>
-<strong class='message'>Start at 2014-05-06 11:57:15</strong>
+<strong class='message'>Start at 2014-05-19 13:58:24</strong>
 <strong class='message'></strong>
-<strong class='message'>First, get the adjacency matrix of the input graph (2014-05-06 11:57:15) ...</strong>
-<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-05-06 11:57:15) ...</strong>
+<strong class='message'>First, get the adjacency matrix of the input graph (2014-05-19 13:58:24) ...</strong>
+<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-05-19 13:58:24) ...</strong>
 <strong class='warning'>Warning message:
 The row names of input setSeeds do not contain all those in the input graph.
 </strong>
-<strong class='message'>Third, RWR of 2 sets of seeds using 7.5e-01 restart probability (2014-05-06 11:57:15) ...</strong>
-<strong class='message'>	1 out of 2 seed sets (2014-05-06 11:57:15)</strong>
-<strong class='message'>	2 out of 2 seed sets (2014-05-06 11:57:15)</strong>
-<strong class='message'>Finally, output 10 by 2 affinity matrix normalised by none (2014-05-06 11:57:15) ...</strong>
+<strong class='message'>Third, RWR of 2 sets of seeds using 7.5e-01 restart probability (2014-05-19 13:58:24) ...</strong>
+<strong class='message'>	1 out of 2 seed sets (2014-05-19 13:58:24)</strong>
+<strong class='message'>	2 out of 2 seed sets (2014-05-19 13:58:24)</strong>
+<strong class='message'>Finally, output 10 by 2 affinity matrix normalised by none (2014-05-19 13:58:24) ...</strong>
 <strong class='message'>
-Finish at 2014-05-06 11:57:15</strong>
+Finish at 2014-05-19 13:58:24</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>PTmatrix
@@ -302,11 +322,12 @@ Finish at 2014-05-06 11:57:15</strong>
       
     <h2>See also</h2>
     
-<code><a href='dRWRcontact.html'>dRWRcontact</a></code>, <code><a href='dRWRpipeline.html'>dRWRpipeline</a></code>
+<code><a href='dRWRcontact.html'>dRWRcontact</a></code>, <code><a href='dRWRpipeline.html'>dRWRpipeline</a></code>,
+<code><a href='dCheckParallel.html'>dCheckParallel</a></code>
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) dnet: an open-source R package for integrative analysis of digitised data in terms of network, ontology and evolution. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

@@ -1,5 +1,6 @@
 export(dBUMfit)
 export(dBUMscore)
+export(dCheckParallel)
 export(dCommSignif)
 export(dContrast)
 export(dDAGancestor)

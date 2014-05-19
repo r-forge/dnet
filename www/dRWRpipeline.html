@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dRWRpipeline @ dnet 1.0.2</title>
+<title>dRWRpipeline @ dnet 1.0.3</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.2</a>
+      <a class="brand" href="index.html">dnet 1.0.3</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -121,13 +121,16 @@ of input matrix); 3) estimation of the contact signficance
 by a randomalisation procedure. It supports two methods how
 to use RWR: 'direct' for directly applying RWR in the given
 seeds; 'indirectly' for first pre-computing affinity matrix
-of the input graph, and then deriving the affinity score.</p>
+of the input graph, and then deriving the affinity score.
+Parallel computing is also supported for Linux or Mac
+operating systems.</p>
   
     <h3>Usage</h3>
     <pre>dRWRpipeline(data, g, method = c("direct", "indirect"), normalise = c("laplacian", 
   "row", "column", "none"), restart = 0.5, normalise.affinity.matrix = c("none", 
-      "quantile"), permutation = c("degree", "none"), num.permutation = 10, p.adjust.method = c("BH", 
-      "BY", "bonferroni", "holm", "hochberg", "hommel"), adjp.cutoff = 0.05, verbose = T)</pre>
+      "quantile"), permutation = c("random", "degree"), num.permutation = 10, p.adjust.method = c("BH", 
+      "BY", "bonferroni", "holm", "hochberg", "hommel"), adjp.cutoff = 0.05, parallel = TRUE, 
+      multicores = NULL, verbose = T)</pre>
     
     <h3>Arguments</h3>
     <dl>
@@ -165,7 +168,7 @@ ensure that columns (if multiple) of the output affinity
 matrix have the same quantiles</dd>
       <dt>permutation</dt>
       <dd>how to do permutation. It can be
-'degree' for degree-preserving permutation, 'none' for
+'degree' for degree-preserving permutation, 'random' for
 permutation in random</dd>
       <dt>num.permutation</dt>
       <dd>the number of permutations used to
@@ -185,6 +188,23 @@ than FWER</dd>
       <dt>adjp.cutoff</dt>
       <dd>the cutoff of adjusted pvalue to
 construct the contact graph</dd>
+      <dt>parallel</dt>
+      <dd>logical to indicate whether parallel
+computation with multicores is used. By default, it sets
+to true, but not necessarily does so. Partly because
+parallel backends available will be system-specific (now
+only Linux or Mac OS). Also, it will depend on whether
+these two packages "foreach" and "doMC" have been
+installed. It can be installed via:
+<code>source("http://bioconductor.org/biocLite.R");
+biocLite(c("foreach","doMC"))</code>. If not yet installed,
+this option will be disabled</dd>
+      <dt>multicores</dt>
+      <dd>an integer to specify how many cores
+will be registered as the multicore parallel backend to
+the 'foreach' package. If NULL, it will use a half of
+cores available in a user's computer. This option only
+works when parallel computation is enabled</dd>
       <dt>verbose</dt>
       <dd>logical to indicate whether the messages
 will be displayed in the screen. By default, it sets to
@@ -212,7 +232,10 @@ matrix storing adjusted pvalue between pairwise samples
 <li><code>cgraph</code>: the constructed contact graph (as a
 'igraph' object) under the cutoff of adjusted value
 </li>
-<li><code>call</code>: the call that produced this result </li>
+<li><code>Amatrix</code>: a pre-computated affinity matrix when
+using 'inderect' method; NULL otherwise </li>
+<li><code>call</code>:
+the call that produced this result </li>
 </ul></p>
       <p></p>
     </div>
@@ -245,59 +268,60 @@ bSeeds <- c(0,0,1,0,1)
 data <- data.frame(aSeeds,bSeeds)
 rownames(data) <- 1:5
 # calcualte their two contact graph
-dContact <- dRWRpipeline(data=data, g=subg)
+dContact <- dRWRpipeline(data=data, g=subg, parallel=FALSE)
 </div>
-<strong class='message'>Start at 2014-05-06 11:57:17</strong>
+<strong class='message'>Start at 2014-05-19 13:58:26</strong>
 <strong class='message'></strong>
-<strong class='message'>First, RWR on input graph (17 nodes and 16 edges) using input matrix (5 rows and 2 columns) as seeds (2014-05-06 11:57:17)...</strong>
-<strong class='message'>Second, calculate contact strength (2014-05-06 11:57:17)...</strong>
-<strong class='message'>Third, generate the distribution of contact strength based on 10 permutations on nodes respecting degree (2014-05-06 11:57:17)...</strong>
-<strong class='message'>	1 out of 10 (2014-05-06 11:57:17)</strong>
-<strong class='message'>	2 out of 10 (2014-05-06 11:57:17)</strong>
-<strong class='message'>	3 out of 10 (2014-05-06 11:57:17)</strong>
-<strong class='message'>	4 out of 10 (2014-05-06 11:57:17)</strong>
-<strong class='message'>	5 out of 10 (2014-05-06 11:57:17)</strong>
-<strong class='message'>	6 out of 10 (2014-05-06 11:57:17)</strong>
-<strong class='message'>	7 out of 10 (2014-05-06 11:57:17)</strong>
-<strong class='message'>	8 out of 10 (2014-05-06 11:57:17)</strong>
-<strong class='message'>	9 out of 10 (2014-05-06 11:57:18)</strong>
-<strong class='message'>	10 out of 10 (2014-05-06 11:57:18)</strong>
-<strong class='message'>Last, estimate the significance of contact strength: zscore, pvalue, and BH adjusted-pvalue (2014-05-06 11:57:18)...</strong>
-<strong class='message'>Also, construct the contact graph under the cutoff 5.0e-02 of adjusted-pvalue (2014-05-06 11:57:18)...</strong>
+<strong class='message'>First, RWR on input graph (15 nodes and 14 edges) using input matrix (5 rows and 2 columns) as seeds (2014-05-19 13:58:26)...</strong>
+<strong class='message'>Second, calculate contact strength (2014-05-19 13:58:26)...</strong>
+<strong class='message'>Third, generate the distribution of contact strength based on 10 permutations on nodes respecting random (2014-05-19 13:58:26)...</strong>
+<strong class='message'>	1 out of 10 (2014-05-19 13:58:26)</strong>
+<strong class='message'>	2 out of 10 (2014-05-19 13:58:26)</strong>
+<strong class='message'>	3 out of 10 (2014-05-19 13:58:27)</strong>
+<strong class='message'>	4 out of 10 (2014-05-19 13:58:27)</strong>
+<strong class='message'>	5 out of 10 (2014-05-19 13:58:27)</strong>
+<strong class='message'>	6 out of 10 (2014-05-19 13:58:27)</strong>
+<strong class='message'>	7 out of 10 (2014-05-19 13:58:27)</strong>
+<strong class='message'>	8 out of 10 (2014-05-19 13:58:27)</strong>
+<strong class='message'>	9 out of 10 (2014-05-19 13:58:27)</strong>
+<strong class='message'>	10 out of 10 (2014-05-19 13:58:28)</strong>
+<strong class='message'>Last, estimate the significance of contact strength: zscore, pvalue, and BH adjusted-pvalue (2014-05-19 13:58:28)...</strong>
+<strong class='message'>Also, construct the contact graph under the cutoff 5.0e-02 of adjusted-pvalue (2014-05-19 13:58:28)...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-05-06 11:57:18</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>Finish at 2014-05-19 13:58:28</strong>
+<strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'>dContact
 </div>
 <div class='output'>$ratio
          [,1]     [,2]
-[1,] 1.040568 1.175860
-[2,] 1.175860 1.307256
+[1,] 1.285472 1.293782
+[2,] 1.293782 1.206804
 
 $zscore
          [,1]     [,2]
-[1,] 0.251366 1.000591
-[2,] 1.000591 1.963300
+[1,] 2.040229 1.880671
+[2,] 1.880671 1.036426
 
 $pval
      [,1] [,2]
-[1,]  0.4  0.1
-[2,]  0.1  0.0
+[1,]    0  0.0
+[2,]    0  0.2
 
 $adjpval
      [,1] [,2]
-[1,]  0.4  0.1
-[2,]  0.1  0.0
+[1,]    0  0.0
+[2,]    0  0.2
 
 $cgraph
-IGRAPH U--- 2 0 -- 
+IGRAPH U-W- 2 1 -- 
++ attr: weight (e/n)
 
 $Amatrix
 NULL
 
 $call
-dRWRpipeline(data = data, g = subg)
+dRWRpipeline(data = data, g = subg, parallel = FALSE)
 
 $method
 [1] "dnet"
@@ -320,11 +344,12 @@ attr(,"class")
       
     <h2>See also</h2>
     
-<code><a href='dRWR.html'>dRWR</a></code>, <code><a href='dRWRcontact.html'>dRWRcontact</a></code>
+<code><a href='dRWR.html'>dRWR</a></code>, <code><a href='dRWRcontact.html'>dRWRcontact</a></code>,
+<code><a href='dCheckParallel.html'>dCheckParallel</a></code>
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) dnet: an open-source R package for integrative analysis of digitised data in terms of network, ontology and evolution. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

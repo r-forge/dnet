@@ -22,6 +22,7 @@
 #' @seealso \code{\link{dBUMfit}}, \code{\link{dBUMscore}}, \code{\link{dFDRscore}}, \code{\link{dNetFind}}
 #' @include dBUMfit.r
 #' @examples
+#' \dontrun{
 #' # 1) generate an vector consisting of random values from beta distribution
 #' x <- rbeta(1000, shape1=0.5, shape2=1)
 #' names(x) <- as.character(1:length(x))
@@ -38,7 +39,6 @@
 #' # 4b) assume the input is a list of customised significance (eg FDR directly)
 #' subgraph <- dNetPipeline(g=subg, pval=x, method="customised", significance.threshold=0.1)
 #' 
-#' \dontrun{
 #' # 5) find maximum-scoring subgraph with the desired node number nsize=20
 #' subgraph <- dNetPipeline(g=subg, pval=x, nsize=20)
 #' }

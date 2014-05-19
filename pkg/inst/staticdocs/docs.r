@@ -33,7 +33,8 @@ list(
             c(
                 'dRWR',
                 'dRWRcontact',
-                'dRWRpipeline'
+                'dRWRpipeline',
+                'dCheckParallel'
             )
         ),
         sd_section("Enrichment analysis and visualisation functions",

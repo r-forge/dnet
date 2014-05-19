@@ -1,14 +1,16 @@
 #' Function to estimate RWR-based contact strength between samples from an input gene-sample data matrix, an input graph and its pre-computed affinity matrix
 #'
-#' \code{dRWRcontact} is supposed to estimate sample relationships (ie. contact strength between samples) from an input gene-sample matrix, an input graph and its affinity matrix pre-computed according to random walk restart (RWR) of the input graph. It includes: 1) RWR-smoothed columns of input gene-sample matrix based on the pre-computed affinity matrix; 2) calculation of contact strength (inner products of RWR-smooth columns of input gene-sample matrix); 3) estimation of the contact signficance by a randomalisation procedure.
+#' \code{dRWRcontact} is supposed to estimate sample relationships (ie. contact strength between samples) from an input gene-sample matrix, an input graph and its affinity matrix pre-computed according to random walk restart (RWR) of the input graph. It includes: 1) RWR-smoothed columns of input gene-sample matrix based on the pre-computed affinity matrix; 2) calculation of contact strength (inner products of RWR-smooth columns of input gene-sample matrix); 3) estimation of the contact signficance by a randomalisation procedure. Parallel computing is also supported for Linux or Mac operating systems.
 #'
 #' @param data an input gene-sample data matrix used for seeds
 #' @param g an object of class "igraph" or "graphNEL"
 #' @param Amatrix an affinity matrix pre-computed from the input graph. Notes: columns for starting nodes walking from, and rows for ending nodes walking to
-#' @param permutation how to do permutation. It can be 'degree' for degree-preserving permutation, 'none' for permutation purely in random
+#' @param permutation how to do permutation. It can be 'degree' for degree-preserving permutation, 'random' for permutation purely in random
 #' @param num.permutation the number of permutations used to for generating the distribution of contact strength under randomalisation
 #' @param p.adjust.method the method used to adjust p-values. It can be one of "BH", "BY", "bonferroni", "holm", "hochberg" and "hommel". The first two methods "BH" (widely used) and "BY" control the false discovery rate (FDR: the expected proportion of false discoveries amongst the rejected hypotheses); the last four methods "bonferroni", "holm", "hochberg" and "hommel" are designed to give strong control of the family-wise error rate (FWER). Notes: FDR is a less stringent condition than FWER
 #' @param adjp.cutoff the cutoff of adjusted pvalue to construct the contact graph
+#' @param parallel logical to indicate whether parallel computation with multicores is used. By default, it sets to true, but not necessarily does so. Partly because parallel backends available will be system-specific (now only Linux or Mac OS). Also, it will depend on whether these two packages "foreach" and "doMC" have been installed. It can be installed via: \code{source("http://bioconductor.org/biocLite.R"); biocLite(c("foreach","doMC"))}. If not yet installed, this option will be disabled
+#' @param multicores an integer to specify how many cores will be registered as the multicore parallel backend to the 'foreach' package. If NULL, it will use a half of cores available in a user's computer. This option only works when parallel computation is enabled
 #' @param verbose logical to indicate whether the messages will be displayed in the screen. By default, it sets to true for display
 #' @return 
 #' an object of class "dContact", a list with following components:
@@ -23,9 +25,10 @@
 #' @note none
 #' @export
 #' @import Matrix
-#' @seealso \code{\link{dRWR}}
+#' @seealso \code{\link{dRWR}}, \code{\link{dCheckParallel}}
 #' @include dRWRcontact.r
 #' @examples
+#' \dontrun{
 #' # 1) generate a random graph according to the ER model
 #' g <- erdos.renyi.game(100, 1/100)
 #'
@@ -34,7 +37,7 @@
 #' V(subg)$name <- 1:vcount(subg)
 #' 
 #' # 3) pre-compute affinity matrix from the input graph
-#' Amatrix <- dRWR(g=subg)
+#' Amatrix <- dRWR(g=subg, parallel=FALSE)
 #'
 #' # 4) estimate RWR-based sample relationships
 #' # define sets of seeds as data
@@ -44,10 +47,11 @@
 #' data <- data.frame(aSeeds,bSeeds)
 #' rownames(data) <- 1:5
 #' # calcualte their two contacts
-#' dContact <- dRWRcontact(data=data, g=subg, Amatrix=Amatrix)
+#' dContact <- dRWRcontact(data=data, g=subg, Amatrix=Amatrix, parallel=FALSE)
 #' dContact
+#' }
 
-dRWRcontact <- function(data, g, Amatrix, permutation=c("degree","none"), num.permutation=10, p.adjust.method=c("BH","BY","bonferroni","holm","hochberg","hommel"), adjp.cutoff=0.05, verbose=T)
+dRWRcontact <- function(data, g, Amatrix, permutation=c("random","degree"), num.permutation=10, p.adjust.method=c("BH","BY","bonferroni","holm","hochberg","hommel"), adjp.cutoff=0.05, parallel=TRUE, multicores=NULL, verbose=T)
 {
 
     startT <- Sys.time()
@@ -167,24 +171,48 @@ dRWRcontact <- function(data, g, Amatrix, permutation=c("degree","none"), num.pe
         message(sprintf("Third, generate the distribution of contact strength based on %d permutations on nodes respecting %s (%s)...", B, permutation, as.character(Sys.time())), appendLF=T)
     }
     
-    exp_b <- list()
-    for (b in 1:B){
-        progress_indicate(b, B, 10, flag=T)
-        
-        if(permutation=="degree"){
-            seeds_random <- dp_randomisation(ig, P0matrix)
-        }else if(permutation=="none"){
-            seeds_random <- P0matrix[sample(1:nrow(P0matrix)),]
-            rownames(seeds_random) <- rownames(P0matrix)
+    ###### parallel computing
+    flag_parallel <- F
+    if(parallel==TRUE){
+        flag_parallel <- dCheckParallel(multicores=multicores, verbose=verbose)
+        if(flag_parallel){
+            exp_b <- foreach(b=1:B, .inorder=T) %dopar% {
+                progress_indicate(b, B, 10, flag=T)
+                if(permutation=="degree"){
+                    seeds_random <- dp_randomisation(ig, P0matrix)
+                }else if(permutation=="random"){
+                    seeds_random <- P0matrix[sample(1:nrow(P0matrix)),]
+                    rownames(seeds_random) <- rownames(P0matrix)
+                }
+                PT_random <- sAmatrix %*% Matrix::Matrix(seeds_random, sparse=T)
+                ## make sure the sum of elements in each steady probability vector is one
+                PT_random <- sum2one(PT_random)
+                as.matrix(t(as.matrix(PT_random)) %*% PT_random)
+            }
         }
-        
-        PT_random <- sAmatrix %*% Matrix::Matrix(seeds_random, sparse=T)
-        ## make sure the sum of elements in each steady probability vector is one
-        PT_random <- sum2one(PT_random)
-        
-        exp_b[[b]] <- as.matrix(t(as.matrix(PT_random)) %*% PT_random)
     }
-
+    
+    ###### non-parallel computing
+    if(flag_parallel==F){
+        exp_b <- list()
+        for (b in 1:B){
+            progress_indicate(b, B, 10, flag=T)
+        
+            if(permutation=="degree"){
+                seeds_random <- dp_randomisation(ig, P0matrix)
+            }else if(permutation=="random"){
+                seeds_random <- P0matrix[sample(1:nrow(P0matrix)),]
+                rownames(seeds_random) <- rownames(P0matrix)
+            }
+        
+            PT_random <- sAmatrix %*% Matrix::Matrix(seeds_random, sparse=T)
+            ## make sure the sum of elements in each steady probability vector is one
+            PT_random <- sum2one(PT_random)
+        
+            exp_b[[b]] <- as.matrix(t(as.matrix(PT_random)) %*% PT_random)
+        }
+    }
+    
     if(verbose){
         message(sprintf("Last, estimate the significance of contact strength: zscore, pvalue, and %s adjusted-pvalue (%s)...", p.adjust.method, as.character(Sys.time())), appendLF=T)
     }

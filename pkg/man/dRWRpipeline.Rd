@@ -5,10 +5,10 @@
 dRWRpipeline(data, g, method = c("direct", "indirect"),
 normalise = c("laplacian", "row", "column", "none"), restart = 0.5,
 normalise.affinity.matrix = c("none", "quantile"),
-permutation = c("degree", "none"), num.permutation = 10,
+permutation = c("random", "degree"), num.permutation = 10,
 p.adjust.method = c("BH", "BY", "bonferroni", "holm", "hochberg",
 "hommel"),
-adjp.cutoff = 0.05, verbose = T)
+adjp.cutoff = 0.05, parallel = TRUE, multicores = NULL, verbose = T)
 }
 \arguments{
 \item{data}{an input gene-sample data matrix used for
@@ -44,7 +44,7 @@ ensure that columns (if multiple) of the output affinity
 matrix have the same quantiles}
 
 \item{permutation}{how to do permutation. It can be
-'degree' for degree-preserving permutation, 'none' for
+'degree' for degree-preserving permutation, 'random' for
 permutation in random}
 
 \item{num.permutation}{the number of permutations used to
@@ -65,6 +65,23 @@ than FWER}
 \item{adjp.cutoff}{the cutoff of adjusted pvalue to
 construct the contact graph}
 
+\item{parallel}{logical to indicate whether parallel
+computation with multicores is used. By default, it sets
+to true, but not necessarily does so. Partly because
+parallel backends available will be system-specific (now
+only Linux or Mac OS). Also, it will depend on whether
+these two packages "foreach" and "doMC" have been
+installed. It can be installed via:
+\code{source("http://bioconductor.org/biocLite.R");
+biocLite(c("foreach","doMC"))}. If not yet installed,
+this option will be disabled}
+
+\item{multicores}{an integer to specify how many cores
+will be registered as the multicore parallel backend to
+the 'foreach' package. If NULL, it will use a half of
+cores available in a user's computer. This option only
+works when parallel computation is enabled}
+
 \item{verbose}{logical to indicate whether the messages
 will be displayed in the screen. By default, it sets to
 true for display}
@@ -80,7 +97,9 @@ between pairwise samples} \item{\code{adjpval}: a symmetric
 matrix storing adjusted pvalue between pairwise samples}
 \item{\code{cgraph}: the constructed contact graph (as a
 'igraph' object) under the cutoff of adjusted value}
-\item{\code{call}: the call that produced this result} }
+\item{\code{Amatrix}: a pre-computated affinity matrix when
+using 'inderect' method; NULL otherwise} \item{\code{call}:
+the call that produced this result} }
 }
 \description{
 \code{dRWRpipeline} is supposed to estimate sample
@@ -94,6 +113,8 @@ by a randomalisation procedure. It supports two methods how
 to use RWR: 'direct' for directly applying RWR in the given
 seeds; 'indirectly' for first pre-computing affinity matrix
 of the input graph, and then deriving the affinity score.
+Parallel computing is also supported for Linux or Mac
+operating systems.
 }
 \note{
 The choice of which method to use RWR depends on the number
@@ -106,6 +127,7 @@ recommended to sequentially use \code{\link{dRWR}} and
 \code{\link{dRWRcontact}} instead.
 }
 \examples{
+\dontrun{
 # 1) generate a random graph according to the ER model
 g <- erdos.renyi.game(100, 1/100)
 
@@ -121,10 +143,12 @@ bSeeds <- c(0,0,1,0,1)
 data <- data.frame(aSeeds,bSeeds)
 rownames(data) <- 1:5
 # calcualte their two contact graph
-dContact <- dRWRpipeline(data=data, g=subg)
+dContact <- dRWRpipeline(data=data, g=subg, parallel=FALSE)
 dContact
 }
+}
 \seealso{
-\code{\link{dRWR}}, \code{\link{dRWRcontact}}
+\code{\link{dRWR}}, \code{\link{dRWRcontact}},
+\code{\link{dCheckParallel}}
 }
 

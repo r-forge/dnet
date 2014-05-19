@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dDAGtermSim @ dnet 1.0.2</title>
+<title>dDAGtermSim @ dnet 1.0.3</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.2</a>
+      <a class="brand" href="index.html">dnet 1.0.3</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -185,7 +185,9 @@ true for display</dd>
       <h3>Value</h3>
       
       <p>It returns a sparse matrix containing pair-wise semantic
-similarity between input terms</p>
+similarity between input terms. This sparse matrix can be
+converted to the full matrix via the function
+<code>as.matrix</code></p>
     </div>
     <div class="Note">
       <h3>Note</h3>
@@ -225,28 +227,28 @@ terms <- sample(V(dag)$name, 5)
 sim <- dDAGtermSim(g=dag, terms=terms, method="Schlicker",
 parallel=FALSE)
 </div>
-<strong class='message'>Start at 2014-05-17 18:18:05</strong>
+<strong class='message'>Start at 2014-05-19 13:58:17</strong>
 <strong class='message'></strong>
-<strong class='message'>Calculate semantic similarity between 5 terms using Schlicker method (2014-05-17 18:18:05)...</strong>
-<strong class='message'>Build a sparse matrix of children x ancestors (with 5 rows and 3156 columns (2014-05-17 18:18:05)...</strong>
-<strong class='message'>	1 out of 5 (2014-05-17 18:18:05)</strong>
-<strong class='message'>	2 out of 5 (2014-05-17 18:18:05)</strong>
-<strong class='message'>	3 out of 5 (2014-05-17 18:18:05)</strong>
-<strong class='message'>	4 out of 5 (2014-05-17 18:18:05)</strong>
-<strong class='message'>	5 out of 5 (2014-05-17 18:18:06)</strong>
+<strong class='message'>Calculate semantic similarity between 5 terms using Schlicker method (2014-05-19 13:58:17)...</strong>
+<strong class='message'>Build a sparse matrix of children x ancestors (with 5 rows and 3156 columns (2014-05-19 13:58:17)...</strong>
+<strong class='message'>	1 out of 5 (2014-05-19 13:58:17)</strong>
+<strong class='message'>	2 out of 5 (2014-05-19 13:58:17)</strong>
+<strong class='message'>	3 out of 5 (2014-05-19 13:58:17)</strong>
+<strong class='message'>	4 out of 5 (2014-05-19 13:58:17)</strong>
+<strong class='message'>	5 out of 5 (2014-05-19 13:58:17)</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-05-17 18:18:06</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>Finish at 2014-05-19 13:58:17</strong>
+<strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>sim
 </div>
 <div class='output'>5 x 5 sparse Matrix of class "dgCMatrix"
-           HP:0011922 HP:0009465 HP:0100273 HP:0008002 HP:0000481
-HP:0011922   1.991753   .          .         .          .        
-HP:0009465   .          1.983505   .         .          .        
-HP:0100273   .          .          1.983505  .          .        
-HP:0008002   .          .          .         1.9924399  0.1560963
-HP:0000481   .          .          .         0.1560963  1.7422680
+           HP:0100712 HP:0001608 HP:0002633 HP:0004278 HP:0001155
+HP:0100712 1.99243986   .          .        0.06539914 0.09265698
+HP:0001608 .            1.879725   .        .          .         
+HP:0002633 .            .          1.978007 .          .         
+HP:0004278 0.06539914   .          .        1.97731959 0.39610886
+HP:0001155 0.09265698   .          .        0.39610886 1.56288660
 </div></pre>
   </div>
   
@@ -264,11 +266,11 @@ HP:0000481   .          .          .         0.1560963  1.7422680
     <h2>See also</h2>
     
 <code><a href='dDAGinduce.html'>dDAGinduce</a></code>, <code><a href='dDAGancestor.html'>dDAGancestor</a></code>,
-<code><a href='dDAGgeneSim.html'>dDAGgeneSim</a></code>
+<code><a href='dDAGgeneSim.html'>dDAGgeneSim</a></code>, <code><a href='dCheckParallel.html'>dCheckParallel</a></code>
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) dnet: an open-source R package for integrative analysis of digitised data in terms of network, ontology and evolution. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

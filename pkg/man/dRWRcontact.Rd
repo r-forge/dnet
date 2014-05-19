@@ -2,9 +2,10 @@
 \alias{dRWRcontact}
 \title{Function to estimate RWR-based contact strength between samples from an input gene-sample data matrix, an input graph and its pre-computed affinity matrix}
 \usage{
-dRWRcontact(data, g, Amatrix, permutation = c("degree", "none"),
+dRWRcontact(data, g, Amatrix, permutation = c("random", "degree"),
 num.permutation = 10, p.adjust.method = c("BH", "BY", "bonferroni",
-"holm", "hochberg", "hommel"), adjp.cutoff = 0.05, verbose = T)
+"holm", "hochberg", "hommel"), adjp.cutoff = 0.05, parallel = TRUE,
+multicores = NULL, verbose = T)
 }
 \arguments{
 \item{data}{an input gene-sample data matrix used for
@@ -17,7 +18,7 @@ input graph. Notes: columns for starting nodes walking
 from, and rows for ending nodes walking to}
 
 \item{permutation}{how to do permutation. It can be
-'degree' for degree-preserving permutation, 'none' for
+'degree' for degree-preserving permutation, 'random' for
 permutation purely in random}
 
 \item{num.permutation}{the number of permutations used to
@@ -37,6 +38,23 @@ than FWER}
 
 \item{adjp.cutoff}{the cutoff of adjusted pvalue to
 construct the contact graph}
+
+\item{parallel}{logical to indicate whether parallel
+computation with multicores is used. By default, it sets
+to true, but not necessarily does so. Partly because
+parallel backends available will be system-specific (now
+only Linux or Mac OS). Also, it will depend on whether
+these two packages "foreach" and "doMC" have been
+installed. It can be installed via:
+\code{source("http://bioconductor.org/biocLite.R");
+biocLite(c("foreach","doMC"))}. If not yet installed,
+this option will be disabled}
+
+\item{multicores}{an integer to specify how many cores
+will be registered as the multicore parallel backend to
+the 'foreach' package. If NULL, it will use a half of
+cores available in a user's computer. This option only
+works when parallel computation is enabled}
 
 \item{verbose}{logical to indicate whether the messages
 will be displayed in the screen. By default, it sets to
@@ -65,12 +83,15 @@ RWR-smoothed columns of input gene-sample matrix based on
 the pre-computed affinity matrix; 2) calculation of contact
 strength (inner products of RWR-smooth columns of input
 gene-sample matrix); 3) estimation of the contact
-signficance by a randomalisation procedure.
+signficance by a randomalisation procedure. Parallel
+computing is also supported for Linux or Mac operating
+systems.
 }
 \note{
 none
 }
 \examples{
+\dontrun{
 # 1) generate a random graph according to the ER model
 g <- erdos.renyi.game(100, 1/100)
 
@@ -79,7 +100,7 @@ subg <- dNetInduce(g, V(g), knn=0)
 V(subg)$name <- 1:vcount(subg)
 
 # 3) pre-compute affinity matrix from the input graph
-Amatrix <- dRWR(g=subg)
+Amatrix <- dRWR(g=subg, parallel=FALSE)
 
 # 4) estimate RWR-based sample relationships
 # define sets of seeds as data
@@ -89,10 +110,12 @@ bSeeds <- c(0,0,1,0,1)
 data <- data.frame(aSeeds,bSeeds)
 rownames(data) <- 1:5
 # calcualte their two contacts
-dContact <- dRWRcontact(data=data, g=subg, Amatrix=Amatrix)
+dContact <- dRWRcontact(data=data, g=subg, Amatrix=Amatrix,
+parallel=FALSE)
 dContact
 }
+}
 \seealso{
-\code{\link{dRWR}}
+\code{\link{dRWR}}, \code{\link{dCheckParallel}}
 }
 
