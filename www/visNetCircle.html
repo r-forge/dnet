@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>visNetCircle @ dnet 1.0.2</title>
+<title>visNetCircle @ dnet 1.0.3</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.2</a>
+      <a class="brand" href="index.html">dnet 1.0.3</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -91,6 +91,9 @@
         </ul>
         <ul class="nav">
           <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="faqs.html"><i class="icon-question-sign icon-white"></i> FAQs</a></li>
         </ul>
         <ul class="nav">
           <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
@@ -250,7 +253,7 @@ visNetCircle(g=g, colormap="bwr", com=com, circles="multiple",
 ordering=ordering,
 vertex.label=V(g)$name)
 </div>
-<a href="javascript:newWin('visNetCircle-4.png', 'visNetCircle-4.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visNetCircle-4.png', width="400" /></a>
+<strong class='error'>Error in lay[V(ig)$name, ]: subscript out of bounds</strong>
 <div class='input'>
 # 7) as comparison, also visualise graph on 2-dimensional layout
 mark.groups <- communities(com)
@@ -284,7 +287,7 @@ edge.color=edge.color)
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) dnet: an open-source R package for integrative analysis of high-throughput digitised data in terms of network, ontology and evolution. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--

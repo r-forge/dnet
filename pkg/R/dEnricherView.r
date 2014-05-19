@@ -27,7 +27,6 @@
 #' @examples
 #' \dontrun{
 #' dEnricherView(eTerm, top_num=10, sortBy="adjp", decreasing=FALSE, details=TRUE)
-#' dEnricherView(eTerm, top_num=NULL, sortBy="none")
 #' }
 
 dEnricherView <- function(eTerm, top_num=10, sortBy=c("adjp","pvalue","zscore","nSet","nOverlap","none"), decreasing=NULL, details=F) 

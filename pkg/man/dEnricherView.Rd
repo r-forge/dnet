@@ -52,7 +52,6 @@ none
 \dontrun{
 dEnricherView(eTerm, top_num=10, sortBy="adjp", decreasing=FALSE,
 details=TRUE)
-dEnricherView(eTerm, top_num=NULL, sortBy="none")
 }
 }
 \seealso{

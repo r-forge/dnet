@@ -38,7 +38,7 @@
 #' \item{"Notes": the order of the number of significant terms is: "none" > "lea" > "elim" > "pc".}
 #' }
 #' @export
-#' @seealso \code{\link{dEnricher}}
+#' @seealso \code{\link{dEnricherView}}
 #' @include dEnricher.r
 #' @examples
 #' \dontrun{
@@ -51,7 +51,7 @@
 #' eTerm <- dEnricher(data, identity="symbol", genome="Hs", ontology="DO")
 #' dEnricherView(eTerm, top_num=10, sortBy="adjp", decreasing=FALSE, details=TRUE)
 #'
-#' # visualise the top significant terms in the ontology heirarchy
+#' # visualise the top significant terms in the ontology hierarchy
 #' ig.DO <- dRDataLoader(RData='ig.DO')
 #' g <- ig.DO
 #' nodes_query <- names(sort(eTerm$adjp)[1:5])

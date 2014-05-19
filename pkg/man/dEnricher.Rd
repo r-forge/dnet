@@ -219,7 +219,7 @@ eTerm <- dEnricher(data, identity="symbol", genome="Hs", ontology="DO")
 dEnricherView(eTerm, top_num=10, sortBy="adjp", decreasing=FALSE,
 details=TRUE)
 
-# visualise the top significant terms in the ontology heirarchy
+# visualise the top significant terms in the ontology hierarchy
 ig.DO <- dRDataLoader(RData='ig.DO')
 g <- ig.DO
 nodes_query <- names(sort(eTerm$adjp)[1:5])
@@ -236,6 +236,6 @@ node.attrs=list(color=nodes.highlight))
 }
 }
 \seealso{
-\code{\link{dEnricher}}
+\code{\link{dEnricherView}}
 }
 

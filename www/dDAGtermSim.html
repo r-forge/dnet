@@ -93,6 +93,9 @@
           <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
         </ul>
         <ul class="nav">
+          <li><a href="faqs.html"><i class="icon-question-sign icon-white"></i> FAQs</a></li>
+        </ul>
+        <ul class="nav">
           <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
         </ul>
       </div>
@@ -227,28 +230,28 @@ terms <- sample(V(dag)$name, 5)
 sim <- dDAGtermSim(g=dag, terms=terms, method="Schlicker",
 parallel=FALSE)
 </div>
-<strong class='message'>Start at 2014-05-19 13:58:17</strong>
+<strong class='message'>Start at 2014-05-19 18:46:23</strong>
 <strong class='message'></strong>
-<strong class='message'>Calculate semantic similarity between 5 terms using Schlicker method (2014-05-19 13:58:17)...</strong>
-<strong class='message'>Build a sparse matrix of children x ancestors (with 5 rows and 3156 columns (2014-05-19 13:58:17)...</strong>
-<strong class='message'>	1 out of 5 (2014-05-19 13:58:17)</strong>
-<strong class='message'>	2 out of 5 (2014-05-19 13:58:17)</strong>
-<strong class='message'>	3 out of 5 (2014-05-19 13:58:17)</strong>
-<strong class='message'>	4 out of 5 (2014-05-19 13:58:17)</strong>
-<strong class='message'>	5 out of 5 (2014-05-19 13:58:17)</strong>
+<strong class='message'>Calculate semantic similarity between 5 terms using Schlicker method (2014-05-19 18:46:23)...</strong>
+<strong class='message'>Build a sparse matrix of children x ancestors (with 5 rows and 3156 columns (2014-05-19 18:46:23)...</strong>
+<strong class='message'>	1 out of 5 (2014-05-19 18:46:23)</strong>
+<strong class='message'>	2 out of 5 (2014-05-19 18:46:23)</strong>
+<strong class='message'>	3 out of 5 (2014-05-19 18:46:23)</strong>
+<strong class='message'>	4 out of 5 (2014-05-19 18:46:23)</strong>
+<strong class='message'>	5 out of 5 (2014-05-19 18:46:23)</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-05-19 13:58:17</strong>
+<strong class='message'>Finish at 2014-05-19 18:46:23</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>sim
 </div>
 <div class='output'>5 x 5 sparse Matrix of class "dgCMatrix"
-           HP:0100712 HP:0001608 HP:0002633 HP:0004278 HP:0001155
-HP:0100712 1.99243986   .          .        0.06539914 0.09265698
-HP:0001608 .            1.879725   .        .          .         
-HP:0002633 .            .          1.978007 .          .         
-HP:0004278 0.06539914   .          .        1.97731959 0.39610886
-HP:0001155 0.09265698   .          .        0.39610886 1.56288660
+           HP:0001760 HP:0002877 HP:0002170 HP:0000234 HP:0002671
+HP:0001760   1.591753   .          .         .           .       
+HP:0002877   .          1.995876   .         .           .       
+HP:0002170   .          .          1.972509  .           .       
+HP:0000234   .          .          .         0.9793814   .       
+HP:0002671   .          .          .         .           1.987629
 </div></pre>
   </div>
   

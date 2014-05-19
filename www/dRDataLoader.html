@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dRDataLoader @ dnet 1.0.2</title>
+<title>dRDataLoader @ dnet 1.0.3</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.2</a>
+      <a class="brand" href="index.html">dnet 1.0.3</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -91,6 +91,9 @@
         </ul>
         <ul class="nav">
           <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="faqs.html"><i class="icon-question-sign icon-white"></i> FAQs</a></li>
         </ul>
         <ul class="nav">
           <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
@@ -133,7 +136,7 @@ RData.</p>
       "org.Dm.egGOBP", "org.Dm.egSF", "org.Dm.eg", "org.Dm.string", "org.Dm.egGOCC", 
       "org.Dm.egGOMF", "org.Hs.eg", "org.Hs.egMP", "org.Hs.egDGIdb", "org.Hs.egHPPA", 
       "org.Hs.egSF", "org.Hs.egGOCC", "org.Hs.string", "org.Hs.egGOBP", "org.Hs.egGOMF", 
-      "org.Hs.egHPMI", "org.Hs.egDO", "org.Hs.egHPON", "org.Hs.egPS"), RData.location = "http://supfam.org/dnet/data")</pre>
+      "org.Hs.egHPMI", "org.Hs.egDO", "org.Hs.egHPON", "org.Hs.egPS"), RData.location = "http://dnet.r-forge.r-project.org/data")</pre>
     
     <h3>Arguments</h3>
     <dl>
@@ -176,21 +179,21 @@ Documentations</dd>
       <dt>RData.location</dt>
       <dd>the characters to tell the location
 of built-in RData files. By default, it remotely locates
-at <a href = '"http://dnet.r-forge.r-project.org/data"'>"http://dnet.r-forge.r-project.org/data"</a>. For
-the user equipped with fast internet connection, this
-option can be just left as default. But it is always
-advisable to download these files locally. Especially
-when the user needs to run this function many times,
-there is no need to ask the function to remotely download
-every time (also it will unnecessarily increase the
-runtime). For examples, these files (as a whole or part
-of them) can be first downloaded into your current
-working directory, and then set this option as:
-<code class = 'eq'>RData.location="."</code>. Surely, the location can be
-anywhere as long as the user provides the correct path
-pointing to (otherwise, the script will have to remotely
-download each time). Here is the UNIX command for
-downloading all RData files (preserving the directory
+at <a href = 'http://dnet.r-forge.r-project.org/data'>http://dnet.r-forge.r-project.org/data</a> or
+<a href = 'http://supfam.org/dnet/data'>http://supfam.org/dnet/data</a>. For the user equipped
+with fast internet connection, this option can be just
+left as default. But it is always advisable to download
+these files locally. Especially when the user needs to
+run this function many times, there is no need to ask the
+function to remotely download every time (also it will
+unnecessarily increase the runtime). For examples, these
+files (as a whole or part of them) can be first
+downloaded into your current working directory, and then
+set this option as: <code class = 'eq'>RData.location="."</code>. Surely, the
+location can be anywhere as long as the user provides the
+correct path pointing to (otherwise, the script will have
+to remotely download each time). Here is the UNIX command
+for downloading all RData files (preserving the directory
 structure): <code class = 'eq'>wget -r -l2 -A "*.RData" -np -nH
 --cut-dirs=0 "http://dnet.r-forge.r-project.org/data"</code></dd>
     </dl>
@@ -215,19 +218,19 @@ be loaded onto the working environment.</p>
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'>org.Hs.egSF <- dRDataLoader(RData='org.Hs.egSF')
 </div>
-<strong class='message'>'org.Hs.egSF' (from http://supfam.org/dnet/data/Hs/org.Hs.egSF.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egSF' (from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.egSF.RData) has been loaded into the working environment</strong>
 <div class='input'>org.Hs.eg <- dRDataLoader(RData='org.Hs.eg')
 </div>
-<strong class='message'>'org.Hs.eg' (from http://supfam.org/dnet/data/Hs/org.Hs.eg.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.eg' (from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.eg.RData) has been loaded into the working environment</strong>
 <div class='input'>org.Hs.egDGIdb <- dRDataLoader(RData='org.Hs.egDGIdb')
 </div>
-<strong class='message'>'org.Hs.egDGIdb' (from http://supfam.org/dnet/data/Hs/org.Hs.egDGIdb.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egDGIdb' (from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.egDGIdb.RData) has been loaded into the working environment</strong>
 <div class='input'>org.Hs.egMsigdbC2KEGG <- dRDataLoader(RData='org.Hs.egMsigdbC2KEGG')
 </div>
-<strong class='message'>'org.Hs.egMsigdbC2KEGG' (from http://supfam.org/dnet/data/Msigdb/org.Hs.egMsigdbC2KEGG.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egMsigdbC2KEGG' (from http://dnet.r-forge.r-project.org/data/Msigdb/org.Hs.egMsigdbC2KEGG.RData) has been loaded into the working environment</strong>
 <div class='input'>ig.MP <- dRDataLoader(RData='ig.MP')
 </div>
-<strong class='message'>'ig.MP' (from http://supfam.org/dnet/data/Obo/ig.MP.RData) has been loaded into the working environment</strong></pre>
+<strong class='message'>'ig.MP' (from http://dnet.r-forge.r-project.org/data/Obo/ig.MP.RData) has been loaded into the working environment</strong></pre>
   </div>
   
   <div class="span4">
@@ -247,7 +250,7 @@ be loaded onto the working environment.</p>
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) dnet: an open-source R package for integrative analysis of high-throughput digitised data in terms of network, ontology and evolution. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
 
     
     <!--
