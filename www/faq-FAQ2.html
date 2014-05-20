@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>What is the built-in data and how to use? @ dnet 1.0.3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Hai Fang and Julian Gough">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+
+<style type="text/css">
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 8px 20px 12px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #999999;
+}
+
+.navbar .brand:hover {
+  color: #F87217;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar .nav > li > a:hover {
+  color: #F87217;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+</style>
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17338744-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- Enlarge image -->
+<script type="text/javascript">
+    function newWin(url, name, width, height) { 
+       
+        var left = (screen.width/2)-(width/2);
+        var top = (screen.height/2)-(height/2); 
+        
+        window.open(url,name,'scrollbars=yes,resizable=yes,fullscreen=yes, width=' + width + ', height='+height+', top='+top+', left='+left);
+    }
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">dnet 1.0.3</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="install.html"><i class="icon-wrench icon-white"></i> Installation</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="rdata.html"><i class="icon-file icon-white"></i> RData</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="faqs.html"><i class="icon-question-sign icon-white"></i> FAQs</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h2>What is the built-in data and how to use?</h2>
+
+Notes:
+<li> All results are based on dnet (version 1.0.3). </li>
+<li> R scripts (i.e. R expressions) plus necessary comments are highlighted in light-cyan background, and the rest are outputs in the screen. </li>
+<li> Images displayed below may be distorted, but should be normal in your screen. </li>
+<li> Functions contained in dnet 1.0.3 are hyperlinked in-place and also listed on the right side. </li>
+<li> Key texts are underlined, in bold and in pumpkin-orange color. </li>
+
+<div class="row">
+    <div class="span8">
+      <pre>
+      <div class='input'># <span style="font-weight:bold; color:#F87217; text-decoration:underline">These built-in data are the backend of various analytical utilities supported in the dnet package, spanning a wide range of the known gene-centric knowledge across well-studied organisms.</span> They are provided as RData-formatted files which are regularly updated. Also, we will populate them by adding new knowledge, for example, upon request by users. The built-in RData are summarised in brief and available in the <a href="http://dnet.r-forge.r-project.org/rdata.html">RData</a> page.
+
+# Usually, the users do not need to download them by self for use. Instead, the users are encouraged to understand what they want to use by simply looking up the keywords in the <a href="http://dnet.r-forge.r-project.org/docs.html">Documentations</a> page. The package has functions to import them or deal with them directly.
+
+# <span style="font-weight:bold; color:#F87217; text-decoration:underline">The function <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a> allows the users to import what they want to use.</span>
+
+# <span style="font-weight:bold; color:#F87217; text-decoration:underline">For the ease to use, organism-specific data start with 'org', followed by the specific organim ('Hs' for human), and the data content: only 'eg' means information about Entrez Genes, and further appendix (for example, 'GOBP') means information about their annotations by Gene Ontology Biological Process (GOBP).</span>
+
+## load human Entrez Genes (EG), and list the first 3 genes
+org.Hs.eg <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='org.Hs.eg')
+</div>
+<strong class='message'>'org.Hs.eg' (from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.eg.RData) has been loaded into the working environment</strong>
+<div class='input'>org.Hs.eg$gene_info[1:3,]
+</div>
+<div class='output'>  GeneID Symbol                        description chromosome map_location
+1      1   A1BG             alpha-1-B glycoprotein         19      19q13.4
+2      2    A2M              alpha-2-macroglobulin         12     12p13.31
+3      3  A2MP1 alpha-2-macroglobulin pseudogene 1         12     12p13.31
+                   Synonyms
+1      A1B|ABG|GAB|HYST2477
+2 A2MD|CPAMD5|FWP007|S863-7
+3                      A2MP
+                                                                       dbXrefs
+1 HGNC:5|MIM:138670|Ensembl:ENSG00000121410|HPRD:00726|Vega:OTTHUMG00000183507
+2 HGNC:7|MIM:103950|Ensembl:ENSG00000175899|HPRD:00072|Vega:OTTHUMG00000150267
+3                                               HGNC:8|Ensembl:ENSG00000256069
+</div>
+<div class='input'>## load annotations of human Entrez Genes by Gene Ontology Biological Process (GOBP), inspect the content and list the first 3 terms
+org.Hs.egGOBP <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='org.Hs.egGOBP')
+</div>
+<strong class='message'>'org.Hs.egGOBP' (from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.egGOBP.RData) has been loaded into the working environment</strong>
+<div class='input'>names(org.Hs.egGOBP)
+</div>
+<div class='output'>[1] "gs"       "set_info"
+</div>
+<div class='input'>org.Hs.egGOBP$set_info[1:3,]
+</div>
+<div class='output'>                setID                             name namespace distance
+GO:0000002 GO:0000002 mitochondrial genome maintenance   Process        6
+GO:0000003 GO:0000003                     reproduction   Process        2
+GO:0000012 GO:0000012       single strand break repair   Process        9
+</div>
+<div class='input'>## load annotations of human Entrez Genes by Disease Ontology (DO), inspect the content and list the first 5 terms
+org.Hs.egDO <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='org.Hs.egDO')
+</div>
+<strong class='message'>'org.Hs.egDO' (from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.egDO.RData) has been loaded into the working environment</strong>
+<div class='input'>org.Hs.egDO$set_info[1:3,]
+</div>
+<div class='output'>                    setID                name        namespace distance
+DOID:0000000 DOID:0000000 gallbladder disease Disease_Ontology        3
+DOID:0001816 DOID:0001816        angiosarcoma Disease_Ontology        5
+DOID:0002116 DOID:0002116           pterygium Disease_Ontology        7
+</div>
+<div class='input'>## load phylostratific age (PS) information of human Entrez Genes, inspect the content and list all our ancestors
+org.Hs.egPS <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='org.Hs.egPS')
+</div>
+<strong class='message'>'org.Hs.egPS' (from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.egPS.RData) has been loaded into the working environment</strong>
+<div class='input'>org.Hs.egPS$set_info
+</div>
+<div class='output'>   setID                  name    namespace   distance
+3      3        2759:Eukaryota superkingdom 0.00000000
+4      4    33154:Opisthokonta      no rank 0.02227541
+5      5    33154:Opisthokonta      no rank 0.02677301
+6      6    33154:Opisthokonta      no rank 0.03026936
+7      7    33154:Opisthokonta      no rank 0.03573534
+8      8    33154:Opisthokonta      no rank 0.03880849
+9      9         33208:Metazoa      kingdom 0.04949159
+10    10         33208:Metazoa      kingdom 0.06686750
+11    11         33208:Metazoa      kingdom 0.09260898
+12    12        6072:Eumetazoa      no rank 0.10459007
+13    13        6072:Eumetazoa      no rank 0.11176118
+14    14       33213:Bilateria      no rank 0.12058364
+15    15       33213:Bilateria      no rank 0.12660301
+16    16   33511:Deuterostomia      no rank 0.13884801
+17    17   33511:Deuterostomia      no rank 0.14852778
+18    18         7711:Chordata       phylum 0.15759842
+19    19       7742:Vertebrata      no rank 0.16953129
+20    20   117571:Euteleostomi      no rank 0.18295445
+21    21    8287:Sarcopterygii      no rank 0.18554672
+22    22       32523:Tetrapoda      no rank 0.18855901
+23    23         32524:Amniota      no rank 0.19241034
+24    24        40674:Mammalia        class 0.19552877
+25    25          32525:Theria      no rank 0.19917128
+26    26         9347:Eutheria      no rank 0.20262687
+27    27 1437010:Boreoeutheria      no rank 0.20409224
+29    29         9443:Primates        order 0.20521882
+30    30         9443:Primates        order 0.20708817
+32    32    314293:Simiiformes   infraorder 0.21351030
+33    33       9526:Catarrhini    parvorder 0.21636349
+34    34     314295:Hominoidea  superfamily 0.21875281
+35    35        9604:Hominidae       family 0.22019688
+36    36      207598:Homininae    subfamily 0.22313298
+37    37     9606:Homo sapiens      species 0.23340461
+</div>
+<div class='input'>## load domain superfamily (SF) information of human Entrez Genes, inspect the content and list the first 3 superfamilies
+org.Hs.egSF <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='org.Hs.egSF')
+</div>
+<strong class='message'>'org.Hs.egSF' (from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.egSF.RData) has been loaded into the working environment</strong>
+<div class='input'>org.Hs.egSF$set_info[1:3,]
+</div>
+<div class='output'>      setID                         name namespace distance
+46458 46458                  Globin-like        sf    a.1.1
+46548 46548     alpha-helical ferredoxin        sf    a.1.2
+46561 46561 Ribosomal protein L29 (L29p)        sf    a.2.2
+</div>
+<div class='input'>## load KEGG pathways for human Entrez Genes, inspect the content and list the first 3 pathways
+org.Hs.egMsigdbC2KEGG <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='org.Hs.egMsigdbC2KEGG')
+</div>
+<strong class='message'>'org.Hs.egMsigdbC2KEGG' (from http://dnet.r-forge.r-project.org/data/Msigdb/org.Hs.egMsigdbC2KEGG.RData) has been loaded into the working environment</strong>
+<div class='input'>org.Hs.egMsigdbC2KEGG$set_info[1:3,]
+</div>
+<div class='output'>                                                  setID                   name
+KEGG_ABC_TRANSPORTERS             KEGG_ABC_TRANSPORTERS       ABC transporters
+KEGG_ACUTE_MYELOID_LEUKEMIA KEGG_ACUTE_MYELOID_LEUKEMIA Acute myeloid leukemia
+KEGG_ADHERENS_JUNCTION           KEGG_ADHERENS_JUNCTION      Adherens junction
+                            namespace distance
+KEGG_ABC_TRANSPORTERS              C2       NA
+KEGG_ACUTE_MYELOID_LEUKEMIA        C2       NA
+KEGG_ADHERENS_JUNCTION             C2       NA
+</div>
+<div class='input'>## load the network for human Entrez Genes as an 'igraph' object
+org.Hs.string <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='org.Hs.string')
+</div>
+<strong class='message'>'org.Hs.string' (from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.string.RData) has been loaded into the working environment</strong>
+<div class='input'>org.Hs.string
+</div>
+<div class='output'>IGRAPH UN-- 16973 410824 -- 
++ attr: name (v/c), seqid (v/c), geneid (v/n), symbol (v/c),
+  description (v/c), neighborhood_score (e/n), fusion_score (e/n),
+  cooccurence_score (e/n), coexpression_score (e/n), experimental_score
+  (e/n), database_score (e/n), textmining_score (e/n), combined_score
+  (e/n)
+</div>
+<div class='input'>## This network is extracted from the STRING database (version 9.1). Only those associations with medium confidence (score>=400) are retained. And the users can restrict to those edges with high confidence (score>=700, for example)
+network <- igraph::subgraph.edges(org.Hs.string, eids=E(org.Hs.string)[combined_score>=700])
+network
+</div>
+<div class='output'>IGRAPH UN-- 13026 198516 -- 
++ attr: name (v/c), seqid (v/c), geneid (v/n), symbol (v/c),
+  description (v/c), neighborhood_score (e/n), fusion_score (e/n),
+  cooccurence_score (e/n), coexpression_score (e/n), experimental_score
+  (e/n), database_score (e/n), textmining_score (e/n), combined_score
+  (e/n)
+</div>
+<div class='input'>
+# <span style="font-weight:bold; color:#F87217; text-decoration:underline">In addition to data import, the package has also functions (see below) to deal with them directly. In these functions, the users only need to specify which genome/organism and which ontology to use.</span>
+
+# Here, we use human TCGA mutation dataset as an example
+data(TCGA_mutations)
+symbols <- as.character(fData(TCGA_mutations)$Symbol)
+
+## Enrichment analysis using Disease Ontology (DO)
+data <- symbols[1:50] # select the first 50 human genes
+eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data, identity="symbol", genome="Hs", ontology="DO")
+</div>
+<strong class='message'>Start at 2014-05-20 12:03:38</strong>
+<strong class='message'></strong>
+<strong class='message'>First, load the ontology DO and its gene associations in the genome Hs (2014-05-20 12:03:38) ...</strong>
+<strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.eg.RData</strong>
+<strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.egDO.RData</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-05-20 12:03:39) ...</strong>
+<strong class='message'>	Among 50 symbols of input data, there are 50 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2014-05-20 12:03:39) ...</strong>
+<strong class='message'>	There are 913 terms being used, each restricted within [10,1000] annotations</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-05-20 12:03:39) ...</strong>
+<strong class='message'>
+End at 2014-05-20 12:03:39</strong>
+<strong class='message'>Runtime in total is: 1 secs
+</strong>
+<div class='input'>
+## gene set enrichment analysis (GSEA) using KEGG pathways
+tol <- apply(exprs(TCGA_mutations), 1, sum) # calculate the total mutations for each gene
+data <- data.frame(tol=tol)
+eTerm <- <a href='dGSEA.html' target=dGSEA>dGSEA</a>(data, identity="symbol", genome="Hs", ontology="MsigdbC2KEGG")</div>
+<strong class='message'>Start at 2014-05-20 12:03:43</strong>
+<strong class='message'></strong>
+<strong class='message'>First, load the ontology MsigdbC2KEGG and its gene associations in the genome Hs (2014-05-20 12:03:43) ...</strong>
+<strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.eg.RData</strong>
+<strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Msigdb/org.Hs.egMsigdbC2KEGG.RData</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-05-20 12:03:44) ...</strong>
+<strong class='message'>	Among 19171 symbols of input data, there are 18924 mappable via official gene symbols but 247 left unmappable</strong>
+<strong class='message'>Third, perform GSEA analysis (2014-05-20 12:03:48) ...</strong>
+<strong class='message'>	Sample 1 is being processed at (2014-05-20 12:03:48) ...</strong>
+<strong class='message'>		 100 of 186 gene sets have been processed</strong>
+<strong class='message'>		 186 of 186 gene sets have been processed</strong>
+<strong class='message'>
+End at 2014-05-20 12:04:37</strong>
+<strong class='message'>Runtime in total is: 54 secs
+</strong>
+      </pre>
+    </div>
+
+  <div class="span4">
+    
+    <h2>Functions used in this FAQ</h2>
+    <ul>
+      <li><a href="dRDataLoader.html">dRDataLoader</a></li>
+      <li><a href="dEnricher.html">dEnricher</a></li>
+      <li><a href="dGSEA.html">dGSEA</a></li>
+    </ul>
+    
+    <h2>Citation</h2>
+    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+
+    
+    <!--
+    
+    <h2>URL</h2>
+    <ul>
+      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
+    </ul>
+    
+    <h2>Author</h2>
+    Hai Fang and Julian Gough
+    
+    -->
+    
+  </div>
+
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+
+<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
+
+
+      </footer>
+    </div>
+  </body>
+</html>

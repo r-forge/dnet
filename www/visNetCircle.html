@@ -133,7 +133,7 @@ to communities and degrees.</p>
       <dd>an object of class "igraph"</dd>
       <dt>com</dt>
       <dd>an object of class "communities" (see
-<a href = 'http://igraph.sourceforge.net/doc/R/communities.html'>http://igraph.sourceforge.net/doc/R/communities.html</a>)</dd>
+<a href = 'http://igraph.org/r/doc/communities.html'>http://igraph.org/r/doc/communities.html</a>)</dd>
       <dt>circles</dt>
       <dd>how circles are drawn in the plot. It can
 be either "single" for all communities being drawn in a
@@ -180,7 +180,7 @@ displayed beside the vertex.</dd>
       <dd>the shape of each vertex. It can be
 one of "circle", "square", "csquare", "rectangle",
 "crectangle", "vrectangle", "pie"
-(<a href = 'http://igraph.sourceforge.net/doc/R/vertex.shape.pie.html'>http://igraph.sourceforge.net/doc/R/vertex.shape.pie.html</a>),
+(<a href = 'http://igraph.org/r/doc/vertex.shape.pie.html'>http://igraph.org/r/doc/vertex.shape.pie.html</a>),
 "sphere", and "none". If it sets to NULL, these vertices
 with negative will be "csquare" and the rest "circle".</dd>
       <dt>edge.width</dt>
@@ -203,8 +203,8 @@ possible values are between -1 (fully polygons) and 1
 of the border around the marked vertex groups</dd>
       <dt>...</dt>
       <dd>additional graphic parameters. See
-<a href = 'http://igraph.sourceforge.net/doc/R/plot.graph.html'>http://igraph.sourceforge.net/doc/R/plot.graph.html</a>
-for the complete list.</dd>
+<a href = 'http://igraph.org/r/doc/plot.common.html'>http://igraph.org/r/doc/plot.common.html</a> for the
+complete list.</dd>
     </dl>
     <!-- 
     -->
@@ -243,17 +243,15 @@ ordering <- tmp[order(vgroups,vdegrees),]$ind
 
 # 6) visualise graph using circle diagram
 # 6a) drawn into a single circle
-visNetCircle(g=g, colormap="bwr", com=com, ordering=ordering,
-vertex.label=V(g)$name)
+visNetCircle(g=g, colormap="bwr", com=com, ordering=ordering)
 </div>
 <a href="javascript:newWin('visNetCircle-2.png', 'visNetCircle-2.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visNetCircle-2.png', width="400" /></a>
 <div class='input'>
 # 6b) drawn into multlpe circles (one circle per community)
 visNetCircle(g=g, colormap="bwr", com=com, circles="multiple",
-ordering=ordering,
-vertex.label=V(g)$name)
+ordering=ordering)
 </div>
-<strong class='error'>Error in lay[V(ig)$name, ]: subscript out of bounds</strong>
+<a href="javascript:newWin('visNetCircle-4.png', 'visNetCircle-4.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visNetCircle-4.png', width="400" /></a>
 <div class='input'>
 # 7) as comparison, also visualise graph on 2-dimensional layout
 mark.groups <- communities(com)
