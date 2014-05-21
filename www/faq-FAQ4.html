@@ -120,23 +120,17 @@ Notes:
 <div class="row">
     <div class="span8">
       <pre>
-      <div class='input'># <span style="font-weight:bold; color:#F87217; text-decoration:underline">The dnet package supports two ways to visualise the identified networks/graphs: 1) the network itself as a single display, 2) the same network but with the multiple colorings/displays according to multiple samples.</span>
+      <div class='input'># <span style="font-weight:bold; color:#F87217; text-decoration:underline">The dnet package supports two ways to visualise the identified networks/graphs: 1) the network itself as a single display, 2) the same network but with multiple colorings/displays according to samples.</span>
 
-# To demonstrate the visuals supported, we use a random graph according to the ER model, and only keep the largest component
+# To demonstrate the visuals supported, we use a random graph generated according to the ER model, and only keep the largest component.
 g <- erdos.renyi.game(100, 1/100)
 g <- <a href='dNetInduce.html' target=dNetInduce>dNetInduce</a>(g, nodes_query=V(g))
 
-# <span style="font-weight:bold; color:#F87217; text-decoration:underline">To display the network itself, the key setting is the layout.</span> Since the network is represented as an object of class 'igraph', the layouts supported in the 'igraph' package can be found in the <a href="http://igraph.org/r/doc/layout.html">layout</a> page. 
-## using a force-based algorithm proposed by Fruchterman and Reingold
+# <span style="font-weight:bold; color:#F87217; text-decoration:underline">To display the network itself, the key setting is the layout.</span> Since the network is represented as an object of class 'igraph', the layouts supported in the 'igraph' package can be found in the <a href="http://igraph.org/r/doc/layout.html">layout</a> page. Below is an example using a force-based algorithm proposed by Fruchterman and Reingold:
 <a href='visNet.html' target=visNet>visNet</a>(g, layout=layout.fruchterman.reingold)
 </div>
 <a href="javascript:newWin('FAQ4-2.png', 'FAQ4-2.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ4-2.png', width="400" /></a>
-<div class='input'>## using a spring embedder algorithm
-<a href='visNet.html' target=visNet>visNet</a>(g, layout=layout.spring)
-</div>
-<a href="javascript:newWin('FAQ4-4.png', 'FAQ4-4.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ4-4.png', width="400" /></a>
-<div class='input'>
-# Additionally, the dnet package also uses two other layouts/diagrams: 1) arc diagram in one-dimensional layout, and 2) circle diagram. 
+<div class='input'># Additionally, the dnet package also uses two other layouts/diagrams: 1) arc diagram in one-dimensional layout, and 2) circle diagram. 
 
 # <span style="font-weight:bold; color:#F87217; text-decoration:underline">To better display the network, it is advisable to incorporate community information.</span> In doing so, we first identify communities based on a spin-glass model and simulated annealing.
 com <- igraph::spinglass.community(g, spins=25)
@@ -154,26 +148,115 @@ ordering <- df[order(vgroups,vdegrees),]$ind
 ## using 1-dimensional arc diagram
 <a href='visNetArc.html' target=visNetArc>visNetArc</a>(g, ordering=ordering, vertex.label.color=vcolors, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.size=log(vdegrees)+0.1)
 </div>
-<a href="javascript:newWin('FAQ4-6.png', 'FAQ4-6.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ4-6.png', width="400" /></a>
+<a href="javascript:newWin('FAQ4-4.png', 'FAQ4-4.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ4-4.png', width="400" /></a>
 <div class='input'>## using circle diagram (drawn into a single circle)
 <a href='visNetCircle.html' target=visNetCircle>visNetCircle</a>(g, colormap="rainbow", com=com, ordering=ordering)
 </div>
-<a href="javascript:newWin('FAQ4-8.png', 'FAQ4-8.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ4-8.png', width="400" /></a>
+<a href="javascript:newWin('FAQ4-6.png', 'FAQ4-6.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ4-6.png', width="400" /></a>
 <div class='input'>## using circle diagram (drawn into multlpe circles: one circle per community)
 <a href='visNetCircle.html' target=visNetCircle>visNetCircle</a>(g, colormap="rainbow", com=com, circles="multiple", ordering=ordering)
 </div>
-<a href="javascript:newWin('FAQ4-10.png', 'FAQ4-10.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ4-10.png', width="400" /></a>
+<a href="javascript:newWin('FAQ4-8.png', 'FAQ4-8.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ4-8.png', width="400" /></a>
 <div class='input'>## using a force-based algorithm proposed by Fruchterman and Reingold
 <a href='visNet.html' target=visNet>visNet</a>(g, colormap="rainbow", layout=layout.fruchterman.reingold, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.shape="sphere")
 </div>
-<a href="javascript:newWin('FAQ4-12.png', 'FAQ4-12.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ4-12.png', width="400" /></a>
+<a href="javascript:newWin('FAQ4-10.png', 'FAQ4-10.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ4-10.png', width="400" /></a>
 <div class='input'>## when using force-based layout, it is also useful to highlight the communities in the background, and have edges being colored differently according whether an edge lies within a community or between communities. 
 mark.groups <- igraph::communities(com)
 mark.col <- visColoralpha(mcolors, alpha=0.2)
 mark.border <- visColoralpha(mcolors, alpha=0.2)
 edge.color <- c("grey", "black")[igraph::crossing(com,g)+1]
-<a href='visNet.html' target=visNet>visNet</a>(g, colormap="rainbow", glayout=layout.fruchterman.reingold, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.shape="sphere", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)</div>
+<a href='visNet.html' target=visNet>visNet</a>(g, colormap="rainbow", glayout=layout.fruchterman.reingold, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.shape="sphere", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
+</div>
+<a href="javascript:newWin('FAQ4-12.png', 'FAQ4-12.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ4-12.png', width="400" /></a>
+<div class='input'>
+# Now, let us look at <span style="font-weight:bold; color:#F87217; text-decoration:underline"> visualising the same network but with the multiple colorings/displays according to samples.</span>
+
+# Assume we have 10 samples, each containing numeric information about nodes in the graph:
+nnodes <- vcount(g)
+nsamples <- 10
+data <- matrix(runif(nnodes*nsamples), nrow=nnodes, ncol=nsamples)
+rownames(data) <- V(g)$name
+
+# <span style="font-weight:bold; color:#F87217; text-decoration:underline">In the dnet package, these sample-specific network visuals can be simply as they are provided, or samples being self-organised onto 2D landscape.</span>
+
+## simply as they are provided
+<a href='visNetMul.html' target=visNetMul>visNetMul</a>(g, colormap="rainbow", data=data, glayout=layout.fruchterman.reingold)
+</div>
 <a href="javascript:newWin('FAQ4-14.png', 'FAQ4-14.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ4-14.png', width="400" /></a>
+<div class='input'>
+## being self-organised onto 2D sample landscape (ie a sheet-shape rectangle grid)
+sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="node", node.normalise="none")
+</div>
+<strong class='message'>Start at 2014-05-21 13:04:55</strong>
+<strong class='message'></strong>
+<strong class='message'>First, define topology of a map grid...</strong>
+<strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
+<strong class='message'>Third, get training at the rough stage...</strong>
+<strong class='message'>Fourth, get training at the finetune stage...</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object...</strong>
+<strong class='message'></strong>
+<strong class='message'>Below are the summaries of the training results:</strong>
+<strong class='message'>   dimension of input data: 10x22
+   xy-dimension of map grid: xdim=6, ydim=6
+   grid lattice: rect
+   grid shape: sheet
+   dimension of grid coord: 36x2
+   initialisation method: linear
+   dimension of codebook matrix: 36x22
+   mean quantization error: 0.539122962537948
+</strong>
+<strong class='message'>Below are the details of trainology:</strong>
+<strong class='message'>   training algorithm: sequential
+   alpha type: invert
+   training neighborhood kernel: gaussian
+   trainlength (x input data length): 36 at rough stage; 144 at finetune stage
+   radius (at rough stage): from 1 to 1
+   radius (at finetune stage): from 1 to 1
+</strong>
+<strong class='message'>End at 2014-05-21 13:04:56</strong>
+<strong class='message'>Runtime in total is: 1 secs
+</strong>
+<div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g, colormap="rainbow", data=data, sReorder)
+</div>
+<a href="javascript:newWin('FAQ4-32.png', 'FAQ4-32.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ4-32.png', width="400" /></a>
+<div class='input'>
+## By default, 2D sample landscape is built based on node features without considering node degrees. To take into account the connectivity in the network, the information used can be on edges which are transformed from information on nodes: input data and degree. In doing so, <span style="font-weight:bold; color:#F87217; text-decoration:underline">the transformed matrix of network edges × samples are used for self-organising samples onto 2D landscape (implemented in the 'supraHex' package).</span>
+sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="edge", node.normalise="degree")
+</div>
+<strong class='message'>Start at 2014-05-21 13:05:06</strong>
+<strong class='message'></strong>
+<strong class='message'>First, define topology of a map grid...</strong>
+<strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
+<strong class='message'>Third, get training at the rough stage...</strong>
+<strong class='message'>Fourth, get training at the finetune stage...</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object...</strong>
+<strong class='message'></strong>
+<strong class='message'>Below are the summaries of the training results:</strong>
+<strong class='message'>   dimension of input data: 10x22
+   xy-dimension of map grid: xdim=6, ydim=6
+   grid lattice: rect
+   grid shape: sheet
+   dimension of grid coord: 36x2
+   initialisation method: linear
+   dimension of codebook matrix: 36x22
+   mean quantization error: 0.145322152777299
+</strong>
+<strong class='message'>Below are the details of trainology:</strong>
+<strong class='message'>   training algorithm: sequential
+   alpha type: invert
+   training neighborhood kernel: gaussian
+   trainlength (x input data length): 36 at rough stage; 144 at finetune stage
+   radius (at rough stage): from 1 to 1
+   radius (at finetune stage): from 1 to 1
+</strong>
+<strong class='message'>End at 2014-05-21 13:05:06</strong>
+<strong class='message'>Runtime in total is: 0 secs
+</strong>
+<div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g, colormap="rainbow", data=data, sReorder)</div>
+<a href="javascript:newWin('FAQ4-50.png', 'FAQ4-50.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ4-50.png', width="400" /></a>
       </pre>
     </div>
 
@@ -185,6 +268,9 @@ edge.color <- c("grey", "black")[igraph::crossing(com,g)+1]
       <li><a href="visNet.html">visNet</a></li>
       <li><a href="visNetArc.html">visNetArc</a></li>
       <li><a href="visNetCircle.html">visNetCircle</a></li>
+      <li><a href="visNetMul.html">visNetMul</a></li>
+      <li><a href="dNetReorder.html">dNetReorder</a></li>
+      <li><a href="visNetReorder.html">visNetReorder</a></li>
     </ul>
     
     <h2>Citation</h2>

@@ -124,16 +124,18 @@ Notes:
 
 # <span style="font-weight:bold; color:#F87217; text-decoration:underline">The calculation of gene significance depends on the nature of input data (especially samples under consideration).</span> It can be: 1) samples that are grouped, 2) samples collected as a time series, and 3) samples in a clinical setting (with survival data).
 
-# For grouped samples, the the p-value significance for genes can be calculated using the package 'limma' which is widely used for idnetification of differentially expressed genes. The example for this can be found in the <a href="http://dnet.r-forge.r-project.org/demo-Hiratani.html">Demo for multilayer replication timing dataset</a> page.
+# For <span style="font-weight:bold; color:#F87217; text-decoration:underline">grouped samples</span>, the the p-value significance for genes can be calculated using the package 'limma' which is widely used for idnetification of differentially expressed genes. The example for this can be found in the <a href="http://dnet.r-forge.r-project.org/demo-Hiratani.html">Demo for multilayer replication timing dataset</a> page.
 
-# For time-course samples, the dnet package has developed a singular value decomposition-based method to obtain gene significance (see <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>). The example for this can be found in the <a href="http://dnet.r-forge.r-project.org/demo-Fang.html">Demo for time-course expression dataset</a> page.
+# For <span style="font-weight:bold; color:#F87217; text-decoration:underline">time-course samples</span>, the dnet package has developed a singular value decomposition-based method to obtain gene significance (see <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>). The example for this can be found in the <a href="http://dnet.r-forge.r-project.org/demo-Fang.html">Demo for time-course expression dataset</a> page.
 
-# For survival samples, survival analysis should be applied using Cox proportional hazards model, from which Cox hazard ratio and associated p-value for each gene can be calculated. This can be done via the 'survival' package, and is demonstrated in the <a href="http://dnet.r-forge.r-project.org/demo-TCGA.html">Demo for TCGA mutation and survival dataset</a> page.
+# For <span style="font-weight:bold; color:#F87217; text-decoration:underline">survival samples</span>, survival analysis should be applied using Cox proportional hazards model, from which Cox hazard ratio and associated p-value for each gene can be calculated. This can be done via the 'survival' package, and is demonstrated in the <a href="http://dnet.r-forge.r-project.org/demo-TCGA.html">Demo for TCGA mutation and survival dataset</a> page.
 
+###########################################################################
 # Below we will use human embryo dataset from Fang et al to show how to calculate the gene signficance. This involves six successive developmental stages (S9-S14) with three replicates (R1-R3) for each stage, including:
 ## Fang: an expression matrix of 5,441 genes/probesets X 18 samples;
 ## Fang.geneinfo: a matrix of 5,441 X 3 containing gene/probeset information;
 ## Fang.sampleinfo: a matrix of 18 X 3 containing sample information.
+###########################################################################
 
 ## import data containing three variables ('Fang', 'Fang.geneinfo' and 'Fang.sampleinfo')
 data(Fang)
@@ -234,7 +236,7 @@ D <- as.matrix(exprs(esetGene))
 D <- D - as.matrix(apply(D,1,mean),ncol=1)[,rep(1,ncol(D))]
 fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.eigen=NULL, pval.eigen=1e-2, signif="fdr", orient.permutation="row", num.permutation=100, fdr.procedure="stepup", verbose=T)
 </div>
-<strong class='message'>Start at 2014-05-20 13:31:08</strong>
+<strong class='message'>Start at 2014-05-21 12:20:02</strong>
 <strong class='message'></strong>
 <strong class='message'>First, singular value decomposition of the input matrix (with 4139 rows and 18 columns)...</strong>
 <strong class='message'>Second, determinate the eigens...</strong>
@@ -244,21 +246,21 @@ fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.ei
 <strong class='message'>Finally, obtain gene significance (fdr) based on 100 permutations...</strong>
 <strong class='message'>	doing row-wise permutations...</strong>
 <strong class='message'>	estimating fdr...</strong>
-<strong class='message'>1 (out of 4139) at 2014-05-20 13:31:22</strong>
-<strong class='message'>414 (out of 4139) at 2014-05-20 13:31:28</strong>
-<strong class='message'>828 (out of 4139) at 2014-05-20 13:31:33</strong>
-<strong class='message'>1242 (out of 4139) at 2014-05-20 13:31:39</strong>
-<strong class='message'>1656 (out of 4139) at 2014-05-20 13:31:44</strong>
-<strong class='message'>2070 (out of 4139) at 2014-05-20 13:31:49</strong>
-<strong class='message'>2484 (out of 4139) at 2014-05-20 13:31:54</strong>
-<strong class='message'>2898 (out of 4139) at 2014-05-20 13:32:00</strong>
-<strong class='message'>3312 (out of 4139) at 2014-05-20 13:32:05</strong>
-<strong class='message'>3726 (out of 4139) at 2014-05-20 13:32:10</strong>
-<strong class='message'>4139 (out of 4139) at 2014-05-20 13:32:15</strong>
+<strong class='message'>1 (out of 4139) at 2014-05-21 12:20:16</strong>
+<strong class='message'>414 (out of 4139) at 2014-05-21 12:20:21</strong>
+<strong class='message'>828 (out of 4139) at 2014-05-21 12:20:27</strong>
+<strong class='message'>1242 (out of 4139) at 2014-05-21 12:20:32</strong>
+<strong class='message'>1656 (out of 4139) at 2014-05-21 12:20:38</strong>
+<strong class='message'>2070 (out of 4139) at 2014-05-21 12:20:43</strong>
+<strong class='message'>2484 (out of 4139) at 2014-05-21 12:20:49</strong>
+<strong class='message'>2898 (out of 4139) at 2014-05-21 12:20:54</strong>
+<strong class='message'>3312 (out of 4139) at 2014-05-21 12:21:00</strong>
+<strong class='message'>3726 (out of 4139) at 2014-05-21 12:21:05</strong>
+<strong class='message'>4139 (out of 4139) at 2014-05-21 12:21:11</strong>
 <strong class='message'>	using stepup procedure...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-05-20 13:32:15</strong>
-<strong class='message'>Runtime in total is: 67 secs
+<strong class='message'>Finish at 2014-05-21 12:21:11</strong>
+<strong class='message'>Runtime in total is: 69 secs
 </strong>
 <div class='input'>hist(fdr, 100)</div>
 <a href="javascript:newWin('FAQ3-34.png', 'FAQ3-34.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ3-34.png', width="400" /></a>

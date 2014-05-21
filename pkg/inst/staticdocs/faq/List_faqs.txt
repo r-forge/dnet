@@ -2,3 +2,4 @@ FAQ1   How to obtain the dnet package and what it can do?
 FAQ2   What is the built-in data and how to use?
 FAQ3   How to obtain a list of genes with significance used for identifying gene-active networks?
 FAQ4   How many ways are supported to visualise gene-active networks?
+FAQ5   What is Random Walk with Restart (RWR)?
