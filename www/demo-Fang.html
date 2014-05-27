@@ -98,10 +98,100 @@
         <ul class="nav">
           <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
         </ul>
+       
+        <!-- HTML for GOOLE SEARCH BAR 
+        <ul class="nav">
+            <div id="search-wrapper">
+                <form id="search" method="get" action="http://www.google.com/custom">
+                    <div class="search-box">
+                        <i class="icon-search icon-white"></i>
+                        <input type="text" id="tfq" class="textinput" name="q" size="21" maxlength="120" value="Google Search"/>
+                    </div>
+                </form>
+            </div>
+        </ul>
+        -->
+        
       </div>
     </div>
   </div>
 </div>
+
+<!-- CSS styles for standard search box with placeholder text-->
+<style type="text/css">
+    #search-wrapper {
+        width:300px;
+        height:40px;
+        background-color:transparent;
+        margin:0px auto 0;
+        border:0px solid #ff0000;
+        -moz-border-radius: 2px; /* FF1+ */
+        -webkit-border-radius: 2px; /* Saf3-4 */
+        border-radius: 2px; /* Opera 10.5, IE 9, Saf5, Chrome */
+        position:relative;
+    }
+
+    #search {
+        background-color:transparent;
+        padding:0px;
+        height:40px;
+        overflow:hidden;
+    }
+
+    .search-box {
+        width:250px;
+        height:32px;
+        background-color:transparent;
+        margin:2px 7px;
+        border:0px solid #cfcfcf;
+        -moz-border-radius: 2px; /* FF1+ */
+        -webkit-border-radius: 2px; /* Saf3-4 */
+        border-radius: 2px; /* Opera 10.5, IE 9, Saf5, Chrome */
+        position:relative;
+    }
+
+	.textinput{
+		margin: 0;
+		padding: 5px 15px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size:14px;
+		color:#999999;
+		border:1px solid #f00; border-right:0px;
+		border-top-left-radius: 5px 5px;
+		border-bottom-left-radius: 5px 5px;
+	}
+</style>
+
+<!-- JAVASCRIPT to clear search text when the field is clicked -->
+<script type="text/javascript">
+window.onload = function(){
+	//Get submit button
+	var submitbutton = document.getElementById("tfq");
+	//Add listener to submit button
+	if(submitbutton.addEventListener){
+		submitbutton.addEventListener("click", function() {
+			if (submitbutton.value == 'Google Search'){//Customize this text string to whatever you want
+				submitbutton.value = 'dnet R ';
+			}
+		});
+	}
+}
+</script>
+
+<script>
+  (function() {
+    var cx = '012094530736424854714:djnz9oat1hu';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<div><gcse:search></gcse:search></div>
 
     <div class="container">
       <header>
@@ -301,7 +391,7 @@ apply(adjpvals<1e-2, 2, sum)
 # obtain gene significance from the given gene-sample matrix according to singular value decomposition-based method
 fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.eigen=NULL, pval.eigen=1e-2, signif="fdr", orient.permutation="row", num.permutation=200, fdr.procedure="stepup", verbose=T)
 </div>
-<strong class='message'>Start at 2014-05-20 20:38:00</strong>
+<strong class='message'>Start at 2014-05-27 11:06:50</strong>
 <strong class='message'></strong>
 <strong class='message'>First, singular value decomposition of the input matrix (with 4139 rows and 18 columns)...</strong>
 <strong class='message'>Second, determinate the eigens...</strong>
@@ -311,45 +401,45 @@ fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.ei
 <strong class='message'>Finally, obtain gene significance (fdr) based on 200 permutations...</strong>
 <strong class='message'>	doing row-wise permutations...</strong>
 <strong class='message'>	estimating fdr...</strong>
-<strong class='message'>1 (out of 4139) at 2014-05-20 20:38:22</strong>
-<strong class='message'>414 (out of 4139) at 2014-05-20 20:38:33</strong>
-<strong class='message'>828 (out of 4139) at 2014-05-20 20:38:43</strong>
-<strong class='message'>1242 (out of 4139) at 2014-05-20 20:38:54</strong>
-<strong class='message'>1656 (out of 4139) at 2014-05-20 20:39:05</strong>
-<strong class='message'>2070 (out of 4139) at 2014-05-20 20:39:17</strong>
-<strong class='message'>2484 (out of 4139) at 2014-05-20 20:39:27</strong>
-<strong class='message'>2898 (out of 4139) at 2014-05-20 20:39:38</strong>
-<strong class='message'>3312 (out of 4139) at 2014-05-20 20:39:49</strong>
-<strong class='message'>3726 (out of 4139) at 2014-05-20 20:40:00</strong>
-<strong class='message'>4139 (out of 4139) at 2014-05-20 20:40:10</strong>
+<strong class='message'>1 (out of 4139) at 2014-05-27 11:07:11</strong>
+<strong class='message'>414 (out of 4139) at 2014-05-27 11:07:22</strong>
+<strong class='message'>828 (out of 4139) at 2014-05-27 11:07:33</strong>
+<strong class='message'>1242 (out of 4139) at 2014-05-27 11:07:44</strong>
+<strong class='message'>1656 (out of 4139) at 2014-05-27 11:07:55</strong>
+<strong class='message'>2070 (out of 4139) at 2014-05-27 11:08:05</strong>
+<strong class='message'>2484 (out of 4139) at 2014-05-27 11:08:16</strong>
+<strong class='message'>2898 (out of 4139) at 2014-05-27 11:08:26</strong>
+<strong class='message'>3312 (out of 4139) at 2014-05-27 11:08:37</strong>
+<strong class='message'>3726 (out of 4139) at 2014-05-27 11:08:47</strong>
+<strong class='message'>4139 (out of 4139) at 2014-05-27 11:08:58</strong>
 <strong class='message'>	using stepup procedure...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-05-20 20:40:10</strong>
-<strong class='message'>Runtime in total is: 130 secs
+<strong class='message'>Finish at 2014-05-27 11:08:58</strong>
+<strong class='message'>Runtime in total is: 128 secs
 </strong>
 <div class='input'>
 # 2) identification of module
 g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network, pval=fdr, method="customised", nsize=30)
 </div>
-<strong class='message'>Start at 2014-05-20 20:40:10</strong>
+<strong class='message'>Start at 2014-05-27 11:08:58</strong>
 <strong class='message'></strong>
 <strong class='message'>First, consider the input fdr (or p-value) distribution</strong>
 <strong class='message'>Second, determine the significance threshold...</strong>
 <strong class='message'>	Via constraint on the size of subnetwork to be identified (30 nodes)</strong>
 <strong class='message'>	Scanning significance threshold at rough stage...</strong>
 <strong class='message'>		significance threshold: 1.00e-02, corresponding to the network size (0 nodes)</strong>
-<strong class='message'>		significance threshold: 1.00e-01, corresponding to the network size (427 nodes)</strong>
+<strong class='message'>		significance threshold: 1.00e-01, corresponding to the network size (411 nodes)</strong>
 <strong class='message'>	Scanning significance threshold at finetune stage...</strong>
 <strong class='message'>		significance threshold : 1.50e-02, corresponding to the network size (0 nodes)</strong>
 <strong class='message'>		significance threshold : 2.00e-02, corresponding to the network size (54 nodes)</strong>
 <strong class='message'>	significance threshold: 2.00e-02</strong>
 <strong class='message'>Third, calculate the scores according to the input fdr (or p-value) and the threshold (if any)...</strong>
-<strong class='message'>	Amongst 4139 scores, there are 83 positives.</strong>
+<strong class='message'>	Amongst 4139 scores, there are 82 positives.</strong>
 <strong class='message'>Finally, find the subgraph from the input graph with 3385 nodes and 39961 edges...</strong>
 <strong class='message'>	Size of the subgraph: 54 nodes and 226 edges</strong>
 <strong class='message'>
-Finish at 2014-05-20 20:40:47</strong>
-<strong class='message'>Runtime in total is: 37 secs
+Finish at 2014-05-27 11:09:34</strong>
+<strong class='message'>Runtime in total is: 36 secs
 </strong>
 <div class='input'>glayout <- layout.fruchterman.reingold(g)
 
@@ -416,7 +506,7 @@ data <- as.matrix(fit2$coefficients[V(g)$name,])
 # 11) color by additional data (be reordered)
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="edge", node.normalise="degree", amplifier=2, metric="none")
 </div>
-<strong class='message'>Start at 2014-05-20 20:42:20</strong>
+<strong class='message'>Start at 2014-05-27 11:11:07</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -443,7 +533,7 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-05-20 20:42:21</strong>
+<strong class='message'>End at 2014-05-27 11:11:08</strong>
 <strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap=colormap, vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)

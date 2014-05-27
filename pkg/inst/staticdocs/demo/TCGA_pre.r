@@ -1202,6 +1202,7 @@ load("sim.DO.RData")
 save(list=c("sim","genes","GS","dag"),file="sim.HPPA.RData")
 load("sim.HPPA.RData")
 
+# scp gg-pc4:./sim.* ./
 
 
 
@@ -1245,8 +1246,18 @@ for(i in 1:length(GS$gs)){
 }
 
 
+
+
 dev.new()
-plot(a, type='b')
+par(las=2, mar=c(15,5,2,2)) # all axis labels horizontal
+plot(a, type='b', xlab='', ylab="Average of MP-based semantic similarity at the ancestor and earlier", xaxt="n")
+set_info <- as.character(GS$set_info$name)
+num <- sapply(GS$gs,length)
+labels <- paste(set_info, sep='')
+axis(1, at=1:length(a), labels=labels)
+
+
+
 
 
 a <- rep(NA, length(GS$gs))
@@ -1276,4 +1287,5 @@ num <- sapply(split(id,id),length)
 set_info <- as.character(GS$set_info$name[sort(unique(id))])
 labels <- paste(set_info,' (n=', num, ')', sep='')
 par(las=2, mar=c(5,15,2,2)) # all axis labels horizontal
-visBoxplotAdv(formula=value ~ id, data=data, orientation="horizontal", spacing=0.5, labels=labels, ylab=NA, xlab="Average of HP-based semantic similarity to ancestors", boxplot.border = "#0000FF", boxplot.col = "transparent")
+visBoxplotAdv(formula=value ~ id, data=data, orientation="horizontal", cex=0.8, spacing=0.5, labels=labels, ylab=NA, xlab="Average of DO-based semantic similarity to ancestors", boxplot.border = "#0000FF", boxplot.col = "transparent")
+
