@@ -98,10 +98,100 @@
         <ul class="nav">
           <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
         </ul>
+       
+        <!-- HTML for GOOLE SEARCH BAR 
+        <ul class="nav">
+            <div id="search-wrapper">
+                <form id="search" method="get" action="http://www.google.com/custom">
+                    <div class="search-box">
+                        <i class="icon-search icon-white"></i>
+                        <input type="text" id="tfq" class="textinput" name="q" size="21" maxlength="120" value="Google Search"/>
+                    </div>
+                </form>
+            </div>
+        </ul>
+        -->
+        
       </div>
     </div>
   </div>
 </div>
+
+<!-- CSS styles for standard search box with placeholder text-->
+<style type="text/css">
+    #search-wrapper {
+        width:300px;
+        height:40px;
+        background-color:transparent;
+        margin:0px auto 0;
+        border:0px solid #ff0000;
+        -moz-border-radius: 2px; /* FF1+ */
+        -webkit-border-radius: 2px; /* Saf3-4 */
+        border-radius: 2px; /* Opera 10.5, IE 9, Saf5, Chrome */
+        position:relative;
+    }
+
+    #search {
+        background-color:transparent;
+        padding:0px;
+        height:40px;
+        overflow:hidden;
+    }
+
+    .search-box {
+        width:250px;
+        height:32px;
+        background-color:transparent;
+        margin:2px 7px;
+        border:0px solid #cfcfcf;
+        -moz-border-radius: 2px; /* FF1+ */
+        -webkit-border-radius: 2px; /* Saf3-4 */
+        border-radius: 2px; /* Opera 10.5, IE 9, Saf5, Chrome */
+        position:relative;
+    }
+
+	.textinput{
+		margin: 0;
+		padding: 5px 15px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size:14px;
+		color:#999999;
+		border:1px solid #f00; border-right:0px;
+		border-top-left-radius: 5px 5px;
+		border-bottom-left-radius: 5px 5px;
+	}
+</style>
+
+<!-- JAVASCRIPT to clear search text when the field is clicked -->
+<script type="text/javascript">
+window.onload = function(){
+	//Get submit button
+	var submitbutton = document.getElementById("tfq");
+	//Add listener to submit button
+	if(submitbutton.addEventListener){
+		submitbutton.addEventListener("click", function() {
+			if (submitbutton.value == 'Google Search'){//Customize this text string to whatever you want
+				submitbutton.value = 'dnet R ';
+			}
+		});
+	}
+}
+</script>
+
+<script>
+  (function() {
+    var cx = '012094530736424854714:djnz9oat1hu';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<div><gcse:search></gcse:search></div>
 
     <div class="container">
       <header>
@@ -135,16 +225,16 @@ V(g)$name <- 1:vcount(g)
 ## obtain the pre-computated affinity matrix for all nodes
 PTmatrix <- <a href='dRWR.html' target=dRWR>dRWR</a>(g, normalise="laplacian", restart=0.75)
 </div>
-<strong class='message'>Start at 2014-05-21 14:35:17</strong>
+<strong class='message'>Start at 2014-05-29 18:20:45</strong>
 <strong class='message'></strong>
-<strong class='message'>First, get the adjacency matrix of the input graph (2014-05-21 14:35:17) ...</strong>
-<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-05-21 14:35:17) ...</strong>
-<strong class='message'>Third, RWR of 10 sets of seeds using 7.5e-01 restart probability (2014-05-21 14:35:17) ...</strong>
+<strong class='message'>First, get the adjacency matrix of the input graph (2014-05-29 18:20:45) ...</strong>
+<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-05-29 18:20:45) ...</strong>
+<strong class='message'>Third, RWR of 30 sets of seeds using 7.5e-01 restart probability (2014-05-29 18:20:45) ...</strong>
 <strong class='message'>	do parallel computation using 2 cores ...</strong>
-<strong class='message'>Finally, output 10 by 10 affinity matrix normalised by none (2014-05-21 14:35:17) ...</strong>
+<strong class='message'>Finally, output 30 by 30 affinity matrix normalised by none (2014-05-29 18:20:49) ...</strong>
 <strong class='message'>
-Finish at 2014-05-21 14:35:17</strong>
-<strong class='message'>Runtime in total is: 0 secs
+Finish at 2014-05-29 18:20:49</strong>
+<strong class='message'>Runtime in total is: 4 secs
 </strong>
 <div class='input'>### visualise affinity matrix
 visHeatmapAdv(as.matrix(PTmatrix), Rowv=FALSE, Colv=FALSE, colormap="wyr", KeyValueName="Affinity")
@@ -156,16 +246,16 @@ setSeeds <- as.matrix(setSeeds, ncol=1) # must be a matrix
 rownames(setSeeds) <- 1:vcount(g) # must be having rownames
 PTmatrix <- <a href='dRWR.html' target=dRWR>dRWR</a>(g, normalise="laplacian", setSeeds=setSeeds, restart=0.75)
 </div>
-<strong class='message'>Start at 2014-05-21 14:35:18</strong>
+<strong class='message'>Start at 2014-05-29 18:20:49</strong>
 <strong class='message'></strong>
-<strong class='message'>First, get the adjacency matrix of the input graph (2014-05-21 14:35:18) ...</strong>
-<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-05-21 14:35:18) ...</strong>
-<strong class='message'>Third, RWR of 1 sets of seeds using 7.5e-01 restart probability (2014-05-21 14:35:18) ...</strong>
+<strong class='message'>First, get the adjacency matrix of the input graph (2014-05-29 18:20:49) ...</strong>
+<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-05-29 18:20:49) ...</strong>
+<strong class='message'>Third, RWR of 1 sets of seeds using 7.5e-01 restart probability (2014-05-29 18:20:49) ...</strong>
 <strong class='message'>	do parallel computation using 2 cores ...</strong>
-<strong class='message'>	1 out of 1 seed sets (2014-05-21 14:35:18)</strong>
-<strong class='message'>Finally, output 10 by 1 affinity matrix normalised by none (2014-05-21 14:35:18) ...</strong>
+<strong class='message'>	1 out of 1 seed sets (2014-05-29 18:20:49)</strong>
+<strong class='message'>Finally, output 30 by 1 affinity matrix normalised by none (2014-05-29 18:20:49) ...</strong>
 <strong class='message'>
-Finish at 2014-05-21 14:35:18</strong>
+Finish at 2014-05-29 18:20:49</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
@@ -182,43 +272,43 @@ colnames(data) <- paste('S', 1:10, sep='')
 ## Run using the pipeline
 dContact <- <a href='dRWRpipeline.html' target=dRWRpipeline>dRWRpipeline</a>(data, g, restart=0.75)
 </div>
-<strong class='message'>Start at 2014-05-21 14:35:18</strong>
+<strong class='message'>Start at 2014-05-29 18:20:49</strong>
 <strong class='message'></strong>
-<strong class='message'>First, RWR on input graph (10 nodes and 9 edges) using input matrix (10 rows and 10 columns) as seeds (2014-05-21 14:35:18)...</strong>
-<strong class='message'>Second, calculate contact strength (2014-05-21 14:35:18)...</strong>
-<strong class='message'>Third, generate the distribution of contact strength based on 10 permutations on nodes respecting random (2014-05-21 14:35:18)...</strong>
+<strong class='message'>First, RWR on input graph (30 nodes and 30 edges) using input matrix (30 rows and 10 columns) as seeds (2014-05-29 18:20:49)...</strong>
+<strong class='message'>Second, calculate contact strength (2014-05-29 18:20:49)...</strong>
+<strong class='message'>Third, generate the distribution of contact strength based on 10 permutations on nodes respecting random (2014-05-29 18:20:49)...</strong>
 <strong class='message'>	do parallel computation using 2 cores ...</strong>
-<strong class='message'>Last, estimate the significance of contact strength: zscore, pvalue, and BH adjusted-pvalue (2014-05-21 14:35:19)...</strong>
-<strong class='message'>Also, construct the contact graph under the cutoff 5.0e-02 of adjusted-pvalue (2014-05-21 14:35:19)...</strong>
+<strong class='message'>Last, estimate the significance of contact strength: zscore, pvalue, and BH adjusted-pvalue (2014-05-29 18:20:52)...</strong>
+<strong class='message'>Also, construct the contact graph under the cutoff 5.0e-02 of adjusted-pvalue (2014-05-29 18:20:52)...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-05-21 14:35:19</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>Finish at 2014-05-29 18:20:52</strong>
+<strong class='message'>Runtime in total is: 3 secs
 </strong>
 <div class='input'>## Run using two steps instead: first pre-compute affinity matrix, and then estimate RWR-based sample relationships
 Amatrix <- <a href='dRWR.html' target=dRWR>dRWR</a>(g, restart=0.75)
 </div>
-<strong class='message'>Start at 2014-05-21 14:35:19</strong>
+<strong class='message'>Start at 2014-05-29 18:20:52</strong>
 <strong class='message'></strong>
-<strong class='message'>First, get the adjacency matrix of the input graph (2014-05-21 14:35:19) ...</strong>
-<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-05-21 14:35:19) ...</strong>
-<strong class='message'>Third, RWR of 10 sets of seeds using 7.5e-01 restart probability (2014-05-21 14:35:19) ...</strong>
+<strong class='message'>First, get the adjacency matrix of the input graph (2014-05-29 18:20:52) ...</strong>
+<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-05-29 18:20:52) ...</strong>
+<strong class='message'>Third, RWR of 30 sets of seeds using 7.5e-01 restart probability (2014-05-29 18:20:52) ...</strong>
 <strong class='message'>	do parallel computation using 2 cores ...</strong>
-<strong class='message'>Finally, output 10 by 10 affinity matrix normalised by none (2014-05-21 14:35:20) ...</strong>
+<strong class='message'>Finally, output 30 by 30 affinity matrix normalised by none (2014-05-29 18:20:53) ...</strong>
 <strong class='message'>
-Finish at 2014-05-21 14:35:20</strong>
+Finish at 2014-05-29 18:20:53</strong>
 <strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'>dContact <- <a href='dRWRcontact.html' target=dRWRcontact>dRWRcontact</a>(data, g, Amatrix)</div>
-<strong class='message'>Start at 2014-05-21 14:35:20</strong>
+<strong class='message'>Start at 2014-05-29 18:20:53</strong>
 <strong class='message'></strong>
-<strong class='message'>First, RWR on input graph (10 nodes and 9 edges) using input matrix (10 rows and 10 columns) as seeds and pre-computed affinity matrix (10 rows and 10 columns) (2014-05-21 14:35:20)...</strong>
-<strong class='message'>Second, calculate contact strength (2014-05-21 14:35:20)...</strong>
-<strong class='message'>Third, generate the distribution of contact strength based on 10 permutations on nodes respecting random (2014-05-21 14:35:20)...</strong>
+<strong class='message'>First, RWR on input graph (30 nodes and 30 edges) using input matrix (30 rows and 10 columns) as seeds and pre-computed affinity matrix (30 rows and 30 columns) (2014-05-29 18:20:53)...</strong>
+<strong class='message'>Second, calculate contact strength (2014-05-29 18:20:53)...</strong>
+<strong class='message'>Third, generate the distribution of contact strength based on 10 permutations on nodes respecting random (2014-05-29 18:20:53)...</strong>
 <strong class='message'>	do parallel computation using 2 cores ...</strong>
-<strong class='message'>Last, estimate the significance of contact strength: zscore, pvalue, and BH adjusted-pvalue (2014-05-21 14:35:20)...</strong>
-<strong class='message'>Also, construct the contact graph under the cutoff 5.0e-02 of adjusted-pvalue (2014-05-21 14:35:20)...</strong>
+<strong class='message'>Last, estimate the significance of contact strength: zscore, pvalue, and BH adjusted-pvalue (2014-05-29 18:20:53)...</strong>
+<strong class='message'>Also, construct the contact graph under the cutoff 5.0e-02 of adjusted-pvalue (2014-05-29 18:20:53)...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-05-21 14:35:20</strong>
+<strong class='message'>Finish at 2014-05-29 18:20:53</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
       </pre>

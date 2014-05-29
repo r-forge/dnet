@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>How to obtain a list of genes with significance used for identifying gene-active networks? @ dnet 1.0.3</title>
+<title>How to obtain a list of genes with significance information that can be used for identifying gene-active networks? @ dnet 1.0.3</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Hai Fang and Julian Gough">
 
@@ -98,17 +98,107 @@
         <ul class="nav">
           <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
         </ul>
+       
+        <!-- HTML for GOOLE SEARCH BAR 
+        <ul class="nav">
+            <div id="search-wrapper">
+                <form id="search" method="get" action="http://www.google.com/custom">
+                    <div class="search-box">
+                        <i class="icon-search icon-white"></i>
+                        <input type="text" id="tfq" class="textinput" name="q" size="21" maxlength="120" value="Google Search"/>
+                    </div>
+                </form>
+            </div>
+        </ul>
+        -->
+        
       </div>
     </div>
   </div>
 </div>
+
+<!-- CSS styles for standard search box with placeholder text-->
+<style type="text/css">
+    #search-wrapper {
+        width:300px;
+        height:40px;
+        background-color:transparent;
+        margin:0px auto 0;
+        border:0px solid #ff0000;
+        -moz-border-radius: 2px; /* FF1+ */
+        -webkit-border-radius: 2px; /* Saf3-4 */
+        border-radius: 2px; /* Opera 10.5, IE 9, Saf5, Chrome */
+        position:relative;
+    }
+
+    #search {
+        background-color:transparent;
+        padding:0px;
+        height:40px;
+        overflow:hidden;
+    }
+
+    .search-box {
+        width:250px;
+        height:32px;
+        background-color:transparent;
+        margin:2px 7px;
+        border:0px solid #cfcfcf;
+        -moz-border-radius: 2px; /* FF1+ */
+        -webkit-border-radius: 2px; /* Saf3-4 */
+        border-radius: 2px; /* Opera 10.5, IE 9, Saf5, Chrome */
+        position:relative;
+    }
+
+	.textinput{
+		margin: 0;
+		padding: 5px 15px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size:14px;
+		color:#999999;
+		border:1px solid #f00; border-right:0px;
+		border-top-left-radius: 5px 5px;
+		border-bottom-left-radius: 5px 5px;
+	}
+</style>
+
+<!-- JAVASCRIPT to clear search text when the field is clicked -->
+<script type="text/javascript">
+window.onload = function(){
+	//Get submit button
+	var submitbutton = document.getElementById("tfq");
+	//Add listener to submit button
+	if(submitbutton.addEventListener){
+		submitbutton.addEventListener("click", function() {
+			if (submitbutton.value == 'Google Search'){//Customize this text string to whatever you want
+				submitbutton.value = 'dnet R ';
+			}
+		});
+	}
+}
+</script>
+
+<script>
+  (function() {
+    var cx = '012094530736424854714:djnz9oat1hu';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<div><gcse:search></gcse:search></div>
 
     <div class="container">
       <header>
         
       </header>
       
-      <h2>How to obtain a list of genes with significance used for identifying gene-active networks?</h2>
+      <h2>How to obtain a list of genes with significance information that can be used for identifying gene-active networks?</h2>
 
 Notes:
 <li> All results are based on dnet (version 1.0.3). </li>
@@ -236,7 +326,7 @@ D <- as.matrix(exprs(esetGene))
 D <- D - as.matrix(apply(D,1,mean),ncol=1)[,rep(1,ncol(D))]
 fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.eigen=NULL, pval.eigen=1e-2, signif="fdr", orient.permutation="row", num.permutation=100, fdr.procedure="stepup", verbose=T)
 </div>
-<strong class='message'>Start at 2014-05-21 12:20:02</strong>
+<strong class='message'>Start at 2014-05-29 18:18:29</strong>
 <strong class='message'></strong>
 <strong class='message'>First, singular value decomposition of the input matrix (with 4139 rows and 18 columns)...</strong>
 <strong class='message'>Second, determinate the eigens...</strong>
@@ -246,20 +336,20 @@ fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.ei
 <strong class='message'>Finally, obtain gene significance (fdr) based on 100 permutations...</strong>
 <strong class='message'>	doing row-wise permutations...</strong>
 <strong class='message'>	estimating fdr...</strong>
-<strong class='message'>1 (out of 4139) at 2014-05-21 12:20:16</strong>
-<strong class='message'>414 (out of 4139) at 2014-05-21 12:20:21</strong>
-<strong class='message'>828 (out of 4139) at 2014-05-21 12:20:27</strong>
-<strong class='message'>1242 (out of 4139) at 2014-05-21 12:20:32</strong>
-<strong class='message'>1656 (out of 4139) at 2014-05-21 12:20:38</strong>
-<strong class='message'>2070 (out of 4139) at 2014-05-21 12:20:43</strong>
-<strong class='message'>2484 (out of 4139) at 2014-05-21 12:20:49</strong>
-<strong class='message'>2898 (out of 4139) at 2014-05-21 12:20:54</strong>
-<strong class='message'>3312 (out of 4139) at 2014-05-21 12:21:00</strong>
-<strong class='message'>3726 (out of 4139) at 2014-05-21 12:21:05</strong>
-<strong class='message'>4139 (out of 4139) at 2014-05-21 12:21:11</strong>
+<strong class='message'>1 (out of 4139) at 2014-05-29 18:18:43</strong>
+<strong class='message'>414 (out of 4139) at 2014-05-29 18:18:49</strong>
+<strong class='message'>828 (out of 4139) at 2014-05-29 18:18:54</strong>
+<strong class='message'>1242 (out of 4139) at 2014-05-29 18:19:00</strong>
+<strong class='message'>1656 (out of 4139) at 2014-05-29 18:19:05</strong>
+<strong class='message'>2070 (out of 4139) at 2014-05-29 18:19:11</strong>
+<strong class='message'>2484 (out of 4139) at 2014-05-29 18:19:16</strong>
+<strong class='message'>2898 (out of 4139) at 2014-05-29 18:19:22</strong>
+<strong class='message'>3312 (out of 4139) at 2014-05-29 18:19:27</strong>
+<strong class='message'>3726 (out of 4139) at 2014-05-29 18:19:33</strong>
+<strong class='message'>4139 (out of 4139) at 2014-05-29 18:19:38</strong>
 <strong class='message'>	using stepup procedure...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-05-21 12:21:11</strong>
+<strong class='message'>Finish at 2014-05-29 18:19:38</strong>
 <strong class='message'>Runtime in total is: 69 secs
 </strong>
 <div class='input'>hist(fdr, 100)</div>

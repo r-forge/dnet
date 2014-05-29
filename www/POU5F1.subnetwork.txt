@@ -1,0 +1,15 @@
+GeneID	Symbol	Description
+27022	FOXD3	forkhead box D3
+6657	SOX2	SRY (sex determining region Y)-box 2
+135935	NOBOX	NOBOX oogenesis homeobox
+57167	SALL4	spalt-like transcription factor 4
+79923	NANOG	Nanog homeobox
+22887	FOXJ3	forkhead box J3
+7178	TPT1	tumor protein, translationally-controlled 1
+84217	ZMYND12	zinc finger, MYND-type containing 12
+2103	ESRRB	estrogen-related receptor beta
+10637	LEFTY1	left-right determination factor 1
+10664	CTCF	CCCTC-binding factor (zinc finger protein)
+2981	GUCA2B	guanylate cyclase activator 2B (uroguanylin)
+23401	FRAT2	frequently rearranged in advanced T-cell lymphomas 2
+5460	POU5F1	POU class 5 homeobox 1

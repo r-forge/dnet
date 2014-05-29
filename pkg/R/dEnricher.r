@@ -477,7 +477,9 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
     genes.group <- intersect(genes.universe, genes.group)
     
     if(length(genes.group)==0){
-        stop("There is no gene being used.\n")
+        #stop("There is no gene being used.\n")
+        warnings("There is no gene being used.\n")
+        return(F)
     }
     
     if(ontology.algorithm=="none"){
@@ -833,7 +835,9 @@ dEnricher <- function(data, identity=c("symbol","entrez"), check.symbol.identity
     flag_filter <- sapply(overlaps, function(x) ifelse(length(x)>=min.overlap,T,F))
     
     if(sum(flag_filter)==0){
-        stop("It seems there are no terms meeting the specified 'sizeRange' and 'min.overlap'.\n")
+        #stop("It seems there are no terms meeting the specified 'sizeRange' and 'min.overlap'.\n")
+        warnings("It seems there are no terms meeting the specified 'sizeRange' and 'min.overlap'.\n")
+        return(F)
     }
     set_info <- set_info[flag_filter,]
     gs <- gs[flag_filter]
