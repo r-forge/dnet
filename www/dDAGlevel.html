@@ -98,10 +98,100 @@
         <ul class="nav">
           <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
         </ul>
+       
+        <!-- HTML for GOOLE SEARCH BAR 
+        <ul class="nav">
+            <div id="search-wrapper">
+                <form id="search" method="get" action="http://www.google.com/custom">
+                    <div class="search-box">
+                        <i class="icon-search icon-white"></i>
+                        <input type="text" id="tfq" class="textinput" name="q" size="21" maxlength="120" value="Google Search"/>
+                    </div>
+                </form>
+            </div>
+        </ul>
+        -->
+        
       </div>
     </div>
   </div>
 </div>
+
+<!-- CSS styles for standard search box with placeholder text-->
+<style type="text/css">
+    #search-wrapper {
+        width:300px;
+        height:40px;
+        background-color:transparent;
+        margin:0px auto 0;
+        border:0px solid #ff0000;
+        -moz-border-radius: 2px; /* FF1+ */
+        -webkit-border-radius: 2px; /* Saf3-4 */
+        border-radius: 2px; /* Opera 10.5, IE 9, Saf5, Chrome */
+        position:relative;
+    }
+
+    #search {
+        background-color:transparent;
+        padding:0px;
+        height:40px;
+        overflow:hidden;
+    }
+
+    .search-box {
+        width:250px;
+        height:32px;
+        background-color:transparent;
+        margin:2px 7px;
+        border:0px solid #cfcfcf;
+        -moz-border-radius: 2px; /* FF1+ */
+        -webkit-border-radius: 2px; /* Saf3-4 */
+        border-radius: 2px; /* Opera 10.5, IE 9, Saf5, Chrome */
+        position:relative;
+    }
+
+	.textinput{
+		margin: 0;
+		padding: 5px 15px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size:14px;
+		color:#999999;
+		border:1px solid #f00; border-right:0px;
+		border-top-left-radius: 5px 5px;
+		border-bottom-left-radius: 5px 5px;
+	}
+</style>
+
+<!-- JAVASCRIPT to clear search text when the field is clicked -->
+<script type="text/javascript">
+window.onload = function(){
+	//Get submit button
+	var submitbutton = document.getElementById("tfq");
+	//Add listener to submit button
+	if(submitbutton.addEventListener){
+		submitbutton.addEventListener("click", function() {
+			if (submitbutton.value == 'Google Search'){//Customize this text string to whatever you want
+				submitbutton.value = 'dnet R ';
+			}
+		});
+	}
+}
+</script>
+
+<script>
+  (function() {
+    var cx = '012094530736424854714:djnz9oat1hu';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<div><gcse:search></gcse:search></div>
 
     <div class="container">
       <header>
@@ -184,42 +274,46 @@ subg <- dDAGinduce(g, nodes_query)
 # 4a) definition based on the longest path
 dDAGlevel(subg, level.mode="longest_path")
 </div>
-<div class='output'>HP:0000118 HP:0000119 HP:0000924 HP:0001939 HP:0000079 HP:0003110 HP:0003119 
-         1          2          2          2          3          5          3 
-HP:0011842 HP:0003330 HP:0004359 HP:0009121 HP:0011277 HP:0011314 HP:0011844 
+<div class='output'>HP:0000118 HP:0000707 HP:0000924 HP:0001626 HP:0002597 HP:0011842 HP:0012638 
+         1          2          2          2          3          3          3 
+HP:0012639 HP:0001367 HP:0002011 HP:0004930 HP:0011314 HP:0011442 HP:0011844 
          3          4          4          4          4          4          4 
-HP:0000925 HP:0002813 HP:0004348 HP:0005930 HP:0010964 HP:0011849 HP:0012591 
-         5          5          5          5          5          5          6 
-HP:0100569 HP:0002814 HP:0003455 HP:0003468 HP:0006505 HP:0010587 HP:0010658 
-         7          6          6          6          6          6          6 
-HP:0011001 HP:0011297 HP:0001760 HP:0001780 HP:0005686 HP:0006500 HP:0010172 
-         6          6          7          8          7          7         10 
-HP:0012599 HP:0100925 HP:0100924 HP:0004599 HP:0010178 HP:0010631 HP:0001844 
-         7          7         10          8         11          8          9 
-HP:0004606 HP:0010160 HP:0010161 HP:0010319 HP:0008435 HP:0010057 HP:0010323 
-         9          9          9          9         10         10         10 
-HP:0010063 HP:0100054 HP:0100930 
-        12         11         11 
+HP:0002063 HP:0002813 HP:0005930 HP:0007319 HP:0011718 HP:0011729 HP:0100491 
+         5          5          5          5          5          5          7 
+HP:0100240 HP:0001341 HP:0002814 HP:0002817 HP:0006505 HP:0010580 HP:0010772 
+         6          6          6          6          6          6          6 
+HP:0011297 HP:0001155 HP:0001167 HP:0001760 HP:0003839 HP:0009138 HP:0010231 
+         6          7          8          7          7          8         11 
+HP:0010773 HP:0100265 HP:0100266 HP:0001440 HP:0001832 HP:0001850 HP:0005924 
+         7          7          7         10          8          8          8 
+HP:0008368 HP:0009140 HP:0011626 HP:0004188 HP:0005918 HP:0005920 HP:0009172 
+        10          9          8          9          9         10         10 
+HP:0009174 HP:0009834 HP:0009284 HP:0010245 HP:0100329 HP:0009248 HP:0009396 
+        11         10         11         11         11         12         12 
+HP:0010271 HP:0009264 
+        12         13 
 </div>
 <div class='input'># 4b) definition based on the shortest path
 dDAGlevel(subg, level.mode="shortest_path")
 </div>
-<div class='output'>HP:0000118 HP:0000119 HP:0000924 HP:0001939 HP:0000079 HP:0003110 HP:0003119 
+<div class='output'>HP:0000118 HP:0000707 HP:0000924 HP:0001626 HP:0002597 HP:0011842 HP:0012638 
          1          2          2          2          3          3          3 
-HP:0011842 HP:0003330 HP:0004359 HP:0009121 HP:0011277 HP:0011314 HP:0011844 
+HP:0012639 HP:0001367 HP:0002011 HP:0004930 HP:0011314 HP:0011442 HP:0011844 
          3          4          4          4          4          4          4 
-HP:0000925 HP:0002813 HP:0004348 HP:0005930 HP:0010964 HP:0011849 HP:0012591 
-         5          5          5          5          5          5          4 
-HP:0100569 HP:0002814 HP:0003455 HP:0003468 HP:0006505 HP:0010587 HP:0010658 
+HP:0002063 HP:0002813 HP:0005930 HP:0007319 HP:0011718 HP:0011729 HP:0100491 
+         5          5          5          5          5          5          5 
+HP:0100240 HP:0001341 HP:0002814 HP:0002817 HP:0006505 HP:0010580 HP:0010772 
          6          6          6          6          6          6          6 
-HP:0011001 HP:0011297 HP:0001760 HP:0001780 HP:0005686 HP:0006500 HP:0010172 
-         6          6          7          7          7          7          7 
-HP:0012599 HP:0100925 HP:0100924 HP:0004599 HP:0010178 HP:0010631 HP:0001844 
-         5          7          8          7          8          8          8 
-HP:0004606 HP:0010160 HP:0010161 HP:0010319 HP:0008435 HP:0010057 HP:0010323 
-         8          8          8          8          9          9          9 
-HP:0010063 HP:0100054 HP:0100930 
-         9          8          9 
+HP:0011297 HP:0001155 HP:0001167 HP:0001760 HP:0003839 HP:0009138 HP:0010231 
+         6          7          7          7          7          6          7 
+HP:0010773 HP:0100265 HP:0100266 HP:0001440 HP:0001832 HP:0001850 HP:0005924 
+         7          7          7          8          8          8          8 
+HP:0008368 HP:0009140 HP:0011626 HP:0004188 HP:0005918 HP:0005920 HP:0009172 
+         8          7          8          8          8          9          9 
+HP:0009174 HP:0009834 HP:0009284 HP:0010245 HP:0100329 HP:0009248 HP:0009396 
+         9          9         10         10          9         10          8 
+HP:0010271 HP:0009264 
+         8          9 
 </div>
 <div class='input'># 4c) definition based on the longest path, and return nodes for each level
 dDAGlevel(subg, level.mode="longest_path", return.mode="level2node")
@@ -228,41 +322,45 @@ dDAGlevel(subg, level.mode="longest_path", return.mode="level2node")
 [1] "HP:0000118"
 
 $`2`
-[1] "HP:0000119" "HP:0000924" "HP:0001939"
+[1] "HP:0000707" "HP:0000924" "HP:0001626"
 
 $`3`
-[1] "HP:0000079" "HP:0003119" "HP:0011842"
+[1] "HP:0002597" "HP:0011842" "HP:0012638" "HP:0012639"
 
 $`4`
-[1] "HP:0003330" "HP:0004359" "HP:0009121" "HP:0011277" "HP:0011314"
+[1] "HP:0001367" "HP:0002011" "HP:0004930" "HP:0011314" "HP:0011442"
 [6] "HP:0011844"
 
 $`5`
-[1] "HP:0003110" "HP:0000925" "HP:0002813" "HP:0004348" "HP:0005930"
-[6] "HP:0010964" "HP:0011849"
+[1] "HP:0002063" "HP:0002813" "HP:0005930" "HP:0007319" "HP:0011718"
+[6] "HP:0011729"
 
 $`6`
-[1] "HP:0012591" "HP:0002814" "HP:0003455" "HP:0003468" "HP:0006505"
-[6] "HP:0010587" "HP:0010658" "HP:0011001" "HP:0011297"
+[1] "HP:0100240" "HP:0001341" "HP:0002814" "HP:0002817" "HP:0006505"
+[6] "HP:0010580" "HP:0010772" "HP:0011297"
 
 $`7`
-[1] "HP:0100569" "HP:0001760" "HP:0005686" "HP:0006500" "HP:0012599"
-[6] "HP:0100925"
+[1] "HP:0100491" "HP:0001155" "HP:0001760" "HP:0003839" "HP:0010773"
+[6] "HP:0100265" "HP:0100266"
 
 $`8`
-[1] "HP:0001780" "HP:0004599" "HP:0010631"
+[1] "HP:0001167" "HP:0009138" "HP:0001832" "HP:0001850" "HP:0005924"
+[6] "HP:0011626"
 
 $`9`
-[1] "HP:0001844" "HP:0004606" "HP:0010160" "HP:0010161" "HP:0010319"
+[1] "HP:0009140" "HP:0004188" "HP:0005918"
 
 $`10`
-[1] "HP:0010172" "HP:0100924" "HP:0008435" "HP:0010057" "HP:0010323"
+[1] "HP:0001440" "HP:0008368" "HP:0005920" "HP:0009172" "HP:0009834"
 
 $`11`
-[1] "HP:0010178" "HP:0100054" "HP:0100930"
+[1] "HP:0010231" "HP:0009174" "HP:0009284" "HP:0010245" "HP:0100329"
 
 $`12`
-[1] "HP:0010063"
+[1] "HP:0009248" "HP:0009396" "HP:0010271"
+
+$`13`
+[1] "HP:0009264"
 
 </div></pre>
   </div>
@@ -277,7 +375,10 @@ $`12`
       
     </ul> 
     -->
-      
+    
+    <h2>Source code</h2>
+    <a href="javascript:newWin('R/dDAGlevel.r', 'R/dDAGlevel.r', '1200', '1200')" title="Click to enlarge"><B><code>dDAGlevel.r</code></B></a>
+    
     <h2>See also</h2>
     
 <code><a href='dDAGroot.html'>dDAGroot</a></code>, <code><a href='dDAGreverse.html'>dDAGreverse</a></code>

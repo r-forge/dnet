@@ -98,10 +98,100 @@
         <ul class="nav">
           <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
         </ul>
+       
+        <!-- HTML for GOOLE SEARCH BAR 
+        <ul class="nav">
+            <div id="search-wrapper">
+                <form id="search" method="get" action="http://www.google.com/custom">
+                    <div class="search-box">
+                        <i class="icon-search icon-white"></i>
+                        <input type="text" id="tfq" class="textinput" name="q" size="21" maxlength="120" value="Google Search"/>
+                    </div>
+                </form>
+            </div>
+        </ul>
+        -->
+        
       </div>
     </div>
   </div>
 </div>
+
+<!-- CSS styles for standard search box with placeholder text-->
+<style type="text/css">
+    #search-wrapper {
+        width:300px;
+        height:40px;
+        background-color:transparent;
+        margin:0px auto 0;
+        border:0px solid #ff0000;
+        -moz-border-radius: 2px; /* FF1+ */
+        -webkit-border-radius: 2px; /* Saf3-4 */
+        border-radius: 2px; /* Opera 10.5, IE 9, Saf5, Chrome */
+        position:relative;
+    }
+
+    #search {
+        background-color:transparent;
+        padding:0px;
+        height:40px;
+        overflow:hidden;
+    }
+
+    .search-box {
+        width:250px;
+        height:32px;
+        background-color:transparent;
+        margin:2px 7px;
+        border:0px solid #cfcfcf;
+        -moz-border-radius: 2px; /* FF1+ */
+        -webkit-border-radius: 2px; /* Saf3-4 */
+        border-radius: 2px; /* Opera 10.5, IE 9, Saf5, Chrome */
+        position:relative;
+    }
+
+	.textinput{
+		margin: 0;
+		padding: 5px 15px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size:14px;
+		color:#999999;
+		border:1px solid #f00; border-right:0px;
+		border-top-left-radius: 5px 5px;
+		border-bottom-left-radius: 5px 5px;
+	}
+</style>
+
+<!-- JAVASCRIPT to clear search text when the field is clicked -->
+<script type="text/javascript">
+window.onload = function(){
+	//Get submit button
+	var submitbutton = document.getElementById("tfq");
+	//Add listener to submit button
+	if(submitbutton.addEventListener){
+		submitbutton.addEventListener("click", function() {
+			if (submitbutton.value == 'Google Search'){//Customize this text string to whatever you want
+				submitbutton.value = 'dnet R ';
+			}
+		});
+	}
+}
+</script>
+
+<script>
+  (function() {
+    var cx = '012094530736424854714:djnz9oat1hu';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<div><gcse:search></gcse:search></div>
 
     <div class="container">
       <header>
@@ -264,29 +354,29 @@ genes <- sample(allgenes,5)
 sim <- dDAGgeneSim(g=dag, genes=genes, method.gene="BM.average",
 method.term="Resnik", parallel=FALSE, verbose=TRUE)
 </div>
-<strong class='message'>Start at 2014-05-19 18:46:13</strong>
+<strong class='message'>Start at 2014-05-30 12:26:14</strong>
 <strong class='message'></strong>
-<strong class='message'>First, extract all annotatable genes (2014-05-19 18:46:13)...</strong>
+<strong class='message'>First, extract all annotatable genes (2014-05-30 12:26:14)...</strong>
 <strong class='message'>	there are 5 input genes amongst 2910 annotatable genes</strong>
-<strong class='message'>Second, pre-compute semantic similarity between 72 terms (forced to be the most specific for each gene) using Resnik method (2014-05-19 18:46:14)...</strong>
-<strong class='message'>Last, calculate pair-wise semantic similarity between 5 genes using BM.average method (2014-05-19 18:46:15)...</strong>
-<strong class='message'>	1 out of 5 (2014-05-19 18:46:15)</strong>
-<strong class='message'>	2 out of 5 (2014-05-19 18:46:15)</strong>
-<strong class='message'>	3 out of 5 (2014-05-19 18:46:15)</strong>
-<strong class='message'>	4 out of 5 (2014-05-19 18:46:15)</strong>
+<strong class='message'>Second, pre-compute semantic similarity between 39 terms (forced to be the most specific for each gene) using Resnik method (2014-05-30 12:26:15)...</strong>
+<strong class='message'>Last, calculate pair-wise semantic similarity between 5 genes using BM.average method (2014-05-30 12:26:15)...</strong>
+<strong class='message'>	1 out of 5 (2014-05-30 12:26:15)</strong>
+<strong class='message'>	2 out of 5 (2014-05-30 12:26:15)</strong>
+<strong class='message'>	3 out of 5 (2014-05-30 12:26:15)</strong>
+<strong class='message'>	4 out of 5 (2014-05-30 12:26:15)</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-05-19 18:46:15</strong>
-<strong class='message'>Runtime in total is: 2 secs
+<strong class='message'>Finish at 2014-05-30 12:26:15</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'>sim
 </div>
 <div class='output'>5 x 5 sparse Matrix of class "dgCMatrix"
-            9217      4297       2162       1441     22827
-9217  .          0.1217189 0.09915667 0.07331793 0.1543174
-4297  0.12171891 .         0.44446024 0.46662199 0.7161612
-2162  0.09915667 0.4444602 .          0.41524439 0.2848781
-1441  0.07331793 0.4666220 0.41524439 .          0.2139514
-22827 0.15431737 0.7161612 0.28487814 0.21395142 .        
+           5669      5406        21     55532     10102
+5669  .         .         .         0.3246202 .        
+5406  .         .         .         0.2883428 0.2453853
+21    .         .         .         .         0.3940081
+55532 0.3246202 0.2883428 .         .         0.3137992
+10102 .         0.2453853 0.3940081 0.3137992 .        
 </div></pre>
   </div>
   
@@ -300,7 +390,10 @@ method.term="Resnik", parallel=FALSE, verbose=TRUE)
       
     </ul> 
     -->
-      
+    
+    <h2>Source code</h2>
+    <a href="javascript:newWin('R/dDAGgeneSim.r', 'R/dDAGgeneSim.r', '1200', '1200')" title="Click to enlarge"><B><code>dDAGgeneSim.r</code></B></a>
+    
     <h2>See also</h2>
     
 <code><a href='dDAGtermSim.html'>dDAGtermSim</a></code>, <code><a href='dDAGinduce.html'>dDAGinduce</a></code>,
