@@ -320,28 +320,28 @@ terms <- sample(V(dag)$name, 5)
 sim <- dDAGtermSim(g=dag, terms=terms, method="Schlicker",
 parallel=FALSE)
 </div>
-<strong class='message'>Start at 2014-05-30 12:26:24</strong>
+<strong class='message'>Start at 2014-06-03 18:15:13</strong>
 <strong class='message'></strong>
-<strong class='message'>Calculate semantic similarity between 5 terms using Schlicker method (2014-05-30 12:26:24)...</strong>
-<strong class='message'>Build a sparse matrix of children x ancestors (with 5 rows and 3156 columns (2014-05-30 12:26:24)...</strong>
-<strong class='message'>	1 out of 5 (2014-05-30 12:26:24)</strong>
-<strong class='message'>	2 out of 5 (2014-05-30 12:26:24)</strong>
-<strong class='message'>	3 out of 5 (2014-05-30 12:26:24)</strong>
-<strong class='message'>	4 out of 5 (2014-05-30 12:26:24)</strong>
-<strong class='message'>	5 out of 5 (2014-05-30 12:26:24)</strong>
+<strong class='message'>Calculate semantic similarity between 5 terms using Schlicker method (2014-06-03 18:15:13)...</strong>
+<strong class='message'>Build a sparse matrix of children x ancestors (with 5 rows and 3156 columns (2014-06-03 18:15:13)...</strong>
+<strong class='message'>	1 out of 5 (2014-06-03 18:15:13)</strong>
+<strong class='message'>	2 out of 5 (2014-06-03 18:15:13)</strong>
+<strong class='message'>	3 out of 5 (2014-06-03 18:15:13)</strong>
+<strong class='message'>	4 out of 5 (2014-06-03 18:15:13)</strong>
+<strong class='message'>	5 out of 5 (2014-06-03 18:15:13)</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-05-30 12:26:24</strong>
+<strong class='message'>Finish at 2014-06-03 18:15:13</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>sim
 </div>
 <div class='output'>5 x 5 sparse Matrix of class "dgCMatrix"
-           HP:0004975 HP:0005483 HP:0002006 HP:0005864 HP:0003781
-HP:0004975 1.99656357   .         .         0.05240747  .        
-HP:0005483 .            1.995876  .         .           .        
-HP:0002006 .            .         1.9890034 .           0.0856019
-HP:0005864 0.05240747   .         .         1.99587629  .        
-HP:0003781 .            .         0.0856019 .           1.9841924
+           HP:0003956 HP:0000463 HP:0000653 HP:0100710 HP:0011121
+HP:0003956   1.987629  .          .           .         .        
+HP:0000463   .         1.8316151  0.1201672   .         .        
+HP:0000653   .         0.1201672  1.9814433   .         0.1523263
+HP:0100710   .         .          .           1.991753  .        
+HP:0011121   .         .          0.1523263   .         1.6116838
 </div></pre>
   </div>
   
@@ -357,7 +357,7 @@ HP:0003781 .            .         0.0856019 .           1.9841924
     -->
     
     <h2>Source code</h2>
-    <a href="javascript:newWin('R/dDAGtermSim.r', 'R/dDAGtermSim.r', '1200', '1200')" title="Click to enlarge"><B><code>dDAGtermSim.r</code></B></a>
+    <a href="javascript:newWin('R/dDAGtermSim.r', 'R/dDAGtermSim.r', '1200', '1200')" title="Click to view"><B><code>dDAGtermSim.r</code></B></a>
     
     <h2>See also</h2>
     
@@ -366,14 +366,14 @@ HP:0003781 .            .         0.0856019 .           1.9841924
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
 
     
     <!--
     
     <h2>URL</h2>
     <ul>
-      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
+      <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
     </ul>
     
     

@@ -217,7 +217,7 @@ returns an object of class "eTerm".</p>
       "MsigdbC6", "MsigdbC7", "DGIdb", "Customised"), customised.genesets = NULL, sizeRange = c(10, 
       20000), which_distance = NULL, weight = 1, nperm = 1000, fast = T, sigTail = c("two-tails", 
       "one-tail"), p.adjust.method = c("BH", "BY", "bonferroni", "holm", "hochberg", 
-      "hommel"), verbose = T, RData.location = "http://dnet.r-forge.r-project.org/data")</pre>
+      "hommel"), verbose = T, RData.location = "http://supfam.org/dnet/data")</pre>
     
     <h3>Arguments</h3>
     <dl>
@@ -267,9 +267,9 @@ genomes/species; for "Hs" and "Mm", these five ("DO",
 "Msigdb" are only supported in "Hs". For details on the
 eligibility for pairs of input genome and ontology,
 please refer to the online Documentations at
-<a href = 'http://dnet.r-forge.r-project.org/docs.html'>http://dnet.r-forge.r-project.org/docs.html</a>. Also
-supported are the user-customised gene sets; in doing so,
-the option "Customised" should be used together with the
+<a href = 'http://supfam.org/dnet/docs.html'>http://supfam.org/dnet/docs.html</a>. Also supported
+are the user-customised gene sets; in doing so, the
+option "Customised" should be used together with the
 input of the next parameter "customised.genesets"</dd>
       <dt>customised.genesets</dt>
       <dd>an input vector/matrix/list
@@ -321,23 +321,24 @@ false for no display</dd>
       <dt>RData.location</dt>
       <dd>the characters to tell the location
 of built-in RData files. By default, it remotely locates
-at <a href = '"http://dnet.r-forge.r-project.org/data"'>"http://dnet.r-forge.r-project.org/data"</a>. For
-the user equipped with fast internet connection, this
-option can be just left as default. But it is always
-advisable to download these files locally. Especially
-when the user needs to run this function many times,
-there is no need to ask the function to remotely download
-every time (also it will unnecessarily increase the
-runtime). For examples, these files (as a whole or part
-of them) can be first downloaded into your current
-working directory, and then set this option as:
-<code class = 'eq'>RData.location="."</code>. Surely, the location can be
-anywhere as long as the user provides the correct path
-pointing to (otherwise, the script will have to remotely
-download each time). Here is the UNIX command for
-downloading all RData files (preserving the directory
-structure): <code class = 'eq'>wget -r -l2 -A "*.RData" -np -nH
---cut-dirs=0 "http://dnet.r-forge.r-project.org/data"</code></dd>
+at <a href = 'http://supfam.org/dnet/data'>http://supfam.org/dnet/data</a> or
+<a href = 'http://dnet.r-forge.r-project.org/data'>http://dnet.r-forge.r-project.org/data</a>. For the
+user equipped with fast internet connection, this option
+can be just left as default. But it is always advisable
+to download these files locally. Especially when the user
+needs to run this function many times, there is no need
+to ask the function to remotely download every time (also
+it will unnecessarily increase the runtime). For
+examples, these files (as a whole or part of them) can be
+first downloaded into your current working directory, and
+then set this option as: <code class = 'eq'>RData.location="."</code>.
+Surely, the location can be anywhere as long as the user
+provides the correct path pointing to (otherwise, the
+script will have to remotely download each time). Here is
+the UNIX command for downloading all RData files
+(preserving the directory structure): <code class = 'eq'>wget -r -l2 -A
+"*.RData" -np -nH --cut-dirs=0
+"http://dnet.r-forge.r-project.org/data"</code></dd>
     </dl>
     <!-- 
     -->
@@ -430,21 +431,21 @@ data <- RT[1:1000,1:2]
 eTerm <- dGSEA(data, identity="symbol", genome="Mm", ontology="MP",
 which_distance=c(1,2))
 </div>
-<strong class='message'>Start at 2014-05-30 12:26:35</strong>
+<strong class='message'>Start at 2014-06-03 18:15:23</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-05-30 12:26:35) ...</strong>
-<strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
-<strong class='message'>	Load annotation information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.egMP.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-05-30 12:26:37) ...</strong>
+<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-06-03 18:15:23) ...</strong>
+<strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Mm/org.Mm.eg.RData</strong>
+<strong class='message'>	Load annotation information from http://supfam.org/dnet/data/Mm/org.Mm.egMP.RData</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-06-03 18:15:24) ...</strong>
 <strong class='message'>	Among 1000 symbols of input data, there are 853 mappable via official gene symbols but 147 left unmappable</strong>
-<strong class='message'>Third, perform GSEA analysis (2014-05-30 12:26:38) ...</strong>
-<strong class='message'>	Sample 1 is being processed at (2014-05-30 12:26:38) ...</strong>
+<strong class='message'>Third, perform GSEA analysis (2014-06-03 18:15:24) ...</strong>
+<strong class='message'>	Sample 1 is being processed at (2014-06-03 18:15:24) ...</strong>
 <strong class='message'>		 81 of 81 gene sets have been processed</strong>
-<strong class='message'>	Sample 2 is being processed at (2014-05-30 12:26:49) ...</strong>
+<strong class='message'>	Sample 2 is being processed at (2014-06-03 18:15:35) ...</strong>
 <strong class='message'>		 81 of 81 gene sets have been processed</strong>
 <strong class='message'>
-End at 2014-05-30 12:27:02</strong>
-<strong class='message'>Runtime in total is: 27 secs
+End at 2014-06-03 18:15:47</strong>
+<strong class='message'>Runtime in total is: 24 secs
 </strong>
 <div class='input'>res <- dGSEAview(eTerm, which_sample=1, top_num=5, sortBy="adjp",
 decreasing=FALSE, details=TRUE)
@@ -461,21 +462,21 @@ filename="eTerm.txt")
 eTerm <- dGSEA(data, identity="symbol", genome="Mm",
 ontology="Customised", customised.genesets=rownames(data)[1:100])
 </div>
-<strong class='message'>Start at 2014-05-30 12:27:05</strong>
+<strong class='message'>Start at 2014-06-03 18:15:49</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology Customised and its gene associations in the genome Mm (2014-05-30 12:27:05) ...</strong>
-<strong class='message'>	Load Enterz Gene information from http://dnet.r-forge.r-project.org/data/Mm/org.Mm.eg.RData</strong>
+<strong class='message'>First, load the ontology Customised and its gene associations in the genome Mm (2014-06-03 18:15:49) ...</strong>
+<strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Mm/org.Mm.eg.RData</strong>
 <strong class='message'>	Among 100 symbols of input data, there are 81 mappable via official gene symbols but 19 left unmappable</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-05-30 12:27:06) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-06-03 18:15:49) ...</strong>
 <strong class='message'>	Among 1000 symbols of input data, there are 853 mappable via official gene symbols but 147 left unmappable</strong>
-<strong class='message'>Third, perform GSEA analysis (2014-05-30 12:27:06) ...</strong>
-<strong class='message'>	Sample 1 is being processed at (2014-05-30 12:27:06) ...</strong>
+<strong class='message'>Third, perform GSEA analysis (2014-06-03 18:15:49) ...</strong>
+<strong class='message'>	Sample 1 is being processed at (2014-06-03 18:15:49) ...</strong>
 <strong class='message'>		 1 of 1 gene sets have been processed</strong>
-<strong class='message'>	Sample 2 is being processed at (2014-05-30 12:27:07) ...</strong>
+<strong class='message'>	Sample 2 is being processed at (2014-06-03 18:15:50) ...</strong>
 <strong class='message'>		 1 of 1 gene sets have been processed</strong>
 <strong class='message'>
-End at 2014-05-30 12:27:07</strong>
-<strong class='message'>Runtime in total is: 2 secs
+End at 2014-06-03 18:15:50</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong></pre>
   </div>
   
@@ -491,7 +492,7 @@ End at 2014-05-30 12:27:07</strong>
     -->
     
     <h2>Source code</h2>
-    <a href="javascript:newWin('R/dGSEA.r', 'R/dGSEA.r', '1200', '1200')" title="Click to enlarge"><B><code>dGSEA.r</code></B></a>
+    <a href="javascript:newWin('R/dGSEA.r', 'R/dGSEA.r', '1200', '1200')" title="Click to view"><B><code>dGSEA.r</code></B></a>
     
     <h2>See also</h2>
     
@@ -500,14 +501,14 @@ End at 2014-05-30 12:27:07</strong>
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
 
     
     <!--
     
     <h2>URL</h2>
     <ul>
-      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
+      <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
     </ul>
     
     

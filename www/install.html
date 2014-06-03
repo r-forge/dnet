@@ -253,9 +253,12 @@ biocLite(c(&quot;hexbin&quot;,&quot;ape&quot;,&quot;supraHex&quot;,&quot;graph&q
 <pre><code>install.packages(&quot;dnet&quot;,repos=&quot;http://cran.r-project.org&quot;,type=&quot;source&quot;)
 </code></pre>
 
-<p>Notes: to install the package <code>dnet</code> under <a href="http://r-forge.r-project.org/projects/dnet">latest development version</a>, please run:</p>
+<p>Notes: to install the package <code>dnet</code> under <a href="https://github.com/hfang-bristol/dnet">latest development version</a>, please run:</p>
 
-<pre><code>install.packages(pkgs=c(&quot;dnet&quot;,&quot;supraHex&quot;),repos=&quot;http://R-Forge.R-project.org&quot;, type=&quot;source&quot;)
+<pre><code>source(&quot;http://bioconductor.org/biocLite.R&quot;)
+biocLite(&quot;devtools&quot;)
+library(devtools)
+install_github(c(&quot;dnet&quot;,&quot;supraHex&quot;), username=&quot;hfang-bristol&quot;)
 </code></pre>
 
 <h2>3. Workflow of the package</h2>
@@ -274,11 +277,11 @@ biocLite(c(&quot;hexbin&quot;,&quot;ape&quot;,&quot;supraHex&quot;,&quot;graph&q
     
     <h2>URL</h2>
     <ul>
-      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
+      <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
     </ul>
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
 
     
     <h2>Author</h2>

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>org.At.egGOMF @ dnet 1.0.3</title>
+<title>Ancestral_domainome @ dnet 1.0.3</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -198,27 +198,29 @@ window.onload = function(){
         
       </header>
       
-      <h2>Annotations of Arabidopsis Entrez Genes (EG) by Gene Ontology Molecular Function (GOMF).</h2>
+      <h2>Ancestral superfamily domain repertoires in Eukaryotes</h2>
 
 <div class="row">
   <div class="span8">
   
     <h3>Description</h3>
-    <p>An R object that contains associations between Gene Ontology Molecular Function terms and Arabidopsis Entrez Genes. This data is prepared based on <a href = 'http://www.geneontology.org/ontology/obo_format_1_2/gene_ontology.1_2.obo'>http://www.geneontology.org/ontology/obo_format_1_2/gene_ontology.1_2.obo</a> and <a href = 'ftp://ftp.ncbi.nih.gov/gene/DATA/gene2go.gz'>ftp://ftp.ncbi.nih.gov/gene/DATA/gene2go.gz</a>.</p>
+    <p>An 'ExpressionSet' object that contains information about domain repertoires (a complete set of domains: domain-ome) in Eukaryotes (including extant and ancestral genomes). This data is prepared based on 1) SUPERFAMILY database which provides domain and architecture assignments to all completely sequenced genomes including eukaryotic genomes; 2) ancestral domain architecture repertoires inferred by applying Dollo parsimony to eukaryotic part of species tree of life (sTOL), from which ancestral superfamily domain and architecture repertoires at all branching points in eukaryotic evolution are inferred. This allows us to list ancestral domain and architecture repertoires that were present at these points. Based on the observed/inferred domain and architecture repertoires, we also define genome-specific plasticity potential for an individual domain as how many different architectures (or architecture diversity) it can be formed in an extant/ancestral genome. As a result, for each genome, domain repertoires (domainome) are represented as a profile of states on domains, where non-zero entry indicates a domain for which how many different architectures have occurred in the genome.</p>
   
     <h3>Usage</h3>
-    <pre>org.At.egGOMF <- dRDataLoader(RData = "org.At.egGOMF")</pre>
+    <pre>Ancestral_domainome <- dRDataLoader(RData = "Ancestral_domainome")</pre>
         <!-- 
     -->
     
     <div class="Value">
       <h3>Value</h3>
       
-      <p>an object of class "GS", a list with following components:
+      <p>an object of class "ExpressionSet". It has slots for "assayData", "phenoData", and "featureData": 
     <ul>
-<li><code>set_info</code>: a matrix of nSet X 4 containing gene set information, where nSet is the number of gene sets (i.e. GOMF terms), and the 4 columns are "setID" (i.e. "Term ID"), "name" (i.e. "Term Name"), "namespace" and "distance"
+<li><code>assayData</code>: a matrix of 2019 features/domains X 875 samples/genomes (including 438 extant genomes and 437 ancestral genomes)
         </li>
-<li><code>gs</code>: a list of gene sets, each storing gene members thereof. Always, gene sets are identified by "setID" and gene members identified by "Entrez ID"
+<li><code>phenoData</code>: variables describing sample/genome phenotypes (i.e. columns in assayData), including extant/ancestral genome information: "left_id" (unique and used as internal id), "right_id" (used in combination with "left_id" to define the post-ordered binary tree structure), "taxon_id" (NCBI taxonomy id, if matched), "genome" (2-letter genome identifiers used in SUPERFAMILY, if being extant), "name" (NCBI taxonomy name, if matched), "rank" (NCBI taxonomy rank, if matched), "branchlength" (branch length in relevance to the parent), and "common_name" (NCBI taxonomy common name, if matched and existed)
+        </li>
+<li><code>featureData</code>: variables describing features/domains (i.e. rows in assayData), including information about domains: "sunid" for SCOP id, "level" for SCOP level, "classification" for SCOP classification, "description" for SCOP description
     </li>
 </ul></p>
       <p></p>
@@ -226,17 +228,68 @@ window.onload = function(){
     <div class="References">
       <h3>References</h3>
       
-      <p>Maglott et al. (2011) Entrez Gene: gene-centered information at NCBI. <em>Nucleic Acids Res</em>, 39:D52-57.</p>
-      <p>Ashburner et al. (2000) Gene ontology: tool for the unification of biology. <em>Nat Genet</em>, 25:25-29.</p>
+      <p>Fang et al. (2013) A daily-updated tree of (sequenced) life as a reference for genome research. <em>Scientific reports</em>, 3:2015.</p>
+      <p>Morais et al. (2011) SUPERFAMILY 1.75 including a domain-centric gene ontology method. <em>Nucleic Acids Res</em>, 39(Database issue):D427-34.</p>
+      <p>Andreeva et al. (2008) Data growth and its impact on the SCOP database: new developments. <em>Nucleic Acids Res</em>, 36(Database issue):D419-425</p>
     </div>
     
     <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'>org.At.egGOMF <- dRDataLoader(RData='org.At.egGOMF')
+    <pre class="examples"><div class='input'>Ancestral_domainome <- dRDataLoader(RData='Ancestral_domainome')
 </div>
-<strong class='message'>'org.At.egGOMF' (from http://supfam.org/dnet/data/At/org.At.egGOMF.RData) has been loaded into the working environment</strong>
-<div class='input'>names(org.At.egGOMF)
+<strong class='message'>'Ancestral_domainome' (from http://supfam.org/dnet/data/Datasets/Ancestral_domainome.RData) has been loaded into the working environment</strong>
+<div class='input'>data(Ancestral_domainome)
 </div>
-<div class='output'>[1] "gs"       "set_info"
+<strong class='warning'>Warning message:
+data set ‘Ancestral_domainome’ not found</strong>
+<div class='input'>Ancestral_domainome
+</div>
+<div class='output'>ExpressionSet (storageMode: lockedEnvironment)
+assayData: 2019 features, 875 samples 
+  element names: exprs 
+protocolData: none
+phenoData
+  sampleNames: 3 4 ... 1750 (875 total)
+  varLabels: left_id right_id ... common_name (8 total)
+  varMetadata: labelDescription
+featureData
+  featureNames: 46458 46548 ... 161270 (2019 total)
+  fvarLabels: sunid level classification description
+  fvarMetadata: labelDescription
+experimentData: use 'experimentData(object)'
+Annotation:  
+</div>
+<div class='input'>library(Biobase)
+# extract information about the first 5 genomes
+pData(Ancestral_domainome)[1:5,]
+</div>
+<div class='output'>  left_id right_id taxon_id genome      name         rank branchlength
+3       3     1752     2759   <NA> Eukaryota superkingdom  0.032247873
+4       4     1749       NA   <NA>      <NA>         <NA>  0.022275411
+5       5     1546       NA   <NA>      <NA>         <NA>  0.004497603
+6       6     1499       NA   <NA>      <NA>         <NA>  0.003496342
+7       7     1360       NA   <NA>      <NA>         <NA>  0.005465982
+  common_name
+3  eucaryotes
+4        <NA>
+5        <NA>
+6        <NA>
+7        <NA>
+</div>
+<div class='input'># extract information about the first 5 domains
+fData(Ancestral_domainome)[1:5,]
+</div>
+<div class='output'>      sunid level classification
+46458 46458    sf          a.1.1
+46548 46548    sf          a.1.2
+46557 46557    sf          a.2.1
+46561 46561    sf          a.2.2
+46565 46565    sf          a.2.3
+                                              description
+46458                                         Globin-like
+46548                            alpha-helical ferredoxin
+46557 GreA transcript cleavage protein, N-terminal domain
+46561                        Ribosomal protein L29 (L29p)
+46565                                  Chaperone J-domain
 </div></pre>
   </div>
   
@@ -244,7 +297,7 @@ window.onload = function(){
     
     <!-- 
     <ul>
-      <li>org.At.egGOMF</li>
+      <li>Ancestral_domainome</li>
     </ul>
     <ul>
       <li>datasets</li>

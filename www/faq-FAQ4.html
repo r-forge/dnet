@@ -278,7 +278,7 @@ rownames(data) <- V(g)$name
 ## being self-organised onto 2D sample landscape (ie a sheet-shape rectangle grid)
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="node", node.normalise="none")
 </div>
-<strong class='message'>Start at 2014-05-29 18:20:07</strong>
+<strong class='message'>Start at 2014-06-03 18:40:41</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -288,14 +288,14 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
 <strong class='message'>Finally, append the response data (hits and mqe) into the sMap object...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
-<strong class='message'>   dimension of input data: 10x36
+<strong class='message'>   dimension of input data: 10x23
    xy-dimension of map grid: xdim=6, ydim=6
    grid lattice: rect
    grid shape: sheet
    dimension of grid coord: 36x2
    initialisation method: linear
-   dimension of codebook matrix: 36x36
-   mean quantization error: 1.08979658348455
+   dimension of codebook matrix: 36x23
+   mean quantization error: 0.539588238282303
 </strong>
 <strong class='message'>Below are the details of trainology:</strong>
 <strong class='message'>   training algorithm: sequential
@@ -305,7 +305,7 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-05-29 18:20:08</strong>
+<strong class='message'>End at 2014-06-03 18:40:42</strong>
 <strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g, colormap="rainbow", data=data, sReorder)
@@ -315,7 +315,7 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
 ## By default, 2D sample landscape is built based on node features without considering node degrees. To take into account the connectivity in the network, the information used can be on edges which are transformed from information on nodes: input data and degree. In doing so, <span style="font-weight:bold; color:#F87217; text-decoration:underline">the transformed matrix of network edges × samples are used for self-organising samples onto 2D landscape (implemented in the 'supraHex' package).</span>
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="edge", node.normalise="degree")
 </div>
-<strong class='message'>Start at 2014-05-29 18:20:23</strong>
+<strong class='message'>Start at 2014-06-03 18:40:52</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -325,14 +325,14 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
 <strong class='message'>Finally, append the response data (hits and mqe) into the sMap object...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
-<strong class='message'>   dimension of input data: 10x38
+<strong class='message'>   dimension of input data: 10x22
    xy-dimension of map grid: xdim=6, ydim=6
    grid lattice: rect
    grid shape: sheet
    dimension of grid coord: 36x2
    initialisation method: linear
-   dimension of codebook matrix: 36x38
-   mean quantization error: 0.366946083999157
+   dimension of codebook matrix: 36x22
+   mean quantization error: 0.170727892645009
 </strong>
 <strong class='message'>Below are the details of trainology:</strong>
 <strong class='message'>   training algorithm: sequential
@@ -342,7 +342,7 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-05-29 18:20:24</strong>
+<strong class='message'>End at 2014-06-03 18:40:53</strong>
 <strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g, colormap="rainbow", data=data, sReorder)</div>
@@ -364,14 +364,14 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
     </ul>
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
 
     
     <!--
     
     <h2>URL</h2>
     <ul>
-      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
+      <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
     </ul>
     
     <h2>Author</h2>

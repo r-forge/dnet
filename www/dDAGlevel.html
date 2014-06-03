@@ -274,46 +274,34 @@ subg <- dDAGinduce(g, nodes_query)
 # 4a) definition based on the longest path
 dDAGlevel(subg, level.mode="longest_path")
 </div>
-<div class='output'>HP:0000118 HP:0000707 HP:0000924 HP:0001626 HP:0002597 HP:0011842 HP:0012638 
-         1          2          2          2          3          3          3 
-HP:0012639 HP:0001367 HP:0002011 HP:0004930 HP:0011314 HP:0011442 HP:0011844 
-         3          4          4          4          4          4          4 
-HP:0002063 HP:0002813 HP:0005930 HP:0007319 HP:0011718 HP:0011729 HP:0100491 
-         5          5          5          5          5          5          7 
-HP:0100240 HP:0001341 HP:0002814 HP:0002817 HP:0006505 HP:0010580 HP:0010772 
-         6          6          6          6          6          6          6 
-HP:0011297 HP:0001155 HP:0001167 HP:0001760 HP:0003839 HP:0009138 HP:0010231 
-         6          7          8          7          7          8         11 
-HP:0010773 HP:0100265 HP:0100266 HP:0001440 HP:0001832 HP:0001850 HP:0005924 
-         7          7          7         10          8          8          8 
-HP:0008368 HP:0009140 HP:0011626 HP:0004188 HP:0005918 HP:0005920 HP:0009172 
-        10          9          8          9          9         10         10 
-HP:0009174 HP:0009834 HP:0009284 HP:0010245 HP:0100329 HP:0009248 HP:0009396 
-        11         10         11         11         11         12         12 
-HP:0010271 HP:0009264 
-        12         13 
+<div class='output'>HP:0000118 HP:0000152 HP:0000924 HP:0001438 HP:0001626 HP:0001871 HP:0000234 
+         1          2          2          2          2          2          3 
+HP:0001892 HP:0002012 HP:0005561 HP:0011025 HP:0011842 HP:0012143 HP:0001965 
+         3          3          3          3          3          4          4 
+HP:0011024 HP:0011028 HP:0011029 HP:0011314 HP:0011844 HP:0002813 HP:0005930 
+         4          4          5          4          4          5          5 
+HP:0012719 HP:0100809 HP:0002239 HP:0002814 HP:0006505 HP:0011297 HP:0001760 
+         5          5          6          6          6          6          7 
+HP:0001780 HP:0006500 HP:0010631 HP:0001844 HP:0010160 HP:0010161 HP:0010320 
+         8          7          8          9          9          9          9 
+HP:0010057 HP:0010181 HP:0010329 HP:0010066 HP:0100093 
+        10         10         10         11         11 
 </div>
 <div class='input'># 4b) definition based on the shortest path
 dDAGlevel(subg, level.mode="shortest_path")
 </div>
-<div class='output'>HP:0000118 HP:0000707 HP:0000924 HP:0001626 HP:0002597 HP:0011842 HP:0012638 
-         1          2          2          2          3          3          3 
-HP:0012639 HP:0001367 HP:0002011 HP:0004930 HP:0011314 HP:0011442 HP:0011844 
-         3          4          4          4          4          4          4 
-HP:0002063 HP:0002813 HP:0005930 HP:0007319 HP:0011718 HP:0011729 HP:0100491 
-         5          5          5          5          5          5          5 
-HP:0100240 HP:0001341 HP:0002814 HP:0002817 HP:0006505 HP:0010580 HP:0010772 
-         6          6          6          6          6          6          6 
-HP:0011297 HP:0001155 HP:0001167 HP:0001760 HP:0003839 HP:0009138 HP:0010231 
-         6          7          7          7          7          6          7 
-HP:0010773 HP:0100265 HP:0100266 HP:0001440 HP:0001832 HP:0001850 HP:0005924 
-         7          7          7          8          8          8          8 
-HP:0008368 HP:0009140 HP:0011626 HP:0004188 HP:0005918 HP:0005920 HP:0009172 
-         8          7          8          8          8          9          9 
-HP:0009174 HP:0009834 HP:0009284 HP:0010245 HP:0100329 HP:0009248 HP:0009396 
-         9          9         10         10          9         10          8 
-HP:0010271 HP:0009264 
-         8          9 
+<div class='output'>HP:0000118 HP:0000152 HP:0000924 HP:0001438 HP:0001626 HP:0001871 HP:0000234 
+         1          2          2          2          2          2          3 
+HP:0001892 HP:0002012 HP:0005561 HP:0011025 HP:0011842 HP:0012143 HP:0001965 
+         3          3          3          3          3          4          4 
+HP:0011024 HP:0011028 HP:0011029 HP:0011314 HP:0011844 HP:0002813 HP:0005930 
+         4          4          4          4          4          5          5 
+HP:0012719 HP:0100809 HP:0002239 HP:0002814 HP:0006505 HP:0011297 HP:0001760 
+         5          5          5          6          6          6          7 
+HP:0001780 HP:0006500 HP:0010631 HP:0001844 HP:0010160 HP:0010161 HP:0010320 
+         7          7          8          8          8          8          8 
+HP:0010057 HP:0010181 HP:0010329 HP:0010066 HP:0100093 
+         9          9          9         10         10 
 </div>
 <div class='input'># 4c) definition based on the longest path, and return nodes for each level
 dDAGlevel(subg, level.mode="longest_path", return.mode="level2node")
@@ -322,45 +310,36 @@ dDAGlevel(subg, level.mode="longest_path", return.mode="level2node")
 [1] "HP:0000118"
 
 $`2`
-[1] "HP:0000707" "HP:0000924" "HP:0001626"
+[1] "HP:0000152" "HP:0000924" "HP:0001438" "HP:0001626" "HP:0001871"
 
 $`3`
-[1] "HP:0002597" "HP:0011842" "HP:0012638" "HP:0012639"
+[1] "HP:0000234" "HP:0001892" "HP:0002012" "HP:0005561" "HP:0011025"
+[6] "HP:0011842"
 
 $`4`
-[1] "HP:0001367" "HP:0002011" "HP:0004930" "HP:0011314" "HP:0011442"
+[1] "HP:0012143" "HP:0001965" "HP:0011024" "HP:0011028" "HP:0011314"
 [6] "HP:0011844"
 
 $`5`
-[1] "HP:0002063" "HP:0002813" "HP:0005930" "HP:0007319" "HP:0011718"
-[6] "HP:0011729"
+[1] "HP:0011029" "HP:0002813" "HP:0005930" "HP:0012719" "HP:0100809"
 
 $`6`
-[1] "HP:0100240" "HP:0001341" "HP:0002814" "HP:0002817" "HP:0006505"
-[6] "HP:0010580" "HP:0010772" "HP:0011297"
+[1] "HP:0002239" "HP:0002814" "HP:0006505" "HP:0011297"
 
 $`7`
-[1] "HP:0100491" "HP:0001155" "HP:0001760" "HP:0003839" "HP:0010773"
-[6] "HP:0100265" "HP:0100266"
+[1] "HP:0001760" "HP:0006500"
 
 $`8`
-[1] "HP:0001167" "HP:0009138" "HP:0001832" "HP:0001850" "HP:0005924"
-[6] "HP:0011626"
+[1] "HP:0001780" "HP:0010631"
 
 $`9`
-[1] "HP:0009140" "HP:0004188" "HP:0005918"
+[1] "HP:0001844" "HP:0010160" "HP:0010161" "HP:0010320"
 
 $`10`
-[1] "HP:0001440" "HP:0008368" "HP:0005920" "HP:0009172" "HP:0009834"
+[1] "HP:0010057" "HP:0010181" "HP:0010329"
 
 $`11`
-[1] "HP:0010231" "HP:0009174" "HP:0009284" "HP:0010245" "HP:0100329"
-
-$`12`
-[1] "HP:0009248" "HP:0009396" "HP:0010271"
-
-$`13`
-[1] "HP:0009264"
+[1] "HP:0010066" "HP:0100093"
 
 </div></pre>
   </div>
@@ -377,7 +356,7 @@ $`13`
     -->
     
     <h2>Source code</h2>
-    <a href="javascript:newWin('R/dDAGlevel.r', 'R/dDAGlevel.r', '1200', '1200')" title="Click to enlarge"><B><code>dDAGlevel.r</code></B></a>
+    <a href="javascript:newWin('R/dDAGlevel.r', 'R/dDAGlevel.r', '1200', '1200')" title="Click to view"><B><code>dDAGlevel.r</code></B></a>
     
     <h2>See also</h2>
     
@@ -385,14 +364,14 @@ $`13`
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
 
     
     <!--
     
     <h2>URL</h2>
     <ul>
-      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
+      <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
     </ul>
     
     

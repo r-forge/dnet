@@ -317,9 +317,9 @@ x <- rbeta(1000, shape1=0.5, shape2=1)
 fit <- dBUMfit(x)
 </div>
 <strong class='message'>	A total of p-values: 1000</strong>
-<strong class='message'>	Maximum Log-Likelihood: 304.6</strong>
-<strong class='message'>	Mixture parameter (lambda): 0.041</strong>
-<strong class='message'>	Shape parameter (a): 0.491</strong>
+<strong class='message'>	Maximum Log-Likelihood: 270.9</strong>
+<strong class='message'>	Mixture parameter (lambda): 0.000</strong>
+<strong class='message'>	Shape parameter (a): 0.519</strong>
 <a href="javascript:newWin('dBUMscore-6.png', 'dBUMscore-6.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dBUMscore-6.png', width="400" /></a>
 <div class='input'>
 # 3) calculate the scores according to the fitted BUM and fdr=0.01
@@ -345,7 +345,7 @@ scores <- dBUMscore(fit, method="cdf", fdr=0.01)
     -->
     
     <h2>Source code</h2>
-    <a href="javascript:newWin('R/dBUMscore.r', 'R/dBUMscore.r', '1200', '1200')" title="Click to enlarge"><B><code>dBUMscore.r</code></B></a>
+    <a href="javascript:newWin('R/dBUMscore.r', 'R/dBUMscore.r', '1200', '1200')" title="Click to view"><B><code>dBUMscore.r</code></B></a>
     
     <h2>See also</h2>
     
@@ -353,14 +353,14 @@ scores <- dBUMscore(fit, method="cdf", fdr=0.01)
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
 
     
     <!--
     
     <h2>URL</h2>
     <ul>
-      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
+      <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
     </ul>
     
     

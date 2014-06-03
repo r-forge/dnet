@@ -354,29 +354,29 @@ genes <- sample(allgenes,5)
 sim <- dDAGgeneSim(g=dag, genes=genes, method.gene="BM.average",
 method.term="Resnik", parallel=FALSE, verbose=TRUE)
 </div>
-<strong class='message'>Start at 2014-05-30 12:26:14</strong>
+<strong class='message'>Start at 2014-06-03 18:15:03</strong>
 <strong class='message'></strong>
-<strong class='message'>First, extract all annotatable genes (2014-05-30 12:26:14)...</strong>
+<strong class='message'>First, extract all annotatable genes (2014-06-03 18:15:03)...</strong>
 <strong class='message'>	there are 5 input genes amongst 2910 annotatable genes</strong>
-<strong class='message'>Second, pre-compute semantic similarity between 39 terms (forced to be the most specific for each gene) using Resnik method (2014-05-30 12:26:15)...</strong>
-<strong class='message'>Last, calculate pair-wise semantic similarity between 5 genes using BM.average method (2014-05-30 12:26:15)...</strong>
-<strong class='message'>	1 out of 5 (2014-05-30 12:26:15)</strong>
-<strong class='message'>	2 out of 5 (2014-05-30 12:26:15)</strong>
-<strong class='message'>	3 out of 5 (2014-05-30 12:26:15)</strong>
-<strong class='message'>	4 out of 5 (2014-05-30 12:26:15)</strong>
+<strong class='message'>Second, pre-compute semantic similarity between 25 terms (forced to be the most specific for each gene) using Resnik method (2014-06-03 18:15:04)...</strong>
+<strong class='message'>Last, calculate pair-wise semantic similarity between 5 genes using BM.average method (2014-06-03 18:15:04)...</strong>
+<strong class='message'>	1 out of 5 (2014-06-03 18:15:04)</strong>
+<strong class='message'>	2 out of 5 (2014-06-03 18:15:04)</strong>
+<strong class='message'>	3 out of 5 (2014-06-03 18:15:04)</strong>
+<strong class='message'>	4 out of 5 (2014-06-03 18:15:04)</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-05-30 12:26:15</strong>
+<strong class='message'>Finish at 2014-06-03 18:15:04</strong>
 <strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'>sim
 </div>
 <div class='output'>5 x 5 sparse Matrix of class "dgCMatrix"
-           5669      5406        21     55532     10102
-5669  .         .         .         0.3246202 .        
-5406  .         .         .         0.2883428 0.2453853
-21    .         .         .         .         0.3940081
-55532 0.3246202 0.2883428 .         .         0.3137992
-10102 .         0.2453853 0.3940081 0.3137992 .        
+           3054      4128      5333      9681     55851
+3054  .         0.2751097 0.2291445 0.5024256 .        
+4128  0.2751097 .         0.3155813 0.8843252 .        
+5333  0.2291445 0.3155813 .         0.2820811 0.3292664
+9681  0.5024256 0.8843252 0.2820811 .         .        
+55851 .         .         0.3292664 .         .        
 </div></pre>
   </div>
   
@@ -392,7 +392,7 @@ method.term="Resnik", parallel=FALSE, verbose=TRUE)
     -->
     
     <h2>Source code</h2>
-    <a href="javascript:newWin('R/dDAGgeneSim.r', 'R/dDAGgeneSim.r', '1200', '1200')" title="Click to enlarge"><B><code>dDAGgeneSim.r</code></B></a>
+    <a href="javascript:newWin('R/dDAGgeneSim.r', 'R/dDAGgeneSim.r', '1200', '1200')" title="Click to view"><B><code>dDAGgeneSim.r</code></B></a>
     
     <h2>See also</h2>
     
@@ -401,14 +401,14 @@ method.term="Resnik", parallel=FALSE, verbose=TRUE)
 
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
 
     
     <!--
     
     <h2>URL</h2>
     <ul>
-      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
+      <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
     </ul>
     
     
