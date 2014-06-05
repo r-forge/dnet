@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dDAGgeneSim @ dnet 1.0.3</title>
+<title>dDAGgeneSim @ dnet 1.0.4</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.3</a>
+      <a class="brand" href="index.html">dnet 1.0.4</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -354,29 +354,29 @@ genes <- sample(allgenes,5)
 sim <- dDAGgeneSim(g=dag, genes=genes, method.gene="BM.average",
 method.term="Resnik", parallel=FALSE, verbose=TRUE)
 </div>
-<strong class='message'>Start at 2014-06-03 18:15:03</strong>
+<strong class='message'>Start at 2014-06-05 18:51:31</strong>
 <strong class='message'></strong>
-<strong class='message'>First, extract all annotatable genes (2014-06-03 18:15:03)...</strong>
+<strong class='message'>First, extract all annotatable genes (2014-06-05 18:51:31)...</strong>
 <strong class='message'>	there are 5 input genes amongst 2910 annotatable genes</strong>
-<strong class='message'>Second, pre-compute semantic similarity between 25 terms (forced to be the most specific for each gene) using Resnik method (2014-06-03 18:15:04)...</strong>
-<strong class='message'>Last, calculate pair-wise semantic similarity between 5 genes using BM.average method (2014-06-03 18:15:04)...</strong>
-<strong class='message'>	1 out of 5 (2014-06-03 18:15:04)</strong>
-<strong class='message'>	2 out of 5 (2014-06-03 18:15:04)</strong>
-<strong class='message'>	3 out of 5 (2014-06-03 18:15:04)</strong>
-<strong class='message'>	4 out of 5 (2014-06-03 18:15:04)</strong>
+<strong class='message'>Second, pre-compute semantic similarity between 73 terms (forced to be the most specific for each gene) using Resnik method (2014-06-05 18:51:32)...</strong>
+<strong class='message'>Last, calculate pair-wise semantic similarity between 5 genes using BM.average method (2014-06-05 18:51:32)...</strong>
+<strong class='message'>	1 out of 5 (2014-06-05 18:51:32)</strong>
+<strong class='message'>	2 out of 5 (2014-06-05 18:51:32)</strong>
+<strong class='message'>	3 out of 5 (2014-06-05 18:51:32)</strong>
+<strong class='message'>	4 out of 5 (2014-06-05 18:51:32)</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-06-03 18:15:04</strong>
+<strong class='message'>Finish at 2014-06-05 18:51:32</strong>
 <strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'>sim
 </div>
 <div class='output'>5 x 5 sparse Matrix of class "dgCMatrix"
-           3054      4128      5333      9681     55851
-3054  .         0.2751097 0.2291445 0.5024256 .        
-4128  0.2751097 .         0.3155813 0.8843252 .        
-5333  0.2291445 0.3155813 .         0.2820811 0.3292664
-9681  0.5024256 0.8843252 0.2820811 .         .        
-55851 .         .         0.3292664 .         .        
+            6611      1073    148022      4983     51314
+6611   .         0.6854058 .         0.7589115 0.4150638
+1073   0.6854058 .         .         0.4338842 0.4061021
+148022 .         .         .         .         0.6099265
+4983   0.7589115 0.4338842 .         .         0.1992820
+51314  0.4150638 0.4061021 0.6099265 0.1992820 .        
 </div></pre>
   </div>
   

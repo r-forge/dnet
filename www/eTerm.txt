@@ -1,2 +1,2 @@
 setID	setSize	name	namespace	distance	ESC_46C	ESC_D3
-MP:0005502	47	abnormal renal/urinary system physiology	Mammalian_phenotype	2	-1	NA
+MP:0009701	12	abnormal birth body size	Mammalian_phenotype	2	NA	-1

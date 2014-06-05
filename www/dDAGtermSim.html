@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dDAGtermSim @ dnet 1.0.3</title>
+<title>dDAGtermSim @ dnet 1.0.4</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.3</a>
+      <a class="brand" href="index.html">dnet 1.0.4</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -320,28 +320,28 @@ terms <- sample(V(dag)$name, 5)
 sim <- dDAGtermSim(g=dag, terms=terms, method="Schlicker",
 parallel=FALSE)
 </div>
-<strong class='message'>Start at 2014-06-03 18:15:13</strong>
+<strong class='message'>Start at 2014-06-05 18:51:41</strong>
 <strong class='message'></strong>
-<strong class='message'>Calculate semantic similarity between 5 terms using Schlicker method (2014-06-03 18:15:13)...</strong>
-<strong class='message'>Build a sparse matrix of children x ancestors (with 5 rows and 3156 columns (2014-06-03 18:15:13)...</strong>
-<strong class='message'>	1 out of 5 (2014-06-03 18:15:13)</strong>
-<strong class='message'>	2 out of 5 (2014-06-03 18:15:13)</strong>
-<strong class='message'>	3 out of 5 (2014-06-03 18:15:13)</strong>
-<strong class='message'>	4 out of 5 (2014-06-03 18:15:13)</strong>
-<strong class='message'>	5 out of 5 (2014-06-03 18:15:13)</strong>
+<strong class='message'>Calculate semantic similarity between 5 terms using Schlicker method (2014-06-05 18:51:41)...</strong>
+<strong class='message'>Build a sparse matrix of children x ancestors (with 5 rows and 3156 columns (2014-06-05 18:51:41)...</strong>
+<strong class='message'>	1 out of 5 (2014-06-05 18:51:41)</strong>
+<strong class='message'>	2 out of 5 (2014-06-05 18:51:41)</strong>
+<strong class='message'>	3 out of 5 (2014-06-05 18:51:41)</strong>
+<strong class='message'>	4 out of 5 (2014-06-05 18:51:41)</strong>
+<strong class='message'>	5 out of 5 (2014-06-05 18:51:41)</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-06-03 18:15:13</strong>
+<strong class='message'>Finish at 2014-06-05 18:51:41</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>sim
 </div>
 <div class='output'>5 x 5 sparse Matrix of class "dgCMatrix"
-           HP:0003956 HP:0000463 HP:0000653 HP:0100710 HP:0011121
-HP:0003956   1.987629  .          .           .         .        
-HP:0000463   .         1.8316151  0.1201672   .         .        
-HP:0000653   .         0.1201672  1.9814433   .         0.1523263
-HP:0100710   .         .          .           1.991753  .        
-HP:0011121   .         .          0.1523263   .         1.6116838
+           HP:0100013 HP:0005289 HP:0005684 HP:0004447 HP:0005927
+HP:0100013   1.975258   .        .             .       .         
+HP:0005289   .          1.996564 .             .       .         
+HP:0005684   .          .        1.99381443    .       0.07796461
+HP:0004447   .          .        .             1.98488 .         
+HP:0005927   .          .        0.07796461    .       1.85979381
 </div></pre>
   </div>
   

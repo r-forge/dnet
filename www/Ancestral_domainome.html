@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Ancestral_domainome @ dnet 1.0.3</title>
+<title>Ancestral_domainome @ dnet 1.0.4</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.3</a>
+      <a class="brand" href="index.html">dnet 1.0.4</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -216,7 +216,7 @@ window.onload = function(){
       
       <p>an object of class "ExpressionSet". It has slots for "assayData", "phenoData", and "featureData": 
     <ul>
-<li><code>assayData</code>: a matrix of 2019 features/domains X 875 samples/genomes (including 438 extant genomes and 437 ancestral genomes)
+<li><code>assayData</code>: a matrix of 2019 features/domains X 875 samples/genomes (including 438 extant genomes and 437 ancestral genomes), with each entry telling how many different architectures a domain has in a genome. Note: zero entry also means that this domain is absent in the genome
         </li>
 <li><code>phenoData</code>: variables describing sample/genome phenotypes (i.e. columns in assayData), including extant/ancestral genome information: "left_id" (unique and used as internal id), "right_id" (used in combination with "left_id" to define the post-ordered binary tree structure), "taxon_id" (NCBI taxonomy id, if matched), "genome" (2-letter genome identifiers used in SUPERFAMILY, if being extant), "name" (NCBI taxonomy name, if matched), "rank" (NCBI taxonomy rank, if matched), "branchlength" (branch length in relevance to the parent), and "common_name" (NCBI taxonomy common name, if matched and existed)
         </li>
@@ -237,10 +237,6 @@ window.onload = function(){
     <pre class="examples"><div class='input'>Ancestral_domainome <- dRDataLoader(RData='Ancestral_domainome')
 </div>
 <strong class='message'>'Ancestral_domainome' (from http://supfam.org/dnet/data/Datasets/Ancestral_domainome.RData) has been loaded into the working environment</strong>
-<div class='input'>data(Ancestral_domainome)
-</div>
-<strong class='warning'>Warning message:
-data set ‘Ancestral_domainome’ not found</strong>
 <div class='input'>Ancestral_domainome
 </div>
 <div class='output'>ExpressionSet (storageMode: lockedEnvironment)
