@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Demo for patient expression dataset @ dnet 1.0.3</title>
+<title>Demo for patient expression dataset @ dnet 1.0.4</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Hai Fang and Julian Gough">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.3</a>
+      <a class="brand" href="index.html">dnet 1.0.4</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -201,10 +201,10 @@ window.onload = function(){
       <h2>Demo for patient expression dataset</h2>
 
 Notes:
-<li> All results are based on dnet (version 1.0.3). </li>
+<li> All results are based on dnet (version 1.0.4). </li>
 <li> R scripts (i.e. R expressions) plus necessary comments are highlighted in light cyan, and the rest are outputs in the screen. </li>
 <li> Images displayed below may be distorted, but should be normal in your screen. </li>
-<li> Functions contained in dnet 1.0.3 are hyperlinked in-place and also listed on the right side. </li>
+<li> Functions contained in dnet 1.0.4 are hyperlinked in-place and also listed on the right side. </li>
 
 <div class="row">
     <div class="span8">
@@ -226,7 +226,7 @@ for(pkg in c("Biobase","limma")){
 # This dataset involves 130 patients with chronic lymphocytic leukemia (CLL). When enrolled in the study, these CLL patients had not received prior therapy for CLL. Additional covariate about sampling time to first treatment (years) is available. The dataset has been normalised and log2-transformed, and provided as an "ExpressionSet" object.
 CLL <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='CLL')
 </div>
-<strong class='message'>'CLL' (from http://dnet.r-forge.r-project.org/data/Datasets/CLL.RData) has been loaded into the working environment</strong>
+<strong class='message'>'CLL' (from http://supfam.org/dnet/data/Datasets/CLL.RData) has been loaded into the working environment</strong>
 <div class='input'>CLL
 </div>
 <div class='output'>ExpressionSet (storageMode: lockedEnvironment)
@@ -301,7 +301,7 @@ Annotation:
 # An igraph object that contains a functional protein association network in human. The network is extracted from the STRING database (version 9.1). Only those associations with medium confidence (score>=400) are retained.
 org.Hs.string <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='org.Hs.string')
 </div>
-<strong class='message'>'org.Hs.string' (from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.string.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.string' (from http://supfam.org/dnet/data/Hs/org.Hs.string.RData) has been loaded into the working environment</strong>
 <div class='input'>org.Hs.string
 </div>
 <div class='output'>IGRAPH UN-- 16973 410824 -- 
@@ -392,7 +392,7 @@ pval <- pvals[,my_contrast]
 # 2) identification of module
 g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network, pval=pval, nsize=20)
 </div>
-<strong class='message'>Start at 2014-05-27 11:00:32</strong>
+<strong class='message'>Start at 2014-06-19 11:03:09</strong>
 <strong class='message'></strong>
 <strong class='message'>First, fit the input p-value distribution under beta-uniform mixture model...</strong>
 <strong class='message'>	A total of p-values: 9367</strong>
@@ -420,8 +420,8 @@ g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network,
 <strong class='message'>Finally, find the subgraph from the input graph with 8133 nodes and 158729 edges...</strong>
 <strong class='message'>	Size of the subgraph: 50 nodes and 67 edges</strong>
 <strong class='message'>
-Finish at 2014-05-27 11:05:06</strong>
-<strong class='message'>Runtime in total is: 274 secs
+Finish at 2014-06-19 11:07:40</strong>
+<strong class='message'>Runtime in total is: 271 secs
 </strong>
 <div class='input'>glayout <- layout.fruchterman.reingold(g)
 
@@ -496,7 +496,7 @@ colnames(data) <- EIL[ind]
 # 11) color by additional data (be reordered)
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="edge", node.normalise="degree", amplifier=2, metric="none")
 </div>
-<strong class='message'>Start at 2014-05-27 11:06:01</strong>
+<strong class='message'>Start at 2014-06-19 11:08:35</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -523,7 +523,7 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-05-27 11:06:01</strong>
+<strong class='message'>End at 2014-06-19 11:08:35</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap=colormap, vertex.label=NA,vertex.shape="sphere", vertex.size=18,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)</div>
@@ -548,14 +548,24 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
     </ul>
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <h2>Cite as a web link/URL</h2>
+
+<p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
+
+<h2>Cite as a standard reference</h2>
+
+<p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
+
+<h2>Cite as an application</h2>
+
+<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. Genome Medicine (in revision)</p>
 
     
     <!--
     
     <h2>URL</h2>
     <ul>
-      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
+      <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
     </ul>
     
     <h2>Author</h2>

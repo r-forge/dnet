@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>How to obtain a list of genes with significance information that can be used for identifying gene-active networks? @ dnet 1.0.3</title>
+<title>How to obtain a list of genes with significance information that can be used for identifying gene-active networks? @ dnet 1.0.4</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Hai Fang and Julian Gough">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.3</a>
+      <a class="brand" href="index.html">dnet 1.0.4</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -201,10 +201,10 @@ window.onload = function(){
       <h2>How to obtain a list of genes with significance information that can be used for identifying gene-active networks?</h2>
 
 Notes:
-<li> All results are based on dnet (version 1.0.3). </li>
+<li> All results are based on dnet (version 1.0.4). </li>
 <li> R scripts (i.e. R expressions) plus necessary comments are highlighted in light-cyan background, and the rest are outputs in the screen. </li>
 <li> Images displayed below may be distorted, but should be normal in your screen. </li>
-<li> Functions contained in dnet 1.0.3 are hyperlinked in-place and also listed on the right side. </li>
+<li> Functions contained in dnet 1.0.4 are hyperlinked in-place and also listed on the right side. </li>
 <li> Key texts are underlined, in bold and in pumpkin-orange color. </li>
 
 <div class="row">
@@ -326,7 +326,7 @@ D <- as.matrix(exprs(esetGene))
 D <- D - as.matrix(apply(D,1,mean),ncol=1)[,rep(1,ncol(D))]
 fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.eigen=NULL, pval.eigen=1e-2, signif="fdr", orient.permutation="row", num.permutation=100, fdr.procedure="stepup", verbose=T)
 </div>
-<strong class='message'>Start at 2014-06-03 18:39:12</strong>
+<strong class='message'>Start at 2014-06-19 10:47:43</strong>
 <strong class='message'></strong>
 <strong class='message'>First, singular value decomposition of the input matrix (with 4139 rows and 18 columns)...</strong>
 <strong class='message'>Second, determinate the eigens...</strong>
@@ -336,20 +336,20 @@ fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.ei
 <strong class='message'>Finally, obtain gene significance (fdr) based on 100 permutations...</strong>
 <strong class='message'>	doing row-wise permutations...</strong>
 <strong class='message'>	estimating fdr...</strong>
-<strong class='message'>1 (out of 4139) at 2014-06-03 18:39:27</strong>
-<strong class='message'>414 (out of 4139) at 2014-06-03 18:39:32</strong>
-<strong class='message'>828 (out of 4139) at 2014-06-03 18:39:38</strong>
-<strong class='message'>1242 (out of 4139) at 2014-06-03 18:39:44</strong>
-<strong class='message'>1656 (out of 4139) at 2014-06-03 18:39:49</strong>
-<strong class='message'>2070 (out of 4139) at 2014-06-03 18:39:55</strong>
-<strong class='message'>2484 (out of 4139) at 2014-06-03 18:40:01</strong>
-<strong class='message'>2898 (out of 4139) at 2014-06-03 18:40:06</strong>
-<strong class='message'>3312 (out of 4139) at 2014-06-03 18:40:12</strong>
-<strong class='message'>3726 (out of 4139) at 2014-06-03 18:40:17</strong>
-<strong class='message'>4139 (out of 4139) at 2014-06-03 18:40:23</strong>
+<strong class='message'>1 (out of 4139) at 2014-06-19 10:47:57</strong>
+<strong class='message'>414 (out of 4139) at 2014-06-19 10:48:03</strong>
+<strong class='message'>828 (out of 4139) at 2014-06-19 10:48:09</strong>
+<strong class='message'>1242 (out of 4139) at 2014-06-19 10:48:14</strong>
+<strong class='message'>1656 (out of 4139) at 2014-06-19 10:48:20</strong>
+<strong class='message'>2070 (out of 4139) at 2014-06-19 10:48:26</strong>
+<strong class='message'>2484 (out of 4139) at 2014-06-19 10:48:32</strong>
+<strong class='message'>2898 (out of 4139) at 2014-06-19 10:48:37</strong>
+<strong class='message'>3312 (out of 4139) at 2014-06-19 10:48:43</strong>
+<strong class='message'>3726 (out of 4139) at 2014-06-19 10:48:48</strong>
+<strong class='message'>4139 (out of 4139) at 2014-06-19 10:48:54</strong>
 <strong class='message'>	using stepup procedure...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-06-03 18:40:23</strong>
+<strong class='message'>Finish at 2014-06-19 10:48:54</strong>
 <strong class='message'>Runtime in total is: 71 secs
 </strong>
 <div class='input'>hist(fdr, 100)</div>
@@ -367,7 +367,8 @@ fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.ei
     </ul>
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
+    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>
+Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. Genome Medicine (in revision)</p>
 
     
     <!--

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Demo for time-course expression dataset @ dnet 1.0.3</title>
+<title>Demo for time-course expression dataset @ dnet 1.0.4</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Hai Fang and Julian Gough">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.3</a>
+      <a class="brand" href="index.html">dnet 1.0.4</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -201,10 +201,10 @@ window.onload = function(){
       <h2>Demo for time-course expression dataset</h2>
 
 Notes:
-<li> All results are based on dnet (version 1.0.3). </li>
+<li> All results are based on dnet (version 1.0.4). </li>
 <li> R scripts (i.e. R expressions) plus necessary comments are highlighted in light cyan, and the rest are outputs in the screen. </li>
 <li> Images displayed below may be distorted, but should be normal in your screen. </li>
-<li> Functions contained in dnet 1.0.3 are hyperlinked in-place and also listed on the right side. </li>
+<li> Functions contained in dnet 1.0.4 are hyperlinked in-place and also listed on the right side. </li>
 
 <div class="row">
     <div class="span8">
@@ -288,7 +288,7 @@ Annotation:
 # An igraph object that contains a functional protein association network in human. The network is extracted from the STRING database (version 9.1). Only those associations with medium confidence (score>=400) are retained.
 org.Hs.string <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='org.Hs.string')
 </div>
-<strong class='message'>'org.Hs.string' (from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.string.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.string' (from http://supfam.org/dnet/data/Hs/org.Hs.string.RData) has been loaded into the working environment</strong>
 <div class='input'>org.Hs.string
 </div>
 <div class='output'>IGRAPH UN-- 16973 410824 -- 
@@ -391,7 +391,7 @@ apply(adjpvals<1e-2, 2, sum)
 # obtain gene significance from the given gene-sample matrix according to singular value decomposition-based method
 fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.eigen=NULL, pval.eigen=1e-2, signif="fdr", orient.permutation="row", num.permutation=200, fdr.procedure="stepup", verbose=T)
 </div>
-<strong class='message'>Start at 2014-05-27 11:06:50</strong>
+<strong class='message'>Start at 2014-06-19 11:09:22</strong>
 <strong class='message'></strong>
 <strong class='message'>First, singular value decomposition of the input matrix (with 4139 rows and 18 columns)...</strong>
 <strong class='message'>Second, determinate the eigens...</strong>
@@ -401,27 +401,27 @@ fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.ei
 <strong class='message'>Finally, obtain gene significance (fdr) based on 200 permutations...</strong>
 <strong class='message'>	doing row-wise permutations...</strong>
 <strong class='message'>	estimating fdr...</strong>
-<strong class='message'>1 (out of 4139) at 2014-05-27 11:07:11</strong>
-<strong class='message'>414 (out of 4139) at 2014-05-27 11:07:22</strong>
-<strong class='message'>828 (out of 4139) at 2014-05-27 11:07:33</strong>
-<strong class='message'>1242 (out of 4139) at 2014-05-27 11:07:44</strong>
-<strong class='message'>1656 (out of 4139) at 2014-05-27 11:07:55</strong>
-<strong class='message'>2070 (out of 4139) at 2014-05-27 11:08:05</strong>
-<strong class='message'>2484 (out of 4139) at 2014-05-27 11:08:16</strong>
-<strong class='message'>2898 (out of 4139) at 2014-05-27 11:08:26</strong>
-<strong class='message'>3312 (out of 4139) at 2014-05-27 11:08:37</strong>
-<strong class='message'>3726 (out of 4139) at 2014-05-27 11:08:47</strong>
-<strong class='message'>4139 (out of 4139) at 2014-05-27 11:08:58</strong>
+<strong class='message'>1 (out of 4139) at 2014-06-19 11:09:43</strong>
+<strong class='message'>414 (out of 4139) at 2014-06-19 11:09:54</strong>
+<strong class='message'>828 (out of 4139) at 2014-06-19 11:10:05</strong>
+<strong class='message'>1242 (out of 4139) at 2014-06-19 11:10:15</strong>
+<strong class='message'>1656 (out of 4139) at 2014-06-19 11:10:26</strong>
+<strong class='message'>2070 (out of 4139) at 2014-06-19 11:10:37</strong>
+<strong class='message'>2484 (out of 4139) at 2014-06-19 11:10:47</strong>
+<strong class='message'>2898 (out of 4139) at 2014-06-19 11:10:58</strong>
+<strong class='message'>3312 (out of 4139) at 2014-06-19 11:11:08</strong>
+<strong class='message'>3726 (out of 4139) at 2014-06-19 11:11:19</strong>
+<strong class='message'>4139 (out of 4139) at 2014-06-19 11:11:30</strong>
 <strong class='message'>	using stepup procedure...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-05-27 11:08:58</strong>
+<strong class='message'>Finish at 2014-06-19 11:11:30</strong>
 <strong class='message'>Runtime in total is: 128 secs
 </strong>
 <div class='input'>
 # 2) identification of module
 g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network, pval=fdr, method="customised", nsize=30)
 </div>
-<strong class='message'>Start at 2014-05-27 11:08:58</strong>
+<strong class='message'>Start at 2014-06-19 11:11:30</strong>
 <strong class='message'></strong>
 <strong class='message'>First, consider the input fdr (or p-value) distribution</strong>
 <strong class='message'>Second, determine the significance threshold...</strong>
@@ -438,8 +438,8 @@ g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network,
 <strong class='message'>Finally, find the subgraph from the input graph with 3385 nodes and 39961 edges...</strong>
 <strong class='message'>	Size of the subgraph: 54 nodes and 226 edges</strong>
 <strong class='message'>
-Finish at 2014-05-27 11:09:34</strong>
-<strong class='message'>Runtime in total is: 36 secs
+Finish at 2014-06-19 11:12:05</strong>
+<strong class='message'>Runtime in total is: 35 secs
 </strong>
 <div class='input'>glayout <- layout.fruchterman.reingold(g)
 
@@ -506,7 +506,7 @@ data <- as.matrix(fit2$coefficients[V(g)$name,])
 # 11) color by additional data (be reordered)
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="edge", node.normalise="degree", amplifier=2, metric="none")
 </div>
-<strong class='message'>Start at 2014-05-27 11:11:07</strong>
+<strong class='message'>Start at 2014-06-19 11:13:39</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -533,8 +533,8 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-05-27 11:11:08</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>End at 2014-06-19 11:13:39</strong>
+<strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap=colormap, vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)
 </div>
@@ -572,14 +572,24 @@ write.table(sif, file=paste("Fang_whole.sif", sep=""), quote=F, row.names=F,col.
     </ul>
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></p>
+    <h2>Cite as a web link/URL</h2>
+
+<p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
+
+<h2>Cite as a standard reference</h2>
+
+<p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
+
+<h2>Cite as an application</h2>
+
+<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. Genome Medicine (in revision)</p>
 
     
     <!--
     
     <h2>URL</h2>
     <ul>
-      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
+      <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
     </ul>
     
     <h2>Author</h2>

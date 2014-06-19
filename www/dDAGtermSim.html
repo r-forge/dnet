@@ -320,28 +320,28 @@ terms <- sample(V(dag)$name, 5)
 sim <- dDAGtermSim(g=dag, terms=terms, method="Schlicker",
 parallel=FALSE)
 </div>
-<strong class='message'>Start at 2014-06-05 18:51:41</strong>
+<strong class='message'>Start at 2014-06-19 10:39:08</strong>
 <strong class='message'></strong>
-<strong class='message'>Calculate semantic similarity between 5 terms using Schlicker method (2014-06-05 18:51:41)...</strong>
-<strong class='message'>Build a sparse matrix of children x ancestors (with 5 rows and 3156 columns (2014-06-05 18:51:41)...</strong>
-<strong class='message'>	1 out of 5 (2014-06-05 18:51:41)</strong>
-<strong class='message'>	2 out of 5 (2014-06-05 18:51:41)</strong>
-<strong class='message'>	3 out of 5 (2014-06-05 18:51:41)</strong>
-<strong class='message'>	4 out of 5 (2014-06-05 18:51:41)</strong>
-<strong class='message'>	5 out of 5 (2014-06-05 18:51:41)</strong>
+<strong class='message'>Calculate semantic similarity between 5 terms using Schlicker method (2014-06-19 10:39:08)...</strong>
+<strong class='message'>Build a sparse matrix of children x ancestors (with 5 rows and 3156 columns (2014-06-19 10:39:08)...</strong>
+<strong class='message'>	1 out of 5 (2014-06-19 10:39:08)</strong>
+<strong class='message'>	2 out of 5 (2014-06-19 10:39:08)</strong>
+<strong class='message'>	3 out of 5 (2014-06-19 10:39:08)</strong>
+<strong class='message'>	4 out of 5 (2014-06-19 10:39:08)</strong>
+<strong class='message'>	5 out of 5 (2014-06-19 10:39:08)</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-06-05 18:51:41</strong>
+<strong class='message'>Finish at 2014-06-19 10:39:08</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>sim
 </div>
 <div class='output'>5 x 5 sparse Matrix of class "dgCMatrix"
-           HP:0100013 HP:0005289 HP:0005684 HP:0004447 HP:0005927
-HP:0100013   1.975258   .        .             .       .         
-HP:0005289   .          1.996564 .             .       .         
-HP:0005684   .          .        1.99381443    .       0.07796461
-HP:0004447   .          .        .             1.98488 .         
-HP:0005927   .          .        0.07796461    .       1.85979381
+           HP:0002033 HP:0000027 HP:0008736 HP:0000324 HP:0007641
+HP:0002033   1.989691  .          .           .          .       
+HP:0000027   .         1.9924399  0.2526787   .          .       
+HP:0008736   .         0.2526787  1.8529210   .          .       
+HP:0000324   .         .          .           1.958076   .       
+HP:0007641   .         .          .           .          1.993814
 </div></pre>
   </div>
   
