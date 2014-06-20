@@ -333,24 +333,24 @@ V(subg)$name <- 1:vcount(subg)
 PTmatrix <- dRWR(g=subg, normalise="laplacian", restart=0.75,
 parallel=FALSE)
 </div>
-<strong class='message'>Start at 2014-06-19 10:40:01</strong>
+<strong class='message'>Start at 2014-06-20 11:48:52</strong>
 <strong class='message'></strong>
-<strong class='message'>First, get the adjacency matrix of the input graph (2014-06-19 10:40:01) ...</strong>
-<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-06-19 10:40:01) ...</strong>
-<strong class='message'>Third, RWR of 10 sets of seeds using 7.5e-01 restart probability (2014-06-19 10:40:01) ...</strong>
-<strong class='message'>	1 out of 10 seed sets (2014-06-19 10:40:01)</strong>
-<strong class='message'>	2 out of 10 seed sets (2014-06-19 10:40:01)</strong>
-<strong class='message'>	3 out of 10 seed sets (2014-06-19 10:40:01)</strong>
-<strong class='message'>	4 out of 10 seed sets (2014-06-19 10:40:01)</strong>
-<strong class='message'>	5 out of 10 seed sets (2014-06-19 10:40:01)</strong>
-<strong class='message'>	6 out of 10 seed sets (2014-06-19 10:40:01)</strong>
-<strong class='message'>	7 out of 10 seed sets (2014-06-19 10:40:01)</strong>
-<strong class='message'>	8 out of 10 seed sets (2014-06-19 10:40:01)</strong>
-<strong class='message'>	9 out of 10 seed sets (2014-06-19 10:40:01)</strong>
-<strong class='message'>	10 out of 10 seed sets (2014-06-19 10:40:01)</strong>
-<strong class='message'>Finally, output 10 by 10 affinity matrix normalised by none (2014-06-19 10:40:01) ...</strong>
+<strong class='message'>First, get the adjacency matrix of the input graph (2014-06-20 11:48:52) ...</strong>
+<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-06-20 11:48:52) ...</strong>
+<strong class='message'>Third, RWR of 10 sets of seeds using 7.5e-01 restart probability (2014-06-20 11:48:52) ...</strong>
+<strong class='message'>	1 out of 10 seed sets (2014-06-20 11:48:52)</strong>
+<strong class='message'>	2 out of 10 seed sets (2014-06-20 11:48:52)</strong>
+<strong class='message'>	3 out of 10 seed sets (2014-06-20 11:48:52)</strong>
+<strong class='message'>	4 out of 10 seed sets (2014-06-20 11:48:52)</strong>
+<strong class='message'>	5 out of 10 seed sets (2014-06-20 11:48:52)</strong>
+<strong class='message'>	6 out of 10 seed sets (2014-06-20 11:48:52)</strong>
+<strong class='message'>	7 out of 10 seed sets (2014-06-20 11:48:52)</strong>
+<strong class='message'>	8 out of 10 seed sets (2014-06-20 11:48:52)</strong>
+<strong class='message'>	9 out of 10 seed sets (2014-06-20 11:48:52)</strong>
+<strong class='message'>	10 out of 10 seed sets (2014-06-20 11:48:52)</strong>
+<strong class='message'>Finally, output 10 by 10 affinity matrix normalised by none (2014-06-20 11:48:52) ...</strong>
 <strong class='message'>
-Finish at 2014-06-19 10:40:01</strong>
+Finish at 2014-06-20 11:48:52</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'># visualise affinity matrix
@@ -370,19 +370,19 @@ rownames(setSeeds) <- 1:5
 PTmatrix <- dRWR(g=subg, normalise="laplacian", setSeeds=setSeeds,
 restart=0.75, parallel=FALSE)
 </div>
-<strong class='message'>Start at 2014-06-19 10:40:01</strong>
+<strong class='message'>Start at 2014-06-20 11:48:52</strong>
 <strong class='message'></strong>
-<strong class='message'>First, get the adjacency matrix of the input graph (2014-06-19 10:40:01) ...</strong>
-<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-06-19 10:40:01) ...</strong>
+<strong class='message'>First, get the adjacency matrix of the input graph (2014-06-20 11:48:52) ...</strong>
+<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-06-20 11:48:52) ...</strong>
 <strong class='warning'>Warning message:
 The row names of input setSeeds do not contain all those in the input graph.
 </strong>
-<strong class='message'>Third, RWR of 2 sets of seeds using 7.5e-01 restart probability (2014-06-19 10:40:01) ...</strong>
-<strong class='message'>	1 out of 2 seed sets (2014-06-19 10:40:01)</strong>
-<strong class='message'>	2 out of 2 seed sets (2014-06-19 10:40:01)</strong>
-<strong class='message'>Finally, output 10 by 2 affinity matrix normalised by none (2014-06-19 10:40:01) ...</strong>
+<strong class='message'>Third, RWR of 2 sets of seeds using 7.5e-01 restart probability (2014-06-20 11:48:52) ...</strong>
+<strong class='message'>	1 out of 2 seed sets (2014-06-20 11:48:52)</strong>
+<strong class='message'>	2 out of 2 seed sets (2014-06-20 11:48:52)</strong>
+<strong class='message'>Finally, output 10 by 2 affinity matrix normalised by none (2014-06-20 11:48:52) ...</strong>
 <strong class='message'>
-Finish at 2014-06-19 10:40:01</strong>
+Finish at 2014-06-20 11:48:52</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>PTmatrix
@@ -421,12 +421,28 @@ Finish at 2014-06-19 10:40:01</strong>
 <code><a href='dRWRcontact.html'>dRWRcontact</a></code>, <code><a href='dRWRpipeline.html'>dRWRpipeline</a></code>,
 <code><a href='dCheckParallel.html'>dCheckParallel</a></code>
 
-    
+    <!--
+
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
+    <ul>
+<li>Cite as <code>web link/URL</code></li>
+</ul>
+
+<p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
+
+<ul>
+<li>Cite as <code>standard reference</code></li>
+</ul>
+
+<p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
+
+<ul>
+<li>Cite as <code>an application</code></li>
+</ul>
+
+<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. <I>Genome Medicine</I> (in revision)</p>
 
     
-    <!--
     
     <h2>URL</h2>
     <ul>

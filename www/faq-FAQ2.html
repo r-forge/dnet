@@ -365,18 +365,18 @@ symbols <- as.character(fData(TCGA_mutations)$Symbol)
 data <- symbols[1:50] # select the first 50 human genes
 eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data, identity="symbol", genome="Hs", ontology="DO")
 </div>
-<strong class='message'>Start at 2014-06-19 10:46:38</strong>
+<strong class='message'>Start at 2014-06-20 10:20:34</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology DO and its gene associations in the genome Hs (2014-06-19 10:46:38) ...</strong>
+<strong class='message'>First, load the ontology DO and its gene associations in the genome Hs (2014-06-20 10:20:34) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Hs/org.Hs.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://supfam.org/dnet/data/Hs/org.Hs.egDO.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-06-19 10:46:38) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-06-20 10:20:34) ...</strong>
 <strong class='message'>	Among 50 symbols of input data, there are 50 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2014-06-19 10:46:38) ...</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2014-06-20 10:20:34) ...</strong>
 <strong class='message'>	There are 913 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-06-19 10:46:38) ...</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-06-20 10:20:34) ...</strong>
 <strong class='message'>
-End at 2014-06-19 10:46:38</strong>
+End at 2014-06-20 10:20:34</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
@@ -384,19 +384,19 @@ End at 2014-06-19 10:46:38</strong>
 tol <- apply(exprs(TCGA_mutations), 1, sum) # calculate the total mutations for each gene
 data <- data.frame(tol=tol)
 eTerm <- <a href='dGSEA.html' target=dGSEA>dGSEA</a>(data, identity="symbol", genome="Hs", ontology="MsigdbC2KEGG")</div>
-<strong class='message'>Start at 2014-06-19 10:46:42</strong>
+<strong class='message'>Start at 2014-06-20 10:20:38</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MsigdbC2KEGG and its gene associations in the genome Hs (2014-06-19 10:46:42) ...</strong>
+<strong class='message'>First, load the ontology MsigdbC2KEGG and its gene associations in the genome Hs (2014-06-20 10:20:38) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Hs/org.Hs.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://supfam.org/dnet/data/Msigdb/org.Hs.egMsigdbC2KEGG.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-06-19 10:46:42) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-06-20 10:20:38) ...</strong>
 <strong class='message'>	Among 19171 symbols of input data, there are 18924 mappable via official gene symbols but 247 left unmappable</strong>
-<strong class='message'>Third, perform GSEA analysis (2014-06-19 10:46:46) ...</strong>
-<strong class='message'>	Sample 1 is being processed at (2014-06-19 10:46:46) ...</strong>
+<strong class='message'>Third, perform GSEA analysis (2014-06-20 10:20:42) ...</strong>
+<strong class='message'>	Sample 1 is being processed at (2014-06-20 10:20:42) ...</strong>
 <strong class='message'>		 100 of 186 gene sets have been processed</strong>
 <strong class='message'>		 186 of 186 gene sets have been processed</strong>
 <strong class='message'>
-End at 2014-06-19 10:47:38</strong>
+End at 2014-06-20 10:21:34</strong>
 <strong class='message'>Runtime in total is: 56 secs
 </strong>
       </pre>
@@ -410,13 +410,26 @@ End at 2014-06-19 10:47:38</strong>
       <li><a href="dEnricher.html">dEnricher</a></li>
       <li><a href="dGSEA.html">dGSEA</a></li>
     </ul>
-    
+    <!--    
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>
-Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. Genome Medicine (in revision)</p>
+    <ul>
+<li>Cite as <code>web link/URL</code></li>
+</ul>
 
-    
-    <!--
+<p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
+
+<ul>
+<li>Cite as <code>standard reference</code></li>
+</ul>
+
+<p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
+
+<ul>
+<li>Cite as <code>an application</code></li>
+</ul>
+
+<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. <I>Genome Medicine</I> (in revision)</p>
+
     
     <h2>URL</h2>
     <ul>

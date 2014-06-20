@@ -317,9 +317,9 @@ x <- rbeta(1000, shape1=0.5, shape2=1)
 fit <- dBUMfit(x)
 </div>
 <strong class='message'>	A total of p-values: 1000</strong>
-<strong class='message'>	Maximum Log-Likelihood: 287.3</strong>
-<strong class='message'>	Mixture parameter (lambda): 0.052</strong>
-<strong class='message'>	Shape parameter (a): 0.497</strong>
+<strong class='message'>	Maximum Log-Likelihood: 324.8</strong>
+<strong class='message'>	Mixture parameter (lambda): 0.082</strong>
+<strong class='message'>	Shape parameter (a): 0.470</strong>
 <a href="javascript:newWin('dBUMscore-6.png', 'dBUMscore-6.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dBUMscore-6.png', width="400" /></a>
 <div class='input'>
 # 3) calculate the scores according to the fitted BUM and fdr=0.01
@@ -351,12 +351,28 @@ scores <- dBUMscore(fit, method="cdf", fdr=0.01)
     
 <code><a href='dBUMfit.html'>dBUMfit</a></code>
 
-    
+    <!--
+
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
+    <ul>
+<li>Cite as <code>web link/URL</code></li>
+</ul>
+
+<p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
+
+<ul>
+<li>Cite as <code>standard reference</code></li>
+</ul>
+
+<p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
+
+<ul>
+<li>Cite as <code>an application</code></li>
+</ul>
+
+<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. <I>Genome Medicine</I> (in revision)</p>
 
     
-    <!--
     
     <h2>URL</h2>
     <ul>

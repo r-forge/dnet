@@ -450,19 +450,19 @@ data
 # enrichment analysis
 eTerm <- dEnricher(data, identity="symbol", genome="Hs", ontology="DO")
 </div>
-<strong class='message'>Start at 2014-06-19 10:39:09</strong>
+<strong class='message'>Start at 2014-06-20 11:47:59</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology DO and its gene associations in the genome Hs (2014-06-19 10:39:09) ...</strong>
+<strong class='message'>First, load the ontology DO and its gene associations in the genome Hs (2014-06-20 11:47:59) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Hs/org.Hs.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://supfam.org/dnet/data/Hs/org.Hs.egDO.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-06-19 10:39:09) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-06-20 11:47:59) ...</strong>
 <strong class='message'>	Among 47 symbols of input data, there are 43 mappable via official gene symbols but 4 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2014-06-19 10:39:09) ...</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2014-06-20 11:47:59) ...</strong>
 <strong class='message'>	There are 913 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-06-19 10:39:10) ...</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-06-20 11:47:59) ...</strong>
 <strong class='message'>
-End at 2014-06-19 10:39:10</strong>
-<strong class='message'>Runtime in total is: 1 secs
+End at 2014-06-20 11:47:59</strong>
+<strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>dEnricherView(eTerm, top_num=10, sortBy="adjp", decreasing=FALSE,
 details=TRUE)
@@ -531,12 +531,28 @@ node.attrs=list(color=nodes.highlight))
     
 <code><a href='dEnricherView.html'>dEnricherView</a></code>
 
-    
+    <!--
+
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
+    <ul>
+<li>Cite as <code>web link/URL</code></li>
+</ul>
+
+<p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
+
+<ul>
+<li>Cite as <code>standard reference</code></li>
+</ul>
+
+<p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
+
+<ul>
+<li>Cite as <code>an application</code></li>
+</ul>
+
+<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. <I>Genome Medicine</I> (in revision)</p>
 
     
-    <!--
     
     <h2>URL</h2>
     <ul>

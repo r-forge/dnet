@@ -354,29 +354,29 @@ genes <- sample(allgenes,5)
 sim <- dDAGgeneSim(g=dag, genes=genes, method.gene="BM.average",
 method.term="Resnik", parallel=FALSE, verbose=TRUE)
 </div>
-<strong class='message'>Start at 2014-06-19 10:38:56</strong>
+<strong class='message'>Start at 2014-06-20 11:47:46</strong>
 <strong class='message'></strong>
-<strong class='message'>First, extract all annotatable genes (2014-06-19 10:38:56)...</strong>
+<strong class='message'>First, extract all annotatable genes (2014-06-20 11:47:46)...</strong>
 <strong class='message'>	there are 5 input genes amongst 2910 annotatable genes</strong>
-<strong class='message'>Second, pre-compute semantic similarity between 162 terms (forced to be the most specific for each gene) using Resnik method (2014-06-19 10:38:57)...</strong>
-<strong class='message'>Last, calculate pair-wise semantic similarity between 5 genes using BM.average method (2014-06-19 10:38:59)...</strong>
-<strong class='message'>	1 out of 5 (2014-06-19 10:38:59)</strong>
-<strong class='message'>	2 out of 5 (2014-06-19 10:38:59)</strong>
-<strong class='message'>	3 out of 5 (2014-06-19 10:38:59)</strong>
-<strong class='message'>	4 out of 5 (2014-06-19 10:38:59)</strong>
+<strong class='message'>Second, pre-compute semantic similarity between 176 terms (forced to be the most specific for each gene) using Resnik method (2014-06-20 11:47:47)...</strong>
+<strong class='message'>Last, calculate pair-wise semantic similarity between 5 genes using BM.average method (2014-06-20 11:47:49)...</strong>
+<strong class='message'>	1 out of 5 (2014-06-20 11:47:49)</strong>
+<strong class='message'>	2 out of 5 (2014-06-20 11:47:49)</strong>
+<strong class='message'>	3 out of 5 (2014-06-20 11:47:49)</strong>
+<strong class='message'>	4 out of 5 (2014-06-20 11:47:49)</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-06-19 10:38:59</strong>
+<strong class='message'>Finish at 2014-06-20 11:47:49</strong>
 <strong class='message'>Runtime in total is: 3 secs
 </strong>
 <div class='input'>sim
 </div>
 <div class='output'>5 x 5 sparse Matrix of class "dgCMatrix"
-            9247     59341    114625     79738      3560
-9247   .         0.3886568 .         0.3791585 0.1962760
-59341  0.3886568 .         .         0.6385327 0.4070407
-114625 .         .         .         0.3841717 0.4312132
-79738  0.3791585 0.6385327 0.3841717 .         0.3223392
-3560   0.1962760 0.4070407 0.4312132 0.3223392 .        
+           79600     51099      2187      5551    124997
+79600  .         0.5603616 0.7850489 0.2381023 0.8039533
+51099  0.5603616 .         0.4866631 0.4236550 0.4979007
+2187   0.7850489 0.4866631 .         0.4726053 0.5042243
+5551   0.2381023 0.4236550 0.4726053 .         0.3632495
+124997 0.8039533 0.4979007 0.5042243 0.3632495 .        
 </div></pre>
   </div>
   
@@ -399,12 +399,28 @@ method.term="Resnik", parallel=FALSE, verbose=TRUE)
 <code><a href='dDAGtermSim.html'>dDAGtermSim</a></code>, <code><a href='dDAGinduce.html'>dDAGinduce</a></code>,
 <code><a href='dDAGtip.html'>dDAGtip</a></code>, <code><a href='dCheckParallel.html'>dCheckParallel</a></code>
 
-    
+    <!--
+
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
+    <ul>
+<li>Cite as <code>web link/URL</code></li>
+</ul>
+
+<p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
+
+<ul>
+<li>Cite as <code>standard reference</code></li>
+</ul>
+
+<p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
+
+<ul>
+<li>Cite as <code>an application</code></li>
+</ul>
+
+<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. <I>Genome Medicine</I> (in revision)</p>
 
     
-    <!--
     
     <h2>URL</h2>
     <ul>

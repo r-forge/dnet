@@ -392,7 +392,7 @@ pval <- pvals[,my_contrast]
 # 2) identification of module
 g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network, pval=pval, nsize=20)
 </div>
-<strong class='message'>Start at 2014-06-19 11:03:09</strong>
+<strong class='message'>Start at 2014-06-20 10:28:17</strong>
 <strong class='message'></strong>
 <strong class='message'>First, fit the input p-value distribution under beta-uniform mixture model...</strong>
 <strong class='message'>	A total of p-values: 9367</strong>
@@ -420,8 +420,8 @@ g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network,
 <strong class='message'>Finally, find the subgraph from the input graph with 8133 nodes and 158729 edges...</strong>
 <strong class='message'>	Size of the subgraph: 50 nodes and 67 edges</strong>
 <strong class='message'>
-Finish at 2014-06-19 11:07:40</strong>
-<strong class='message'>Runtime in total is: 271 secs
+Finish at 2014-06-20 10:33:00</strong>
+<strong class='message'>Runtime in total is: 283 secs
 </strong>
 <div class='input'>glayout <- layout.fruchterman.reingold(g)
 
@@ -496,7 +496,7 @@ colnames(data) <- EIL[ind]
 # 11) color by additional data (be reordered)
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="edge", node.normalise="degree", amplifier=2, metric="none")
 </div>
-<strong class='message'>Start at 2014-06-19 11:08:35</strong>
+<strong class='message'>Start at 2014-06-20 10:33:55</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -523,8 +523,8 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-06-19 11:08:35</strong>
-<strong class='message'>Runtime in total is: 0 secs
+<strong class='message'>End at 2014-06-20 10:33:56</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap=colormap, vertex.label=NA,vertex.shape="sphere", vertex.size=18,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)</div>
 <a href="javascript:newWin('CLL-82.png', 'CLL-82.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='CLL-82.png', width="400" /></a>
@@ -547,21 +547,29 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
       <li><a href="visNetReorder.html">visNetReorder</a></li>
     </ul>
     
+    <!--
+    
     <h2>Citation</h2>
-    <h2>Cite as a web link/URL</h2>
+    <ul>
+<li>Cite as <code>web link/URL</code></li>
+</ul>
 
 <p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
 
-<h2>Cite as a standard reference</h2>
+<ul>
+<li>Cite as <code>standard reference</code></li>
+</ul>
 
 <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
 
-<h2>Cite as an application</h2>
+<ul>
+<li>Cite as <code>an application</code></li>
+</ul>
 
-<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. Genome Medicine (in revision)</p>
+<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. <I>Genome Medicine</I> (in revision)</p>
 
     
-    <!--
+
     
     <h2>URL</h2>
     <ul>

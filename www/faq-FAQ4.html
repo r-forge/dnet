@@ -278,7 +278,7 @@ rownames(data) <- V(g)$name
 ## being self-organised onto 2D sample landscape (ie a sheet-shape rectangle grid)
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="node", node.normalise="none")
 </div>
-<strong class='message'>Start at 2014-06-19 10:49:25</strong>
+<strong class='message'>Start at 2014-06-20 10:23:20</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -305,8 +305,8 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-06-19 10:49:25</strong>
-<strong class='message'>Runtime in total is: 0 secs
+<strong class='message'>End at 2014-06-20 10:23:21</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g, colormap="rainbow", data=data, sReorder)
 </div>
@@ -315,7 +315,7 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
 ## By default, 2D sample landscape is built based on node features without considering node degrees. To take into account the connectivity in the network, the information used can be on edges which are transformed from information on nodes: input data and degree. In doing so, <span style="font-weight:bold; color:#F87217; text-decoration:underline">the transformed matrix of network edges × samples are used for self-organising samples onto 2D landscape (implemented in the 'supraHex' package).</span>
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="edge", node.normalise="degree")
 </div>
-<strong class='message'>Start at 2014-06-19 10:49:42</strong>
+<strong class='message'>Start at 2014-06-20 10:23:37</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -342,7 +342,7 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-06-19 10:49:43</strong>
+<strong class='message'>End at 2014-06-20 10:23:38</strong>
 <strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g, colormap="rainbow", data=data, sReorder)</div>
@@ -362,13 +362,26 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
       <li><a href="dNetReorder.html">dNetReorder</a></li>
       <li><a href="visNetReorder.html">visNetReorder</a></li>
     </ul>
-    
+    <!--    
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>
-Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. Genome Medicine (in revision)</p>
+    <ul>
+<li>Cite as <code>web link/URL</code></li>
+</ul>
 
-    
-    <!--
+<p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
+
+<ul>
+<li>Cite as <code>standard reference</code></li>
+</ul>
+
+<p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
+
+<ul>
+<li>Cite as <code>an application</code></li>
+</ul>
+
+<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. <I>Genome Medicine</I> (in revision)</p>
+
     
     <h2>URL</h2>
     <ul>

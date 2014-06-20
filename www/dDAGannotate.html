@@ -284,15 +284,15 @@ annotations <- GS$gs[sample(1:length(GS$gs),5)]
 # 4a) based on all possible paths (i.e. the complete subgraph induced)
 dDAGannotate(g, annotations, path.mode="all_paths", verbose=TRUE)
 </div>
-<strong class='message'>	At level 8, there are 2 nodes, and 3 incoming neighbors.</strong>
+<strong class='message'>	At level 8, there are 1 nodes, and 1 incoming neighbors.</strong>
 <strong class='message'>	At level 7, there are 2 nodes, and 2 incoming neighbors.</strong>
-<strong class='message'>	At level 6, there are 6 nodes, and 8 incoming neighbors.</strong>
-<strong class='message'>	At level 5, there are 7 nodes, and 5 incoming neighbors.</strong>
-<strong class='message'>	At level 4, there are 5 nodes, and 5 incoming neighbors.</strong>
-<strong class='message'>	At level 3, there are 5 nodes, and 4 incoming neighbors.</strong>
-<strong class='message'>	At level 2, there are 4 nodes, and 1 incoming neighbors.</strong>
+<strong class='message'>	At level 6, there are 4 nodes, and 4 incoming neighbors.</strong>
+<strong class='message'>	At level 5, there are 4 nodes, and 4 incoming neighbors.</strong>
+<strong class='message'>	At level 4, there are 4 nodes, and 4 incoming neighbors.</strong>
+<strong class='message'>	At level 3, there are 5 nodes, and 5 incoming neighbors.</strong>
+<strong class='message'>	At level 2, there are 5 nodes, and 1 incoming neighbors.</strong>
 <strong class='message'>	At level 1, there are 1 nodes, and 0 incoming neighbors.</strong>
-<div class='output'>IGRAPH DN-- 32 34 -- 
+<div class='output'>IGRAPH DN-- 26 25 -- 
 + attr: name (v/c), term_id (v/c), term_name (v/c), term_distance
   (v/n), annotations (v/x), IC (v/n), relation (e/c)
 </div>
@@ -302,11 +302,11 @@ verbose=TRUE)
 </div>
 <strong class='message'>	At level 8, there are 1 nodes, and 1 incoming neighbors.</strong>
 <strong class='message'>	At level 7, there are 2 nodes, and 2 incoming neighbors.</strong>
-<strong class='message'>	At level 6, there are 5 nodes, and 5 incoming neighbors.</strong>
-<strong class='message'>	At level 5, there are 5 nodes, and 5 incoming neighbors.</strong>
-<strong class='message'>	At level 4, there are 5 nodes, and 5 incoming neighbors.</strong>
-<strong class='message'>	At level 3, there are 5 nodes, and 4 incoming neighbors.</strong>
-<strong class='message'>	At level 2, there are 4 nodes, and 1 incoming neighbors.</strong>
+<strong class='message'>	At level 6, there are 4 nodes, and 4 incoming neighbors.</strong>
+<strong class='message'>	At level 5, there are 4 nodes, and 4 incoming neighbors.</strong>
+<strong class='message'>	At level 4, there are 4 nodes, and 4 incoming neighbors.</strong>
+<strong class='message'>	At level 3, there are 5 nodes, and 5 incoming neighbors.</strong>
+<strong class='message'>	At level 2, there are 5 nodes, and 1 incoming neighbors.</strong>
 <strong class='message'>	At level 1, there are 1 nodes, and 0 incoming neighbors.</strong>
 <div class='input'>
 # 5) color-code nodes/terms according to the number of annotations
@@ -314,18 +314,7 @@ data <- sapply(V(dag)$annotations, length)
 names(data) <- V(dag)$name
 visDAG(g=dag, data=data, node.info="both")
 </div>
-<strong class='message'>
-Attaching package: ‘graph’
-</strong>
-<strong class='message'>The following object is masked _by_ ‘package:ape’:
-
-    edges
-</strong>
-<strong class='message'>The following objects are masked _by_ ‘package:igraph’:
-
-    degree, edges
-</strong>
-<a href="javascript:newWin('dDAGannotate-24.png', 'dDAGannotate-24.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dDAGannotate-24.png', width="400" /></a></pre>
+<a href="javascript:newWin('dDAGannotate-21.png', 'dDAGannotate-21.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dDAGannotate-21.png', width="400" /></a></pre>
   </div>
   
   <div class="span4">
@@ -346,12 +335,28 @@ Attaching package: ‘graph’
     
 <code><a href='dDAGinduce.html'>dDAGinduce</a></code>, <code><a href='dDAGlevel.html'>dDAGlevel</a></code>
 
-    
+    <!--
+
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
+    <ul>
+<li>Cite as <code>web link/URL</code></li>
+</ul>
+
+<p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
+
+<ul>
+<li>Cite as <code>standard reference</code></li>
+</ul>
+
+<p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
+
+<ul>
+<li>Cite as <code>an application</code></li>
+</ul>
+
+<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. <I>Genome Medicine</I> (in revision)</p>
 
     
-    <!--
     
     <h2>URL</h2>
     <ul>
