@@ -206,8 +206,11 @@ window.onload = function(){
     <h3>Description</h3>
     <p><code>dDAGgeneSim</code> is supposed to calculate pair-wise
 semantic similarity between genes based on a direct acyclic
-graph (DAG) with annotated data. Parallel computing is also
-supported for Linux or Mac operating systems.</p>
+graph (DAG) with annotated data. It first calculates
+semantic similarity between terms and then derives semantic
+similarity between genes from terms-term semantic
+similarity. Parallel computing is also supported for Linux
+or Mac operating systems.</p>
   
     <h3>Usage</h3>
     <pre>dDAGgeneSim(g, genes = NULL, method.gene = c("BM.average", "BM.max", "BM.complete", 
@@ -217,7 +220,9 @@ supported for Linux or Mac operating systems.</p>
     <h3>Arguments</h3>
     <dl>
       <dt>g</dt>
-      <dd>an object of class "igraph" or "graphNEL"</dd>
+      <dd>an object of class "igraph" or "graphNEL". It
+must contain a vertex attribute called 'annotations' for
+storing annotation data (see example for howto)</dd>
       <dt>genes</dt>
       <dd>the genes between which pair-wise semantic
 similarity is calculated. If NULL, all genes annotatable
@@ -354,29 +359,29 @@ genes <- sample(allgenes,5)
 sim <- dDAGgeneSim(g=dag, genes=genes, method.gene="BM.average",
 method.term="Resnik", parallel=FALSE, verbose=TRUE)
 </div>
-<strong class='message'>Start at 2014-06-20 11:47:46</strong>
+<strong class='message'>Start at 2014-06-30 16:53:01</strong>
 <strong class='message'></strong>
-<strong class='message'>First, extract all annotatable genes (2014-06-20 11:47:46)...</strong>
+<strong class='message'>First, extract all annotatable genes (2014-06-30 16:53:01)...</strong>
 <strong class='message'>	there are 5 input genes amongst 2910 annotatable genes</strong>
-<strong class='message'>Second, pre-compute semantic similarity between 176 terms (forced to be the most specific for each gene) using Resnik method (2014-06-20 11:47:47)...</strong>
-<strong class='message'>Last, calculate pair-wise semantic similarity between 5 genes using BM.average method (2014-06-20 11:47:49)...</strong>
-<strong class='message'>	1 out of 5 (2014-06-20 11:47:49)</strong>
-<strong class='message'>	2 out of 5 (2014-06-20 11:47:49)</strong>
-<strong class='message'>	3 out of 5 (2014-06-20 11:47:49)</strong>
-<strong class='message'>	4 out of 5 (2014-06-20 11:47:49)</strong>
+<strong class='message'>Second, pre-compute semantic similarity between 151 terms (forced to be the most specific for each gene) using Resnik method (2014-06-30 16:53:02)...</strong>
+<strong class='message'>Last, calculate pair-wise semantic similarity between 5 genes using BM.average method (2014-06-30 16:53:03)...</strong>
+<strong class='message'>	1 out of 5 (2014-06-30 16:53:03)</strong>
+<strong class='message'>	2 out of 5 (2014-06-30 16:53:03)</strong>
+<strong class='message'>	3 out of 5 (2014-06-30 16:53:03)</strong>
+<strong class='message'>	4 out of 5 (2014-06-30 16:53:03)</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-06-20 11:47:49</strong>
-<strong class='message'>Runtime in total is: 3 secs
+<strong class='message'>Finish at 2014-06-30 16:53:03</strong>
+<strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'>sim
 </div>
 <div class='output'>5 x 5 sparse Matrix of class "dgCMatrix"
-           79600     51099      2187      5551    124997
-79600  .         0.5603616 0.7850489 0.2381023 0.8039533
-51099  0.5603616 .         0.4866631 0.4236550 0.4979007
-2187   0.7850489 0.4866631 .         0.4726053 0.5042243
-5551   0.2381023 0.4236550 0.4726053 .         0.3632495
-124997 0.8039533 0.4979007 0.5042243 0.3632495 .        
+             9076    646960      10111      4998      5894
+9076   .          .         0.06652006 0.3820266 0.6587288
+646960 .          .         0.17048681 0.1515068 0.2200478
+10111  0.06652006 0.1704868 .          0.4804886 0.3472910
+4998   0.38202661 0.1515068 0.48048863 .         0.9407333
+5894   0.65872875 0.2200478 0.34729103 0.9407333 .        
 </div></pre>
   </div>
   
