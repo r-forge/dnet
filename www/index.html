@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Home @ dnet 1.0.4</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Hai Fang and Julian Gough">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+
+<style type="text/css">
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 8px 20px 12px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #999999;
+}
+
+.navbar .brand:hover {
+  color: #F87217;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar .nav > li > a:hover {
+  color: #F87217;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+</style>
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17338744-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- Enlarge image -->
+<script type="text/javascript">
+    function newWin(url, name, width, height) { 
+       
+        var left = (screen.width/2)-(width/2);
+        var top = (screen.height/2)-(height/2); 
+        
+        window.open(url,name,'scrollbars=yes,resizable=yes,fullscreen=yes, width=' + width + ', height='+height+', top='+top+', left='+left);
+    }
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">dnet 1.0.4</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="install.html"><i class="icon-wrench icon-white"></i> Installation</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="rdata.html"><i class="icon-file icon-white"></i> RData</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="faqs.html"><i class="icon-question-sign icon-white"></i> FAQs</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
+        </ul>
+       
+        <!-- HTML for GOOLE SEARCH BAR 
+        <ul class="nav">
+            <div id="search-wrapper">
+                <form id="search" method="get" action="http://www.google.com/custom">
+                    <div class="search-box">
+                        <i class="icon-search icon-white"></i>
+                        <input type="text" id="tfq" class="textinput" name="q" size="21" maxlength="120" value="Google Search"/>
+                    </div>
+                </form>
+            </div>
+        </ul>
+        -->
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CSS styles for standard search box with placeholder text-->
+<style type="text/css">
+    #search-wrapper {
+        width:300px;
+        height:40px;
+        background-color:transparent;
+        margin:0px auto 0;
+        border:0px solid #ff0000;
+        -moz-border-radius: 2px; /* FF1+ */
+        -webkit-border-radius: 2px; /* Saf3-4 */
+        border-radius: 2px; /* Opera 10.5, IE 9, Saf5, Chrome */
+        position:relative;
+    }
+
+    #search {
+        background-color:transparent;
+        padding:0px;
+        height:40px;
+        overflow:hidden;
+    }
+
+    .search-box {
+        width:250px;
+        height:32px;
+        background-color:transparent;
+        margin:2px 7px;
+        border:0px solid #cfcfcf;
+        -moz-border-radius: 2px; /* FF1+ */
+        -webkit-border-radius: 2px; /* Saf3-4 */
+        border-radius: 2px; /* Opera 10.5, IE 9, Saf5, Chrome */
+        position:relative;
+    }
+
+	.textinput{
+		margin: 0;
+		padding: 5px 15px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size:14px;
+		color:#999999;
+		border:1px solid #f00; border-right:0px;
+		border-top-left-radius: 5px 5px;
+		border-bottom-left-radius: 5px 5px;
+	}
+</style>
+
+<!-- JAVASCRIPT to clear search text when the field is clicked -->
+<script type="text/javascript">
+window.onload = function(){
+	//Get submit button
+	var submitbutton = document.getElementById("tfq");
+	//Add listener to submit button
+	if(submitbutton.addEventListener){
+		submitbutton.addEventListener("click", function() {
+			if (submitbutton.value == 'Google Search'){//Customize this text string to whatever you want
+				submitbutton.value = 'dnet R ';
+			}
+		});
+	}
+}
+</script>
+
+<script>
+  (function() {
+    var cx = '012094530736424854714:djnz9oat1hu';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<div><gcse:search></gcse:search></div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <div class="row">
+  <div class="span8">
+    <p><a href="index.html"><IMG src="dnet_logo1.png" height="100px" id="logo"></a></p>
+
+<p><B><h4>An open-source R package for omics data integrative analysis in terms of <code>network</code>, <code>evolution</code> and <code>ontology</code></h4></B></p>
+
+<h2>User I/O</h2>
+
+<p><a href="faqs.html"><img style="max-width:95%;border:1px solid #FF0000;box-shadow:5px 5px 2px #FFC0C0;" src='dnet_userIO.png', width="700px"/></a></p>
+
+<h2>Features</h2>
+
+<ul>
+<li>Identification of gene-active networks from high-throughput omics data (eg <a href="http://supfam.org/dnet/demo-Fang.html">expression</a>, <a href="http://supfam.org/dnet/demo-TCGA.html">mutation</a> and <a href="http://supfam.org/dnet/demo-Hiratani.html">replication timing</a>);</li>
+<li>Network-based sample classifications and visualisations on 2D sample landscape;</li>
+<li>Random Walk with Restart for network affinity calculation;</li>
+<li>Semantic similarity between ontology terms (and between their annotated genes);</li>
+<li>Enrichment analysis using a variety of built-in databases;</li>
+<li>A wide variety of built-in <a href="http://supfam.org/dnet/rdata.html">RData</a>: ontologies (including <code>Gene Ontology</code>, <code>Disease Ontology</code>, <code>Human Phenotype</code> and <code>Mammalian Phenotype</code>), gene evolutionary age information and gene association networks in well-studied organisms (including human, mouse, rat, chicken, c.elegans, fruitfly, zebrafish and arabidopsis);</li>
+<li>Support for high-performance parallel computing;</li>
+<li>A tool with rich visuals but less inputs, which can run on <code>Windows</code>, <code>Mac</code> and <code>Linux</code>.</li>
+</ul>
+
+
+  </div>
+  
+  <div class="span3 offset1">
+  
+
+    <h2>Manual</h2>
+    <ul>
+
+    
+    
+        <li>dnet Reference Manual (<a href="vignettes/dnet.pdf">PDF</a>, <a href="docs.html">HTML</a>)</li>
+    
+    </ul>
+
+    <h2>Demos</h2>
+    <ul>
+      <li><a href="demo-TCGA.html">Demo for TCGA mutation and survival dataset</a></li>
+      <li><a href="demo-Hiratani.html">Demo for multilayer replication timing dataset</a></li>
+      <li><a href="demo-CLL.html">Demo for patient expression dataset</a></li>
+      <li><a href="demo-Fang.html">Demo for time-course expression dataset</a></li>
+    </ul>
+    
+    <h2>URL</h2>
+    <ul>
+      <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
+    </ul>
+    
+    <h2>Dependency</h2>
+    <ul>
+      <li><strong>Depends</strong>: igraph, supraHex</li>
+      <li><strong>Imports</strong>: graph, Rgraphviz, Matrix, Biobase</li>
+      <li><strong>Suggests</strong>: limma, survival, foreach, doMC</li>
+      <li><strong>Extends</strong>: </li>
+    </ul>
+    
+    <h2>License</h2>
+    GPL-2
+    
+    <h2>Author</h2>
+    Hai Fang and Julian Gough
+    
+    <!--
+    
+    
+    <h2>Manual</h2>
+    <ul>
+        <li><a href="vignettes/dnet.pdf">dnet Reference Manual</a></li>
+    </ul>
+    
+    <h2>Maintainer</h2>
+    Hai Fang &lt;hfang@cs.bris.ac.uk&gt;
+    
+    -->
+    
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+
+<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
+
+
+      </footer>
+    </div>
+  </body>
+</html>

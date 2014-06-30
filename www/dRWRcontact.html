@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>dRWRcontact @ dnet 1.0.4</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+
+<style type="text/css">
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 8px 20px 12px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #999999;
+}
+
+.navbar .brand:hover {
+  color: #F87217;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar .nav > li > a:hover {
+  color: #F87217;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+</style>
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17338744-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- Enlarge image -->
+<script type="text/javascript">
+    function newWin(url, name, width, height) { 
+       
+        var left = (screen.width/2)-(width/2);
+        var top = (screen.height/2)-(height/2); 
+        
+        window.open(url,name,'scrollbars=yes,resizable=yes,fullscreen=yes, width=' + width + ', height='+height+', top='+top+', left='+left);
+    }
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">dnet 1.0.4</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="install.html"><i class="icon-wrench icon-white"></i> Installation</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="rdata.html"><i class="icon-file icon-white"></i> RData</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="faqs.html"><i class="icon-question-sign icon-white"></i> FAQs</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
+        </ul>
+       
+        <!-- HTML for GOOLE SEARCH BAR 
+        <ul class="nav">
+            <div id="search-wrapper">
+                <form id="search" method="get" action="http://www.google.com/custom">
+                    <div class="search-box">
+                        <i class="icon-search icon-white"></i>
+                        <input type="text" id="tfq" class="textinput" name="q" size="21" maxlength="120" value="Google Search"/>
+                    </div>
+                </form>
+            </div>
+        </ul>
+        -->
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CSS styles for standard search box with placeholder text-->
+<style type="text/css">
+    #search-wrapper {
+        width:300px;
+        height:40px;
+        background-color:transparent;
+        margin:0px auto 0;
+        border:0px solid #ff0000;
+        -moz-border-radius: 2px; /* FF1+ */
+        -webkit-border-radius: 2px; /* Saf3-4 */
+        border-radius: 2px; /* Opera 10.5, IE 9, Saf5, Chrome */
+        position:relative;
+    }
+
+    #search {
+        background-color:transparent;
+        padding:0px;
+        height:40px;
+        overflow:hidden;
+    }
+
+    .search-box {
+        width:250px;
+        height:32px;
+        background-color:transparent;
+        margin:2px 7px;
+        border:0px solid #cfcfcf;
+        -moz-border-radius: 2px; /* FF1+ */
+        -webkit-border-radius: 2px; /* Saf3-4 */
+        border-radius: 2px; /* Opera 10.5, IE 9, Saf5, Chrome */
+        position:relative;
+    }
+
+	.textinput{
+		margin: 0;
+		padding: 5px 15px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size:14px;
+		color:#999999;
+		border:1px solid #f00; border-right:0px;
+		border-top-left-radius: 5px 5px;
+		border-bottom-left-radius: 5px 5px;
+	}
+</style>
+
+<!-- JAVASCRIPT to clear search text when the field is clicked -->
+<script type="text/javascript">
+window.onload = function(){
+	//Get submit button
+	var submitbutton = document.getElementById("tfq");
+	//Add listener to submit button
+	if(submitbutton.addEventListener){
+		submitbutton.addEventListener("click", function() {
+			if (submitbutton.value == 'Google Search'){//Customize this text string to whatever you want
+				submitbutton.value = 'dnet R ';
+			}
+		});
+	}
+}
+</script>
+
+<script>
+  (function() {
+    var cx = '012094530736424854714:djnz9oat1hu';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<div><gcse:search></gcse:search></div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h2>Function to estimate RWR-based contact strength between samples from an input gene-sample data matrix, an input graph and its pre-computed affinity matrix</h2>
+
+<div class="row">
+  <div class="span8">
+  
+    <h3>Description</h3>
+    <p><code>dRWRcontact</code> is supposed to estimate sample
+relationships (ie. contact strength between samples) from
+an input gene-sample matrix, an input graph and its
+affinity matrix pre-computed according to random walk
+restart (RWR) of the input graph. It includes: 1)
+RWR-smoothed columns of input gene-sample matrix based on
+the pre-computed affinity matrix; 2) calculation of contact
+strength (inner products of RWR-smooth columns of input
+gene-sample matrix); 3) estimation of the contact
+signficance by a randomalisation procedure. Parallel
+computing is also supported for Linux or Mac operating
+systems.</p>
+  
+    <h3>Usage</h3>
+    <pre>dRWRcontact(data, g, Amatrix, permutation = c("random", "degree"), num.permutation = 10, 
+  p.adjust.method = c("BH", "BY", "bonferroni", "holm", "hochberg", "hommel"), 
+      adjp.cutoff = 0.05, parallel = TRUE, multicores = NULL, verbose = T)</pre>
+    
+    <h3>Arguments</h3>
+    <dl>
+      <dt>data</dt>
+      <dd>an input gene-sample data matrix used for
+seeds. Each value in input gene-sample matrix does not
+necessarily have to be binary (non-zeros will be used as
+a weight, but should be non-negative for easy
+interpretation).</dd>
+      <dt>g</dt>
+      <dd>an object of class "igraph" or "graphNEL"</dd>
+      <dt>Amatrix</dt>
+      <dd>an affinity matrix pre-computed from the
+input graph. Notes: columns for starting nodes walking
+from, and rows for ending nodes walking to</dd>
+      <dt>permutation</dt>
+      <dd>how to do permutation. It can be
+'degree' for degree-preserving permutation, 'random' for
+permutation purely in random</dd>
+      <dt>num.permutation</dt>
+      <dd>the number of permutations used to
+for generating the distribution of contact strength under
+randomalisation</dd>
+      <dt>p.adjust.method</dt>
+      <dd>the method used to adjust
+p-values. It can be one of "BH", "BY", "bonferroni",
+"holm", "hochberg" and "hommel". The first two methods
+"BH" (widely used) and "BY" control the false discovery
+rate (FDR: the expected proportion of false discoveries
+amongst the rejected hypotheses); the last four methods
+"bonferroni", "holm", "hochberg" and "hommel" are
+designed to give strong control of the family-wise error
+rate (FWER). Notes: FDR is a less stringent condition
+than FWER</dd>
+      <dt>adjp.cutoff</dt>
+      <dd>the cutoff of adjusted pvalue to
+construct the contact graph</dd>
+      <dt>parallel</dt>
+      <dd>logical to indicate whether parallel
+computation with multicores is used. By default, it sets
+to true, but not necessarily does so. Partly because
+parallel backends available will be system-specific (now
+only Linux or Mac OS). Also, it will depend on whether
+these two packages "foreach" and "doMC" have been
+installed. It can be installed via:
+<code>source("http://bioconductor.org/biocLite.R");
+biocLite(c("foreach","doMC"))</code>. If not yet installed,
+this option will be disabled</dd>
+      <dt>multicores</dt>
+      <dd>an integer to specify how many cores
+will be registered as the multicore parallel backend to
+the 'foreach' package. If NULL, it will use a half of
+cores available in a user's computer. This option only
+works when parallel computation is enabled</dd>
+      <dt>verbose</dt>
+      <dd>logical to indicate whether the messages
+will be displayed in the screen. By default, it sets to
+true for display</dd>
+    </dl>
+    <!-- 
+    -->
+    
+    <div class="Value">
+      <h3>Value</h3>
+      
+      <p>an object of class "dContact", a list with following
+components: <ul>
+<li><code>ratio</code>: a symmetric
+matrix storing ratio (the observed against the expected)
+between pairwise samples </li>
+<li><code>zscore</code>: a symmetric
+matrix storing zscore between pairwise samples
+</li>
+<li><code>pval</code>: a symmetric matrix storing pvalue
+between pairwise samples </li>
+<li><code>adjpval</code>: a symmetric
+matrix storing adjusted pvalue between pairwise samples
+</li>
+<li><code>cgraph</code>: the constructed contact graph (as a
+'igraph' object) under the cutoff of adjusted value
+</li>
+<li><code>call</code>: the call that produced this result </li>
+</ul></p>
+      <p></p>
+    </div>
+    <div class="Note">
+      <h3>Note</h3>
+      
+      <p>none</p>
+    </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) generate a random graph according to the ER model
+g <- erdos.renyi.game(100, 1/100)
+
+# 2) produce the induced subgraph only based on the nodes in query
+subg <- dNetInduce(g, V(g), knn=0)
+V(subg)$name <- 1:vcount(subg)
+
+# 3) pre-compute affinity matrix from the input graph
+Amatrix <- dRWR(g=subg, parallel=FALSE)
+</div>
+<strong class='message'>Start at 2014-06-30 16:54:09</strong>
+<strong class='message'></strong>
+<strong class='message'>First, get the adjacency matrix of the input graph (2014-06-30 16:54:09) ...</strong>
+<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-06-30 16:54:09) ...</strong>
+<strong class='message'>Third, RWR of 8 sets of seeds using 7.5e-01 restart probability (2014-06-30 16:54:09) ...</strong>
+<strong class='message'>	1 out of 8 seed sets (2014-06-30 16:54:09)</strong>
+<strong class='message'>	2 out of 8 seed sets (2014-06-30 16:54:09)</strong>
+<strong class='message'>	3 out of 8 seed sets (2014-06-30 16:54:09)</strong>
+<strong class='message'>	4 out of 8 seed sets (2014-06-30 16:54:09)</strong>
+<strong class='message'>	5 out of 8 seed sets (2014-06-30 16:54:09)</strong>
+<strong class='message'>	6 out of 8 seed sets (2014-06-30 16:54:09)</strong>
+<strong class='message'>	7 out of 8 seed sets (2014-06-30 16:54:09)</strong>
+<strong class='message'>	8 out of 8 seed sets (2014-06-30 16:54:09)</strong>
+<strong class='message'>Finally, output 8 by 8 affinity matrix normalised by none (2014-06-30 16:54:09) ...</strong>
+<strong class='message'>
+Finish at 2014-06-30 16:54:09</strong>
+<strong class='message'>Runtime in total is: 0 secs
+</strong>
+<div class='input'>
+# 4) estimate RWR-based sample relationships
+# define sets of seeds as data
+# each seed with equal weight (i.e. all non-zero entries are '1')
+aSeeds <- c(1,0,1,0,1)
+bSeeds <- c(0,0,1,0,1)
+data <- data.frame(aSeeds,bSeeds)
+rownames(data) <- 1:5
+# calcualte their two contacts
+dContact <- dRWRcontact(data=data, g=subg, Amatrix=Amatrix,
+parallel=FALSE)
+</div>
+<strong class='message'>Start at 2014-06-30 16:54:09</strong>
+<strong class='message'></strong>
+<strong class='message'>First, RWR on input graph (8 nodes and 8 edges) using input matrix (5 rows and 2 columns) as seeds and pre-computed affinity matrix (8 rows and 8 columns) (2014-06-30 16:54:09)...</strong>
+<strong class='message'>Second, calculate contact strength (2014-06-30 16:54:09)...</strong>
+<strong class='message'>Third, generate the distribution of contact strength based on 10 permutations on nodes respecting random (2014-06-30 16:54:09)...</strong>
+<strong class='message'>	1 out of 10 (2014-06-30 16:54:09)</strong>
+<strong class='message'>	2 out of 10 (2014-06-30 16:54:09)</strong>
+<strong class='message'>	3 out of 10 (2014-06-30 16:54:09)</strong>
+<strong class='message'>	4 out of 10 (2014-06-30 16:54:09)</strong>
+<strong class='message'>	5 out of 10 (2014-06-30 16:54:09)</strong>
+<strong class='message'>	6 out of 10 (2014-06-30 16:54:09)</strong>
+<strong class='message'>	7 out of 10 (2014-06-30 16:54:09)</strong>
+<strong class='message'>	8 out of 10 (2014-06-30 16:54:09)</strong>
+<strong class='message'>	9 out of 10 (2014-06-30 16:54:09)</strong>
+<strong class='message'>	10 out of 10 (2014-06-30 16:54:09)</strong>
+<strong class='message'>Last, estimate the significance of contact strength: zscore, pvalue, and BH adjusted-pvalue (2014-06-30 16:54:09)...</strong>
+<strong class='message'>Also, construct the contact graph under the cutoff 5.0e-02 of adjusted-pvalue (2014-06-30 16:54:09)...</strong>
+<strong class='message'></strong>
+<strong class='message'>Finish at 2014-06-30 16:54:09</strong>
+<strong class='message'>Runtime in total is: 0 secs
+</strong>
+<div class='input'>dContact
+</div>
+<div class='output'>$ratio
+         aSeeds   bSeeds
+aSeeds 1.067951 1.085205
+bSeeds 1.085205 1.065881
+
+$zscore
+          aSeeds    bSeeds
+aSeeds 0.8876375 1.2074194
+bSeeds 1.2074194 0.9311248
+
+$pval
+       aSeeds bSeeds
+aSeeds    0.3    0.1
+bSeeds    0.1    0.2
+
+$adjpval
+       aSeeds bSeeds
+aSeeds    0.3    0.1
+bSeeds    0.1    0.2
+
+$cgraph
+IGRAPH UN-- 2 0 -- 
++ attr: name (v/c)
+
+$call
+dRWRcontact(data = data, g = subg, Amatrix = Amatrix, parallel = FALSE)
+
+$method
+[1] "dnet"
+
+attr(,"class")
+[1] "dContact"
+</div></pre>
+  </div>
+  
+  <div class="span4">
+    
+    <!-- 
+    <ul>
+      <li>dRWRcontact</li>
+    </ul>
+    <ul>
+      
+    </ul> 
+    -->
+    
+    <h2>Source code</h2>
+    <a href="javascript:newWin('R/dRWRcontact.r', 'R/dRWRcontact.r', '1200', '1200')" title="Click to view"><B><code>dRWRcontact.r</code></B></a>
+    
+    <h2>See also</h2>
+    
+<code><a href='dRWR.html'>dRWR</a></code>, <code><a href='dCheckParallel.html'>dCheckParallel</a></code>
+
+    <!--
+
+    <h2>Citation</h2>
+    <ul>
+<li>Cite as <code>web link/URL</code></li>
+</ul>
+
+<p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
+
+<ul>
+<li>Cite as <code>standard reference</code></li>
+</ul>
+
+<p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
+
+<ul>
+<li>Cite as <code>an application</code></li>
+</ul>
+
+<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. <I>Genome Medicine</I> (in revision)</p>
+
+    
+    
+    <h2>URL</h2>
+    <ul>
+      <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
+    </ul>
+    
+    
+    -->
+    
+  </div>
+  
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+
+<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
+
+
+      </footer>
+    </div>
+  </body>
+</html>
