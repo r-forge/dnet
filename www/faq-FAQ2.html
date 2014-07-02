@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>What is the built-in data and how to use? @ dnet 1.0.4</title>
+<title>What is the built-in data and how to use? @ dnet 1.0.5</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Hai Fang and Julian Gough">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.4</a>
+      <a class="brand" href="index.html">dnet 1.0.5</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -201,10 +201,10 @@ window.onload = function(){
       <h2>What is the built-in data and how to use?</h2>
 
 Notes:
-<li> All results are based on dnet (version 1.0.4). </li>
+<li> All results are based on dnet (version 1.0.5). </li>
 <li> R scripts (i.e. R expressions) plus necessary comments are highlighted in light-cyan background, and the rest are outputs in the screen. </li>
 <li> Images displayed below may be distorted, but should be normal in your screen. </li>
-<li> Functions contained in dnet 1.0.4 are hyperlinked in-place and also listed on the right side. </li>
+<li> Functions contained in dnet 1.0.5 are hyperlinked in-place and also listed on the right side. </li>
 <li> Key texts are underlined, in bold and in pumpkin-orange color. </li>
 
 <div class="row">
@@ -365,39 +365,39 @@ symbols <- as.character(fData(TCGA_mutations)$Symbol)
 data <- symbols[1:50] # select the first 50 human genes
 eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data, identity="symbol", genome="Hs", ontology="DO")
 </div>
-<strong class='message'>Start at 2014-06-20 10:20:34</strong>
+<strong class='message'>Start at 2014-07-02 11:37:51</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology DO and its gene associations in the genome Hs (2014-06-20 10:20:34) ...</strong>
+<strong class='message'>First, load the ontology DO and its gene associations in the genome Hs (2014-07-02 11:37:51) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Hs/org.Hs.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://supfam.org/dnet/data/Hs/org.Hs.egDO.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-06-20 10:20:34) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-07-02 11:37:51) ...</strong>
 <strong class='message'>	Among 50 symbols of input data, there are 50 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2014-06-20 10:20:34) ...</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2014-07-02 11:37:52) ...</strong>
 <strong class='message'>	There are 913 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-06-20 10:20:34) ...</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-07-02 11:37:52) ...</strong>
 <strong class='message'>
-End at 2014-06-20 10:20:34</strong>
-<strong class='message'>Runtime in total is: 0 secs
+End at 2014-07-02 11:37:52</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'>
 ## gene set enrichment analysis (GSEA) using KEGG pathways
 tol <- apply(exprs(TCGA_mutations), 1, sum) # calculate the total mutations for each gene
 data <- data.frame(tol=tol)
 eTerm <- <a href='dGSEA.html' target=dGSEA>dGSEA</a>(data, identity="symbol", genome="Hs", ontology="MsigdbC2KEGG")</div>
-<strong class='message'>Start at 2014-06-20 10:20:38</strong>
+<strong class='message'>Start at 2014-07-02 11:37:55</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MsigdbC2KEGG and its gene associations in the genome Hs (2014-06-20 10:20:38) ...</strong>
+<strong class='message'>First, load the ontology MsigdbC2KEGG and its gene associations in the genome Hs (2014-07-02 11:37:55) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Hs/org.Hs.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://supfam.org/dnet/data/Msigdb/org.Hs.egMsigdbC2KEGG.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-06-20 10:20:38) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-07-02 11:37:55) ...</strong>
 <strong class='message'>	Among 19171 symbols of input data, there are 18924 mappable via official gene symbols but 247 left unmappable</strong>
-<strong class='message'>Third, perform GSEA analysis (2014-06-20 10:20:42) ...</strong>
-<strong class='message'>	Sample 1 is being processed at (2014-06-20 10:20:42) ...</strong>
+<strong class='message'>Third, perform GSEA analysis (2014-07-02 11:37:59) ...</strong>
+<strong class='message'>	Sample 1 is being processed at (2014-07-02 11:37:59) ...</strong>
 <strong class='message'>		 100 of 186 gene sets have been processed</strong>
 <strong class='message'>		 186 of 186 gene sets have been processed</strong>
 <strong class='message'>
-End at 2014-06-20 10:21:34</strong>
-<strong class='message'>Runtime in total is: 56 secs
+End at 2014-07-02 11:38:52</strong>
+<strong class='message'>Runtime in total is: 57 secs
 </strong>
       </pre>
     </div>
