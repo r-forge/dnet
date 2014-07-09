@@ -1,15 +1,3 @@
-cd ~/Databases/ChipSeq/supraHex/Bioinformatics_AN/RTiming/GB_manuscripts/dnet_GM/revision/methods/Net-Cox/sourcecode/
-
-
-cd ~/Databases/ChipSeq/supraHex/Bioinformatics_AN/RTiming/
-R
-load('b.RData')
-
-
-
-
-
-
 
 ###############################################################################
 ###############################################################################

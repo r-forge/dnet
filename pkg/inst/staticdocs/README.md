@@ -17,3 +17,7 @@
 * A wide variety of built-in [RData](http://supfam.org/dnet/rdata.html): ontologies (including `Gene Ontology`, `Disease Ontology`, `Human Phenotype` and `Mammalian Phenotype`), gene evolutionary age information and gene association networks in well-studied organisms (including human, mouse, rat, chicken, c.elegans, fruitfly, zebrafish and arabidopsis);
 * Support for high-performance parallel computing;
 * A tool with rich visuals but less inputs, which can run on `Windows`, `Mac` and `Linux`.
+
+## More
+
+* <a href="poster_ISMB2014.png" target="slides" style="font-size: 12px; color: #F87217; text-decoration: overline; border-bottom: 1px solid #F87217">Poster in ISMB2014</a>
