@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dBUMscore @ dnet 1.0.5</title>
+<title>dBUMscore @ dnet 1.0.6</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.5</a>
+      <a class="brand" href="index.html">dnet 1.0.6</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -204,12 +204,11 @@ window.onload = function(){
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>dBUMscore</code> is supposed to take as input a vector of
-p-values, which are transformed into scores according to
-the fitted beta-uniform mixture model. Also if the FDR
-threshold is given, it is used to make sure that p-values
-below this are considered significant and thus scored
-positively. Instead, those p-values above the given FDR are
+    <p><code>dBUMscore</code> is supposed to take as input a vector of p-values,
+which are transformed into scores according to the fitted beta-uniform
+mixture model. Also if the FDR threshold is given, it is used to make
+sure that p-values below this are considered significant and thus
+scored positively. Instead, those p-values above the given FDR are
 considered insigificant and thus scored negatively.</p>
   
     <h3>Usage</h3>
@@ -220,94 +219,94 @@ considered insigificant and thus scored negatively.</p>
       <dt>fit</dt>
       <dd>an object of class "BUM"</dd>
       <dt>method</dt>
-      <dd>the method used for the transformation. It
-can be either "pdf" for the method based on the
-probability density function of the fitted model, or
-"cdf" for the method based on the cumulative distribution
-function of the fitted model</dd>
+      <dd>the method used for the transformation. It can be either
+"pdf" for the method based on the probability density function of the
+fitted model, or "cdf" for the method based on the cumulative
+distribution function of the fitted model</dd>
       <dt>fdr</dt>
-      <dd>the given FDR threshold. By default, it is set
-to NULL, meaning there is no constraint. If given, those
-p-values with the FDR below this are considered
-significant and thus scored positively. Instead, those
-p-values with the FDR above this given FDR are considered
-insigificant and thus scored negatively</dd>
+      <dd>the given FDR threshold. By default, it is set to NULL,
+meaning there is no constraint. If given, those p-values with the FDR
+below this are considered significant and thus scored positively.
+Instead, those p-values with the FDR above this given FDR are
+considered insigificant and thus scored negatively</dd>
       <dt>scatter.bum</dt>
-      <dd>logical to indicate whether the
-scatter graph of scores against p-values should be drawn.
-Also indicated is the p-value (called tau) corresponding
-to the given FDR threshold (if any)</dd>
+      <dd>logical to indicate whether the scatter graph of
+scores against p-values should be drawn. Also indicated is the p-value
+(called tau) corresponding to the given FDR threshold (if any)</dd>
     </dl>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
       <p><ul>
-<li><code>scores</code>: a vector of scores </li>
+<li><code>scores</code>: a vector of scores
+</li>
 </ul></p>
       <p></p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
-      <p>The transformation from the input p-value <code class = 'eq'>x</code> to the
-score <code class = 'eq'>S(x)</code> is based on the fitted beta-uniform
-mixture model with two parameters <code class = 'eq'>\lambda</code> and
-<code class = 'eq'>a</code>: <code class = 'eq'>f(x|\lambda,a) = \lambda +
-(1-\lambda)*a*x^{a-1}</code>. Specifically, it considers the
-log-likelyhood ratio between the signal and noise compoment
-of the model. The probability density function (pdf) of the
-signal component and the noise component are
-<code class = 'eq'>(1-\lambda)*a*(x^{a-1}-1)</code> and <code class = 'eq'>\lambda +
-(1-\lambda)*a</code>, respectively. Accordingly, the cumulative
-distribution function (cdf) of the signal component and the
-noise component are <code class = 'eq'>\int_0^x (1-\lambda)*a*(x^{a-1}-1)
-\, \mathrm{d}x</code> and <code class = 'eq'>\int_0^x \lambda+(1-\lambda)*a \,
-\mathrm{d}x</code>. In order to take into account the
-significance of the p-value, the <code class = 'eq'>fdr</code> threshold is
-also used for down-weighting the score. According to how to
-measure both components, there are two methods implemented
-for deriving the score <code class = 'eq'>S(x)</code>: <ul>
-<li>The
-method "pdf": <code class = 'eq'>S(x) =
-log_2\frac{(1-\lambda)*a*(x^{a-1}-1)}{\lambda+(1-\lambda)*a}
--
-log_2\frac{(1-\lambda)*a*(\tau^{a-1}-1)}{\lambda+(1-\lambda)*a}
-= log_2\big(\frac{x^{a-1}-1}{\tau^{a-1}-1}\big)</code>. For the
-purpose of down-weighting scores, it must ensure
+      <p>The transformation from the input p-value <code class = 'eq'>x</code> to the score
+<code class = 'eq'>S(x)</code> is based on the fitted beta-uniform mixture model with two
+parameters <code class = 'eq'>\lambda</code> and <code class = 'eq'>a</code>: <code class = 'eq'>f(x|\lambda,a) = \lambda +
+(1-\lambda)*a*x^{a-1}</code>. Specifically, it considers the log-likelyhood
+ratio between the signal and noise compoment of the model. The
+probability density function (pdf) of the signal component and the
+noise component are <code class = 'eq'>(1-\lambda)*a*(x^{a-1}-1)</code> and <code class = 'eq'>\lambda +
+(1-\lambda)*a</code>, respectively. Accordingly, the cumulative distribution
+function (cdf) of the signal component and the noise component are
+<code class = 'eq'>\int_0^x (1-\lambda)*a*(x^{a-1}-1) \, \mathrm{d}x</code> and
+<code class = 'eq'>\int_0^x \lambda+(1-\lambda)*a \, \mathrm{d}x</code>. In order to take
+into account the significance of the p-value, the <code class = 'eq'>fdr</code> threshold
+is also used for down-weighting the score. According to how to measure
+both components, there are two methods implemented for deriving the
+score <code class = 'eq'>S(x)</code>:
+<ul>
+<li>The method "pdf": <code class = 'eq'>S(x) =
+log_2\frac{(1-\lambda)*a*(x^{a-1}-1)}{\lambda+(1-\lambda)*a} -
+log_2\frac{(1-\lambda)*a*(\tau^{a-1}-1)}{\lambda+(1-\lambda)*a} =
+log_2\big(\frac{x^{a-1}-1}{\tau^{a-1}-1}\big)</code>. For the purpose of
+down-weighting scores, it must ensure
 <code class = 'eq'>log_2\frac{(1-\lambda)*a*(\tau^{a-1}-1)}{\lambda+(1-\lambda)*a}
 \geq 0 </code>, that is, the constraint via <code class = 'eq'>\tau \leq
 \big(\frac{\lambda+2*a*(1-\lambda)}{a*(1-\lambda)}\big)^{\frac{1}{a-1}}</code>
 </li>
 <li>The method "cdf": <code class = 'eq'>S(x) = log_2\frac{\int_0^x
 (1-\lambda)*a*(x^{a-1}-1) \, \mathrm{d}x}{\int_0^x
-\lambda+(1-\lambda)*a \, \mathrm{d}x} -
-log_2\frac{\int_0^\tau (1-\lambda)*a*(\tau^{a-1}-1) \,
-\mathrm{d}x}{\int_0^\tau \lambda+(1-\lambda)*a \,
-\mathrm{d}x} =
-log_2\frac{(1-\lambda)*(x^{a-1}-a)}{\lambda+(1-\lambda)*a}
--
-log_2\frac{(1-\lambda)*(\tau^{a-1}-a)}{\lambda+(1-\lambda)*a}
-= log_2\big(\frac{x^{a-1}-a}{\tau^{a-1}-a}\big)</code>. For the
-purpose of down-weighting scores, it must ensure
-<code class = 'eq'>log_2\frac{(1-\lambda)*(\tau^{a-1}-a)}{\lambda+(1-\lambda)*a}
-\geq 0 </code>, that is, the constraint via <code class = 'eq'>\tau \leq
+\lambda+(1-\lambda)*a \, \mathrm{d}x} - log_2\frac{\int_0^\tau
+(1-\lambda)*a*(\tau^{a-1}-1) \, \mathrm{d}x}{\int_0^\tau
+\lambda+(1-\lambda)*a \, \mathrm{d}x} =
+log_2\frac{(1-\lambda)*(x^{a-1}-a)}{\lambda+(1-\lambda)*a} -
+log_2\frac{(1-\lambda)*(\tau^{a-1}-a)}{\lambda+(1-\lambda)*a} =
+log_2\big(\frac{x^{a-1}-a}{\tau^{a-1}-a}\big)</code>. For the purpose of
+down-weighting scores, it must ensure
+<code class = 'eq'>log_2\frac{(1-\lambda)*(\tau^{a-1}-a)}{\lambda+(1-\lambda)*a} \geq
+0 </code>, that is, the constraint via <code class = 'eq'>\tau \leq
 \big(\frac{\lambda+2*a*(1-\lambda)}{1-\lambda}\big)^{\frac{1}{a-1}}</code>
 </li>
 <li>Where <code class = 'eq'>\tau
 =\big[\frac{\lambda+(1-\lambda)*a-fdr*\lambda}{fdr*(1-\lambda)}\big]^{\frac{1}{a-1}}</code>,
-i.e. the p-value corresponding to the exact <code class = 'eq'>fdr</code>
-threshold. It can be deduced from the definition of the
-false discovery rate: <code class = 'eq'>fdr \doteq \frac{\int_0^\tau
-\lambda+(1-\lambda)*a \, \mathrm{d}x}{\int_0^\tau
-\lambda+(1-\lambda)*a*x^{a-1} \, \mathrm{d}x}</code>. Notably, if
-the calculated <code class = 'eq'>\tau</code> exceeds the contraint, it will be
-reset to the maximum end of that constraint </li>
+i.e. the p-value corresponding to the exact <code class = 'eq'>fdr</code> threshold. It can
+be deduced from the definition of the false discovery rate: <code class = 'eq'>fdr
+\doteq \frac{\int_0^\tau \lambda+(1-\lambda)*a \,
+\mathrm{d}x}{\int_0^\tau \lambda+(1-\lambda)*a*x^{a-1} \,
+\mathrm{d}x}</code>. Notably, if the calculated <code class = 'eq'>\tau</code> exceeds the
+contraint, it will be reset to the maximum end of that constraint
+</li>
 </ul></p>
       <p></p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'># 1) generate an vector consisting of random values from beta distribution
@@ -317,9 +316,9 @@ x <- rbeta(1000, shape1=0.5, shape2=1)
 fit <- dBUMfit(x)
 </div>
 <strong class='message'>	A total of p-values: 1000</strong>
-<strong class='message'>	Maximum Log-Likelihood: 292.7</strong>
-<strong class='message'>	Mixture parameter (lambda): 0.000</strong>
-<strong class='message'>	Shape parameter (a): 0.507</strong>
+<strong class='message'>	Maximum Log-Likelihood: 317.9</strong>
+<strong class='message'>	Mixture parameter (lambda): 0.208</strong>
+<strong class='message'>	Shape parameter (a): 0.438</strong>
 <a href="javascript:newWin('dBUMscore-6.png', 'dBUMscore-6.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dBUMscore-6.png', width="400" /></a>
 <div class='input'>
 # 3) calculate the scores according to the fitted BUM and fdr=0.01
@@ -354,23 +353,21 @@ scores <- dBUMscore(fit, method="cdf", fdr=0.01)
     <!--
 
     <h2>Citation</h2>
-    <ul>
-<li>Cite as <code>web link/URL</code></li>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
+
+<p>You may also Cite it as:</p>
+
+<ul>
+<li><code>web link/URL</code></li>
 </ul>
 
 <p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
 
 <ul>
-<li>Cite as <code>standard reference</code></li>
+<li><code>package/software</code></li>
 </ul>
 
 <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
-
-<ul>
-<li>Cite as <code>an application</code></li>
-</ul>
-
-<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. <I>Genome Medicine</I> (in revision)</p>
 
     
     

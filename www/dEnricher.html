@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dEnricher @ dnet 1.0.5</title>
+<title>dEnricher @ dnet 1.0.6</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.5</a>
+      <a class="brand" href="index.html">dnet 1.0.6</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -204,11 +204,11 @@ window.onload = function(){
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>dEnricher</code> is supposed to conduct enrichment analysis
-given the input data and the ontology in query. It returns
-an object of class "eTerm". Enrichment analysis is based on
-either Fisher's exact test or Hypergeometric test. The test
-can respect the hierarchy of the ontology.</p>
+    <p><code>dEnricher</code> is supposed to conduct enrichment analysis given the
+input data and the ontology in query. It returns an object of class
+"eTerm". Enrichment analysis is based on either Fisher's exact test or
+Hypergeometric test. The test can respect the hierarchy of the
+ontology.</p>
   
     <h3>Usage</h3>
     <pre>dEnricher(data, identity = c("symbol", "entrez"), check.symbol.identity = FALSE, 
@@ -225,210 +225,197 @@ can respect the hierarchy of the ontology.</p>
     <h3>Arguments</h3>
     <dl>
       <dt>data</dt>
-      <dd>an input vector. It contains either Entrez
-Gene ID or Symbol</dd>
+      <dd>an input vector. It contains either Entrez Gene ID or
+Symbol</dd>
       <dt>identity</dt>
-      <dd>the type of gene identity (i.e. row names
-of input data), either "symbol" for gene symbols (by
-default) or "entrez" for Entrez Gene ID. The option
-"symbol" is preferred as it is relatively stable from one
-update to another; also it is possible to search against
-synonyms (see the next parameter)</dd>
+      <dd>the type of gene identity (i.e. row names of input
+data), either "symbol" for gene symbols (by default) or "entrez" for
+Entrez Gene ID. The option "symbol" is preferred as it is relatively
+stable from one update to another; also it is possible to search
+against synonyms (see the next parameter)</dd>
       <dt>check.symbol.identity</dt>
-      <dd>logical to indicate whether
-synonyms will be searched against when gene symbols
-cannot be matched. By default, it sets to FALSE since it
-may take a while to do such check using all possible
-synoyms</dd>
+      <dd>logical to indicate whether synonyms will
+be searched against when gene symbols cannot be matched. By default, it
+sets to FALSE since it may take a while to do such check using all
+possible synoyms</dd>
       <dt>genome</dt>
-      <dd>the genome identity. It can be one of "Hs"
-for human, "Mm" for mouse, "Rn" for rat, "Gg" for
-chicken, "Ce" for c.elegans, "Dm" for fruitfly, "Da" for
-zebrafish, and "At" for arabidopsis</dd>
+      <dd>the genome identity. It can be one of "Hs" for human,
+"Mm" for mouse, "Rn" for rat, "Gg" for chicken, "Ce" for c.elegans,
+"Dm" for fruitfly, "Da" for zebrafish, and "At" for arabidopsis</dd>
       <dt>ontology</dt>
-      <dd>the ontology supported currently. It can
-be "GOBP" for Gene Ontology Biological Process, "GOMF"
-for Gene Ontology Molecular Function, "GOCC" for Gene
-Ontology Cellular Component, "PS" for phylostratific age
-information, "PS2" for the collapsed PS version (inferred
-ancestors being collapsed into one with the known
-taxonomy information), "SF" for domain superfamily
-assignments, "DO" for Disease Ontology, "HPPA" for Human
-Phenotype Phenotypic Abnormality, "HPMI" for Human
-Phenotype Mode of Inheritance, "HPON" for Human Phenotype
-ONset and clinical course, "MP" for Mammalian Phenotype,
-and Drug-Gene Interaction database (DGIdb) and the
-molecular signatures database (Msigdb) only in human
-(including "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP",
-"MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA",
-"MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN",
-"MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC",
-"MsigdbC6", "MsigdbC7"). Note: These four ("GOBP",
-"GOMF", "GOCC" and "PS") are availble for all
-genomes/species; for "Hs" and "Mm", these five ("DO",
-"HPPA", "HPMI", "HPON" and "MP") are also supported; all
-"Msigdb" are only supported in "Hs". For details on the
-eligibility for pairs of input genome and ontology,
-please refer to the online Documentations at
+      <dd>the ontology supported currently. It can be "GOBP" for
+Gene Ontology Biological Process, "GOMF" for Gene Ontology Molecular
+Function, "GOCC" for Gene Ontology Cellular Component, "PS" for
+phylostratific age information, "PS2" for the collapsed PS version
+(inferred ancestors being collapsed into one with the known taxonomy
+information), "SF" for domain superfamily assignments, "DO" for Disease
+Ontology, "HPPA" for Human Phenotype Phenotypic Abnormality, "HPMI" for
+Human Phenotype Mode of Inheritance, "HPON" for Human Phenotype ONset
+and clinical course, "MP" for Mammalian Phenotype, and Drug-Gene
+Interaction database (DGIdb) and the molecular signatures database
+(Msigdb) only in human (including "MsigdbC1", "MsigdbC2CGP",
+"MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA",
+"MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM",
+"MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7").
+Note: These four ("GOBP", "GOMF", "GOCC" and "PS") are availble for all
+genomes/species; for "Hs" and "Mm", these five ("DO", "HPPA", "HPMI",
+"HPON" and "MP") are also supported; all "Msigdb" are only supported in
+"Hs". For details on the eligibility for pairs of input genome and
+ontology, please refer to the online Documentations at
 <a href = 'http://supfam.org/dnet/docs.html'>http://supfam.org/dnet/docs.html</a></dd>
       <dt>sizeRange</dt>
-      <dd>the minimum and maximum size of members
-of each gene set in consideration. By default, it sets to
-a minimum of 10 but no more than 1000</dd>
+      <dd>the minimum and maximum size of members of each gene
+set in consideration. By default, it sets to a minimum of 10 but no
+more than 1000</dd>
       <dt>min.overlap</dt>
-      <dd>the minimum number of overlaps. Only
-those gene sets that overlap with input data at least
-min.overlap (3 by default) will be processed</dd>
+      <dd>the minimum number of overlaps. Only those gene sets
+that overlap with input data at least min.overlap (3 by default) will
+be processed</dd>
       <dt>which_distance</dt>
-      <dd>which distance of terms in the
-ontology is used to restrict terms in consideration. By
-default, it sets to 'NULL' to consider all distances</dd>
+      <dd>which distance of terms in the ontology is used
+to restrict terms in consideration. By default, it sets to 'NULL' to
+consider all distances</dd>
       <dt>test</dt>
-      <dd>the statistic test used. It can be
-"FisherTest" for using fisher's exact test,
-"HypergeoTest" for using hypergeometric test, or
-"BinomialTest" for using binomial test. Fisher's exact
-test is to test the independence between gene group
-(genes belonging to a group or not) and gene annotation
-(genes annotated by a term or not), and thus compare
-sampling to the left part of background (after sampling
-without replacement). Hypergeometric test is to sample at
-random (without replacement) from the background
-containing annotated and non-annotated genes, and thus
-compare sampling to background. Unlike hypergeometric
-test, binomial test is to sample at random (with
-replacement) from the background with the constant
-probability. In terms of the ease of finding the
-significance, they are in order: hypergeometric test >
-binomial test > fisher's exact test. In other words, in
-terms of the calculated p-value, hypergeometric test <
-binomial test < fisher's exact test</dd>
+      <dd>the statistic test used. It can be "FisherTest" for using
+fisher's exact test, "HypergeoTest" for using hypergeometric test, or
+"BinomialTest" for using binomial test. Fisher's exact test is to test
+the independence between gene group (genes belonging to a group or not)
+and gene annotation (genes annotated by a term or not), and thus
+compare sampling to the left part of background (after sampling without
+replacement). Hypergeometric test is to sample at random (without
+replacement) from the background containing annotated and non-annotated
+genes, and thus compare sampling to background. Unlike hypergeometric
+test, binomial test is to sample at random (with replacement) from the
+background with the constant probability. In terms of the ease of
+finding the significance, they are in order: hypergeometric test >
+binomial test > fisher's exact test. In other words, in terms of the
+calculated p-value, hypergeometric test < binomial test < fisher's
+exact test</dd>
       <dt>p.adjust.method</dt>
-      <dd>the method used to adjust
-p-values. It can be one of "BH", "BY", "bonferroni",
-"holm", "hochberg" and "hommel". The first two methods
-"BH" (widely used) and "BY" control the false discovery
-rate (FDR: the expected proportion of false discoveries
-amongst the rejected hypotheses); the last four methods
-"bonferroni", "holm", "hochberg" and "hommel" are
-designed to give strong control of the family-wise error
-rate (FWER). Notes: FDR is a less stringent condition
-than FWER</dd>
+      <dd>the method used to adjust p-values. It can be
+one of "BH", "BY", "bonferroni", "holm", "hochberg" and "hommel". The
+first two methods "BH" (widely used) and "BY" control the false
+discovery rate (FDR: the expected proportion of false discoveries
+amongst the rejected hypotheses); the last four methods "bonferroni",
+"holm", "hochberg" and "hommel" are designed to give strong control of
+the family-wise error rate (FWER). Notes: FDR is a less stringent
+condition than FWER</dd>
       <dt>ontology.algorithm</dt>
-      <dd>the algorithm used to account
-for the hierarchy of the ontology. It can be one of
-"none", "pc", "elim" and "lea". For details, please see
-'Note'</dd>
+      <dd>the algorithm used to account for the
+hierarchy of the ontology. It can be one of "none", "pc", "elim" and
+"lea". For details, please see 'Note'</dd>
       <dt>elim.pvalue</dt>
-      <dd>the parameter only used when
-"ontology.algorithm" is "elim". It is used to control how
-to declare a signficantly enriched term (and subsequently
-all genes in this term are eliminated from all its
-ancestors)</dd>
+      <dd>the parameter only used when "ontology.algorithm" is
+"elim". It is used to control how to declare a signficantly enriched
+term (and subsequently all genes in this term are eliminated from all
+its ancestors)</dd>
       <dt>lea.depth</dt>
-      <dd>the parameter only used when
-"ontology.algorithm" is "lea". It is used to control how
-many maximum depth is uded to consider the children of a
-term (and subsequently all genes in these children term
-are eliminated from the use for the recalculation of the
+      <dd>the parameter only used when "ontology.algorithm" is
+"lea". It is used to control how many maximum depth is uded to consider
+the children of a term (and subsequently all genes in these children
+term are eliminated from the use for the recalculation of the
 signifance at this term)</dd>
       <dt>verbose</dt>
-      <dd>logical to indicate whether the messages
-will be displayed in the screen. By default, it sets to
-false for no display</dd>
+      <dd>logical to indicate whether the messages will be
+displayed in the screen. By default, it sets to false for no display</dd>
       <dt>RData.location</dt>
-      <dd>the characters to tell the location
-of built-in RData files. By default, it remotely locates
-at <a href = 'http://supfam.org/dnet/data'>http://supfam.org/dnet/data</a> or
-<a href = 'http://dnet.r-forge.r-project.org/data'>http://dnet.r-forge.r-project.org/data</a>. For the
-user equipped with fast internet connection, this option
-can be just left as default. But it is always advisable
-to download these files locally. Especially when the user
-needs to run this function many times, there is no need
-to ask the function to remotely download every time (also
-it will unnecessarily increase the runtime). For
-examples, these files (as a whole or part of them) can be
-first downloaded into your current working directory, and
-then set this option as: <code class = 'eq'>RData.location="."</code>.
-Surely, the location can be anywhere as long as the user
-provides the correct path pointing to (otherwise, the
-script will have to remotely download each time). Here is
-the UNIX command for downloading all RData files
-(preserving the directory structure): <code class = 'eq'>wget -r -l2 -A
-"*.RData" -np -nH --cut-dirs=0
+      <dd>the characters to tell the location of built-in
+RData files. By default, it remotely locates at
+<a href = 'http://supfam.org/dnet/data'>http://supfam.org/dnet/data</a> or
+<a href = 'http://dnet.r-forge.r-project.org/data'>http://dnet.r-forge.r-project.org/data</a>. For the user equipped
+with fast internet connection, this option can be just left as default.
+But it is always advisable to download these files locally. Especially
+when the user needs to run this function many times, there is no need
+to ask the function to remotely download every time (also it will
+unnecessarily increase the runtime). For examples, these files (as a
+whole or part of them) can be first downloaded into your current
+working directory, and then set this option as:
+<code class = 'eq'>RData.location="."</code>. Surely, the location can be anywhere as long
+as the user provides the correct path pointing to (otherwise, the
+script will have to remotely download each time). Here is the UNIX
+command for downloading all RData files (preserving the directory
+structure): <code class = 'eq'>wget -r -l2 -A "*.RData" -np -nH --cut-dirs=0
 "http://dnet.r-forge.r-project.org/data"</code></dd>
     </dl>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
-      <p>an object of class "eTerm", a list with following
-components: <ul>
-<li><code>set_info</code>: a matrix of
-nSet X 4 containing gene set information, where nSet is the
-number of gene set in consideration, and the 4 columns are
-"setID" (i.e. "Term ID"), "name" (i.e. "Term Name"),
-"namespace" and "distance" </li>
-<li><code>gs</code>: a list of gene
-sets, each storing gene members. Always, gene sets are
-identified by "setID" and gene members identified by
-"Entrez ID" </li>
-<li><code>data</code>: a vector containing input
-data in consideration. It is not always the same as the
-input data as only those mappable are retained
+      <p>an object of class "eTerm", a list with following components:
+<ul>
+<li><code>set_info</code>: a matrix of nSet X 4 containing gene set
+information, where nSet is the number of gene set in consideration, and
+the 4 columns are "setID" (i.e. "Term ID"), "name" (i.e. "Term Name"),
+"namespace" and "distance"
 </li>
-<li><code>overlap</code>: a list of overlapped gene sets, each
-storing genes overlapped between a gene set and the given
-input data (i.e. the genes of interest). Always, gene sets
-are identified by "setID" and gene members identified by
-"Entrez ID" </li>
-<li><code>zscore</code>: a vector containing
-z-scores </li>
-<li><code>pvalue</code>: a vector containing
-p-values </li>
-<li><code>adjp</code>: a vector containing adjusted
-p-values. It is the p value but after being adjusted for
-multiple comparisons </li>
-<li><code>call</code>: the call that
-produced this result </li>
+<li><code>gs</code>: a list of gene sets, each storing gene members.
+Always, gene sets are identified by "setID" and gene members identified
+by "Entrez ID"
+</li>
+<li><code>data</code>: a vector containing input data in consideration. It
+is not always the same as the input data as only those mappable are
+retained
+</li>
+<li><code>overlap</code>: a list of overlapped gene sets, each storing
+genes overlapped between a gene set and the given input data (i.e. the
+genes of interest). Always, gene sets are identified by "setID" and
+gene members identified by "Entrez ID"
+</li>
+<li><code>zscore</code>: a vector containing z-scores
+</li>
+<li><code>pvalue</code>: a vector containing p-values
+</li>
+<li><code>adjp</code>: a vector containing adjusted p-values. It is the p
+value but after being adjusted for multiple comparisons
+</li>
+<li><code>call</code>: the call that produced this result
+</li>
 </ul></p>
       <p></p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
-      <p>The interpretation of the algorithms used to account for
-the hierarchy of the ontology is: <ul>
-<li>"none":
-does not consider the ontology hierarchy at all.
+      <p>The interpretation of the algorithms used to account for the hierarchy
+of the ontology is:
+<ul>
+<li>"none": does not consider the ontology hierarchy at all.
 </li>
-<li>"lea": computers the significance of a term in terms
-of the significance of its children at the maximum depth
-(e.g. 2). Precisely, once genes are already annotated to
-any children terms with a more signficance than itself,
-then all these genes are eliminated from the use for the
-recalculation of the signifance at that term. The final
-p-values takes the maximum of the original p-value and the
-recalculated p-value. </li>
-<li>"elim": computers the
-significance of a term in terms of the significance of its
-all children. Precisely, once genes are already annotated
-to a signficantly enriched term under the cutoff of e.g.
-pvalue<1e-2, all these genes are eliminated from the
-ancestors of that term). </li>
-<li>"pc": requires the
-significance of a term not only using the whole genes as
-background but also using genes annotated to all its direct
-parents/ancestors as background. The final p-value takes
-the maximum of both p-values in these two calculations.
+<li>"lea": computers the significance of a term in terms of the
+significance of its children at the maximum depth (e.g. 2). Precisely,
+once genes are already annotated to any children terms with a more
+signficance than itself, then all these genes are eliminated from the
+use for the recalculation of the signifance at that term. The final
+p-values takes the maximum of the original p-value and the recalculated
+p-value.
 </li>
-<li>"Notes": the order of the number of significant terms
-is: "none" > "lea" > "elim" > "pc". </li>
+<li>"elim": computers the significance of a term in terms of the
+significance of its all children. Precisely, once genes are already
+annotated to a signficantly enriched term under the cutoff of e.g.
+pvalue<1e-2, all these genes are eliminated from the ancestors of that
+term).
+</li>
+<li>"pc": requires the significance of a term not only using the
+whole genes as background but also using genes annotated to all its
+direct parents/ancestors as background. The final p-value takes the
+maximum of both p-values in these two calculations.
+</li>
+<li>"Notes": the order of the number of significant terms is: "none"
+> "lea" > "elim" > "pc".
+</li>
 </ul></p>
       <p></p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'># load data
@@ -450,34 +437,34 @@ data
 # enrichment analysis
 eTerm <- dEnricher(data, identity="symbol", genome="Hs", ontology="DO")
 </div>
-<strong class='message'>Start at 2014-07-02 11:31:43</strong>
+<strong class='message'>Start at 2014-09-09 16:52:29</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology DO and its gene associations in the genome Hs (2014-07-02 11:31:43) ...</strong>
+<strong class='message'>First, load the ontology DO and its gene associations in the genome Hs (2014-09-09 16:52:29) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Hs/org.Hs.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://supfam.org/dnet/data/Hs/org.Hs.egDO.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-07-02 11:31:43) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-09-09 16:52:29) ...</strong>
 <strong class='message'>	Among 47 symbols of input data, there are 43 mappable via official gene symbols but 4 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2014-07-02 11:31:43) ...</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2014-09-09 16:52:29) ...</strong>
 <strong class='message'>	There are 913 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-07-02 11:31:43) ...</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2014-09-09 16:52:29) ...</strong>
 <strong class='message'>
-End at 2014-07-02 11:31:43</strong>
+End at 2014-09-09 16:52:29</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>dEnricherView(eTerm, top_num=10, sortBy="adjp", decreasing=FALSE,
 details=TRUE)
 </div>
-<div class='output'>              setID nSet nOverlap zscore  pvalue   adjp
-DOID:1749 DOID:1749  719        8   3.94 0.00022 0.0025
-DOID:1909 DOID:1909  708        8   3.99 0.00019 0.0025
-DOID:231   DOID:231  185        4   4.47 0.00025 0.0025
-DOID:8566 DOID:8566   94        3   4.93 0.00021 0.0025
-DOID:332   DOID:332  154        3   3.59 0.00130 0.0100
-DOID:1115 DOID:1115  191        3   3.08 0.00300 0.0190
-DOID:3571 DOID:3571  883        7   2.63 0.00460 0.0200
-DOID:684   DOID:684  882        7   2.64 0.00460 0.0200
-DOID:686   DOID:686  882        7   2.64 0.00460 0.0200
-DOID:2355 DOID:2355  235        3   2.62 0.00620 0.0240
+<div class='output'>              setID nAnno nOverlap zscore  pvalue   adjp
+DOID:1749 DOID:1749   719        8   3.94 0.00022 0.0025
+DOID:1909 DOID:1909   708        8   3.99 0.00019 0.0025
+DOID:231   DOID:231   185        4   4.47 0.00025 0.0025
+DOID:8566 DOID:8566    94        3   4.93 0.00021 0.0025
+DOID:332   DOID:332   154        3   3.59 0.00130 0.0100
+DOID:1115 DOID:1115   191        3   3.08 0.00300 0.0190
+DOID:3571 DOID:3571   883        7   2.63 0.00460 0.0200
+DOID:684   DOID:684   882        7   2.64 0.00460 0.0200
+DOID:686   DOID:686   882        7   2.64 0.00460 0.0200
+DOID:2355 DOID:2355   235        3   2.62 0.00620 0.0240
                                    name        namespace distance
 DOID:1749       squamous cell carcinoma Disease_Ontology        5
 DOID:1909                      melanoma Disease_Ontology        4
@@ -489,6 +476,17 @@ DOID:3571                  liver cancer Disease_Ontology        5
 DOID:684       hepatocellular carcinoma Disease_Ontology        7
 DOID:686                liver carcinoma Disease_Ontology        6
 DOID:2355                        anemia Disease_Ontology        4
+                                             members
+DOID:1749  RHOA,MSN,CANX,NPM1,RPS6,HSP90B1,EPHB3,BAD
+DOID:1909 APP,RHOA,MSN,CANX,NPM1,PRKAR1A,HSP90B1,BAD
+DOID:231                        APP,TARDBP,RPS6,KARS
+DOID:8566                               APP,MSN,NPM1
+DOID:332                             APP,TARDBP,KARS
+DOID:1115                           TARDBP,NPM1,RPS6
+DOID:3571       RHOA,NPM1,RPS6,HSP90B1,BAD,HINT1,JTB
+DOID:684        RHOA,NPM1,RPS6,HSP90B1,BAD,HINT1,JTB
+DOID:686        RHOA,NPM1,RPS6,HSP90B1,BAD,HINT1,JTB
+DOID:2355                              MSN,NPM1,RPS6
 </div>
 <div class='input'>
 # visualise the top significant terms in the ontology hierarchy
@@ -534,23 +532,21 @@ node.attrs=list(color=nodes.highlight))
     <!--
 
     <h2>Citation</h2>
-    <ul>
-<li>Cite as <code>web link/URL</code></li>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
+
+<p>You may also Cite it as:</p>
+
+<ul>
+<li><code>web link/URL</code></li>
 </ul>
 
 <p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
 
 <ul>
-<li>Cite as <code>standard reference</code></li>
+<li><code>package/software</code></li>
 </ul>
 
 <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
-
-<ul>
-<li>Cite as <code>an application</code></li>
-</ul>
-
-<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. <I>Genome Medicine</I> (in revision)</p>
 
     
     

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dGSEAwrite @ dnet 1.0.5</title>
+<title>dGSEAwrite @ dnet 1.0.6</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.5</a>
+      <a class="brand" href="index.html">dnet 1.0.6</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -204,8 +204,7 @@ window.onload = function(){
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>dGSEAwrite</code> is supposed to write out enrichment
-results.</p>
+    <p><code>dGSEAwrite</code> is supposed to write out enrichment results.</p>
   
     <h3>Usage</h3>
     <pre>dGSEAwrite(eTerm, which_content = c("gadjp", "adjp", "pvalue", "FWER", "FDR", "qvalue", 
@@ -217,57 +216,65 @@ results.</p>
       <dt>eTerm</dt>
       <dd>an object of class "eTerm"</dd>
       <dt>which_content</dt>
-      <dd>the content will be written out. It
-includes two categories: i) based on "adjp" for adjusted
-p value, "gadjp" for globally adjusted p value, "pvalue"
-for p value, "FWER" for family-wise error rate, "FDR" for
-false discovery rate, "qvalue" for q value; ii) based on
-"ES" for enrichment score, "nES" for normalised
-enrichment score. For the former, the content is : first
--1*log10-transformed, and then multiplied by -1 if nES is
-negative.</dd>
+      <dd>the content will be written out. It includes two
+categories: i) based on "adjp" for adjusted p value, "gadjp" for
+globally adjusted p value, "pvalue" for p value, "FWER" for family-wise
+error rate, "FDR" for false discovery rate, "qvalue" for q value; ii)
+based on "ES" for enrichment score, "nES" for normalised enrichment
+score. For the former, the content is : first -1*log10-transformed, and
+then multiplied by -1 if nES is negative.</dd>
       <dt>which_score</dt>
-      <dd>which statistics/score will be used
-for declaring the significance. It can be "adjp" for
-adjusted p value, "gadjp" for globally adjusted p value,
-"FWER" for family-wise error rate, "FDR" for false
-discovery rate, "qvalue" for q value</dd>
+      <dd>which statistics/score will be used for declaring
+the significance. It can be "adjp" for adjusted p value, "gadjp" for
+globally adjusted p value, "FWER" for family-wise error rate, "FDR" for
+false discovery rate, "qvalue" for q value</dd>
       <dt>cutoff</dt>
-      <dd>a cutoff to declare the signficance. It
-should be used together with 'which_score'</dd>
+      <dd>a cutoff to declare the signficance. It should be used
+together with 'which_score'</dd>
       <dt>filename</dt>
       <dd>a character string naming a filename</dd>
       <dt>keep.significance</dt>
-      <dd>logical to indicate whether or
-not to mask those insignfiicant by NA. By default, it
-sets to true to mask those insignfiicant by NA</dd>
+      <dd>logical to indicate whether or not to mask
+those insignfiicant by NA. By default, it sets to true to mask those
+insignfiicant by NA</dd>
     </dl>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
-      <p>a data frame with following components: <ul>
-<li><code>setID</code>: term ID </li>
-<li><code>setSize</code>: the
-number of genes in the set </li>
+      <p>a data frame with following components:
+<ul>
+<li><code>setID</code>: term ID
+</li>
+<li><code>setSize</code>: the number of genes in the set
+</li>
 <li><code>name</code>: term name
 </li>
 <li><code>namespace</code>: term namespace
 </li>
-<li><code>distance</code>: term distance </li>
-<li><code>sample
-names</code>: sample names in the next columns </li>
+<li><code>distance</code>: term distance
+</li>
+<li><code>sample names</code>: sample names in the next columns
+</li>
 </ul></p>
       <p></p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
-      <p>If "filename" is not NULL, a tab-delimited text file will
-be also written out.</p>
+      <p>If "filename" is not NULL, a tab-delimited text file will be also
+written out.</p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'>#output <- dGSEAwrite(eTerm, which_content="gadjp", which_score="gadjp", filename="eTerm.txt")
@@ -295,23 +302,21 @@ be also written out.</p>
     <!--
 
     <h2>Citation</h2>
-    <ul>
-<li>Cite as <code>web link/URL</code></li>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
+
+<p>You may also Cite it as:</p>
+
+<ul>
+<li><code>web link/URL</code></li>
 </ul>
 
 <p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
 
 <ul>
-<li>Cite as <code>standard reference</code></li>
+<li><code>package/software</code></li>
 </ul>
 
 <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
-
-<ul>
-<li>Cite as <code>an application</code></li>
-</ul>
-
-<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. <I>Genome Medicine</I> (in revision)</p>
 
     
     

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>visNetReorder @ dnet 1.0.5</title>
+<title>visNetReorder @ dnet 1.0.6</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.5</a>
+      <a class="brand" href="index.html">dnet 1.0.6</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -204,8 +204,8 @@ window.onload = function(){
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>visNetReorder</code> is supposed to visualise the multiple
-graph colorings reorded within a sheet-shape rectangle grid</p>
+    <p><code>visNetReorder</code> is supposed to visualise the multiple graph
+colorings reorded within a sheet-shape rectangle grid</p>
   
     <h3>Usage</h3>
     <pre>visNetReorder(g, data, sReorder, height = 7, margin = rep(0.1, 4), border.color = "#EEEEEE", 
@@ -219,19 +219,16 @@ graph colorings reorded within a sheet-shape rectangle grid</p>
       <dt>g</dt>
       <dd>an object of class "igraph" or "graphNEL"</dd>
       <dt>data</dt>
-      <dd>an input data matrix used to color-code
-vertices/nodes. One column corresponds to one graph node
-coloring. The input matrix must have row names, and these
-names should include all node names of input graph, i.e.
-V(g)$name, since there is a mapping operation. After
-mapping, the length of the patern vector should be the
-same as the number of nodes of input graph. The way of
-how to color-code is to map values in the pattern onto
-the whole colormap (see the next arguments: colormap,
-ncolors, zlim and colorbar)</dd>
+      <dd>an input data matrix used to color-code vertices/nodes. One
+column corresponds to one graph node coloring. The input matrix must
+have row names, and these names should include all node names of input
+graph, i.e. V(g)$name, since there is a mapping operation. After
+mapping, the length of the patern vector should be the same as the
+number of nodes of input graph. The way of how to color-code is to map
+values in the pattern onto the whole colormap (see the next arguments:
+colormap, ncolors, zlim and colorbar)</dd>
       <dt>height</dt>
-      <dd>a numeric value specifying the height of
-device</dd>
+      <dd>a numeric value specifying the height of device</dd>
       <dt>sReorder</dt>
       <dd>an object of class "sReorder"</dd>
       <dt>margin</dt>
@@ -239,58 +236,50 @@ device</dd>
       <dt>border.color</dt>
       <dd>the border color of each figure</dd>
       <dt>colormap</dt>
-      <dd>short name for the colormap. It can be
-one of "jet" (jet colormap), "bwr" (blue-white-red
-colormap), "gbr" (green-black-red colormap), "wyr"
-(white-yellow-red colormap), "br" (black-red colormap),
-"yr" (yellow-red colormap), "wb" (white-black colormap),
-and "rainbow" (rainbow colormap, that is,
+      <dd>short name for the colormap. It can be one of "jet"
+(jet colormap), "bwr" (blue-white-red colormap), "gbr" (green-black-red
+colormap), "wyr" (white-yellow-red colormap), "br" (black-red
+colormap), "yr" (yellow-red colormap), "wb" (white-black colormap), and
+"rainbow" (rainbow colormap, that is,
 red-yellow-green-cyan-blue-magenta). Alternatively, any
-hyphen-separated HTML color names, e.g.
-"blue-black-yellow", "royalblue-white-sandybrown",
-"darkgreen-white-darkviolet". A list of standard color
-names can be found in
+hyphen-separated HTML color names, e.g. "blue-black-yellow",
+"royalblue-white-sandybrown", "darkgreen-white-darkviolet". A list of
+standard color names can be found in
 <a href = 'http://html-color-codes.info/color-names'>http://html-color-codes.info/color-names</a></dd>
       <dt>ncolors</dt>
-      <dd>the number of colors specified over the
-colormap</dd>
+      <dd>the number of colors specified over the colormap</dd>
       <dt>zlim</dt>
-      <dd>the minimum and maximum z/patttern values for
-which colors should be plotted, defaulting to the range
-of the finite values of z. Each of the given colors will
-be used to color an equispaced interval of this range.
-The midpoints of the intervals cover the range, so that
+      <dd>the minimum and maximum z/patttern values for which colors
+should be plotted, defaulting to the range of the finite values of z.
+Each of the given colors will be used to color an equispaced interval
+of this range. The midpoints of the intervals cover the range, so that
 values just outside the range will be plotted</dd>
       <dt>colorbar</dt>
-      <dd>logical to indicate whether to append a
-colorbar. If pattern is null, it always sets to false</dd>
+      <dd>logical to indicate whether to append a colorbar. If
+pattern is null, it always sets to false</dd>
       <dt>colorbar.fraction</dt>
-      <dd>the relative fraction of
-colorbar block against the figure block</dd>
+      <dd>the relative fraction of colorbar block
+against the figure block</dd>
       <dt>newpage</dt>
-      <dd>logical to indicate whether to open a new
-page. By default, it sets to true for opening a new page</dd>
+      <dd>logical to indicate whether to open a new page. By
+default, it sets to true for opening a new page</dd>
       <dt>glayout</dt>
-      <dd>either a function or a numeric matrix
-configuring how the vertices will be placed on the plot.
-If layout is a function, this function will be called
-with the graph as the single parameter to determine the
-actual coordinates. This function can be one of
-"layout.auto", "layout.random", "layout.circle",
-"layout.sphere", "layout.fruchterman.reingold",
-"layout.kamada.kawai", "layout.spring",
-"layout.reingold.tilford",
-"layout.fruchterman.reingold.grid", "layout.lgl",
-"layout.graphopt", "layout.svd" and "layout.norm". A full
+      <dd>either a function or a numeric matrix configuring how
+the vertices will be placed on the plot. If layout is a function, this
+function will be called with the graph as the single parameter to
+determine the actual coordinates. This function can be one of
+"layout.auto", "layout.random", "layout.circle", "layout.sphere",
+"layout.fruchterman.reingold", "layout.kamada.kawai", "layout.spring",
+"layout.reingold.tilford", "layout.fruchterman.reingold.grid",
+"layout.lgl", "layout.graphopt", "layout.svd" and "layout.norm". A full
 explanation of these layouts can be found in
 <a href = 'http://igraph.org/r/doc/layout.html'>http://igraph.org/r/doc/layout.html</a></dd>
       <dt>mtext.side</dt>
-      <dd>on which side of the mtext plot
-(1=bottom, 2=left, 3=top, 4=right)</dd>
+      <dd>on which side of the mtext plot (1=bottom, 2=left,
+3=top, 4=right)</dd>
       <dt>mtext.adj</dt>
-      <dd>the adjustment for mtext alignment (0
-for left or bottom alignment, 1 for right or top
-alignment)</dd>
+      <dd>the adjustment for mtext alignment (0 for left or
+bottom alignment, 1 for right or top alignment)</dd>
       <dt>mtext.cex</dt>
       <dd>the font size of mtext labels</dd>
       <dt>mtext.font</dt>
@@ -299,22 +288,29 @@ alignment)</dd>
       <dd>the color of mtext labels</dd>
       <dt>...</dt>
       <dd>additional graphic parameters. See
-<a href = 'http://igraph.org/r/doc/plot.common.html'>http://igraph.org/r/doc/plot.common.html</a> for the
-complete list.</dd>
+<a href = 'http://igraph.org/r/doc/plot.common.html'>http://igraph.org/r/doc/plot.common.html</a> for the complete list.</dd>
     </dl>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
       <p>invisible</p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
       <p>none</p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'># 1) generate a random graph according to the ER model
@@ -331,7 +327,7 @@ rownames(data) <- V(subg)$name
 sReorder <- dNetReorder(g=subg, data, feature="node",
 node.normalise="none")
 </div>
-<strong class='message'>Start at 2014-07-02 11:34:04</strong>
+<strong class='message'>Start at 2014-09-09 16:54:51</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -358,7 +354,7 @@ node.normalise="none")
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-07-02 11:34:04</strong>
+<strong class='message'>End at 2014-09-09 16:54:51</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
@@ -389,23 +385,21 @@ visNetReorder(g=subg, colormap="bwr", data=data, sReorder)
     <!--
 
     <h2>Citation</h2>
-    <ul>
-<li>Cite as <code>web link/URL</code></li>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
+
+<p>You may also Cite it as:</p>
+
+<ul>
+<li><code>web link/URL</code></li>
 </ul>
 
 <p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
 
 <ul>
-<li>Cite as <code>standard reference</code></li>
+<li><code>package/software</code></li>
 </ul>
 
 <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
-
-<ul>
-<li>Cite as <code>an application</code></li>
-</ul>
-
-<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. <I>Genome Medicine</I> (in revision)</p>
 
     
     

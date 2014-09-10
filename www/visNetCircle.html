@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>visNetCircle @ dnet 1.0.5</title>
+<title>visNetCircle @ dnet 1.0.6</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.5</a>
+      <a class="brand" href="index.html">dnet 1.0.6</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -204,10 +204,9 @@ window.onload = function(){
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>visNetCircle</code> is supposed to visualise a graph object
-of class "igraph" via circle diagram. For better
-visualisation, ordering of vertices is determined according
-to communities and degrees.</p>
+    <p><code>visNetCircle</code> is supposed to visualise a graph object of class
+"igraph" via circle diagram. For better visualisation, ordering of
+vertices is determined according to communities and degrees.</p>
   
     <h3>Usage</h3>
     <pre>visNetCircle(g, com, circles = c("single", "multiple"), newpage = T, ordering = NULL, 
@@ -225,90 +224,90 @@ to communities and degrees.</p>
       <dd>an object of class "communities" (see
 <a href = 'http://igraph.org/r/doc/communities.html'>http://igraph.org/r/doc/communities.html</a>)</dd>
       <dt>circles</dt>
-      <dd>how circles are drawn in the plot. It can
-be either "single" for all communities being drawn in a
-single circle (by default) or "multiple" for communities
-being drawn in the different circles (i.e. one circle per
-community)</dd>
+      <dd>how circles are drawn in the plot. It can be either
+"single" for all communities being drawn in a single circle (by
+default) or "multiple" for communities being drawn in the different
+circles (i.e. one circle per community)</dd>
       <dt>newpage</dt>
-      <dd>logical to indicate whether to open a new
-page. By default, it sets to true for opening a new page</dd>
+      <dd>logical to indicate whether to open a new page. By
+default, it sets to true for opening a new page</dd>
       <dt>ordering</dt>
-      <dd>a numeric vector about the ordering of
-vertices. It is optional. It is highly recommend to order
-vertices according to communities and degrees</dd>
+      <dd>a numeric vector about the ordering of vertices. It is
+optional. It is highly recommend to order vertices according to
+communities and degrees</dd>
       <dt>colormap</dt>
-      <dd>short name for the colormap. It can be
-one of "jet" (jet colormap), "bwr" (blue-white-red
-colormap), "gbr" (green-black-red colormap), "wyr"
-(white-yellow-red colormap), "br" (black-red colormap),
-"yr" (yellow-red colormap), "wb" (white-black colormap),
-and "rainbow" (rainbow colormap, that is,
+      <dd>short name for the colormap. It can be one of "jet"
+(jet colormap), "bwr" (blue-white-red colormap), "gbr" (green-black-red
+colormap), "wyr" (white-yellow-red colormap), "br" (black-red
+colormap), "yr" (yellow-red colormap), "wb" (white-black colormap), and
+"rainbow" (rainbow colormap, that is,
 red-yellow-green-cyan-blue-magenta). Alternatively, any
-hyphen-separated HTML color names, e.g.
-"blue-black-yellow", "royalblue-white-sandybrown",
-"darkgreen-white-darkviolet". A list of standard color
-names can be found in
+hyphen-separated HTML color names, e.g. "blue-black-yellow",
+"royalblue-white-sandybrown", "darkgreen-white-darkviolet". A list of
+standard color names can be found in
 <a href = 'http://html-color-codes.info/color-names'>http://html-color-codes.info/color-names</a></dd>
       <dt>vertex.label</dt>
-      <dd>the label of the vertices. The
-default vertex labels are the name attribute of the
-nodes</dd>
+      <dd>the label of the vertices. The default vertex
+labels are the name attribute of the nodes</dd>
       <dt>vertex.size</dt>
-      <dd>the size of each vertex. By default,
-it is decided according to node degrees</dd>
+      <dd>the size of each vertex. By default, it is decided
+according to node degrees</dd>
       <dt>vertex.label.color</dt>
       <dd>the color of vertex labels</dd>
       <dt>vertex.label.cex</dt>
       <dd>the font size of vertex labels</dd>
       <dt>vertex.label.dist</dt>
-      <dd>the distance of the label from
-the center of the vertex. If it is 0 then the label is
-centered on the vertex. If it is 1 then the label is
-displayed beside the vertex.</dd>
+      <dd>the distance of the label from the center of
+the vertex. If it is 0 then the label is centered on the vertex. If it
+is 1 then the label is displayed beside the vertex.</dd>
       <dt>vertex.shape</dt>
-      <dd>the shape of each vertex. It can be
-one of "circle", "square", "csquare", "rectangle",
-"crectangle", "vrectangle", "pie"
-(<a href = 'http://igraph.org/r/doc/vertex.shape.pie.html'>http://igraph.org/r/doc/vertex.shape.pie.html</a>),
-"sphere", and "none". If it sets to NULL, these vertices
-with negative will be "csquare" and the rest "circle".</dd>
+      <dd>the shape of each vertex. It can be one of
+"circle", "square", "csquare", "rectangle", "crectangle", "vrectangle",
+"pie" (<a href = 'http://igraph.org/r/doc/vertex.shape.pie.html'>http://igraph.org/r/doc/vertex.shape.pie.html</a>), "sphere",
+and "none". If it sets to NULL, these vertices with negative will be
+"csquare" and the rest "circle".</dd>
       <dt>edge.width</dt>
       <dd>line width for the edges (default 1)</dd>
       <dt>edge.lty</dt>
       <dd>line type for the edges (default 1)</dd>
       <dt>edge.color.within</dt>
-      <dd>the color for edges within a
-community (default "grey")</dd>
+      <dd>the color for edges within a community
+(default "grey")</dd>
       <dt>edge.color.crossing</dt>
-      <dd>the color for edges between
-communities (default "black")</dd>
+      <dd>the color for edges between communities
+(default "black")</dd>
       <dt>mark.shape</dt>
-      <dd>a numeric scalar or vector controlling
-the smoothness of the vertex group marking polygons. Its
-possible values are between -1 (fully polygons) and 1
-(fully smoothness)</dd>
+      <dd>a numeric scalar or vector controlling the smoothness
+of the vertex group marking polygons. Its possible values are between
+-1 (fully polygons) and 1 (fully smoothness)</dd>
       <dt>mark.expand</dt>
-      <dd>a numeric scalar or vector, the size
-of the border around the marked vertex groups</dd>
+      <dd>a numeric scalar or vector, the size of the border
+around the marked vertex groups</dd>
       <dt>...</dt>
       <dd>additional graphic parameters. See
-<a href = 'http://igraph.org/r/doc/plot.common.html'>http://igraph.org/r/doc/plot.common.html</a> for the
-complete list.</dd>
+<a href = 'http://igraph.org/r/doc/plot.common.html'>http://igraph.org/r/doc/plot.common.html</a> for the complete list.</dd>
     </dl>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
       <p>invisible</p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
       <p>none</p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'># 1) generate a random graph according to the ER model
@@ -379,23 +378,21 @@ edge.color=edge.color)
     <!--
 
     <h2>Citation</h2>
-    <ul>
-<li>Cite as <code>web link/URL</code></li>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
+
+<p>You may also Cite it as:</p>
+
+<ul>
+<li><code>web link/URL</code></li>
 </ul>
 
 <p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
 
 <ul>
-<li>Cite as <code>standard reference</code></li>
+<li><code>package/software</code></li>
 </ul>
 
 <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
-
-<ul>
-<li>Cite as <code>an application</code></li>
-</ul>
-
-<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. <I>Genome Medicine</I> (in revision)</p>
 
     
     

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>visGSEA @ dnet 1.0.5</title>
+<title>visGSEA @ dnet 1.0.6</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.5</a>
+      <a class="brand" href="index.html">dnet 1.0.6</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -204,13 +204,11 @@ window.onload = function(){
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>visGSEA</code> is supposed to visualise running enrichment
-score for a given sample and a gene set. To help understand
-the underlying running enrichment score, the input gene
-scores are also displayed. Positions for members in the
-given gene set are color-coded in both displays (red line
-for the positive gene scores, and green line for the
-negative).</p>
+    <p><code>visGSEA</code> is supposed to visualise running enrichment score for a
+given sample and a gene set. To help understand the underlying running
+enrichment score, the input gene scores are also displayed. Positions
+for members in the given gene set are color-coded in both displays (red
+line for the positive gene scores, and green line for the negative).</p>
   
     <h3>Usage</h3>
     <pre>visGSEA(eTerm, which_sample = 1, which_term = "GO:0006281", weight = 1, orientation = c("vertical", 
@@ -221,36 +219,44 @@ negative).</p>
       <dt>eTerm</dt>
       <dd>an object of class "eTerm"</dd>
       <dt>which_sample</dt>
-      <dd>which sample will be used. It can be
-index or sample names</dd>
+      <dd>which sample will be used. It can be index or
+sample names</dd>
       <dt>which_term</dt>
-      <dd>which term will be used. It can be
-index or term ID or term names</dd>
+      <dd>which term will be used. It can be index or term ID
+or term names</dd>
       <dt>weight</dt>
-      <dd>type of score weigth. It can be "0" for
-unweighted (an equivalent to Kolmogorov-Smirnov, only
-considering the rank), "1" for weighted by input gene
-score (by default), and "2" for over-weighted, and so on</dd>
+      <dd>type of score weigth. It can be "0" for unweighted (an
+equivalent to Kolmogorov-Smirnov, only considering the rank), "1" for
+weighted by input gene score (by default), and "2" for over-weighted,
+and so on</dd>
       <dt>orientation</dt>
-      <dd>the orientation of the plots. It can
-be either "vertical" (default) or "horizontal"</dd>
+      <dd>the orientation of the plots. It can be either
+"vertical" (default) or "horizontal"</dd>
       <dt>newpage</dt>
-      <dd>logical to indicate whether to open a new
-page. By default, it sets to true for opening a new page</dd>
+      <dd>logical to indicate whether to open a new page. By
+default, it sets to true for opening a new page</dd>
     </dl>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
       <p>invisible</p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
       <p>none</p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'>#visGSEA(eTerm, which_sample=1, which_term=1)
@@ -278,23 +284,21 @@ page. By default, it sets to true for opening a new page</dd>
     <!--
 
     <h2>Citation</h2>
-    <ul>
-<li>Cite as <code>web link/URL</code></li>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
+
+<p>You may also Cite it as:</p>
+
+<ul>
+<li><code>web link/URL</code></li>
 </ul>
 
 <p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
 
 <ul>
-<li>Cite as <code>standard reference</code></li>
+<li><code>package/software</code></li>
 </ul>
 
 <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
-
-<ul>
-<li>Cite as <code>an application</code></li>
-</ul>
-
-<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. <I>Genome Medicine</I> (in revision)</p>
 
     
     

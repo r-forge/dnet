@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dDAGinduce @ dnet 1.0.5</title>
+<title>dDAGinduce @ dnet 1.0.6</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.5</a>
+      <a class="brand" href="index.html">dnet 1.0.6</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -204,14 +204,13 @@ window.onload = function(){
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>dDAGinduce</code> is supposed to produce a subgraph induced
-by given vertices, given a direct acyclic graph (DAG; an
-ontology). The input is a graph of "igraph" or "graphNET"
-object, a list of the vertices of the graph, and the mode
-defining the paths to the root of DAG. The resultant
-subgraph inherits the class from the input one. The induced
-subgraph contains exactly the vertices of interest and
-their defined paths to the root of DAG.</p>
+    <p><code>dDAGinduce</code> is supposed to produce a subgraph induced by given
+vertices, given a direct acyclic graph (DAG; an ontology). The input is
+a graph of "igraph" or "graphNET" object, a list of the vertices of the
+graph, and the mode defining the paths to the root of DAG. The
+resultant subgraph inherits the class from the input one. The induced
+subgraph contains exactly the vertices of interest and their defined
+paths to the root of DAG.</p>
   
     <h3>Usage</h3>
     <pre>dDAGinduce(g, nodes_query, path.mode = c("all_paths", "shortest_paths", "all_shortest_paths"))</pre>
@@ -221,36 +220,43 @@ their defined paths to the root of DAG.</p>
       <dt>g</dt>
       <dd>an object of class "igraph" or "graphNEL"</dd>
       <dt>nodes_query</dt>
-      <dd>the vertices for which the calculation
-is performed</dd>
+      <dd>the vertices for which the calculation is performed</dd>
       <dt>path.mode</dt>
-      <dd>the mode of paths induced by nodes in
-query. It can be "all_paths" for all possible paths to
-the root, "shortest_paths" for only one path to the root
-(for each node in query), "all_shortest_paths" for all
-shortest paths to the root (i.e. for each node, find all
-shortest paths with the equal lengths)</dd>
+      <dd>the mode of paths induced by nodes in query. It can be
+"all_paths" for all possible paths to the root, "shortest_paths" for
+only one path to the root (for each node in query),
+"all_shortest_paths" for all shortest paths to the root (i.e. for each
+node, find all shortest paths with the equal lengths)</dd>
     </dl>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
       <p><ul>
-<li><code>subg</code>: an induced subgraph, an object
-of class "igraph" or "graphNEL" </li>
+<li><code>subg</code>: an induced subgraph, an object of class "igraph" or
+"graphNEL"
+</li>
 </ul></p>
       <p></p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
-      <p>For the mode "shortest_paths", the induced subgraph is the
-most concise, and thus informative for visualisation when
-there are many nodes in query, while the mode "all_paths"
-results in the complete subgraph.</p>
+      <p>For the mode "shortest_paths", the induced subgraph is the most
+concise, and thus informative for visualisation when there are many
+nodes in query, while the mode "all_paths" results in the complete
+subgraph.</p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'># 1) load HPPA as igraph object
@@ -292,23 +298,21 @@ subg <- dDAGinduce(g, nodes_query, path.mode="shortest_paths")
     <!--
 
     <h2>Citation</h2>
-    <ul>
-<li>Cite as <code>web link/URL</code></li>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
+
+<p>You may also Cite it as:</p>
+
+<ul>
+<li><code>web link/URL</code></li>
 </ul>
 
 <p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
 
 <ul>
-<li>Cite as <code>standard reference</code></li>
+<li><code>package/software</code></li>
 </ul>
 
 <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
-
-<ul>
-<li>Cite as <code>an application</code></li>
-</ul>
-
-<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. <I>Genome Medicine</I> (in revision)</p>
 
     
     

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dDAGlevel @ dnet 1.0.5</title>
+<title>dDAGlevel @ dnet 1.0.6</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.5</a>
+      <a class="brand" href="index.html">dnet 1.0.6</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -204,11 +204,10 @@ window.onload = function(){
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>dDAGlevel</code> is supposed to calculate the level of
-nodes, given a direct acyclic graph (DAG; an ontology). The
-input is a graph of "igraph" or "graphNET" object, and the
-definition of the node level. The return can be the level
-for each node or the nodes for each level.</p>
+    <p><code>dDAGlevel</code> is supposed to calculate the level of nodes, given a
+direct acyclic graph (DAG; an ontology). The input is a graph of
+"igraph" or "graphNET" object, and the definition of the node level.
+The return can be the level for each node or the nodes for each level.</p>
   
     <h3>Usage</h3>
     <pre>dDAGlevel(g, level.mode = c("longest_path", "shortest_path"), return.mode = c("node2level", 
@@ -219,45 +218,49 @@ for each node or the nodes for each level.</p>
       <dt>g</dt>
       <dd>an object of class "igraph" or "graphNEL"</dd>
       <dt>level.mode</dt>
-      <dd>the mode of how to define the level of
-nodes in DAG. It can be "longest_path" for defining the
-node level as the length of the longest path from the
-node to the root, and "shortest_paths" for defining the
-node level as the length of the shortest path from the
+      <dd>the mode of how to define the level of nodes in DAG.
+It can be "longest_path" for defining the node level as the length of
+the longest path from the node to the root, and "shortest_paths" for
+defining the node level as the length of the shortest path from the
 node to the root</dd>
       <dt>return.mode</dt>
-      <dd>the mode of how to return the node
-level information. It can be "node2level" for returning a
-named vector (i.e. the level for each node), and
-"level2node" for returning a named list (i.e. nodes for
-each level)</dd>
+      <dd>the mode of how to return the node level
+information. It can be "node2level" for returning a named vector (i.e.
+the level for each node), and "level2node" for returning a named list
+(i.e. nodes for each level)</dd>
     </dl>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
-      <p>When "return.mode" is "node2level", it returns a named
-vector: for each named node (i.e. Term ID), it stores its
-level When "return.mode" is "level2node", it returns a
-named list: for each named level, it contains the names
-(i.e. Term ID) of nodes belonging to this level</p>
+      <p>When "return.mode" is "node2level", it returns a named vector: for each
+named node (i.e. Term ID), it stores its level
+When "return.mode" is "level2node", it returns a named list: for each
+named level, it contains the names (i.e. Term ID) of nodes belonging to
+this level</p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
-      <p>The level for the root is 1. The level based on the longest
-path will ensure that nodes at the same level will never be
-reachable (i.e. in the same path), while the level based on
-the shortest path will not be necessary. The "longest path"
-based level can be useful in visiting nodes from the
-tipmost level to the root: 1) for the current node, all
-children have been visited; 2) nodes at the same level can
-be looked at independantly. The "shortest path" based level
-can be useful in deriving nodes according to their
-closeness to the root.</p>
+      <p>The level for the root is 1. The level based on the longest path will
+ensure that nodes at the same level will never be reachable (i.e. in
+the same path), while the level based on the shortest path will not be
+necessary. The "longest path" based level can be useful in visiting
+nodes from the tipmost level to the root: 1) for the current node, all
+children have been visited; 2) nodes at the same level can be looked at
+independantly. The "shortest path" based level can be useful in
+deriving nodes according to their closeness to the root.</p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'># 1) load HPPA as igraph object
@@ -274,34 +277,30 @@ subg <- dDAGinduce(g, nodes_query)
 # 4a) definition based on the longest path
 dDAGlevel(subg, level.mode="longest_path")
 </div>
-<div class='output'>HP:0000118 HP:0000478 HP:0000707 HP:0000924 HP:0001939 HP:0011842 HP:0012373 
+<div class='output'>HP:0000118 HP:0000707 HP:0000924 HP:0001626 HP:0002086 HP:0002597 HP:0011842 
          1          2          2          2          2          3          3 
-HP:0012638 HP:0012639 HP:0100508 HP:0100511 HP:0000632 HP:0001250 HP:0002011 
-         3          3          3          4          4          4          4 
-HP:0009121 HP:0011844 HP:0000925 HP:0001291 HP:0002813 HP:0007359 HP:0012052 
-         4          4          5          5          5          5          5 
-HP:0100274 HP:0002814 HP:0003468 HP:0011157 HP:0011297 HP:0001760 HP:0001780 
-         6          6          6          6          6          7          8 
-HP:0003312 HP:0008438 HP:0010161 HP:0010321 HP:0012679 HP:0010180 HP:0010336 
-         7          8          9          9          9         10         10 
-HP:0010378 
-        11 
+HP:0012252 HP:0012638 HP:0001367 HP:0002088 HP:0011004 HP:0011446 HP:0011844 
+         3          3          4          4          4          4          4 
+HP:0002813 HP:0006704 HP:0011729 HP:0011947 HP:0100543 HP:0001268 HP:0001382 
+         5          5          5          5          5          6          6 
+HP:0002814 HP:0011297 HP:0011686 HP:0011948 HP:0001760 HP:0001780 HP:0002361 
+         6          6          6          6          7          8          7 
+HP:0005072 HP:0011949 HP:0010161 HP:0010319 HP:0010181 HP:0010324 HP:0010355 
+         7          7          9          9         10         10         11 
 </div>
 <div class='input'># 4b) definition based on the shortest path
 dDAGlevel(subg, level.mode="shortest_path")
 </div>
-<div class='output'>HP:0000118 HP:0000478 HP:0000707 HP:0000924 HP:0001939 HP:0011842 HP:0012373 
+<div class='output'>HP:0000118 HP:0000707 HP:0000924 HP:0001626 HP:0002086 HP:0002597 HP:0011842 
          1          2          2          2          2          3          3 
-HP:0012638 HP:0012639 HP:0100508 HP:0100511 HP:0000632 HP:0001250 HP:0002011 
-         3          3          3          4          4          4          4 
-HP:0009121 HP:0011844 HP:0000925 HP:0001291 HP:0002813 HP:0007359 HP:0012052 
-         4          4          5          5          5          5          5 
-HP:0100274 HP:0002814 HP:0003468 HP:0011157 HP:0011297 HP:0001760 HP:0001780 
-         5          6          6          6          6          7          7 
-HP:0003312 HP:0008438 HP:0010161 HP:0010321 HP:0012679 HP:0010180 HP:0010336 
-         7          8          8          8          9          9          9 
-HP:0010378 
-        10 
+HP:0012252 HP:0012638 HP:0001367 HP:0002088 HP:0011004 HP:0011446 HP:0011844 
+         3          3          4          4          4          4          4 
+HP:0002813 HP:0006704 HP:0011729 HP:0011947 HP:0100543 HP:0001268 HP:0001382 
+         5          5          5          5          5          6          6 
+HP:0002814 HP:0011297 HP:0011686 HP:0011948 HP:0001760 HP:0001780 HP:0002361 
+         6          6          6          6          7          7          7 
+HP:0005072 HP:0011949 HP:0010161 HP:0010319 HP:0010181 HP:0010324 HP:0010355 
+         7          7          8          8          9          9         10 
 </div>
 <div class='input'># 4c) definition based on the longest path, and return nodes for each level
 dDAGlevel(subg, level.mode="longest_path", return.mode="level2node")
@@ -310,35 +309,35 @@ dDAGlevel(subg, level.mode="longest_path", return.mode="level2node")
 [1] "HP:0000118"
 
 $`2`
-[1] "HP:0000478" "HP:0000707" "HP:0000924" "HP:0001939"
+[1] "HP:0000707" "HP:0000924" "HP:0001626" "HP:0002086"
 
 $`3`
-[1] "HP:0011842" "HP:0012373" "HP:0012638" "HP:0012639" "HP:0100508"
+[1] "HP:0002597" "HP:0011842" "HP:0012252" "HP:0012638"
 
 $`4`
-[1] "HP:0100511" "HP:0000632" "HP:0001250" "HP:0002011" "HP:0009121"
-[6] "HP:0011844"
+[1] "HP:0001367" "HP:0002088" "HP:0011004" "HP:0011446" "HP:0011844"
 
 $`5`
-[1] "HP:0000925" "HP:0001291" "HP:0002813" "HP:0007359" "HP:0012052"
+[1] "HP:0002813" "HP:0006704" "HP:0011729" "HP:0011947" "HP:0100543"
 
 $`6`
-[1] "HP:0100274" "HP:0002814" "HP:0003468" "HP:0011157" "HP:0011297"
+[1] "HP:0001268" "HP:0001382" "HP:0002814" "HP:0011297" "HP:0011686"
+[6] "HP:0011948"
 
 $`7`
-[1] "HP:0001760" "HP:0003312"
+[1] "HP:0001760" "HP:0002361" "HP:0005072" "HP:0011949"
 
 $`8`
-[1] "HP:0001780" "HP:0008438"
+[1] "HP:0001780"
 
 $`9`
-[1] "HP:0010161" "HP:0010321" "HP:0012679"
+[1] "HP:0010161" "HP:0010319"
 
 $`10`
-[1] "HP:0010180" "HP:0010336"
+[1] "HP:0010181" "HP:0010324"
 
 $`11`
-[1] "HP:0010378"
+[1] "HP:0010355"
 
 </div></pre>
   </div>
@@ -364,23 +363,21 @@ $`11`
     <!--
 
     <h2>Citation</h2>
-    <ul>
-<li>Cite as <code>web link/URL</code></li>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
+
+<p>You may also Cite it as:</p>
+
+<ul>
+<li><code>web link/URL</code></li>
 </ul>
 
 <p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
 
 <ul>
-<li>Cite as <code>standard reference</code></li>
+<li><code>package/software</code></li>
 </ul>
 
 <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
-
-<ul>
-<li>Cite as <code>an application</code></li>
-</ul>
-
-<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. <I>Genome Medicine</I> (in revision)</p>
 
     
     

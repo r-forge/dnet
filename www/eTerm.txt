@@ -1,4 +1,2 @@
 setID	setSize	name	namespace	distance	ESC_46C	ESC_D3
 MP:0002164	31	abnormal gland physiology	Mammalian_phenotype	2	-1	NA
-MP:0005377	27	hearing/vestibular/ear phenotype	Mammalian_phenotype	1	-1	NA
-MP:0005502	47	abnormal renal/urinary system physiology	Mammalian_phenotype	2	-1	NA

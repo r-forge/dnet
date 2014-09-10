@@ -1,139 +1,139 @@
-setID	nSet	nOverlap	zscore	pvalue	adjp	name	namespace	distance
-DOID:5683	221	8	7.41	1.9e-07	2.7e-05	hereditary breast ovarian cancer	Disease_Ontology	5
-DOID:0050736	344	8	5.55	7.9e-06	0.00029	autosomal dominant disease	Disease_Ontology	4
-DOID:1037	413	9	5.64	4.3e-06	0.00029	lymphoblastic leukemia	Disease_Ontology	7
-DOID:1307	455	9	5.26	1e-05	0.00029	dementia	Disease_Ontology	3
-DOID:3111	36	3	7.3	1.4e-05	0.00029	cystadenocarcinoma	Disease_Ontology	6
-DOID:3114	36	3	7.3	1.4e-05	0.00029	serous cystadenocarcinoma	Disease_Ontology	7
-DOID:612	199	6	5.69	1.5e-05	0.00029	primary immunodeficiency disease	Disease_Ontology	3
-DOID:4866	38	3	7.09	1.8e-05	0.00031	adenoid cystic carcinoma	Disease_Ontology	5
-DOID:10652	397	8	5.01	2.5e-05	0.00037	Alzheimer's disease	Disease_Ontology	4
-DOID:680	400	8	4.98	2.7e-05	0.00037	tauopathy	Disease_Ontology	5
-DOID:0070004	372	7	4.43	0.00012	0.0014	myeloma	Disease_Ontology	7
-DOID:0060122	125	4	4.8	0.00016	0.0015	integumentary system cancer	Disease_Ontology	4
-DOID:2513	63	3	5.31	0.00013	0.0015	basal cell carcinoma	Disease_Ontology	7
-DOID:4159	125	4	4.8	0.00016	0.0015	skin cancer	Disease_Ontology	5
-DOID:4960	388	7	4.29	0.00015	0.0015	bone marrow cancer	Disease_Ontology	6
-DOID:2986	78	3	4.66	0.00031	0.0026	IgA glomerulonephritis	Disease_Ontology	6
-DOID:1909	708	9	3.65	0.00044	0.0032	melanoma	Disease_Ontology	4
-DOID:423	239	5	4.02	0.00042	0.0032	myopathy	Disease_Ontology	5
-DOID:66	239	5	4.02	0.00042	0.0032	muscle tissue disease	Disease_Ontology	4
-DOID:9538	243	5	3.98	0.00046	0.0032	multiple myeloma	Disease_Ontology	8
-DOID:8719	160	4	4.07	0.00051	0.0033	in situ carcinoma	Disease_Ontology	3
-DOID:0080000	252	5	3.87	0.00056	0.0034	muscular disease	Disease_Ontology	3
-DOID:3451	92	3	4.2	0.00057	0.0034	skin carcinoma	Disease_Ontology	6
-DOID:4607	167	4	3.95	0.00062	0.0034	biliary tract cancer	Disease_Ontology	5
-DOID:8566	94	3	4.14	0.00062	0.0034	herpes simplex	Disease_Ontology	3
-DOID:0060071	174	4	3.84	0.00074	0.004	pre-malignant neoplasm	Disease_Ontology	2
-DOID:10283	181	4	3.73	0.00089	0.0045	prostate cancer	Disease_Ontology	6
-DOID:0050739	665	8	3.24	0.0013	0.0055	autosomal genetic disease	Disease_Ontology	3
-DOID:1040	192	4	3.58	0.0012	0.0055	chronic lymphocytic leukemia	Disease_Ontology	8
-DOID:2043	195	4	3.53	0.0012	0.0055	hepatitis B	Disease_Ontology	3
-DOID:3856	193	4	3.56	0.0012	0.0055	male reproductive organ cancer	Disease_Ontology	5
-DOID:8692	525	7	3.32	0.0012	0.0055	myeloid leukemia	Disease_Ontology	7
-DOID:870	296	5	3.41	0.0013	0.0055	neuropathy	Disease_Ontology	3
-DOID:4896	119	3	3.54	0.0015	0.0059	bile duct adenocarcinoma	Disease_Ontology	8
-DOID:4947	119	3	3.54	0.0015	0.0059	cholangiocarcinoma	Disease_Ontology	9
-DOID:1205	121	3	3.5	0.0016	0.0061	hypersensitivity reaction type I disease	Disease_Ontology	4
-DOID:0050177	692	8	3.11	0.0017	0.0063	monogenic disease	Disease_Ontology	2
-DOID:10286	125	3	3.42	0.0018	0.0065	prostate carcinoma	Disease_Ontology	7
-DOID:3347	213	4	3.3	0.0018	0.0065	osteosarcoma	Disease_Ontology	6
-DOID:4606	131	3	3.31	0.0021	0.0072	bile duct cancer	Disease_Ontology	6
-DOID:4897	131	3	3.31	0.0021	0.0072	bile duct carcinoma	Disease_Ontology	7
-DOID:1749	719	8	2.99	0.0022	0.0073	squamous cell carcinoma	Disease_Ontology	5
-DOID:1793	229	4	3.12	0.0025	0.0079	pancreatic cancer	Disease_Ontology	5
-DOID:4905	229	4	3.12	0.0025	0.0079	pancreatic carcinoma	Disease_Ontology	6
-DOID:74	462	6	2.98	0.0027	0.0082	hematopoietic system disease	Disease_Ontology	3
-DOID:1036	347	5	2.98	0.0029	0.0088	chronic leukemia	Disease_Ontology	7
-DOID:2921	144	3	3.09	0.003	0.0089	glomerulonephritis	Disease_Ontology	5
-DOID:1289	914	9	2.79	0.0033	0.0092	neurodegenerative disease	Disease_Ontology	4
-DOID:299	759	8	2.82	0.0032	0.0092	adenocarcinoma	Disease_Ontology	5
-DOID:1520	153	3	2.95	0.0038	0.01	colon carcinoma	Disease_Ontology	9
-DOID:219	153	3	2.95	0.0038	0.01	colon cancer	Disease_Ontology	8
-DOID:4074	158	3	2.87	0.0042	0.011	pancreas adenocarcinoma	Disease_Ontology	7
-DOID:440	159	3	2.86	0.0043	0.011	neuromuscular disease	Disease_Ontology	4
-DOID:630	798	8	2.66	0.0046	0.011	genetic disease	Disease_Ontology	1
-DOID:934	793	8	2.68	0.0044	0.011	viral infectious disease	Disease_Ontology	2
-DOID:10155	817	8	2.59	0.0053	0.012	intestinal cancer	Disease_Ontology	5
-DOID:170	395	5	2.64	0.0056	0.012	endocrine gland cancer	Disease_Ontology	4
-DOID:3069	392	5	2.66	0.0054	0.012	astrocytoma	Disease_Ontology	5
-DOID:3910	164	3	2.79	0.0048	0.012	lung adenocarcinoma	Disease_Ontology	8
-DOID:5672	811	8	2.61	0.0051	0.012	large intestine cancer	Disease_Ontology	6
-DOID:9119	389	5	2.68	0.0052	0.012	acute myeloid leukemia	Disease_Ontology	8
-DOID:9256	811	8	2.61	0.0051	0.012	colorectal cancer	Disease_Ontology	7
-DOID:0060056	836	8	2.52	0.0062	0.014	hypersensitivity reaction disease	Disease_Ontology	3
-DOID:3459	408	5	2.56	0.0065	0.014	breast carcinoma	Disease_Ontology	6
-DOID:3908	417	5	2.5	0.0073	0.015	non-small cell lung carcinoma	Disease_Ontology	7
-DOID:3963	185	3	2.53	0.0074	0.015	thyroid carcinoma	Disease_Ontology	6
-DOID:1781	189	3	2.49	0.0079	0.016	thyroid cancer	Disease_Ontology	5
-DOID:2237	428	5	2.43	0.0082	0.016	hepatitis	Disease_Ontology	5
-DOID:9074	298	4	2.48	0.0078	0.016	systemic lupus erythematosus	Disease_Ontology	4
-DOID:3070	431	5	2.42	0.0085	0.017	malignant glioma	Disease_Ontology	4
-DOID:10952	202	3	2.35	0.01	0.019	nephritis	Disease_Ontology	4
-DOID:0060100	451	5	2.3	0.011	0.02	musculoskeletal system cancer	Disease_Ontology	4
-DOID:5223	204	3	2.32	0.01	0.02	infertility	Disease_Ontology	3
-DOID:65	451	5	2.3	0.011	0.02	connective tissue disease	Disease_Ontology	3
-DOID:936	474	5	2.18	0.013	0.024	brain disease	Disease_Ontology	4
-DOID:1324	481	5	2.14	0.014	0.025	lung cancer	Disease_Ontology	5
-DOID:3905	480	5	2.15	0.014	0.025	lung carcinoma	Disease_Ontology	6
-DOID:2994	226	3	2.12	0.015	0.026	germ cell cancer	Disease_Ontology	4
-DOID:18	495	5	2.07	0.016	0.028	urinary system disease	Disease_Ontology	2
-DOID:1883	233	3	2.05	0.016	0.028	hepatitis C	Disease_Ontology	3
-DOID:2355	235	3	2.04	0.017	0.028	anemia	Disease_Ontology	4
-DOID:557	492	5	2.09	0.016	0.028	kidney disease	Disease_Ontology	3
-DOID:0060038	242	3	1.98	0.018	0.031	specific developmental disorder	Disease_Ontology	3
-DOID:8857	371	4	1.98	0.019	0.031	lupus erythematosus	Disease_Ontology	5
-DOID:104	249	3	1.92	0.02	0.032	bacterial infectious disease	Disease_Ontology	2
-DOID:201	375	4	1.96	0.02	0.032	connective tissue cancer	Disease_Ontology	5
-DOID:0060037	395	4	1.84	0.024	0.036	developmental disorder of mental health	Disease_Ontology	2
-DOID:1612	537	5	1.87	0.023	0.036	breast cancer	Disease_Ontology	5
-DOID:193	538	5	1.87	0.024	0.036	reproductive organ cancer	Disease_Ontology	4
-DOID:289	257	3	1.86	0.022	0.036	endometriosis	Disease_Ontology	4
-DOID:5093	538	5	1.87	0.024	0.036	thoracic cancer	Disease_Ontology	4
-DOID:9973	265	3	1.8	0.025	0.037	substance dependence	Disease_Ontology	3
-DOID:2151	276	3	1.72	0.028	0.04	malignant ovarian surface epithelial-stromal neoplasm	Disease_Ontology	8
-DOID:2152	276	3	1.72	0.028	0.04	ovary epithelial cancer	Disease_Ontology	7
-DOID:3571	883	7	1.79	0.027	0.04	liver cancer	Disease_Ontology	5
-DOID:4001	276	3	1.72	0.028	0.04	ovarian carcinoma	Disease_Ontology	9
-DOID:684	882	7	1.8	0.027	0.04	hepatocellular carcinoma	Disease_Ontology	7
-DOID:686	882	7	1.8	0.027	0.04	liver carcinoma	Disease_Ontology	6
-DOID:2394	282	3	1.68	0.03	0.042	ovarian cancer	Disease_Ontology	6
-DOID:120	422	4	1.7	0.031	0.043	female reproductive organ cancer	Disease_Ontology	5
-DOID:303	286	3	1.65	0.032	0.043	substance-related disorder	Disease_Ontology	2
-DOID:417	738	6	1.71	0.032	0.043	hypersensitivity reaction type II disease	Disease_Ontology	4
-DOID:0050589	294	3	1.6	0.035	0.046	inflammatory bowel disease	Disease_Ontology	4
-DOID:3068	311	3	1.49	0.041	0.054	glioblastoma multiforme	Disease_Ontology	6
-DOID:409	610	5	1.56	0.04	0.054	liver disease	Disease_Ontology	4
-DOID:0050615	618	5	1.53	0.043	0.056	respiratory system cancer	Disease_Ontology	4
-DOID:2320	467	4	1.48	0.045	0.058	obstructive lung disease	Disease_Ontology	5
-DOID:3118	638	5	1.46	0.049	0.062	hepatobiliary disease	Disease_Ontology	3
-DOID:229	334	3	1.36	0.051	0.065	female reproductive system disease	Disease_Ontology	3
-DOID:9351	818	6	1.44	0.052	0.065	diabetes mellitus	Disease_Ontology	5
-DOID:0050161	656	5	1.39	0.055	0.066	lower respiratory tract disease	Disease_Ontology	3
-DOID:1936	340	3	1.32	0.054	0.066	atherosclerosis	Disease_Ontology	7
-DOID:2348	341	3	1.32	0.055	0.066	arteriosclerotic cardiovascular disease	Disease_Ontology	6
-DOID:850	651	5	1.41	0.053	0.066	lung disease	Disease_Ontology	4
-DOID:7148	500	4	1.33	0.058	0.069	rheumatoid arthritis	Disease_Ontology	6
-DOID:5295	349	3	1.28	0.059	0.07	intestinal disease	Disease_Ontology	3
-DOID:2349	352	3	1.26	0.06	0.071	arteriosclerosis	Disease_Ontology	5
-DOID:2841	355	3	1.24	0.062	0.072	asthma	Disease_Ontology	6
-DOID:0050013	858	6	1.31	0.064	0.073	carbohydrate metabolism disease	Disease_Ontology	3
-DOID:0050737	358	3	1.23	0.063	0.073	autosomal recessive disease	Disease_Ontology	4
-DOID:4194	858	6	1.31	0.064	0.073	glucose metabolism disease	Disease_Ontology	4
-DOID:1176	364	3	1.2	0.067	0.075	bronchial disease	Disease_Ontology	5
-DOID:1579	692	5	1.26	0.068	0.075	respiratory system disease	Disease_Ontology	2
-DOID:2621	366	3	1.19	0.068	0.075	autonomic nervous system neoplasm	Disease_Ontology	6
-DOID:769	366	3	1.19	0.068	0.075	neuroblastoma	Disease_Ontology	7
-DOID:15	531	4	1.21	0.071	0.078	reproductive system disease	Disease_Ontology	2
-DOID:1192	382	3	1.11	0.077	0.083	peripheral nervous system neoplasm	Disease_Ontology	5
-DOID:3996	452	3	0.802	0.12	0.13	urinary system cancer	Disease_Ontology	4
-DOID:0080001	835	5	0.818	0.14	0.14	bone disease	Disease_Ontology	3
-DOID:2468	637	4	0.821	0.13	0.14	psychotic disorder	Disease_Ontology	3
-DOID:5419	635	4	0.828	0.13	0.14	schizophrenia	Disease_Ontology	4
-DOID:848	652	4	0.772	0.14	0.15	arthritis	Disease_Ontology	5
-DOID:114	505	3	0.602	0.16	0.17	heart disease	Disease_Ontology	3
-DOID:3093	513	3	0.574	0.17	0.17	nervous system cancer	Disease_Ontology	4
-DOID:3342	689	4	0.656	0.16	0.17	bone inflammation disease	Disease_Ontology	4
-DOID:37	566	3	0.396	0.22	0.22	skin disease	Disease_Ontology	3
-DOID:16	591	3	0.318	0.24	0.24	integumentary system disease	Disease_Ontology	2
-DOID:0050828	931	3	-0.524	0.57	0.57	artery disease	Disease_Ontology	4
+setID	nAnno	nOverlap	zscore	pvalue	adjp	name	namespace	distance	members
+DOID:5683	221	8	7.41	1.9e-07	2.7e-05	hereditary breast ovarian cancer	Disease_Ontology	5	TP53,STAT1,RAD50,ABL1,NPM1,PTK2,BRCA2,BAP1
+DOID:0050736	344	8	5.55	7.9e-06	0.00029	autosomal dominant disease	Disease_Ontology	4	TP53,STAT1,RAD50,ABL1,NPM1,PTK2,BRCA2,BAP1
+DOID:1037	413	9	5.64	4.3e-06	0.00029	lymphoblastic leukemia	Disease_Ontology	7	TP53,ITGAM,STAT1,ITGA4,ABL1,DNMT1,EPHA3,NCAM1,BTK
+DOID:1307	455	9	5.26	1e-05	0.00029	dementia	Disease_Ontology	3	TP53,ABCA1,ITGAM,ABL1,DNMT1,HSPG2,NCAM1,DNM2,AGRN
+DOID:3111	36	3	7.3	1.4e-05	0.00029	cystadenocarcinoma	Disease_Ontology	6	TP53,BRCA2,PPP2R1A
+DOID:3114	36	3	7.3	1.4e-05	0.00029	serous cystadenocarcinoma	Disease_Ontology	7	TP53,BRCA2,PPP2R1A
+DOID:612	199	6	5.69	1.5e-05	0.00029	primary immunodeficiency disease	Disease_Ontology	3	TP53,STAT1,ABL1,BTK,VAV1,PPP2R1A
+DOID:4866	38	3	7.09	1.8e-05	0.00031	adenoid cystic carcinoma	Disease_Ontology	5	TP53,DNMT1,NCAM1
+DOID:10652	397	8	5.01	2.5e-05	0.00037	Alzheimer's disease	Disease_Ontology	4	TP53,ABCA1,ITGAM,ABL1,HSPG2,NCAM1,DNM2,AGRN
+DOID:680	400	8	4.98	2.7e-05	0.00037	tauopathy	Disease_Ontology	5	TP53,ABCA1,ITGAM,ABL1,HSPG2,NCAM1,DNM2,AGRN
+DOID:0070004	372	7	4.43	0.00012	0.0014	myeloma	Disease_Ontology	7	TP53,STAT1,ITGA4,ABL1,NPM1,DNMT1,NCAM1
+DOID:0060122	125	4	4.8	0.00016	0.0015	integumentary system cancer	Disease_Ontology	4	TP53,BRCA2,EPHA1,NCAM1
+DOID:2513	63	3	5.31	0.00013	0.0015	basal cell carcinoma	Disease_Ontology	7	TP53,BRCA2,NCAM1
+DOID:4159	125	4	4.8	0.00016	0.0015	skin cancer	Disease_Ontology	5	TP53,BRCA2,EPHA1,NCAM1
+DOID:4960	388	7	4.29	0.00015	0.0015	bone marrow cancer	Disease_Ontology	6	TP53,STAT1,ITGA4,ABL1,NPM1,DNMT1,NCAM1
+DOID:2986	78	3	4.66	0.00031	0.0026	IgA glomerulonephritis	Disease_Ontology	6	TP53,STAT1,TNR
+DOID:1909	708	9	3.65	0.00044	0.0032	melanoma	Disease_Ontology	4	TP53,ITGAM,STAT1,ITGA4,NPM1,PTK2,BRCA2,BAP1,DNMT1
+DOID:423	239	5	4.02	0.00042	0.0032	myopathy	Disease_Ontology	5	ITGAM,HSPG2,NCAM1,COL6A2,DNM2
+DOID:66	239	5	4.02	0.00042	0.0032	muscle tissue disease	Disease_Ontology	4	ITGAM,HSPG2,NCAM1,COL6A2,DNM2
+DOID:9538	243	5	3.98	0.00046	0.0032	multiple myeloma	Disease_Ontology	8	TP53,ITGA4,NPM1,DNMT1,NCAM1
+DOID:8719	160	4	4.07	0.00051	0.0033	in situ carcinoma	Disease_Ontology	3	TP53,STAT1,ITGA4,BRCA2
+DOID:0080000	252	5	3.87	0.00056	0.0034	muscular disease	Disease_Ontology	3	ITGAM,HSPG2,NCAM1,COL6A2,DNM2
+DOID:3451	92	3	4.2	0.00057	0.0034	skin carcinoma	Disease_Ontology	6	TP53,BRCA2,NCAM1
+DOID:4607	167	4	3.95	0.00062	0.0034	biliary tract cancer	Disease_Ontology	5	TP53,RAD50,PTK2,DNMT1
+DOID:8566	94	3	4.14	0.00062	0.0034	herpes simplex	Disease_Ontology	3	TP53,NPM1,DNM2
+DOID:0060071	174	4	3.84	0.00074	0.004	pre-malignant neoplasm	Disease_Ontology	2	TP53,STAT1,ITGA4,BRCA2
+DOID:10283	181	4	3.73	0.00089	0.0045	prostate cancer	Disease_Ontology	6	TP53,NPM1,PTK2,BRCA2
+DOID:0050739	665	8	3.24	0.0013	0.0055	autosomal genetic disease	Disease_Ontology	3	TP53,STAT1,RAD50,ABL1,NPM1,PTK2,BRCA2,BAP1
+DOID:1040	192	4	3.58	0.0012	0.0055	chronic lymphocytic leukemia	Disease_Ontology	8	TP53,STAT1,ITGA4,NCAM1
+DOID:2043	195	4	3.53	0.0012	0.0055	hepatitis B	Disease_Ontology	3	TP53,STAT1,NPM1,DNMT1
+DOID:3856	193	4	3.56	0.0012	0.0055	male reproductive organ cancer	Disease_Ontology	5	TP53,NPM1,PTK2,BRCA2
+DOID:8692	525	7	3.32	0.0012	0.0055	myeloid leukemia	Disease_Ontology	7	TP53,ITGAM,ITGA4,ABL1,NPM1,DNMT1,NCAM1
+DOID:870	296	5	3.41	0.0013	0.0055	neuropathy	Disease_Ontology	3	TP53,DNMT1,HSPG2,COL6A2,DNM2
+DOID:4896	119	3	3.54	0.0015	0.0059	bile duct adenocarcinoma	Disease_Ontology	8	TP53,PTK2,DNMT1
+DOID:4947	119	3	3.54	0.0015	0.0059	cholangiocarcinoma	Disease_Ontology	9	TP53,PTK2,DNMT1
+DOID:1205	121	3	3.5	0.0016	0.0061	hypersensitivity reaction type I disease	Disease_Ontology	4	TP53,NPM1,BRCA2
+DOID:0050177	692	8	3.11	0.0017	0.0063	monogenic disease	Disease_Ontology	2	TP53,STAT1,RAD50,ABL1,NPM1,PTK2,BRCA2,BAP1
+DOID:10286	125	3	3.42	0.0018	0.0065	prostate carcinoma	Disease_Ontology	7	TP53,PTK2,BRCA2
+DOID:3347	213	4	3.3	0.0018	0.0065	osteosarcoma	Disease_Ontology	6	TP53,ITGA4,NPM1,PTK2
+DOID:4606	131	3	3.31	0.0021	0.0072	bile duct cancer	Disease_Ontology	6	TP53,PTK2,DNMT1
+DOID:4897	131	3	3.31	0.0021	0.0072	bile duct carcinoma	Disease_Ontology	7	TP53,PTK2,DNMT1
+DOID:1749	719	8	2.99	0.0022	0.0073	squamous cell carcinoma	Disease_Ontology	5	TP53,STAT1,ITGA4,NPM1,PTK2,BRCA2,DNMT1,DNM2
+DOID:1793	229	4	3.12	0.0025	0.0079	pancreatic cancer	Disease_Ontology	5	TP53,PTK2,DNMT1,EPHA1
+DOID:4905	229	4	3.12	0.0025	0.0079	pancreatic carcinoma	Disease_Ontology	6	TP53,PTK2,DNMT1,EPHA1
+DOID:74	462	6	2.98	0.0027	0.0082	hematopoietic system disease	Disease_Ontology	3	TP53,ABL1,NPM1,BRCA2,BTK,VAV1
+DOID:1036	347	5	2.98	0.0029	0.0088	chronic leukemia	Disease_Ontology	7	TP53,STAT1,ITGA4,ABL1,NCAM1
+DOID:2921	144	3	3.09	0.003	0.0089	glomerulonephritis	Disease_Ontology	5	TP53,STAT1,TNR
+DOID:1289	914	9	2.79	0.0033	0.0092	neurodegenerative disease	Disease_Ontology	4	TP53,ABCA1,ITGAM,ITGA4,ABL1,HSPG2,NCAM1,DNM2,AGRN
+DOID:299	759	8	2.82	0.0032	0.0092	adenocarcinoma	Disease_Ontology	5	TP53,PTK2,BRCA2,DNMT1,UBC,EPHA1,VAV1,PPP2R1A
+DOID:1520	153	3	2.95	0.0038	0.01	colon carcinoma	Disease_Ontology	9	TP53,STAT1,PTK2
+DOID:219	153	3	2.95	0.0038	0.01	colon cancer	Disease_Ontology	8	TP53,STAT1,PTK2
+DOID:4074	158	3	2.87	0.0042	0.011	pancreas adenocarcinoma	Disease_Ontology	7	TP53,PTK2,EPHA1
+DOID:440	159	3	2.86	0.0043	0.011	neuromuscular disease	Disease_Ontology	4	HSPG2,COL6A2,DNM2
+DOID:630	798	8	2.66	0.0046	0.011	genetic disease	Disease_Ontology	1	TP53,STAT1,RAD50,ABL1,NPM1,PTK2,BRCA2,BAP1
+DOID:934	793	8	2.68	0.0044	0.011	viral infectious disease	Disease_Ontology	2	TP53,STAT1,ITGA4,NPM1,DNMT1,NCAM1,COL6A2,DNM2
+DOID:10155	817	8	2.59	0.0053	0.012	intestinal cancer	Disease_Ontology	5	TP53,STAT1,RAD50,PTK2,DNMT1,EPHA1,EPHB1,BTK
+DOID:170	395	5	2.64	0.0056	0.012	endocrine gland cancer	Disease_Ontology	4	TP53,PTK2,DNMT1,EPHA1,NCAM1
+DOID:3069	392	5	2.66	0.0054	0.012	astrocytoma	Disease_Ontology	5	TP53,PTK2,BRCA2,DNMT1,NCAM1
+DOID:3910	164	3	2.79	0.0048	0.012	lung adenocarcinoma	Disease_Ontology	8	TP53,PTK2,BRCA2
+DOID:5672	811	8	2.61	0.0051	0.012	large intestine cancer	Disease_Ontology	6	TP53,STAT1,RAD50,PTK2,DNMT1,EPHA1,EPHB1,BTK
+DOID:9119	389	5	2.68	0.0052	0.012	acute myeloid leukemia	Disease_Ontology	8	TP53,ITGA4,NPM1,DNMT1,NCAM1
+DOID:9256	811	8	2.61	0.0051	0.012	colorectal cancer	Disease_Ontology	7	TP53,STAT1,RAD50,PTK2,DNMT1,EPHA1,EPHB1,BTK
+DOID:0060056	836	8	2.52	0.0062	0.014	hypersensitivity reaction disease	Disease_Ontology	3	TP53,ITGAM,STAT1,ABL1,NPM1,PTK2,BRCA2,DNMT1
+DOID:3459	408	5	2.56	0.0065	0.014	breast carcinoma	Disease_Ontology	6	TP53,NPM1,PTK2,BRCA2,EPHA1
+DOID:3908	417	5	2.5	0.0073	0.015	non-small cell lung carcinoma	Disease_Ontology	7	TP53,ITGAM,PTK2,BRCA2,DNMT1
+DOID:3963	185	3	2.53	0.0074	0.015	thyroid carcinoma	Disease_Ontology	6	TP53,PTK2,NCAM1
+DOID:1781	189	3	2.49	0.0079	0.016	thyroid cancer	Disease_Ontology	5	TP53,PTK2,NCAM1
+DOID:2237	428	5	2.43	0.0082	0.016	hepatitis	Disease_Ontology	5	TP53,STAT1,NPM1,DNMT1,DNM2
+DOID:9074	298	4	2.48	0.0078	0.016	systemic lupus erythematosus	Disease_Ontology	4	TP53,ITGAM,PTK2,DNMT1
+DOID:3070	431	5	2.42	0.0085	0.017	malignant glioma	Disease_Ontology	4	TP53,PTK2,BRCA2,DNMT1,NCAM1
+DOID:10952	202	3	2.35	0.01	0.019	nephritis	Disease_Ontology	4	TP53,STAT1,TNR
+DOID:0060100	451	5	2.3	0.011	0.02	musculoskeletal system cancer	Disease_Ontology	4	TP53,ITGA4,NPM1,PTK2,EPHA3
+DOID:5223	204	3	2.32	0.01	0.02	infertility	Disease_Ontology	3	TP53,ITGA4,BRCA2
+DOID:65	451	5	2.3	0.011	0.02	connective tissue disease	Disease_Ontology	3	TP53,ITGAM,ABL1,PTK2,DNMT1
+DOID:936	474	5	2.18	0.013	0.024	brain disease	Disease_Ontology	4	STAT1,CACNA1E,NPM1,UBC,NCAM1
+DOID:1324	481	5	2.14	0.014	0.025	lung cancer	Disease_Ontology	5	TP53,ITGAM,PTK2,BRCA2,DNMT1
+DOID:3905	480	5	2.15	0.014	0.025	lung carcinoma	Disease_Ontology	6	TP53,ITGAM,PTK2,BRCA2,DNMT1
+DOID:2994	226	3	2.12	0.015	0.026	germ cell cancer	Disease_Ontology	4	TP53,BRCA2,DNMT1
+DOID:18	495	5	2.07	0.016	0.028	urinary system disease	Disease_Ontology	2	TP53,ABCA1,STAT1,PTK2,TNR
+DOID:1883	233	3	2.05	0.016	0.028	hepatitis C	Disease_Ontology	3	TP53,STAT1,DNM2
+DOID:2355	235	3	2.04	0.017	0.028	anemia	Disease_Ontology	4	TP53,NPM1,BRCA2
+DOID:557	492	5	2.09	0.016	0.028	kidney disease	Disease_Ontology	3	TP53,ABCA1,STAT1,PTK2,TNR
+DOID:0060038	242	3	1.98	0.018	0.031	specific developmental disorder	Disease_Ontology	3	TP53,HUWE1,UBC
+DOID:8857	371	4	1.98	0.019	0.031	lupus erythematosus	Disease_Ontology	5	TP53,ITGAM,PTK2,DNMT1
+DOID:104	249	3	1.92	0.02	0.032	bacterial infectious disease	Disease_Ontology	2	TP53,ITGAM,STAT1
+DOID:201	375	4	1.96	0.02	0.032	connective tissue cancer	Disease_Ontology	5	TP53,ITGA4,NPM1,PTK2
+DOID:0060037	395	4	1.84	0.024	0.036	developmental disorder of mental health	Disease_Ontology	2	TP53,ITGA4,HUWE1,UBC
+DOID:1612	537	5	1.87	0.023	0.036	breast cancer	Disease_Ontology	5	TP53,NPM1,PTK2,BRCA2,EPHA1
+DOID:193	538	5	1.87	0.024	0.036	reproductive organ cancer	Disease_Ontology	4	TP53,NPM1,PTK2,BRCA2,DNM2
+DOID:289	257	3	1.86	0.022	0.036	endometriosis	Disease_Ontology	4	TP53,BRCA2,DNMT1
+DOID:5093	538	5	1.87	0.024	0.036	thoracic cancer	Disease_Ontology	4	TP53,NPM1,PTK2,BRCA2,EPHA1
+DOID:9973	265	3	1.8	0.025	0.037	substance dependence	Disease_Ontology	3	TP53,ITGA4,NCAM1
+DOID:2151	276	3	1.72	0.028	0.04	malignant ovarian surface epithelial-stromal neoplasm	Disease_Ontology	8	TP53,PTK2,BRCA2
+DOID:2152	276	3	1.72	0.028	0.04	ovary epithelial cancer	Disease_Ontology	7	TP53,PTK2,BRCA2
+DOID:3571	883	7	1.79	0.027	0.04	liver cancer	Disease_Ontology	5	TP53,STAT1,NPM1,PTK2,DNMT1,EPHA3,AGRN
+DOID:4001	276	3	1.72	0.028	0.04	ovarian carcinoma	Disease_Ontology	9	TP53,PTK2,BRCA2
+DOID:684	882	7	1.8	0.027	0.04	hepatocellular carcinoma	Disease_Ontology	7	TP53,STAT1,NPM1,PTK2,DNMT1,EPHA3,AGRN
+DOID:686	882	7	1.8	0.027	0.04	liver carcinoma	Disease_Ontology	6	TP53,STAT1,NPM1,PTK2,DNMT1,EPHA3,AGRN
+DOID:2394	282	3	1.68	0.03	0.042	ovarian cancer	Disease_Ontology	6	TP53,PTK2,BRCA2
+DOID:120	422	4	1.7	0.031	0.043	female reproductive organ cancer	Disease_Ontology	5	TP53,PTK2,BRCA2,DNM2
+DOID:303	286	3	1.65	0.032	0.043	substance-related disorder	Disease_Ontology	2	TP53,ITGA4,NCAM1
+DOID:417	738	6	1.71	0.032	0.043	hypersensitivity reaction type II disease	Disease_Ontology	4	TP53,ITGAM,STAT1,ABL1,PTK2,DNMT1
+DOID:0050589	294	3	1.6	0.035	0.046	inflammatory bowel disease	Disease_Ontology	4	TP53,ABCA1,STAT1
+DOID:3068	311	3	1.49	0.041	0.054	glioblastoma multiforme	Disease_Ontology	6	TP53,PTK2,DNMT1
+DOID:409	610	5	1.56	0.04	0.054	liver disease	Disease_Ontology	4	TP53,STAT1,NPM1,DNMT1,DNM2
+DOID:0050615	618	5	1.53	0.043	0.056	respiratory system cancer	Disease_Ontology	4	TP53,ITGAM,PTK2,BRCA2,DNMT1
+DOID:2320	467	4	1.48	0.045	0.058	obstructive lung disease	Disease_Ontology	5	STAT1,RAD50,ITGA4,UBE3C
+DOID:3118	638	5	1.46	0.049	0.062	hepatobiliary disease	Disease_Ontology	3	TP53,STAT1,NPM1,DNMT1,DNM2
+DOID:229	334	3	1.36	0.051	0.065	female reproductive system disease	Disease_Ontology	3	TP53,BRCA2,DNMT1
+DOID:9351	818	6	1.44	0.052	0.065	diabetes mellitus	Disease_Ontology	5	TP53,ABCA1,ITGAM,STAT1,CACNA1E,ARHGEF11
+DOID:0050161	656	5	1.39	0.055	0.066	lower respiratory tract disease	Disease_Ontology	3	TP53,STAT1,RAD50,ITGA4,UBE3C
+DOID:1936	340	3	1.32	0.054	0.066	atherosclerosis	Disease_Ontology	7	TP53,ABCA1,HSPG2
+DOID:2348	341	3	1.32	0.055	0.066	arteriosclerotic cardiovascular disease	Disease_Ontology	6	TP53,ABCA1,HSPG2
+DOID:850	651	5	1.41	0.053	0.066	lung disease	Disease_Ontology	4	TP53,STAT1,RAD50,ITGA4,UBE3C
+DOID:7148	500	4	1.33	0.058	0.069	rheumatoid arthritis	Disease_Ontology	6	TP53,ITGAM,ITGA4,PTK2
+DOID:5295	349	3	1.28	0.059	0.07	intestinal disease	Disease_Ontology	3	TP53,ABCA1,STAT1
+DOID:2349	352	3	1.26	0.06	0.071	arteriosclerosis	Disease_Ontology	5	TP53,ABCA1,HSPG2
+DOID:2841	355	3	1.24	0.062	0.072	asthma	Disease_Ontology	6	RAD50,ITGA4,UBE3C
+DOID:0050013	858	6	1.31	0.064	0.073	carbohydrate metabolism disease	Disease_Ontology	3	TP53,ABCA1,ITGAM,STAT1,CACNA1E,ARHGEF11
+DOID:0050737	358	3	1.23	0.063	0.073	autosomal recessive disease	Disease_Ontology	4	TP53,STAT1,RAD50
+DOID:4194	858	6	1.31	0.064	0.073	glucose metabolism disease	Disease_Ontology	4	TP53,ABCA1,ITGAM,STAT1,CACNA1E,ARHGEF11
+DOID:1176	364	3	1.2	0.067	0.075	bronchial disease	Disease_Ontology	5	RAD50,ITGA4,UBE3C
+DOID:1579	692	5	1.26	0.068	0.075	respiratory system disease	Disease_Ontology	2	TP53,STAT1,RAD50,ITGA4,UBE3C
+DOID:2621	366	3	1.19	0.068	0.075	autonomic nervous system neoplasm	Disease_Ontology	6	TP53,PTK2,NCAM1
+DOID:769	366	3	1.19	0.068	0.075	neuroblastoma	Disease_Ontology	7	TP53,PTK2,NCAM1
+DOID:15	531	4	1.21	0.071	0.078	reproductive system disease	Disease_Ontology	2	TP53,ITGA4,BRCA2,DNMT1
+DOID:1192	382	3	1.11	0.077	0.083	peripheral nervous system neoplasm	Disease_Ontology	5	TP53,PTK2,NCAM1
+DOID:3996	452	3	0.802	0.12	0.13	urinary system cancer	Disease_Ontology	4	TP53,STAT1,DNMT1
+DOID:0080001	835	5	0.818	0.14	0.14	bone disease	Disease_Ontology	3	TP53,ITGAM,STAT1,ITGA4,PTK2
+DOID:2468	637	4	0.821	0.13	0.14	psychotic disorder	Disease_Ontology	3	TP53,ARHGEF11,DNMT1,NCAM1
+DOID:5419	635	4	0.828	0.13	0.14	schizophrenia	Disease_Ontology	4	TP53,ARHGEF11,DNMT1,NCAM1
+DOID:848	652	4	0.772	0.14	0.15	arthritis	Disease_Ontology	5	TP53,ITGAM,ITGA4,PTK2
+DOID:114	505	3	0.602	0.16	0.17	heart disease	Disease_Ontology	3	TP53,ABCA1,STAT1
+DOID:3093	513	3	0.574	0.17	0.17	nervous system cancer	Disease_Ontology	4	TP53,PTK2,NCAM1
+DOID:3342	689	4	0.656	0.16	0.17	bone inflammation disease	Disease_Ontology	4	TP53,ITGAM,ITGA4,PTK2
+DOID:37	566	3	0.396	0.22	0.22	skin disease	Disease_Ontology	3	TP53,ITGAM,DNMT1
+DOID:16	591	3	0.318	0.24	0.24	integumentary system disease	Disease_Ontology	2	TP53,ITGAM,DNMT1
+DOID:0050828	931	3	-0.524	0.57	0.57	artery disease	Disease_Ontology	4	TP53,ABCA1,HSPG2

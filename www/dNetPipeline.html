@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dNetPipeline @ dnet 1.0.5</title>
+<title>dNetPipeline @ dnet 1.0.6</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.5</a>
+      <a class="brand" href="index.html">dnet 1.0.6</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -204,10 +204,10 @@ window.onload = function(){
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>dNetPipeline</code> is supposed to finish ab inito
-maximum-scoring subgraph identification for the input graph
-with the node information on the significance (p-value or
-fdr). It returns an object of class "igraph" or "graphNEL".</p>
+    <p><code>dNetPipeline</code> is supposed to finish ab inito maximum-scoring
+subgraph identification for the input graph with the node information
+on the significance (p-value or fdr). It returns an object of class
+"igraph" or "graphNEL".</p>
   
     <h3>Usage</h3>
     <pre>dNetPipeline(g, pval, method = c("pdf", "cdf", "customised"), significance.threshold = NULL, 
@@ -218,79 +218,78 @@ fdr). It returns an object of class "igraph" or "graphNEL".</p>
       <dt>g</dt>
       <dd>an object of class "igraph" or "graphNEL"</dd>
       <dt>pval</dt>
-      <dd>a vector containing input p-values (or fdr).
-For each element, it must have the name that could be
-mapped onto the input graph. Also, the names in input
-"pval" should contain all those in the input graph "g",
-but the reverse is not necessary</dd>
+      <dd>a vector containing input p-values (or fdr). For each
+element, it must have the name that could be mapped onto the input
+graph. Also, the names in input "pval" should contain all those in the
+input graph "g", but the reverse is not necessary</dd>
       <dt>method</dt>
-      <dd>the method used for the transformation. It
-can be either "pdf" for the method based on the
-probability density function of the fitted model, or
-"cdf" for the method based on the cumulative distribution
-function of the fitted model</dd>
+      <dd>the method used for the transformation. It can be either
+"pdf" for the method based on the probability density function of the
+fitted model, or "cdf" for the method based on the cumulative
+distribution function of the fitted model</dd>
       <dt>significance.threshold</dt>
-      <dd>the given significance
-threshold. By default, it is set to NULL, meaning there
-is no constraint. If given, those p-values below this are
-considered significant and thus scored positively.
-Instead, those p-values above this given significance
-threshold are considered insigificant and thus scored
-negatively</dd>
+      <dd>the given significance threshold. By
+default, it is set to NULL, meaning there is no constraint. If given,
+those p-values below this are considered significant and thus scored
+positively. Instead, those p-values above this given significance
+threshold are considered insigificant and thus scored negatively</dd>
       <dt>nsize</dt>
-      <dd>the desired number of nodes constrained to
-the resulting subgraph. It is not nulll, a wide range of
-significance thresholds will be scanned to find the
-optimal significance threshold leading to the desired
-number of nodes in the resulting subgraph. Notably, the
-given significance threshold will be overwritten by this
-option.</dd>
+      <dd>the desired number of nodes constrained to the resulting
+subgraph. It is not nulll, a wide range of significance thresholds will
+be scanned to find the optimal significance threshold leading to the
+desired number of nodes in the resulting subgraph. Notably, the given
+significance threshold will be overwritten by this option.</dd>
       <dt>plot</dt>
-      <dd>logical to indicate whether the histogram
-plot, contour plot and scatter plot should be drawn. By
-default, it sets to false for no plotting</dd>
+      <dd>logical to indicate whether the histogram plot, contour
+plot and scatter plot should be drawn. By default, it sets to false for
+no plotting</dd>
       <dt>verbose</dt>
-      <dd>logical to indicate whether the messages
-will be displayed in the screen. By default, it sets to
-true for display</dd>
+      <dd>logical to indicate whether the messages will be
+displayed in the screen. By default, it sets to true for display</dd>
     </dl>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
-      <p>a subgraph with a maximum score, an object of class
-"igraph" or "graphNEL"</p>
+      <p>a subgraph with a maximum score, an object of class "igraph" or
+"graphNEL"</p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
-      <p>The pipeline sequentially consists of: <ul>
-<li>ia)
-if the method is either "pdf" or "cdf",
-<code><a href='dBUMfit.html'>dBUMfit</a></code> used to fit the p-value distribution
-under beta-uniform mixture model, and
-<code><a href='dBUMscore.html'>dBUMscore</a></code> used to calculate the scores
-according to the fitted BUM and the significance
-threshold. </li>
-<li>ib) if the method is either "customised",
-then the user input list of fdr (or p-values) and the
-significance threshold will be directly used for score
-transformation by <code><a href='dFDRscore.html'>dFDRscore</a></code>. </li>
-<li>ii) if
-there is the desired number of nodes constrained to the
-resulting subgraph, a wide range of significance thresholds
-(including rough stage with large intervals, and finetune
-stage with smaller intervals) will be scanned to find the
-significance threshold to meet the desired number of
-nodes. </li>
-<li>iii) <code><a href='dNetFind.html'>dNetFind</a></code> used to find
-maximum-scoring subgraph from the input graph and scores
-imposed on its nodes. </li>
+      <p>The pipeline sequentially consists of:
+<ul>
+<li>ia) if the method is either "pdf" or "cdf", <code><a href='dBUMfit.html'>dBUMfit</a></code>
+used to fit the p-value distribution under beta-uniform mixture model,
+and <code><a href='dBUMscore.html'>dBUMscore</a></code> used to calculate the scores according to
+the fitted BUM and the significance threshold.
+</li>
+<li>ib) if the method is either "customised", then the user input
+list of fdr (or p-values) and the significance threshold will be
+directly used for score transformation by <code><a href='dFDRscore.html'>dFDRscore</a></code>.
+</li>
+<li>ii) if there is the desired number of nodes constrained to the
+resulting subgraph, a wide range of significance thresholds (including
+rough stage with large intervals, and finetune stage with smaller
+intervals) will be scanned to find the significance threshold to meet
+the desired number of nodes.
+</li>
+<li>iii) <code><a href='dNetFind.html'>dNetFind</a></code> used to find maximum-scoring subgraph
+from the input graph and scores imposed on its nodes.
+</li>
 </ul></p>
       <p></p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'># 1) generate an vector consisting of random values from beta distribution
@@ -307,76 +306,76 @@ subg <- dNetInduce(g, V(g), knn=0)
 # 4a) assume the input is a list of p-values (controlling fdr=0.1)
 subgraph <- dNetPipeline(g=subg, pval=x, significance.threshold=0.1)
 </div>
-<strong class='message'>Start at 2014-07-02 11:32:21</strong>
+<strong class='message'>Start at 2014-09-09 16:53:07</strong>
 <strong class='message'></strong>
 <strong class='message'>First, fit the input p-value distribution under beta-uniform mixture model...</strong>
 <strong class='message'>	A total of p-values: 1000</strong>
-<strong class='message'>	Maximum Log-Likelihood: 284.2</strong>
+<strong class='message'>	Maximum Log-Likelihood: 279.2</strong>
 <strong class='message'>	Mixture parameter (lambda): 0.000</strong>
-<strong class='message'>	Shape parameter (a): 0.512</strong>
+<strong class='message'>	Shape parameter (a): 0.514</strong>
 <strong class='message'>Second, determine the significance threshold...</strong>
 <strong class='message'>	significance threshold: 1.00e-01</strong>
 <strong class='message'>Third, calculate the scores according to the fitted BUM and FDR threshold (if any)...</strong>
-<strong class='message'>	Amongst 1000 scores, there are 175 positives.</strong>
-<strong class='message'>Finally, find the subgraph from the input graph with 1000 nodes and 4941 edges...</strong>
-<strong class='message'>	Size of the subgraph: 141 nodes and 161 edges</strong>
+<strong class='message'>	Amongst 1000 scores, there are 183 positives.</strong>
+<strong class='message'>Finally, find the subgraph from the input graph with 1000 nodes and 4919 edges...</strong>
+<strong class='message'>	Size of the subgraph: 136 nodes and 163 edges</strong>
 <strong class='message'>
-Finish at 2014-07-02 11:32:22</strong>
-<strong class='message'>Runtime in total is: 1 secs
+Finish at 2014-09-09 16:53:09</strong>
+<strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'># 4b) assume the input is a list of customised significance (eg FDR directly)
 subgraph <- dNetPipeline(g=subg, pval=x, method="customised",
 significance.threshold=0.1)
 </div>
-<strong class='message'>Start at 2014-07-02 11:32:22</strong>
+<strong class='message'>Start at 2014-09-09 16:53:09</strong>
 <strong class='message'></strong>
 <strong class='message'>First, consider the input fdr (or p-value) distribution</strong>
 <strong class='message'>Second, determine the significance threshold...</strong>
 <strong class='message'>	significance threshold: 1.00e-01</strong>
 <strong class='message'>Third, calculate the scores according to the input fdr (or p-value) and the threshold (if any)...</strong>
-<strong class='message'>	Amongst 1000 scores, there are 323 positives.</strong>
-<strong class='message'>Finally, find the subgraph from the input graph with 1000 nodes and 4941 edges...</strong>
-<strong class='message'>	Size of the subgraph: 311 nodes and 518 edges</strong>
+<strong class='message'>	Amongst 1000 scores, there are 309 positives.</strong>
+<strong class='message'>Finally, find the subgraph from the input graph with 1000 nodes and 4919 edges...</strong>
+<strong class='message'>	Size of the subgraph: 294 nodes and 459 edges</strong>
 <strong class='message'>
-Finish at 2014-07-02 11:32:25</strong>
-<strong class='message'>Runtime in total is: 3 secs
+Finish at 2014-09-09 16:53:11</strong>
+<strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'>
 # 5) find maximum-scoring subgraph with the desired node number nsize=20
 subgraph <- dNetPipeline(g=subg, pval=x, nsize=20)
 </div>
-<strong class='message'>Start at 2014-07-02 11:32:25</strong>
+<strong class='message'>Start at 2014-09-09 16:53:11</strong>
 <strong class='message'></strong>
 <strong class='message'>First, fit the input p-value distribution under beta-uniform mixture model...</strong>
 <strong class='message'>	A total of p-values: 1000</strong>
-<strong class='message'>	Maximum Log-Likelihood: 284.2</strong>
+<strong class='message'>	Maximum Log-Likelihood: 279.2</strong>
 <strong class='message'>	Mixture parameter (lambda): 0.000</strong>
-<strong class='message'>	Shape parameter (a): 0.512</strong>
+<strong class='message'>	Shape parameter (a): 0.514</strong>
 <strong class='message'>Second, determine the significance threshold...</strong>
 <strong class='message'>	Via constraint on the size of subnetwork to be identified (20 nodes)</strong>
 <strong class='message'>	Scanning significance threshold at rough stage...</strong>
+<strong class='message'>		significance threshold: 1.00e-07, corresponding to the network size (0 nodes)</strong>
+<strong class='message'>		significance threshold: 1.00e-06, corresponding to the network size (0 nodes)</strong>
 <strong class='message'>		significance threshold: 1.00e-05, corresponding to the network size (0 nodes)</strong>
 <strong class='message'>		significance threshold: 1.00e-04, corresponding to the network size (0 nodes)</strong>
-<strong class='message'>		significance threshold: 1.00e-03, corresponding to the network size (0 nodes)</strong>
-<strong class='message'>		significance threshold: 1.00e-02, corresponding to the network size (3 nodes)</strong>
-<strong class='message'>		significance threshold: 1.00e-01, corresponding to the network size (141 nodes)</strong>
+<strong class='message'>		significance threshold: 1.00e-03, corresponding to the network size (1 nodes)</strong>
+<strong class='message'>		significance threshold: 1.00e-02, corresponding to the network size (2 nodes)</strong>
+<strong class='message'>		significance threshold: 1.00e-01, corresponding to the network size (136 nodes)</strong>
 <strong class='message'>	Scanning significance threshold at finetune stage...</strong>
 <strong class='message'>		significance threshold : 1.50e-02, corresponding to the network size (5 nodes)</strong>
-<strong class='message'>		significance threshold : 2.00e-02, corresponding to the network size (5 nodes)</strong>
-<strong class='message'>		significance threshold : 2.50e-02, corresponding to the network size (4 nodes)</strong>
-<strong class='message'>		significance threshold : 3.00e-02, corresponding to the network size (4 nodes)</strong>
-<strong class='message'>		significance threshold : 3.50e-02, corresponding to the network size (4 nodes)</strong>
-<strong class='message'>		significance threshold : 4.00e-02, corresponding to the network size (12 nodes)</strong>
-<strong class='message'>		significance threshold : 4.50e-02, corresponding to the network size (16 nodes)</strong>
-<strong class='message'>		significance threshold : 5.00e-02, corresponding to the network size (21 nodes)</strong>
-<strong class='message'>	significance threshold: 5.00e-02</strong>
+<strong class='message'>		significance threshold : 2.00e-02, corresponding to the network size (2 nodes)</strong>
+<strong class='message'>		significance threshold : 2.50e-02, corresponding to the network size (3 nodes)</strong>
+<strong class='message'>		significance threshold : 3.00e-02, corresponding to the network size (10 nodes)</strong>
+<strong class='message'>		significance threshold : 3.50e-02, corresponding to the network size (17 nodes)</strong>
+<strong class='message'>		significance threshold : 4.00e-02, corresponding to the network size (22 nodes)</strong>
+<strong class='message'>	significance threshold: 4.00e-02</strong>
 <strong class='message'>Third, calculate the scores according to the fitted BUM and FDR threshold (if any)...</strong>
-<strong class='message'>	Amongst 1000 scores, there are 87 positives.</strong>
-<strong class='message'>Finally, find the subgraph from the input graph with 1000 nodes and 4941 edges...</strong>
-<strong class='message'>	Size of the subgraph: 21 nodes and 21 edges</strong>
+<strong class='message'>	Amongst 1000 scores, there are 69 positives.</strong>
+<strong class='message'>Finally, find the subgraph from the input graph with 1000 nodes and 4919 edges...</strong>
+<strong class='message'>	Size of the subgraph: 22 nodes and 21 edges</strong>
 <strong class='message'>
-Finish at 2014-07-02 11:32:31</strong>
-<strong class='message'>Runtime in total is: 6 secs
+Finish at 2014-09-09 16:53:16</strong>
+<strong class='message'>Runtime in total is: 5 secs
 </strong></pre>
   </div>
   
@@ -402,23 +401,21 @@ Finish at 2014-07-02 11:32:31</strong>
     <!--
 
     <h2>Citation</h2>
-    <ul>
-<li>Cite as <code>web link/URL</code></li>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
+
+<p>You may also Cite it as:</p>
+
+<ul>
+<li><code>web link/URL</code></li>
 </ul>
 
 <p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
 
 <ul>
-<li>Cite as <code>standard reference</code></li>
+<li><code>package/software</code></li>
 </ul>
 
 <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
-
-<ul>
-<li>Cite as <code>an application</code></li>
-</ul>
-
-<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. <I>Genome Medicine</I> (in revision)</p>
 
     
     

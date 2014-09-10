@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dRWR @ dnet 1.0.5</title>
+<title>dRWR @ dnet 1.0.6</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.5</a>
+      <a class="brand" href="index.html">dnet 1.0.6</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -204,15 +204,13 @@ window.onload = function(){
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>dRWR</code> is supposed to implement Random Walk with
-Restart (RWR) on the input graph. If the seeds (i.e. a set
-of starting nodes) are given, it intends to calculate the
-affinity score of all nodes in the graph to the seeds. If
-the seeds are not give, it will pre-compute affinity matrix
-for nodes in the input graph with respect to each starting
-node (as a seed) by looping over every node in the graph.
-Parallel computing is also supported for Linux or Mac
-operating systems.</p>
+    <p><code>dRWR</code> is supposed to implement Random Walk with Restart (RWR) on
+the input graph. If the seeds (i.e. a set of starting nodes) are given,
+it intends to calculate the affinity score of all nodes in the graph to
+the seeds. If the seeds are not give, it will pre-compute affinity
+matrix for nodes in the input graph with respect to each starting node
+(as a seed) by looping over every node in the graph. Parallel computing
+is also supported for Linux or Mac operating systems.</p>
   
     <h3>Usage</h3>
     <pre>dRWR(g, normalise = c("laplacian", "row", "column", "none"), setSeeds = NULL, restart = 0.75, 
@@ -224,102 +222,99 @@ operating systems.</p>
       <dt>g</dt>
       <dd>an object of class "igraph" or "graphNEL"</dd>
       <dt>normalise</dt>
-      <dd>the way to normalise the adjacency
-matrix of the input graph. It can be 'laplacian' for
-laplacian normalisation, 'row' for row-wise
-normalisation, 'column' for column-wise normalisation, or
+      <dd>the way to normalise the adjacency matrix of the input
+graph. It can be 'laplacian' for laplacian normalisation, 'row' for
+row-wise normalisation, 'column' for column-wise normalisation, or
 'none'</dd>
       <dt>setSeeds</dt>
-      <dd>an input matrix used to define sets of
-starting seeds. One column corresponds to one set of
-seeds that a walker starts with. The input matrix must
-have row names, coming from node names of input graph,
-i.e. V(g)$name, since there is a mapping operation. The
-non-zero entries mean that the corresonding rows (i.e.
-the gene/row names) are used as the seeds, and non-zero
-values can be viewed as how to weight the relative
-importance of seeds. By default, this option sets to
-"NULL", suggesting each node in the graph will be used as
-a set of the seed to pre-compute affinity matrix for the
-input graph. This default does not scale for large input
-graphs since it will loop over every node in the graph;
-however, the pre-computed affinity matrix can be
-extensively reused for obtaining affinity scores between
-any combinations of nodes/seeds, allows for some
-flexibility in the downstream use, in particular when
-sampling a large number of random node combinations for
-statistical testing</dd>
+      <dd>an input matrix used to define sets of starting seeds.
+One column corresponds to one set of seeds that a walker starts with.
+The input matrix must have row names, coming from node names of input
+graph, i.e. V(g)$name, since there is a mapping operation. The non-zero
+entries mean that the corresonding rows (i.e. the gene/row names) are
+used as the seeds, and non-zero values can be viewed as how to weight
+the relative importance of seeds. By default, this option sets to
+"NULL", suggesting each node in the graph will be used as a set of the
+seed to pre-compute affinity matrix for the input graph. This default
+does not scale for large input graphs since it will loop over every
+node in the graph; however, the pre-computed affinity matrix can be
+extensively reused for obtaining affinity scores between any
+combinations of nodes/seeds, allows for some flexibility in the
+downstream use, in particular when sampling a large number of random
+node combinations for statistical testing</dd>
       <dt>restart</dt>
-      <dd>the restart probability used for RWR. The
-restart probability takes the value from 0 to 1,
-controlling the range from the starting nodes/seeds that
-the walker will explore. The higher the value, the more
-likely the walker is to visit the nodes centered on the
-starting nodes. At the extreme when the restart
-probability is zero, the walker moves freely to the
-neighbors at each step without restarting from seeds,
-i.e., following a random walk (RW)</dd>
+      <dd>the restart probability used for RWR. The restart
+probability takes the value from 0 to 1, controlling the range from the
+starting nodes/seeds that the walker will explore. The higher the
+value, the more likely the walker is to visit the nodes centered on the
+starting nodes. At the extreme when the restart probability is zero,
+the walker moves freely to the neighbors at each step without
+restarting from seeds, i.e., following a random walk (RW)</dd>
       <dt>normalise.affinity.matrix</dt>
-      <dd>the way to normalise the
-output affinity matrix. It can be 'none' for no
-normalisation, 'quantile' for quantile normalisation to
-ensure that columns (if multiple) of the output affinity
-matrix have the same quantiles</dd>
+      <dd>the way to normalise the output
+affinity matrix. It can be 'none' for no normalisation, 'quantile' for
+quantile normalisation to ensure that columns (if multiple) of the
+output affinity matrix have the same quantiles</dd>
       <dt>parallel</dt>
-      <dd>logical to indicate whether parallel
-computation with multicores is used. By default, it sets
-to true, but not necessarily does so. Partly because
-parallel backends available will be system-specific (now
-only Linux or Mac OS). Also, it will depend on whether
-these two packages "foreach" and "doMC" have been
-installed. It can be installed via:
+      <dd>logical to indicate whether parallel computation with
+multicores is used. By default, it sets to true, but not necessarily
+does so. Partly because parallel backends available will be
+system-specific (now only Linux or Mac OS). Also, it will depend on
+whether these two packages "foreach" and "doMC" have been installed. It
+can be installed via:
 <code>source("http://bioconductor.org/biocLite.R");
-biocLite(c("foreach","doMC"))</code>. If not yet installed,
-this option will be disabled</dd>
+biocLite(c("foreach","doMC"))</code>. If not yet installed, this option will
+be disabled</dd>
       <dt>multicores</dt>
-      <dd>an integer to specify how many cores
-will be registered as the multicore parallel backend to
-the 'foreach' package. If NULL, it will use a half of
-cores available in a user's computer. This option only
-works when parallel computation is enabled</dd>
+      <dd>an integer to specify how many cores will be
+registered as the multicore parallel backend to the 'foreach' package.
+If NULL, it will use a half of cores available in a user's computer.
+This option only works when parallel computation is enabled</dd>
       <dt>verbose</dt>
-      <dd>logical to indicate whether the messages
-will be displayed in the screen. By default, it sets to
-true for display</dd>
+      <dd>logical to indicate whether the messages will be
+displayed in the screen. By default, it sets to true for display</dd>
     </dl>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
-      <p>It returns a sparse matrix, called 'PTmatrix': <ul>
-<li>When the seeds are NOT given: a pre-computated
-affinity matrix with the dimension of n X n, where n is the
-number of nodes in the input graph. Columns stand for
-starting nodes walking from, and rows for ending nodes
-walking to. Therefore, a column for a starting node
-represents a steady-state affinity vector that the starting
-node will visit all the ending nodes in the graph
+      <p>It returns a sparse matrix, called 'PTmatrix':
+<ul>
+<li>When the seeds are NOT given: a pre-computated affinity matrix
+with the dimension of n X n, where n is the number of nodes in the
+input graph. Columns stand for starting nodes walking from, and rows
+for ending nodes walking to. Therefore, a column for a starting node
+represents a steady-state affinity vector that the starting node will
+visit all the ending nodes in the graph
 </li>
-<li>When the seeds are given: an affinity matrix with the
-dimension of n X nset, where n is the number of nodes in
-the input graph, and nset for the number of the sets of
-seeds (i.e. the number of columns in setSeeds). Each column
-stands for the steady probability vector, storing the
-affinity score of all nodes in the graph to the starting
-nodes/seeds. This steady probability vector can be viewed
-as the "influential impact" over the graph imposed by the
-starting nodes/seeds. </li>
+<li>When the seeds are given: an affinity matrix with the dimension
+of n X nset, where n is the number of nodes in the input graph, and
+nset for the number of the sets of seeds (i.e. the number of columns in
+setSeeds). Each column stands for the steady probability vector,
+storing the affinity score of all nodes in the graph to the starting
+nodes/seeds. This steady probability vector can be viewed as the
+"influential impact" over the graph imposed by the starting
+nodes/seeds.
+</li>
 </ul></p>
       <p></p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
-      <p>The input graph will treat as an unweighted graph if there
-is no 'weight' edge attribute associated with</p>
+      <p>The input graph will treat as an unweighted graph if there is no
+'weight' edge attribute associated with</p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'># 1) generate a random graph according to the ER model
@@ -333,24 +328,24 @@ V(subg)$name <- 1:vcount(subg)
 PTmatrix <- dRWR(g=subg, normalise="laplacian", restart=0.75,
 parallel=FALSE)
 </div>
-<strong class='message'>Start at 2014-07-02 11:32:33</strong>
+<strong class='message'>Start at 2014-09-09 16:53:19</strong>
 <strong class='message'></strong>
-<strong class='message'>First, get the adjacency matrix of the input graph (2014-07-02 11:32:33) ...</strong>
-<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-07-02 11:32:33) ...</strong>
-<strong class='message'>Third, RWR of 10 sets of seeds using 7.5e-01 restart probability (2014-07-02 11:32:33) ...</strong>
-<strong class='message'>	1 out of 10 seed sets (2014-07-02 11:32:33)</strong>
-<strong class='message'>	2 out of 10 seed sets (2014-07-02 11:32:33)</strong>
-<strong class='message'>	3 out of 10 seed sets (2014-07-02 11:32:33)</strong>
-<strong class='message'>	4 out of 10 seed sets (2014-07-02 11:32:33)</strong>
-<strong class='message'>	5 out of 10 seed sets (2014-07-02 11:32:33)</strong>
-<strong class='message'>	6 out of 10 seed sets (2014-07-02 11:32:33)</strong>
-<strong class='message'>	7 out of 10 seed sets (2014-07-02 11:32:33)</strong>
-<strong class='message'>	8 out of 10 seed sets (2014-07-02 11:32:33)</strong>
-<strong class='message'>	9 out of 10 seed sets (2014-07-02 11:32:33)</strong>
-<strong class='message'>	10 out of 10 seed sets (2014-07-02 11:32:33)</strong>
-<strong class='message'>Finally, output 10 by 10 affinity matrix normalised by none (2014-07-02 11:32:33) ...</strong>
+<strong class='message'>First, get the adjacency matrix of the input graph (2014-09-09 16:53:19) ...</strong>
+<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-09-09 16:53:19) ...</strong>
+<strong class='message'>Third, RWR of 10 sets of seeds using 7.5e-01 restart probability (2014-09-09 16:53:19) ...</strong>
+<strong class='message'>	1 out of 10 seed sets (2014-09-09 16:53:19)</strong>
+<strong class='message'>	2 out of 10 seed sets (2014-09-09 16:53:19)</strong>
+<strong class='message'>	3 out of 10 seed sets (2014-09-09 16:53:19)</strong>
+<strong class='message'>	4 out of 10 seed sets (2014-09-09 16:53:19)</strong>
+<strong class='message'>	5 out of 10 seed sets (2014-09-09 16:53:19)</strong>
+<strong class='message'>	6 out of 10 seed sets (2014-09-09 16:53:19)</strong>
+<strong class='message'>	7 out of 10 seed sets (2014-09-09 16:53:19)</strong>
+<strong class='message'>	8 out of 10 seed sets (2014-09-09 16:53:19)</strong>
+<strong class='message'>	9 out of 10 seed sets (2014-09-09 16:53:19)</strong>
+<strong class='message'>	10 out of 10 seed sets (2014-09-09 16:53:19)</strong>
+<strong class='message'>Finally, output 10 by 10 affinity matrix normalised by none (2014-09-09 16:53:19) ...</strong>
 <strong class='message'>
-Finish at 2014-07-02 11:32:33</strong>
+Finish at 2014-09-09 16:53:19</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'># visualise affinity matrix
@@ -370,19 +365,19 @@ rownames(setSeeds) <- 1:5
 PTmatrix <- dRWR(g=subg, normalise="laplacian", setSeeds=setSeeds,
 restart=0.75, parallel=FALSE)
 </div>
-<strong class='message'>Start at 2014-07-02 11:32:34</strong>
+<strong class='message'>Start at 2014-09-09 16:53:19</strong>
 <strong class='message'></strong>
-<strong class='message'>First, get the adjacency matrix of the input graph (2014-07-02 11:32:34) ...</strong>
-<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-07-02 11:32:34) ...</strong>
+<strong class='message'>First, get the adjacency matrix of the input graph (2014-09-09 16:53:19) ...</strong>
+<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-09-09 16:53:19) ...</strong>
 <strong class='warning'>Warning message:
 The row names of input setSeeds do not contain all those in the input graph.
 </strong>
-<strong class='message'>Third, RWR of 2 sets of seeds using 7.5e-01 restart probability (2014-07-02 11:32:34) ...</strong>
-<strong class='message'>	1 out of 2 seed sets (2014-07-02 11:32:34)</strong>
-<strong class='message'>	2 out of 2 seed sets (2014-07-02 11:32:34)</strong>
-<strong class='message'>Finally, output 10 by 2 affinity matrix normalised by none (2014-07-02 11:32:34) ...</strong>
+<strong class='message'>Third, RWR of 2 sets of seeds using 7.5e-01 restart probability (2014-09-09 16:53:19) ...</strong>
+<strong class='message'>	1 out of 2 seed sets (2014-09-09 16:53:19)</strong>
+<strong class='message'>	2 out of 2 seed sets (2014-09-09 16:53:19)</strong>
+<strong class='message'>Finally, output 10 by 2 affinity matrix normalised by none (2014-09-09 16:53:19) ...</strong>
 <strong class='message'>
-Finish at 2014-07-02 11:32:34</strong>
+Finish at 2014-09-09 16:53:19</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>PTmatrix
@@ -424,23 +419,21 @@ Finish at 2014-07-02 11:32:34</strong>
     <!--
 
     <h2>Citation</h2>
-    <ul>
-<li>Cite as <code>web link/URL</code></li>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
+
+<p>You may also Cite it as:</p>
+
+<ul>
+<li><code>web link/URL</code></li>
 </ul>
 
 <p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
 
 <ul>
-<li>Cite as <code>standard reference</code></li>
+<li><code>package/software</code></li>
 </ul>
 
 <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
-
-<ul>
-<li>Cite as <code>an application</code></li>
-</ul>
-
-<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. <I>Genome Medicine</I> (in revision)</p>
 
     
     

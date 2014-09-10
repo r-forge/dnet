@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dPvalAggregate @ dnet 1.0.5</title>
+<title>dPvalAggregate @ dnet 1.0.6</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.5</a>
+      <a class="brand" href="index.html">dnet 1.0.6</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -204,11 +204,10 @@ window.onload = function(){
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>dPvalAggregate</code> is supposed to aggregate a input
-matrix p-values into a vector of aggregated p-values. The
-aggregate operation is applied to each row of input matrix,
-each resulting in an aggregated p-value. The method
-implemented can be based on the order statistics of
+    <p><code>dPvalAggregate</code> is supposed to aggregate a input matrix p-values
+into a vector of aggregated p-values. The aggregate operation is
+applied to each row of input matrix, each resulting in an aggregated
+p-value. The method implemented can be based on the order statistics of
 p-values or according to Fisher's method.</p>
   
     <h3>Usage</h3>
@@ -219,39 +218,45 @@ p-values or according to Fisher's method.</p>
       <dt>pmatrix</dt>
       <dd>a data frame or matrix of p-values</dd>
       <dt>method</dt>
-      <dd>the method used. It can be either
-"orderStatistic" for the method based on the order
-statistics of p-values, or "fishers" for Fisher's method</dd>
+      <dd>the method used. It can be either "orderStatistic" for
+the method based on the order statistics of p-values, or "fishers" for
+Fisher's method</dd>
       <dt>order</dt>
-      <dd>an integeter specifying the order used for
-the aggregation according to on the order statistics of
-p-values</dd>
+      <dd>an integeter specifying the order used for the aggregation
+according to on the order statistics of p-values</dd>
     </dl>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
       <p><ul>
-<li><code>ap</code>: a vector with the length
-nrow(pmatrix), containing aggregated p-values </li>
+<li><code>ap</code>: a vector with the length nrow(pmatrix), containing
+aggregated p-values
+</li>
 </ul></p>
       <p></p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
-      <p>For each row of input matrix with the <code class = 'eq'>c</code> columns,
-there are <code class = 'eq'>c</code> p-values that are uniformly independently
-distributed over [0,1] under the null hypothesis (uniform
-distribution). According to the order statisitcs, they
-follow the Beta distribution with the paramters
-<code class = 'eq'>a=order</code> and <code class = 'eq'>b=c-order+1</code>. According to the the
-Fisher's method, after transformation by
-<code class = 'eq'>-2*\sum^clog(pvalue)</code>, they follow Chi-Squared
-distribution.</p>
+      <p>For each row of input matrix with the <code class = 'eq'>c</code> columns, there are
+<code class = 'eq'>c</code> p-values that are uniformly independently distributed over
+[0,1] under the null hypothesis (uniform distribution). According to
+the order statisitcs, they follow the Beta distribution with the
+paramters <code class = 'eq'>a=order</code> and <code class = 'eq'>b=c-order+1</code>. According to the the
+Fisher's method, after transformation by <code class = 'eq'>-2*\sum^clog(pvalue)</code>,
+they follow Chi-Squared distribution.</p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'># 1) generate an iid uniformly-distributed random matrix of 1000x3
@@ -286,23 +291,21 @@ ap <- dPvalAggregate(pmatrix, method="fishers")
     <!--
 
     <h2>Citation</h2>
-    <ul>
-<li>Cite as <code>web link/URL</code></li>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
+
+<p>You may also Cite it as:</p>
+
+<ul>
+<li><code>web link/URL</code></li>
 </ul>
 
 <p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
 
 <ul>
-<li>Cite as <code>standard reference</code></li>
+<li><code>package/software</code></li>
 </ul>
 
 <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
-
-<ul>
-<li>Cite as <code>an application</code></li>
-</ul>
-
-<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. <I>Genome Medicine</I> (in revision)</p>
 
     
     

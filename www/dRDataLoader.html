@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dRDataLoader @ dnet 1.0.5</title>
+<title>dRDataLoader @ dnet 1.0.6</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.5</a>
+      <a class="brand" href="index.html">dnet 1.0.6</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -204,8 +204,7 @@ window.onload = function(){
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>dRDataLoader</code> is supposed to load dnet built-in
-RData.</p>
+    <p><code>dRDataLoader</code> is supposed to load dnet built-in RData.</p>
   
     <h3>Usage</h3>
     <pre>dRDataLoader(RData = c("eTOL", "Ancestral_domainome", "CLL", "Hiratani_TableS1", 
@@ -232,81 +231,76 @@ RData.</p>
     <h3>Arguments</h3>
     <dl>
       <dt>RData</dt>
-      <dd>which built-in RData to load. It can be one
-of 'eTOL', 'Ancestral_domainome', 'CLL',
-'Hiratani_TableS1', 'TCGA_mutations', 'org.Gg.string',
-'org.Gg.egPS', 'org.Gg.egGOBP', 'org.Gg.egGOCC',
-'org.Gg.egSF', 'org.Gg.eg', 'org.Gg.egGOMF',
-'org.Rn.egGOCC', 'org.Rn.egGOMF', 'org.Rn.egSF',
-'org.Rn.string', 'org.Rn.egPS', 'org.Rn.eg',
-'org.Rn.egGOBP', 'org.Mm.egHPMI', 'org.Mm.eg',
-'org.Mm.egGOCC', 'org.Mm.string', 'org.Mm.egGOBP',
-'org.Mm.egGOMF', 'org.Mm.egHPPA', 'org.Mm.egSF',
-'org.Mm.egMP', 'org.Mm.egHPON', 'org.Mm.egPS',
-'org.Mm.egDO', 'ig.MP', 'ig.GOBP', 'ig.DO', 'ig.HPON',
-'ig.HPPA', 'ig.GOCC', 'ig.GOMF', 'ig.HPMI',
-'org.Ce.egPS', 'org.Ce.egGOMF', 'org.Ce.egGOCC',
-'org.Ce.egGOBP', 'org.Ce.eg', 'org.Ce.string',
-'org.Ce.egSF', 'org.Hs.egMsigdbC5MF',
-'org.Hs.egMsigdbC1', 'org.Hs.egMsigdbC3TFT',
-'org.Hs.egMsigdbC3MIR', 'org.Hs.egMsigdbC2REACTOME',
-'org.Hs.egMsigdbC7', 'org.Hs.egMsigdbC5BP',
-'org.Hs.egMsigdbC6', 'org.Hs.egMsigdbC2KEGG',
-'org.Hs.egMsigdbC2CP', 'org.Hs.egMsigdbC5CC',
-'org.Hs.egMsigdbC4CGN', 'org.Hs.egMsigdbC4CM',
-'org.Hs.egMsigdbC2BIOCARTA', 'org.Hs.egMsigdbC2CGP',
-'org.At.egSF', 'org.At.eg', 'org.At.egPS',
-'org.At.egGOBP', 'org.At.egGOMF', 'org.At.string',
-'org.At.egGOCC', 'org.Da.egGOBP', 'org.Da.egSF',
-'org.Da.eg', 'org.Da.egPS', 'org.Da.string',
-'org.Da.egGOMF', 'org.Da.egGOCC', 'org.Dm.egPS',
-'org.Dm.egGOBP', 'org.Dm.egSF', 'org.Dm.eg',
-'org.Dm.string', 'org.Dm.egGOCC', 'org.Dm.egGOMF',
-'org.Hs.eg', 'org.Hs.egMP', 'org.Hs.egDGIdb',
-'org.Hs.egHPPA', 'org.Hs.egSF', 'org.Hs.egGOCC',
-'org.Hs.string', 'org.Hs.egGOBP', 'org.Hs.egGOMF',
-'org.Hs.egHPMI', 'org.Hs.egDO', 'org.Hs.egHPON',
-'org.Hs.egPS'. On the meanings, please refer to the
-Documentations</dd>
+      <dd>which built-in RData to load. It can be one of 'eTOL',
+'Ancestral_domainome', 'CLL', 'Hiratani_TableS1', 'TCGA_mutations',
+'org.Gg.string', 'org.Gg.egPS', 'org.Gg.egGOBP', 'org.Gg.egGOCC',
+'org.Gg.egSF', 'org.Gg.eg', 'org.Gg.egGOMF', 'org.Rn.egGOCC',
+'org.Rn.egGOMF', 'org.Rn.egSF', 'org.Rn.string', 'org.Rn.egPS',
+'org.Rn.eg', 'org.Rn.egGOBP', 'org.Mm.egHPMI', 'org.Mm.eg',
+'org.Mm.egGOCC', 'org.Mm.string', 'org.Mm.egGOBP', 'org.Mm.egGOMF',
+'org.Mm.egHPPA', 'org.Mm.egSF', 'org.Mm.egMP', 'org.Mm.egHPON',
+'org.Mm.egPS', 'org.Mm.egDO', 'ig.MP', 'ig.GOBP', 'ig.DO', 'ig.HPON',
+'ig.HPPA', 'ig.GOCC', 'ig.GOMF', 'ig.HPMI', 'org.Ce.egPS',
+'org.Ce.egGOMF', 'org.Ce.egGOCC', 'org.Ce.egGOBP', 'org.Ce.eg',
+'org.Ce.string', 'org.Ce.egSF', 'org.Hs.egMsigdbC5MF',
+'org.Hs.egMsigdbC1', 'org.Hs.egMsigdbC3TFT', 'org.Hs.egMsigdbC3MIR',
+'org.Hs.egMsigdbC2REACTOME', 'org.Hs.egMsigdbC7',
+'org.Hs.egMsigdbC5BP', 'org.Hs.egMsigdbC6', 'org.Hs.egMsigdbC2KEGG',
+'org.Hs.egMsigdbC2CP', 'org.Hs.egMsigdbC5CC', 'org.Hs.egMsigdbC4CGN',
+'org.Hs.egMsigdbC4CM', 'org.Hs.egMsigdbC2BIOCARTA',
+'org.Hs.egMsigdbC2CGP', 'org.At.egSF', 'org.At.eg', 'org.At.egPS',
+'org.At.egGOBP', 'org.At.egGOMF', 'org.At.string', 'org.At.egGOCC',
+'org.Da.egGOBP', 'org.Da.egSF', 'org.Da.eg', 'org.Da.egPS',
+'org.Da.string', 'org.Da.egGOMF', 'org.Da.egGOCC', 'org.Dm.egPS',
+'org.Dm.egGOBP', 'org.Dm.egSF', 'org.Dm.eg', 'org.Dm.string',
+'org.Dm.egGOCC', 'org.Dm.egGOMF', 'org.Hs.eg', 'org.Hs.egMP',
+'org.Hs.egDGIdb', 'org.Hs.egHPPA', 'org.Hs.egSF', 'org.Hs.egGOCC',
+'org.Hs.string', 'org.Hs.egGOBP', 'org.Hs.egGOMF', 'org.Hs.egHPMI',
+'org.Hs.egDO', 'org.Hs.egHPON', 'org.Hs.egPS'. On the meanings, please
+refer to the Documentations</dd>
       <dt>RData.location</dt>
-      <dd>the characters to tell the location
-of built-in RData files. By default, it remotely locates
-at <a href = 'http://supfam.org/dnet/data'>http://supfam.org/dnet/data</a> or
-<a href = 'http://dnet.r-forge.r-project.org/data'>http://dnet.r-forge.r-project.org/data</a>. For the
-user equipped with fast internet connection, this option
-can be just left as default. But it is always advisable
-to download these files locally. Especially when the user
-needs to run this function many times, there is no need
-to ask the function to remotely download every time (also
-it will unnecessarily increase the runtime). For
-examples, these files (as a whole or part of them) can be
-first downloaded into your current working directory, and
-then set this option as: <code class = 'eq'>RData.location="."</code>.
-Surely, the location can be anywhere as long as the user
-provides the correct path pointing to (otherwise, the
-script will have to remotely download each time). Here is
-the UNIX command for downloading all RData files
-(preserving the directory structure): <code class = 'eq'>wget -r -l2 -A
-"*.RData" -np -nH --cut-dirs=0
+      <dd>the characters to tell the location of built-in
+RData files. By default, it remotely locates at
+<a href = 'http://supfam.org/dnet/data'>http://supfam.org/dnet/data</a> or
+<a href = 'http://dnet.r-forge.r-project.org/data'>http://dnet.r-forge.r-project.org/data</a>. For the user equipped
+with fast internet connection, this option can be just left as default.
+But it is always advisable to download these files locally. Especially
+when the user needs to run this function many times, there is no need
+to ask the function to remotely download every time (also it will
+unnecessarily increase the runtime). For examples, these files (as a
+whole or part of them) can be first downloaded into your current
+working directory, and then set this option as:
+<code class = 'eq'>RData.location="."</code>. Surely, the location can be anywhere as long
+as the user provides the correct path pointing to (otherwise, the
+script will have to remotely download each time). Here is the UNIX
+command for downloading all RData files (preserving the directory
+structure): <code class = 'eq'>wget -r -l2 -A "*.RData" -np -nH --cut-dirs=0
 "http://dnet.r-forge.r-project.org/data"</code></dd>
     </dl>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
-      <p>any use-specified variable that is given on the right side
-of the assigement sign '<-', which contains the loaded
-RData.</p>
+      <p>any use-specified variable that is given on the right side of the
+assigement sign '<-', which contains the loaded RData.</p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
-      <p>If there are no use-specified variable that is given on the
-right side of the assigement sign '<-', then no RData will
-be loaded onto the working environment.</p>
+      <p>If there are no use-specified variable that is given on the right side
+of the assigement sign '<-', then no RData will be loaded onto the
+working environment.</p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'>org.Hs.egSF <- dRDataLoader(RData='org.Hs.egSF')
@@ -347,23 +341,21 @@ be loaded onto the working environment.</p>
     <!--
 
     <h2>Citation</h2>
-    <ul>
-<li>Cite as <code>web link/URL</code></li>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
+
+<p>You may also Cite it as:</p>
+
+<ul>
+<li><code>web link/URL</code></li>
 </ul>
 
 <p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
 
 <ul>
-<li>Cite as <code>standard reference</code></li>
+<li><code>package/software</code></li>
 </ul>
 
 <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
-
-<ul>
-<li>Cite as <code>an application</code></li>
-</ul>
-
-<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. <I>Genome Medicine</I> (in revision)</p>
 
     
     

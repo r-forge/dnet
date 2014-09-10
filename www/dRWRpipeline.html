@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dRWRpipeline @ dnet 1.0.5</title>
+<title>dRWRpipeline @ dnet 1.0.6</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.5</a>
+      <a class="brand" href="index.html">dnet 1.0.6</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -204,18 +204,16 @@ window.onload = function(){
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>dRWRpipeline</code> is supposed to estimate sample
-relationships (ie. contact strength between samples) from
-an input gene-sample matrix and an input graph. The
-pipeline includes: 1) random walk restart (RWR) of the
-input graph using the input matrix as seeds; 2) calculation
-of contact strength (inner products of RWR-smoothed columns
-of input matrix); 3) estimation of the contact signficance
-by a randomalisation procedure. It supports two methods how
-to use RWR: 'direct' for directly applying RWR in the given
-seeds; 'indirectly' for first pre-computing affinity matrix
-of the input graph, and then deriving the affinity score.
-Parallel computing is also supported for Linux or Mac
+    <p><code>dRWRpipeline</code> is supposed to estimate sample relationships (ie.
+contact strength between samples) from an input gene-sample matrix and
+an input graph. The pipeline includes: 1) random walk restart (RWR) of
+the input graph using the input matrix as seeds; 2) calculation of
+contact strength (inner products of RWR-smoothed columns of input
+matrix); 3) estimation of the contact signficance by a randomalisation
+procedure. It supports two methods how to use RWR: 'direct' for
+directly applying RWR in the given seeds; 'indirectly' for first
+pre-computing affinity matrix of the input graph, and then deriving the
+affinity score. Parallel computing is also supported for Linux or Mac
 operating systems.</p>
   
     <h3>Usage</h3>
@@ -228,125 +226,121 @@ operating systems.</p>
     <h3>Arguments</h3>
     <dl>
       <dt>data</dt>
-      <dd>an input gene-sample data matrix used for
-seeds. Each value in input gene-sample matrix does not
-necessarily have to be binary (non-zeros will be used as
-a weight, but should be non-negative for easy
-interpretation).</dd>
+      <dd>an input gene-sample data matrix used for seeds. Each value
+in input gene-sample matrix does not necessarily have to be binary
+(non-zeros will be used as a weight, but should be non-negative for
+easy interpretation).</dd>
       <dt>g</dt>
       <dd>an object of class "igraph" or "graphNEL"</dd>
       <dt>method</dt>
-      <dd>the method used to calculate RWR. It can be
-'direct' for directly applying RWR, 'indirect' for
-indirectly applying RWR (first pre-compute affinity
-matrix and then derive the affinity score)</dd>
+      <dd>the method used to calculate RWR. It can be 'direct' for
+directly applying RWR, 'indirect' for indirectly applying RWR (first
+pre-compute affinity matrix and then derive the affinity score)</dd>
       <dt>normalise</dt>
-      <dd>the way to normalise the adjacency
-matrix of the input graph. It can be 'laplacian' for
-laplacian normalisation, 'row' for row-wise
-normalisation, 'column' for column-wise normalisation, or
+      <dd>the way to normalise the adjacency matrix of the input
+graph. It can be 'laplacian' for laplacian normalisation, 'row' for
+row-wise normalisation, 'column' for column-wise normalisation, or
 'none'</dd>
       <dt>restart</dt>
-      <dd>the restart probability used for RWR. The
-restart probability takes the value from 0 to 1,
-controlling the range from the starting nodes/seeds that
-the walker will explore. The higher the value, the more
-likely the walker is to visit the nodes centered on the
-starting nodes. At the extreme when the restart
-probability is zero, the walker moves freely to the
-neighbors at each step without restarting from seeds,
-i.e., following a random walk (RW)</dd>
+      <dd>the restart probability used for RWR. The restart
+probability takes the value from 0 to 1, controlling the range from the
+starting nodes/seeds that the walker will explore. The higher the
+value, the more likely the walker is to visit the nodes centered on the
+starting nodes. At the extreme when the restart probability is zero,
+the walker moves freely to the neighbors at each step without
+restarting from seeds, i.e., following a random walk (RW)</dd>
       <dt>normalise.affinity.matrix</dt>
-      <dd>the way to normalise the
-output affinity matrix. It can be 'none' for no
-normalisation, 'quantile' for quantile normalisation to
-ensure that columns (if multiple) of the output affinity
-matrix have the same quantiles</dd>
+      <dd>the way to normalise the output
+affinity matrix. It can be 'none' for no normalisation, 'quantile' for
+quantile normalisation to ensure that columns (if multiple) of the
+output affinity matrix have the same quantiles</dd>
       <dt>permutation</dt>
-      <dd>how to do permutation. It can be
-'degree' for degree-preserving permutation, 'random' for
-permutation in random</dd>
+      <dd>how to do permutation. It can be 'degree' for
+degree-preserving permutation, 'random' for permutation in random</dd>
       <dt>num.permutation</dt>
-      <dd>the number of permutations used to
-for generating the distribution of contact strength under
-randomalisation</dd>
+      <dd>the number of permutations used to for
+generating the distribution of contact strength under randomalisation</dd>
       <dt>p.adjust.method</dt>
-      <dd>the method used to adjust
-p-values. It can be one of "BH", "BY", "bonferroni",
-"holm", "hochberg" and "hommel". The first two methods
-"BH" (widely used) and "BY" control the false discovery
-rate (FDR: the expected proportion of false discoveries
-amongst the rejected hypotheses); the last four methods
-"bonferroni", "holm", "hochberg" and "hommel" are
-designed to give strong control of the family-wise error
-rate (FWER). Notes: FDR is a less stringent condition
-than FWER</dd>
+      <dd>the method used to adjust p-values. It can be
+one of "BH", "BY", "bonferroni", "holm", "hochberg" and "hommel". The
+first two methods "BH" (widely used) and "BY" control the false
+discovery rate (FDR: the expected proportion of false discoveries
+amongst the rejected hypotheses); the last four methods "bonferroni",
+"holm", "hochberg" and "hommel" are designed to give strong control of
+the family-wise error rate (FWER). Notes: FDR is a less stringent
+condition than FWER</dd>
       <dt>adjp.cutoff</dt>
-      <dd>the cutoff of adjusted pvalue to
-construct the contact graph</dd>
+      <dd>the cutoff of adjusted pvalue to construct the
+contact graph</dd>
       <dt>parallel</dt>
-      <dd>logical to indicate whether parallel
-computation with multicores is used. By default, it sets
-to true, but not necessarily does so. Partly because
-parallel backends available will be system-specific (now
-only Linux or Mac OS). Also, it will depend on whether
-these two packages "foreach" and "doMC" have been
-installed. It can be installed via:
+      <dd>logical to indicate whether parallel computation with
+multicores is used. By default, it sets to true, but not necessarily
+does so. Partly because parallel backends available will be
+system-specific (now only Linux or Mac OS). Also, it will depend on
+whether these two packages "foreach" and "doMC" have been installed. It
+can be installed via:
 <code>source("http://bioconductor.org/biocLite.R");
-biocLite(c("foreach","doMC"))</code>. If not yet installed,
-this option will be disabled</dd>
+biocLite(c("foreach","doMC"))</code>. If not yet installed, this option will
+be disabled</dd>
       <dt>multicores</dt>
-      <dd>an integer to specify how many cores
-will be registered as the multicore parallel backend to
-the 'foreach' package. If NULL, it will use a half of
-cores available in a user's computer. This option only
-works when parallel computation is enabled</dd>
+      <dd>an integer to specify how many cores will be
+registered as the multicore parallel backend to the 'foreach' package.
+If NULL, it will use a half of cores available in a user's computer.
+This option only works when parallel computation is enabled</dd>
       <dt>verbose</dt>
-      <dd>logical to indicate whether the messages
-will be displayed in the screen. By default, it sets to
-true for display</dd>
+      <dd>logical to indicate whether the messages will be
+displayed in the screen. By default, it sets to true for display</dd>
     </dl>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
-      <p>an object of class "dContact", a list with following
-components: <ul>
-<li><code>ratio</code>: a symmetric
-matrix storing ratio (the observed against the expected)
-between pairwise samples </li>
-<li><code>zscore</code>: a symmetric
-matrix storing zscore between pairwise samples
+      <p>an object of class "dContact", a list with following components:
+<ul>
+<li><code>ratio</code>: a symmetric matrix storing ratio (the observed
+against the expected) between pairwise samples
 </li>
-<li><code>pval</code>: a symmetric matrix storing pvalue
-between pairwise samples </li>
-<li><code>adjpval</code>: a symmetric
-matrix storing adjusted pvalue between pairwise samples
+<li><code>zscore</code>: a symmetric matrix storing zscore between pairwise
+samples
 </li>
-<li><code>cgraph</code>: the constructed contact graph (as a
-'igraph' object) under the cutoff of adjusted value
+<li><code>pval</code>: a symmetric matrix storing pvalue between pairwise
+samples
 </li>
-<li><code>Amatrix</code>: a pre-computated affinity matrix when
-using 'inderect' method; NULL otherwise </li>
-<li><code>call</code>:
-the call that produced this result </li>
+<li><code>adjpval</code>: a symmetric matrix storing adjusted pvalue
+between pairwise samples
+</li>
+<li><code>cgraph</code>: the constructed contact graph (as a 'igraph'
+object) under the cutoff of adjusted value
+</li>
+<li><code>Amatrix</code>: a pre-computated affinity matrix when using
+'inderect' method; NULL otherwise
+</li>
+<li><code>call</code>: the call that produced this result
+</li>
 </ul></p>
       <p></p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
-      <p>The choice of which method to use RWR depends on the number
-of seed sets and the number of permutations for statistical
-test. If the total product of both numbers are huge, it is
-better to use 'indrect' method (for a single run). However,
-if the user wants to re-use pre-computed affinity matrix
-(ie. re-use the input graph a lot), then it is highly
+      <p>The choice of which method to use RWR depends on the number of seed
+sets and the number of permutations for statistical test. If the total
+product of both numbers are huge, it is better to use 'indrect' method
+(for a single run). However, if the user wants to re-use pre-computed
+affinity matrix (ie. re-use the input graph a lot), then it is highly
 recommended to sequentially use <code><a href='dRWR.html'>dRWR</a></code> and
 <code><a href='dRWRcontact.html'>dRWRcontact</a></code> instead.</p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'># 1) generate a random graph according to the ER model
@@ -366,25 +360,25 @@ rownames(data) <- 1:5
 # calcualte their two contact graph
 dContact <- dRWRpipeline(data=data, g=subg, parallel=FALSE)
 </div>
-<strong class='message'>Start at 2014-07-02 11:32:36</strong>
+<strong class='message'>Start at 2014-09-09 16:53:21</strong>
 <strong class='message'></strong>
-<strong class='message'>First, RWR on input graph (15 nodes and 14 edges) using input matrix (5 rows and 2 columns) as seeds (2014-07-02 11:32:36)...</strong>
-<strong class='message'>Second, calculate contact strength (2014-07-02 11:32:36)...</strong>
-<strong class='message'>Third, generate the distribution of contact strength based on 10 permutations on nodes respecting random (2014-07-02 11:32:36)...</strong>
-<strong class='message'>	1 out of 10 (2014-07-02 11:32:36)</strong>
-<strong class='message'>	2 out of 10 (2014-07-02 11:32:36)</strong>
-<strong class='message'>	3 out of 10 (2014-07-02 11:32:36)</strong>
-<strong class='message'>	4 out of 10 (2014-07-02 11:32:36)</strong>
-<strong class='message'>	5 out of 10 (2014-07-02 11:32:36)</strong>
-<strong class='message'>	6 out of 10 (2014-07-02 11:32:36)</strong>
-<strong class='message'>	7 out of 10 (2014-07-02 11:32:37)</strong>
-<strong class='message'>	8 out of 10 (2014-07-02 11:32:37)</strong>
-<strong class='message'>	9 out of 10 (2014-07-02 11:32:37)</strong>
-<strong class='message'>	10 out of 10 (2014-07-02 11:32:37)</strong>
-<strong class='message'>Last, estimate the significance of contact strength: zscore, pvalue, and BH adjusted-pvalue (2014-07-02 11:32:37)...</strong>
-<strong class='message'>Also, construct the contact graph under the cutoff 5.0e-02 of adjusted-pvalue (2014-07-02 11:32:37)...</strong>
+<strong class='message'>First, RWR on input graph (15 nodes and 14 edges) using input matrix (5 rows and 2 columns) as seeds (2014-09-09 16:53:21)...</strong>
+<strong class='message'>Second, calculate contact strength (2014-09-09 16:53:21)...</strong>
+<strong class='message'>Third, generate the distribution of contact strength based on 10 permutations on nodes respecting random (2014-09-09 16:53:21)...</strong>
+<strong class='message'>	1 out of 10 (2014-09-09 16:53:21)</strong>
+<strong class='message'>	2 out of 10 (2014-09-09 16:53:21)</strong>
+<strong class='message'>	3 out of 10 (2014-09-09 16:53:21)</strong>
+<strong class='message'>	4 out of 10 (2014-09-09 16:53:22)</strong>
+<strong class='message'>	5 out of 10 (2014-09-09 16:53:22)</strong>
+<strong class='message'>	6 out of 10 (2014-09-09 16:53:22)</strong>
+<strong class='message'>	7 out of 10 (2014-09-09 16:53:22)</strong>
+<strong class='message'>	8 out of 10 (2014-09-09 16:53:22)</strong>
+<strong class='message'>	9 out of 10 (2014-09-09 16:53:22)</strong>
+<strong class='message'>	10 out of 10 (2014-09-09 16:53:22)</strong>
+<strong class='message'>Last, estimate the significance of contact strength: zscore, pvalue, and BH adjusted-pvalue (2014-09-09 16:53:22)...</strong>
+<strong class='message'>Also, construct the contact graph under the cutoff 5.0e-02 of adjusted-pvalue (2014-09-09 16:53:22)...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-07-02 11:32:37</strong>
+<strong class='message'>Finish at 2014-09-09 16:53:22</strong>
 <strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'>dContact
@@ -449,23 +443,21 @@ attr(,"class")
     <!--
 
     <h2>Citation</h2>
-    <ul>
-<li>Cite as <code>web link/URL</code></li>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
+
+<p>You may also Cite it as:</p>
+
+<ul>
+<li><code>web link/URL</code></li>
 </ul>
 
 <p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
 
 <ul>
-<li>Cite as <code>standard reference</code></li>
+<li><code>package/software</code></li>
 </ul>
 
 <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
-
-<ul>
-<li>Cite as <code>an application</code></li>
-</ul>
-
-<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. <I>Genome Medicine</I> (in revision)</p>
 
     
     

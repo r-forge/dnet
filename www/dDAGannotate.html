@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dDAGannotate @ dnet 1.0.5</title>
+<title>dDAGannotate @ dnet 1.0.6</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.5</a>
+      <a class="brand" href="index.html">dnet 1.0.6</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -204,17 +204,15 @@ window.onload = function(){
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>dDAGannotate</code> is supposed to produce a subgraph
-induced by the input annotation data, given a direct
-acyclic graph (DAG; an ontology). The input is a graph of
-"igraph" or "graphNET" object, a list of the vertices
-containing annotation data, and the mode defining the paths
-to the root of DAG. The induced subgraph contains vertices
-(with annotation data) and their ancestors along with the
-defined paths to the root of DAG. The annotations at these
-vertices (including their ancestors) are also updated
-according to the true-path rule: a gene annotated to a term
-should also be annotated by its all ancestor terms.</p>
+    <p><code>dDAGannotate</code> is supposed to produce a subgraph induced by the
+input annotation data, given a direct acyclic graph (DAG; an ontology).
+The input is a graph of "igraph" or "graphNET" object, a list of the
+vertices containing annotation data, and the mode defining the paths to
+the root of DAG. The induced subgraph contains vertices (with
+annotation data) and their ancestors along with the defined paths to
+the root of DAG. The annotations at these vertices (including their
+ancestors) are also updated according to the true-path rule: a gene
+annotated to a term should also be annotated by its all ancestor terms.</p>
   
     <h3>Usage</h3>
     <pre>dDAGannotate(g, annotations, path.mode = c("all_paths", "shortest_paths", "all_shortest_paths"), 
@@ -225,47 +223,52 @@ should also be annotated by its all ancestor terms.</p>
       <dt>g</dt>
       <dd>an object of class "igraph" or "graphNEL"</dd>
       <dt>annotations</dt>
-      <dd>the vertices/nodes for which
-annotation data are provided</dd>
+      <dd>the vertices/nodes for which annotation data are
+provided</dd>
       <dt>path.mode</dt>
-      <dd>the mode of paths induced by
-vertices/nodes with input annotation data. It can be
-"all_paths" for all possible paths to the root,
-"shortest_paths" for only one path to the root (for each
-node in query), "all_shortest_paths" for all shortest
-paths to the root (i.e. for each node, find all shortest
-paths with the equal lengths)</dd>
+      <dd>the mode of paths induced by vertices/nodes with input
+annotation data. It can be "all_paths" for all possible paths to the
+root, "shortest_paths" for only one path to the root (for each node in
+query), "all_shortest_paths" for all shortest paths to the root (i.e.
+for each node, find all shortest paths with the equal lengths)</dd>
       <dt>verbose</dt>
-      <dd>logical to indicate whether the messages
-will be displayed in the screen. By default, it sets to
-true for display</dd>
+      <dd>logical to indicate whether the messages will be
+displayed in the screen. By default, it sets to true for display</dd>
     </dl>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
       <p><ul>
-<li><code>subg</code>: an induced subgraph, an object
-of class "igraph". In addition to the original attributes
-to nodes and edges, the return subgraph is also appended by
-new node attributes: "annotations", which contains a list
-of genes either as original annotations or inherited
-annotations; "IC", which stands for information content
-defined as negative 10-based log-transformed frequency of
-genes annotated to that term. </li>
+<li><code>subg</code>: an induced subgraph, an object of class "igraph". In
+addition to the original attributes to nodes and edges, the return
+subgraph is also appended by new node attributes: "annotations", which
+contains a list of genes either as original annotations or inherited
+annotations; "IC", which stands for information content defined as
+negative 10-based log-transformed frequency of genes annotated to that
+term.
+</li>
 </ul></p>
       <p></p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
-      <p>For the mode "shortest_paths", the induced subgraph is the
-most concise, and thus informative for visualisation when
-there are many nodes in query, while the mode "all_paths"
-results in the complete subgraph.</p>
+      <p>For the mode "shortest_paths", the induced subgraph is the most
+concise, and thus informative for visualisation when there are many
+nodes in query, while the mode "all_paths" results in the complete
+subgraph.</p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'># 1) load HPPA as igraph object
@@ -284,15 +287,15 @@ annotations <- GS$gs[sample(1:length(GS$gs),5)]
 # 4a) based on all possible paths (i.e. the complete subgraph induced)
 dDAGannotate(g, annotations, path.mode="all_paths", verbose=TRUE)
 </div>
-<strong class='message'>	At level 8, there are 1 nodes, and 1 incoming neighbors.</strong>
-<strong class='message'>	At level 7, there are 2 nodes, and 3 incoming neighbors.</strong>
-<strong class='message'>	At level 6, there are 5 nodes, and 7 incoming neighbors.</strong>
-<strong class='message'>	At level 5, there are 6 nodes, and 6 incoming neighbors.</strong>
-<strong class='message'>	At level 4, there are 8 nodes, and 6 incoming neighbors.</strong>
-<strong class='message'>	At level 3, there are 6 nodes, and 6 incoming neighbors.</strong>
-<strong class='message'>	At level 2, there are 6 nodes, and 1 incoming neighbors.</strong>
+<strong class='message'>	At level 8, there are 2 nodes, and 3 incoming neighbors.</strong>
+<strong class='message'>	At level 7, there are 2 nodes, and 2 incoming neighbors.</strong>
+<strong class='message'>	At level 6, there are 6 nodes, and 5 incoming neighbors.</strong>
+<strong class='message'>	At level 5, there are 5 nodes, and 6 incoming neighbors.</strong>
+<strong class='message'>	At level 4, there are 5 nodes, and 5 incoming neighbors.</strong>
+<strong class='message'>	At level 3, there are 5 nodes, and 5 incoming neighbors.</strong>
+<strong class='message'>	At level 2, there are 5 nodes, and 1 incoming neighbors.</strong>
 <strong class='message'>	At level 1, there are 1 nodes, and 0 incoming neighbors.</strong>
-<div class='output'>IGRAPH DN-- 35 37 -- 
+<div class='output'>IGRAPH DN-- 31 32 -- 
 + attr: name (v/c), term_id (v/c), term_name (v/c), term_distance
   (v/n), annotations (v/x), IC (v/n), relation (e/c)
 </div>
@@ -300,13 +303,12 @@ dDAGannotate(g, annotations, path.mode="all_paths", verbose=TRUE)
 dag <- dDAGannotate(g, annotations, path.mode="shortest_paths",
 verbose=TRUE)
 </div>
-<strong class='message'>	At level 8, there are 1 nodes, and 1 incoming neighbors.</strong>
-<strong class='message'>	At level 7, there are 1 nodes, and 1 incoming neighbors.</strong>
-<strong class='message'>	At level 6, there are 4 nodes, and 4 incoming neighbors.</strong>
+<strong class='message'>	At level 7, there are 2 nodes, and 2 incoming neighbors.</strong>
+<strong class='message'>	At level 6, there are 5 nodes, and 5 incoming neighbors.</strong>
 <strong class='message'>	At level 5, there are 5 nodes, and 5 incoming neighbors.</strong>
-<strong class='message'>	At level 4, there are 5 nodes, and 5 incoming neighbors.</strong>
-<strong class='message'>	At level 3, there are 5 nodes, and 5 incoming neighbors.</strong>
-<strong class='message'>	At level 2, there are 5 nodes, and 1 incoming neighbors.</strong>
+<strong class='message'>	At level 4, there are 5 nodes, and 4 incoming neighbors.</strong>
+<strong class='message'>	At level 3, there are 4 nodes, and 4 incoming neighbors.</strong>
+<strong class='message'>	At level 2, there are 4 nodes, and 1 incoming neighbors.</strong>
 <strong class='message'>	At level 1, there are 1 nodes, and 0 incoming neighbors.</strong>
 <div class='input'>
 # 5) color-code nodes/terms according to the number of annotations
@@ -325,7 +327,7 @@ Attaching package: ‘graph’
 
     degree, edges
 </strong>
-<a href="javascript:newWin('dDAGannotate-24.png', 'dDAGannotate-24.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dDAGannotate-24.png', width="400" /></a></pre>
+<a href="javascript:newWin('dDAGannotate-23.png', 'dDAGannotate-23.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dDAGannotate-23.png', width="400" /></a></pre>
   </div>
   
   <div class="span4">
@@ -349,23 +351,21 @@ Attaching package: ‘graph’
     <!--
 
     <h2>Citation</h2>
-    <ul>
-<li>Cite as <code>web link/URL</code></li>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
+
+<p>You may also Cite it as:</p>
+
+<ul>
+<li><code>web link/URL</code></li>
 </ul>
 
 <p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
 
 <ul>
-<li>Cite as <code>standard reference</code></li>
+<li><code>package/software</code></li>
 </ul>
 
 <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
-
-<ul>
-<li>Cite as <code>an application</code></li>
-</ul>
-
-<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. <I>Genome Medicine</I> (in revision)</p>
 
     
     

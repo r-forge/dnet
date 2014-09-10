@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dNetReorder @ dnet 1.0.5</title>
+<title>dNetReorder @ dnet 1.0.6</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.5</a>
+      <a class="brand" href="index.html">dnet 1.0.6</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -204,8 +204,8 @@ window.onload = function(){
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>dNetReorder</code> is reorder the multiple graph colorings
-within a sheet-shape rectangle grid</p>
+    <p><code>dNetReorder</code> is reorder the multiple graph colorings within a
+sheet-shape rectangle grid</p>
   
     <h3>Usage</h3>
     <pre>dNetReorder(g, data, feature = c("node", "edge"), node.normalise = c("none", "degree"), 
@@ -220,136 +220,135 @@ within a sheet-shape rectangle grid</p>
       <dt>g</dt>
       <dd>an object of class "igraph" or "graphNEL"</dd>
       <dt>data</dt>
-      <dd>an input data matrix used to color-code
-vertices/nodes. One column corresponds to one graph node
-coloring. The input matrix must have row names, and these
-names should include all node names of input graph, i.e.
-V(g)$name, since there is a mapping operation. After
-mapping, the length of the patern vector should be the
-same as the number of nodes of input graph. The way of
-how to color-code is to map values in the pattern onto
-the whole colormap (see the next arguments: colormap,
-ncolors, zlim and colorbar)</dd>
+      <dd>an input data matrix used to color-code vertices/nodes. One
+column corresponds to one graph node coloring. The input matrix must
+have row names, and these names should include all node names of input
+graph, i.e. V(g)$name, since there is a mapping operation. After
+mapping, the length of the patern vector should be the same as the
+number of nodes of input graph. The way of how to color-code is to map
+values in the pattern onto the whole colormap (see the next arguments:
+colormap, ncolors, zlim and colorbar)</dd>
       <dt>feature</dt>
-      <dd>the type of the features used. It can be
-one of either 'edge' for the edge feature or 'node' for
-the node feature. See 'Note' for explanations.</dd>
+      <dd>the type of the features used. It can be one of either
+'edge' for the edge feature or 'node' for the node feature. See 'Note'
+for explanations.</dd>
       <dt>node.normalise</dt>
-      <dd>the normalisation of the nodes. It
-can be one of either 'none' for no normalisation or
-'degree' for a node being penalised by its degree.</dd>
+      <dd>the normalisation of the nodes. It can be one of
+either 'none' for no normalisation or 'degree' for a node being
+penalised by its degree.</dd>
       <dt>xdim</dt>
-      <dd>an integer specifying x-dimension of the
-grid</dd>
+      <dd>an integer specifying x-dimension of the grid</dd>
       <dt>ydim</dt>
-      <dd>an integer specifying y-dimension of the
-grid</dd>
+      <dd>an integer specifying y-dimension of the grid</dd>
       <dt>amplifier</dt>
-      <dd>an integer specifying the amplifier (3
-by default) of the number of component planes. The
-product of the component number and the amplifier
-constitutes the number of rectangles in the sheet grid</dd>
+      <dd>an integer specifying the amplifier (3 by default) of
+the number of component planes. The product of the component number and
+the amplifier constitutes the number of rectangles in the sheet grid</dd>
       <dt>metric</dt>
-      <dd>distance metric used to define the
-similarity between component planes. It can be "none",
-which means directly using column-wise vectors of
-codebook/data matrix. Otherwise, first calculate the
-covariance matrix from the codebook/data matrix. The
-distance metric used for calculating the covariance
-matrix between component planes can be: "pearson" for
-pearson correlation, "spearman" for spearman rank
-correlation, "kendall" for kendall tau rank correlation,
-"euclidean" for euclidean distance, "manhattan" for
-cityblock distance, "cos" for cosine similarity, "mi" for
-mutual information.</dd>
+      <dd>distance metric used to define the similarity between
+component planes. It can be "none", which means directly using
+column-wise vectors of codebook/data matrix. Otherwise, first calculate
+the covariance matrix from the codebook/data matrix. The distance
+metric used for calculating the covariance matrix between component
+planes can be: "pearson" for pearson correlation, "spearman" for
+spearman rank correlation, "kendall" for kendall tau rank correlation,
+"euclidean" for euclidean distance, "manhattan" for cityblock distance,
+"cos" for cosine similarity, "mi" for mutual information.</dd>
       <dt>init</dt>
-      <dd>an initialisation method. It can be one of
-"uniform", "sample" and "linear" initialisation methods</dd>
+      <dd>an initialisation method. It can be one of "uniform",
+"sample" and "linear" initialisation methods</dd>
       <dt>algorithm</dt>
-      <dd>the training algorithm. Currently, only
-"sequential" algorithm has been implemented</dd>
+      <dd>the training algorithm. Currently, only "sequential"
+algorithm has been implemented</dd>
       <dt>alphaType</dt>
-      <dd>the alpha type. It can be one of
-"invert", "linear" and "power" alpha types</dd>
+      <dd>the alpha type. It can be one of "invert", "linear"
+and "power" alpha types</dd>
       <dt>neighKernel</dt>
-      <dd>the training neighbor kernel. It can
-be one of "gaussian", "bubble", "cutgaussian", "ep" and
-"gamma" kernels</dd>
+      <dd>the training neighbor kernel. It can be one of
+"gaussian", "bubble", "cutgaussian", "ep" and "gamma" kernels</dd>
     </dl>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
-      <p>an object of class "sReorder", a list with following
-components: <ul>
-<li><code>nHex</code>: the total number
-of rectanges in the grid </li>
-<li><code>xdim</code>: x-dimension of
-the grid </li>
+      <p>an object of class "sReorder", a list with following components:
+<ul>
+<li><code>nHex</code>: the total number of rectanges in the grid
+</li>
+<li><code>xdim</code>: x-dimension of the grid
+</li>
 <li><code>ydim</code>: y-dimension of the grid
 </li>
-<li><code>uOrder</code>: the unique order/placement for each
-component plane that is reordered to the "sheet"-shape grid
-with rectangular lattice </li>
-<li><code>coord</code>: a matrix of
-nHex x 2, with each row corresponding to the coordinates of
-each "uOrder" rectangle in the 2D map grid
+<li><code>uOrder</code>: the unique order/placement for each component
+plane that is reordered to the "sheet"-shape grid with rectangular
+lattice
 </li>
-<li><code>call</code>: the call that produced this result </li>
+<li><code>coord</code>: a matrix of nHex x 2, with each row corresponding
+to the coordinates of each "uOrder" rectangle in the 2D map grid
+</li>
+<li><code>call</code>: the call that produced this result
+</li>
 </ul></p>
       <p></p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
-      <p>According to which features are used and whether nodes
-should be penalised by degrees, the feature data are
-constructed differently from the input data and input
-graph: <ul>
-<li>When the node features are used, the
-feature data is the input data (or penalised data) with the
-same dimension. </li>
-<li>When the edge featrues are used,
-each entry (i.e. given an edge and a sample) in the feature
-data is the absolute difference between its two-end nodes
-(or after being penalised). </li>
-<li>After that, the
-constructed feature are subject to sample correlation
-analysis by supraHex. That is, a map grid (with sheet shape
-consisting of a rectangular lattice) is used to train
-either column-wise vectors of the feature data matrix or
-the covariance matrix thereof. </li>
-<li>As a result, similar
-samples are placed closer to each other within this map
-grid. More precisely, to ensure the unique placement, each
-sample mapped to the "sheet"-shape grid with rectangular
-lattice is determinied iteratively in an order from the
-best matched to the next compromised one. If multiple
-samples are hit in the same rectangular lattice, the worse
-one is always sacrificed by moving to the next best one
-till all samples are placed somewhere exclusively on their
-own. </li>
-</ul>
- The size of "sheet"-shape rectangle grid depends on
-the input arguments: <ul>
-<li>How the input
-parameters are used to determine nHex is taken priority in
-the following order: "xdim & ydim" > "nHex" > "data".
+      <p>According to which features are used and whether nodes should be
+penalised by degrees, the feature data are constructed differently from
+the input data and input graph:
+<ul>
+<li>When the node features are used, the feature data is the input
+data (or penalised data) with the same dimension.
 </li>
-<li>If both of xdim and ydim are given,
-<code class = 'eq'>nHex=xdim*ydim</code>. </li>
-<li>If only data is input,
-<code class = 'eq'>nHex=5*sqrt(dlen)</code>, where dlen is the number of rows
-of the input data. </li>
-<li>After nHex is determined,
-xy-dimensions of rectangle grid are then determined
-according to the square root of the two biggest eigenvalues
-of the input data. </li>
+<li>When the edge featrues are used, each entry (i.e. given an edge
+and a sample) in the feature data is the absolute difference between
+its two-end nodes (or after being penalised).
+</li>
+<li>After that, the constructed feature are subject to sample
+correlation analysis by supraHex. That is, a map grid (with sheet shape
+consisting of a rectangular lattice) is used to train either
+column-wise vectors of the feature data matrix or the covariance matrix
+thereof.
+</li>
+<li>As a result, similar samples are placed closer to each other
+within this map grid. More precisely, to ensure the unique placement,
+each sample mapped to the "sheet"-shape grid with rectangular lattice
+is determinied iteratively in an order from the best matched to the
+next compromised one. If multiple samples are hit in the same
+rectangular lattice, the worse one is always sacrificed by moving to
+the next best one till all samples are placed somewhere exclusively on
+their own.
+</li>
+</ul></p>
+      <p>The size of "sheet"-shape rectangle grid depends on the input
+arguments:
+<ul>
+<li>How the input parameters are used to determine nHex is taken
+priority in the following order: "xdim & ydim" > "nHex" > "data".
+</li>
+<li>If both of xdim and ydim are given, <code class = 'eq'>nHex=xdim*ydim</code>.
+</li>
+<li>If only data is input, <code class = 'eq'>nHex=5*sqrt(dlen)</code>, where dlen is the
+number of rows of the input data.
+</li>
+<li>After nHex is determined, xy-dimensions of rectangle grid are
+then determined according to the square root of the two biggest
+eigenvalues of the input data.
+</li>
 </ul></p>
       <p></p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'># 1) generate a random graph according to the ER model
@@ -366,7 +365,7 @@ rownames(data) <- V(subg)$name
 sReorder <- dNetReorder(g=subg, data, feature="node",
 node.normalise="none")
 </div>
-<strong class='message'>Start at 2014-07-02 11:32:32</strong>
+<strong class='message'>Start at 2014-09-09 16:53:17</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -376,14 +375,14 @@ node.normalise="none")
 <strong class='message'>Finally, append the response data (hits and mqe) into the sMap object...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
-<strong class='message'>   dimension of input data: 10x15
+<strong class='message'>   dimension of input data: 10x12
    xy-dimension of map grid: xdim=6, ydim=6
    grid lattice: rect
    grid shape: sheet
    dimension of grid coord: 36x2
    initialisation method: linear
-   dimension of codebook matrix: 36x15
-   mean quantization error: 0.330605555605013
+   dimension of codebook matrix: 36x12
+   mean quantization error: 0.275951893367135
 </strong>
 <strong class='message'>Below are the details of trainology:</strong>
 <strong class='message'>   training algorithm: sequential
@@ -393,8 +392,8 @@ node.normalise="none")
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-07-02 11:32:32</strong>
-<strong class='message'>Runtime in total is: 0 secs
+<strong class='message'>End at 2014-09-09 16:53:18</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong></pre>
   </div>
   
@@ -419,23 +418,21 @@ node.normalise="none")
     <!--
 
     <h2>Citation</h2>
-    <ul>
-<li>Cite as <code>web link/URL</code></li>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
+
+<p>You may also Cite it as:</p>
+
+<ul>
+<li><code>web link/URL</code></li>
 </ul>
 
 <p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
 
 <ul>
-<li>Cite as <code>standard reference</code></li>
+<li><code>package/software</code></li>
 </ul>
 
 <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
-
-<ul>
-<li>Cite as <code>an application</code></li>
-</ul>
-
-<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. <I>Genome Medicine</I> (in revision)</p>
 
     
     

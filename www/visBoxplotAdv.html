@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>visBoxplotAdv @ dnet 1.0.5</title>
+<title>visBoxplotAdv @ dnet 1.0.6</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.5</a>
+      <a class="brand" href="index.html">dnet 1.0.6</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -204,13 +204,12 @@ window.onload = function(){
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>visBoxplotAdv</code> is supposed to visualise a data frame
-using advanced boxplot. In addition to boxplot, a scatter
-plot is also drawn with various methods to avoid
-co-incident points so that each point is visible (with
-fine-controling the color and plotting character). Also,
-these points can be pies or thermometers, which allows an
-additional proportation data to be visualised as well.</p>
+    <p><code>visBoxplotAdv</code> is supposed to visualise a data frame using
+advanced boxplot. In addition to boxplot, a scatter plot is also drawn
+with various methods to avoid co-incident points so that each point is
+visible (with fine-controling the color and plotting character). Also,
+these points can be pies or thermometers, which allows an additional
+proportation data to be visualised as well.</p>
   
     <h3>Usage</h3>
     <pre>visBoxplotAdv(formula, data, orientation = c("vertical", "horizontal"), method = c("center", 
@@ -224,61 +223,52 @@ additional proportation data to be visualised as well.</p>
     <h3>Arguments</h3>
     <dl>
       <dt>formula</dt>
-      <dd>a formula, such as 'y ~ grp', where 'y' is
-a numeric vector of data values to be split into groups
-according to the grouping variable 'grp' (usually a
-factor)</dd>
+      <dd>a formula, such as 'y ~ grp', where 'y' is a numeric
+vector of data values to be split into groups according to the grouping
+variable 'grp' (usually a factor)</dd>
       <dt>data</dt>
-      <dd>a data.frame (or list) from which the
-variables in 'formula' should be taken.</dd>
+      <dd>a data.frame (or list) from which the variables in
+'formula' should be taken.</dd>
       <dt>orientation</dt>
-      <dd>the orientation. It can be one of
-"vertical" for the vertical orientation, "horizontal" for
-the horizontal orientation</dd>
+      <dd>the orientation. It can be one of "vertical" for the
+vertical orientation, "horizontal" for the horizontal orientation</dd>
       <dt>method</dt>
-      <dd>the method for arranging the points. It can
-be one of "swarm" for arranging points in increasing
-order (if a point would overlap an existing point, it is
-shifted sideways (along the group axis) by a minimal
-amount sufficient to avoid overlap), "center" for first
-discretizing the values along the data axis (in order to
-create more efficient packing) and then using a square
-grid to produce a symmetric swarm, "hex" for first
-discretization and then arranging points in a hexagonal
-grid, and "square" for first discretization and then
-arranging points in a square grid</dd>
+      <dd>the method for arranging the points. It can be one of
+"swarm" for arranging points in increasing order (if a point would
+overlap an existing point, it is shifted sideways (along the group
+axis) by a minimal amount sufficient to avoid overlap), "center" for
+first discretizing the values along the data axis (in order to create
+more efficient packing) and then using a square grid to produce a
+symmetric swarm, "hex" for first discretization and then arranging
+points in a hexagonal grid, and "square" for first discretization and
+then arranging points in a square grid</dd>
       <dt>corral</dt>
-      <dd>the method to adjust points that would be
-placed outside their own group region. It can be one of
-"none" for not adjusting runaway points, "gutter" for
-collecting runaway points along the boundary between
-groups, "wrap" for wrapping runaway points to produce
-periodic boundaries, "random" for placing runaway points
-randomly in the region, and "omit" for omitting runaway
-points</dd>
+      <dd>the method to adjust points that would be placed outside
+their own group region. It can be one of "none" for not adjusting
+runaway points, "gutter" for collecting runaway points along the
+boundary between groups, "wrap" for wrapping runaway points to produce
+periodic boundaries, "random" for placing runaway points randomly in
+the region, and "omit" for omitting runaway points</dd>
       <dt>corralWidth</dt>
-      <dd>the width of the "corral" in user
-coordinates</dd>
+      <dd>the width of the "corral" in user coordinates</dd>
       <dt>cex</dt>
-      <dd>size of points relative to the default. This
-must be a single value</dd>
+      <dd>size of points relative to the default. This must be a
+single value</dd>
       <dt>breaks</dt>
-      <dd>breakpoints (optional).  If NULL,
-breakpoints are chosen automatically</dd>
+      <dd>breakpoints (optional).  If NULL, breakpoints are chosen
+automatically</dd>
       <dt>spacing</dt>
       <dd>relative spacing between points</dd>
       <dt>labels</dt>
-      <dd>labels for each group. Recycled if
-necessary. By default, these are inferred from the data</dd>
+      <dd>labels for each group. Recycled if necessary. By default,
+these are inferred from the data</dd>
       <dt>at</dt>
-      <dd>numeric vector giving the locations where the
-swarms should be drawn; defaults to '1:n' where n is the
-number of groups</dd>
+      <dd>numeric vector giving the locations where the swarms should
+be drawn; defaults to '1:n' where n is the number of groups</dd>
       <dt>add</dt>
       <dd>whether to add to an existing plot</dd>
       <dt>log</dt>
-      <dd>whether to use a logarithmic scale on the data
-axis</dd>
+      <dd>whether to use a logarithmic scale on the data axis</dd>
       <dt>xlim</dt>
       <dd>limits for x-axis</dd>
       <dt>ylim</dt>
@@ -288,19 +278,17 @@ axis</dd>
       <dt>ylab</dt>
       <dd>labels for y-aixs</dd>
       <dt>pch</dt>
-      <dd>plotting characters, specified by group and
-recycled if necessary. In additon to the convertional pch
-values, it can also be "circles", "thermometers", or
-"pies". For "pies" (or "thermometers"), users can also
-specify the proportional values (see below "pwpie") to
-visualise another information in the pie (or themometer)
-chart</dd>
+      <dd>plotting characters, specified by group and recycled if
+necessary. In additon to the convertional pch values, it can also be
+"circles", "thermometers", or "pies". For "pies" (or "thermometers"),
+users can also specify the proportional values (see below "pwpie") to
+visualise another information in the pie (or themometer) chart</dd>
       <dt>col</dt>
-      <dd>plotting colors, specified by group and
-recycled if necessary</dd>
+      <dd>plotting colors, specified by group and recycled if
+necessary</dd>
       <dt>bg</dt>
-      <dd>plotting background, specified by group and
-recycled if necessary</dd>
+      <dd>plotting background, specified by group and recycled if
+necessary</dd>
       <dt>pwpch</dt>
       <dd>point-wise version of pch</dd>
       <dt>pwcol</dt>
@@ -308,40 +296,46 @@ recycled if necessary</dd>
       <dt>pwbg</dt>
       <dd>point-wise version of bg</dd>
       <dt>pwpie</dt>
-      <dd>point-wise proportion used when drawing pies
-or themometers</dd>
+      <dd>point-wise proportion used when drawing pies or
+themometers</dd>
       <dt>do.plot</dt>
       <dd>whether to draw main plot</dd>
       <dt>do.boxplot</dt>
-      <dd>whether to draw boxplot. It only works
-when the main plot is drawn</dd>
+      <dd>whether to draw boxplot. It only works when the main
+plot is drawn</dd>
       <dt>boxplot.notch</dt>
-      <dd>whether to draw a notch in the
-boxplot. If the notches of two plots do not overlap this
-is 'strong evidence' that the two medians differ</dd>
+      <dd>whether to draw a notch in the boxplot. If the
+notches of two plots do not overlap this is 'strong evidence' that the
+two medians differ</dd>
       <dt>boxplot.border</dt>
-      <dd>the color for the outlines of the
-boxplots</dd>
+      <dd>the color for the outlines of the boxplots</dd>
       <dt>boxplot.col</dt>
-      <dd>the color for the bodies of the
-boxplots</dd>
+      <dd>the color for the bodies of the boxplots</dd>
       <dt>...</dt>
       <dd>additional graphic parameters for the plot</dd>
     </dl>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
-      <p>A data frame with plotting information. It has the same row
-names as the input data</p>
+      <p>A data frame with plotting information. It has the same row names as
+the input data</p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
       <p>none</p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'>data(TCGA_mutations)
@@ -384,23 +378,21 @@ pch=19, col=unique(pwcol))
     <!--
 
     <h2>Citation</h2>
-    <ul>
-<li>Cite as <code>web link/URL</code></li>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
+
+<p>You may also Cite it as:</p>
+
+<ul>
+<li><code>web link/URL</code></li>
 </ul>
 
 <p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
 
 <ul>
-<li>Cite as <code>standard reference</code></li>
+<li><code>package/software</code></li>
 </ul>
 
 <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
-
-<ul>
-<li>Cite as <code>an application</code></li>
-</ul>
-
-<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. <I>Genome Medicine</I> (in revision)</p>
 
     
     

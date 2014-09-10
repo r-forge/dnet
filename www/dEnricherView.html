@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dEnricherView @ dnet 1.0.5</title>
+<title>dEnricherView @ dnet 1.0.6</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.5</a>
+      <a class="brand" href="index.html">dnet 1.0.6</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -204,11 +204,11 @@ window.onload = function(){
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>dEnricherView</code> is supposed to view results of
-enrichment analysis by dEnricher.</p>
+    <p><code>dEnricherView</code> is supposed to view results of enrichment analysis
+by <code><a href='dEnricher.html'>dEnricher</a></code>.</p>
   
     <h3>Usage</h3>
-    <pre>dEnricherView(eTerm, top_num = 10, sortBy = c("adjp", "pvalue", "zscore", "nSet", 
+    <pre>dEnricherView(eTerm, top_num = 10, sortBy = c("adjp", "pvalue", "zscore", "nAnno", 
   "nOverlap", "none"), decreasing = NULL, details = F)</pre>
     
     <h3>Arguments</h3>
@@ -216,58 +216,70 @@ enrichment analysis by dEnricher.</p>
       <dt>eTerm</dt>
       <dd>an object of class "eTerm"</dd>
       <dt>top_num</dt>
-      <dd>the maximum number of gene sets (terms)
-will be viewed</dd>
+      <dd>the maximum number of gene sets (terms) will be viewed</dd>
       <dt>sortBy</dt>
-      <dd>which statistics will be used for sorting
-and viewing gene sets (terms). It can be "adjp" for
-adjusted p value, "pvalue" for p value, "zscore" for
-enrichment z-score, "nSet" for the number of sets
-(terms), "nOverlap" for the number in overlaps, and
-"none" for ordering according to ID of gene sets (terms)</dd>
+      <dd>which statistics will be used for sorting and viewing
+gene sets (terms). It can be "adjp" for adjusted p value, "pvalue" for
+p value, "zscore" for enrichment z-score, "nAnno" for the number of
+sets (terms), "nOverlap" for the number in overlaps, and "none" for
+ordering according to ID of gene sets (terms)</dd>
       <dt>decreasing</dt>
-      <dd>logical to indicate whether to sort in
-a decreasing order. If it is null, it would be true for
-"zscore", "nSet" or "nOverlap"; otherwise it would be
-false</dd>
+      <dd>logical to indicate whether to sort in a decreasing
+order. If it is null, it would be true for "zscore", "nAnno" or
+"nOverlap"; otherwise it would be false</dd>
       <dt>details</dt>
-      <dd>logical to indicate whether the detail
-information of gene sets (terms) is also viewed. By
-default, it sets to false for no inclusion</dd>
+      <dd>logical to indicate whether the detailed information of
+gene sets (terms) is also viewed. By default, it sets to false for no
+inclusion</dd>
     </dl>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
-      <p>a data frame with following components: <ul>
-<li><code>setID</code>: term ID </li>
-<li><code>nSet</code>: number of
-sets (terms) </li>
+      <p>a data frame with following components:
+<ul>
+<li><code>setID</code>: term ID
+</li>
+<li><code>nAnno</code>: number in gene members annotated by a term
+</li>
 <li><code>nOverlap</code>: number in overlaps
 </li>
 <li><code>zscore</code>: enrichment z-score
 </li>
-<li><code>pvalue</code>: nominal p value </li>
-<li><code>adjp</code>:
-adjusted p value </li>
-<li><code>name</code>: term name; optional,
-it is only appended when "details" is true
+<li><code>pvalue</code>: nominal p value
 </li>
-<li><code>namespace</code>: term namespace; optional, it is
-only appended when "details" is true
+<li><code>adjp</code>: adjusted p value
 </li>
-<li><code>distance</code>: term distance; optional, it is only
-appended when "details" is true </li>
+<li><code>name</code>: term name; optional, it is only appended when
+"details" is true
+</li>
+<li><code>namespace</code>: term namespace; optional, it is only appended
+when "details" is true
+</li>
+<li><code>distance</code>: term distance; optional, it is only appended
+when "details" is true
+</li>
+<li><code>members</code>: members (represented as Gene Symbols) in
+overlaps; optional, it is only appended when "details" is true
+</li>
 </ul></p>
       <p></p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
       <p>none</p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'>#dEnricherView(eTerm, top_num=10, sortBy="adjp", decreasing=FALSE, details=TRUE)
@@ -295,23 +307,21 @@ appended when "details" is true </li>
     <!--
 
     <h2>Citation</h2>
-    <ul>
-<li>Cite as <code>web link/URL</code></li>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
+
+<p>You may also Cite it as:</p>
+
+<ul>
+<li><code>web link/URL</code></li>
 </ul>
 
 <p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
 
 <ul>
-<li>Cite as <code>standard reference</code></li>
+<li><code>package/software</code></li>
 </ul>
 
 <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
-
-<ul>
-<li>Cite as <code>an application</code></li>
-</ul>
-
-<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. <I>Genome Medicine</I> (in revision)</p>
 
     
     

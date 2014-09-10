@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Demo for time-course expression dataset @ dnet 1.0.5</title>
+<title>Demo for time-course expression dataset @ dnet 1.0.6</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Hai Fang and Julian Gough">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.5</a>
+      <a class="brand" href="index.html">dnet 1.0.6</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -201,10 +201,10 @@ window.onload = function(){
       <h2>Demo for time-course expression dataset</h2>
 
 Notes:
-<li> All results are based on dnet (version 1.0.5). </li>
+<li> All results are based on dnet (version 1.0.6). </li>
 <li> R scripts (i.e. R expressions) plus necessary comments are highlighted in light cyan, and the rest are outputs in the screen. </li>
 <li> Images displayed below may be distorted, but should be normal in your screen. </li>
-<li> Functions contained in dnet 1.0.5 are hyperlinked in-place and also listed on the right side. </li>
+<li> Functions contained in dnet 1.0.6 are hyperlinked in-place and also listed on the right side. </li>
 
 <div class="row">
     <div class="span8">
@@ -391,7 +391,7 @@ apply(adjpvals<1e-2, 2, sum)
 # obtain gene significance from the given gene-sample matrix according to singular value decomposition-based method
 fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.eigen=NULL, pval.eigen=1e-2, signif="fdr", orient.permutation="row", num.permutation=200, fdr.procedure="stepup", verbose=T)
 </div>
-<strong class='message'>Start at 2014-07-02 11:58:24</strong>
+<strong class='message'>Start at 2014-09-09 17:05:55</strong>
 <strong class='message'></strong>
 <strong class='message'>First, singular value decomposition of the input matrix (with 4139 rows and 18 columns)...</strong>
 <strong class='message'>Second, determinate the eigens...</strong>
@@ -401,27 +401,27 @@ fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.ei
 <strong class='message'>Finally, obtain gene significance (fdr) based on 200 permutations...</strong>
 <strong class='message'>	doing row-wise permutations...</strong>
 <strong class='message'>	estimating fdr...</strong>
-<strong class='message'>1 (out of 4139) at 2014-07-02 11:58:46</strong>
-<strong class='message'>414 (out of 4139) at 2014-07-02 11:58:57</strong>
-<strong class='message'>828 (out of 4139) at 2014-07-02 11:59:07</strong>
-<strong class='message'>1242 (out of 4139) at 2014-07-02 11:59:18</strong>
-<strong class='message'>1656 (out of 4139) at 2014-07-02 11:59:29</strong>
-<strong class='message'>2070 (out of 4139) at 2014-07-02 11:59:40</strong>
-<strong class='message'>2484 (out of 4139) at 2014-07-02 11:59:50</strong>
-<strong class='message'>2898 (out of 4139) at 2014-07-02 12:00:01</strong>
-<strong class='message'>3312 (out of 4139) at 2014-07-02 12:00:12</strong>
-<strong class='message'>3726 (out of 4139) at 2014-07-02 12:00:23</strong>
-<strong class='message'>4139 (out of 4139) at 2014-07-02 12:00:33</strong>
+<strong class='message'>1 (out of 4139) at 2014-09-09 17:06:17</strong>
+<strong class='message'>414 (out of 4139) at 2014-09-09 17:06:28</strong>
+<strong class='message'>828 (out of 4139) at 2014-09-09 17:06:38</strong>
+<strong class='message'>1242 (out of 4139) at 2014-09-09 17:06:49</strong>
+<strong class='message'>1656 (out of 4139) at 2014-09-09 17:07:00</strong>
+<strong class='message'>2070 (out of 4139) at 2014-09-09 17:07:11</strong>
+<strong class='message'>2484 (out of 4139) at 2014-09-09 17:07:21</strong>
+<strong class='message'>2898 (out of 4139) at 2014-09-09 17:07:32</strong>
+<strong class='message'>3312 (out of 4139) at 2014-09-09 17:07:43</strong>
+<strong class='message'>3726 (out of 4139) at 2014-09-09 17:07:53</strong>
+<strong class='message'>4139 (out of 4139) at 2014-09-09 17:08:04</strong>
 <strong class='message'>	using stepup procedure...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-07-02 12:00:33</strong>
+<strong class='message'>Finish at 2014-09-09 17:08:04</strong>
 <strong class='message'>Runtime in total is: 129 secs
 </strong>
 <div class='input'>
 # 2) identification of module
 g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network, pval=fdr, method="customised", nsize=30)
 </div>
-<strong class='message'>Start at 2014-07-02 12:00:33</strong>
+<strong class='message'>Start at 2014-09-09 17:08:04</strong>
 <strong class='message'></strong>
 <strong class='message'>First, consider the input fdr (or p-value) distribution</strong>
 <strong class='message'>Second, determine the significance threshold...</strong>
@@ -438,7 +438,7 @@ g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network,
 <strong class='message'>Finally, find the subgraph from the input graph with 3385 nodes and 39961 edges...</strong>
 <strong class='message'>	Size of the subgraph: 54 nodes and 226 edges</strong>
 <strong class='message'>
-Finish at 2014-07-02 12:01:09</strong>
+Finish at 2014-09-09 17:08:40</strong>
 <strong class='message'>Runtime in total is: 36 secs
 </strong>
 <div class='input'>glayout <- layout.fruchterman.reingold(g)
@@ -506,7 +506,7 @@ data <- as.matrix(fit2$coefficients[V(g)$name,])
 # 11) color by additional data (be reordered)
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="edge", node.normalise="degree", amplifier=2, metric="none")
 </div>
-<strong class='message'>Start at 2014-07-02 12:02:05</strong>
+<strong class='message'>Start at 2014-09-09 17:10:14</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -533,8 +533,8 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-07-02 12:02:05</strong>
-<strong class='message'>Runtime in total is: 0 secs
+<strong class='message'>End at 2014-09-09 17:10:15</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap=colormap, vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)
 </div>
@@ -574,23 +574,21 @@ write.table(sif, file=paste("Fang_whole.sif", sep=""), quote=F, row.names=F,col.
     <!--
     
     <h2>Citation</h2>
-    <ul>
-<li>Cite as <code>web link/URL</code></li>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
+
+<p>You may also Cite it as:</p>
+
+<ul>
+<li><code>web link/URL</code></li>
 </ul>
 
 <p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
 
 <ul>
-<li>Cite as <code>standard reference</code></li>
+<li><code>package/software</code></li>
 </ul>
 
 <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
-
-<ul>
-<li>Cite as <code>an application</code></li>
-</ul>
-
-<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. <I>Genome Medicine</I> (in revision)</p>
 
     
 

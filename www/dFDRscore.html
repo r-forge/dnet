@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dFDRscore @ dnet 1.0.5</title>
+<title>dFDRscore @ dnet 1.0.6</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.5</a>
+      <a class="brand" href="index.html">dnet 1.0.6</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -204,14 +204,13 @@ window.onload = function(){
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>dFDRscore</code> is supposed to take as input a vector of
-fdr, which are transformed into scores according to
-according to log-likelihood ratio between the true
-positives and the false positivies. Also if the FDR
-threshold is given, it is used to make sure that fdr below
-threshold are considered significant and thus scored
-positively. Instead, those fdr above the given threshold
-are considered insigificant and thus scored negatively.</p>
+    <p><code>dFDRscore</code> is supposed to take as input a vector of fdr, which
+are transformed into scores according to according to log-likelihood
+ratio between the true positives and the false positivies. Also if the
+FDR threshold is given, it is used to make sure that fdr below
+threshold are considered significant and thus scored positively.
+Instead, those fdr above the given threshold are considered
+insigificant and thus scored negatively.</p>
   
     <h3>Usage</h3>
     <pre>dFDRscore(fdr, fdr.threshold = NULL, scatter = F)</pre>
@@ -221,34 +220,41 @@ are considered insigificant and thus scored negatively.</p>
       <dt>fdr</dt>
       <dd>a vector containing a list of input fdr</dd>
       <dt>fdr.threshold</dt>
-      <dd>the given FDR threshold. By default,
-it is set to NULL, meaning there is no constraint. If
-given, those fdr with the FDR below threshold are
-considered significant and thus scored positively.
-Instead, those fdr with the FDR above given threshold are
-considered insigificant and thus scored negatively</dd>
+      <dd>the given FDR threshold. By default, it is set to
+NULL, meaning there is no constraint. If given, those fdr with the FDR
+below threshold are considered significant and thus scored positively.
+Instead, those fdr with the FDR above given threshold are considered
+insigificant and thus scored negatively</dd>
       <dt>scatter</dt>
-      <dd>logical to indicate whether the scatter
-graph of scores against p-values should be drawn. Also
-indicated is the score corresponding to the given FDR
-threshold (if any)</dd>
+      <dd>logical to indicate whether the scatter graph of scores
+against p-values should be drawn. Also indicated is the score
+corresponding to the given FDR threshold (if any)</dd>
     </dl>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
       <p><ul>
-<li><code>scores</code>: a vector of scores </li>
+<li><code>scores</code>: a vector of scores
+</li>
 </ul></p>
       <p></p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
       <p>none</p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'># 1) generate data with an iid matrix of 1000 x 9
@@ -260,7 +266,7 @@ matrix(rnorm(1000*3,mean=-0.5,sd=1), nrow=1000, ncol=3))
 # using "fdr" significance
 fdr <- dSVDsignif(data, signif="fdr", num.permutation=10)
 </div>
-<strong class='message'>Start at 2014-07-02 11:31:48</strong>
+<strong class='message'>Start at 2014-09-09 16:52:35</strong>
 <strong class='message'></strong>
 <strong class='message'>First, singular value decomposition of the input matrix (with 1000 rows and 9 columns)...</strong>
 <strong class='message'>Second, determinate the eigens...</strong>
@@ -270,21 +276,21 @@ fdr <- dSVDsignif(data, signif="fdr", num.permutation=10)
 <strong class='message'>Finally, obtain gene significance (fdr) based on 10 permutations...</strong>
 <strong class='message'>	doing row-wise permutations...</strong>
 <strong class='message'>	estimating fdr...</strong>
-<strong class='message'>1 (out of 1000) at 2014-07-02 11:31:49</strong>
-<strong class='message'>100 (out of 1000) at 2014-07-02 11:31:49</strong>
-<strong class='message'>200 (out of 1000) at 2014-07-02 11:31:49</strong>
-<strong class='message'>300 (out of 1000) at 2014-07-02 11:31:49</strong>
-<strong class='message'>400 (out of 1000) at 2014-07-02 11:31:49</strong>
-<strong class='message'>500 (out of 1000) at 2014-07-02 11:31:49</strong>
-<strong class='message'>600 (out of 1000) at 2014-07-02 11:31:49</strong>
-<strong class='message'>700 (out of 1000) at 2014-07-02 11:31:50</strong>
-<strong class='message'>800 (out of 1000) at 2014-07-02 11:31:50</strong>
-<strong class='message'>900 (out of 1000) at 2014-07-02 11:31:50</strong>
-<strong class='message'>1000 (out of 1000) at 2014-07-02 11:31:50</strong>
+<strong class='message'>1 (out of 1000) at 2014-09-09 16:52:36</strong>
+<strong class='message'>100 (out of 1000) at 2014-09-09 16:52:36</strong>
+<strong class='message'>200 (out of 1000) at 2014-09-09 16:52:36</strong>
+<strong class='message'>300 (out of 1000) at 2014-09-09 16:52:36</strong>
+<strong class='message'>400 (out of 1000) at 2014-09-09 16:52:36</strong>
+<strong class='message'>500 (out of 1000) at 2014-09-09 16:52:36</strong>
+<strong class='message'>600 (out of 1000) at 2014-09-09 16:52:36</strong>
+<strong class='message'>700 (out of 1000) at 2014-09-09 16:52:36</strong>
+<strong class='message'>800 (out of 1000) at 2014-09-09 16:52:36</strong>
+<strong class='message'>900 (out of 1000) at 2014-09-09 16:52:36</strong>
+<strong class='message'>1000 (out of 1000) at 2014-09-09 16:52:36</strong>
 <strong class='message'>	using stepup procedure...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-07-02 11:31:50</strong>
-<strong class='message'>Runtime in total is: 2 secs
+<strong class='message'>Finish at 2014-09-09 16:52:36</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'>
 # 3) calculate the scores according to the fitted BUM and fdr=0.01
@@ -317,23 +323,21 @@ scores <- dFDRscore(fdr, fdr.threshold=0.1, scatter=TRUE)
     <!--
 
     <h2>Citation</h2>
-    <ul>
-<li>Cite as <code>web link/URL</code></li>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
+
+<p>You may also Cite it as:</p>
+
+<ul>
+<li><code>web link/URL</code></li>
 </ul>
 
 <p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
 
 <ul>
-<li>Cite as <code>standard reference</code></li>
+<li><code>package/software</code></li>
 </ul>
 
 <p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
-
-<ul>
-<li>Cite as <code>an application</code></li>
-</ul>
-
-<p>Fang H, Gough J. (2014) The &#39;dnet&#39; approach promotes emerging research on cancer patient survival. <I>Genome Medicine</I> (in revision)</p>
 
     
     
