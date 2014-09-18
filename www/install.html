@@ -245,7 +245,7 @@ make install
 <p>First, install dependant/imported/suggested packages:</p>
 
 <pre><code>source(&quot;http://bioconductor.org/biocLite.R&quot;)
-biocLite(c(&quot;hexbin&quot;,&quot;ape&quot;,&quot;supraHex&quot;,&quot;graph&quot;,&quot;Rgraphviz&quot;,&quot;igraph&quot;,&quot;Biobase&quot;,&quot;limma&quot;,&quot;survival&quot;,&quot;foreach&quot;,&quot;doMC&quot;))
+biocLite(c(&quot;hexbin&quot;,&quot;ape&quot;,&quot;supraHex&quot;,&quot;graph&quot;,&quot;Rgraphviz&quot;,&quot;igraph&quot;,&quot;Biobase&quot;,&quot;limma&quot;,&quot;survival&quot;,&quot;foreach&quot;,&quot;doMC&quot;,&quot;devtools&quot;))
 </code></pre>
 
 <p>Second, install the package <code>dnet</code> under <a href="http://cran.r-project.org/package=dnet">stable release version</a>:</p>
@@ -253,11 +253,9 @@ biocLite(c(&quot;hexbin&quot;,&quot;ape&quot;,&quot;supraHex&quot;,&quot;graph&q
 <pre><code>install.packages(&quot;dnet&quot;,repos=&quot;http://cran.r-project.org&quot;,type=&quot;source&quot;)
 </code></pre>
 
-<p>Notes: to install the package <code>dnet</code> under <a href="https://github.com/hfang-bristol/dnet">latest development version</a>, please run:</p>
+<p>Third (<code>highly recommended</code>), update the package <code>dnet</code> from <a href="https://github.com/hfang-bristol/dnet">latest development version</a>:</p>
 
-<pre><code>source(&quot;http://bioconductor.org/biocLite.R&quot;)
-biocLite(&quot;devtools&quot;)
-library(devtools)
+<pre><code>library(devtools)
 if(!(&quot;dnet&quot; %in% rownames(installed.packages()))) remove.packages(&quot;dnet&quot;)
 install_github(c(&quot;dnet&quot;), username=&quot;hfang-bristol&quot;)
 </code></pre>
@@ -284,19 +282,13 @@ install_github(c(&quot;dnet&quot;), username=&quot;hfang-bristol&quot;)
     <h2>Citation</h2>
     <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
 
-<p>You may also Cite it as:</p>
+<p>You may also cite the package as:</p>
 
 <ul>
 <li><code>web link/URL</code></li>
 </ul>
 
 <p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
-
-<ul>
-<li><code>package/software</code></li>
-</ul>
-
-<p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
 
     
     <h2>Author</h2>

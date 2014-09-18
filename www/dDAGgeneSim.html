@@ -350,29 +350,29 @@ genes <- sample(allgenes,5)
 sim <- dDAGgeneSim(g=dag, genes=genes, method.gene="BM.average",
 method.term="Resnik", parallel=FALSE, verbose=TRUE)
 </div>
-<strong class='message'>Start at 2014-09-09 16:52:17</strong>
+<strong class='message'>Start at 2014-09-18 16:49:24</strong>
 <strong class='message'></strong>
-<strong class='message'>First, extract all annotatable genes (2014-09-09 16:52:17)...</strong>
+<strong class='message'>First, extract all annotatable genes (2014-09-18 16:49:24)...</strong>
 <strong class='message'>	there are 5 input genes amongst 2910 annotatable genes</strong>
-<strong class='message'>Second, pre-compute semantic similarity between 106 terms (forced to be the most specific for each gene) using Resnik method (2014-09-09 16:52:18)...</strong>
-<strong class='message'>Last, calculate pair-wise semantic similarity between 5 genes using BM.average method (2014-09-09 16:52:19)...</strong>
-<strong class='message'>	1 out of 5 (2014-09-09 16:52:19)</strong>
-<strong class='message'>	2 out of 5 (2014-09-09 16:52:19)</strong>
-<strong class='message'>	3 out of 5 (2014-09-09 16:52:19)</strong>
-<strong class='message'>	4 out of 5 (2014-09-09 16:52:19)</strong>
+<strong class='message'>Second, pre-compute semantic similarity between 134 terms (forced to be the most specific for each gene) using Resnik method (2014-09-18 16:49:24)...</strong>
+<strong class='message'>Last, calculate pair-wise semantic similarity between 5 genes using BM.average method (2014-09-18 16:49:26)...</strong>
+<strong class='message'>	1 out of 5 (2014-09-18 16:49:26)</strong>
+<strong class='message'>	2 out of 5 (2014-09-18 16:49:26)</strong>
+<strong class='message'>	3 out of 5 (2014-09-18 16:49:26)</strong>
+<strong class='message'>	4 out of 5 (2014-09-18 16:49:26)</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-09-09 16:52:19</strong>
+<strong class='message'>Finish at 2014-09-18 16:49:26</strong>
 <strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'>sim
 </div>
 <div class='output'>5 x 5 sparse Matrix of class "dgCMatrix"
-          54476     84634      3329     65055      5826
-54476 .         0.9581381 0.4849088 0.4779958 0.4448426
-84634 0.9581381 .         0.5318154 0.5583385 0.4139061
-3329  0.4849088 0.5318154 .         1.5447019 0.3971068
-65055 0.4779958 0.5583385 1.5447019 .         0.2461299
-5826  0.4448426 0.4139061 0.3971068 0.2461299 .        
+             3856    222662      1910      84126      7840
+3856   .          .         0.3435112 0.09723853 0.3800634
+222662 .          .         0.8461014 0.23511356 0.4210577
+1910   0.34351122 0.8461014 .         0.51479127 0.5786277
+84126  0.09723853 0.2351136 0.5147913 .          0.4487674
+7840   0.38006342 0.4210577 0.5786277 0.44876738 .        
 </div></pre>
   </div>
   
@@ -400,19 +400,13 @@ method.term="Resnik", parallel=FALSE, verbose=TRUE)
     <h2>Citation</h2>
     <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
 
-<p>You may also Cite it as:</p>
+<p>You may also cite the package as:</p>
 
 <ul>
 <li><code>web link/URL</code></li>
 </ul>
 
 <p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
-
-<ul>
-<li><code>package/software</code></li>
-</ul>
-
-<p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
 
     
     

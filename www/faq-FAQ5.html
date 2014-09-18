@@ -225,16 +225,16 @@ V(g)$name <- 1:vcount(g)
 ## obtain the pre-computated affinity matrix for all nodes
 PTmatrix <- <a href='dRWR.html' target=dRWR>dRWR</a>(g, normalise="laplacian", restart=0.75)
 </div>
-<strong class='message'>Start at 2014-09-09 14:48:15</strong>
+<strong class='message'>Start at 2014-09-18 16:56:43</strong>
 <strong class='message'></strong>
-<strong class='message'>First, get the adjacency matrix of the input graph (2014-09-09 14:48:15) ...</strong>
-<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-09-09 14:48:15) ...</strong>
-<strong class='message'>Third, RWR of 26 sets of seeds using 7.5e-01 restart probability (2014-09-09 14:48:15) ...</strong>
+<strong class='message'>First, get the adjacency matrix of the input graph (2014-09-18 16:56:43) ...</strong>
+<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-09-18 16:56:43) ...</strong>
+<strong class='message'>Third, RWR of 14 sets of seeds using 7.5e-01 restart probability (2014-09-18 16:56:43) ...</strong>
 <strong class='message'>	do parallel computation using 2 cores ...</strong>
-<strong class='message'>Finally, output 26 by 26 affinity matrix normalised by none (2014-09-09 14:48:18) ...</strong>
+<strong class='message'>Finally, output 14 by 14 affinity matrix normalised by none (2014-09-18 16:56:44) ...</strong>
 <strong class='message'>
-Finish at 2014-09-09 14:48:18</strong>
-<strong class='message'>Runtime in total is: 3 secs
+Finish at 2014-09-18 16:56:44</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'>### visualise affinity matrix
 visHeatmapAdv(as.matrix(PTmatrix), Rowv=FALSE, Colv=FALSE, colormap="wyr", KeyValueName="Affinity")
@@ -246,16 +246,16 @@ setSeeds <- as.matrix(setSeeds, ncol=1) # must be a matrix
 rownames(setSeeds) <- 1:vcount(g) # must be having rownames
 PTmatrix <- <a href='dRWR.html' target=dRWR>dRWR</a>(g, normalise="laplacian", setSeeds=setSeeds, restart=0.75)
 </div>
-<strong class='message'>Start at 2014-09-09 14:48:18</strong>
+<strong class='message'>Start at 2014-09-18 16:56:44</strong>
 <strong class='message'></strong>
-<strong class='message'>First, get the adjacency matrix of the input graph (2014-09-09 14:48:18) ...</strong>
-<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-09-09 14:48:18) ...</strong>
-<strong class='message'>Third, RWR of 1 sets of seeds using 7.5e-01 restart probability (2014-09-09 14:48:18) ...</strong>
+<strong class='message'>First, get the adjacency matrix of the input graph (2014-09-18 16:56:44) ...</strong>
+<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-09-18 16:56:44) ...</strong>
+<strong class='message'>Third, RWR of 1 sets of seeds using 7.5e-01 restart probability (2014-09-18 16:56:44) ...</strong>
 <strong class='message'>	do parallel computation using 2 cores ...</strong>
-<strong class='message'>	1 out of 1 seed sets (2014-09-09 14:48:18)</strong>
-<strong class='message'>Finally, output 26 by 1 affinity matrix normalised by none (2014-09-09 14:48:18) ...</strong>
+<strong class='message'>	1 out of 1 seed sets (2014-09-18 16:56:44)</strong>
+<strong class='message'>Finally, output 14 by 1 affinity matrix normalised by none (2014-09-18 16:56:44) ...</strong>
 <strong class='message'>
-Finish at 2014-09-09 14:48:18</strong>
+Finish at 2014-09-18 16:56:44</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
@@ -272,43 +272,43 @@ colnames(data) <- paste('S', 1:10, sep='')
 ## Run using the pipeline
 dContact <- <a href='dRWRpipeline.html' target=dRWRpipeline>dRWRpipeline</a>(data, g, restart=0.75)
 </div>
-<strong class='message'>Start at 2014-09-09 14:48:18</strong>
+<strong class='message'>Start at 2014-09-18 16:56:44</strong>
 <strong class='message'></strong>
-<strong class='message'>First, RWR on input graph (26 nodes and 25 edges) using input matrix (26 rows and 10 columns) as seeds (2014-09-09 14:48:18)...</strong>
-<strong class='message'>Second, calculate contact strength (2014-09-09 14:48:19)...</strong>
-<strong class='message'>Third, generate the distribution of contact strength based on 10 permutations on nodes respecting random (2014-09-09 14:48:19)...</strong>
+<strong class='message'>First, RWR on input graph (14 nodes and 13 edges) using input matrix (14 rows and 10 columns) as seeds (2014-09-18 16:56:44)...</strong>
+<strong class='message'>Second, calculate contact strength (2014-09-18 16:56:44)...</strong>
+<strong class='message'>Third, generate the distribution of contact strength based on 10 permutations on nodes respecting random (2014-09-18 16:56:44)...</strong>
 <strong class='message'>	do parallel computation using 2 cores ...</strong>
-<strong class='message'>Last, estimate the significance of contact strength: zscore, pvalue, and BH adjusted-pvalue (2014-09-09 14:48:20)...</strong>
-<strong class='message'>Also, construct the contact graph under the cutoff 5.0e-02 of adjusted-pvalue (2014-09-09 14:48:20)...</strong>
+<strong class='message'>Last, estimate the significance of contact strength: zscore, pvalue, and BH adjusted-pvalue (2014-09-18 16:56:46)...</strong>
+<strong class='message'>Also, construct the contact graph under the cutoff 5.0e-02 of adjusted-pvalue (2014-09-18 16:56:46)...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-09-09 14:48:20</strong>
+<strong class='message'>Finish at 2014-09-18 16:56:46</strong>
 <strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'>## Run using two steps instead: first pre-compute affinity matrix, and then estimate RWR-based sample relationships
 Amatrix <- <a href='dRWR.html' target=dRWR>dRWR</a>(g, restart=0.75)
 </div>
-<strong class='message'>Start at 2014-09-09 14:48:20</strong>
+<strong class='message'>Start at 2014-09-18 16:56:46</strong>
 <strong class='message'></strong>
-<strong class='message'>First, get the adjacency matrix of the input graph (2014-09-09 14:48:20) ...</strong>
-<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-09-09 14:48:20) ...</strong>
-<strong class='message'>Third, RWR of 26 sets of seeds using 7.5e-01 restart probability (2014-09-09 14:48:20) ...</strong>
+<strong class='message'>First, get the adjacency matrix of the input graph (2014-09-18 16:56:46) ...</strong>
+<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-09-18 16:56:46) ...</strong>
+<strong class='message'>Third, RWR of 14 sets of seeds using 7.5e-01 restart probability (2014-09-18 16:56:46) ...</strong>
 <strong class='message'>	do parallel computation using 2 cores ...</strong>
-<strong class='message'>Finally, output 26 by 26 affinity matrix normalised by none (2014-09-09 14:48:21) ...</strong>
+<strong class='message'>Finally, output 14 by 14 affinity matrix normalised by none (2014-09-18 16:56:46) ...</strong>
 <strong class='message'>
-Finish at 2014-09-09 14:48:21</strong>
-<strong class='message'>Runtime in total is: 1 secs
+Finish at 2014-09-18 16:56:46</strong>
+<strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>dContact <- <a href='dRWRcontact.html' target=dRWRcontact>dRWRcontact</a>(data, g, Amatrix)</div>
-<strong class='message'>Start at 2014-09-09 14:48:21</strong>
+<strong class='message'>Start at 2014-09-18 16:56:46</strong>
 <strong class='message'></strong>
-<strong class='message'>First, RWR on input graph (26 nodes and 25 edges) using input matrix (26 rows and 10 columns) as seeds and pre-computed affinity matrix (26 rows and 26 columns) (2014-09-09 14:48:21)...</strong>
-<strong class='message'>Second, calculate contact strength (2014-09-09 14:48:21)...</strong>
-<strong class='message'>Third, generate the distribution of contact strength based on 10 permutations on nodes respecting random (2014-09-09 14:48:21)...</strong>
+<strong class='message'>First, RWR on input graph (14 nodes and 13 edges) using input matrix (14 rows and 10 columns) as seeds and pre-computed affinity matrix (14 rows and 14 columns) (2014-09-18 16:56:46)...</strong>
+<strong class='message'>Second, calculate contact strength (2014-09-18 16:56:46)...</strong>
+<strong class='message'>Third, generate the distribution of contact strength based on 10 permutations on nodes respecting random (2014-09-18 16:56:46)...</strong>
 <strong class='message'>	do parallel computation using 2 cores ...</strong>
-<strong class='message'>Last, estimate the significance of contact strength: zscore, pvalue, and BH adjusted-pvalue (2014-09-09 14:48:21)...</strong>
-<strong class='message'>Also, construct the contact graph under the cutoff 5.0e-02 of adjusted-pvalue (2014-09-09 14:48:21)...</strong>
+<strong class='message'>Last, estimate the significance of contact strength: zscore, pvalue, and BH adjusted-pvalue (2014-09-18 16:56:46)...</strong>
+<strong class='message'>Also, construct the contact graph under the cutoff 5.0e-02 of adjusted-pvalue (2014-09-18 16:56:46)...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-09-09 14:48:21</strong>
+<strong class='message'>Finish at 2014-09-18 16:56:46</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
       </pre>
@@ -325,21 +325,15 @@ Finish at 2014-09-09 14:48:21</strong>
     </ul>
     <!--    
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (doi:10.1186/s13073-014-0064-8)</p>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
 
-<p>You may also Cite it as:</p>
+<p>You may also cite the package as:</p>
 
 <ul>
 <li><code>web link/URL</code></li>
 </ul>
 
 <p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
-
-<ul>
-<li><code>package/software</code></li>
-</ul>
-
-<p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
 
     
     <h2>URL</h2>

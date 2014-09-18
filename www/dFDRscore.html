@@ -266,7 +266,7 @@ matrix(rnorm(1000*3,mean=-0.5,sd=1), nrow=1000, ncol=3))
 # using "fdr" significance
 fdr <- dSVDsignif(data, signif="fdr", num.permutation=10)
 </div>
-<strong class='message'>Start at 2014-09-09 16:52:35</strong>
+<strong class='message'>Start at 2014-09-18 16:49:41</strong>
 <strong class='message'></strong>
 <strong class='message'>First, singular value decomposition of the input matrix (with 1000 rows and 9 columns)...</strong>
 <strong class='message'>Second, determinate the eigens...</strong>
@@ -276,21 +276,21 @@ fdr <- dSVDsignif(data, signif="fdr", num.permutation=10)
 <strong class='message'>Finally, obtain gene significance (fdr) based on 10 permutations...</strong>
 <strong class='message'>	doing row-wise permutations...</strong>
 <strong class='message'>	estimating fdr...</strong>
-<strong class='message'>1 (out of 1000) at 2014-09-09 16:52:36</strong>
-<strong class='message'>100 (out of 1000) at 2014-09-09 16:52:36</strong>
-<strong class='message'>200 (out of 1000) at 2014-09-09 16:52:36</strong>
-<strong class='message'>300 (out of 1000) at 2014-09-09 16:52:36</strong>
-<strong class='message'>400 (out of 1000) at 2014-09-09 16:52:36</strong>
-<strong class='message'>500 (out of 1000) at 2014-09-09 16:52:36</strong>
-<strong class='message'>600 (out of 1000) at 2014-09-09 16:52:36</strong>
-<strong class='message'>700 (out of 1000) at 2014-09-09 16:52:36</strong>
-<strong class='message'>800 (out of 1000) at 2014-09-09 16:52:36</strong>
-<strong class='message'>900 (out of 1000) at 2014-09-09 16:52:36</strong>
-<strong class='message'>1000 (out of 1000) at 2014-09-09 16:52:36</strong>
+<strong class='message'>1 (out of 1000) at 2014-09-18 16:49:42</strong>
+<strong class='message'>100 (out of 1000) at 2014-09-18 16:49:42</strong>
+<strong class='message'>200 (out of 1000) at 2014-09-18 16:49:43</strong>
+<strong class='message'>300 (out of 1000) at 2014-09-18 16:49:43</strong>
+<strong class='message'>400 (out of 1000) at 2014-09-18 16:49:43</strong>
+<strong class='message'>500 (out of 1000) at 2014-09-18 16:49:43</strong>
+<strong class='message'>600 (out of 1000) at 2014-09-18 16:49:43</strong>
+<strong class='message'>700 (out of 1000) at 2014-09-18 16:49:43</strong>
+<strong class='message'>800 (out of 1000) at 2014-09-18 16:49:43</strong>
+<strong class='message'>900 (out of 1000) at 2014-09-18 16:49:43</strong>
+<strong class='message'>1000 (out of 1000) at 2014-09-18 16:49:43</strong>
 <strong class='message'>	using stepup procedure...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-09-09 16:52:36</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>Finish at 2014-09-18 16:49:43</strong>
+<strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'>
 # 3) calculate the scores according to the fitted BUM and fdr=0.01
@@ -325,19 +325,13 @@ scores <- dFDRscore(fdr, fdr.threshold=0.1, scatter=TRUE)
     <h2>Citation</h2>
     <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
 
-<p>You may also Cite it as:</p>
+<p>You may also cite the package as:</p>
 
 <ul>
 <li><code>web link/URL</code></li>
 </ul>
 
 <p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
-
-<ul>
-<li><code>package/software</code></li>
-</ul>
-
-<p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
 
     
     

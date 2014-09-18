@@ -326,7 +326,7 @@ D <- as.matrix(exprs(esetGene))
 D <- D - as.matrix(apply(D,1,mean),ncol=1)[,rep(1,ncol(D))]
 fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.eigen=NULL, pval.eigen=1e-2, signif="fdr", orient.permutation="row", num.permutation=100, fdr.procedure="stepup", verbose=T)
 </div>
-<strong class='message'>Start at 2014-09-09 14:46:32</strong>
+<strong class='message'>Start at 2014-09-18 16:54:23</strong>
 <strong class='message'></strong>
 <strong class='message'>First, singular value decomposition of the input matrix (with 4139 rows and 18 columns)...</strong>
 <strong class='message'>Second, determinate the eigens...</strong>
@@ -336,21 +336,21 @@ fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.ei
 <strong class='message'>Finally, obtain gene significance (fdr) based on 100 permutations...</strong>
 <strong class='message'>	doing row-wise permutations...</strong>
 <strong class='message'>	estimating fdr...</strong>
-<strong class='message'>1 (out of 4139) at 2014-09-09 14:46:47</strong>
-<strong class='message'>414 (out of 4139) at 2014-09-09 14:46:52</strong>
-<strong class='message'>828 (out of 4139) at 2014-09-09 14:46:58</strong>
-<strong class='message'>1242 (out of 4139) at 2014-09-09 14:47:04</strong>
-<strong class='message'>1656 (out of 4139) at 2014-09-09 14:47:10</strong>
-<strong class='message'>2070 (out of 4139) at 2014-09-09 14:47:16</strong>
-<strong class='message'>2484 (out of 4139) at 2014-09-09 14:47:22</strong>
-<strong class='message'>2898 (out of 4139) at 2014-09-09 14:47:27</strong>
-<strong class='message'>3312 (out of 4139) at 2014-09-09 14:47:33</strong>
-<strong class='message'>3726 (out of 4139) at 2014-09-09 14:47:39</strong>
-<strong class='message'>4139 (out of 4139) at 2014-09-09 14:47:44</strong>
+<strong class='message'>1 (out of 4139) at 2014-09-18 16:54:37</strong>
+<strong class='message'>414 (out of 4139) at 2014-09-18 16:54:43</strong>
+<strong class='message'>828 (out of 4139) at 2014-09-18 16:54:49</strong>
+<strong class='message'>1242 (out of 4139) at 2014-09-18 16:54:55</strong>
+<strong class='message'>1656 (out of 4139) at 2014-09-18 16:55:00</strong>
+<strong class='message'>2070 (out of 4139) at 2014-09-18 16:55:06</strong>
+<strong class='message'>2484 (out of 4139) at 2014-09-18 16:55:12</strong>
+<strong class='message'>2898 (out of 4139) at 2014-09-18 16:55:17</strong>
+<strong class='message'>3312 (out of 4139) at 2014-09-18 16:55:23</strong>
+<strong class='message'>3726 (out of 4139) at 2014-09-18 16:55:28</strong>
+<strong class='message'>4139 (out of 4139) at 2014-09-18 16:55:34</strong>
 <strong class='message'>	using stepup procedure...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-09-09 14:47:44</strong>
-<strong class='message'>Runtime in total is: 72 secs
+<strong class='message'>Finish at 2014-09-18 16:55:34</strong>
+<strong class='message'>Runtime in total is: 71 secs
 </strong>
 <div class='input'>hist(fdr, 100)</div>
 <a href="javascript:newWin('FAQ3-34.png', 'FAQ3-34.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ3-34.png', width="400" /></a>
@@ -367,21 +367,15 @@ fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.ei
     </ul>
     <!--    
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (doi:10.1186/s13073-014-0064-8)</p>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
 
-<p>You may also Cite it as:</p>
+<p>You may also cite the package as:</p>
 
 <ul>
 <li><code>web link/URL</code></li>
 </ul>
 
 <p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
-
-<ul>
-<li><code>package/software</code></li>
-</ul>
-
-<p>Fang H, Gough J. (2014) dnet: an open-source R package for omics data integrative analysis in terms of network, evolution and ontology. <a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a></p>
 
     
     <h2>URL</h2>

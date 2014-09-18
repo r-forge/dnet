@@ -219,10 +219,11 @@ dRWR <- function(g, normalise=c("laplacian","row","column","none"), setSeeds=NUL
         ###### parallel computing
         flag_parallel <- F
         if(parallel==TRUE){
+
             flag_parallel <- dCheckParallel(multicores=multicores, verbose=verbose)
             if(flag_parallel){
                     
-                PTmatrix <- foreach(j=1:ncol(P0matrix), .inorder=T, .combine='cbind') %dopar% {
+                PTmatrix <- foreach::foreach(j=1:ncol(P0matrix), .inorder=T, .combine='cbind') %dopar% {
                     progress_indicate(j, ncol(P0matrix), 100, flag=T)
                     P0 <- P0matrix[,j]
                     ## Initializing variables
