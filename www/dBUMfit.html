@@ -312,17 +312,17 @@ x <- rbeta(1000, shape1=0.5, shape2=1)
 fit <- dBUMfit(x)
 </div>
 <strong class='message'>	A total of p-values: 1000</strong>
-<strong class='message'>	Maximum Log-Likelihood: 346.6</strong>
-<strong class='message'>	Mixture parameter (lambda): 0.025</strong>
-<strong class='message'>	Shape parameter (a): 0.475</strong>
+<strong class='message'>	Maximum Log-Likelihood: 313.7</strong>
+<strong class='message'>	Mixture parameter (lambda): 0.000</strong>
+<strong class='message'>	Shape parameter (a): 0.497</strong>
 <a href="javascript:newWin('dBUMfit-6.png', 'dBUMfit-6.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dBUMfit-6.png', width="400" /></a>
 <div class='input'>fit$lambda
 </div>
-<div class='output'>[1] 0.02458494
+<div class='output'>[1] 1e-05
 </div>
 <div class='input'>fit$a
 </div>
-<div class='output'>[1] 0.4749993
+<div class='output'>[1] 0.496629
 </div></pre>
   </div>
   
@@ -339,6 +339,9 @@ fit <- dBUMfit(x)
     
     <h2>Source code</h2>
     <a href="javascript:newWin('R/dBUMfit.r', 'R/dBUMfit.r', '1200', '1200')" title="Click to view"><B><code>dBUMfit.r</code></B></a>
+    
+    <h2>Source man</h2>
+    <a href="javascript:newWin('man/dBUMfit.txt', 'man/dBUMfit.txt', '1200', '1200')" title="Click to view"><B><code>dBUMfit.Rd</code></B></a>
     
     <h2>See also</h2>
     

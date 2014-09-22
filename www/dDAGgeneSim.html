@@ -350,29 +350,29 @@ genes <- sample(allgenes,5)
 sim <- dDAGgeneSim(g=dag, genes=genes, method.gene="BM.average",
 method.term="Resnik", parallel=FALSE, verbose=TRUE)
 </div>
-<strong class='message'>Start at 2014-09-18 16:49:24</strong>
+<strong class='message'>Start at 2014-09-22 19:28:31</strong>
 <strong class='message'></strong>
-<strong class='message'>First, extract all annotatable genes (2014-09-18 16:49:24)...</strong>
+<strong class='message'>First, extract all annotatable genes (2014-09-22 19:28:31)...</strong>
 <strong class='message'>	there are 5 input genes amongst 2910 annotatable genes</strong>
-<strong class='message'>Second, pre-compute semantic similarity between 134 terms (forced to be the most specific for each gene) using Resnik method (2014-09-18 16:49:24)...</strong>
-<strong class='message'>Last, calculate pair-wise semantic similarity between 5 genes using BM.average method (2014-09-18 16:49:26)...</strong>
-<strong class='message'>	1 out of 5 (2014-09-18 16:49:26)</strong>
-<strong class='message'>	2 out of 5 (2014-09-18 16:49:26)</strong>
-<strong class='message'>	3 out of 5 (2014-09-18 16:49:26)</strong>
-<strong class='message'>	4 out of 5 (2014-09-18 16:49:26)</strong>
+<strong class='message'>Second, pre-compute semantic similarity between 160 terms (forced to be the most specific for each gene) using Resnik method (2014-09-22 19:28:32)...</strong>
+<strong class='message'>Last, calculate pair-wise semantic similarity between 5 genes using BM.average method (2014-09-22 19:28:34)...</strong>
+<strong class='message'>	1 out of 5 (2014-09-22 19:28:34)</strong>
+<strong class='message'>	2 out of 5 (2014-09-22 19:28:34)</strong>
+<strong class='message'>	3 out of 5 (2014-09-22 19:28:34)</strong>
+<strong class='message'>	4 out of 5 (2014-09-22 19:28:34)</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-09-18 16:49:26</strong>
-<strong class='message'>Runtime in total is: 2 secs
+<strong class='message'>Finish at 2014-09-22 19:28:34</strong>
+<strong class='message'>Runtime in total is: 3 secs
 </strong>
 <div class='input'>sim
 </div>
 <div class='output'>5 x 5 sparse Matrix of class "dgCMatrix"
-             3856    222662      1910      84126      7840
-3856   .          .         0.3435112 0.09723853 0.3800634
-222662 .          .         0.8461014 0.23511356 0.4210577
-1910   0.34351122 0.8461014 .         0.51479127 0.5786277
-84126  0.09723853 0.2351136 0.5147913 .          0.4487674
-7840   0.38006342 0.4210577 0.5786277 0.44876738 .        
+            57152      1277    286077     390594     65062
+57152  .          0.4690604 0.2950585 0.02879461 0.3479938
+1277   0.46906037 .         0.6810395 0.29100452 0.6568461
+286077 0.29505850 0.6810395 .         0.16042711 0.3021127
+390594 0.02879461 0.2910045 0.1604271 .          0.4065749
+65062  0.34799378 0.6568461 0.3021127 0.40657486 .        
 </div></pre>
   </div>
   
@@ -389,6 +389,9 @@ method.term="Resnik", parallel=FALSE, verbose=TRUE)
     
     <h2>Source code</h2>
     <a href="javascript:newWin('R/dDAGgeneSim.r', 'R/dDAGgeneSim.r', '1200', '1200')" title="Click to view"><B><code>dDAGgeneSim.r</code></B></a>
+    
+    <h2>Source man</h2>
+    <a href="javascript:newWin('man/dDAGgeneSim.txt', 'man/dDAGgeneSim.txt', '1200', '1200')" title="Click to view"><B><code>dDAGgeneSim.Rd</code></B></a>
     
     <h2>See also</h2>
     

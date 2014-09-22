@@ -316,9 +316,9 @@ x <- rbeta(1000, shape1=0.5, shape2=1)
 fit <- dBUMfit(x)
 </div>
 <strong class='message'>	A total of p-values: 1000</strong>
-<strong class='message'>	Maximum Log-Likelihood: 241.0</strong>
-<strong class='message'>	Mixture parameter (lambda): 0.112</strong>
-<strong class='message'>	Shape parameter (a): 0.507</strong>
+<strong class='message'>	Maximum Log-Likelihood: 295.6</strong>
+<strong class='message'>	Mixture parameter (lambda): 0.018</strong>
+<strong class='message'>	Shape parameter (a): 0.501</strong>
 <a href="javascript:newWin('dBUMscore-6.png', 'dBUMscore-6.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dBUMscore-6.png', width="400" /></a>
 <div class='input'>
 # 3) calculate the scores according to the fitted BUM and fdr=0.01
@@ -345,6 +345,9 @@ scores <- dBUMscore(fit, method="cdf", fdr=0.01)
     
     <h2>Source code</h2>
     <a href="javascript:newWin('R/dBUMscore.r', 'R/dBUMscore.r', '1200', '1200')" title="Click to view"><B><code>dBUMscore.r</code></B></a>
+    
+    <h2>Source man</h2>
+    <a href="javascript:newWin('man/dBUMscore.txt', 'man/dBUMscore.txt', '1200', '1200')" title="Click to view"><B><code>dBUMscore.Rd</code></B></a>
     
     <h2>See also</h2>
     

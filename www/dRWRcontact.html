@@ -323,23 +323,23 @@ V(subg)$name <- 1:vcount(subg)
 # 3) pre-compute affinity matrix from the input graph
 Amatrix <- dRWR(g=subg, parallel=FALSE)
 </div>
-<strong class='message'>Start at 2014-09-18 16:50:29</strong>
+<strong class='message'>Start at 2014-09-22 19:29:35</strong>
 <strong class='message'></strong>
-<strong class='message'>First, get the adjacency matrix of the input graph (2014-09-18 16:50:29) ...</strong>
-<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-09-18 16:50:29) ...</strong>
-<strong class='message'>Third, RWR of 8 sets of seeds using 7.5e-01 restart probability (2014-09-18 16:50:29) ...</strong>
-<strong class='message'>	1 out of 8 seed sets (2014-09-18 16:50:30)</strong>
-<strong class='message'>	2 out of 8 seed sets (2014-09-18 16:50:30)</strong>
-<strong class='message'>	3 out of 8 seed sets (2014-09-18 16:50:30)</strong>
-<strong class='message'>	4 out of 8 seed sets (2014-09-18 16:50:30)</strong>
-<strong class='message'>	5 out of 8 seed sets (2014-09-18 16:50:30)</strong>
-<strong class='message'>	6 out of 8 seed sets (2014-09-18 16:50:30)</strong>
-<strong class='message'>	7 out of 8 seed sets (2014-09-18 16:50:30)</strong>
-<strong class='message'>	8 out of 8 seed sets (2014-09-18 16:50:30)</strong>
-<strong class='message'>Finally, output 8 by 8 affinity matrix normalised by none (2014-09-18 16:50:30) ...</strong>
+<strong class='message'>First, get the adjacency matrix of the input graph (2014-09-22 19:29:35) ...</strong>
+<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-09-22 19:29:35) ...</strong>
+<strong class='message'>Third, RWR of 8 sets of seeds using 7.5e-01 restart probability (2014-09-22 19:29:35) ...</strong>
+<strong class='message'>	1 out of 8 seed sets (2014-09-22 19:29:35)</strong>
+<strong class='message'>	2 out of 8 seed sets (2014-09-22 19:29:35)</strong>
+<strong class='message'>	3 out of 8 seed sets (2014-09-22 19:29:35)</strong>
+<strong class='message'>	4 out of 8 seed sets (2014-09-22 19:29:35)</strong>
+<strong class='message'>	5 out of 8 seed sets (2014-09-22 19:29:35)</strong>
+<strong class='message'>	6 out of 8 seed sets (2014-09-22 19:29:35)</strong>
+<strong class='message'>	7 out of 8 seed sets (2014-09-22 19:29:35)</strong>
+<strong class='message'>	8 out of 8 seed sets (2014-09-22 19:29:35)</strong>
+<strong class='message'>Finally, output 8 by 8 affinity matrix normalised by none (2014-09-22 19:29:35) ...</strong>
 <strong class='message'>
-Finish at 2014-09-18 16:50:30</strong>
-<strong class='message'>Runtime in total is: 1 secs
+Finish at 2014-09-22 19:29:35</strong>
+<strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
 # 4) estimate RWR-based sample relationships
@@ -353,25 +353,25 @@ rownames(data) <- 1:5
 dContact <- dRWRcontact(data=data, g=subg, Amatrix=Amatrix,
 parallel=FALSE)
 </div>
-<strong class='message'>Start at 2014-09-18 16:50:30</strong>
+<strong class='message'>Start at 2014-09-22 19:29:35</strong>
 <strong class='message'></strong>
-<strong class='message'>First, RWR on input graph (8 nodes and 8 edges) using input matrix (5 rows and 2 columns) as seeds and pre-computed affinity matrix (8 rows and 8 columns) (2014-09-18 16:50:30)...</strong>
-<strong class='message'>Second, calculate contact strength (2014-09-18 16:50:30)...</strong>
-<strong class='message'>Third, generate the distribution of contact strength based on 10 permutations on nodes respecting random (2014-09-18 16:50:30)...</strong>
-<strong class='message'>	1 out of 10 (2014-09-18 16:50:30)</strong>
-<strong class='message'>	2 out of 10 (2014-09-18 16:50:30)</strong>
-<strong class='message'>	3 out of 10 (2014-09-18 16:50:30)</strong>
-<strong class='message'>	4 out of 10 (2014-09-18 16:50:30)</strong>
-<strong class='message'>	5 out of 10 (2014-09-18 16:50:30)</strong>
-<strong class='message'>	6 out of 10 (2014-09-18 16:50:30)</strong>
-<strong class='message'>	7 out of 10 (2014-09-18 16:50:30)</strong>
-<strong class='message'>	8 out of 10 (2014-09-18 16:50:30)</strong>
-<strong class='message'>	9 out of 10 (2014-09-18 16:50:30)</strong>
-<strong class='message'>	10 out of 10 (2014-09-18 16:50:30)</strong>
-<strong class='message'>Last, estimate the significance of contact strength: zscore, pvalue, and BH adjusted-pvalue (2014-09-18 16:50:30)...</strong>
-<strong class='message'>Also, construct the contact graph under the cutoff 5.0e-02 of adjusted-pvalue (2014-09-18 16:50:30)...</strong>
+<strong class='message'>First, RWR on input graph (8 nodes and 8 edges) using input matrix (5 rows and 2 columns) as seeds and pre-computed affinity matrix (8 rows and 8 columns) (2014-09-22 19:29:35)...</strong>
+<strong class='message'>Second, calculate contact strength (2014-09-22 19:29:35)...</strong>
+<strong class='message'>Third, generate the distribution of contact strength based on 10 permutations on nodes respecting random (2014-09-22 19:29:35)...</strong>
+<strong class='message'>	1 out of 10 (2014-09-22 19:29:35)</strong>
+<strong class='message'>	2 out of 10 (2014-09-22 19:29:35)</strong>
+<strong class='message'>	3 out of 10 (2014-09-22 19:29:35)</strong>
+<strong class='message'>	4 out of 10 (2014-09-22 19:29:35)</strong>
+<strong class='message'>	5 out of 10 (2014-09-22 19:29:35)</strong>
+<strong class='message'>	6 out of 10 (2014-09-22 19:29:35)</strong>
+<strong class='message'>	7 out of 10 (2014-09-22 19:29:35)</strong>
+<strong class='message'>	8 out of 10 (2014-09-22 19:29:35)</strong>
+<strong class='message'>	9 out of 10 (2014-09-22 19:29:35)</strong>
+<strong class='message'>	10 out of 10 (2014-09-22 19:29:35)</strong>
+<strong class='message'>Last, estimate the significance of contact strength: zscore, pvalue, and BH adjusted-pvalue (2014-09-22 19:29:35)...</strong>
+<strong class='message'>Also, construct the contact graph under the cutoff 5.0e-02 of adjusted-pvalue (2014-09-22 19:29:35)...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-09-18 16:50:30</strong>
+<strong class='message'>Finish at 2014-09-22 19:29:35</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>dContact
@@ -424,6 +424,9 @@ attr(,"class")
     
     <h2>Source code</h2>
     <a href="javascript:newWin('R/dRWRcontact.r', 'R/dRWRcontact.r', '1200', '1200')" title="Click to view"><B><code>dRWRcontact.r</code></B></a>
+    
+    <h2>Source man</h2>
+    <a href="javascript:newWin('man/dRWRcontact.txt', 'man/dRWRcontact.txt', '1200', '1200')" title="Click to view"><B><code>dRWRcontact.Rd</code></B></a>
     
     <h2>See also</h2>
     

@@ -306,79 +306,73 @@ subg <- dNetInduce(g, V(g), knn=0)
 # 4a) assume the input is a list of p-values (controlling fdr=0.1)
 subgraph <- dNetPipeline(g=subg, pval=x, significance.threshold=0.1)
 </div>
-<strong class='message'>Start at 2014-09-18 16:50:15</strong>
+<strong class='message'>Start at 2014-09-22 19:29:23</strong>
 <strong class='message'></strong>
 <strong class='message'>First, fit the input p-value distribution under beta-uniform mixture model...</strong>
 <strong class='message'>	A total of p-values: 1000</strong>
-<strong class='message'>	Maximum Log-Likelihood: 316.2</strong>
-<strong class='message'>	Mixture parameter (lambda): 0.015</strong>
-<strong class='message'>	Shape parameter (a): 0.492</strong>
+<strong class='message'>	Maximum Log-Likelihood: 324.5</strong>
+<strong class='message'>	Mixture parameter (lambda): 0.000</strong>
+<strong class='message'>	Shape parameter (a): 0.491</strong>
 <strong class='message'>Second, determine the significance threshold...</strong>
 <strong class='message'>	significance threshold: 1.00e-01</strong>
 <strong class='message'>Third, calculate the scores according to the fitted BUM and FDR threshold (if any)...</strong>
-<strong class='message'>	Amongst 1000 scores, there are 201 positives.</strong>
-<strong class='message'>Finally, find the subgraph from the input graph with 1000 nodes and 5058 edges...</strong>
-<strong class='message'>	Size of the subgraph: 177 nodes and 214 edges</strong>
+<strong class='message'>	Amongst 1000 scores, there are 218 positives.</strong>
+<strong class='message'>Finally, find the subgraph from the input graph with 1000 nodes and 4982 edges...</strong>
+<strong class='message'>	Size of the subgraph: 183 nodes and 230 edges</strong>
 <strong class='message'>
-Finish at 2014-09-18 16:50:16</strong>
-<strong class='message'>Runtime in total is: 1 secs
+Finish at 2014-09-22 19:29:25</strong>
+<strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'># 4b) assume the input is a list of customised significance (eg FDR directly)
 subgraph <- dNetPipeline(g=subg, pval=x, method="customised",
 significance.threshold=0.1)
 </div>
-<strong class='message'>Start at 2014-09-18 16:50:16</strong>
+<strong class='message'>Start at 2014-09-22 19:29:25</strong>
 <strong class='message'></strong>
 <strong class='message'>First, consider the input fdr (or p-value) distribution</strong>
 <strong class='message'>Second, determine the significance threshold...</strong>
 <strong class='message'>	significance threshold: 1.00e-01</strong>
 <strong class='message'>Third, calculate the scores according to the input fdr (or p-value) and the threshold (if any)...</strong>
-<strong class='message'>	Amongst 1000 scores, there are 309 positives.</strong>
-<strong class='message'>Finally, find the subgraph from the input graph with 1000 nodes and 5058 edges...</strong>
-<strong class='message'>	Size of the subgraph: 298 nodes and 484 edges</strong>
+<strong class='message'>	Amongst 1000 scores, there are 332 positives.</strong>
+<strong class='message'>Finally, find the subgraph from the input graph with 1000 nodes and 4982 edges...</strong>
+<strong class='message'>	Size of the subgraph: 322 nodes and 556 edges</strong>
 <strong class='message'>
-Finish at 2014-09-18 16:50:19</strong>
-<strong class='message'>Runtime in total is: 3 secs
+Finish at 2014-09-22 19:29:27</strong>
+<strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'>
 # 5) find maximum-scoring subgraph with the desired node number nsize=20
 subgraph <- dNetPipeline(g=subg, pval=x, nsize=20)
 </div>
-<strong class='message'>Start at 2014-09-18 16:50:19</strong>
+<strong class='message'>Start at 2014-09-22 19:29:27</strong>
 <strong class='message'></strong>
 <strong class='message'>First, fit the input p-value distribution under beta-uniform mixture model...</strong>
 <strong class='message'>	A total of p-values: 1000</strong>
-<strong class='message'>	Maximum Log-Likelihood: 316.2</strong>
-<strong class='message'>	Mixture parameter (lambda): 0.015</strong>
-<strong class='message'>	Shape parameter (a): 0.492</strong>
+<strong class='message'>	Maximum Log-Likelihood: 324.5</strong>
+<strong class='message'>	Mixture parameter (lambda): 0.000</strong>
+<strong class='message'>	Shape parameter (a): 0.491</strong>
 <strong class='message'>Second, determine the significance threshold...</strong>
 <strong class='message'>	Via constraint on the size of subnetwork to be identified (20 nodes)</strong>
 <strong class='message'>	Scanning significance threshold at rough stage...</strong>
-<strong class='message'>		significance threshold: 1.00e-09, corresponding to the network size (0 nodes)</strong>
-<strong class='message'>		significance threshold: 1.00e-08, corresponding to the network size (0 nodes)</strong>
 <strong class='message'>		significance threshold: 1.00e-07, corresponding to the network size (0 nodes)</strong>
 <strong class='message'>		significance threshold: 1.00e-06, corresponding to the network size (0 nodes)</strong>
 <strong class='message'>		significance threshold: 1.00e-05, corresponding to the network size (0 nodes)</strong>
-<strong class='message'>		significance threshold: 1.00e-04, corresponding to the network size (1 nodes)</strong>
-<strong class='message'>		significance threshold: 1.00e-03, corresponding to the network size (2 nodes)</strong>
+<strong class='message'>		significance threshold: 1.00e-04, corresponding to the network size (0 nodes)</strong>
+<strong class='message'>		significance threshold: 1.00e-03, corresponding to the network size (1 nodes)</strong>
 <strong class='message'>		significance threshold: 1.00e-02, corresponding to the network size (3 nodes)</strong>
-<strong class='message'>		significance threshold: 1.00e-01, corresponding to the network size (177 nodes)</strong>
+<strong class='message'>		significance threshold: 1.00e-01, corresponding to the network size (183 nodes)</strong>
 <strong class='message'>	Scanning significance threshold at finetune stage...</strong>
-<strong class='message'>		significance threshold : 1.50e-02, corresponding to the network size (3 nodes)</strong>
+<strong class='message'>		significance threshold : 1.50e-02, corresponding to the network size (7 nodes)</strong>
 <strong class='message'>		significance threshold : 2.00e-02, corresponding to the network size (5 nodes)</strong>
-<strong class='message'>		significance threshold : 2.50e-02, corresponding to the network size (8 nodes)</strong>
-<strong class='message'>		significance threshold : 3.00e-02, corresponding to the network size (12 nodes)</strong>
-<strong class='message'>		significance threshold : 3.50e-02, corresponding to the network size (15 nodes)</strong>
-<strong class='message'>		significance threshold : 4.00e-02, corresponding to the network size (15 nodes)</strong>
-<strong class='message'>		significance threshold : 4.50e-02, corresponding to the network size (29 nodes)</strong>
-<strong class='message'>	significance threshold: 4.50e-02</strong>
+<strong class='message'>		significance threshold : 2.50e-02, corresponding to the network size (20 nodes)</strong>
+<strong class='message'>	significance threshold: 2.50e-02</strong>
 <strong class='message'>Third, calculate the scores according to the fitted BUM and FDR threshold (if any)...</strong>
-<strong class='message'>	Amongst 1000 scores, there are 101 positives.</strong>
-<strong class='message'>Finally, find the subgraph from the input graph with 1000 nodes and 5058 edges...</strong>
-<strong class='message'>	Size of the subgraph: 29 nodes and 28 edges</strong>
+<strong class='message'>	Amongst 1000 scores, there are 56 positives.</strong>
+<strong class='message'>Finally, find the subgraph from the input graph with 1000 nodes and 4982 edges...</strong>
+<strong class='message'>	Size of the subgraph: 20 nodes and 19 edges</strong>
 <strong class='message'>
-Finish at 2014-09-18 16:50:25</strong>
-<strong class='message'>Runtime in total is: 6 secs
+Finish at 2014-09-22 19:29:31</strong>
+<strong class='message'>Runtime in total is: 4 secs
 </strong></pre>
   </div>
   
@@ -395,6 +389,9 @@ Finish at 2014-09-18 16:50:25</strong>
     
     <h2>Source code</h2>
     <a href="javascript:newWin('R/dNetPipeline.r', 'R/dNetPipeline.r', '1200', '1200')" title="Click to view"><B><code>dNetPipeline.r</code></B></a>
+    
+    <h2>Source man</h2>
+    <a href="javascript:newWin('man/dNetPipeline.txt', 'man/dNetPipeline.txt', '1200', '1200')" title="Click to view"><B><code>dNetPipeline.Rd</code></B></a>
     
     <h2>See also</h2>
     

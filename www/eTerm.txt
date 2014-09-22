@@ -1,1 +1,3 @@
 setID	setSize	name	namespace	distance	ESC_46C	ESC_D3
+MP:0005377	27	hearing/vestibular/ear phenotype	Mammalian_phenotype	1	-1	NA
+MP:0009701	12	abnormal birth body size	Mammalian_phenotype	2	NA	-1

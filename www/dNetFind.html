@@ -310,9 +310,9 @@ x <- rbeta(1000, shape1=0.5, shape2=1)
 fit <- dBUMfit(x, ntry=1, hist.bum=FALSE, contour.bum=FALSE)
 </div>
 <strong class='message'>	A total of p-values: 1000</strong>
-<strong class='message'>	Maximum Log-Likelihood: 305.3</strong>
+<strong class='message'>	Maximum Log-Likelihood: 279.1</strong>
 <strong class='message'>	Mixture parameter (lambda): 0.116</strong>
-<strong class='message'>	Shape parameter (a): 0.471</strong>
+<strong class='message'>	Shape parameter (a): 0.484</strong>
 <div class='input'>
 # 3) calculate the scores according to the fitted BUM and fdr=0.01
 # using "pdf" method
@@ -343,6 +343,9 @@ subgraph <- dNetFind(subg, scores)
     
     <h2>Source code</h2>
     <a href="javascript:newWin('R/dNetFind.r', 'R/dNetFind.r', '1200', '1200')" title="Click to view"><B><code>dNetFind.r</code></B></a>
+    
+    <h2>Source man</h2>
+    <a href="javascript:newWin('man/dNetFind.txt', 'man/dNetFind.txt', '1200', '1200')" title="Click to view"><B><code>dNetFind.Rd</code></B></a>
     
     <h2>See also</h2>
     
