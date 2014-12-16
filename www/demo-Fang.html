@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Demo for time-course expression dataset @ dnet 1.0.6</title>
+<title>Demo for time-course expression dataset @ dnet 1.0.7</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Hai Fang and Julian Gough">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.6</a>
+      <a class="brand" href="index.html">dnet 1.0.7</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -201,10 +201,10 @@ window.onload = function(){
       <h2>Demo for time-course expression dataset</h2>
 
 Notes:
-<li> All results are based on dnet (version 1.0.6). </li>
+<li> All results are based on dnet (version 1.0.7). </li>
 <li> R scripts (i.e. R expressions) plus necessary comments are highlighted in light cyan, and the rest are outputs in the screen. </li>
 <li> Images displayed below may be distorted, but should be normal in your screen. </li>
-<li> Functions contained in dnet 1.0.6 are hyperlinked in-place and also listed on the right side. </li>
+<li> Functions contained in dnet 1.0.7 are hyperlinked in-place and also listed on the right side. </li>
 
 <div class="row">
     <div class="span8">
@@ -391,7 +391,7 @@ apply(adjpvals<1e-2, 2, sum)
 # obtain gene significance from the given gene-sample matrix according to singular value decomposition-based method
 fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.eigen=NULL, pval.eigen=1e-2, signif="fdr", orient.permutation="row", num.permutation=200, fdr.procedure="stepup", verbose=T)
 </div>
-<strong class='message'>Start at 2014-09-22 19:48:17</strong>
+<strong class='message'>Start at 2014-12-16 17:31:22</strong>
 <strong class='message'></strong>
 <strong class='message'>First, singular value decomposition of the input matrix (with 4139 rows and 18 columns)...</strong>
 <strong class='message'>Second, determinate the eigens...</strong>
@@ -401,27 +401,27 @@ fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.ei
 <strong class='message'>Finally, obtain gene significance (fdr) based on 200 permutations...</strong>
 <strong class='message'>	doing row-wise permutations...</strong>
 <strong class='message'>	estimating fdr...</strong>
-<strong class='message'>1 (out of 4139) at 2014-09-22 19:48:39</strong>
-<strong class='message'>414 (out of 4139) at 2014-09-22 19:48:50</strong>
-<strong class='message'>828 (out of 4139) at 2014-09-22 19:49:01</strong>
-<strong class='message'>1242 (out of 4139) at 2014-09-22 19:49:11</strong>
-<strong class='message'>1656 (out of 4139) at 2014-09-22 19:49:22</strong>
-<strong class='message'>2070 (out of 4139) at 2014-09-22 19:49:33</strong>
-<strong class='message'>2484 (out of 4139) at 2014-09-22 19:49:44</strong>
-<strong class='message'>2898 (out of 4139) at 2014-09-22 19:49:54</strong>
-<strong class='message'>3312 (out of 4139) at 2014-09-22 19:50:05</strong>
-<strong class='message'>3726 (out of 4139) at 2014-09-22 19:50:15</strong>
-<strong class='message'>4139 (out of 4139) at 2014-09-22 19:50:26</strong>
+<strong class='message'>1 (out of 4139) at 2014-12-16 17:31:43</strong>
+<strong class='message'>414 (out of 4139) at 2014-12-16 17:31:53</strong>
+<strong class='message'>828 (out of 4139) at 2014-12-16 17:32:04</strong>
+<strong class='message'>1242 (out of 4139) at 2014-12-16 17:32:15</strong>
+<strong class='message'>1656 (out of 4139) at 2014-12-16 17:32:25</strong>
+<strong class='message'>2070 (out of 4139) at 2014-12-16 17:32:36</strong>
+<strong class='message'>2484 (out of 4139) at 2014-12-16 17:32:46</strong>
+<strong class='message'>2898 (out of 4139) at 2014-12-16 17:32:57</strong>
+<strong class='message'>3312 (out of 4139) at 2014-12-16 17:33:07</strong>
+<strong class='message'>3726 (out of 4139) at 2014-12-16 17:33:18</strong>
+<strong class='message'>4139 (out of 4139) at 2014-12-16 17:33:28</strong>
 <strong class='message'>	using stepup procedure...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-09-22 19:50:26</strong>
-<strong class='message'>Runtime in total is: 129 secs
+<strong class='message'>Finish at 2014-12-16 17:33:28</strong>
+<strong class='message'>Runtime in total is: 126 secs
 </strong>
 <div class='input'>
 # 2) identification of module
 g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network, pval=fdr, method="customised", nsize=30)
 </div>
-<strong class='message'>Start at 2014-09-22 19:50:26</strong>
+<strong class='message'>Start at 2014-12-16 17:33:28</strong>
 <strong class='message'></strong>
 <strong class='message'>First, consider the input fdr (or p-value) distribution</strong>
 <strong class='message'>Second, determine the significance threshold...</strong>
@@ -438,8 +438,8 @@ g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network,
 <strong class='message'>Finally, find the subgraph from the input graph with 3385 nodes and 39961 edges...</strong>
 <strong class='message'>	Size of the subgraph: 54 nodes and 226 edges</strong>
 <strong class='message'>
-Finish at 2014-09-22 19:51:01</strong>
-<strong class='message'>Runtime in total is: 35 secs
+Finish at 2014-12-16 17:34:07</strong>
+<strong class='message'>Runtime in total is: 39 secs
 </strong>
 <div class='input'>glayout <- layout.fruchterman.reingold(g)
 
@@ -506,14 +506,36 @@ data <- as.matrix(fit2$coefficients[V(g)$name,])
 # 11) color by additional data (be reordered)
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="edge", node.normalise="degree", amplifier=2, metric="none")
 </div>
-<strong class='message'>Start at 2014-09-22 19:52:35</strong>
+<strong class='message'>Start at 2014-12-16 17:35:40</strong>
 <strong class='message'></strong>
-<strong class='message'>First, define topology of a map grid...</strong>
-<strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
-<strong class='message'>Third, get training at the rough stage...</strong>
-<strong class='message'>Fourth, get training at the finetune stage...</strong>
-<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data...</strong>
-<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object...</strong>
+<strong class='message'>First, define topology of a map grid (2014-12-16 17:35:40)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (16 X 226) using 'linear' initialisation, given a topology and input data (2014-12-16 17:35:40)...</strong>
+<strong class='message'>Third, get training at the rough stage (2014-12-16 17:35:40)...</strong>
+<strong class='message'>	1 out of 162 (2014-12-16 17:35:40)</strong>
+<strong class='message'>	17 out of 162 (2014-12-16 17:35:40)</strong>
+<strong class='message'>	34 out of 162 (2014-12-16 17:35:40)</strong>
+<strong class='message'>	51 out of 162 (2014-12-16 17:35:40)</strong>
+<strong class='message'>	68 out of 162 (2014-12-16 17:35:40)</strong>
+<strong class='message'>	85 out of 162 (2014-12-16 17:35:40)</strong>
+<strong class='message'>	102 out of 162 (2014-12-16 17:35:40)</strong>
+<strong class='message'>	119 out of 162 (2014-12-16 17:35:40)</strong>
+<strong class='message'>	136 out of 162 (2014-12-16 17:35:40)</strong>
+<strong class='message'>	153 out of 162 (2014-12-16 17:35:40)</strong>
+<strong class='message'>	162 out of 162 (2014-12-16 17:35:40)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2014-12-16 17:35:40)...</strong>
+<strong class='message'>	1 out of 642 (2014-12-16 17:35:40)</strong>
+<strong class='message'>	65 out of 642 (2014-12-16 17:35:40)</strong>
+<strong class='message'>	130 out of 642 (2014-12-16 17:35:40)</strong>
+<strong class='message'>	195 out of 642 (2014-12-16 17:35:40)</strong>
+<strong class='message'>	260 out of 642 (2014-12-16 17:35:40)</strong>
+<strong class='message'>	325 out of 642 (2014-12-16 17:35:40)</strong>
+<strong class='message'>	390 out of 642 (2014-12-16 17:35:40)</strong>
+<strong class='message'>	455 out of 642 (2014-12-16 17:35:40)</strong>
+<strong class='message'>	520 out of 642 (2014-12-16 17:35:40)</strong>
+<strong class='message'>	585 out of 642 (2014-12-16 17:35:40)</strong>
+<strong class='message'>	642 out of 642 (2014-12-16 17:35:40)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2014-12-16 17:35:40)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2014-12-16 17:35:40)...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
 <strong class='message'>   dimension of input data: 6x226
@@ -533,17 +555,17 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-09-22 19:52:35</strong>
+<strong class='message'>End at 2014-12-16 17:35:40</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap=colormap, vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)
 </div>
-<a href="javascript:newWin('Fang-91.png', 'Fang-91.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-91.png', width="400" /></a>
+<a href="javascript:newWin('Fang-113.png', 'Fang-113.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-113.png', width="400" /></a>
 <div class='input'>
 # 12) heatmap of subnetwork
 visHeatmapAdv(data, colormap="gbr", row.cutree=3, column.cutree=3)
 </div>
-<a href="javascript:newWin('Fang-93.png', 'Fang-93.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-93.png', width="400" /></a>
+<a href="javascript:newWin('Fang-115.png', 'Fang-115.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-115.png', width="400" /></a>
 <div class='input'>hmap <- data.frame(Symbol=rownames(data), data)
 write.table(hmap, file=paste("Fang_whole.txt", sep=""), quote=F, row.names=F,col.names=T,sep="\t")
 
@@ -577,7 +599,7 @@ write.table(sif, file=paste("Fang_whole.sif", sep=""), quote=F, row.names=F,col.
     <!--
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I>, 6(8):64. <a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/25246945">25246945</a></p>
 
 <p>You may also cite the package as:</p>
 
@@ -593,6 +615,9 @@ write.table(sif, file=paste("Fang_whole.sif", sep=""), quote=F, row.names=F,col.
     <h2>URL</h2>
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
+      <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
+      <li><a href=" http://cran.r-project.org/package=dnet"> http://cran.r-project.org/package=dnet</a></li>
+      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     <h2>Author</h2>

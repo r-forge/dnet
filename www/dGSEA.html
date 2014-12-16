@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dGSEA @ dnet 1.0.6</title>
+<title>dGSEA @ dnet 1.0.7</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.6</a>
+      <a class="brand" href="index.html">dnet 1.0.7</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -422,20 +422,20 @@ data <- RT[1:1000,1:2]
 eTerm <- dGSEA(data, identity="symbol", genome="Mm", ontology="MP",
 which_distance=c(1,2))
 </div>
-<strong class='message'>Start at 2014-09-22 19:28:53</strong>
+<strong class='message'>Start at 2014-12-16 16:59:28</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-09-22 19:28:53) ...</strong>
+<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2014-12-16 16:59:28) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Mm/org.Mm.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://supfam.org/dnet/data/Mm/org.Mm.egMP.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-09-22 19:28:53) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-12-16 16:59:28) ...</strong>
 <strong class='message'>	Among 1000 symbols of input data, there are 853 mappable via official gene symbols but 147 left unmappable</strong>
-<strong class='message'>Third, perform GSEA analysis (2014-09-22 19:28:54) ...</strong>
-<strong class='message'>	Sample 1 is being processed at (2014-09-22 19:28:54) ...</strong>
+<strong class='message'>Third, perform GSEA analysis (2014-12-16 16:59:29) ...</strong>
+<strong class='message'>	Sample 1 is being processed at (2014-12-16 16:59:29) ...</strong>
 <strong class='message'>		 81 of 81 gene sets have been processed</strong>
-<strong class='message'>	Sample 2 is being processed at (2014-09-22 19:29:05) ...</strong>
+<strong class='message'>	Sample 2 is being processed at (2014-12-16 16:59:40) ...</strong>
 <strong class='message'>		 81 of 81 gene sets have been processed</strong>
 <strong class='message'>
-End at 2014-09-22 19:29:17</strong>
+End at 2014-12-16 16:59:52</strong>
 <strong class='message'>Runtime in total is: 24 secs
 </strong>
 <div class='input'>res <- dGSEAview(eTerm, which_sample=1, top_num=5, sortBy="adjp",
@@ -453,20 +453,20 @@ filename="eTerm.txt")
 eTerm <- dGSEA(data, identity="symbol", genome="Mm",
 ontology="Customised", customised.genesets=rownames(data)[1:100])
 </div>
-<strong class='message'>Start at 2014-09-22 19:29:18</strong>
+<strong class='message'>Start at 2014-12-16 16:59:55</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology Customised and its gene associations in the genome Mm (2014-09-22 19:29:18) ...</strong>
+<strong class='message'>First, load the ontology Customised and its gene associations in the genome Mm (2014-12-16 16:59:55) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Mm/org.Mm.eg.RData</strong>
 <strong class='message'>	Among 100 symbols of input data, there are 81 mappable via official gene symbols but 19 left unmappable</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-09-22 19:29:18) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2014-12-16 16:59:55) ...</strong>
 <strong class='message'>	Among 1000 symbols of input data, there are 853 mappable via official gene symbols but 147 left unmappable</strong>
-<strong class='message'>Third, perform GSEA analysis (2014-09-22 19:29:18) ...</strong>
-<strong class='message'>	Sample 1 is being processed at (2014-09-22 19:29:18) ...</strong>
+<strong class='message'>Third, perform GSEA analysis (2014-12-16 16:59:55) ...</strong>
+<strong class='message'>	Sample 1 is being processed at (2014-12-16 16:59:55) ...</strong>
 <strong class='message'>		 1 of 1 gene sets have been processed</strong>
-<strong class='message'>	Sample 2 is being processed at (2014-09-22 19:29:19) ...</strong>
+<strong class='message'>	Sample 2 is being processed at (2014-12-16 16:59:56) ...</strong>
 <strong class='message'>		 1 of 1 gene sets have been processed</strong>
 <strong class='message'>
-End at 2014-09-22 19:29:19</strong>
+End at 2014-12-16 16:59:56</strong>
 <strong class='message'>Runtime in total is: 1 secs
 </strong></pre>
   </div>
@@ -488,6 +488,8 @@ End at 2014-09-22 19:29:19</strong>
     <h2>Source man</h2>
     <a href="javascript:newWin('man/dGSEA.txt', 'man/dGSEA.txt', '1200', '1200')" title="Click to view"><B><code>dGSEA.Rd</code></B></a>
     
+    <a href="javascript:newWin('man/dGSEA.pdf', 'man/dGSEA.pdf', '1200', '1200')" title="Click to view"><B><code>dGSEA.pdf</code></B></a>
+    
     <h2>See also</h2>
     
 <code><a href='dGSEAview.html'>dGSEAview</a></code>, <code><a href='dGSEAwrite.html'>dGSEAwrite</a></code>,
@@ -496,7 +498,7 @@ End at 2014-09-22 19:29:19</strong>
     <!--
 
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I>, 6(8):64. <a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/25246945">25246945</a></p>
 
 <p>You may also cite the package as:</p>
 
@@ -511,6 +513,9 @@ End at 2014-09-22 19:29:19</strong>
     <h2>URL</h2>
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
+      <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
+      <li><a href=" http://cran.r-project.org/package=dnet"> http://cran.r-project.org/package=dnet</a></li>
+      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     

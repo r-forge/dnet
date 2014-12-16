@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Install @ dnet 1.0.6</title>
+<title>Install @ dnet 1.0.7</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Hai Fang and Julian Gough">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.6</a>
+      <a class="brand" href="index.html">dnet 1.0.7</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -205,20 +205,20 @@ window.onload = function(){
   
     <h2>1. R requirement</h2>
 
-<p>R (<a href="http://www.r-project.org">http://www.r-project.org</a>) is a language and environment for statistical computing and graphics. We assume R (version 3.1.0) has been installed in your local machine. It can be installed following quick instructions below for different platforms (Windows, Mac, and Linux).</p>
+<p>R (<a href="http://www.r-project.org">http://www.r-project.org</a>) is a language and environment for statistical computing and graphics. We assume R (version 3.1.0 or higher) has been installed in your local machine. The latest version can be installed following instructions below for different platforms (Windows, Mac, and Linux).</p>
 
 <ul>
-<li>Quick link for <code>Windows</code>: <a href="http://www.stats.bris.ac.uk/R/bin/windows/base/R-3.1.0-win.exe">Download R for Windows</a>.</li>
-<li><p>Quick link for <code>Mac</code>: <a href="http://cran.r-project.org/bin/macosx/R-3.1.0-snowleopard.pkg">Download R for Mac OS X 10.6 (Snow Leopard or higher)</a>.</p></li>
+<li>Quick link for <code>Windows</code>: <a href="http://cran.r-project.org/bin/windows/base/R-3.1.2-win.exe">Download R for Windows</a>.</li>
+<li><p>Quick link for <code>Mac</code>: <a href="http://cran.r-project.org/bin/macosx">Download R for Mac OS X 10.6 (Snow Leopard or higher)</a>.</p></li>
 <li><p>Below are <code>shell command lines in Terminal</code> (for <code>Linux</code>):</p></li>
 </ul>
 
 <p>Assume you have a <code>ROOT (sudo)</code> privilege:</p>
 
 <pre><code>sudo su
-wget http://www.stats.bris.ac.uk/R/src/base/R-3/R-3.1.0.tar.gz
-tar xvfz R-3.1.0.tar.gz
-cd R-3.1.0
+wget http://www.stats.bris.ac.uk/R/src/base/R-3/R-3.1.2.tar.gz
+tar xvfz R-3.1.2.tar.gz
+cd R-3.1.2
 ./configure
 make
 make check
@@ -228,14 +228,14 @@ R # start R
 
 <p>Assume you do not have a ROOT privilege and want R installation under your home directory (below <code>/home/hfang</code> should be replaced with yours):</p>
 
-<pre><code>wget http://www.stats.bris.ac.uk/R/src/base/R-3/R-3.1.0.tar.gz
-tar xvfz R-3.1.0.tar.gz
-cd R-3.1.0
-./configure --prefix=/home/hfang/R-3.1.0
+<pre><code>wget http://www.stats.bris.ac.uk/R/src/base/R-3/R-3.1.2.tar.gz
+tar xvfz R-3.1.2.tar.gz
+cd R-3.1.2
+./configure --prefix=/home/hfang/R-3.1.2
 make
 make check
 make install
-/home/hfang/R-3.1.0/bin/R # start R
+/home/hfang/R-3.1.2/bin/R # start R
 </code></pre>
 
 <h2>2. Installation of the package</h2>
@@ -248,16 +248,16 @@ make install
 biocLite(c(&quot;hexbin&quot;,&quot;ape&quot;,&quot;supraHex&quot;,&quot;graph&quot;,&quot;Rgraphviz&quot;,&quot;igraph&quot;,&quot;Biobase&quot;,&quot;limma&quot;,&quot;survival&quot;,&quot;foreach&quot;,&quot;doMC&quot;,&quot;devtools&quot;))
 </code></pre>
 
-<p>Second, install the package <code>dnet</code> under <a href="http://cran.r-project.org/package=dnet">stable release version</a>:</p>
+<p>Second, install the package <code>dnet</code> under <a href="http://cran.r-project.org/package=dnet">stable release version hosted in CRAN</a>:</p>
 
 <pre><code>install.packages(&quot;dnet&quot;,repos=&quot;http://cran.r-project.org&quot;,type=&quot;source&quot;)
 </code></pre>
 
-<p>Third (<code>highly recommended</code>), update the package <code>dnet</code> from <a href="https://github.com/hfang-bristol/dnet">latest development version</a>:</p>
+<p>Third (<code>highly recommended</code>), update the package <code>dnet</code> from <a href="https://github.com/hfang-bristol/dnet">latest development version hosted in GitHub</a>:</p>
 
 <pre><code>library(devtools)
 if(!(&quot;dnet&quot; %in% rownames(installed.packages()))) remove.packages(&quot;dnet&quot;)
-install_github(c(&quot;dnet&quot;), username=&quot;hfang-bristol&quot;)
+install_github(c(&quot;hfang-bristol/dnet&quot;))
 </code></pre>
 
 <h2>3. Workflow of the package</h2>
@@ -277,10 +277,13 @@ install_github(c(&quot;dnet&quot;), username=&quot;hfang-bristol&quot;)
     <h2>URL</h2>
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
+      <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
+      <li><a href=" http://cran.r-project.org/package=dnet"> http://cran.r-project.org/package=dnet</a></li>
+      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I>, 6(8):64. <a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/25246945">25246945</a></p>
 
 <p>You may also cite the package as:</p>
 

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dRWRcontact @ dnet 1.0.6</title>
+<title>dRWRcontact @ dnet 1.0.7</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.6</a>
+      <a class="brand" href="index.html">dnet 1.0.7</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -323,22 +323,22 @@ V(subg)$name <- 1:vcount(subg)
 # 3) pre-compute affinity matrix from the input graph
 Amatrix <- dRWR(g=subg, parallel=FALSE)
 </div>
-<strong class='message'>Start at 2014-09-22 19:29:35</strong>
+<strong class='message'>Start at 2014-12-16 17:00:14</strong>
 <strong class='message'></strong>
-<strong class='message'>First, get the adjacency matrix of the input graph (2014-09-22 19:29:35) ...</strong>
-<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-09-22 19:29:35) ...</strong>
-<strong class='message'>Third, RWR of 8 sets of seeds using 7.5e-01 restart probability (2014-09-22 19:29:35) ...</strong>
-<strong class='message'>	1 out of 8 seed sets (2014-09-22 19:29:35)</strong>
-<strong class='message'>	2 out of 8 seed sets (2014-09-22 19:29:35)</strong>
-<strong class='message'>	3 out of 8 seed sets (2014-09-22 19:29:35)</strong>
-<strong class='message'>	4 out of 8 seed sets (2014-09-22 19:29:35)</strong>
-<strong class='message'>	5 out of 8 seed sets (2014-09-22 19:29:35)</strong>
-<strong class='message'>	6 out of 8 seed sets (2014-09-22 19:29:35)</strong>
-<strong class='message'>	7 out of 8 seed sets (2014-09-22 19:29:35)</strong>
-<strong class='message'>	8 out of 8 seed sets (2014-09-22 19:29:35)</strong>
-<strong class='message'>Finally, output 8 by 8 affinity matrix normalised by none (2014-09-22 19:29:35) ...</strong>
+<strong class='message'>First, get the adjacency matrix of the input graph (2014-12-16 17:00:14) ...</strong>
+<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2014-12-16 17:00:14) ...</strong>
+<strong class='message'>Third, RWR of 8 sets of seeds using 7.5e-01 restart probability (2014-12-16 17:00:14) ...</strong>
+<strong class='message'>	1 out of 8 seed sets (2014-12-16 17:00:14)</strong>
+<strong class='message'>	2 out of 8 seed sets (2014-12-16 17:00:14)</strong>
+<strong class='message'>	3 out of 8 seed sets (2014-12-16 17:00:14)</strong>
+<strong class='message'>	4 out of 8 seed sets (2014-12-16 17:00:14)</strong>
+<strong class='message'>	5 out of 8 seed sets (2014-12-16 17:00:14)</strong>
+<strong class='message'>	6 out of 8 seed sets (2014-12-16 17:00:14)</strong>
+<strong class='message'>	7 out of 8 seed sets (2014-12-16 17:00:14)</strong>
+<strong class='message'>	8 out of 8 seed sets (2014-12-16 17:00:14)</strong>
+<strong class='message'>Finally, output 8 by 8 affinity matrix normalised by none (2014-12-16 17:00:14) ...</strong>
 <strong class='message'>
-Finish at 2014-09-22 19:29:35</strong>
+Finish at 2014-12-16 17:00:14</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
@@ -353,25 +353,25 @@ rownames(data) <- 1:5
 dContact <- dRWRcontact(data=data, g=subg, Amatrix=Amatrix,
 parallel=FALSE)
 </div>
-<strong class='message'>Start at 2014-09-22 19:29:35</strong>
+<strong class='message'>Start at 2014-12-16 17:00:14</strong>
 <strong class='message'></strong>
-<strong class='message'>First, RWR on input graph (8 nodes and 8 edges) using input matrix (5 rows and 2 columns) as seeds and pre-computed affinity matrix (8 rows and 8 columns) (2014-09-22 19:29:35)...</strong>
-<strong class='message'>Second, calculate contact strength (2014-09-22 19:29:35)...</strong>
-<strong class='message'>Third, generate the distribution of contact strength based on 10 permutations on nodes respecting random (2014-09-22 19:29:35)...</strong>
-<strong class='message'>	1 out of 10 (2014-09-22 19:29:35)</strong>
-<strong class='message'>	2 out of 10 (2014-09-22 19:29:35)</strong>
-<strong class='message'>	3 out of 10 (2014-09-22 19:29:35)</strong>
-<strong class='message'>	4 out of 10 (2014-09-22 19:29:35)</strong>
-<strong class='message'>	5 out of 10 (2014-09-22 19:29:35)</strong>
-<strong class='message'>	6 out of 10 (2014-09-22 19:29:35)</strong>
-<strong class='message'>	7 out of 10 (2014-09-22 19:29:35)</strong>
-<strong class='message'>	8 out of 10 (2014-09-22 19:29:35)</strong>
-<strong class='message'>	9 out of 10 (2014-09-22 19:29:35)</strong>
-<strong class='message'>	10 out of 10 (2014-09-22 19:29:35)</strong>
-<strong class='message'>Last, estimate the significance of contact strength: zscore, pvalue, and BH adjusted-pvalue (2014-09-22 19:29:35)...</strong>
-<strong class='message'>Also, construct the contact graph under the cutoff 5.0e-02 of adjusted-pvalue (2014-09-22 19:29:35)...</strong>
+<strong class='message'>First, RWR on input graph (8 nodes and 8 edges) using input matrix (5 rows and 2 columns) as seeds and pre-computed affinity matrix (8 rows and 8 columns) (2014-12-16 17:00:14)...</strong>
+<strong class='message'>Second, calculate contact strength (2014-12-16 17:00:14)...</strong>
+<strong class='message'>Third, generate the distribution of contact strength based on 10 permutations on nodes respecting random (2014-12-16 17:00:14)...</strong>
+<strong class='message'>	1 out of 10 (2014-12-16 17:00:14)</strong>
+<strong class='message'>	2 out of 10 (2014-12-16 17:00:14)</strong>
+<strong class='message'>	3 out of 10 (2014-12-16 17:00:14)</strong>
+<strong class='message'>	4 out of 10 (2014-12-16 17:00:14)</strong>
+<strong class='message'>	5 out of 10 (2014-12-16 17:00:14)</strong>
+<strong class='message'>	6 out of 10 (2014-12-16 17:00:14)</strong>
+<strong class='message'>	7 out of 10 (2014-12-16 17:00:14)</strong>
+<strong class='message'>	8 out of 10 (2014-12-16 17:00:14)</strong>
+<strong class='message'>	9 out of 10 (2014-12-16 17:00:14)</strong>
+<strong class='message'>	10 out of 10 (2014-12-16 17:00:14)</strong>
+<strong class='message'>Last, estimate the significance of contact strength: zscore, pvalue, and BH adjusted-pvalue (2014-12-16 17:00:14)...</strong>
+<strong class='message'>Also, construct the contact graph under the cutoff 5.0e-02 of adjusted-pvalue (2014-12-16 17:00:14)...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-09-22 19:29:35</strong>
+<strong class='message'>Finish at 2014-12-16 17:00:14</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>dContact
@@ -428,6 +428,8 @@ attr(,"class")
     <h2>Source man</h2>
     <a href="javascript:newWin('man/dRWRcontact.txt', 'man/dRWRcontact.txt', '1200', '1200')" title="Click to view"><B><code>dRWRcontact.Rd</code></B></a>
     
+    <a href="javascript:newWin('man/dRWRcontact.pdf', 'man/dRWRcontact.pdf', '1200', '1200')" title="Click to view"><B><code>dRWRcontact.pdf</code></B></a>
+    
     <h2>See also</h2>
     
 <code><a href='dRWR.html'>dRWR</a></code>, <code><a href='dCheckParallel.html'>dCheckParallel</a></code>
@@ -435,7 +437,7 @@ attr(,"class")
     <!--
 
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I>, 6(8):64. <a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/25246945">25246945</a></p>
 
 <p>You may also cite the package as:</p>
 
@@ -450,6 +452,9 @@ attr(,"class")
     <h2>URL</h2>
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
+      <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
+      <li><a href=" http://cran.r-project.org/package=dnet"> http://cran.r-project.org/package=dnet</a></li>
+      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     

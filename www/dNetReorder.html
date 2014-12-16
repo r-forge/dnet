@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dNetReorder @ dnet 1.0.6</title>
+<title>dNetReorder @ dnet 1.0.7</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.6</a>
+      <a class="brand" href="index.html">dnet 1.0.7</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -365,24 +365,46 @@ rownames(data) <- V(subg)$name
 sReorder <- dNetReorder(g=subg, data, feature="node",
 node.normalise="none")
 </div>
-<strong class='message'>Start at 2014-09-22 19:29:32</strong>
+<strong class='message'>Start at 2014-12-16 17:00:11</strong>
 <strong class='message'></strong>
-<strong class='message'>First, define topology of a map grid...</strong>
-<strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
-<strong class='message'>Third, get training at the rough stage...</strong>
-<strong class='message'>Fourth, get training at the finetune stage...</strong>
-<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data...</strong>
-<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object...</strong>
+<strong class='message'>First, define topology of a map grid (2014-12-16 17:00:11)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (36 X 31) using 'linear' initialisation, given a topology and input data (2014-12-16 17:00:11)...</strong>
+<strong class='message'>Third, get training at the rough stage (2014-12-16 17:00:11)...</strong>
+<strong class='message'>	1 out of 360 (2014-12-16 17:00:11)</strong>
+<strong class='message'>	36 out of 360 (2014-12-16 17:00:11)</strong>
+<strong class='message'>	72 out of 360 (2014-12-16 17:00:11)</strong>
+<strong class='message'>	108 out of 360 (2014-12-16 17:00:11)</strong>
+<strong class='message'>	144 out of 360 (2014-12-16 17:00:11)</strong>
+<strong class='message'>	180 out of 360 (2014-12-16 17:00:11)</strong>
+<strong class='message'>	216 out of 360 (2014-12-16 17:00:11)</strong>
+<strong class='message'>	252 out of 360 (2014-12-16 17:00:11)</strong>
+<strong class='message'>	288 out of 360 (2014-12-16 17:00:11)</strong>
+<strong class='message'>	324 out of 360 (2014-12-16 17:00:11)</strong>
+<strong class='message'>	360 out of 360 (2014-12-16 17:00:11)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2014-12-16 17:00:11)...</strong>
+<strong class='message'>	1 out of 1440 (2014-12-16 17:00:11)</strong>
+<strong class='message'>	144 out of 1440 (2014-12-16 17:00:11)</strong>
+<strong class='message'>	288 out of 1440 (2014-12-16 17:00:11)</strong>
+<strong class='message'>	432 out of 1440 (2014-12-16 17:00:11)</strong>
+<strong class='message'>	576 out of 1440 (2014-12-16 17:00:11)</strong>
+<strong class='message'>	720 out of 1440 (2014-12-16 17:00:11)</strong>
+<strong class='message'>	864 out of 1440 (2014-12-16 17:00:11)</strong>
+<strong class='message'>	1008 out of 1440 (2014-12-16 17:00:11)</strong>
+<strong class='message'>	1152 out of 1440 (2014-12-16 17:00:11)</strong>
+<strong class='message'>	1296 out of 1440 (2014-12-16 17:00:11)</strong>
+<strong class='message'>	1440 out of 1440 (2014-12-16 17:00:11)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2014-12-16 17:00:11)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2014-12-16 17:00:11)...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
-<strong class='message'>   dimension of input data: 10x43
+<strong class='message'>   dimension of input data: 10x31
    xy-dimension of map grid: xdim=6, ydim=6
    grid lattice: rect
    grid shape: sheet
    dimension of grid coord: 36x2
    initialisation method: linear
-   dimension of codebook matrix: 36x43
-   mean quantization error: 1.12024599849076
+   dimension of codebook matrix: 36x31
+   mean quantization error: 0.699033122384352
 </strong>
 <strong class='message'>Below are the details of trainology:</strong>
 <strong class='message'>   training algorithm: sequential
@@ -392,8 +414,8 @@ node.normalise="none")
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-09-22 19:29:33</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>End at 2014-12-16 17:00:11</strong>
+<strong class='message'>Runtime in total is: 0 secs
 </strong></pre>
   </div>
   
@@ -414,6 +436,8 @@ node.normalise="none")
     <h2>Source man</h2>
     <a href="javascript:newWin('man/dNetReorder.txt', 'man/dNetReorder.txt', '1200', '1200')" title="Click to view"><B><code>dNetReorder.Rd</code></B></a>
     
+    <a href="javascript:newWin('man/dNetReorder.pdf', 'man/dNetReorder.pdf', '1200', '1200')" title="Click to view"><B><code>dNetReorder.pdf</code></B></a>
+    
     <h2>See also</h2>
     
 <code><a href='visNetReorder.html'>visNetReorder</a></code>
@@ -421,7 +445,7 @@ node.normalise="none")
     <!--
 
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I>, 6(8):64. <a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/25246945">25246945</a></p>
 
 <p>You may also cite the package as:</p>
 
@@ -436,6 +460,9 @@ node.normalise="none")
     <h2>URL</h2>
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
+      <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
+      <li><a href=" http://cran.r-project.org/package=dnet"> http://cran.r-project.org/package=dnet</a></li>
+      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     

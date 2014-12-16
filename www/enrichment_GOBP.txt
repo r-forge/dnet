@@ -1,47 +1,39 @@
 setID	nAnno	nOverlap	zscore	pvalue	adjp	name	namespace	distance	members
-GO:0007411	331	9	8.29	2.7e-08	6.1e-07	axon guidance	Process	14	PTK2,ARHGEF11,AGRN,EPHB1,ABL1,CACNA1I,COL6A2,NCAM1,TNR
-GO:0030198	312	9	8.59	1.5e-08	6.1e-07	extracellular matrix organization	Process	5	PTK2,COL19A1,HSPG2,AGRN,ITGA4,ITGAM,COL6A2,NCAM1,TNR
-GO:0030010	20	3	12.2	2.9e-07	4.5e-06	establishment of cell polarity	Process	5	PTK2,ARHGEF11,EPHB1
-GO:0032319	23	3	11.4	5.3e-07	6.1e-06	regulation of Rho GTPase activity	Process	11	PTK2,ARHGEF11,EPHA3
-GO:0007569	26	3	10.6	8.9e-07	8.1e-06	cell aging	Process	4	TP53,BRCA2,NPM1
-GO:0048013	28	3	10.2	1.2e-06	9.3e-06	ephrin receptor signaling pathway	Process	9	PTK2,EPHB1,EPHA3
-GO:0007229	70	4	8.44	1.7e-06	1.1e-05	integrin-mediated signaling pathway	Process	7	PTK2,ITGA4,ITGAM,VAV1
-GO:0008104	55	3	7.12	1.9e-05	8.7e-05	protein localization	Process	4	TP53,HSPG2,NPM1
-GO:0043065	288	6	5.7	1.7e-05	8.7e-05	positive regulation of apoptotic process	Process	8	TP53,UBC,DNM2,ARHGEF11,ABL1,VAV1
-GO:0097190	112	4	6.47	1.7e-05	8.7e-05	apoptotic signaling pathway	Process	6	UBC,BTK,ARHGEF11,VAV1
-GO:0007155	425	7	5.26	2.6e-05	0.00011	cell adhesion	Process	3	COL19A1,ITGAM,ABL1,COL6A2,EPHA3,NCAM1,TNR
-GO:0006302	62	3	6.66	3.1e-05	0.00012	double-strand break repair	Process	9	TP53,RAD50,BRCA2
-GO:0007596	463	7	4.95	4.8e-05	0.00017	blood coagulation	Process	5	TP53,SIN3A,PTK2,ITGA4,ITGAM,ABL1,VAV1
-GO:0000086	143	4	5.59	5.6e-05	0.00019	G2/M transition of mitotic cell cycle	Process	8	UBC,DYNC1H1,DNM2,PPP2R1A
-GO:0046777	157	4	5.27	8.8e-05	0.00027	protein autophosphorylation	Process	9	PTK2,BTK,EPHA1,EPHB1
-GO:0018108	90	3	5.37	0.00013	0.00037	peptidyl-tyrosine phosphorylation	Process	9	PTK2,EPHA1,ABL1
-GO:0019886	92	3	5.3	0.00014	0.00037	antigen processing and presentation of exogenous peptide antigen via MHC class II	Process	6	DYNC1H1,DNM2,DYNC1I1
-GO:0038096	91	3	5.34	0.00014	0.00037	Fc-gamma receptor signaling pathway involved in phagocytosis	Process	8	PTK2,ABL1,VAV1
-GO:0034142	96	3	5.17	0.00017	0.00041	toll-like receptor 4 signaling pathway	Process	13	UBC,BTK,ITGAM
-GO:0001525	202	4	4.48	0.00029	0.00063	angiogenesis	Process	4	PTK2,HSPG2,EPHA1,EPHB1
-GO:0002224	109	3	4.78	0.00028	0.00063	toll-like receptor signaling pathway	Process	12	UBC,BTK,ITGAM
-GO:0000209	113	3	4.68	0.00032	0.00064	protein polyubiquitination	Process	11	UBC,UBE3C,HUWE1
-GO:0022617	112	3	4.71	0.00031	0.00064	extracellular matrix disassembly	Process	5	COL19A1,HSPG2,COL6A2
-GO:0051092	125	3	4.39	0.00047	0.00089	positive regulation of NF-kappaB transcription factor activity	Process	12	UBC,BTK,NPM1
-GO:0051056	133	3	4.22	0.00059	0.0011	regulation of small GTPase mediated signal transduction	Process	8	ARHGEF11,VAV1,ARAP2
-GO:0042981	146	3	3.97	0.00084	0.0015	regulation of apoptotic process	Process	7	TP53,UBC,STAT1
-GO:0006281	276	4	3.6	0.0012	0.0019	DNA repair	Process	4	UBC,RAD50,BRCA2,NPM1
-GO:0006974	159	3	3.75	0.0011	0.0019	cellular response to DNA damage stimulus	Process	5	TP53,RAD50,ABL1
-GO:0008543	163	3	3.69	0.0013	0.002	fibroblast growth factor receptor signaling pathway	Process	8	UBC,PPP2R1A,VAV1
-GO:0038095	184	3	3.39	0.002	0.003	Fc-epsilon receptor signaling pathway	Process	9	UBC,BTK,VAV1
-GO:0043066	463	5	3.2	0.0021	0.0031	negative regulation of apoptotic process	Process	8	TP53,UBC,SIN3A,PTK2,NPM1
-GO:0045087	639	6	3.11	0.0023	0.0032	innate immune response	Process	4	UBC,PTK2,BTK,ITGAM,ABL1,VAV1
-GO:0045893	488	5	3.06	0.0027	0.0038	positive regulation of transcription, DNA-templated	Process	8	TP53,DNM2,STAT1,BRCA2,ARHGEF11
-GO:0008285	370	4	2.86	0.0042	0.0055	negative regulation of cell proliferation	Process	6	TP53,BAP1,NPM1,AMBRA1
-GO:0019221	226	3	2.91	0.0041	0.0055	cytokine-mediated signaling pathway	Process	7	UBC,STAT1,NCAM1
-GO:0030154	379	4	2.8	0.0047	0.006	cell differentiation	Process	5	TP53,HUWE1,COL19A1,AMBRA1
-GO:0000122	554	5	2.72	0.005	0.0063	negative regulation of transcription from RNA polymerase II promoter	Process	11	TP53,UBC,DNMT1,STAT1,SIN3A
-GO:0000278	401	4	2.66	0.0059	0.0072	mitotic cell cycle	Process	5	UBC,DYNC1H1,PPP2R1A,ANKLE2
-GO:0006915	591	5	2.56	0.0069	0.0081	apoptotic process	Process	6	TP53,UBC,PPP2R1A,STAT1,PTK2
-GO:0048011	273	3	2.5	0.008	0.0092	neurotrophin TRK receptor signaling pathway	Process	8	UBC,ARHGEF11,VAV1
-GO:0006810	287	3	2.39	0.0095	0.011	transport	Process	4	DYNC1H1,CACNA1E,CACNA1I
-GO:0007264	320	3	2.17	0.014	0.015	small GTPase mediated signal transduction	Process	7	ARHGEF11,VAV1,ARAP2
-GO:0005975	327	3	2.12	0.015	0.016	carbohydrate metabolic process	Process	4	UBC,HSPG2,AGRN
-GO:0045944	720	5	2.06	0.017	0.018	positive regulation of transcription from RNA polymerase II promoter	Process	11	TP53,UBC,STAT1,SIN3A,AGRN
-GO:0016032	546	4	1.95	0.02	0.021	viral process	Process	4	TP53,UBC,STAT1,NPM1
-GO:0007165	968	4	0.729	0.15	0.15	signal transduction	Process	4	DNM2,AGRN,NPM1,CACNA1I
+GO:0007173	25	3	10.3	1.1e-06	1.4e-05	epidermal growth factor receptor signaling pathway	Process	10	Ereg,Areg,Btc
+GO:0019827	54	4	9.19	7.9e-07	1.4e-05	stem cell maintenance	Process	4	Klf4,Sox2,Tbx3,Dppa2
+GO:0043066	415	9	6.73	6.1e-07	1.4e-05	negative regulation of apoptotic process	Process	8	Akt1,Trp53,Tbx3,Bcl2,Cat,Spp1,Cd44,Atoh1,Btc
+GO:0007569	27	3	9.88	1.6e-06	1.5e-05	cell aging	Process	4	Trp53,Tbx3,Bcl2
+GO:0048662	34	3	8.74	4.1e-06	2.6e-05	negative regulation of smooth muscle cell proliferation	Process	7	Trp53,Klf4,Tnfaip3
+GO:0051402	34	3	8.74	4.1e-06	2.6e-05	neuron apoptotic process	Process	6	Trp53,Bcl2,Zfp110
+GO:0021987	42	3	7.8	9.7e-06	5e-05	cerebral cortex development	Process	4	Plcb1,Sox2,Atoh1
+GO:0051781	44	3	7.6	1.2e-05	5e-05	positive regulation of cell division	Process	6	Cat,Ereg,Btc
+GO:0071363	44	3	7.6	1.2e-05	5e-05	cellular response to growth factor stimulus	Process	6	Akt1,Klf4,Ibsp
+GO:0001649	48	3	7.25	1.7e-05	5.8e-05	osteoblast differentiation	Process	5	Akt1,Sox2,Runx2
+GO:0051726	98	4	6.58	1.5e-05	5.8e-05	regulation of cell cycle	Process	5	Trp53,Plcb1,Bcl2,Zfp369
+GO:0033138	57	3	6.58	3.3e-05	1e-04	positive regulation of peptidyl-serine phosphorylation	Process	11	Akt1,Bcl2,Cd44
+GO:0006915	535	8	4.87	4.3e-05	0.00012	apoptotic process	Process	6	Akt1,Trp53,Bcl2,Tnfaip3,Zfp110,Zfp369,Ngfrap1,Perp
+GO:0032088	61	3	6.34	4.3e-05	0.00012	negative regulation of NF-kappaB transcription factor activity	Process	12	Klf4,Cat,Tnfaip3
+GO:0043154	71	3	5.81	7.9e-05	2e-04	negative regulation of cysteine-type endopeptidase activity involved in apoptotic process	Process	7	Akt1,Klf4,Cd44
+GO:0001503	80	3	5.41	0.00013	3e-04	ossification	Process	4	Bcl2,Ibsp,Spp1
+GO:0001501	91	3	5.01	0.00021	0.00046	skeletal system development	Process	6	Tbx3,Runx2,Mepe
+GO:0006366	391	6	4.28	0.00023	0.00049	transcription from RNA polymerase II promoter	Process	10	Trp53,Klf4,Sox2,Runx2,Zfp110,Zfp369
+GO:0008284	398	6	4.22	0.00026	0.00052	positive regulation of cell proliferation	Process	6	Tbx3,Bcl2,Runx2,Ereg,Areg,Btc
+GO:0009887	102	3	4.67	0.00032	0.00061	organ morphogenesis	Process	4	Tbx3,Bcl2,Ereg
+GO:0006979	109	3	4.48	0.00041	0.00075	response to oxidative stress	Process	4	Trp53,Bcl2,Cat
+GO:0045892	437	6	3.93	0.00046	0.00079	negative regulation of transcription, DNA-templated	Process	8	Trp53,Plcb1,Klf4,Tbx3,Runx2,Ereg
+GO:0042493	128	3	4.05	0.00076	0.0013	response to drug	Process	4	Trp53,Bcl2,Slc1a2
+GO:0042127	146	3	3.71	0.0012	0.002	regulation of cell proliferation	Process	5	Trp53,Klf4,Tbx3
+GO:0045893	527	6	3.36	0.0014	0.0021	positive regulation of transcription, DNA-templated	Process	8	Trp53,Plcb1,Klf4,Sox2,Tbx3,Runx2
+GO:0008283	181	3	3.18	0.0027	0.004	cell proliferation	Process	3	Bcl2,Gng2,Lrp2
+GO:0006357	318	4	2.97	0.0035	0.0048	regulation of transcription from RNA polymerase II promoter	Process	10	Klf4,Sox2,Zfp110,Zfp369
+GO:0007399	319	4	2.96	0.0035	0.0048	nervous system development	Process	6	Akt1,Atoh1,Sdha,Slc1a2
+GO:0008285	328	4	2.89	0.004	0.0052	negative regulation of cell proliferation	Process	6	Trp53,Klf4,Bcl2,Ereg
+GO:0007155	506	5	2.68	0.0055	0.0069	cell adhesion	Process	3	Plcb1,Ibsp,Spp1,Cd44,Perp
+GO:0006954	229	3	2.65	0.0063	0.0077	inflammatory response	Process	5	Akt1,Cxcl5,Tnfaip3
+GO:0001701	273	3	2.28	0.011	0.013	in utero embryonic development	Process	8	Trp53,Tbx3,Zfp42
+GO:0045944	778	6	2.27	0.012	0.013	positive regulation of transcription from RNA polymerase II promoter	Process	11	Akt1,Trp53,Klf4,Sox2,Runx2,Atoh1
+GO:0006974	376	3	1.64	0.033	0.037	cellular response to DNA damage stimulus	Process	5	Trp53,Bcl2,Lig1
+GO:0000122	575	4	1.61	0.037	0.039	negative regulation of transcription from RNA polymerase II promoter	Process	11	Trp53,Klf4,Sox2,Tbx3
+GO:0007275	985	6	1.64	0.037	0.039	multicellular organismal development	Process	4	Akt1,Trp53,Sox2,Tbx3,Ereg,Atoh1
+GO:0055114	747	4	1.05	0.092	0.094	oxidation-reduction process	Process	4	Cat,Sdha,Cryz,Uqcrb
+GO:0030154	655	3	0.622	0.16	0.16	cell differentiation	Process	5	Klf4,Ereg,Atoh1

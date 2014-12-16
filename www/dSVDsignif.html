@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dSVDsignif @ dnet 1.0.6</title>
+<title>dSVDsignif @ dnet 1.0.7</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.6</a>
+      <a class="brand" href="index.html">dnet 1.0.7</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -290,7 +290,7 @@ matrix(rnorm(1000*3,mean=-0.5,sd=1), nrow=1000, ncol=3))
 # using "fdr" significance
 fdr <- dSVDsignif(data, signif="fdr", num.permutation=10)
 </div>
-<strong class='message'>Start at 2014-09-22 19:29:38</strong>
+<strong class='message'>Start at 2014-12-16 17:00:17</strong>
 <strong class='message'></strong>
 <strong class='message'>First, singular value decomposition of the input matrix (with 1000 rows and 9 columns)...</strong>
 <strong class='message'>Second, determinate the eigens...</strong>
@@ -300,26 +300,26 @@ fdr <- dSVDsignif(data, signif="fdr", num.permutation=10)
 <strong class='message'>Finally, obtain gene significance (fdr) based on 10 permutations...</strong>
 <strong class='message'>	doing row-wise permutations...</strong>
 <strong class='message'>	estimating fdr...</strong>
-<strong class='message'>1 (out of 1000) at 2014-09-22 19:29:40</strong>
-<strong class='message'>100 (out of 1000) at 2014-09-22 19:29:40</strong>
-<strong class='message'>200 (out of 1000) at 2014-09-22 19:29:40</strong>
-<strong class='message'>300 (out of 1000) at 2014-09-22 19:29:40</strong>
-<strong class='message'>400 (out of 1000) at 2014-09-22 19:29:40</strong>
-<strong class='message'>500 (out of 1000) at 2014-09-22 19:29:40</strong>
-<strong class='message'>600 (out of 1000) at 2014-09-22 19:29:40</strong>
-<strong class='message'>700 (out of 1000) at 2014-09-22 19:29:40</strong>
-<strong class='message'>800 (out of 1000) at 2014-09-22 19:29:40</strong>
-<strong class='message'>900 (out of 1000) at 2014-09-22 19:29:40</strong>
-<strong class='message'>1000 (out of 1000) at 2014-09-22 19:29:40</strong>
+<strong class='message'>1 (out of 1000) at 2014-12-16 17:00:19</strong>
+<strong class='message'>100 (out of 1000) at 2014-12-16 17:00:19</strong>
+<strong class='message'>200 (out of 1000) at 2014-12-16 17:00:19</strong>
+<strong class='message'>300 (out of 1000) at 2014-12-16 17:00:19</strong>
+<strong class='message'>400 (out of 1000) at 2014-12-16 17:00:19</strong>
+<strong class='message'>500 (out of 1000) at 2014-12-16 17:00:19</strong>
+<strong class='message'>600 (out of 1000) at 2014-12-16 17:00:19</strong>
+<strong class='message'>700 (out of 1000) at 2014-12-16 17:00:19</strong>
+<strong class='message'>800 (out of 1000) at 2014-12-16 17:00:19</strong>
+<strong class='message'>900 (out of 1000) at 2014-12-16 17:00:19</strong>
+<strong class='message'>1000 (out of 1000) at 2014-12-16 17:00:19</strong>
 <strong class='message'>	using stepup procedure...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-09-22 19:29:40</strong>
+<strong class='message'>Finish at 2014-12-16 17:00:19</strong>
 <strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'># using "pval" significance
 pval <- dSVDsignif(data, signif="pval", num.permutation=10)
 </div>
-<strong class='message'>Start at 2014-09-22 19:29:40</strong>
+<strong class='message'>Start at 2014-12-16 17:00:19</strong>
 <strong class='message'></strong>
 <strong class='message'>First, singular value decomposition of the input matrix (with 1000 rows and 9 columns)...</strong>
 <strong class='message'>Second, determinate the eigens...</strong>
@@ -328,7 +328,7 @@ pval <- dSVDsignif(data, signif="pval", num.permutation=10)
 <strong class='message'>Third, construct the gene-specific projection vector,and calculate distance statistics...</strong>
 <strong class='message'>Finally, obtain gene significance (p-value) based on 10 of row-wise permutations...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-09-22 19:29:41</strong>
+<strong class='message'>Finish at 2014-12-16 17:00:20</strong>
 <strong class='message'>Runtime in total is: 1 secs
 </strong></pre>
   </div>
@@ -350,6 +350,8 @@ pval <- dSVDsignif(data, signif="pval", num.permutation=10)
     <h2>Source man</h2>
     <a href="javascript:newWin('man/dSVDsignif.txt', 'man/dSVDsignif.txt', '1200', '1200')" title="Click to view"><B><code>dSVDsignif.Rd</code></B></a>
     
+    <a href="javascript:newWin('man/dSVDsignif.pdf', 'man/dSVDsignif.pdf', '1200', '1200')" title="Click to view"><B><code>dSVDsignif.pdf</code></B></a>
+    
     <h2>See also</h2>
     
 <code><a href='dFDRscore.html'>dFDRscore</a></code>
@@ -357,7 +359,7 @@ pval <- dSVDsignif(data, signif="pval", num.permutation=10)
     <!--
 
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I>, 6(8):64. <a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/25246945">25246945</a></p>
 
 <p>You may also cite the package as:</p>
 
@@ -372,6 +374,9 @@ pval <- dSVDsignif(data, signif="pval", num.permutation=10)
     <h2>URL</h2>
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
+      <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
+      <li><a href=" http://cran.r-project.org/package=dnet"> http://cran.r-project.org/package=dnet</a></li>
+      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     

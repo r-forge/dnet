@@ -1,250 +1,448 @@
 setID	nAnno	nOverlap	zscore	pvalue	adjp	name	namespace	distance	members
-MP:0002022	153	6	6.31	5.4e-06	0.00019	increased lymphoma incidence	Mammalian_phenotype	6	TP53,BRCA2,NPM1,RAD50,BTK,DNMT1
-MP:0002026	82	5	7.49	1.8e-06	0.00019	leukemia	Mammalian_phenotype	6	TP53,NPM1,RAD50,BAP1,DNMT1
-MP:0004809	53	4	7.56	4.1e-06	0.00019	increased hematopoietic stem cell number	Mammalian_phenotype	4	TP53,NPM1,ABCA1,BAP1
-MP:0005432	96	5	6.83	4.6e-06	0.00019	abnormal pro-B cell morphology	Mammalian_phenotype	10	TP53,RAD50,ABL1,BTK,DNMT1
-MP:0008215	144	6	6.55	3.6e-06	0.00019	decreased immature B cell number	Mammalian_phenotype	11	TP53,RAD50,ABL1,BTK,HUWE1,VAV1
-MP:0010296	204	7	6.28	3.3e-06	0.00019	increased hemolymphoid system tumor incidence	Mammalian_phenotype	6	TP53,BRCA2,NPM1,RAD50,BTK,BAP1,DNMT1
-MP:0011108	298	8	5.71	6.2e-06	0.00019	partial embryonic lethality during organogenesis	Mammalian_phenotype	7	TP53,HSPG2,BRCA2,HUWE1,ITGA4,PTK2,AMBRA1,UBC
-MP:0011704	100	5	6.67	5.8e-06	0.00019	decreased fibroblast proliferation	Mammalian_phenotype	5	TP53,BRCA2,NPM1,PTK2,ARHGEF11
-MP:0011109	226	7	5.87	7e-06	2e-04	partial lethality throughout fetal growth and development	Mammalian_phenotype	6	TP53,BRCA2,NPM1,RAD50,ABL1,ABCA1,PTK2
-MP:0000218	835	13	4.89	9.4e-06	0.00022	increased leukocyte cell number	Mammalian_phenotype	7	TP53,HSPG2,STAT1,BRCA2,NPM1,RAD50,ABL1,BTK,ABCA1,BAP1,ITGA4,ITGAM,VAV1
-MP:0004028	63	4	6.85	9.7e-06	0.00022	chromosome breakage	Mammalian_phenotype	5	TP53,BRCA2,NPM1,RAD50
-MP:0005460	853	13	4.8	1.2e-05	0.00025	abnormal leukopoiesis	Mammalian_phenotype	4	TP53,STAT1,NPM1,RAD50,ABL1,BTK,HUWE1,BAP1,ITGA4,ITGAM,VAV1,PTK2,DNMT1
-MP:0000172	184	6	5.61	1.8e-05	0.00028	abnormal bone marrow cell number	Mammalian_phenotype	4	TP53,BRCA2,NPM1,RAD50,ABL1,BTK
-MP:0002023	71	4	6.39	1.7e-05	0.00028	B cell derived lymphoma	Mammalian_phenotype	8	TP53,NPM1,BTK,DNMT1
-MP:0004978	72	4	6.34	1.9e-05	0.00028	decreased B-1 B cell number	Mammalian_phenotype	12	TP53,BTK,HUWE1,VAV1
-MP:0006410	123	5	5.88	1.9e-05	0.00028	abnormal common myeloid progenitor cell morphology	Mammalian_phenotype	4	TP53,STAT1,BRCA2,NPM1,ABCA1
-MP:0011702	122	5	5.91	1.8e-05	0.00028	abnormal fibroblast proliferation	Mammalian_phenotype	4	TP53,BRCA2,NPM1,PTK2,ARHGEF11
-MP:0005022	191	6	5.47	2.3e-05	0.00032	abnormal immature B cell morphology	Mammalian_phenotype	9	TP53,RAD50,ABL1,BTK,HUWE1,VAV1
-MP:0006208	458	9	4.84	3e-05	0.00039	lethality throughout fetal growth and development	Mammalian_phenotype	5	TP53,BRCA2,NPM1,RAD50,ABL1,ABCA1,PTK2,AMBRA1,UBC
-MP:0011181	940	13	4.4	3.7e-05	0.00046	increased hematopoietic cell number	Mammalian_phenotype	6	TP53,HSPG2,STAT1,BRCA2,NPM1,RAD50,ABL1,BTK,ABCA1,BAP1,ITGA4,ITGAM,VAV1
-MP:0000350	819	12	4.43	4.1e-05	0.00049	abnormal cell proliferation	Mammalian_phenotype	3	TP53,BRCA2,NPM1,RAD50,ABL1,BTK,HUWE1,PTK2,DNMT1,ARHGEF11,AMBRA1,UBC
-MP:0001634	300	7	4.82	5.5e-05	0.00057	internal hemorrhage	Mammalian_phenotype	5	TP53,HSPG2,ABL1,ABCA1,ITGA4,PTK2,EPHA3
-MP:0002221	839	12	4.33	5.3e-05	0.00057	abnormal lymph organ size	Mammalian_phenotype	4	TP53,STAT1,BRCA2,NPM1,RAD50,ABL1,BTK,ABCA1,BAP1,VAV1,PTK2,DNMT1
-MP:0011097	90	4	5.55	5.5e-05	0.00057	complete embryonic lethality between somite formation and embryo turning	Mammalian_phenotype	8	TP53,BRCA2,PTK2,DYNC1H1
-MP:0005017	394	8	4.66	5.8e-05	0.00058	decreased B cell number	Mammalian_phenotype	10	TP53,NPM1,RAD50,ABL1,BTK,HUWE1,ITGA4,VAV1
-MP:0002144	397	8	4.63	6.2e-05	0.00059	abnormal B cell differentiation	Mammalian_phenotype	9	TP53,RAD50,ABL1,BTK,HUWE1,ITGA4,VAV1,DNMT1
-MP:0001718	225	6	4.9	6.6e-05	0.00061	abnormal visceral yolk sac morphology	Mammalian_phenotype	4	TP53,BRCA2,NPM1,PTK2,DNMT1,ARHGEF11
-MP:0004940	97	4	5.3	7.9e-05	0.00067	abnormal B-1 B cell morphology	Mammalian_phenotype	10	TP53,BTK,HUWE1,VAV1
-MP:0004976	96	4	5.33	7.5e-05	0.00067	abnormal B-1 B cell number	Mammalian_phenotype	11	TP53,BTK,HUWE1,VAV1
-MP:0006207	873	12	4.18	8.1e-05	0.00067	embryonic lethality during organogenesis	Mammalian_phenotype	6	TP53,HSPG2,BRCA2,NPM1,ABL1,HUWE1,BAP1,ITGA4,PTK2,ARHGEF11,AMBRA1,UBC
-MP:0001726	103	4	5.1	0.00011	0.00085	abnormal allantois morphology	Mammalian_phenotype	4	TP53,BRCA2,ITGA4,PTK2
-MP:0000352	431	8	4.34	0.00012	9e-04	decreased cell proliferation	Mammalian_phenotype	4	TP53,BRCA2,NPM1,RAD50,PTK2,DNMT1,ARHGEF11,UBC
-MP:0002401	776	11	4.09	0.00012	9e-04	abnormal lymphopoiesis	Mammalian_phenotype	6	TP53,STAT1,RAD50,ABL1,BTK,HUWE1,ITGA4,ITGAM,VAV1,PTK2,DNMT1
-MP:0002445	781	11	4.07	0.00013	0.00093	abnormal mononuclear cell differentiation	Mammalian_phenotype	4	TP53,STAT1,RAD50,ABL1,BTK,HUWE1,ITGA4,ITGAM,VAV1,PTK2,DNMT1
-MP:0001806	110	4	4.89	0.00014	0.001	decreased IgM level	Mammalian_phenotype	9	TP53,BTK,HUWE1,VAV1
-MP:0003077	256	6	4.47	0.00015	0.001	abnormal cell cycle	Mammalian_phenotype	3	TP53,STAT1,BRCA2,NPM1,RAD50,UBC
-MP:0003634	345	7	4.34	0.00015	0.001	abnormal glial cell morphology	Mammalian_phenotype	3	TP53,HSPG2,ABL1,PTK2,DYNC1H1,LTN1,NCAM1
-MP:0000952	263	6	4.38	0.00018	0.0011	abnormal CNS glial cell morphology	Mammalian_phenotype	4	HSPG2,ABL1,PTK2,DYNC1H1,LTN1,NCAM1
-MP:0001698	570	9	4.04	0.00019	0.0011	decreased embryo size	Mammalian_phenotype	5	TP53,HSPG2,BRCA2,NPM1,RAD50,HUWE1,PTK2,ARHGEF11,UBC
-MP:0002403	113	4	4.81	0.00016	0.0011	abnormal pre-B cell morphology	Mammalian_phenotype	11	RAD50,ABL1,BTK,HUWE1
-MP:0005202	115	4	4.76	0.00018	0.0011	lethargy	Mammalian_phenotype	7	TP53,DNMT1,EPHA3,COL19A1
-MP:0006206	116	4	4.73	0.00019	0.0011	embryonic lethality between somite formation and embryo turning	Mammalian_phenotype	7	TP53,BRCA2,PTK2,DYNC1H1
-MP:0008874	261	6	4.4	0.00017	0.0011	decreased physiological sensitivity to xenobiotic	Mammalian_phenotype	3	TP53,STAT1,BRCA2,ABL1,CACNA1E,PTK2
-MP:0000689	830	11	3.84	0.00023	0.0012	abnormal spleen morphology	Mammalian_phenotype	3	TP53,BRCA2,NPM1,RAD50,ABL1,BTK,ABCA1,HUWE1,BAP1,VAV1,DNMT1
-MP:0000703	480	8	3.97	0.00027	0.0012	abnormal thymus morphology	Mammalian_phenotype	3	TP53,STAT1,BRCA2,RAD50,ABL1,ABCA1,VAV1,PTK2
-MP:0001697	579	9	3.98	0.00022	0.0012	abnormal embryo size	Mammalian_phenotype	3	TP53,HSPG2,BRCA2,NPM1,RAD50,HUWE1,PTK2,ARHGEF11,UBC
-MP:0002088	828	11	3.85	0.00022	0.0012	abnormal embryonic growth/weight/body size	Mammalian_phenotype	3	TP53,HSPG2,BRCA2,NPM1,RAD50,ABCA1,HUWE1,BAP1,PTK2,ARHGEF11,UBC
-MP:0002166	714	10	3.84	0.00026	0.0012	altered tumor susceptibility	Mammalian_phenotype	2	TP53,STAT1,BRCA2,NPM1,RAD50,BTK,BAP1,PTK2,DNMT1,PPP2R1A
-MP:0002269	125	4	4.5	0.00026	0.0012	muscular atrophy	Mammalian_phenotype	3	TP53,AGRN,LTN1,DNM2
-MP:0002414	841	11	3.79	0.00026	0.0012	abnormal myeloblast morphology/development	Mammalian_phenotype	4	TP53,STAT1,RAD50,ABL1,BTK,HUWE1,ITGA4,ITGAM,VAV1,PTK2,DNMT1
-MP:0004939	594	9	3.89	0.00027	0.0012	abnormal B cell morphology	Mammalian_phenotype	8	TP53,NPM1,RAD50,ABL1,BTK,HUWE1,ITGA4,VAV1,DNMT1
-MP:0006042	713	10	3.84	0.00026	0.0012	increased apoptosis	Mammalian_phenotype	5	TP53,STAT1,BRCA2,NPM1,ABL1,HUWE1,VAV1,PTK2,DNMT1,AMBRA1
-MP:0006387	698	10	3.92	0.00022	0.0012	abnormal T cell number	Mammalian_phenotype	9	TP53,STAT1,BRCA2,RAD50,ABL1,BTK,ITGA4,ITGAM,VAV1,PTK2
-MP:0011898	197	5	4.3	0.00027	0.0012	abnormal platelet cell number	Mammalian_phenotype	6	TP53,NPM1,RAD50,ABCA1,BAP1
-MP:0000333	127	4	4.46	0.00028	0.0013	decreased bone marrow cell number	Mammalian_phenotype	5	TP53,BRCA2,RAD50,ABL1
-MP:0000694	128	4	4.43	0.00029	0.0013	spleen hypoplasia	Mammalian_phenotype	7	TP53,BRCA2,ABL1,BTK
-MP:0004817	129	4	4.41	3e-04	0.0013	abnormal skeletal muscle mass	Mammalian_phenotype	4	TP53,HSPG2,AGRN,DNM2
-MP:0010273	489	8	3.91	0.00031	0.0013	increased classified tumor incidence	Mammalian_phenotype	5	TP53,BRCA2,NPM1,RAD50,BTK,BAP1,DNMT1,PPP2R1A
-MP:0001545	389	7	3.94	0.00034	0.0014	abnormal hematopoietic system physiology	Mammalian_phenotype	2	TP53,NPM1,RAD50,ABL1,BTK,ABCA1,BAP1
-MP:0002458	496	8	3.86	0.00034	0.0014	abnormal B cell number	Mammalian_phenotype	9	TP53,NPM1,RAD50,ABL1,BTK,HUWE1,ITGA4,VAV1
-MP:0004808	133	4	4.32	0.00035	0.0014	abnormal hematopoietic stem cell morphology	Mammalian_phenotype	3	TP53,NPM1,ABCA1,BAP1
-MP:0000351	209	5	4.12	0.00037	0.0015	increased cell proliferation	Mammalian_phenotype	4	TP53,NPM1,ABL1,BTK,AMBRA1
-MP:0008251	620	9	3.74	0.00038	0.0015	abnormal phagocyte morphology	Mammalian_phenotype	7	HSPG2,STAT1,NPM1,RAD50,BTK,ABCA1,BAP1,ITGA4,ITGAM
-MP:0005015	406	7	3.81	0.00045	0.0017	increased T cell number	Mammalian_phenotype	10	TP53,STAT1,BRCA2,ABL1,BTK,ITGAM,VAV1
-MP:0010274	516	8	3.73	0.00046	0.0017	increased organ/body region tumor incidence	Mammalian_phenotype	5	TP53,BRCA2,NPM1,RAD50,BTK,BAP1,DNMT1,PPP2R1A
-MP:0011090	306	6	3.9	0.00045	0.0017	partial perinatal lethality	Mammalian_phenotype	6	TP53,HSPG2,BRCA2,ABL1,ABCA1,EPHA3
-MP:0002357	311	6	3.85	0.00049	0.0018	abnormal spleen white pulp morphology	Mammalian_phenotype	5	TP53,NPM1,ABL1,BTK,HUWE1,VAV1
-MP:0002362	142	4	4.13	0.00047	0.0018	abnormal spleen marginal zone morphology	Mammalian_phenotype	6	TP53,BTK,HUWE1,VAV1
-MP:0002086	645	9	3.61	0.00052	0.0019	abnormal extraembryonic tissue morphology	Mammalian_phenotype	3	TP53,BRCA2,NPM1,ABCA1,ITGA4,PTK2,DNMT1,ARHGEF11,UBC
-MP:0002224	644	9	3.61	0.00052	0.0019	abnormal spleen size	Mammalian_phenotype	5	TP53,BRCA2,NPM1,RAD50,ABL1,BTK,ABCA1,BAP1,DNMT1
-MP:0002006	782	10	3.51	0.00059	0.002	tumorigenesis	Mammalian_phenotype	1	TP53,STAT1,BRCA2,NPM1,RAD50,BTK,BAP1,PTK2,DNMT1,PPP2R1A
-MP:0003179	148	4	4.01	0.00057	0.002	decreased platelet cell number	Mammalian_phenotype	7	TP53,RAD50,ABCA1,BAP1
-MP:0008211	227	5	3.88	0.00057	0.002	decreased mature B cell number	Mammalian_phenotype	10	TP53,ABL1,BTK,HUWE1,VAV1
-MP:0009308	150	4	3.98	0.00061	0.002	adenocarcinoma	Mammalian_phenotype	8	TP53,BRCA2,DNMT1,PPP2R1A
-MP:0009850	420	7	3.7	0.00056	0.002	embryonic lethality between implantation and placentation	Mammalian_phenotype	6	TP53,BRCA2,RAD50,VAV1,PTK2,DYNC1H1,SIN3A
-MP:0002620	154	4	3.9	0.00069	0.0021	abnormal monocyte morphology	Mammalian_phenotype	9	NPM1,ABCA1,BAP1,ITGA4
-MP:0004720	235	5	3.78	0.00068	0.0021	abnormal platelet morphology	Mammalian_phenotype	7	TP53,NPM1,RAD50,ABCA1,BAP1
-MP:0005016	794	10	3.45	0.00067	0.0021	decreased lymphocyte cell number	Mammalian_phenotype	8	TP53,NPM1,RAD50,ABL1,BTK,HUWE1,ITGA4,ITGAM,VAV1,PTK2
-MP:0006043	232	5	3.82	0.00064	0.0021	decreased apoptosis	Mammalian_phenotype	5	TP53,STAT1,RAD50,BTK,ITGAM
-MP:0008866	151	4	3.96	0.00063	0.0021	chromosomal instability	Mammalian_phenotype	4	TP53,BRCA2,NPM1,RAD50
-MP:0000240	155	4	3.88	0.00071	0.0022	extramedullary hematopoiesis	Mammalian_phenotype	5	TP53,NPM1,ABCA1,BAP1
-MP:0000228	239	5	3.73	0.00075	0.0023	abnormal thrombopoiesis	Mammalian_phenotype	5	TP53,NPM1,RAD50,ABCA1,BAP1
-MP:0000715	158	4	3.83	0.00077	0.0023	decreased thymocyte number	Mammalian_phenotype	5	TP53,ABL1,VAV1,PTK2
-MP:0003312	553	8	3.5	0.00076	0.0023	abnormal locomotor coordination	Mammalian_phenotype	6	TP53,HSPG2,STAT1,RAD50,AGRN,DYNC1H1,LTN1,PPP2R1A
-MP:0000221	959	11	3.3	0.00088	0.0025	decreased leukocyte cell number	Mammalian_phenotype	7	TP53,NPM1,RAD50,ABL1,BTK,ABCA1,HUWE1,ITGA4,ITGAM,VAV1,PTK2
-MP:0002106	820	10	3.34	0.00088	0.0025	abnormal muscle physiology	Mammalian_phenotype	2	TP53,HSPG2,STAT1,ABL1,ABCA1,COL19A1,AGRN,DYNC1H1,LTN1,DNM2
-MP:0002459	565	8	3.43	0.00088	0.0025	abnormal B cell physiology	Mammalian_phenotype	5	TP53,STAT1,RAD50,ABL1,BTK,HUWE1,ITGA4,VAV1
-MP:0009937	342	6	3.56	0.00087	0.0025	abnormal neuron differentiation	Mammalian_phenotype	4	TP53,HSPG2,ABL1,HUWE1,NCAM1,EPHB1
-MP:0010094	163	4	3.75	0.00089	0.0025	abnormal chromosome stability	Mammalian_phenotype	3	TP53,BRCA2,NPM1,RAD50
-MP:0010639	250	5	3.6	0.00095	0.0026	altered tumor pathology	Mammalian_phenotype	2	TP53,STAT1,BRCA2,NPM1,PTK2
-MP:0011098	696	9	3.34	0.00096	0.0026	complete embryonic lethality during organogenesis	Mammalian_phenotype	7	TP53,BRCA2,NPM1,ABL1,HUWE1,BAP1,ITGA4,PTK2,ARHGEF11
-MP:0002019	700	9	3.33	0.001	0.0027	abnormal tumor incidence	Mammalian_phenotype	3	TP53,BRCA2,NPM1,RAD50,BTK,BAP1,PTK2,DNMT1,PPP2R1A
-MP:0001120	170	4	3.63	0.0011	0.0028	abnormal uterus morphology	Mammalian_phenotype	6	TP53,BRCA2,ABCA1,EPHA1
-MP:0002364	353	6	3.47	0.0011	0.0028	abnormal thymus size	Mammalian_phenotype	5	TP53,STAT1,BRCA2,ABL1,VAV1,PTK2
-MP:0011091	352	6	3.47	0.001	0.0028	complete prenatal lethality	Mammalian_phenotype	5	TP53,STAT1,BRCA2,RAD50,PTK2,NCAM1
-MP:0004087	359	6	3.42	0.0012	0.003	abnormal muscle fiber morphology	Mammalian_phenotype	3	TP53,HSPG2,ABL1,PTK2,LTN1,DNM2
-MP:0004196	990	11	3.18	0.0012	0.003	abnormal prenatal growth/weight/body size	Mammalian_phenotype	2	TP53,HSPG2,BRCA2,NPM1,RAD50,ABCA1,HUWE1,BAP1,PTK2,ARHGEF11,UBC
-MP:0011092	359	6	3.42	0.0012	0.003	complete embryonic lethality	Mammalian_phenotype	6	TP53,BRCA2,NPM1,DNMT1,DNM2,PPP2R1A
-MP:0003448	176	4	3.54	0.0013	0.0031	altered tumor morphology	Mammalian_phenotype	3	TP53,BRCA2,NPM1,PTK2
-MP:0010866	718	9	3.24	0.0012	0.0031	abnormal prenatal body size	Mammalian_phenotype	3	TP53,HSPG2,BRCA2,NPM1,RAD50,HUWE1,PTK2,ARHGEF11,UBC
-MP:0000598	859	10	3.17	0.0013	0.0032	abnormal liver morphology	Mammalian_phenotype	3	TP53,HSPG2,STAT1,NPM1,RAD50,ABL1,ABCA1,PTK2,EPHA3,UBC
-MP:0001712	177	4	3.53	0.0013	0.0032	abnormal placenta development	Mammalian_phenotype	5	NPM1,ABCA1,ITGA4,PTK2
-MP:0008037	862	10	3.16	0.0013	0.0032	abnormal T cell morphology	Mammalian_phenotype	8	TP53,STAT1,BRCA2,RAD50,ABL1,BTK,ITGA4,ITGAM,VAV1,PTK2
-MP:0011096	266	5	3.43	0.0013	0.0032	complete embryonic lethality between implantation and somite formation	Mammalian_phenotype	8	TP53,RAD50,VAV1,DYNC1H1,SIN3A
-MP:0002417	271	5	3.37	0.0014	0.0033	abnormal megakaryocyte morphology	Mammalian_phenotype	5	TP53,NPM1,RAD50,ABCA1,BAP1
-MP:0002452	865	10	3.15	0.0014	0.0033	abnormal professional antigen presenting cell physiology	Mammalian_phenotype	4	TP53,STAT1,RAD50,ABL1,BTK,ABCA1,HUWE1,ITGA4,ITGAM,VAV1
-MP:0008250	731	9	3.18	0.0014	0.0033	abnormal myeloid leukocyte morphology	Mammalian_phenotype	6	HSPG2,STAT1,NPM1,RAD50,BTK,ABCA1,BAP1,ITGA4,ITGAM
-MP:0002138	874	10	3.11	0.0015	0.0034	abnormal hepatobiliary system morphology	Mammalian_phenotype	2	TP53,HSPG2,STAT1,NPM1,RAD50,ABL1,ABCA1,PTK2,EPHA3,UBC
-MP:0003084	182	4	3.45	0.0015	0.0034	abnormal skeletal muscle fiber morphology	Mammalian_phenotype	4	TP53,HSPG2,LTN1,DNM2
-MP:0008987	184	4	3.42	0.0015	0.0035	abnormal liver lobule morphology	Mammalian_phenotype	5	TP53,HSPG2,RAD50,ABL1
-MP:0002413	278	5	3.3	0.0016	0.0036	abnormal megakaryocyte progenitor cell morphology	Mammalian_phenotype	4	TP53,NPM1,RAD50,ABCA1,BAP1
-MP:0005404	186	4	3.4	0.0016	0.0036	abnormal axon morphology	Mammalian_phenotype	5	HSPG2,AGRN,NCAM1,EPHB1
-MP:0008248	493	7	3.2	0.0016	0.0036	abnormal mononuclear phagocyte morphology	Mammalian_phenotype	7	HSPG2,STAT1,NPM1,RAD50,ABCA1,BAP1,ITGA4
-MP:0001730	280	5	3.28	0.0017	0.0037	embryonic growth arrest	Mammalian_phenotype	3	TP53,NPM1,RAD50,ABCA1,DNMT1
-MP:0002020	619	8	3.13	0.0017	0.0037	increased tumor incidence	Mammalian_phenotype	4	TP53,BRCA2,NPM1,RAD50,BTK,BAP1,DNMT1,PPP2R1A
-MP:0002451	385	6	3.21	0.0017	0.0037	abnormal macrophage physiology	Mammalian_phenotype	4	STAT1,BTK,ABCA1,ITGA4,ITGAM,VAV1
-MP:0008986	192	4	3.31	0.0018	0.0039	abnormal liver parenchyma morphology	Mammalian_phenotype	4	TP53,HSPG2,RAD50,ABL1
-MP:0001700	194	4	3.29	0.0019	0.004	abnormal embryo turning	Mammalian_phenotype	5	TP53,HUWE1,PTK2,DNMT1
-MP:0002435	506	7	3.12	0.0019	0.004	abnormal effector T cell morphology	Mammalian_phenotype	9	STAT1,RAD50,ABL1,BTK,ITGA4,ITGAM,VAV1
-MP:0002460	293	5	3.16	0.0021	0.0044	decreased immunoglobulin level	Mammalian_phenotype	8	TP53,RAD50,BTK,HUWE1,VAV1
-MP:0011099	293	5	3.16	0.0021	0.0044	complete lethality throughout fetal growth and development	Mammalian_phenotype	6	TP53,NPM1,PTK2,AMBRA1,UBC
-MP:0000706	298	5	3.12	0.0023	0.0046	small thymus	Mammalian_phenotype	6	TP53,STAT1,ABL1,VAV1,PTK2
-MP:0002432	405	6	3.07	0.0023	0.0046	abnormal CD4-positive T cell morphology	Mammalian_phenotype	10	STAT1,RAD50,BTK,ITGA4,ITGAM,VAV1
-MP:0006205	296	5	3.13	0.0023	0.0046	embryonic lethality between implantation and somite formation	Mammalian_phenotype	7	TP53,RAD50,VAV1,DYNC1H1,SIN3A
-MP:0008171	298	5	3.12	0.0023	0.0046	abnormal mature B cell morphology	Mammalian_phenotype	5	TP53,ABL1,BTK,HUWE1,VAV1
-MP:0001914	529	7	2.98	0.0025	0.005	hemorrhage	Mammalian_phenotype	4	TP53,HSPG2,ABL1,ABCA1,ITGA4,PTK2,EPHA3
-MP:0003945	931	10	2.89	0.0025	0.005	abnormal lymphocyte physiology	Mammalian_phenotype	5	TP53,STAT1,BRCA2,RAD50,ABL1,BTK,HUWE1,ITGA4,ITGAM,VAV1
-MP:0008770	210	4	3.09	0.0027	0.0053	decreased survivor rate	Mammalian_phenotype	4	TP53,BRCA2,ABL1,PTK2
-MP:0005018	539	7	2.93	0.0028	0.0055	decreased T cell number	Mammalian_phenotype	10	TP53,RAD50,ABL1,ITGA4,ITGAM,VAV1,PTK2
-MP:0008195	670	8	2.88	0.0029	0.0056	abnormal professional antigen presenting cell morphology	Mammalian_phenotype	4	TP53,HSPG2,STAT1,RAD50,ABL1,BTK,HUWE1,VAV1
-MP:0008081	431	6	2.89	0.0033	0.0063	abnormal single-positive T cell number	Mammalian_phenotype	10	STAT1,ABL1,BTK,ITGA4,ITGAM,VAV1
-MP:0008082	220	4	2.97	0.0033	0.0063	increased single-positive T cell number	Mammalian_phenotype	11	STAT1,ABL1,BTK,ITGAM
-MP:0008872	558	7	2.82	0.0035	0.0066	abnormal physiological response to xenobiotic	Mammalian_phenotype	2	TP53,STAT1,BRCA2,ABL1,CACNA1E,PTK2,PPP2R1A
-MP:0002108	831	9	2.75	0.0037	0.0068	abnormal muscle morphology	Mammalian_phenotype	2	TP53,HSPG2,ABL1,BAP1,PTK2,COL19A1,AGRN,LTN1,DNM2
-MP:0003720	329	5	2.85	0.0038	0.007	abnormal neural tube closure	Mammalian_phenotype	5	TP53,BRCA2,ABL1,DNMT1,AMBRA1
-MP:0005025	564	7	2.79	0.0038	0.007	abnormal response to infection	Mammalian_phenotype	3	STAT1,BRCA2,ABL1,BTK,HUWE1,ITGAM,VAV1
-MP:0001577	331	5	2.84	0.0039	0.0071	anemia	Mammalian_phenotype	7	TP53,NPM1,RAD50,BAP1,DNMT1
-MP:0001688	229	4	2.87	0.004	0.0071	abnormal somite development	Mammalian_phenotype	4	TP53,HUWE1,PTK2,DNMT1
-MP:0002018	331	5	2.84	0.0039	0.0071	malignant tumors	Mammalian_phenotype	6	TP53,BRCA2,NPM1,DNMT1,PPP2R1A
-MP:0005370	987	10	2.69	0.004	0.0071	liver/biliary system phenotype	Mammalian_phenotype	1	TP53,HSPG2,STAT1,NPM1,RAD50,ABL1,ABCA1,PTK2,EPHA3,UBC
-MP:0000691	447	6	2.79	0.0041	0.0072	enlarged spleen	Mammalian_phenotype	6	TP53,NPM1,RAD50,ABCA1,BAP1,DNMT1
-MP:0008873	233	4	2.83	0.0043	0.0075	increased physiological sensitivity to xenobiotic	Mammalian_phenotype	3	TP53,BRCA2,PTK2,PPP2R1A
-MP:0000787	711	8	2.69	0.0044	0.0076	abnormal telencephalon morphology	Mammalian_phenotype	5	HSPG2,ABL1,HUWE1,AMBRA1,NCAM1,EPHB1,NCAM2,TNR
-MP:0005013	578	7	2.72	0.0044	0.0076	increased lymphocyte cell number	Mammalian_phenotype	8	TP53,STAT1,BRCA2,ABL1,BTK,ITGAM,VAV1
-MP:0008415	338	5	2.78	0.0044	0.0076	abnormal neurite morphology	Mammalian_phenotype	4	HSPG2,AGRN,LTN1,NCAM1,EPHB1
-MP:0001805	237	4	2.79	0.0046	0.0078	decreased IgG level	Mammalian_phenotype	9	TP53,BTK,HUWE1,VAV1
-MP:0002490	457	6	2.72	0.0046	0.0078	abnormal immunoglobulin level	Mammalian_phenotype	4	TP53,STAT1,RAD50,BTK,HUWE1,VAV1
-MP:0000692	241	4	2.75	0.0049	0.0082	small spleen	Mammalian_phenotype	6	TP53,BRCA2,ABL1,BTK
-MP:0000929	240	4	2.76	0.0049	0.0082	open neural tube	Mammalian_phenotype	6	TP53,BRCA2,DNMT1,AMBRA1
-MP:0008073	346	5	2.72	0.0049	0.0082	abnormal CD4-positive T cell number	Mammalian_phenotype	10	STAT1,BTK,ITGA4,ITGAM,VAV1
-MP:0000914	245	4	2.71	0.0053	0.0087	exencephaly	Mammalian_phenotype	5	TP53,HSPG2,BRCA2,AMBRA1
-MP:0000783	878	9	2.57	0.0055	0.009	abnormal forebrain morphology	Mammalian_phenotype	4	HSPG2,NPM1,ABL1,HUWE1,AMBRA1,NCAM1,EPHB1,NCAM2,TNR
-MP:0010831	249	4	2.67	0.0057	0.0092	partial lethality	Mammalian_phenotype	3	TP53,BRCA2,ABL1,PTK2
-MP:0000274	358	5	2.63	0.0058	0.0094	enlarged heart	Mammalian_phenotype	5	TP53,ABL1,ABCA1,HUWE1,PTK2
-MP:0002084	481	6	2.58	0.0061	0.0097	abnormal developmental patterning	Mammalian_phenotype	3	TP53,BRCA2,RAD50,HUWE1,PTK2,DNMT1
-MP:0002444	610	7	2.56	0.0061	0.0097	abnormal T cell physiology	Mammalian_phenotype	6	TP53,STAT1,BRCA2,RAD50,ITGA4,ITGAM,VAV1
-MP:0010155	258	4	2.58	0.0066	0.01	abnormal intestine physiology	Mammalian_phenotype	3	TP53,STAT1,BTK,ABCA1
-MP:0000759	374	5	2.52	0.0071	0.011	abnormal skeletal muscle morphology	Mammalian_phenotype	3	TP53,HSPG2,AGRN,LTN1,DNM2
-MP:0001800	493	6	2.51	0.0069	0.011	abnormal humoral immune response	Mammalian_phenotype	3	TP53,STAT1,RAD50,BTK,HUWE1,VAV1
-MP:0001944	264	4	2.53	0.0072	0.011	abnormal pancreas morphology	Mammalian_phenotype	3	TP53,BRCA2,CACNA1E,HUWE1
-MP:0003984	494	6	2.51	0.007	0.011	embryonic growth retardation	Mammalian_phenotype	3	TP53,BRCA2,ABCA1,HUWE1,BAP1,PTK2
-MP:0005065	264	4	2.53	0.0072	0.011	abnormal neutrophil morphology	Mammalian_phenotype	8	BTK,ABCA1,BAP1,ITGAM
-MP:0005371	770	8	2.45	0.0074	0.011	limbs/digits/tail phenotype	Mammalian_phenotype	1	TP53,HSPG2,STAT1,BRCA2,BTK,PTK2,AGRN,EPHA1
-MP:0000245	634	7	2.45	0.0077	0.012	abnormal erythropoiesis	Mammalian_phenotype	5	TP53,NPM1,RAD50,BTK,BAP1,ITGA4,DNMT1
-MP:0000322	269	4	2.49	0.0078	0.012	increased granulocyte number	Mammalian_phenotype	8	NPM1,ABCA1,BAP1,ITGAM
-MP:0001711	379	5	2.49	0.0076	0.012	abnormal placenta morphology	Mammalian_phenotype	4	NPM1,ABCA1,ITGA4,PTK2,ARHGEF11
-MP:0002038	269	4	2.49	0.0078	0.012	carcinoma	Mammalian_phenotype	7	TP53,BRCA2,DNMT1,PPP2R1A
-MP:0002128	644	7	2.4	0.0084	0.012	abnormal blood circulation	Mammalian_phenotype	3	TP53,HSPG2,ABL1,ABCA1,ITGA4,PTK2,EPHA3
-MP:0000847	394	5	2.39	0.0091	0.013	abnormal metencephalon morphology	Mammalian_phenotype	5	TP53,ABL1,HUWE1,PTK2,NCAM1
-MP:0000849	389	5	2.42	0.0086	0.013	abnormal cerebellum morphology	Mammalian_phenotype	6	TP53,ABL1,HUWE1,PTK2,NCAM1
-MP:0001926	280	4	2.39	0.0092	0.013	female infertility	Mammalian_phenotype	4	BRCA2,ABCA1,DNMT1,EPHA1
-MP:0000288	285	4	2.35	0.0099	0.014	abnormal pericardium morphology	Mammalian_phenotype	4	HSPG2,ABL1,ITGA4,ARHGEF11
-MP:0002151	526	6	2.34	0.0098	0.014	abnormal neural tube morphology/development	Mammalian_phenotype	4	TP53,BRCA2,ABL1,PTK2,DNMT1,AMBRA1
-MP:0000477	408	5	2.3	0.011	0.015	abnormal intestine morphology	Mammalian_phenotype	3	TP53,STAT1,ABL1,VAV1,DNMT1
-MP:0002441	418	5	2.24	0.012	0.017	abnormal granulocyte morphology	Mammalian_phenotype	7	NPM1,BTK,ABCA1,BAP1,ITGAM
-MP:0004262	305	4	2.2	0.013	0.018	abnormal physical strength	Mammalian_phenotype	4	TP53,AGRN,DYNC1H1,LTN1
-MP:0000913	698	7	2.17	0.013	0.019	abnormal brain development	Mammalian_phenotype	4	TP53,HSPG2,BRCA2,NPM1,ABL1,PTK2,AMBRA1
-MP:0001663	562	6	2.16	0.014	0.019	abnormal digestive system physiology	Mammalian_phenotype	2	TP53,STAT1,BRCA2,BTK,ABCA1,COL19A1
-MP:0008083	307	4	2.18	0.013	0.019	decreased single-positive T cell number	Mammalian_phenotype	11	ABL1,ITGA4,ITGAM,VAV1
-MP:0010865	563	6	2.15	0.014	0.019	prenatal growth retardation	Mammalian_phenotype	3	TP53,BRCA2,ABCA1,HUWE1,BAP1,PTK2
-MP:0002406	438	5	2.12	0.015	0.02	increased susceptibility to infection	Mammalian_phenotype	5	STAT1,ABL1,BTK,HUWE1,ITGAM
-MP:0002419	566	6	2.14	0.014	0.02	abnormal innate immunity	Mammalian_phenotype	3	STAT1,BTK,ABCA1,ITGA4,ITGAM,VAV1
-MP:0000462	873	8	2.06	0.016	0.022	abnormal digestive system morphology	Mammalian_phenotype	2	TP53,HSPG2,STAT1,ABL1,VAV1,PTK2,DNMT1,COL19A1
-MP:0001516	721	7	2.08	0.016	0.022	abnormal motor coordination/ balance	Mammalian_phenotype	4	TP53,STAT1,ABL1,AGRN,DYNC1H1,LTN1,PPP2R1A
-MP:0002145	578	6	2.08	0.016	0.022	abnormal T cell differentiation	Mammalian_phenotype	9	TP53,STAT1,RAD50,ITGAM,VAV1,PTK2
-MP:0002447	584	6	2.06	0.017	0.023	abnormal erythrocyte morphology	Mammalian_phenotype	6	TP53,NPM1,RAD50,BTK,BAP1,DNMT1
-MP:0004811	586	6	2.05	0.017	0.023	abnormal neuron physiology	Mammalian_phenotype	3	TP53,STAT1,ABL1,HUWE1,DYNC1H1,LTN1
-MP:0000841	461	5	2	0.019	0.025	abnormal hindbrain morphology	Mammalian_phenotype	4	TP53,ABL1,HUWE1,PTK2,NCAM1
-MP:0002058	896	8	1.98	0.019	0.025	neonatal lethality	Mammalian_phenotype	6	TP53,BRCA2,NPM1,ABL1,HUWE1,AGRN,DYNC1H1,DNM2
-MP:0002109	600	6	1.98	0.019	0.025	abnormal limb morphology	Mammalian_phenotype	2	TP53,HSPG2,STAT1,BTK,PTK2,AGRN
-MP:0001846	910	8	1.93	0.021	0.028	increased inflammatory response	Mammalian_phenotype	4	TP53,HSPG2,STAT1,ABL1,BTK,ABCA1,BAP1,EPHA1
-MP:0001828	349	4	1.89	0.022	0.029	abnormal T cell activation	Mammalian_phenotype	7	TP53,STAT1,ITGAM,VAV1
-MP:0005406	480	5	1.9	0.023	0.029	abnormal heart size	Mammalian_phenotype	4	TP53,ABL1,ABCA1,HUWE1,PTK2
-MP:0001263	371	4	1.76	0.028	0.036	weight loss	Mammalian_phenotype	6	TP53,ABL1,COL19A1,PPP2R1A
-MP:0009209	372	4	1.75	0.028	0.036	abnormal internal female genitalia morphology	Mammalian_phenotype	5	TP53,BRCA2,ABCA1,EPHA1
-MP:0004848	374	4	1.74	0.029	0.037	abnormal liver size	Mammalian_phenotype	4	TP53,STAT1,NPM1,RAD50
-MP:0009208	379	4	1.71	0.03	0.038	abnormal female genitalia morphology	Mammalian_phenotype	4	TP53,BRCA2,ABCA1,EPHA1
-MP:0001119	382	4	1.7	0.031	0.039	abnormal female reproductive system morphology	Mammalian_phenotype	3	TP53,BRCA2,ABCA1,EPHA1
-MP:0002133	815	7	1.73	0.032	0.039	abnormal respiratory system physiology	Mammalian_phenotype	2	TP53,HSPG2,RAD50,ABL1,ABCA1,EPHA3,AGRN
-MP:0001793	528	5	1.67	0.034	0.042	altered susceptibility to infection	Mammalian_phenotype	4	STAT1,ABL1,BTK,HUWE1,ITGAM
-MP:0008540	526	5	1.68	0.034	0.042	abnormal cerebrum morphology	Mammalian_phenotype	6	ABL1,HUWE1,NCAM1,EPHB1,TNR
-MP:0000259	542	5	1.6	0.038	0.047	abnormal vascular development	Mammalian_phenotype	4	TP53,HSPG2,NPM1,PTK2,ARHGEF11
-MP:0005193	404	4	1.57	0.039	0.047	abnormal anterior eye segment morphology	Mammalian_phenotype	3	TP53,HSPG2,STAT1,ABL1
-MP:0001924	702	6	1.57	0.041	0.05	infertility	Mammalian_phenotype	4	TP53,BRCA2,ABCA1,DNMT1,EPHA1,DYNC1H1
-MP:0001695	417	4	1.51	0.043	0.052	abnormal gastrulation	Mammalian_phenotype	4	TP53,HUWE1,PTK2,DNMT1
-MP:0002085	865	7	1.56	0.043	0.052	abnormal embryonic tissue morphology	Mammalian_phenotype	3	TP53,BRCA2,ABL1,HUWE1,PTK2,DNMT1,AMBRA1
-MP:0005266	563	5	1.51	0.045	0.054	abnormal metabolism	Mammalian_phenotype	2	TP53,BRCA2,ABCA1,DNMT1,EPHA1
-MP:0003313	896	7	1.46	0.051	0.061	abnormal locomotor activation	Mammalian_phenotype	6	TP53,DNMT1,EPHA3,COL19A1,AGRN,DYNC1H1,LTN1
-MP:0008568	437	4	1.41	0.051	0.061	abnormal interleukin secretion	Mammalian_phenotype	5	STAT1,RAD50,ABCA1,VAV1
-MP:0002925	745	6	1.42	0.054	0.064	abnormal cardiovascular development	Mammalian_phenotype	3	TP53,HSPG2,NPM1,PTK2,EPHA3,ARHGEF11
-MP:0005164	460	4	1.3	0.061	0.073	abnormal response to injury	Mammalian_phenotype	2	TP53,STAT1,ITGAM,VAV1
-MP:0003091	463	4	1.28	0.063	0.074	abnormal cell migration	Mammalian_phenotype	3	TP53,ITGA4,ITGAM,PTK2
-MP:0001510	465	4	1.27	0.064	0.075	abnormal coat appearance	Mammalian_phenotype	4	TP53,PTK2,DNMT1,COL19A1
-MP:0002723	944	7	1.31	0.066	0.077	abnormal immune serum protein physiology	Mammalian_phenotype	3	TP53,STAT1,RAD50,BTK,ABCA1,HUWE1,VAV1
-MP:0011087	630	5	1.24	0.07	0.081	complete neonatal lethality	Mammalian_phenotype	7	TP53,NPM1,ABL1,AGRN,DYNC1H1
-MP:0000367	481	4	1.2	0.072	0.083	abnormal coat/ hair morphology	Mammalian_phenotype	3	TP53,PTK2,DNMT1,COL19A1
-MP:0002060	797	6	1.24	0.073	0.084	abnormal skin morphology	Mammalian_phenotype	2	TP53,HSPG2,BRCA2,NPM1,BTK,PTK2
-MP:0001784	661	5	1.13	0.084	0.096	abnormal fluid regulation	Mammalian_phenotype	3	TP53,HSPG2,ABL1,PTK2,EPHA3
-MP:0002160	995	7	1.16	0.085	0.096	abnormal reproductive system morphology	Mammalian_phenotype	2	TP53,BRCA2,RAD50,ABCA1,VAV1,DNMT1,EPHA1
-MP:0005416	661	5	1.13	0.084	0.096	abnormal circulating protein level	Mammalian_phenotype	4	TP53,STAT1,BTK,ABCA1,VAV1
-MP:0001146	523	4	1.02	0.095	0.11	abnormal testis morphology	Mammalian_phenotype	4	TP53,BRCA2,RAD50,ABCA1
-MP:0001175	545	4	0.938	0.11	0.12	abnormal lung morphology	Mammalian_phenotype	3	TP53,ABCA1,PTK2,EPHA3
-MP:0001731	896	6	0.935	0.12	0.13	abnormal postnatal growth	Mammalian_phenotype	3	TP53,STAT1,DNMT1,DYNC1H1,LTN1,DNM2
-MP:0001943	553	4	0.907	0.11	0.13	abnormal respiration	Mammalian_phenotype	3	TP53,HSPG2,RAD50,ABCA1
-MP:0005294	553	4	0.907	0.11	0.13	abnormal heart ventricle morphology	Mammalian_phenotype	4	HSPG2,ABL1,ABCA1,PTK2
-MP:0011086	715	5	0.946	0.11	0.13	partial postnatal lethality	Mammalian_phenotype	6	TP53,BRCA2,ABL1,ABCA1,COL19A1
-MP:0003795	568	4	0.851	0.12	0.14	abnormal bone structure	Mammalian_phenotype	3	TP53,HSPG2,STAT1,ABCA1
-MP:0003009	590	4	0.772	0.14	0.15	abnormal cytokine secretion	Mammalian_phenotype	4	STAT1,RAD50,ABCA1,VAV1
-MP:0003635	592	4	0.764	0.14	0.15	abnormal synaptic transmission	Mammalian_phenotype	3	HSPG2,CACNA1E,AGRN,NCAM1
-MP:0003699	609	4	0.705	0.15	0.16	abnormal female reproductive system physiology	Mammalian_phenotype	3	BRCA2,ABCA1,DNMT1,EPHA1
-MP:0008469	765	5	0.786	0.14	0.16	abnormal protein level	Mammalian_phenotype	3	TP53,STAT1,BTK,ABCA1,VAV1
-MP:0009205	600	4	0.736	0.15	0.16	abnormal internal male genitalia morphology	Mammalian_phenotype	5	TP53,BRCA2,RAD50,ABCA1
-MP:0010678	767	5	0.78	0.14	0.16	abnormal skin adnexa morphology	Mammalian_phenotype	2	TP53,BRCA2,PTK2,DNMT1,COL19A1
-MP:0001145	616	4	0.681	0.16	0.17	abnormal male reproductive system morphology	Mammalian_phenotype	3	TP53,BRCA2,RAD50,ABCA1
-MP:0009198	616	4	0.681	0.16	0.17	abnormal male genitalia morphology	Mammalian_phenotype	4	TP53,BRCA2,RAD50,ABCA1
-MP:0000428	994	6	0.665	0.18	0.19	abnormal craniofacial morphology	Mammalian_phenotype	2	TP53,HSPG2,ABL1,HUWE1,ITGA4,PTK2
-MP:0001929	643	4	0.591	0.18	0.19	abnormal gametogenesis	Mammalian_phenotype	3	TP53,BRCA2,VAV1,DNMT1
-MP:0005382	994	6	0.665	0.18	0.19	craniofacial phenotype	Mammalian_phenotype	1	TP53,HSPG2,ABL1,HUWE1,ITGA4,PTK2
-MP:0000653	692	4	0.438	0.22	0.23	abnormal sex gland morphology	Mammalian_phenotype	3	TP53,BRCA2,RAD50,ABCA1
-MP:0001732	871	5	0.48	0.22	0.23	postnatal growth retardation	Mammalian_phenotype	4	TP53,STAT1,DNMT1,LTN1,DNM2
-MP:0002132	716	4	0.366	0.24	0.25	abnormal respiratory system morphology	Mammalian_phenotype	2	TP53,ABCA1,PTK2,EPHA3
-MP:0005418	716	4	0.366	0.24	0.25	abnormal circulating hormone level	Mammalian_phenotype	4	TP53,ABCA1,CACNA1E,HUWE1
-MP:0000432	737	4	0.305	0.26	0.27	abnormal head morphology	Mammalian_phenotype	3	TP53,HSPG2,HUWE1,PTK2
-MP:0003492	735	4	0.311	0.26	0.27	abnormal involuntary movement	Mammalian_phenotype	4	TP53,STAT1,AGRN,LTN1
-MP:0002067	748	4	0.274	0.27	0.28	abnormal sensory capabilities/reflexes/nociception	Mammalian_phenotype	3	TP53,CACNA1E,AGRN,LTN1
-MP:0000516	767	4	0.221	0.29	0.29	abnormal renal/urinary system morphology	Mammalian_phenotype	2	TP53,ABCA1,HUWE1,AGRN
-MP:0002752	805	4	0.118	0.33	0.33	abnormal somatic nervous system morphology	Mammalian_phenotype	3	TP53,HSPG2,AGRN,EPHB1
-MP:0003953	819	4	0.0818	0.34	0.34	abnormal hormone level	Mammalian_phenotype	3	TP53,ABCA1,CACNA1E,HUWE1
-MP:0002114	890	4	-0.0961	0.41	0.41	abnormal axial skeleton morphology	Mammalian_phenotype	3	TP53,HSPG2,BRCA2,ABL1
+MP:0004841	70	5	8.85	3.3e-07	0.00015	abnormal small intestine crypts of Lieberkuhn morphology	Mammalian_phenotype	5	Bcl2,Atoh1,Tnfaip3,Klf4,Areg
+MP:0002896	149	6	6.97	1.9e-06	3e-04	abnormal bone mineralization	Mammalian_phenotype	4	Lrp2,Runx2,Spp1,Ibsp,Col10a1,Mepe
+MP:0008885	23	3	9.49	2e-06	3e-04	increased enterocyte apoptosis	Mammalian_phenotype	6	Trp53,Cd44,Tnfaip3
+MP:0000468	25	3	9.08	2.8e-06	0.00032	abnormal esophageal epithelium morphology	Mammalian_phenotype	4	Trp53,Sox2,Klf4
+MP:0002998	171	6	6.4	4.9e-06	0.00034	abnormal bone remodeling	Mammalian_phenotype	3	Lrp2,Runx2,Spp1,Ibsp,Mepe,Cd44
+MP:0006043	244	7	6.1	4.9e-06	0.00034	decreased apoptosis	Mammalian_phenotype	5	Bcl2,Trp53,Spp1,Cd44,Tnfaip3,Vim,Perp
+MP:0008884	29	3	8.39	5.3e-06	0.00034	abnormal enterocyte apoptosis	Mammalian_phenotype	5	Trp53,Cd44,Tnfaip3
+MP:0000130	259	7	5.86	7.6e-06	0.00038	abnormal trabecular bone morphology	Mammalian_phenotype	4	Trp53,Runx2,Spp1,Ibsp,Col10a1,Mepe,Cd44
+MP:0000496	181	6	6.18	7.1e-06	0.00038	abnormal small intestine morphology	Mammalian_phenotype	4	Bcl2,Trp53,Atoh1,Tnfaip3,Klf4,Areg
+MP:0000135	74	4	6.75	1.1e-05	0.00044	decreased compact bone thickness	Mammalian_phenotype	6	Trp53,Runx2,Ibsp,Cd44
+MP:0000511	200	6	5.8	1.4e-05	0.00044	abnormal intestinal mucosa morphology	Mammalian_phenotype	5	Bcl2,Trp53,Atoh1,Tnfaip3,Klf4,Areg
+MP:0002019	829	12	4.91	1.3e-05	0.00044	abnormal tumor incidence	Mammalian_phenotype	3	Spg20,Akt1,Bcl2,Trp53,Sox2,Spp1,Cd44,Lig1,Cat,Klf4,Ereg,Perp
+MP:0008595	132	5	6.12	1.4e-05	0.00044	abnormal circulating interleukin-6 level	Mammalian_phenotype	8	Trp53,Spp1,Cd44,Tnfaip3,Cxcl5
+MP:0008944	75	4	6.7	1.2e-05	0.00044	decreased sensitivity to induced cell death	Mammalian_phenotype	5	Trp53,Spp1,Cd44,Perp
+MP:0002166	843	12	4.84	1.5e-05	0.00045	altered tumor susceptibility	Mammalian_phenotype	2	Spg20,Akt1,Bcl2,Trp53,Sox2,Spp1,Cd44,Lig1,Cat,Klf4,Ereg,Perp
+MP:0002020	738	11	4.8	2.1e-05	0.00053	increased tumor incidence	Mammalian_phenotype	4	Spg20,Akt1,Bcl2,Trp53,Sox2,Cd44,Lig1,Cat,Klf4,Ereg,Perp
+MP:0003204	82	4	6.36	1.9e-05	0.00053	decreased neuron apoptosis	Mammalian_phenotype	6	Trp53,Spp1,Vim,Perp
+MP:0006412	141	5	5.87	2e-05	0.00053	abnormal T cell apoptosis	Mammalian_phenotype	5	Akt1,Bcl2,Trp53,Cd44,Perp
+MP:0001263	403	8	5.07	2.6e-05	0.00059	weight loss	Mammalian_phenotype	6	Bcl2,Trp53,Col10a1,Cd44,Itpr2,Tnfaip3,Ereg,Areg
+MP:0006307	88	4	6.1	2.7e-05	0.00059	abnormal seminiferous tubule size	Mammalian_phenotype	8	Akt1,Trp53,Ubb,Klf4
+MP:0000490	150	5	5.65	2.9e-05	0.00061	abnormal crypts of Lieberkuhn morphology	Mammalian_phenotype	3	Bcl2,Atoh1,Tnfaip3,Klf4,Areg
+MP:0005501	319	7	5.08	3.5e-05	7e-04	abnormal skin physiology	Mammalian_phenotype	2	Trp53,Cd44,Klf4,Ereg,Areg,Abcg2,Perp
+MP:0000488	237	6	5.18	4.1e-05	0.00077	abnormal intestinal epithelium morphology	Mammalian_phenotype	4	Bcl2,Trp53,Atoh1,Tnfaip3,Klf4,Areg
+MP:0001732	928	12	4.45	4.3e-05	0.00077	postnatal growth retardation	Mammalian_phenotype	4	Akt1,Bcl2,Trp53,Ubb,Runx2,Col10a1,Plcb1,Lig1,Itpr2,Dppa2,Areg,Slc1a2
+MP:0002006	929	12	4.45	4.3e-05	0.00077	tumorigenesis	Mammalian_phenotype	1	Spg20,Akt1,Bcl2,Trp53,Sox2,Spp1,Cd44,Lig1,Cat,Klf4,Ereg,Perp
+MP:0001792	52	3	6.07	5.6e-05	0.00089	impaired wound healing	Mammalian_phenotype	4	Trp53,Cd44,Klf4
+MP:0008873	247	6	5.04	5.3e-05	0.00089	increased physiological sensitivity to xenobiotic	Mammalian_phenotype	3	Trp53,Spp1,Cat,Klf4,Ereg,Abcg2
+MP:0009939	102	4	5.58	5.4e-05	0.00089	abnormal hippocampus neuron morphology	Mammalian_phenotype	4	Sox2,Plcb1,Vim,Slc1a2
+MP:0000134	104	4	5.52	6e-05	0.00092	abnormal compact bone thickness	Mammalian_phenotype	5	Trp53,Runx2,Ibsp,Cd44
+MP:0001731	964	12	4.3	6.4e-05	0.00094	abnormal postnatal growth	Mammalian_phenotype	3	Akt1,Bcl2,Trp53,Ubb,Runx2,Col10a1,Plcb1,Lig1,Itpr2,Dppa2,Areg,Slc1a2
+MP:0005328	106	4	5.45	6.5e-05	0.00094	abnormal circulating creatinine level	Mammalian_phenotype	5	Bcl2,Spp1,Cd44,Vim
+MP:0001146	580	9	4.45	7.7e-05	0.001	abnormal testis morphology	Mammalian_phenotype	4	Akt1,Trp53,Ubb,Lrp2,Sox2,Plcb1,Klf4,Zfp110,Zfp42
+MP:0003763	109	4	5.36	7.5e-05	0.001	abnormal thymus physiology	Mammalian_phenotype	3	Bcl2,Trp53,Lig1,Perp
+MP:0011102	58	3	5.69	8.6e-05	0.0011	partial embryonic lethality	Mammalian_phenotype	6	Trp53,Tbx3,Zfp42
+MP:0000163	367	7	4.59	9.3e-05	0.0012	abnormal cartilage morphology	Mammalian_phenotype	3	Spg20,Trp53,Sox2,Runx2,Col10a1,Cd44,Btc
+MP:0002908	61	3	5.53	0.00011	0.0012	delayed wound healing	Mammalian_phenotype	4	Trp53,Spp1,Cd44
+MP:0003205	59	3	5.64	9.2e-05	0.0012	testicular atrophy	Mammalian_phenotype	9	Trp53,Ubb,Zfp42
+MP:0004945	61	3	5.53	0.00011	0.0012	abnormal bone resorption	Mammalian_phenotype	4	Lrp2,Spp1,Cd44
+MP:0008721	61	3	5.53	0.00011	0.0012	abnormal chemokine level	Mammalian_phenotype	6	Spp1,Cd44,Cxcl5
+MP:0008271	380	7	4.47	0.00012	0.0013	abnormal bone ossification	Mammalian_phenotype	3	Akt1,Lrp2,Runx2,Spp1,Ibsp,Col10a1,Mepe
+MP:0008882	62	3	5.48	0.00011	0.0013	abnormal enterocyte physiology	Mammalian_phenotype	4	Trp53,Cd44,Tnfaip3
+MP:0002427	65	3	5.33	0.00013	0.0014	disproportionate dwarf	Mammalian_phenotype	5	Runx2,Col10a1,Plcb1
+MP:0000600	67	3	5.23	0.00015	0.0015	liver hypoplasia	Mammalian_phenotype	6	Trp53,Runx2,Lig1
+MP:0000653	759	10	4.09	0.00015	0.0015	abnormal sex gland morphology	Mammalian_phenotype	3	Akt1,Bcl2,Trp53,Ubb,Lrp2,Sox2,Plcb1,Klf4,Zfp110,Zfp42
+MP:0001533	631	9	4.15	0.00016	0.0015	abnormal skeleton physiology	Mammalian_phenotype	2	Akt1,Lrp2,Runx2,Spp1,Ibsp,Col10a1,Mepe,Cd44,Tnfaip3
+MP:0003886	66	3	5.28	0.00014	0.0015	abnormal embryonic epiblast morphology	Mammalian_phenotype	4	Trp53,Sox2,Serpinb5
+MP:0005006	66	3	5.28	0.00014	0.0015	abnormal osteoblast physiology	Mammalian_phenotype	4	Runx2,Spp1,Mepe
+MP:0009209	401	7	4.28	0.00017	0.0016	abnormal internal female genitalia morphology	Mammalian_phenotype	5	Akt1,Bcl2,Trp53,Ubb,Lrp2,Tbx3,Cd44
+MP:0012103	70	3	5.09	0.00018	0.0016	abnormal embryonic disc morphology	Mammalian_phenotype	3	Trp53,Sox2,Serpinb5
+MP:0000116	71	3	5.05	0.00019	0.0017	abnormal tooth development	Mammalian_phenotype	4	Trp53,Runx2,Col10a1
+MP:0000462	930	11	3.9	0.00021	0.0017	abnormal digestive system morphology	Mammalian_phenotype	2	Bcl2,Trp53,Atoh1,Lrp2,Sox2,Runx2,Tbx3,Itpr2,Tnfaip3,Klf4,Areg
+MP:0000467	74	3	4.93	0.00022	0.0017	abnormal esophagus morphology	Mammalian_phenotype	3	Trp53,Sox2,Klf4
+MP:0001119	411	7	4.2	2e-04	0.0017	abnormal female reproductive system morphology	Mammalian_phenotype	3	Akt1,Bcl2,Trp53,Ubb,Lrp2,Tbx3,Cd44
+MP:0002707	135	4	4.68	0.00021	0.0017	abnormal kidney weight	Mammalian_phenotype	5	Bcl2,Trp53,Plcb1,Cckar
+MP:0003743	655	9	4.01	0.00021	0.0017	abnormal facial morphology	Mammalian_phenotype	4	Bcl2,Trp53,Lrp2,Sox2,Runx2,Tbx3,Col10a1,Klf4,Cckar
+MP:0004509	71	3	5.05	0.00019	0.0017	abnormal pelvic girdle bone morphology	Mammalian_phenotype	4	Runx2,Tbx3,Col10a1
+MP:0005553	72	3	5.01	2e-04	0.0017	increased circulating creatinine level	Mammalian_phenotype	5	Bcl2,Spp1,Vim
+MP:0009205	657	9	4	0.00022	0.0017	abnormal internal male genitalia morphology	Mammalian_phenotype	5	Akt1,Trp53,Ubb,Lrp2,Sox2,Plcb1,Klf4,Zfp110,Zfp42
+MP:0009208	408	7	4.23	0.00019	0.0017	abnormal female genitalia morphology	Mammalian_phenotype	4	Akt1,Bcl2,Trp53,Ubb,Lrp2,Tbx3,Cd44
+MP:0000628	140	4	4.57	0.00024	0.0018	abnormal mammary gland development	Mammalian_phenotype	4	Trp53,Tbx3,Cd44,Areg
+MP:0008942	220	5	4.38	0.00024	0.0018	abnormal induced cell death	Mammalian_phenotype	4	Akt1,Trp53,Spp1,Cd44,Perp
+MP:0001145	674	9	3.91	0.00027	0.0019	abnormal male reproductive system morphology	Mammalian_phenotype	3	Akt1,Trp53,Ubb,Lrp2,Sox2,Plcb1,Klf4,Zfp110,Zfp42
+MP:0008588	226	5	4.3	0.00028	0.0019	abnormal circulating interleukin level	Mammalian_phenotype	7	Trp53,Spp1,Cd44,Tnfaip3,Cxcl5
+MP:0009198	674	9	3.91	0.00027	0.0019	abnormal male genitalia morphology	Mammalian_phenotype	4	Akt1,Trp53,Ubb,Lrp2,Sox2,Plcb1,Klf4,Zfp110,Zfp42
+MP:0004953	82	3	4.62	0.00033	0.0022	decreased spleen weight	Mammalian_phenotype	7	Bcl2,Trp53,Col10a1
+MP:0008737	81	3	4.66	0.00032	0.0022	abnormal spleen physiology	Mammalian_phenotype	4	Bcl2,Trp53,Lig1
+MP:0001153	84	3	4.56	0.00036	0.0023	small seminiferous tubules	Mammalian_phenotype	9	Akt1,Trp53,Ubb
+MP:0002233	151	4	4.34	0.00035	0.0023	abnormal nose morphology	Mammalian_phenotype	3	Bcl2,Lrp2,Runx2,Cckar
+MP:0003797	151	4	4.34	0.00035	0.0023	abnormal compact bone morphology	Mammalian_phenotype	4	Trp53,Runx2,Ibsp,Cd44
+MP:0005150	153	4	4.3	0.00037	0.0023	cachexia	Mammalian_phenotype	7	Bcl2,Trp53,Col10a1,Tnfaip3
+MP:0008596	83	3	4.59	0.00035	0.0023	increased circulating interleukin-6 level	Mammalian_phenotype	9	Trp53,Cd44,Tnfaip3
+MP:0000343	85	3	4.52	0.00038	0.0024	altered response to myocardial infarction	Mammalian_phenotype	3	Trp53,Spp1,Cd44
+MP:0001943	581	8	3.77	0.00043	0.0026	abnormal respiration	Mammalian_phenotype	3	Akt1,Trp53,Atoh1,Lrp2,Sox2,Runx2,Cd44,Dppa2
+MP:0001302	91	3	4.33	0.00049	0.0029	eyelids open at birth	Mammalian_phenotype	4	Runx2,Ereg,Areg
+MP:0008946	466	7	3.79	0.00048	0.0029	abnormal neuron number	Mammalian_phenotype	4	Bcl2,Trp53,Atoh1,Sox2,Spp1,Vim,Slc1a2
+MP:0001675	92	3	4.3	0.00051	0.003	abnormal ectoderm development	Mammalian_phenotype	6	Sox2,Tbx3,Serpinb5
+MP:0000452	482	7	3.68	6e-04	0.0032	abnormal mouth morphology	Mammalian_phenotype	6	Trp53,Lrp2,Sox2,Runx2,Tbx3,Col10a1,Klf4
+MP:0000627	171	4	3.99	0.00061	0.0032	abnormal mammary gland morphology	Mammalian_phenotype	3	Trp53,Tbx3,Cd44,Areg
+MP:0000715	170	4	4	0.00059	0.0032	decreased thymocyte number	Mammalian_phenotype	5	Bcl2,Trp53,Runx2,Col10a1
+MP:0002060	885	10	3.53	0.00058	0.0032	abnormal skin morphology	Mammalian_phenotype	2	Akt1,Trp53,Runx2,Cd44,Lig1,Tnfaip3,Klf4,Areg,Abcg2,Perp
+MP:0003091	478	7	3.71	0.00057	0.0032	abnormal cell migration	Mammalian_phenotype	3	Spg20,Trp53,Atoh1,Spp1,Cd44,Vim,Cckar
+MP:0003453	97	3	4.16	0.00063	0.0032	abnormal keratinocyte physiology	Mammalian_phenotype	3	Trp53,Klf4,Perp
+MP:0003744	484	7	3.67	0.00062	0.0032	abnormal orofacial morphology	Mammalian_phenotype	5	Trp53,Lrp2,Sox2,Runx2,Tbx3,Col10a1,Klf4
+MP:0003795	613	8	3.6	0.00063	0.0032	abnormal bone structure	Mammalian_phenotype	3	Trp53,Lrp2,Runx2,Spp1,Ibsp,Col10a1,Mepe,Cd44
+MP:0004016	95	3	4.21	0.00058	0.0032	decreased bone mass	Mammalian_phenotype	4	Trp53,Col10a1,Cd44
+MP:0004982	167	4	4.05	0.00055	0.0032	abnormal osteoclast morphology	Mammalian_phenotype	4	Runx2,Spp1,Col10a1,Cd44
+MP:0005266	602	8	3.66	0.00055	0.0032	abnormal metabolism	Mammalian_phenotype	2	Akt1,Bcl2,Trp53,Lrp2,Lig1,Cat,Tnfaip3,Zfp42
+MP:0006413	96	3	4.19	6e-04	0.0032	increased T cell apoptosis	Mammalian_phenotype	6	Akt1,Bcl2,Trp53
+MP:0000762	101	3	4.05	0.00073	0.0034	abnormal tongue morphology	Mammalian_phenotype	3	Trp53,Sox2,Klf4
+MP:0000966	178	4	3.87	0.00073	0.0034	decreased sensory neuron number	Mammalian_phenotype	6	Bcl2,Trp53,Atoh1,Sox2
+MP:0001297	177	4	3.89	0.00071	0.0034	microphthalmia	Mammalian_phenotype	4	Trp53,Lrp2,Sox2,Areg
+MP:0001663	625	8	3.53	0.00073	0.0034	abnormal digestive system physiology	Mammalian_phenotype	2	Trp53,Atoh1,Sox2,Cd44,Itpr2,Tnfaip3,Ereg,Cckar
+MP:0001953	176	4	3.91	7e-04	0.0034	respiratory failure	Mammalian_phenotype	4	Atoh1,Lrp2,Runx2,Dppa2
+MP:0005311	178	4	3.87	0.00073	0.0034	abnormal circulating amino acid level	Mammalian_phenotype	4	Bcl2,Spp1,Cd44,Vim
+MP:0008751	268	5	3.79	0.00069	0.0034	abnormal interleukin level	Mammalian_phenotype	6	Trp53,Spp1,Cd44,Tnfaip3,Cxcl5
+MP:0010678	901	10	3.47	0.00067	0.0034	abnormal skin adnexa morphology	Mammalian_phenotype	2	Akt1,Bcl2,Trp53,Sox2,Runx2,Tbx3,Cd44,Klf4,Ereg,Areg
+MP:0000495	102	3	4.02	0.00076	0.0035	abnormal colon morphology	Mammalian_phenotype	5	Trp53,Tnfaip3,Klf4
+MP:0002407	181	4	3.83	0.00079	0.0035	abnormal double-negative T cell morphology	Mammalian_phenotype	10	Akt1,Bcl2,Trp53,Col10a1
+MP:0003762	181	4	3.83	0.00079	0.0035	abnormal immune organ physiology	Mammalian_phenotype	3	Bcl2,Trp53,Lig1,Perp
+MP:0010383	180	4	3.84	0.00077	0.0035	increased adenoma incidence	Mammalian_phenotype	6	Bcl2,Trp53,Cd44,Ereg
+MP:0011704	102	3	4.02	0.00076	0.0035	decreased fibroblast proliferation	Mammalian_phenotype	5	Trp53,Cd44,Lig1
+MP:0001120	186	4	3.75	0.00089	0.0039	abnormal uterus morphology	Mammalian_phenotype	6	Akt1,Trp53,Lrp2,Cd44
+MP:0002164	513	7	3.49	0.00091	0.0039	abnormal gland physiology	Mammalian_phenotype	2	Akt1,Trp53,Runx2,Itpr2,Klf4,Areg,Cckar
+MP:0003948	515	7	3.47	0.00093	0.004	abnormal gas homeostasis	Mammalian_phenotype	3	Akt1,Bcl2,Atoh1,Lrp2,Runx2,Spp1,Dppa2
+MP:0008713	394	6	3.54	0.00094	0.004	abnormal cytokine level	Mammalian_phenotype	4	Trp53,Spp1,Cd44,Tnfaip3,Cxcl5,Vim
+MP:0010155	286	5	3.6	0.00097	0.0041	abnormal intestine physiology	Mammalian_phenotype	3	Trp53,Atoh1,Cd44,Tnfaip3,Ereg
+MP:0001330	110	3	3.83	0.001	0.0042	abnormal optic nerve morphology	Mammalian_phenotype	4	Bcl2,Trp53,Sox2
+MP:0000601	193	4	3.65	0.0011	0.0043	small liver	Mammalian_phenotype	5	Trp53,Runx2,Tbx3,Lig1
+MP:0001243	111	3	3.8	0.001	0.0043	abnormal dermal layer morphology	Mammalian_phenotype	3	Trp53,Runx2,Tnfaip3
+MP:0005338	111	3	3.8	0.001	0.0043	atherosclerotic lesions	Mammalian_phenotype	6	Bcl2,Spp1,Cd44
+MP:0000432	807	9	3.29	0.0011	0.0044	abnormal head morphology	Mammalian_phenotype	3	Bcl2,Trp53,Lrp2,Sox2,Runx2,Tbx3,Col10a1,Klf4,Cckar
+MP:0002697	196	4	3.61	0.0011	0.0044	abnormal eye size	Mammalian_phenotype	3	Trp53,Lrp2,Sox2,Areg
+MP:0008835	404	6	3.46	0.0011	0.0044	abnormal intercellular signaling peptide or protein level	Mammalian_phenotype	4	Trp53,Spp1,Cd44,Tnfaip3,Cxcl5,Vim
+MP:0010210	294	5	3.52	0.0011	0.0044	abnormal circulating cytokine level	Mammalian_phenotype	5	Trp53,Spp1,Cd44,Tnfaip3,Cxcl5
+MP:0000260	408	6	3.43	0.0011	0.0045	abnormal angiogenesis	Mammalian_phenotype	5	Bcl2,Trp53,Runx2,Spp1,Cd44,Vim
+MP:0000172	203	4	3.52	0.0013	0.0047	abnormal bone marrow cell number	Mammalian_phenotype	4	Trp53,Runx2,Spp1,Lig1
+MP:0003755	302	5	3.45	0.0013	0.0047	abnormal palate morphology	Mammalian_phenotype	3	Trp53,Lrp2,Sox2,Runx2,Tbx3
+MP:0003991	116	3	3.69	0.0012	0.0047	arteriosclerosis	Mammalian_phenotype	5	Bcl2,Spp1,Cd44
+MP:0004499	116	3	3.69	0.0012	0.0047	increased incidence of tumors by chemical induction	Mammalian_phenotype	4	Trp53,Cat,Klf4
+MP:0004983	118	3	3.65	0.0013	0.0047	abnormal osteoclast cell number	Mammalian_phenotype	11	Spp1,Col10a1,Cd44
+MP:0005023	200	4	3.56	0.0012	0.0047	abnormal wound healing	Mammalian_phenotype	3	Trp53,Spp1,Cd44,Klf4
+MP:0005090	116	3	3.69	0.0012	0.0047	increased double-negative T cell number	Mammalian_phenotype	11	Akt1,Bcl2,Col10a1
+MP:0008948	414	6	3.39	0.0013	0.0047	decreased neuron number	Mammalian_phenotype	5	Bcl2,Trp53,Atoh1,Sox2,Vim,Slc1a2
+MP:0009672	118	3	3.65	0.0013	0.0047	abnormal birth weight	Mammalian_phenotype	3	Akt1,Runx2,Dppa2
+MP:0009674	118	3	3.65	0.0013	0.0047	decreased birth weight	Mammalian_phenotype	4	Akt1,Runx2,Dppa2
+MP:0003068	119	3	3.63	0.0014	0.0048	enlarged kidney	Mammalian_phenotype	5	Bcl2,Plcb1,Cckar
+MP:0002216	309	5	3.38	0.0014	0.0051	abnormal seminiferous tubule morphology	Mammalian_phenotype	7	Akt1,Trp53,Ubb,Sox2,Klf4
+MP:0000477	431	6	3.27	0.0016	0.0054	abnormal intestine morphology	Mammalian_phenotype	3	Bcl2,Trp53,Atoh1,Tnfaip3,Klf4,Areg
+MP:0001212	124	3	3.53	0.0016	0.0054	skin lesions	Mammalian_phenotype	4	Trp53,Klf4,Areg
+MP:0011702	124	3	3.53	0.0016	0.0054	abnormal fibroblast proliferation	Mammalian_phenotype	4	Trp53,Cd44,Lig1
+MP:0000259	564	7	3.19	0.0017	0.0055	abnormal vascular development	Mammalian_phenotype	4	Bcl2,Trp53,Runx2,Spp1,Tbx3,Cd44,Vim
+MP:0000350	847	9	3.13	0.0016	0.0055	abnormal cell proliferation	Mammalian_phenotype	3	Bcl2,Trp53,Atoh1,Sox2,Cd44,Lig1,Serpinb5,Klf4,Dppa2
+MP:0002052	213	4	3.39	0.0016	0.0055	decreased tumor incidence	Mammalian_phenotype	4	Bcl2,Trp53,Spp1,Cat
+MP:0002209	434	6	3.25	0.0016	0.0055	decreased germ cell number	Mammalian_phenotype	5	Akt1,Bcl2,Trp53,Ubb,Sox2,Zfp42
+MP:0002687	213	4	3.39	0.0016	0.0055	oligozoospermia	Mammalian_phenotype	5	Akt1,Trp53,Sox2,Zfp42
+MP:0005318	215	4	3.37	0.0017	0.0055	decreased triglyceride level	Mammalian_phenotype	6	Spg20,Akt1,Spp1,Cat
+MP:0009967	125	3	3.51	0.0016	0.0055	abnormal neuron proliferation	Mammalian_phenotype	4	Trp53,Atoh1,Sox2
+MP:0011504	318	5	3.3	0.0017	0.0055	abnormal limb long bone morphology	Mammalian_phenotype	5	Runx2,Ibsp,Tbx3,Col10a1,Cd44
+MP:0000063	218	4	3.33	0.0018	0.0056	decreased bone mineral density	Mammalian_phenotype	5	Trp53,Runx2,Spp1,Ibsp
+MP:0000556	322	5	3.27	0.0018	0.0056	abnormal hindlimb morphology	Mammalian_phenotype	3	Runx2,Ibsp,Tbx3,Col10a1,Cd44
+MP:0000746	129	3	3.43	0.0018	0.0056	weakness	Mammalian_phenotype	5	Spg20,Akt1,Trp53
+MP:0001657	570	7	3.16	0.0018	0.0056	abnormal induced morbidity/mortality	Mammalian_phenotype	2	Trp53,Spp1,Cd44,Cat,Tnfaip3,Cxcl5,Vim
+MP:0002136	438	6	3.22	0.0017	0.0056	abnormal kidney physiology	Mammalian_phenotype	3	Bcl2,Trp53,Lrp2,Spp1,Cd44,Tnfaip3
+MP:0005278	441	6	3.21	0.0018	0.0056	abnormal cholesterol homeostasis	Mammalian_phenotype	4	Bcl2,Spp1,Cd44,Wbp5,Cat,Cckar
+MP:0005595	129	3	3.43	0.0018	0.0056	abnormal vascular smooth muscle physiology	Mammalian_phenotype	3	Spp1,Cd44,Vim
+MP:0010273	569	7	3.17	0.0018	0.0056	increased classified tumor incidence	Mammalian_phenotype	5	Akt1,Bcl2,Trp53,Cd44,Lig1,Ereg,Perp
+MP:0004262	326	5	3.24	0.0019	0.0058	abnormal physical strength	Mammalian_phenotype	4	Spg20,Akt1,Trp53,Spp1,Cd44
+MP:0004947	131	3	3.39	0.0019	0.0058	skin inflammation	Mammalian_phenotype	3	Ereg,Areg,Perp
+MP:0005015	448	6	3.16	0.002	0.0059	increased T cell number	Mammalian_phenotype	10	Akt1,Bcl2,Trp53,Spp1,Col10a1,Tnfaip3
+MP:0005332	222	4	3.29	0.002	0.0059	abnormal amino acid level	Mammalian_phenotype	3	Bcl2,Spp1,Cd44,Vim
+MP:0001951	330	5	3.2	0.002	0.006	abnormal breathing pattern	Mammalian_phenotype	5	Akt1,Trp53,Atoh1,Sox2,Cd44
+MP:0003953	875	9	3.02	0.0021	0.0062	abnormal hormone level	Mammalian_phenotype	3	Akt1,Bcl2,Trp53,Ubb,Lrp2,Sox2,Runx2,Spp1,Klf4
+MP:0000377	227	4	3.23	0.0022	0.0063	abnormal hair follicle morphology	Mammalian_phenotype	3	Akt1,Bcl2,Runx2,Klf4
+MP:0003224	338	5	3.14	0.0023	0.0066	neuron degeneration	Mammalian_phenotype	4	Bcl2,Ubb,Atoh1,Sox2,Vim
+MP:0008872	594	7	3.04	0.0023	0.0067	abnormal physiological response to xenobiotic	Mammalian_phenotype	2	Trp53,Spp1,Cat,Tnfaip3,Klf4,Ereg,Abcg2
+MP:0001216	342	5	3.11	0.0024	0.0069	abnormal epidermal layer morphology	Mammalian_phenotype	3	Akt1,Runx2,Cd44,Tnfaip3,Klf4
+MP:0002356	139	3	3.25	0.0024	0.0069	abnormal spleen red pulp morphology	Mammalian_phenotype	5	Bcl2,Trp53,Col10a1
+MP:0002408	233	4	3.16	0.0024	0.0069	abnormal double-positive T cell morphology	Mammalian_phenotype	10	Akt1,Bcl2,Trp53,Col10a1
+MP:0001575	234	4	3.15	0.0025	0.007	cyanosis	Mammalian_phenotype	4	Atoh1,Lrp2,Runx2,Dppa2
+MP:0004811	603	7	2.99	0.0026	0.0072	abnormal neuron physiology	Mammalian_phenotype	3	Trp53,Atoh1,Sox2,Spp1,Vim,Cckar,Perp
+MP:0004849	473	6	3	0.0027	0.0075	abnormal testis size	Mammalian_phenotype	7	Trp53,Ubb,Sox2,Plcb1,Zfp110,Zfp42
+MP:0001860	145	3	3.15	0.0028	0.0077	liver inflammation	Mammalian_phenotype	4	Trp53,Cd44,Tnfaip3
+MP:0001954	241	4	3.08	0.0028	0.0077	respiratory distress	Mammalian_phenotype	6	Akt1,Trp53,Sox2,Cd44
+MP:0002132	762	8	2.89	0.0029	0.0079	abnormal respiratory system morphology	Mammalian_phenotype	2	Bcl2,Trp53,Lrp2,Sox2,Runx2,Spp1,Dppa2,Cckar
+MP:0005620	355	5	3.01	0.0029	0.0079	abnormal muscle contractility	Mammalian_phenotype	3	Trp53,Spp1,Tbx3,Btc,Vim
+MP:0010274	615	7	2.93	0.0029	0.0079	increased organ/body region tumor incidence	Mammalian_phenotype	5	Akt1,Bcl2,Trp53,Sox2,Cat,Ereg,Perp
+MP:0011086	761	8	2.9	0.0029	0.0079	partial postnatal lethality	Mammalian_phenotype	6	Akt1,Bcl2,Trp53,Sox2,Runx2,Tbx3,Col10a1,Tnfaip3
+MP:0003202	245	4	3.04	0.003	0.008	abnormal neuron apoptosis	Mammalian_phenotype	4	Trp53,Spp1,Vim,Perp
+MP:0002115	361	5	2.96	0.0032	0.0083	abnormal limb bone morphology	Mammalian_phenotype	3	Runx2,Ibsp,Tbx3,Col10a1,Cd44
+MP:0005418	770	8	2.86	0.0032	0.0083	abnormal circulating hormone level	Mammalian_phenotype	4	Akt1,Bcl2,Trp53,Ubb,Lrp2,Runx2,Spp1,Klf4
+MP:0000470	151	3	3.06	0.0032	0.0084	abnormal stomach morphology	Mammalian_phenotype	3	Trp53,Sox2,Klf4
+MP:0000218	929	9	2.82	0.0033	0.0085	increased leukocyte cell number	Mammalian_phenotype	7	Akt1,Bcl2,Trp53,Runx2,Spp1,Col10a1,Cd44,Tnfaip3,Cxcl5
+MP:0000691	492	6	2.89	0.0034	0.0086	enlarged spleen	Mammalian_phenotype	6	Bcl2,Trp53,Runx2,Spp1,Lig1,Tnfaip3
+MP:0002972	251	4	2.98	0.0034	0.0086	abnormal cardiac muscle contractility	Mammalian_phenotype	3	Trp53,Spp1,Tbx3,Btc
+MP:0004166	366	5	2.92	0.0034	0.0087	abnormal limbic system morphology	Mammalian_phenotype	5	Ubb,Sox2,Plcb1,Vim,Slc1a2
+MP:0002021	155	3	3	0.0035	0.009	increased incidence of induced tumors	Mammalian_phenotype	5	Trp53,Cat,Klf4
+MP:0002703	255	4	2.94	0.0036	0.0091	abnormal renal tubule morphology	Mammalian_phenotype	5	Bcl2,Trp53,Lrp2,Spp1
+MP:0003156	157	3	2.97	0.0037	0.0093	abnormal leukocyte migration	Mammalian_phenotype	4	Spp1,Cd44,Vim
+MP:0003723	502	6	2.84	0.0038	0.0094	abnormal long bone morphology	Mammalian_phenotype	4	Runx2,Ibsp,Tbx3,Col10a1,Cd44,Plcb1
+MP:0002694	159	3	2.94	0.0039	0.0095	abnormal pancreas secretion	Mammalian_phenotype	4	Akt1,Itpr2,Cckar
+MP:0003935	376	5	2.85	0.0039	0.0095	abnormal craniofacial development	Mammalian_phenotype	3	Trp53,Sox2,Runx2,Tbx3,Col10a1
+MP:0004686	259	4	2.9	0.0038	0.0095	decreased length of long bones	Mammalian_phenotype	5	Runx2,Ibsp,Col10a1,Cd44
+MP:0006279	159	3	2.94	0.0039	0.0095	abnormal limb development	Mammalian_phenotype	3	Trp53,Runx2,Tbx3
+MP:0000187	381	5	2.82	0.0041	0.0099	abnormal triglyceride level	Mammalian_phenotype	5	Spg20,Akt1,Bcl2,Spp1,Cat
+MP:0001876	263	4	2.86	0.0041	0.0099	decreased inflammatory response	Mammalian_phenotype	4	Spp1,Cd44,Cxcl5,Vim
+MP:0002364	380	5	2.82	0.0041	0.0099	abnormal thymus size	Mammalian_phenotype	5	Akt1,Bcl2,Trp53,Runx2,Col10a1
+MP:0002644	163	3	2.88	0.0042	0.0099	decreased circulating triglyceride level	Mammalian_phenotype	7	Spg20,Spp1,Cat
+MP:0002693	264	4	2.85	0.0042	0.0099	abnormal pancreas physiology	Mammalian_phenotype	3	Akt1,Trp53,Itpr2,Cckar
+MP:0004901	382	5	2.81	0.0042	0.0099	decreased male germ cell number	Mammalian_phenotype	6	Akt1,Trp53,Ubb,Sox2,Zfp42
+MP:0005265	163	3	2.88	0.0042	0.0099	abnormal blood urea nitrogen level	Mammalian_phenotype	4	Bcl2,Spp1,Cd44
+MP:0005425	163	3	2.88	0.0042	0.0099	increased macrophage cell number	Mammalian_phenotype	8	Spp1,Cd44,Tnfaip3
+MP:0009763	382	5	2.81	0.0042	0.0099	increased sensitivity to induced morbidity/mortality	Mammalian_phenotype	3	Trp53,Spp1,Cd44,Tnfaip3,Vim
+MP:0001574	267	4	2.83	0.0044	0.01	abnormal oxygen level	Mammalian_phenotype	4	Atoh1,Lrp2,Runx2,Dppa2
+MP:0009308	165	3	2.86	0.0044	0.01	adenocarcinoma	Mammalian_phenotype	8	Akt1,Trp53,Lig1
+MP:0000111	271	4	2.79	0.0046	0.011	cleft palate	Mammalian_phenotype	8	Trp53,Lrp2,Runx2,Tbx3
+MP:0003857	169	3	2.8	0.0048	0.011	abnormal hindlimb zeugopod morphology	Mammalian_phenotype	4	Runx2,Tbx3,Cd44
+MP:0009765	169	3	2.8	0.0048	0.011	abnormal xenobiotic induced morbidity/mortality	Mammalian_phenotype	3	Trp53,Cat,Tnfaip3
+MP:0000489	177	3	2.7	0.0057	0.012	abnormal large intestine morphology	Mammalian_phenotype	4	Trp53,Tnfaip3,Klf4
+MP:0000559	178	3	2.69	0.0058	0.012	abnormal femur morphology	Mammalian_phenotype	5	Runx2,Ibsp,Col10a1
+MP:0000937	174	3	2.74	0.0054	0.012	abnormal motor neuron morphology	Mammalian_phenotype	4	Bcl2,Sox2,Slc1a2
+MP:0001944	285	4	2.67	0.0057	0.012	abnormal pancreas morphology	Mammalian_phenotype	3	Akt1,Trp53,Itpr2,Cckar
+MP:0002139	405	5	2.66	0.0056	0.012	abnormal hepatobiliary system physiology	Mammalian_phenotype	2	Trp53,Cd44,Tnfaip3,Cckar,Abcg2
+MP:0002327	404	5	2.67	0.0055	0.012	abnormal respiratory function	Mammalian_phenotype	4	Akt1,Trp53,Atoh1,Sox2,Cd44
+MP:0002446	403	5	2.67	0.0054	0.012	abnormal macrophage morphology	Mammalian_phenotype	5	Runx2,Spp1,Col10a1,Cd44,Tnfaip3
+MP:0008489	173	3	2.75	0.0052	0.012	slow postnatal weight gain	Mammalian_phenotype	5	Runx2,Col10a1,Dppa2
+MP:0009644	172	3	2.77	0.0051	0.012	uremia	Mammalian_phenotype	4	Bcl2,Spp1,Vim
+MP:0009944	175	3	2.73	0.0055	0.012	abnormal olfactory lobe morphology	Mammalian_phenotype	6	Lrp2,Sox2,Cckar
+MP:0011100	178	3	2.69	0.0058	0.012	complete preweaning lethality	Mammalian_phenotype	4	Trp53,Runx2,Dppa2
+MP:0011101	402	5	2.68	0.0054	0.012	partial prenatal lethality	Mammalian_phenotype	5	Trp53,Sox2,Tbx3,Dppa2,Zfp42
+MP:0001545	410	5	2.63	0.0059	0.013	abnormal hematopoietic system physiology	Mammalian_phenotype	2	Bcl2,Trp53,Spp1,Lig1,Perp
+MP:0002038	290	4	2.63	0.0062	0.013	carcinoma	Mammalian_phenotype	7	Akt1,Trp53,Lig1,Perp
+MP:0003856	182	3	2.64	0.0063	0.013	abnormal hindlimb stylopod morphology	Mammalian_phenotype	4	Runx2,Ibsp,Col10a1
+MP:0010293	182	3	2.64	0.0063	0.013	increased integument system tumor incidence	Mammalian_phenotype	6	Akt1,Trp53,Perp
+MP:0000358	425	5	2.53	0.007	0.014	abnormal cell morphology	Mammalian_phenotype	2	Spg20,Trp53,Col10a1,Cd44,Vim
+MP:0002106	863	8	2.5	0.0067	0.014	abnormal muscle physiology	Mammalian_phenotype	2	Bcl2,Trp53,Sox2,Spp1,Tbx3,Cd44,Btc,Vim
+MP:0002133	859	8	2.52	0.0065	0.014	abnormal respiratory system physiology	Mammalian_phenotype	2	Akt1,Trp53,Atoh1,Lrp2,Sox2,Runx2,Cd44,Dppa2
+MP:0002224	706	7	2.52	0.0067	0.014	abnormal spleen size	Mammalian_phenotype	5	Bcl2,Trp53,Runx2,Spp1,Col10a1,Lig1,Tnfaip3
+MP:0002229	420	5	2.56	0.0066	0.014	neurodegeneration	Mammalian_phenotype	3	Bcl2,Ubb,Atoh1,Sox2,Vim
+MP:0010119	298	4	2.56	0.0069	0.014	abnormal bone mineral density	Mammalian_phenotype	4	Trp53,Runx2,Spp1,Ibsp
+MP:0011110	186	3	2.59	0.0068	0.014	partial preweaning lethality	Mammalian_phenotype	4	Trp53,Tbx3,Dppa2
+MP:0001147	436	5	2.47	0.0079	0.015	small testis	Mammalian_phenotype	6	Trp53,Ubb,Sox2,Zfp110,Zfp42
+MP:0001175	573	6	2.47	0.0077	0.015	abnormal lung morphology	Mammalian_phenotype	3	Trp53,Lrp2,Sox2,Runx2,Spp1,Dppa2
+MP:0001510	577	6	2.45	0.008	0.015	abnormal coat appearance	Mammalian_phenotype	4	Bcl2,Trp53,Sox2,Klf4,Ereg,Areg
+MP:0002073	307	4	2.49	0.0078	0.015	abnormal hair growth	Mammalian_phenotype	5	Trp53,Sox2,Klf4,Areg
+MP:0002100	192	3	2.53	0.0076	0.015	abnormal tooth morphology	Mammalian_phenotype	7	Trp53,Runx2,Col10a1
+MP:0002208	573	6	2.47	0.0077	0.015	abnormal germ cell morphology	Mammalian_phenotype	4	Akt1,Bcl2,Trp53,Ubb,Sox2,Zfp42
+MP:0003717	194	3	2.5	0.0078	0.015	pallor	Mammalian_phenotype	4	Akt1,Trp53,Lig1
+MP:0005017	431	5	2.5	0.0075	0.015	decreased B cell number	Mammalian_phenotype	10	Bcl2,Trp53,Runx2,Col10a1,Tnfaip3
+MP:0005087	190	3	2.55	0.0073	0.015	decreased acute inflammation	Mammalian_phenotype	5	Spp1,Cd44,Cxcl5
+MP:0005092	193	3	2.52	0.0077	0.015	decreased double-positive T cell number	Mammalian_phenotype	11	Akt1,Bcl2,Col10a1
+MP:0008195	720	7	2.46	0.0076	0.015	abnormal professional antigen presenting cell morphology	Mammalian_phenotype	4	Bcl2,Trp53,Runx2,Spp1,Col10a1,Cd44,Tnfaip3
+MP:0011099	307	4	2.49	0.0078	0.015	complete lethality throughout fetal growth and development	Mammalian_phenotype	6	Trp53,Runx2,Tbx3,Lig1
+MP:0000208	201	3	2.43	0.0089	0.016	decreased hematocrit	Mammalian_phenotype	8	Trp53,Spp1,Lig1
+MP:0000249	310	4	2.47	0.0082	0.016	abnormal blood vessel physiology	Mammalian_phenotype	3	Trp53,Spp1,Cd44,Vim
+MP:0000352	441	5	2.44	0.0084	0.016	decreased cell proliferation	Mammalian_phenotype	4	Trp53,Cd44,Lig1,Serpinb5,Dppa2
+MP:0000955	315	4	2.43	0.0087	0.016	abnormal spinal cord morphology	Mammalian_phenotype	3	Bcl2,Sox2,Vim,Slc1a2
+MP:0001124	442	5	2.43	0.0085	0.016	abnormal gametes	Mammalian_phenotype	5	Akt1,Bcl2,Trp53,Sox2,Zfp42
+MP:0001823	197	3	2.47	0.0083	0.016	thymus hypoplasia	Mammalian_phenotype	7	Akt1,Trp53,Col10a1
+MP:0002118	890	8	2.41	0.0082	0.016	abnormal lipid homeostasis	Mammalian_phenotype	3	Spg20,Akt1,Bcl2,Spp1,Cd44,Wbp5,Cat,Cckar
+MP:0005018	582	6	2.43	0.0084	0.016	decreased T cell number	Mammalian_phenotype	10	Akt1,Bcl2,Trp53,Runx2,Spp1,Col10a1
+MP:0006042	740	7	2.38	0.0089	0.016	increased apoptosis	Mammalian_phenotype	5	Akt1,Bcl2,Trp53,Lrp2,Sox2,Cd44,Tnfaip3
+MP:0000160	206	3	2.38	0.0096	0.017	kyphosis	Mammalian_phenotype	6	Trp53,Col10a1,Plcb1
+MP:0000367	598	6	2.35	0.0097	0.017	abnormal coat/ hair morphology	Mammalian_phenotype	3	Bcl2,Trp53,Sox2,Klf4,Ereg,Areg
+MP:0000706	319	4	2.4	0.0092	0.017	small thymus	Mammalian_phenotype	6	Akt1,Bcl2,Trp53,Col10a1
+MP:0000787	752	7	2.34	0.0097	0.017	abnormal telencephalon morphology	Mammalian_phenotype	5	Lrp2,Sox2,Spp1,Plcb1,Vim,Cckar,Slc1a2
+MP:0000807	320	4	2.4	0.0093	0.017	abnormal hippocampus morphology	Mammalian_phenotype	6	Sox2,Plcb1,Vim,Slc1a2
+MP:0002441	455	5	2.36	0.0097	0.017	abnormal granulocyte morphology	Mammalian_phenotype	7	Runx2,Spp1,Cd44,Tnfaip3,Cxcl5
+MP:0003169	205	3	2.39	0.0095	0.017	abnormal scala media morphology	Mammalian_phenotype	5	Atoh1,Lrp2,Sox2
+MP:0004097	322	4	2.38	0.0095	0.017	abnormal cerebellar cortex morphology	Mammalian_phenotype	7	Trp53,Atoh1,Lrp2,Vim
+MP:0004426	206	3	2.38	0.0096	0.017	abnormal cochlear labyrinth morphology	Mammalian_phenotype	5	Atoh1,Lrp2,Sox2
+MP:0004957	202	3	2.42	0.009	0.017	abnormal blastocyst morphology	Mammalian_phenotype	3	Trp53,Sox2,Serpinb5
+MP:0005667	202	3	2.42	0.009	0.017	abnormal circulating leptin level	Mammalian_phenotype	5	Akt1,Bcl2,Ubb
+MP:0011090	318	4	2.41	0.0091	0.017	partial perinatal lethality	Mammalian_phenotype	6	Trp53,Lrp2,Dppa2,Zfp110
+MP:0000801	326	4	2.35	0.01	0.018	abnormal temporal lobe morphology	Mammalian_phenotype	7	Sox2,Plcb1,Vim,Slc1a2
+MP:0001191	327	4	2.35	0.01	0.018	abnormal skin condition	Mammalian_phenotype	3	Akt1,Trp53,Abcg2,Perp
+MP:0002221	918	8	2.31	0.01	0.018	abnormal lymph organ size	Mammalian_phenotype	4	Akt1,Bcl2,Trp53,Runx2,Spp1,Col10a1,Lig1,Tnfaip3
+MP:0002706	326	4	2.35	0.01	0.018	abnormal kidney size	Mammalian_phenotype	4	Bcl2,Trp53,Plcb1,Cckar
+MP:0000783	930	8	2.27	0.011	0.019	abnormal forebrain morphology	Mammalian_phenotype	4	Ubb,Lrp2,Sox2,Spp1,Plcb1,Vim,Cckar,Slc1a2
+MP:0002200	334	4	2.3	0.011	0.019	abnormal brain ventricle/choroid plexus morphology	Mammalian_phenotype	4	Trp53,Lrp2,Sox2,Col10a1
+MP:0002270	217	3	2.27	0.012	0.019	abnormal pulmonary alveolus morphology	Mammalian_phenotype	6	Trp53,Lrp2,Dppa2
+MP:0002925	773	7	2.26	0.011	0.019	abnormal cardiovascular development	Mammalian_phenotype	3	Bcl2,Trp53,Runx2,Spp1,Tbx3,Cd44,Vim
+MP:0005022	214	3	2.3	0.011	0.019	abnormal immature B cell morphology	Mammalian_phenotype	9	Bcl2,Trp53,Tnfaip3
+MP:0006387	765	7	2.29	0.011	0.019	abnormal T cell number	Mammalian_phenotype	9	Akt1,Bcl2,Trp53,Runx2,Spp1,Col10a1,Tnfaip3
+MP:0008503	217	3	2.27	0.012	0.019	abnormal spinal cord grey matter morphology	Mammalian_phenotype	4	Bcl2,Sox2,Slc1a2
+MP:0009931	466	5	2.3	0.011	0.019	abnormal skin appearance	Mammalian_phenotype	3	Akt1,Trp53,Lig1,Klf4,Areg
+MP:0002138	946	8	2.22	0.012	0.02	abnormal hepatobiliary system morphology	Mammalian_phenotype	2	Akt1,Trp53,Runx2,Spp1,Tbx3,Lig1,Tnfaip3,Cckar
+MP:0000031	223	3	2.21	0.013	0.021	abnormal cochlea morphology	Mammalian_phenotype	4	Atoh1,Lrp2,Sox2
+MP:0000351	222	3	2.22	0.012	0.021	increased cell proliferation	Mammalian_phenotype	4	Bcl2,Trp53,Klf4
+MP:0001056	223	3	2.21	0.013	0.021	abnormal cranial nerve morphology	Mammalian_phenotype	4	Bcl2,Trp53,Sox2
+MP:0001116	480	5	2.23	0.012	0.021	small gonad	Mammalian_phenotype	5	Trp53,Ubb,Sox2,Zfp110,Zfp42
+MP:0001674	223	3	2.21	0.013	0.021	abnormal triploblastic development	Mammalian_phenotype	4	Sox2,Tbx3,Serpinb5
+MP:0002058	948	8	2.21	0.012	0.021	neonatal lethality	Mammalian_phenotype	6	Trp53,Atoh1,Lrp2,Sox2,Runx2,Cd44,Klf4,Dppa2
+MP:0004951	224	3	2.2	0.013	0.021	abnormal spleen weight	Mammalian_phenotype	6	Bcl2,Trp53,Col10a1
+MP:0008037	956	8	2.19	0.013	0.021	abnormal T cell morphology	Mammalian_phenotype	8	Akt1,Bcl2,Trp53,Runx2,Spp1,Col10a1,Cd44,Tnfaip3
+MP:0009937	347	4	2.21	0.013	0.021	abnormal neuron differentiation	Mammalian_phenotype	4	Trp53,Sox2,Vim,Cckar
+MP:0000841	490	5	2.18	0.014	0.022	abnormal hindbrain morphology	Mammalian_phenotype	4	Bcl2,Trp53,Atoh1,Lrp2,Vim
+MP:0002075	229	3	2.16	0.014	0.022	abnormal coat/hair pigmentation	Mammalian_phenotype	2	Bcl2,Trp53,Sox2
+MP:0002018	356	4	2.15	0.014	0.023	malignant tumors	Mammalian_phenotype	6	Akt1,Trp53,Lig1,Perp
+MP:0002211	496	5	2.15	0.014	0.023	abnormal primary sex determination	Mammalian_phenotype	4	Trp53,Ubb,Sox2,Zfp110,Zfp42
+MP:0003634	355	4	2.16	0.014	0.023	abnormal glial cell morphology	Mammalian_phenotype	3	Trp53,Sox2,Spp1,Vim
+MP:0005013	648	6	2.14	0.015	0.023	increased lymphocyte cell number	Mammalian_phenotype	8	Akt1,Bcl2,Trp53,Spp1,Col10a1,Tnfaip3
+MP:0005448	230	3	2.15	0.014	0.023	abnormal energy balance	Mammalian_phenotype	3	Akt1,Ubb,Cckar
+MP:0009250	645	6	2.15	0.014	0.023	abnormal appendicular skeleton morphology	Mammalian_phenotype	3	Runx2,Ibsp,Tbx3,Col10a1,Cd44,Plcb1
+MP:0009701	233	3	2.12	0.015	0.023	abnormal birth body size	Mammalian_phenotype	2	Akt1,Runx2,Dppa2
+MP:0009703	232	3	2.13	0.014	0.023	decreased birth body size	Mammalian_phenotype	3	Akt1,Runx2,Dppa2
+MP:0000230	235	3	2.11	0.015	0.024	abnormal systemic arterial blood pressure	Mammalian_phenotype	3	Spp1,Cd44,Vim
+MP:0001547	818	7	2.09	0.016	0.024	abnormal lipid level	Mammalian_phenotype	4	Spg20,Akt1,Bcl2,Spp1,Cd44,Wbp5,Cat
+MP:0006362	502	5	2.12	0.015	0.024	abnormal male germ cell morphology	Mammalian_phenotype	5	Akt1,Trp53,Ubb,Sox2,Zfp42
+MP:0000875	239	3	2.07	0.016	0.025	abnormal cerebellar Purkinje cell layer	Mammalian_phenotype	9	Trp53,Atoh1,Vim
+MP:0002673	368	4	2.08	0.016	0.025	abnormal sperm number	Mammalian_phenotype	4	Akt1,Trp53,Sox2,Zfp42
+MP:0003698	819	7	2.09	0.016	0.025	abnormal male reproductive system physiology	Mammalian_phenotype	3	Trp53,Ubb,Sox2,Runx2,Tbx3,Plcb1,Klf4
+MP:0000035	245	3	2.02	0.017	0.026	abnormal membranous labyrinth morphology	Mammalian_phenotype	4	Atoh1,Lrp2,Sox2
+MP:0000703	516	5	2.05	0.017	0.026	abnormal thymus morphology	Mammalian_phenotype	3	Akt1,Bcl2,Trp53,Runx2,Col10a1
+MP:0000771	245	3	2.02	0.017	0.026	abnormal brain size	Mammalian_phenotype	4	Trp53,Plcb1,Vim
+MP:0002596	245	3	2.02	0.017	0.026	abnormal hematocrit	Mammalian_phenotype	7	Trp53,Spp1,Lig1
+MP:0008248	520	5	2.03	0.018	0.027	abnormal mononuclear phagocyte morphology	Mammalian_phenotype	7	Runx2,Spp1,Col10a1,Cd44,Tnfaip3
+MP:0000245	682	6	2	0.019	0.028	abnormal erythropoiesis	Mammalian_phenotype	5	Trp53,Runx2,Spp1,Col10a1,Lig1,Wbp5
+MP:0002064	380	4	2	0.018	0.028	seizures	Mammalian_phenotype	3	Trp53,Sox2,Plcb1,Slc1a2
+MP:0002109	681	6	2	0.019	0.028	abnormal limb morphology	Mammalian_phenotype	2	Trp53,Runx2,Ibsp,Tbx3,Col10a1,Cd44
+MP:0000188	529	5	1.99	0.019	0.029	abnormal circulating glucose level	Mammalian_phenotype	4	Akt1,Bcl2,Trp53,Spp1,Itpr2
+MP:0001399	384	4	1.98	0.019	0.029	hyperactivity	Mammalian_phenotype	7	Akt1,Plcb1,Vim,Cckar
+MP:0001784	690	6	1.97	0.02	0.029	abnormal fluid regulation	Mammalian_phenotype	3	Trp53,Sox2,Tbx3,Cd44,Klf4,Slc1a2
+MP:0001922	256	3	1.94	0.02	0.029	reduced male fertility	Mammalian_phenotype	4	Sox2,Tbx3,Plcb1
+MP:0002210	533	5	1.97	0.02	0.029	abnormal sex determination	Mammalian_phenotype	3	Trp53,Ubb,Sox2,Zfp110,Zfp42
+MP:0010911	256	3	1.94	0.02	0.029	abnormal pulmonary acinus morphology	Mammalian_phenotype	5	Trp53,Lrp2,Dppa2
+MP:0000965	539	5	1.94	0.021	0.03	abnormal sensory neuron morphology	Mammalian_phenotype	4	Bcl2,Trp53,Atoh1,Sox2,Cckar
+MP:0005016	860	7	1.95	0.021	0.03	decreased lymphocyte cell number	Mammalian_phenotype	8	Akt1,Bcl2,Trp53,Runx2,Spp1,Col10a1,Tnfaip3
+MP:0005502	692	6	1.96	0.02	0.03	abnormal renal/urinary system physiology	Mammalian_phenotype	2	Bcl2,Trp53,Lrp2,Spp1,Cd44,Tnfaip3
+MP:0008211	257	3	1.93	0.02	0.03	decreased mature B cell number	Mammalian_phenotype	10	Bcl2,Trp53,Tnfaip3
+MP:0000692	263	3	1.88	0.022	0.031	small spleen	Mammalian_phenotype	6	Bcl2,Trp53,Col10a1
+MP:0001929	699	6	1.93	0.021	0.031	abnormal gametogenesis	Mammalian_phenotype	3	Akt1,Bcl2,Trp53,Ubb,Sox2,Zfp42
+MP:0002458	543	5	1.92	0.022	0.031	abnormal B cell number	Mammalian_phenotype	9	Bcl2,Trp53,Runx2,Col10a1,Tnfaip3
+MP:0001340	267	3	1.85	0.023	0.032	abnormal eyelid morphology	Mammalian_phenotype	3	Runx2,Ereg,Areg
+MP:0002451	398	4	1.9	0.022	0.032	abnormal macrophage physiology	Mammalian_phenotype	4	Bcl2,Spp1,Mepe,Cd44
+MP:0004850	266	3	1.86	0.023	0.032	abnormal testis weight	Mammalian_phenotype	8	Trp53,Plcb1,Zfp110
+MP:0010899	266	3	1.86	0.023	0.032	abnormal pulmonary alveolar system morphology	Mammalian_phenotype	4	Trp53,Lrp2,Dppa2
+MP:0000952	269	3	1.84	0.024	0.033	abnormal CNS glial cell morphology	Mammalian_phenotype	4	Sox2,Spp1,Vim
+MP:0008540	552	5	1.88	0.023	0.033	abnormal cerebrum morphology	Mammalian_phenotype	6	Lrp2,Sox2,Plcb1,Vim,Slc1a2
+MP:0000026	273	3	1.81	0.025	0.034	abnormal inner ear morphology	Mammalian_phenotype	3	Atoh1,Lrp2,Sox2
+MP:0001256	271	3	1.82	0.024	0.034	abnormal body length	Mammalian_phenotype	4	Ubb,Plcb1,Wbp5
+MP:0004848	413	4	1.82	0.025	0.035	abnormal liver size	Mammalian_phenotype	4	Trp53,Runx2,Tbx3,Lig1
+MP:0005014	275	3	1.8	0.025	0.035	increased B cell number	Mammalian_phenotype	10	Bcl2,Trp53,Tnfaip3
+MP:0010288	274	3	1.8	0.025	0.035	increased gland tumor incidence	Mammalian_phenotype	6	Akt1,Trp53,Sox2
+MP:0000849	416	4	1.8	0.026	0.036	abnormal cerebellum morphology	Mammalian_phenotype	6	Trp53,Atoh1,Lrp2,Vim
+MP:0000913	729	6	1.82	0.026	0.036	abnormal brain development	Mammalian_phenotype	4	Trp53,Atoh1,Lrp2,Sox2,Col10a1,Cckar
+MP:0011096	279	3	1.77	0.026	0.036	complete embryonic lethality between implantation and somite formation	Mammalian_phenotype	8	Trp53,Sox2,Serpinb5
+MP:0000830	280	3	1.76	0.027	0.037	abnormal diencephalon morphology	Mammalian_phenotype	5	Ubb,Lrp2,Sox2
+MP:0000847	421	4	1.78	0.027	0.037	abnormal metencephalon morphology	Mammalian_phenotype	5	Trp53,Atoh1,Lrp2,Vim
+MP:0001156	570	5	1.8	0.027	0.037	abnormal spermatogenesis	Mammalian_phenotype	4	Akt1,Trp53,Ubb,Sox2,Zfp42
+MP:0001126	285	3	1.73	0.028	0.038	abnormal ovary morphology	Mammalian_phenotype	4	Bcl2,Trp53,Ubb
+MP:0010831	284	3	1.73	0.028	0.038	partial lethality	Mammalian_phenotype	3	Trp53,Cd44,Zfp42
+MP:0000689	913	7	1.78	0.029	0.039	abnormal spleen morphology	Mammalian_phenotype	3	Bcl2,Trp53,Runx2,Spp1,Col10a1,Lig1,Tnfaip3
+MP:0009956	288	3	1.71	0.029	0.039	abnormal cerebellar layer morphology	Mammalian_phenotype	8	Trp53,Atoh1,Vim
+MP:0011969	287	3	1.71	0.029	0.039	abnormal circulating triglyceride level	Mammalian_phenotype	6	Spg20,Spp1,Cat
+MP:0000598	920	7	1.76	0.03	0.04	abnormal liver morphology	Mammalian_phenotype	3	Akt1,Trp53,Runx2,Spp1,Tbx3,Lig1,Tnfaip3
+MP:0000322	294	3	1.67	0.031	0.041	increased granulocyte number	Mammalian_phenotype	8	Runx2,Tnfaip3,Cxcl5
+MP:0001695	434	4	1.71	0.031	0.041	abnormal gastrulation	Mammalian_phenotype	4	Trp53,Sox2,Tbx3,Serpinb5
+MP:0002102	437	4	1.7	0.032	0.041	abnormal ear morphology	Mammalian_phenotype	2	Bcl2,Atoh1,Lrp2,Sox2
+MP:0003947	434	4	1.71	0.031	0.041	abnormal cholesterol level	Mammalian_phenotype	5	Spp1,Cd44,Wbp5,Cat
+MP:0005452	592	5	1.71	0.032	0.041	abnormal adipose tissue amount	Mammalian_phenotype	3	Spg20,Akt1,Bcl2,Trp53,Ubb
+MP:0002419	594	5	1.71	0.032	0.042	abnormal innate immunity	Mammalian_phenotype	3	Bcl2,Spp1,Mepe,Cd44,Cxcl5
+MP:0004174	298	3	1.64	0.033	0.043	abnormal spine curvature	Mammalian_phenotype	5	Trp53,Col10a1,Plcb1
+MP:0005560	298	3	1.64	0.033	0.043	decreased circulating glucose level	Mammalian_phenotype	5	Trp53,Spp1,Itpr2
+MP:0002432	448	4	1.64	0.035	0.045	abnormal CD4-positive T cell morphology	Mammalian_phenotype	10	Bcl2,Col10a1,Cd44,Tnfaip3
+MP:0001516	778	6	1.65	0.036	0.047	abnormal motor coordination/ balance	Mammalian_phenotype	4	Spg20,Trp53,Lrp2,Sox2,Cd44,Vim
+MP:0001634	310	3	1.56	0.037	0.047	internal hemorrhage	Mammalian_phenotype	5	Trp53,Spp1,Vim
+MP:0006205	309	3	1.57	0.037	0.047	embryonic lethality between implantation and somite formation	Mammalian_phenotype	7	Trp53,Sox2,Serpinb5
+MP:0011085	614	5	1.63	0.037	0.047	complete postnatal lethality	Mammalian_phenotype	6	Trp53,Atoh1,Spp1,Slc1a2,Perp
+MP:0008250	786	6	1.62	0.038	0.048	abnormal myeloid leukocyte morphology	Mammalian_phenotype	6	Runx2,Spp1,Col10a1,Cd44,Tnfaip3,Cxcl5
+MP:0002135	794	6	1.6	0.04	0.05	abnormal kidney morphology	Mammalian_phenotype	3	Bcl2,Trp53,Lrp2,Spp1,Plcb1,Cckar
+MP:0003313	969	7	1.61	0.039	0.05	abnormal locomotor activation	Mammalian_phenotype	6	Akt1,Trp53,Sox2,Col10a1,Plcb1,Vim,Cckar
+MP:0001961	627	5	1.58	0.04	0.051	abnormal reflex	Mammalian_phenotype	4	Spg20,Trp53,Sox2,Spp1,Plcb1
+MP:0000788	321	3	1.5	0.041	0.052	abnormal cerebral cortex morphology	Mammalian_phenotype	7	Lrp2,Sox2,Vim
+MP:0002145	630	5	1.56	0.041	0.052	abnormal T cell differentiation	Mammalian_phenotype	9	Akt1,Bcl2,Trp53,Col10a1,Cd44
+MP:0002447	629	5	1.57	0.041	0.052	abnormal erythrocyte morphology	Mammalian_phenotype	6	Trp53,Runx2,Spp1,Lig1,Wbp5
+MP:0002498	324	3	1.48	0.042	0.053	abnormal acute inflammation	Mammalian_phenotype	4	Spp1,Cd44,Cxcl5
+MP:0003881	476	4	1.51	0.043	0.054	abnormal nephron morphology	Mammalian_phenotype	4	Bcl2,Trp53,Lrp2,Spp1
+MP:0006208	477	4	1.51	0.043	0.054	lethality throughout fetal growth and development	Mammalian_phenotype	5	Trp53,Runx2,Tbx3,Lig1
+MP:0000959	645	5	1.51	0.045	0.056	abnormal somatic sensory system morphology	Mammalian_phenotype	4	Bcl2,Trp53,Atoh1,Sox2,Cckar
+MP:0004939	649	5	1.49	0.046	0.057	abnormal B cell morphology	Mammalian_phenotype	8	Bcl2,Trp53,Runx2,Col10a1,Tnfaip3
+MP:0008171	334	3	1.42	0.047	0.057	abnormal mature B cell morphology	Mammalian_phenotype	5	Bcl2,Trp53,Tnfaip3
+MP:0008469	821	6	1.51	0.046	0.057	abnormal protein level	Mammalian_phenotype	3	Trp53,Spp1,Cd44,Tnfaip3,Cxcl5,Vim
+MP:0008251	654	5	1.47	0.048	0.059	abnormal phagocyte morphology	Mammalian_phenotype	7	Runx2,Spp1,Col10a1,Cd44,Tnfaip3
+MP:0002357	341	3	1.38	0.05	0.06	abnormal spleen white pulp morphology	Mammalian_phenotype	5	Bcl2,Trp53,Tnfaip3
+MP:0002444	660	5	1.45	0.05	0.06	abnormal T cell physiology	Mammalian_phenotype	6	Akt1,Bcl2,Trp53,Cd44,Perp
+MP:0005274	341	3	1.38	0.05	0.06	abnormal viscerocranium morphology	Mammalian_phenotype	6	Trp53,Lrp2,Runx2
+MP:0011087	659	5	1.46	0.049	0.06	complete neonatal lethality	Mammalian_phenotype	7	Trp53,Atoh1,Sox2,Runx2,Klf4
+MP:0000516	845	6	1.44	0.053	0.064	abnormal renal/urinary system morphology	Mammalian_phenotype	2	Bcl2,Trp53,Lrp2,Spp1,Plcb1,Cckar
+MP:0002084	504	4	1.39	0.053	0.064	abnormal developmental patterning	Mammalian_phenotype	3	Trp53,Sox2,Tbx3,Serpinb5
+MP:0002752	847	6	1.43	0.053	0.064	abnormal somatic nervous system morphology	Mammalian_phenotype	3	Bcl2,Trp53,Atoh1,Sox2,Cd44,Cckar
+MP:0002401	850	6	1.42	0.054	0.065	abnormal lymphopoiesis	Mammalian_phenotype	6	Akt1,Bcl2,Trp53,Col10a1,Cd44,Tnfaip3
+MP:0005010	352	3	1.33	0.055	0.065	abnormal CD8-positive T cell morphology	Mammalian_phenotype	10	Bcl2,Cd44,Tnfaip3
+MP:0005164	507	4	1.38	0.054	0.065	abnormal response to injury	Mammalian_phenotype	2	Trp53,Spp1,Cd44,Klf4
+MP:0000572	353	3	1.32	0.055	0.066	abnormal autopod morphology	Mammalian_phenotype	3	Trp53,Runx2,Tbx3
+MP:0002445	856	6	1.4	0.056	0.066	abnormal mononuclear cell differentiation	Mammalian_phenotype	4	Akt1,Bcl2,Trp53,Col10a1,Cd44,Tnfaip3
+MP:0003699	678	5	1.39	0.055	0.066	abnormal female reproductive system physiology	Mammalian_phenotype	3	Ubb,Runx2,Tbx3,Plcb1,Areg
+MP:0001577	356	3	1.3	0.056	0.067	anemia	Mammalian_phenotype	7	Trp53,Runx2,Lig1
+MP:0002425	359	3	1.29	0.058	0.068	altered susceptibility to autoimmune disorder	Mammalian_phenotype	6	Spp1,Cd44,Tnfaip3
+MP:0002206	521	4	1.32	0.06	0.07	abnormal CNS synaptic transmission	Mammalian_phenotype	4	Akt1,Cd44,Plcb1,Grik3
+MP:0002339	363	3	1.27	0.06	0.07	abnormal lymph node morphology	Mammalian_phenotype	4	Bcl2,Spp1,Col10a1
+MP:0001431	523	4	1.31	0.06	0.071	abnormal eating behavior	Mammalian_phenotype	4	Ubb,Itpr2,Klf4,Cckar
+MP:0011088	369	3	1.24	0.063	0.073	partial neonatal lethality	Mammalian_phenotype	7	Lrp2,Cd44,Dppa2
+MP:0000609	373	3	1.22	0.065	0.076	abnormal liver physiology	Mammalian_phenotype	3	Trp53,Cd44,Tnfaip3
+MP:0003727	376	3	1.2	0.066	0.077	abnormal retinal layer morphology	Mammalian_phenotype	6	Bcl2,Trp53,Sox2
+MP:0005291	378	3	1.19	0.067	0.078	abnormal glucose tolerance	Mammalian_phenotype	4	Akt1,Bcl2,Spp1
+MP:0005416	713	5	1.27	0.068	0.078	abnormal circulating protein level	Mammalian_phenotype	4	Trp53,Spp1,Cd44,Tnfaip3,Cxcl5
+MP:0005449	380	3	1.18	0.068	0.079	abnormal food intake	Mammalian_phenotype	5	Ubb,Itpr2,Cckar
+MP:0000003	720	5	1.25	0.07	0.081	abnormal adipose tissue morphology	Mammalian_phenotype	2	Spg20,Akt1,Bcl2,Trp53,Ubb
+MP:0000180	387	3	1.15	0.072	0.083	abnormal circulating cholesterol level	Mammalian_phenotype	6	Spp1,Wbp5,Cat
+MP:0001914	552	4	1.19	0.073	0.083	hemorrhage	Mammalian_phenotype	4	Trp53,Spp1,Tnfaip3,Vim
+MP:0005371	909	6	1.25	0.073	0.083	limbs/digits/tail phenotype	Mammalian_phenotype	1	Trp53,Runx2,Ibsp,Tbx3,Col10a1,Cd44
+MP:0001560	389	3	1.14	0.073	0.084	abnormal circulating insulin level	Mammalian_phenotype	4	Akt1,Bcl2,Spp1
+MP:0005375	734	5	1.2	0.076	0.086	adipose tissue phenotype	Mammalian_phenotype	1	Spg20,Akt1,Bcl2,Trp53,Ubb
+MP:0000438	560	4	1.16	0.076	0.087	abnormal cranium morphology	Mammalian_phenotype	5	Trp53,Lrp2,Runx2,Plcb1
+MP:0001405	395	3	1.11	0.077	0.087	impaired coordination	Mammalian_phenotype	5	Spg20,Lrp2,Vim
+MP:0005377	561	4	1.16	0.077	0.087	hearing/vestibular/ear phenotype	Mammalian_phenotype	1	Bcl2,Atoh1,Lrp2,Sox2
+MP:0002414	924	6	1.2	0.078	0.088	abnormal myeloblast morphology/development	Mammalian_phenotype	4	Akt1,Bcl2,Trp53,Col10a1,Cd44,Tnfaip3
+MP:0002435	564	4	1.15	0.078	0.088	abnormal effector T cell morphology	Mammalian_phenotype	9	Bcl2,Col10a1,Cd44,Tnfaip3
+MP:0002864	570	4	1.13	0.081	0.091	abnormal ocular fundus morphology	Mammalian_phenotype	4	Bcl2,Trp53,Sox2,Cd44
+MP:0005460	933	6	1.18	0.081	0.091	abnormal leukopoiesis	Mammalian_phenotype	4	Akt1,Bcl2,Trp53,Col10a1,Cd44,Tnfaip3
+MP:0002116	577	4	1.1	0.084	0.094	abnormal craniofacial bone morphology	Mammalian_phenotype	3	Trp53,Lrp2,Runx2,Plcb1
+MP:0010866	757	5	1.13	0.085	0.095	abnormal prenatal body size	Mammalian_phenotype	3	Akt1,Trp53,Lrp2,Lig1,Zfp110
+MP:0002452	950	6	1.13	0.088	0.097	abnormal professional antigen presenting cell physiology	Mammalian_phenotype	4	Bcl2,Trp53,Spp1,Mepe,Cd44,Tnfaip3
+MP:0005253	423	3	0.987	0.093	0.1	abnormal eye physiology	Mammalian_phenotype	2	Trp53,Sox2,Zfp110
+MP:0001186	429	3	0.961	0.097	0.11	pigmentation phenotype	Mammalian_phenotype	1	Bcl2,Trp53,Sox2
+MP:0001697	610	4	0.984	0.1	0.11	abnormal embryo size	Mammalian_phenotype	3	Trp53,Lrp2,Lig1,Zfp110
+MP:0001698	600	4	1.02	0.096	0.11	decreased embryo size	Mammalian_phenotype	5	Trp53,Lrp2,Lig1,Zfp110
+MP:0002067	796	5	1.01	0.1	0.11	abnormal sensory capabilities/reflexes/nociception	Mammalian_phenotype	3	Spg20,Trp53,Sox2,Spp1,Plcb1
+MP:0002069	614	4	0.971	0.1	0.11	abnormal consumption behavior	Mammalian_phenotype	3	Ubb,Itpr2,Klf4,Cckar
+MP:0002144	437	3	0.928	0.1	0.11	abnormal B cell differentiation	Mammalian_phenotype	9	Bcl2,Trp53,Tnfaip3
+MP:0003492	791	5	1.02	0.1	0.11	abnormal involuntary movement	Mammalian_phenotype	4	Spg20,Trp53,Sox2,Spp1,Plcb1
+MP:0003635	605	4	1	0.099	0.11	abnormal synaptic transmission	Mammalian_phenotype	3	Akt1,Cd44,Plcb1,Grik3
+MP:0005195	616	4	0.964	0.1	0.11	abnormal posterior eye segment morphology	Mammalian_phenotype	3	Bcl2,Trp53,Sox2,Cd44
+MP:0009850	439	3	0.919	0.1	0.11	embryonic lethality between implantation and placentation	Mammalian_phenotype	6	Trp53,Sox2,Serpinb5
+MP:0001785	451	3	0.871	0.11	0.12	edema	Mammalian_phenotype	4	Sox2,Tbx3,Slc1a2
+MP:0002191	456	3	0.851	0.11	0.12	abnormal artery morphology	Mammalian_phenotype	4	Bcl2,Spp1,Cd44
+MP:0001844	466	3	0.811	0.12	0.13	autoimmune response	Mammalian_phenotype	5	Spp1,Cd44,Tnfaip3
+MP:0002078	842	5	0.878	0.13	0.13	abnormal glucose homeostasis	Mammalian_phenotype	3	Akt1,Bcl2,Trp53,Spp1,Itpr2
+MP:0002459	641	4	0.881	0.12	0.13	abnormal B cell physiology	Mammalian_phenotype	5	Bcl2,Trp53,Spp1,Tnfaip3
+MP:0003949	641	4	0.881	0.12	0.13	abnormal circulating lipid level	Mammalian_phenotype	4	Spg20,Spp1,Wbp5,Cat
+MP:0005005	468	3	0.804	0.12	0.13	abnormal self tolerance	Mammalian_phenotype	4	Spp1,Cd44,Tnfaip3
+MP:0005193	471	3	0.792	0.13	0.13	abnormal anterior eye segment morphology	Mammalian_phenotype	3	Trp53,Sox2,Areg
+MP:0008081	472	3	0.788	0.13	0.13	abnormal single-positive T cell number	Mammalian_phenotype	10	Bcl2,Col10a1,Tnfaip3
+MP:0008568	474	3	0.781	0.13	0.13	abnormal interleukin secretion	Mammalian_phenotype	5	Spp1,Cd44,Tnfaip3
+MP:0002086	675	4	0.773	0.14	0.14	abnormal extraembryonic tissue morphology	Mammalian_phenotype	3	Akt1,Trp53,Sox2,Tbx3
+MP:0002088	866	5	0.812	0.14	0.14	abnormal embryonic growth/weight/body size	Mammalian_phenotype	3	Trp53,Lrp2,Tbx3,Lig1,Zfp110
+MP:0002113	480	3	0.758	0.13	0.14	abnormal skeleton development	Mammalian_phenotype	3	Runx2,Col10a1,Cd44
+MP:0002128	671	4	0.785	0.14	0.14	abnormal blood circulation	Mammalian_phenotype	3	Trp53,Spp1,Tnfaip3,Vim
+MP:0005000	478	3	0.766	0.13	0.14	abnormal immune tolerance	Mammalian_phenotype	3	Spp1,Cd44,Tnfaip3
+MP:0003984	512	3	0.642	0.16	0.16	embryonic growth retardation	Mammalian_phenotype	3	Trp53,Tbx3,Lig1
+MP:0002085	906	5	0.706	0.16	0.17	abnormal embryonic tissue morphology	Mammalian_phenotype	3	Trp53,Lrp2,Sox2,Tbx3,Serpinb5
+MP:0002490	527	3	0.59	0.17	0.17	abnormal immunoglobulin level	Mammalian_phenotype	4	Trp53,Spp1,Tnfaip3
+MP:0001925	541	3	0.543	0.18	0.18	male infertility	Mammalian_phenotype	4	Trp53,Ubb,Runx2
+MP:0001325	555	3	0.497	0.19	0.2	abnormal retina morphology	Mammalian_phenotype	5	Bcl2,Trp53,Sox2
+MP:0001800	575	3	0.434	0.21	0.21	abnormal humoral immune response	Mammalian_phenotype	3	Trp53,Spp1,Tnfaip3
+MP:0005294	582	3	0.412	0.21	0.22	abnormal heart ventricle morphology	Mammalian_phenotype	4	Spp1,Tbx3,Btc
+MP:0010865	583	3	0.409	0.21	0.22	prenatal growth retardation	Mammalian_phenotype	3	Trp53,Tbx3,Lig1
+MP:0001921	605	3	0.342	0.23	0.24	reduced fertility	Mammalian_phenotype	4	Sox2,Tbx3,Plcb1
+MP:0003312	610	3	0.328	0.24	0.24	abnormal locomotor coordination	Mammalian_phenotype	6	Spg20,Trp53,Sox2
+MP:0001793	632	3	0.264	0.26	0.26	altered susceptibility to infection	Mammalian_phenotype	4	Spp1,Cd44,Cxcl5
+MP:0004703	633	3	0.261	0.26	0.26	abnormal vertebral column morphology	Mammalian_phenotype	4	Trp53,Col10a1,Plcb1
+MP:0003009	643	3	0.233	0.27	0.27	abnormal cytokine secretion	Mammalian_phenotype	4	Spp1,Cd44,Tnfaip3
+MP:0005025	673	3	0.151	0.3	0.3	abnormal response to infection	Mammalian_phenotype	3	Spp1,Cd44,Cxcl5
+MP:0011098	724	3	0.0191	0.35	0.35	complete embryonic lethality during organogenesis	Mammalian_phenotype	7	Trp53,Tbx3,Zfp110
+MP:0001924	773	3	-0.0999	0.39	0.39	infertility	Mammalian_phenotype	4	Trp53,Ubb,Runx2
+MP:0002108	884	3	-0.347	0.5	0.5	abnormal muscle morphology	Mammalian_phenotype	2	Akt1,Bcl2,Trp53
+MP:0006207	908	3	-0.397	0.52	0.52	embryonic lethality during organogenesis	Mammalian_phenotype	6	Trp53,Tbx3,Zfp110

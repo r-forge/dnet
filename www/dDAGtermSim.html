@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dDAGtermSim @ dnet 1.0.6</title>
+<title>dDAGtermSim @ dnet 1.0.7</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.6</a>
+      <a class="brand" href="index.html">dnet 1.0.7</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -226,7 +226,7 @@ used for calcluation, which is very prohibitively expensive!</dd>
       <dt>method</dt>
       <dd>the method used to measure semantic similarity between
 input terms. It can be "Resnik" for information content (IC) of most
-informative information ancestor (MICA) (see
+informative common ancestor (MICA) (see
 <a href = 'http://arxiv.org/pdf/cmp-lg/9511007.pdf'>http://arxiv.org/pdf/cmp-lg/9511007.pdf</a>), "Lin" for 2*IC at MICA
 divided by the sum of IC at pairs of terms (see
 <a href = 'http://webdocs.cs.ualberta.ca/~lindek/papers/sim.pdf'>http://webdocs.cs.ualberta.ca/~lindek/papers/sim.pdf</a>),
@@ -319,28 +319,28 @@ terms <- sample(V(dag)$name, 5)
 sim <- dDAGtermSim(g=dag, terms=terms, method="Schlicker",
 parallel=FALSE)
 </div>
-<strong class='message'>Start at 2014-09-22 19:28:43</strong>
+<strong class='message'>Start at 2014-12-16 16:59:19</strong>
 <strong class='message'></strong>
-<strong class='message'>Calculate semantic similarity between 5 terms using Schlicker method (2014-09-22 19:28:43)...</strong>
-<strong class='message'>Build a sparse matrix of children x ancestors (with 5 rows and 3156 columns (2014-09-22 19:28:43)...</strong>
-<strong class='message'>	1 out of 5 (2014-09-22 19:28:43)</strong>
-<strong class='message'>	2 out of 5 (2014-09-22 19:28:43)</strong>
-<strong class='message'>	3 out of 5 (2014-09-22 19:28:43)</strong>
-<strong class='message'>	4 out of 5 (2014-09-22 19:28:43)</strong>
-<strong class='message'>	5 out of 5 (2014-09-22 19:28:43)</strong>
+<strong class='message'>Calculate semantic similarity between 5 terms using Schlicker method (2014-12-16 16:59:19)...</strong>
+<strong class='message'>Build a sparse matrix of children x ancestors (with 5 rows and 3156 columns (2014-12-16 16:59:19)...</strong>
+<strong class='message'>	1 out of 5 (2014-12-16 16:59:19)</strong>
+<strong class='message'>	2 out of 5 (2014-12-16 16:59:19)</strong>
+<strong class='message'>	3 out of 5 (2014-12-16 16:59:19)</strong>
+<strong class='message'>	4 out of 5 (2014-12-16 16:59:19)</strong>
+<strong class='message'>	5 out of 5 (2014-12-16 16:59:19)</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-09-22 19:28:43</strong>
+<strong class='message'>Finish at 2014-12-16 16:59:19</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>sim
 </div>
 <div class='output'>5 x 5 sparse Matrix of class "dgCMatrix"
-           HP:0000062 HP:0010931 HP:0001743 HP:0004319 HP:0000610
-HP:0000062   1.958076   .          .          .          .       
-HP:0010931   .          1.984192   .          .          .       
-HP:0001743   .          .          1.810997   .          .       
-HP:0004319   .          .          .          1.995189   .       
-HP:0000610   .          .          .          .          1.920275
+           HP:0002634 HP:0002269 HP:0012056 HP:0000475 HP:0011357
+HP:0002634   1.958763   .         .           .         .        
+HP:0002269   .          1.892096  .           .         .        
+HP:0012056   .          .         1.9951890   .         0.0998887
+HP:0000475   .          .         .           1.995876  .        
+HP:0011357   .          .         0.0998887   .         1.9457045
 </div></pre>
   </div>
   
@@ -361,6 +361,8 @@ HP:0000610   .          .          .          .          1.920275
     <h2>Source man</h2>
     <a href="javascript:newWin('man/dDAGtermSim.txt', 'man/dDAGtermSim.txt', '1200', '1200')" title="Click to view"><B><code>dDAGtermSim.Rd</code></B></a>
     
+    <a href="javascript:newWin('man/dDAGtermSim.pdf', 'man/dDAGtermSim.pdf', '1200', '1200')" title="Click to view"><B><code>dDAGtermSim.pdf</code></B></a>
+    
     <h2>See also</h2>
     
 <code><a href='dDAGinduce.html'>dDAGinduce</a></code>, <code><a href='dDAGancestor.html'>dDAGancestor</a></code>,
@@ -369,7 +371,7 @@ HP:0000610   .          .          .          .          1.920275
     <!--
 
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I> 6:64 (<a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>)</p>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I>, 6(8):64. <a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/25246945">25246945</a></p>
 
 <p>You may also cite the package as:</p>
 
@@ -384,6 +386,9 @@ HP:0000610   .          .          .          .          1.920275
     <h2>URL</h2>
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
+      <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
+      <li><a href=" http://cran.r-project.org/package=dnet"> http://cran.r-project.org/package=dnet</a></li>
+      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     
