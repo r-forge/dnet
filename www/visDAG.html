@@ -376,50 +376,7 @@ node: 0.75 by default
     <!-- 
     </div>
     -->
-    
-    <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'># 1) load HPPA as igraph object
-data(ig.HPPA)
-g <- ig.HPPA
-
-# 2) randomly select vertices as the query nodes
-# the more common, the query nodes can be term id
-nodes_query <- V(g)[sample(V(g),5)]$name
-
-# 3) obtain the induced subgraph based on all possible paths
-subg <- dDAGinduce(g, nodes_query, path.mode="all_paths")
-
-# 4) just visualise the induced subgraph
-visDAG(g=subg, node.info="both")
-
-# 5) color-code nodes/terms according to its level
-data <- dDAGlevel(subg)
-visDAG(g=subg, data=data, node.info="both")
-</div>
-<a href="javascript:newWin('visDAG-2.png', 'visDAG-2.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visDAG-2.png', width="400" /></a>
-<div class='input'># 5a) globally change the node and edge attributes
-visDAG(g=subg, data=data, layout.orientation="top_bottom",
-node.info="both",
-graph.node.attrs=list(fixedsize=FALSE,shape="box",color="transparent"),
-graph.edge.attrs=list(color="black"))
-</div>
-<a href="javascript:newWin('visDAG-4.png', 'visDAG-4.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visDAG-4.png', width="400" /></a>
-<div class='input'># 5b) locally highlight the root by changing its shape into "box"
-root <- dDAGroot(subg)
-root.shape <- "box"
-names(root.shape) <- V(subg)[root]$name
-visDAG(g=subg, data=data, node.info="both",
-node.attrs=list(shape=root.shape))
-</div>
-<a href="javascript:newWin('visDAG-6.png', 'visDAG-6.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visDAG-6.png', width="400" /></a>
-<div class='input'># 5c) further locally remove the root labelling
-root.label <- ""
-names(root.label) <- V(subg)[root]$name
-visDAG(g=subg, data=data, node.info="both",
-node.attrs=list(shape=root.shape,label=root.label))
-</div>
-<a href="javascript:newWin('visDAG-8.png', 'visDAG-8.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visDAG-8.png', width="400" /></a></pre>
-  </div>
+      </div>
   
   <div class="span4">
     
@@ -464,8 +421,12 @@ node.attrs=list(shape=root.shape,label=root.label))
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
       <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href=" http://cran.r-project.org/package=dnet"> http://cran.r-project.org/package=dnet</a></li>
-      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href="
+http://cran.r-project.org/package=dnet">
+http://cran.r-project.org/package=dnet</a></li>
+      <li><a href="
+https://github.com/hfang-bristol/dnet">
+https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     

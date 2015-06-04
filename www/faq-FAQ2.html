@@ -365,39 +365,39 @@ symbols <- as.character(fData(TCGA_mutations)$Symbol)
 data <- symbols[1:50] # select the first 50 human genes
 eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data, identity="symbol", genome="Hs", ontology="DO")
 </div>
-<strong class='message'>Start at 2014-12-16 17:15:29</strong>
+<strong class='message'>Start at 2015-06-04 11:57:55</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology DO and its gene associations in the genome Hs (2014-12-16 17:15:29) ...</strong>
+<strong class='message'>First, load the ontology DO and its gene associations in the genome Hs (2015-06-04 11:57:55) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Hs/org.Hs.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://supfam.org/dnet/data/Hs/org.Hs.egDO.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-12-16 17:15:29) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2015-06-04 11:57:56) ...</strong>
 <strong class='message'>	Among 50 symbols of input data, there are 50 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2014-12-16 17:15:29) ...</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-06-04 11:57:56) ...</strong>
 <strong class='message'>	There are 913 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2014-12-16 17:15:29) ...</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2015-06-04 11:57:56) ...</strong>
 <strong class='message'>
-End at 2014-12-16 17:15:29</strong>
-<strong class='message'>Runtime in total is: 0 secs
+End at 2015-06-04 11:57:56</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'>
 ## gene set enrichment analysis (GSEA) using KEGG pathways
 tol <- apply(exprs(TCGA_mutations), 1, sum) # calculate the total mutations for each gene
 data <- data.frame(tol=tol)
 eTerm <- <a href='dGSEA.html' target=dGSEA>dGSEA</a>(data, identity="symbol", genome="Hs", ontology="MsigdbC2KEGG")</div>
-<strong class='message'>Start at 2014-12-16 17:15:32</strong>
+<strong class='message'>Start at 2015-06-04 11:58:00</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MsigdbC2KEGG and its gene associations in the genome Hs (2014-12-16 17:15:32) ...</strong>
+<strong class='message'>First, load the ontology MsigdbC2KEGG and its gene associations in the genome Hs (2015-06-04 11:58:00) ...</strong>
 <strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Hs/org.Hs.eg.RData</strong>
 <strong class='message'>	Load annotation information from http://supfam.org/dnet/data/Msigdb/org.Hs.egMsigdbC2KEGG.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2014-12-16 17:15:33) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2015-06-04 11:58:00) ...</strong>
 <strong class='message'>	Among 19171 symbols of input data, there are 18924 mappable via official gene symbols but 247 left unmappable</strong>
-<strong class='message'>Third, perform GSEA analysis (2014-12-16 17:15:36) ...</strong>
-<strong class='message'>	Sample 1 is being processed at (2014-12-16 17:15:36) ...</strong>
+<strong class='message'>Third, perform GSEA analysis (2015-06-04 11:58:03) ...</strong>
+<strong class='message'>	Sample 1 is being processed at (2015-06-04 11:58:03) ...</strong>
 <strong class='message'>		 100 of 186 gene sets have been processed</strong>
 <strong class='message'>		 186 of 186 gene sets have been processed</strong>
 <strong class='message'>
-End at 2014-12-16 17:16:29</strong>
-<strong class='message'>Runtime in total is: 57 secs
+End at 2015-06-04 11:58:53</strong>
+<strong class='message'>Runtime in total is: 53 secs
 </strong>
       </pre>
     </div>
@@ -430,8 +430,12 @@ End at 2014-12-16 17:16:29</strong>
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
       <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href=" http://cran.r-project.org/package=dnet"> http://cran.r-project.org/package=dnet</a></li>
-      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href="
+http://cran.r-project.org/package=dnet">
+http://cran.r-project.org/package=dnet</a></li>
+      <li><a href="
+https://github.com/hfang-bristol/dnet">
+https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     <h2>Author</h2>
@@ -446,7 +450,7 @@ End at 2014-12-16 17:16:29</strong>
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

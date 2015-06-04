@@ -261,103 +261,7 @@ deriving nodes according to their closeness to the root.</p>
     <!-- 
     </div>
     -->
-    
-    <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'># 1) load HPPA as igraph object
-data(ig.HPPA)
-g <- ig.HPPA
-
-# 2) randomly select vertices as the query nodes
-nodes_query <- sample(V(g),5)$name
-
-# 3) obtain the complete subgraph induced
-subg <- dDAGinduce(g, nodes_query)
-
-# 4) calculate the node levels
-# 4a) definition based on the longest path
-dDAGlevel(subg, level.mode="longest_path")
-</div>
-<div class='output'>HP:0000118 HP:0000924 HP:0001939 HP:0011013 HP:0011842 HP:0012345 HP:0009115 
-         1          2          2          3          3          4          4 
-HP:0009121 HP:0011314 HP:0011844 HP:0000925 HP:0002813 HP:0005930 HP:0009815 
-         4          4          4          5          5          5          6 
-HP:0012346 HP:0012347 HP:0002814 HP:0002817 HP:0003468 HP:0006505 HP:0010582 
-         5          6          6          6          6          6          6 
-HP:0011297 HP:0001155 HP:0001167 HP:0001760 HP:0001780 HP:0003312 HP:0003839 
-         6          7          8          7          8          7          7 
-HP:0003842 HP:0006493 HP:0006496 HP:0009828 HP:0012355 HP:0004634 HP:0005924 
-         8          7          7          7          7          8          8 
-HP:0006494 HP:0009814 HP:0001991 HP:0004188 HP:0005918 HP:0005920 HP:0008425 
-         8          8          9          9          9         10          9 
-HP:0010161 HP:0010233 HP:0009174 HP:0010173 HP:0010182 HP:0010760 HP:0010185 
-         9         11         11         10         10         10         11 
-HP:0009398 
-        12 
-</div>
-<div class='input'># 4b) definition based on the shortest path
-dDAGlevel(subg, level.mode="shortest_path")
-</div>
-<div class='output'>HP:0000118 HP:0000924 HP:0001939 HP:0011013 HP:0011842 HP:0012345 HP:0009115 
-         1          2          2          3          3          4          4 
-HP:0009121 HP:0011314 HP:0011844 HP:0000925 HP:0002813 HP:0005930 HP:0009815 
-         4          4          4          5          5          5          5 
-HP:0012346 HP:0012347 HP:0002814 HP:0002817 HP:0003468 HP:0006505 HP:0010582 
-         5          6          6          6          6          6          6 
-HP:0011297 HP:0001155 HP:0001167 HP:0001760 HP:0001780 HP:0003312 HP:0003839 
-         6          7          7          7          7          7          7 
-HP:0003842 HP:0006493 HP:0006496 HP:0009828 HP:0012355 HP:0004634 HP:0005924 
-         7          6          6          6          7          8          8 
-HP:0006494 HP:0009814 HP:0001991 HP:0004188 HP:0005918 HP:0005920 HP:0008425 
-         7          7          8          8          8          9          9 
-HP:0010161 HP:0010233 HP:0009174 HP:0010173 HP:0010182 HP:0010760 HP:0010185 
-         8          8          9          9          9          9         10 
-HP:0009398 
-         9 
-</div>
-<div class='input'># 4c) definition based on the longest path, and return nodes for each level
-dDAGlevel(subg, level.mode="longest_path", return.mode="level2node")
-</div>
-<div class='output'>$`1`
-[1] "HP:0000118"
-
-$`2`
-[1] "HP:0000924" "HP:0001939"
-
-$`3`
-[1] "HP:0011013" "HP:0011842"
-
-$`4`
-[1] "HP:0012345" "HP:0009115" "HP:0009121" "HP:0011314" "HP:0011844"
-
-$`5`
-[1] "HP:0000925" "HP:0002813" "HP:0005930" "HP:0012346"
-
-$`6`
-[1] "HP:0009815" "HP:0012347" "HP:0002814" "HP:0002817" "HP:0003468"
-[6] "HP:0006505" "HP:0010582" "HP:0011297"
-
-$`7`
-[1] "HP:0001155" "HP:0001760" "HP:0003312" "HP:0003839" "HP:0006493"
-[6] "HP:0006496" "HP:0009828" "HP:0012355"
-
-$`8`
-[1] "HP:0001167" "HP:0001780" "HP:0003842" "HP:0004634" "HP:0005924"
-[6] "HP:0006494" "HP:0009814"
-
-$`9`
-[1] "HP:0001991" "HP:0004188" "HP:0005918" "HP:0008425" "HP:0010161"
-
-$`10`
-[1] "HP:0005920" "HP:0010173" "HP:0010182" "HP:0010760"
-
-$`11`
-[1] "HP:0010233" "HP:0009174" "HP:0010185"
-
-$`12`
-[1] "HP:0009398"
-
-</div></pre>
-  </div>
+      </div>
   
   <div class="span4">
     
@@ -401,8 +305,12 @@ $`12`
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
       <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href=" http://cran.r-project.org/package=dnet"> http://cran.r-project.org/package=dnet</a></li>
-      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href="
+http://cran.r-project.org/package=dnet">
+http://cran.r-project.org/package=dnet</a></li>
+      <li><a href="
+https://github.com/hfang-bristol/dnet">
+https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     

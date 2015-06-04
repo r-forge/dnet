@@ -257,25 +257,7 @@ subgraph.</p>
     <!-- 
     </div>
     -->
-    
-    <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'># 1) load HPPA as igraph object
-data(ig.HPPA)
-g <- ig.HPPA
-
-# 2) randomly select vertices as the query nodes
-# the query nodes can be igraph vertex sequences
-nodes_query <- sample(V(g),5)
-# more commonly, the query nodes can be term id
-nodes_query <- sample(V(g),5)$name
-
-# 3) obtain the induced subgraph
-# 3a) based on all possible paths (i.e. the complete subgraph induced)
-subg <- dDAGinduce(g, nodes_query, path.mode="all_paths")
-# 3b) based on shortest paths (i.e. the most concise subgraph induced)
-subg <- dDAGinduce(g, nodes_query, path.mode="shortest_paths")
-</div></pre>
-  </div>
+      </div>
   
   <div class="span4">
     
@@ -319,8 +301,12 @@ subg <- dDAGinduce(g, nodes_query, path.mode="shortest_paths")
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
       <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href=" http://cran.r-project.org/package=dnet"> http://cran.r-project.org/package=dnet</a></li>
-      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href="
+http://cran.r-project.org/package=dnet">
+http://cran.r-project.org/package=dnet</a></li>
+      <li><a href="
+https://github.com/hfang-bristol/dnet">
+https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     

@@ -1,19 +1,20 @@
 setID	nAnno	nOverlap	zscore	pvalue	adjp	name	namespace	distance	members
-3	8213	14	-2.17	0.98	0.98	2759:Eukaryota	superkingdom	0	Akt1,Cat,Cd44,Cryz,Lig1,Rasl2-9,Slc1a2,Serpinb5,Zfp42,Abcg2,Pdhx,Sdha,Uqcrb,Nt5dc1
-8	3375	14	2.15	0.013	0.078	33154:Opisthokonta	no rank	0.03880849	Areg,Atoh1,Btc,Cckar,Ereg,Grik3,Klf4,Sox2,Tspyl1,Ubb,Spg20,Col10a1,Gng2,Tbx3
-11	600	3	1.24	0.063	0.19	33208:Metazoa	kingdom	0.09260898	Runx2,Itpr2,Bcl2
-13	449	1	-0.124	0.31	0.4	6072:Eumetazoa	no rank	0.1117612	Plcb1
-15	395	0	-1.01	0.64	0.67	33213:Bilateria	no rank	0.126603	
-17	674	2	0.24	0.24	0.33	33511:Deuterostomia	no rank	0.1485278	Vim,Trp53
-18	73	0	-0.43	0.17	0.33	7711:Chordata	phylum	0.1575984	
-19	107	0	-0.521	0.24	0.33	7742:Vertebrata	no rank	0.1695313	
-20	575	1	-0.379	0.43	0.48	117571:Euteleostomi	no rank	0.1829545	Cxcl5
-21	74	0	-0.433	0.17	0.33	8287:Sarcopterygii	no rank	0.1855467	
-22	92	0	-0.483	0.21	0.33	32523:Tetrapoda	no rank	0.188559	
-23	170	0	-0.658	0.35	0.42	32524:Amniota	no rank	0.1924103	
-24	21	0	-0.23	0.052	0.19	40674:Mammalia	class	0.1955288	
-25	88	0	-0.472	0.2	0.33	32525:Theria	no rank	0.1991713	
-26	65	0	-0.406	0.15	0.33	9347:Eutheria	no rank	0.2026269	
-27	57	2	4.92	0.00039	0.007	1437010:Boreoeutheria	no rank	0.2040922	Zfp110,Zfp369
-68	17	0	-0.207	0.042	0.19	314147:Glires	no rank	0.2070103	
-75	64	1	2.1	0.011	0.078	10090:Mus musculus	species	0.236906	Lrp2
+3	7001	9	-3.77	1	1	2759:Eukaryota	superkingdom	0	ABCA1,COL19A1,DYNC1I1,DNMT1,PPP2R1A,BAP1,UBE3C,SIN3A,AMBRA1
+8	3259	12	0.777	0.17	0.29	33154:Opisthokonta	no rank	0.03880849	BRCA2,CACNA1E,DNAH9,DYNC1H1,DNM2,NPM1,UBC,CACNA1I,LTN1,BAZ1A,RAD50,STAT1
+11	612	6	3.12	0.0022	0.014	33208:Metazoa	kingdom	0.09260898	ABL1,BTK,ANKLE2,ITGA4,NCAM1,NCAM2
+13	477	1	-0.377	0.43	0.48	6072:Eumetazoa	no rank	0.1117612	PARP14
+15	405	0	-1.13	0.71	0.75	33213:Bilateria	no rank	0.126603	
+17	674	7	3.56	0.00081	0.014	33511:Deuterostomia	no rank	0.1485278	COL6A2,EPHA1,EPHA3,PTK2,VAV1,HUWE1,TP53
+18	75	2	3.74	0.0015	0.014	7711:Chordata	phylum	0.1575984	EPHB1,ITGAM
+19	97	0	-0.545	0.26	0.35	7742:Vertebrata	no rank	0.1695313	
+20	559	2	0.241	0.24	0.35	117571:Euteleostomi	no rank	0.1829545	TNR,ARHGEF11
+21	105	0	-0.567	0.27	0.35	8287:Sarcopterygii	no rank	0.1855467	
+22	122	0	-0.611	0.31	0.37	32523:Tetrapoda	no rank	0.188559	
+23	203	2	1.78	0.023	0.089	32524:Amniota	no rank	0.1924103	ARAP2,AGRN
+24	13	0	-0.199	0.039	0.12	40674:Mammalia	class	0.1955288	
+25	71	0	-0.466	0.19	0.31	32525:Theria	no rank	0.1991713	
+26	53	0	-0.402	0.15	0.28	9347:Eutheria	no rank	0.2026269	
+27	76	1	1.61	0.022	0.089	1437010:Boreoeutheria	no rank	0.2040922	HSPG2
+30	22	0	-0.259	0.065	0.15	9443:Primates	order	0.2070882	
+36	15	0	-0.214	0.044	0.12	207598:Homininae	subfamily	0.223133	
+37	30	0	-0.302	0.087	0.18	9606:Homo sapiens	species	0.2334046	

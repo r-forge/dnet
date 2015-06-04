@@ -326,7 +326,7 @@ D <- as.matrix(exprs(esetGene))
 D <- D - as.matrix(apply(D,1,mean),ncol=1)[,rep(1,ncol(D))]
 fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.eigen=NULL, pval.eigen=1e-2, signif="fdr", orient.permutation="row", num.permutation=100, fdr.procedure="stepup", verbose=T)
 </div>
-<strong class='message'>Start at 2014-12-16 17:16:34</strong>
+<strong class='message'>Start at 2015-06-04 11:58:57</strong>
 <strong class='message'></strong>
 <strong class='message'>First, singular value decomposition of the input matrix (with 4139 rows and 18 columns)...</strong>
 <strong class='message'>Second, determinate the eigens...</strong>
@@ -336,21 +336,21 @@ fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.ei
 <strong class='message'>Finally, obtain gene significance (fdr) based on 100 permutations...</strong>
 <strong class='message'>	doing row-wise permutations...</strong>
 <strong class='message'>	estimating fdr...</strong>
-<strong class='message'>1 (out of 4139) at 2014-12-16 17:16:48</strong>
-<strong class='message'>414 (out of 4139) at 2014-12-16 17:16:54</strong>
-<strong class='message'>828 (out of 4139) at 2014-12-16 17:17:00</strong>
-<strong class='message'>1242 (out of 4139) at 2014-12-16 17:17:05</strong>
-<strong class='message'>1656 (out of 4139) at 2014-12-16 17:17:11</strong>
-<strong class='message'>2070 (out of 4139) at 2014-12-16 17:17:17</strong>
-<strong class='message'>2484 (out of 4139) at 2014-12-16 17:17:23</strong>
-<strong class='message'>2898 (out of 4139) at 2014-12-16 17:17:28</strong>
-<strong class='message'>3312 (out of 4139) at 2014-12-16 17:17:34</strong>
-<strong class='message'>3726 (out of 4139) at 2014-12-16 17:17:39</strong>
-<strong class='message'>4139 (out of 4139) at 2014-12-16 17:17:45</strong>
+<strong class='message'>1 (out of 4139) at 2015-06-04 11:59:11</strong>
+<strong class='message'>414 (out of 4139) at 2015-06-04 11:59:17</strong>
+<strong class='message'>828 (out of 4139) at 2015-06-04 11:59:23</strong>
+<strong class='message'>1242 (out of 4139) at 2015-06-04 11:59:28</strong>
+<strong class='message'>1656 (out of 4139) at 2015-06-04 11:59:34</strong>
+<strong class='message'>2070 (out of 4139) at 2015-06-04 11:59:39</strong>
+<strong class='message'>2484 (out of 4139) at 2015-06-04 11:59:45</strong>
+<strong class='message'>2898 (out of 4139) at 2015-06-04 11:59:51</strong>
+<strong class='message'>3312 (out of 4139) at 2015-06-04 11:59:56</strong>
+<strong class='message'>3726 (out of 4139) at 2015-06-04 12:00:01</strong>
+<strong class='message'>4139 (out of 4139) at 2015-06-04 12:00:07</strong>
 <strong class='message'>	using stepup procedure...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-12-16 17:17:45</strong>
-<strong class='message'>Runtime in total is: 71 secs
+<strong class='message'>Finish at 2015-06-04 12:00:07</strong>
+<strong class='message'>Runtime in total is: 70 secs
 </strong>
 <div class='input'>hist(fdr, 100)</div>
 <a href="javascript:newWin('FAQ3-34.png', 'FAQ3-34.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ3-34.png', width="400" /></a>
@@ -385,8 +385,12 @@ fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.ei
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
       <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href=" http://cran.r-project.org/package=dnet"> http://cran.r-project.org/package=dnet</a></li>
-      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href="
+http://cran.r-project.org/package=dnet">
+http://cran.r-project.org/package=dnet</a></li>
+      <li><a href="
+https://github.com/hfang-bristol/dnet">
+https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     <h2>Author</h2>
@@ -401,7 +405,7 @@ fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.ei
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

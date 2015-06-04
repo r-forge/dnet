@@ -216,6 +216,7 @@ window.onload = function(){
 <p>Assume you have a <code>ROOT (sudo)</code> privilege:</p>
 
 <pre><code>sudo su
+# here enter your password
 wget http://www.stats.bris.ac.uk/R/src/base/R-3/R-3.2.0.tar.gz
 tar xvfz R-3.2.0.tar.gz
 cd R-3.2.0
@@ -231,7 +232,7 @@ R # start R
 <pre><code>wget http://www.stats.bris.ac.uk/R/src/base/R-3/R-3.2.0.tar.gz
 tar xvfz R-3.2.0.tar.gz
 cd R-3.2.0
-./configure --prefix=/home/hfang/R-3.2.0
+./configure --prefix=/home/hfang/R-3.2.0 # Alternatively: ./configure --prefix=$HOME/R-3.2.0
 make
 make check
 make install
@@ -256,7 +257,7 @@ biocLite(c(&quot;hexbin&quot;,&quot;ape&quot;,&quot;supraHex&quot;,&quot;graph&q
 <p>Third (<code>highly recommended</code>), update the package <code>dnet</code> from <a href="https://github.com/hfang-bristol/dnet">latest development version hosted in GitHub</a>:</p>
 
 <pre><code>library(devtools)
-if(!(&quot;dnet&quot; %in% rownames(installed.packages()))) remove.packages(&quot;dnet&quot;)
+if(&quot;dnet&quot; %in% rownames(installed.packages())) remove.packages(&quot;dnet&quot;)
 install_github(c(&quot;hfang-bristol/dnet&quot;))
 </code></pre>
 
@@ -310,7 +311,7 @@ https://github.com/hfang-bristol/dnet</a></li>
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

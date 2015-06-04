@@ -255,52 +255,7 @@ corresponding to the given FDR threshold (if any)</dd>
     <!-- 
     </div>
     -->
-    
-    <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'># 1) generate data with an iid matrix of 1000 x 9
-data <- cbind(matrix(rnorm(1000*3,mean=0,sd=1), nrow=1000, ncol=3),
-matrix(rnorm(1000*3,mean=0.5,sd=1), nrow=1000, ncol=3),
-matrix(rnorm(1000*3,mean=-0.5,sd=1), nrow=1000, ncol=3))
-
-# 2) calculate the significance according to SVD
-# using "fdr" significance
-fdr <- dSVDsignif(data, signif="fdr", num.permutation=10)
-</div>
-<strong class='message'>Start at 2014-12-16 16:59:25</strong>
-<strong class='message'></strong>
-<strong class='message'>First, singular value decomposition of the input matrix (with 1000 rows and 9 columns)...</strong>
-<strong class='message'>Second, determinate the eigens...</strong>
-<strong class='message'>	via automatically deciding on the number of dominant eigens under the cutoff of 1.00e-02 pvalue</strong>
-<strong class='message'>	number of the eigens in consideration: 1</strong>
-<strong class='message'>Third, construct the gene-specific projection vector,and calculate distance statistics...</strong>
-<strong class='message'>Finally, obtain gene significance (fdr) based on 10 permutations...</strong>
-<strong class='message'>	doing row-wise permutations...</strong>
-<strong class='message'>	estimating fdr...</strong>
-<strong class='message'>1 (out of 1000) at 2014-12-16 16:59:26</strong>
-<strong class='message'>100 (out of 1000) at 2014-12-16 16:59:26</strong>
-<strong class='message'>200 (out of 1000) at 2014-12-16 16:59:26</strong>
-<strong class='message'>300 (out of 1000) at 2014-12-16 16:59:26</strong>
-<strong class='message'>400 (out of 1000) at 2014-12-16 16:59:26</strong>
-<strong class='message'>500 (out of 1000) at 2014-12-16 16:59:26</strong>
-<strong class='message'>600 (out of 1000) at 2014-12-16 16:59:26</strong>
-<strong class='message'>700 (out of 1000) at 2014-12-16 16:59:27</strong>
-<strong class='message'>800 (out of 1000) at 2014-12-16 16:59:27</strong>
-<strong class='message'>900 (out of 1000) at 2014-12-16 16:59:27</strong>
-<strong class='message'>1000 (out of 1000) at 2014-12-16 16:59:27</strong>
-<strong class='message'>	using stepup procedure...</strong>
-<strong class='message'></strong>
-<strong class='message'>Finish at 2014-12-16 16:59:27</strong>
-<strong class='message'>Runtime in total is: 2 secs
-</strong>
-<div class='input'>
-# 3) calculate the scores according to the fitted BUM and fdr=0.01
-# no fdr threshold
-scores <- dFDRscore(fdr)
-# using fdr threshold of 0.01
-scores <- dFDRscore(fdr, fdr.threshold=0.1, scatter=TRUE)
-</div>
-<a href="javascript:newWin('dFDRscore-28.png', 'dFDRscore-28.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dFDRscore-28.png', width="400" /></a></pre>
-  </div>
+      </div>
   
   <div class="span4">
     
@@ -344,8 +299,12 @@ scores <- dFDRscore(fdr, fdr.threshold=0.1, scatter=TRUE)
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
       <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href=" http://cran.r-project.org/package=dnet"> http://cran.r-project.org/package=dnet</a></li>
-      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href="
+http://cran.r-project.org/package=dnet">
+http://cran.r-project.org/package=dnet</a></li>
+      <li><a href="
+https://github.com/hfang-bristol/dnet">
+https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     

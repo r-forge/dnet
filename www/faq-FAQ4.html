@@ -218,13 +218,13 @@ g <- <a href='dNetInduce.html' target=dNetInduce>dNetInduce</a>(g, nodes_query=V
 
 # <span style="font-weight:bold; color:#F87217; text-decoration:underline">To display the network itself, the key setting is the layout.</span> Since the network is represented as an object of class 'igraph', the layouts supported in the 'igraph' package can be found in the <a href="http://igraph.org/r/doc/layout.html">layout</a> page. Below is an example using a force-based algorithm proposed by Fruchterman and Reingold:
 <a href='visNet.html' target=visNet>visNet</a>(g, layout=layout.fruchterman.reingold)
-</div>
-<a href="javascript:newWin('FAQ4-2.png', 'FAQ4-2.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ4-2.png', width="400" /></a>
-<div class='input'># Additionally, the dnet package also uses two other layouts/diagrams: 1) arc diagram in one-dimensional layout, and 2) circle diagram. 
+# Additionally, the dnet package also uses two other layouts/diagrams: 1) arc diagram in one-dimensional layout, and 2) circle diagram. 
 
 # <span style="font-weight:bold; color:#F87217; text-decoration:underline">To better display the network, it is advisable to incorporate community information.</span> In doing so, we first identify communities based on a spin-glass model and simulated annealing.
 com <- igraph::spinglass.community(g, spins=25)
-vgroups <- com$membership
+</div>
+<a href="javascript:newWin('FAQ4-2.png', 'FAQ4-2.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ4-2.png', width="400" /></a>
+<div class='input'>vgroups <- com$membership
 ## color nodes: according to communities
 mcolors <- visColormap(colormap="rainbow")(length(com))
 vcolors <- mcolors[vgroups]
@@ -237,34 +237,28 @@ ordering <- df[order(vgroups,vdegrees),]$ind
 # Now, make comparsions between different layouts
 ## using 1-dimensional arc diagram
 <a href='visNetArc.html' target=visNetArc>visNetArc</a>(g, ordering=ordering, vertex.label.color=vcolors, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.size=log(vdegrees)+0.1)
+## using circle diagram (drawn into a single circle)
+<a href='visNetCircle.html' target=visNetCircle>visNetCircle</a>(g, colormap="rainbow", com=com, ordering=ordering)
+## using circle diagram (drawn into multlpe circles: one circle per community)
+<a href='visNetCircle.html' target=visNetCircle>visNetCircle</a>(g, colormap="rainbow", com=com, circles="multiple", ordering=ordering)
+## using a force-based algorithm proposed by Fruchterman and Reingold
+<a href='visNet.html' target=visNet>visNet</a>(g, colormap="rainbow", layout=layout.fruchterman.reingold, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.shape="sphere")
+## when using force-based layout, it is also useful to highlight the communities in the background, and have edges being colored differently according whether an edge lies within a community or between communities. 
+mark.groups <- igraph::communities(com)
 </div>
 <a href="javascript:newWin('FAQ4-4.png', 'FAQ4-4.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ4-4.png', width="400" /></a>
-<div class='input'>## using circle diagram (drawn into a single circle)
-<a href='visNetCircle.html' target=visNetCircle>visNetCircle</a>(g, colormap="rainbow", com=com, ordering=ordering)
-</div>
-<a href="javascript:newWin('FAQ4-6.png', 'FAQ4-6.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ4-6.png', width="400" /></a>
-<div class='input'>## using circle diagram (drawn into multlpe circles: one circle per community)
-<a href='visNetCircle.html' target=visNetCircle>visNetCircle</a>(g, colormap="rainbow", com=com, circles="multiple", ordering=ordering)
-</div>
-<a href="javascript:newWin('FAQ4-8.png', 'FAQ4-8.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ4-8.png', width="400" /></a>
-<div class='input'>## using a force-based algorithm proposed by Fruchterman and Reingold
-<a href='visNet.html' target=visNet>visNet</a>(g, colormap="rainbow", layout=layout.fruchterman.reingold, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.shape="sphere")
-</div>
-<a href="javascript:newWin('FAQ4-10.png', 'FAQ4-10.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ4-10.png', width="400" /></a>
-<div class='input'>## when using force-based layout, it is also useful to highlight the communities in the background, and have edges being colored differently according whether an edge lies within a community or between communities. 
-mark.groups <- igraph::communities(com)
-mark.col <- visColoralpha(mcolors, alpha=0.2)
+<div class='input'>mark.col <- visColoralpha(mcolors, alpha=0.2)
 mark.border <- visColoralpha(mcolors, alpha=0.2)
 edge.color <- c("grey", "black")[igraph::crossing(com,g)+1]
 <a href='visNet.html' target=visNet>visNet</a>(g, colormap="rainbow", glayout=layout.fruchterman.reingold, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.shape="sphere", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
-</div>
-<a href="javascript:newWin('FAQ4-12.png', 'FAQ4-12.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ4-12.png', width="400" /></a>
-<div class='input'>
+
 # Now, let us look at <span style="font-weight:bold; color:#F87217; text-decoration:underline"> visualising the same network but with the multiple colorings/displays according to samples.</span>
 
 # Assume we have 10 samples, each containing numeric information about nodes in the graph:
 nnodes <- vcount(g)
-nsamples <- 10
+</div>
+<a href="javascript:newWin('FAQ4-6.png', 'FAQ4-6.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ4-6.png', width="400" /></a>
+<div class='input'>nsamples <- 10
 data <- matrix(runif(nnodes*nsamples), nrow=nnodes, ncol=nsamples)
 rownames(data) <- V(g)$name
 
@@ -272,52 +266,50 @@ rownames(data) <- V(g)$name
 
 ## simply as they are provided
 <a href='visNetMul.html' target=visNetMul>visNetMul</a>(g, colormap="rainbow", data=data, glayout=layout.fruchterman.reingold)
-</div>
-<a href="javascript:newWin('FAQ4-14.png', 'FAQ4-14.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ4-14.png', width="400" /></a>
-<div class='input'>
+
 ## being self-organised onto 2D sample landscape (ie a sheet-shape rectangle grid)
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="node", node.normalise="none")
 </div>
-<strong class='message'>Start at 2014-12-16 17:17:59</strong>
+<strong class='message'>Start at 2015-06-04 12:00:31</strong>
 <strong class='message'></strong>
-<strong class='message'>First, define topology of a map grid (2014-12-16 17:17:59)...</strong>
-<strong class='message'>Second, initialise the codebook matrix (36 X 15) using 'linear' initialisation, given a topology and input data (2014-12-16 17:17:59)...</strong>
-<strong class='message'>Third, get training at the rough stage (2014-12-16 17:17:59)...</strong>
-<strong class='message'>	1 out of 360 (2014-12-16 17:17:59)</strong>
-<strong class='message'>	36 out of 360 (2014-12-16 17:17:59)</strong>
-<strong class='message'>	72 out of 360 (2014-12-16 17:17:59)</strong>
-<strong class='message'>	108 out of 360 (2014-12-16 17:17:59)</strong>
-<strong class='message'>	144 out of 360 (2014-12-16 17:17:59)</strong>
-<strong class='message'>	180 out of 360 (2014-12-16 17:17:59)</strong>
-<strong class='message'>	216 out of 360 (2014-12-16 17:17:59)</strong>
-<strong class='message'>	252 out of 360 (2014-12-16 17:17:59)</strong>
-<strong class='message'>	288 out of 360 (2014-12-16 17:17:59)</strong>
-<strong class='message'>	324 out of 360 (2014-12-16 17:17:59)</strong>
-<strong class='message'>	360 out of 360 (2014-12-16 17:17:59)</strong>
-<strong class='message'>Fourth, get training at the finetune stage (2014-12-16 17:17:59)...</strong>
-<strong class='message'>	1 out of 1440 (2014-12-16 17:17:59)</strong>
-<strong class='message'>	144 out of 1440 (2014-12-16 17:17:59)</strong>
-<strong class='message'>	288 out of 1440 (2014-12-16 17:17:59)</strong>
-<strong class='message'>	432 out of 1440 (2014-12-16 17:17:59)</strong>
-<strong class='message'>	576 out of 1440 (2014-12-16 17:17:59)</strong>
-<strong class='message'>	720 out of 1440 (2014-12-16 17:17:59)</strong>
-<strong class='message'>	864 out of 1440 (2014-12-16 17:18:00)</strong>
-<strong class='message'>	1008 out of 1440 (2014-12-16 17:18:00)</strong>
-<strong class='message'>	1152 out of 1440 (2014-12-16 17:18:00)</strong>
-<strong class='message'>	1296 out of 1440 (2014-12-16 17:18:00)</strong>
-<strong class='message'>	1440 out of 1440 (2014-12-16 17:18:00)</strong>
-<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2014-12-16 17:18:00)...</strong>
-<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2014-12-16 17:18:00)...</strong>
+<strong class='message'>First, define topology of a map grid (2015-06-04 12:00:31)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (36 X 30) using 'linear' initialisation, given a topology and input data (2015-06-04 12:00:31)...</strong>
+<strong class='message'>Third, get training at the rough stage (2015-06-04 12:00:31)...</strong>
+<strong class='message'>	1 out of 360 (2015-06-04 12:00:31)</strong>
+<strong class='message'>	36 out of 360 (2015-06-04 12:00:31)</strong>
+<strong class='message'>	72 out of 360 (2015-06-04 12:00:31)</strong>
+<strong class='message'>	108 out of 360 (2015-06-04 12:00:31)</strong>
+<strong class='message'>	144 out of 360 (2015-06-04 12:00:31)</strong>
+<strong class='message'>	180 out of 360 (2015-06-04 12:00:31)</strong>
+<strong class='message'>	216 out of 360 (2015-06-04 12:00:31)</strong>
+<strong class='message'>	252 out of 360 (2015-06-04 12:00:31)</strong>
+<strong class='message'>	288 out of 360 (2015-06-04 12:00:31)</strong>
+<strong class='message'>	324 out of 360 (2015-06-04 12:00:31)</strong>
+<strong class='message'>	360 out of 360 (2015-06-04 12:00:31)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2015-06-04 12:00:31)...</strong>
+<strong class='message'>	1 out of 1440 (2015-06-04 12:00:31)</strong>
+<strong class='message'>	144 out of 1440 (2015-06-04 12:00:31)</strong>
+<strong class='message'>	288 out of 1440 (2015-06-04 12:00:31)</strong>
+<strong class='message'>	432 out of 1440 (2015-06-04 12:00:31)</strong>
+<strong class='message'>	576 out of 1440 (2015-06-04 12:00:31)</strong>
+<strong class='message'>	720 out of 1440 (2015-06-04 12:00:31)</strong>
+<strong class='message'>	864 out of 1440 (2015-06-04 12:00:31)</strong>
+<strong class='message'>	1008 out of 1440 (2015-06-04 12:00:31)</strong>
+<strong class='message'>	1152 out of 1440 (2015-06-04 12:00:32)</strong>
+<strong class='message'>	1296 out of 1440 (2015-06-04 12:00:32)</strong>
+<strong class='message'>	1440 out of 1440 (2015-06-04 12:00:32)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-06-04 12:00:32)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-06-04 12:00:32)...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
-<strong class='message'>   dimension of input data: 10x15
+<strong class='message'>   dimension of input data: 10x30
    xy-dimension of map grid: xdim=6, ydim=6
    grid lattice: rect
    grid shape: sheet
    dimension of grid coord: 36x2
    initialisation method: linear
-   dimension of codebook matrix: 36x15
-   mean quantization error: 0.374590962253374
+   dimension of codebook matrix: 36x30
+   mean quantization error: 0.670389975228149
 </strong>
 <strong class='message'>Below are the details of trainology:</strong>
 <strong class='message'>   training algorithm: sequential
@@ -327,56 +319,55 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-12-16 17:18:00</strong>
+<strong class='message'>End at 2015-06-04 12:00:32</strong>
 <strong class='message'>Runtime in total is: 1 secs
 </strong>
+<a href="javascript:newWin('FAQ4-45.png', 'FAQ4-45.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ4-45.png', width="400" /></a>
 <div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g, colormap="rainbow", data=data, sReorder)
-</div>
-<a href="javascript:newWin('FAQ4-54.png', 'FAQ4-54.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ4-54.png', width="400" /></a>
-<div class='input'>
+
 ## By default, 2D sample landscape is built based on node features without considering node degrees. To take into account the connectivity in the network, the information used can be on edges which are transformed from information on nodes: input data and degree. In doing so, <span style="font-weight:bold; color:#F87217; text-decoration:underline">the transformed matrix of network edges × samples are used for self-organising samples onto 2D landscape (implemented in the 'supraHex' package).</span>
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="edge", node.normalise="degree")
 </div>
-<strong class='message'>Start at 2014-12-16 17:18:07</strong>
+<strong class='message'>Start at 2015-06-04 12:00:45</strong>
 <strong class='message'></strong>
-<strong class='message'>First, define topology of a map grid (2014-12-16 17:18:07)...</strong>
-<strong class='message'>Second, initialise the codebook matrix (36 X 14) using 'linear' initialisation, given a topology and input data (2014-12-16 17:18:07)...</strong>
-<strong class='message'>Third, get training at the rough stage (2014-12-16 17:18:07)...</strong>
-<strong class='message'>	1 out of 360 (2014-12-16 17:18:07)</strong>
-<strong class='message'>	36 out of 360 (2014-12-16 17:18:07)</strong>
-<strong class='message'>	72 out of 360 (2014-12-16 17:18:07)</strong>
-<strong class='message'>	108 out of 360 (2014-12-16 17:18:07)</strong>
-<strong class='message'>	144 out of 360 (2014-12-16 17:18:07)</strong>
-<strong class='message'>	180 out of 360 (2014-12-16 17:18:07)</strong>
-<strong class='message'>	216 out of 360 (2014-12-16 17:18:07)</strong>
-<strong class='message'>	252 out of 360 (2014-12-16 17:18:07)</strong>
-<strong class='message'>	288 out of 360 (2014-12-16 17:18:07)</strong>
-<strong class='message'>	324 out of 360 (2014-12-16 17:18:07)</strong>
-<strong class='message'>	360 out of 360 (2014-12-16 17:18:07)</strong>
-<strong class='message'>Fourth, get training at the finetune stage (2014-12-16 17:18:07)...</strong>
-<strong class='message'>	1 out of 1440 (2014-12-16 17:18:07)</strong>
-<strong class='message'>	144 out of 1440 (2014-12-16 17:18:07)</strong>
-<strong class='message'>	288 out of 1440 (2014-12-16 17:18:07)</strong>
-<strong class='message'>	432 out of 1440 (2014-12-16 17:18:07)</strong>
-<strong class='message'>	576 out of 1440 (2014-12-16 17:18:07)</strong>
-<strong class='message'>	720 out of 1440 (2014-12-16 17:18:07)</strong>
-<strong class='message'>	864 out of 1440 (2014-12-16 17:18:07)</strong>
-<strong class='message'>	1008 out of 1440 (2014-12-16 17:18:07)</strong>
-<strong class='message'>	1152 out of 1440 (2014-12-16 17:18:07)</strong>
-<strong class='message'>	1296 out of 1440 (2014-12-16 17:18:07)</strong>
-<strong class='message'>	1440 out of 1440 (2014-12-16 17:18:07)</strong>
-<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2014-12-16 17:18:07)...</strong>
-<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2014-12-16 17:18:07)...</strong>
+<strong class='message'>First, define topology of a map grid (2015-06-04 12:00:45)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (36 X 31) using 'linear' initialisation, given a topology and input data (2015-06-04 12:00:45)...</strong>
+<strong class='message'>Third, get training at the rough stage (2015-06-04 12:00:45)...</strong>
+<strong class='message'>	1 out of 360 (2015-06-04 12:00:45)</strong>
+<strong class='message'>	36 out of 360 (2015-06-04 12:00:45)</strong>
+<strong class='message'>	72 out of 360 (2015-06-04 12:00:45)</strong>
+<strong class='message'>	108 out of 360 (2015-06-04 12:00:45)</strong>
+<strong class='message'>	144 out of 360 (2015-06-04 12:00:45)</strong>
+<strong class='message'>	180 out of 360 (2015-06-04 12:00:45)</strong>
+<strong class='message'>	216 out of 360 (2015-06-04 12:00:45)</strong>
+<strong class='message'>	252 out of 360 (2015-06-04 12:00:45)</strong>
+<strong class='message'>	288 out of 360 (2015-06-04 12:00:45)</strong>
+<strong class='message'>	324 out of 360 (2015-06-04 12:00:45)</strong>
+<strong class='message'>	360 out of 360 (2015-06-04 12:00:45)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2015-06-04 12:00:45)...</strong>
+<strong class='message'>	1 out of 1440 (2015-06-04 12:00:45)</strong>
+<strong class='message'>	144 out of 1440 (2015-06-04 12:00:45)</strong>
+<strong class='message'>	288 out of 1440 (2015-06-04 12:00:45)</strong>
+<strong class='message'>	432 out of 1440 (2015-06-04 12:00:45)</strong>
+<strong class='message'>	576 out of 1440 (2015-06-04 12:00:45)</strong>
+<strong class='message'>	720 out of 1440 (2015-06-04 12:00:45)</strong>
+<strong class='message'>	864 out of 1440 (2015-06-04 12:00:45)</strong>
+<strong class='message'>	1008 out of 1440 (2015-06-04 12:00:45)</strong>
+<strong class='message'>	1152 out of 1440 (2015-06-04 12:00:45)</strong>
+<strong class='message'>	1296 out of 1440 (2015-06-04 12:00:45)</strong>
+<strong class='message'>	1440 out of 1440 (2015-06-04 12:00:45)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-06-04 12:00:45)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-06-04 12:00:45)...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
-<strong class='message'>   dimension of input data: 10x14
+<strong class='message'>   dimension of input data: 10x31
    xy-dimension of map grid: xdim=6, ydim=6
    grid lattice: rect
    grid shape: sheet
    dimension of grid coord: 36x2
    initialisation method: linear
-   dimension of codebook matrix: 36x14
-   mean quantization error: 0.0759620010817486
+   dimension of codebook matrix: 36x31
+   mean quantization error: 0.195901437580643
 </strong>
 <strong class='message'>Below are the details of trainology:</strong>
 <strong class='message'>   training algorithm: sequential
@@ -386,11 +377,11 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-12-16 17:18:07</strong>
+<strong class='message'>End at 2015-06-04 12:00:45</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
+<a href="javascript:newWin('FAQ4-84.png', 'FAQ4-84.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ4-84.png', width="400" /></a>
 <div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g, colormap="rainbow", data=data, sReorder)</div>
-<a href="javascript:newWin('FAQ4-94.png', 'FAQ4-94.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ4-94.png', width="400" /></a>
       </pre>
     </div>
 
@@ -426,8 +417,12 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
       <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href=" http://cran.r-project.org/package=dnet"> http://cran.r-project.org/package=dnet</a></li>
-      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href="
+http://cran.r-project.org/package=dnet">
+http://cran.r-project.org/package=dnet</a></li>
+      <li><a href="
+https://github.com/hfang-bristol/dnet">
+https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     <h2>Author</h2>
@@ -442,7 +437,7 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

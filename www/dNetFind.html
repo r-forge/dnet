@@ -301,34 +301,7 @@ nodes as many as possible, but the negative nodes as few as possible.
     <!-- 
     </div>
     -->
-    
-    <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'># 1) generate an vector consisting of random values from beta distribution
-x <- rbeta(1000, shape1=0.5, shape2=1)
-
-# 2) fit a p-value distribution under beta-uniform mixture model
-fit <- dBUMfit(x, ntry=1, hist.bum=FALSE, contour.bum=FALSE)
-</div>
-<strong class='message'>	A total of p-values: 1000</strong>
-<strong class='message'>	Maximum Log-Likelihood: 298.8</strong>
-<strong class='message'>	Mixture parameter (lambda): 0.000</strong>
-<strong class='message'>	Shape parameter (a): 0.504</strong>
-<div class='input'>
-# 3) calculate the scores according to the fitted BUM and fdr=0.01
-# using "pdf" method
-scores <- dBUMscore(fit, method="pdf", fdr=0.05, scatter.bum=FALSE)
-names(scores) <- as.character(1:length(scores))
-
-# 4) generate a random graph according to the ER model
-g <- erdos.renyi.game(1000, 1/100)
-
-# 5) produce the induced subgraph only based on the nodes in query
-subg <- dNetInduce(g, V(g), knn=0)
-
-# 6) find the subgraph with the maximum score
-subgraph <- dNetFind(subg, scores)
-</div></pre>
-  </div>
+      </div>
   
   <div class="span4">
     
@@ -372,8 +345,12 @@ subgraph <- dNetFind(subg, scores)
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
       <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href=" http://cran.r-project.org/package=dnet"> http://cran.r-project.org/package=dnet</a></li>
-      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href="
+http://cran.r-project.org/package=dnet">
+http://cran.r-project.org/package=dnet</a></li>
+      <li><a href="
+https://github.com/hfang-bristol/dnet">
+https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     

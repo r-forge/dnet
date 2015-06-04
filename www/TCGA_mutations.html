@@ -238,72 +238,7 @@ window.onload = function(){
     <!-- 
     </div>
     -->
-    
-    <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'>#TCGA_mutations <- dRDataLoader(RData='TCGA_mutations')
-data(TCGA_mutations)
-TCGA_mutations
-</div>
-<div class='output'>ExpressionSet (storageMode: lockedEnvironment)
-assayData: 19171 features, 3096 samples 
-  element names: exprs 
-protocolData: none
-phenoData
-  sampleNames: TCGA-B8-4153-01B-11D-1669-08
-    TCGA-24-1469-01A-01W-0553-09 ... TCGA-34-5241-01A-01D-1441-08 (3096
-    total)
-  varLabels: time status ... Tumor_grade (7 total)
-  varMetadata: labelDescription
-featureData
-  featureNames: A1BG A1CF ... ZZZ3 (19171 total)
-  fvarLabels: EntrezID Symbol Desc Synonyms
-  fvarMetadata: labelDescription
-experimentData: use 'experimentData(object)'
-Annotation:  
-</div>
-<div class='input'>library(Biobase)
-# extract information about the first 5 samples
-pData(TCGA_mutations)[1:5,]
-</div>
-<div class='output'>                             time status Age Gender TCGA_tumor_type Tumor_stage
-TCGA-B8-4153-01B-11D-1669-08  404      0  74   male            KIRC           3
-TCGA-24-1469-01A-01W-0553-09  277      0  71 female              OV           3
-TCGA-06-5411-01A-01D-1696-08  254      1  51   male             GBM          NA
-TCGA-05-4249-01A-01D-1105-08 1158      0  67   male            LUAD           1
-TCGA-18-3406-01A-01D-0983-08  371      1  67   male            LUSC           1
-                             Tumor_grade
-TCGA-B8-4153-01B-11D-1669-08           3
-TCGA-24-1469-01A-01W-0553-09           3
-TCGA-06-5411-01A-01D-1696-08          NA
-TCGA-05-4249-01A-01D-1105-08          NA
-TCGA-18-3406-01A-01D-0983-08          NA
-</div>
-<div class='input'># extract information about the first 5 features
-fData(TCGA_mutations)[1:5,]
-</div>
-<div class='output'>       EntrezID Symbol                            Desc
-A1BG          1   A1BG          alpha-1-B glycoprotein
-A1CF      29974   A1CF  APOBEC1 complementation factor
-A2M           2    A2M           alpha-2-macroglobulin
-A2ML1    144568  A2ML1    alpha-2-macroglobulin-like 1
-A4GALT    53947 A4GALT alpha 1,4-galactosyltransferase
-                                   Synonyms
-A1BG                   A1B|ABG|GAB|HYST2477
-A1CF          ACF|ACF64|ACF65|APOBEC1CF|ASP
-A2M               A2MD|CPAMD5|FWP007|S863-7
-A2ML1                                CPAMD9
-A4GALT A14GALT|A4GALT1|Gb3S|P(k)|P1|P1PK|PK
-</div>
-<div class='input'># number of samples for each cancer type
-table(pData(TCGA_mutations)$TCGA_tumor_type)
-</div>
-<div class='output'>
-    BLCA     BRCA COADREAD      GBM     HNSC     KIRC     LAML     LUAD 
-      92      763      193      275      300      417      185      155 
-    LUSC       OV     UCEC 
-     171      315      230 
-</div></pre>
-  </div>
+      </div>
   
   <div class="span4">
     
@@ -337,8 +272,12 @@ table(pData(TCGA_mutations)$TCGA_tumor_type)
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
       <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href=" http://cran.r-project.org/package=dnet"> http://cran.r-project.org/package=dnet</a></li>
-      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href="
+http://cran.r-project.org/package=dnet">
+http://cran.r-project.org/package=dnet</a></li>
+      <li><a href="
+https://github.com/hfang-bristol/dnet">
+https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     
