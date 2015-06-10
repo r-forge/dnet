@@ -234,7 +234,31 @@ window.onload = function(){
     <!-- 
     </div>
     -->
-      </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'>org.At.eg <- dRDataLoader(RData='org.At.eg')
+</div>
+<strong class='message'>'org.At.eg' (from http://supfam.org/dnet/data/At/org.At.eg.RData) has been loaded into the working environment</strong>
+<div class='input'>names(org.At.eg)
+</div>
+<div class='output'>[1] "gene_info"
+</div>
+<div class='input'>org.At.eg$gene_info[1:5,]
+</div>
+<div class='output'>       GeneID   Symbol                  description chromosome map_location
+814566 814566    rrn26    26S ribosomal RNA protein         MT            -
+814568 814568     nad9 NADH dehydrogenase subunit 9         MT            -
+814569 814569    rpl16        ribosomal protein L16         MT            -
+814570 814570     rps3         ribosomal protein S3         MT            -
+814571 814571 tRNA-Lys                         tRNA         MT            -
+       Synonyms dbXrefs
+814566        -       -
+814568        -       -
+814569        -       -
+814570        -       -
+814571        -       -
+</div></pre>
+  </div>
   
   <div class="span4">
     
@@ -286,7 +310,7 @@ https://github.com/hfang-bristol/dnet</a></li>
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

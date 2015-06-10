@@ -341,7 +341,85 @@ recommended to sequentially use <code><a href='dRWR.html'>dRWR</a></code> and
     <!-- 
     </div>
     -->
-      </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) generate a random graph according to the ER model
+g <- erdos.renyi.game(100, 1/100)
+
+# 2) produce the induced subgraph only based on the nodes in query
+subg <- dNetInduce(g, V(g), knn=0)
+V(subg)$name <- 1:vcount(subg)
+
+# 3) estimate RWR dating based sample relationships
+# define sets of seeds as data
+# each seed with equal weight (i.e. all non-zero entries are '1')
+aSeeds <- c(1,0,1,0,1)
+bSeeds <- c(0,0,1,0,1)
+data <- data.frame(aSeeds,bSeeds)
+rownames(data) <- 1:5
+# calcualte their two contact graph
+dContact <- dRWRpipeline(data=data, g=subg, parallel=FALSE)
+</div>
+<strong class='message'>Start at 2015-06-10 15:09:03</strong>
+<strong class='message'></strong>
+<strong class='message'>First, RWR on input graph (15 nodes and 14 edges) using input matrix (5 rows and 2 columns) as seeds (2015-06-10 15:09:03)...</strong>
+<strong class='message'>Second, calculate contact strength (2015-06-10 15:09:03)...</strong>
+<strong class='message'>Third, generate the distribution of contact strength based on 10 permutations on nodes respecting random (2015-06-10 15:09:03)...</strong>
+<strong class='message'>	1 out of 10 (2015-06-10 15:09:03)</strong>
+<strong class='message'>	2 out of 10 (2015-06-10 15:09:03)</strong>
+<strong class='message'>	3 out of 10 (2015-06-10 15:09:03)</strong>
+<strong class='message'>	4 out of 10 (2015-06-10 15:09:04)</strong>
+<strong class='message'>	5 out of 10 (2015-06-10 15:09:04)</strong>
+<strong class='message'>	6 out of 10 (2015-06-10 15:09:04)</strong>
+<strong class='message'>	7 out of 10 (2015-06-10 15:09:04)</strong>
+<strong class='message'>	8 out of 10 (2015-06-10 15:09:04)</strong>
+<strong class='message'>	9 out of 10 (2015-06-10 15:09:04)</strong>
+<strong class='message'>	10 out of 10 (2015-06-10 15:09:04)</strong>
+<strong class='message'>Last, estimate the significance of contact strength: zscore, pvalue, and BH adjusted-pvalue (2015-06-10 15:09:04)...</strong>
+<strong class='message'>Also, construct the contact graph under the cutoff 5.0e-02 of adjusted-pvalue (2015-06-10 15:09:04)...</strong>
+<strong class='message'></strong>
+<strong class='message'>Finish at 2015-06-10 15:09:04</strong>
+<strong class='message'>Runtime in total is: 1 secs
+</strong>
+<div class='input'>dContact
+</div>
+<div class='output'>$ratio
+         [,1]     [,2]
+[1,] 1.181814 1.191843
+[2,] 1.191843 1.141409
+
+$zscore
+         [,1]     [,2]
+[1,] 2.170178 2.121734
+[2,] 2.121734 1.185599
+
+$pval
+     [,1] [,2]
+[1,]    0  0.0
+[2,]    0  0.1
+
+$adjpval
+     [,1] [,2]
+[1,]    0  0.0
+[2,]    0  0.1
+
+$cgraph
+IGRAPH U-W- 2 1 -- 
++ attr: weight (e/n)
+
+$Amatrix
+NULL
+
+$call
+dRWRpipeline(data = data, g = subg, parallel = FALSE)
+
+$method
+[1] "dnet"
+
+attr(,"class")
+[1] "dContact"
+</div></pre>
+  </div>
   
   <div class="span4">
     
@@ -404,7 +482,7 @@ https://github.com/hfang-bristol/dnet</a></li>
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

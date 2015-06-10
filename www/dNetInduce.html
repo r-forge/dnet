@@ -263,7 +263,21 @@ induce the subgraph.</p>
     <!-- 
     </div>
     -->
-      </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) generate a random graph according to the ER model
+g <- erdos.renyi.game(100, 1/100)
+
+# 2) select the first 10 vertices as the query nodes
+nodes_query <- V(g)[1:10]
+
+# 3) produce the induced subgraph only based on the nodes in query
+subg <- dNetInduce(g, nodes_query, knn=0)
+
+# 4) produce the induced subgraph based on the nodes in query ane their immediate neighbours
+subg <- dNetInduce(g, nodes_query, knn=1)
+</div></pre>
+  </div>
   
   <div class="span4">
     
@@ -325,7 +339,7 @@ https://github.com/hfang-bristol/dnet</a></li>
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

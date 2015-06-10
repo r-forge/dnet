@@ -290,7 +290,95 @@ from the input graph and scores imposed on its nodes.
     <!-- 
     </div>
     -->
-      </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) generate an vector consisting of random values from beta distribution
+x <- rbeta(1000, shape1=0.5, shape2=1)
+names(x) <- as.character(1:length(x))
+
+# 2) generate a random graph according to the ER model
+g <- erdos.renyi.game(1000, 1/100)
+
+# 3) produce the induced subgraph only based on the nodes in query
+subg <- dNetInduce(g, V(g), knn=0)
+
+# 4) find maximum-scoring subgraph based on the given significance threshold
+# 4a) assume the input is a list of p-values (controlling fdr=0.1)
+subgraph <- dNetPipeline(g=subg, pval=x, significance.threshold=0.1)
+</div>
+<strong class='message'>Start at 2015-06-10 15:08:48</strong>
+<strong class='message'></strong>
+<strong class='message'>First, fit the input p-value distribution under beta-uniform mixture model...</strong>
+<strong class='message'>	A total of p-values: 1000</strong>
+<strong class='message'>	Maximum Log-Likelihood: 282.9</strong>
+<strong class='message'>	Mixture parameter (lambda): 0.017</strong>
+<strong class='message'>	Shape parameter (a): 0.508</strong>
+<strong class='message'>Second, determine the significance threshold...</strong>
+<strong class='message'>	significance threshold: 1.00e-01</strong>
+<strong class='message'>Third, calculate the scores according to the fitted BUM and FDR threshold (if any)...</strong>
+<strong class='message'>	Amongst 1000 scores, there are 186 positives.</strong>
+<strong class='message'>Finally, find the subgraph from the input graph with 1000 nodes and 4927 edges...</strong>
+<strong class='message'>	Size of the subgraph: 152 nodes and 181 edges</strong>
+<strong class='message'>
+Finish at 2015-06-10 15:08:49</strong>
+<strong class='message'>Runtime in total is: 1 secs
+</strong>
+<div class='input'># 4b) assume the input is a list of customised significance (eg FDR directly)
+subgraph <- dNetPipeline(g=subg, pval=x, method="customised",
+significance.threshold=0.1)
+</div>
+<strong class='message'>Start at 2015-06-10 15:08:49</strong>
+<strong class='message'></strong>
+<strong class='message'>First, consider the input fdr (or p-value) distribution</strong>
+<strong class='message'>Second, determine the significance threshold...</strong>
+<strong class='message'>	significance threshold: 1.00e-01</strong>
+<strong class='message'>Third, calculate the scores according to the input fdr (or p-value) and the threshold (if any)...</strong>
+<strong class='message'>	Amongst 1000 scores, there are 332 positives.</strong>
+<strong class='message'>Finally, find the subgraph from the input graph with 1000 nodes and 4927 edges...</strong>
+<strong class='message'>	Size of the subgraph: 312 nodes and 537 edges</strong>
+<strong class='message'>
+Finish at 2015-06-10 15:08:51</strong>
+<strong class='message'>Runtime in total is: 2 secs
+</strong>
+<div class='input'>
+# 5) find maximum-scoring subgraph with the desired node number nsize=20
+subgraph <- dNetPipeline(g=subg, pval=x, nsize=20)
+</div>
+<strong class='message'>Start at 2015-06-10 15:08:51</strong>
+<strong class='message'></strong>
+<strong class='message'>First, fit the input p-value distribution under beta-uniform mixture model...</strong>
+<strong class='message'>	A total of p-values: 1000</strong>
+<strong class='message'>	Maximum Log-Likelihood: 282.9</strong>
+<strong class='message'>	Mixture parameter (lambda): 0.017</strong>
+<strong class='message'>	Shape parameter (a): 0.508</strong>
+<strong class='message'>Second, determine the significance threshold...</strong>
+<strong class='message'>	Via constraint on the size of subnetwork to be identified (20 nodes)</strong>
+<strong class='message'>	Scanning significance threshold at rough stage...</strong>
+<strong class='message'>		significance threshold: 1.00e-06, corresponding to the network size (0 nodes)</strong>
+<strong class='message'>		significance threshold: 1.00e-05, corresponding to the network size (0 nodes)</strong>
+<strong class='message'>		significance threshold: 1.00e-04, corresponding to the network size (0 nodes)</strong>
+<strong class='message'>		significance threshold: 1.00e-03, corresponding to the network size (1 nodes)</strong>
+<strong class='message'>		significance threshold: 1.00e-02, corresponding to the network size (4 nodes)</strong>
+<strong class='message'>		significance threshold: 1.00e-01, corresponding to the network size (152 nodes)</strong>
+<strong class='message'>	Scanning significance threshold at finetune stage...</strong>
+<strong class='message'>		significance threshold : 1.50e-02, corresponding to the network size (8 nodes)</strong>
+<strong class='message'>		significance threshold : 2.00e-02, corresponding to the network size (6 nodes)</strong>
+<strong class='message'>		significance threshold : 2.50e-02, corresponding to the network size (9 nodes)</strong>
+<strong class='message'>		significance threshold : 3.00e-02, corresponding to the network size (10 nodes)</strong>
+<strong class='message'>		significance threshold : 3.50e-02, corresponding to the network size (11 nodes)</strong>
+<strong class='message'>		significance threshold : 4.00e-02, corresponding to the network size (13 nodes)</strong>
+<strong class='message'>		significance threshold : 4.50e-02, corresponding to the network size (17 nodes)</strong>
+<strong class='message'>		significance threshold : 5.00e-02, corresponding to the network size (31 nodes)</strong>
+<strong class='message'>	significance threshold: 5.00e-02</strong>
+<strong class='message'>Third, calculate the scores according to the fitted BUM and FDR threshold (if any)...</strong>
+<strong class='message'>	Amongst 1000 scores, there are 92 positives.</strong>
+<strong class='message'>Finally, find the subgraph from the input graph with 1000 nodes and 4927 edges...</strong>
+<strong class='message'>	Size of the subgraph: 31 nodes and 30 edges</strong>
+<strong class='message'>
+Finish at 2015-06-10 15:08:58</strong>
+<strong class='message'>Runtime in total is: 7 secs
+</strong></pre>
+  </div>
   
   <div class="span4">
     
@@ -353,7 +441,7 @@ https://github.com/hfang-bristol/dnet</a></li>
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

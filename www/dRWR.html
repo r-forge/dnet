@@ -315,7 +315,91 @@ nodes/seeds.
     <!-- 
     </div>
     -->
-      </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) generate a random graph according to the ER model
+g <- erdos.renyi.game(100, 1/100)
+
+# 2) produce the induced subgraph only based on the nodes in query
+subg <- dNetInduce(g, V(g), knn=0)
+V(subg)$name <- 1:vcount(subg)
+
+# 3) obtain the pre-computated affinity matrix
+PTmatrix <- dRWR(g=subg, normalise="laplacian", restart=0.75,
+parallel=FALSE)
+</div>
+<strong class='message'>Start at 2015-06-10 15:09:01</strong>
+<strong class='message'></strong>
+<strong class='message'>First, get the adjacency matrix of the input graph (2015-06-10 15:09:01) ...</strong>
+<strong class='message'>	Notes: using unweighted graph!</strong>
+<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2015-06-10 15:09:01) ...</strong>
+<strong class='message'>Third, RWR of 10 sets of seeds using 7.5e-01 restart probability (2015-06-10 15:09:01) ...</strong>
+<strong class='message'>	1 out of 10 seed sets (2015-06-10 15:09:01)</strong>
+<strong class='message'>	2 out of 10 seed sets (2015-06-10 15:09:01)</strong>
+<strong class='message'>	3 out of 10 seed sets (2015-06-10 15:09:01)</strong>
+<strong class='message'>	4 out of 10 seed sets (2015-06-10 15:09:01)</strong>
+<strong class='message'>	5 out of 10 seed sets (2015-06-10 15:09:01)</strong>
+<strong class='message'>	6 out of 10 seed sets (2015-06-10 15:09:01)</strong>
+<strong class='message'>	7 out of 10 seed sets (2015-06-10 15:09:01)</strong>
+<strong class='message'>	8 out of 10 seed sets (2015-06-10 15:09:01)</strong>
+<strong class='message'>	9 out of 10 seed sets (2015-06-10 15:09:01)</strong>
+<strong class='message'>	10 out of 10 seed sets (2015-06-10 15:09:01)</strong>
+<strong class='message'>Fourth, rescale steady probability vector (2015-06-10 15:09:01) ...</strong>
+<strong class='message'>Finally, output 10 by 10 affinity matrix normalised by none (2015-06-10 15:09:01) ...</strong>
+<strong class='message'>
+Finish at 2015-06-10 15:09:01</strong>
+<strong class='message'>Runtime in total is: 0 secs
+</strong>
+<div class='input'># visualise affinity matrix
+visHeatmapAdv(PTmatrix, Rowv=FALSE, Colv=FALSE, colormap="wyr",
+KeyValueName="Affinity")
+</div>
+<a href="javascript:newWin('dRWR-23.png', 'dRWR-23.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dRWR-23.png', width="400" /></a>
+<div class='input'>
+# 4) obtain affinity matrix given sets of seeds
+# define sets of seeds
+# each seed with equal weight (i.e. all non-zero entries are '1')
+aSeeds <- c(1,0,1,0,1)
+bSeeds <- c(0,0,1,0,1)
+setSeeds <- data.frame(aSeeds,bSeeds)
+rownames(setSeeds) <- 1:5
+# calcualte affinity matrix
+PTmatrix <- dRWR(g=subg, normalise="laplacian", setSeeds=setSeeds,
+restart=0.75, parallel=FALSE)
+</div>
+<strong class='message'>Start at 2015-06-10 15:09:01</strong>
+<strong class='message'></strong>
+<strong class='message'>First, get the adjacency matrix of the input graph (2015-06-10 15:09:01) ...</strong>
+<strong class='message'>	Notes: using unweighted graph!</strong>
+<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2015-06-10 15:09:01) ...</strong>
+<strong class='warning'>Warning message:
+The row names of input setSeeds do not contain all those in the input graph.
+</strong>
+<strong class='message'>Third, RWR of 2 sets of seeds using 7.5e-01 restart probability (2015-06-10 15:09:01) ...</strong>
+<strong class='message'>	1 out of 2 seed sets (2015-06-10 15:09:01)</strong>
+<strong class='message'>	2 out of 2 seed sets (2015-06-10 15:09:01)</strong>
+<strong class='message'>Fourth, rescale steady probability vector (2015-06-10 15:09:01) ...</strong>
+<strong class='message'>Finally, output 10 by 2 affinity matrix normalised by none (2015-06-10 15:09:01) ...</strong>
+<strong class='message'>
+Finish at 2015-06-10 15:09:01</strong>
+<strong class='message'>Runtime in total is: 0 secs
+</strong>
+<div class='input'>PTmatrix
+</div>
+<div class='output'>10 x 2 sparse Matrix of class "dgCMatrix"
+                             
+ [1,] 0.273208494 0.001135635
+ [2,] 0.002865975 0.004204153
+ [3,] 0.270493764 0.401098697
+ [4,] 0.025633941 0.037603003
+ [5,] 0.274441716 0.408020940
+ [6,] 0.053002619 0.006424149
+ [7,] 0.048514885 0.072128580
+ [8,] 0.002865975 0.004204153
+ [9,] 0.046106655 0.060976538
+[10,] 0.002865975 0.004204153
+</div></pre>
+  </div>
   
   <div class="span4">
     
@@ -378,7 +462,7 @@ https://github.com/hfang-bristol/dnet</a></li>
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

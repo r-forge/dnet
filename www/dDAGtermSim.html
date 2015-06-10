@@ -286,7 +286,63 @@ matrix via the function <code>as.matrix</code></p>
     <!-- 
     </div>
     -->
-      </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) load HPPA as igraph object
+data(ig.HPPA)
+g <- ig.HPPA
+
+# 2) load human genes annotated by HPPA
+data(org.Hs.egHPPA)
+
+# 3) prepare for ontology and its annotation information
+dag <- dDAGannotate(g, annotations=org.Hs.egHPPA,
+path.mode="all_paths", verbose=TRUE)
+</div>
+<strong class='message'>	At level 14, there are 5 nodes, and 12 incoming neighbors.</strong>
+<strong class='message'>	At level 13, there are 14 nodes, and 21 incoming neighbors.</strong>
+<strong class='message'>	At level 12, there are 30 nodes, and 38 incoming neighbors.</strong>
+<strong class='message'>	At level 11, there are 80 nodes, and 79 incoming neighbors.</strong>
+<strong class='message'>	At level 10, there are 162 nodes, and 144 incoming neighbors.</strong>
+<strong class='message'>	At level 9, there are 296 nodes, and 222 incoming neighbors.</strong>
+<strong class='message'>	At level 8, there are 475 nodes, and 325 incoming neighbors.</strong>
+<strong class='message'>	At level 7, there are 560 nodes, and 329 incoming neighbors.</strong>
+<strong class='message'>	At level 6, there are 617 nodes, and 320 incoming neighbors.</strong>
+<strong class='message'>	At level 5, there are 522 nodes, and 205 incoming neighbors.</strong>
+<strong class='message'>	At level 4, there are 280 nodes, and 86 incoming neighbors.</strong>
+<strong class='message'>	At level 3, there are 94 nodes, and 20 incoming neighbors.</strong>
+<strong class='message'>	At level 2, there are 20 nodes, and 1 incoming neighbors.</strong>
+<strong class='message'>	At level 1, there are 1 nodes, and 0 incoming neighbors.</strong>
+<div class='input'>
+# 4) calculate pair-wise semantic similarity between 5 randomly chosen terms
+terms <- sample(V(dag)$name, 5)
+sim <- dDAGtermSim(g=dag, terms=terms, method="Schlicker",
+parallel=FALSE)
+</div>
+<strong class='message'>Start at 2015-06-10 15:08:07</strong>
+<strong class='message'></strong>
+<strong class='message'>Calculate semantic similarity between 5 terms using Schlicker method (2015-06-10 15:08:07)...</strong>
+<strong class='message'>Build a sparse matrix of children x ancestors (with 5 rows and 3156 columns (2015-06-10 15:08:07)...</strong>
+<strong class='message'>	1 out of 5 (2015-06-10 15:08:07)</strong>
+<strong class='message'>	2 out of 5 (2015-06-10 15:08:07)</strong>
+<strong class='message'>	3 out of 5 (2015-06-10 15:08:07)</strong>
+<strong class='message'>	4 out of 5 (2015-06-10 15:08:07)</strong>
+<strong class='message'>	5 out of 5 (2015-06-10 15:08:07)</strong>
+<strong class='message'></strong>
+<strong class='message'>Finish at 2015-06-10 15:08:07</strong>
+<strong class='message'>Runtime in total is: 0 secs
+</strong>
+<div class='input'>sim
+</div>
+<div class='output'>5 x 5 sparse Matrix of class "dgCMatrix"
+           HP:0001073 HP:0001216 HP:0000954 HP:0000348 HP:0009602
+HP:0001073  1.9965636  .          0.1328686   .         .        
+HP:0001216  .          1.9958763  0.2439836   .         0.2404738
+HP:0000954  0.1328686  0.2439836  1.9429553   .         0.3275352
+HP:0000348  .          .          .           1.940893  .        
+HP:0009602  .          0.2404738  0.3275352   .         1.9505155
+</div></pre>
+  </div>
   
   <div class="span4">
     
@@ -349,7 +405,7 @@ https://github.com/hfang-bristol/dnet</a></li>
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

@@ -307,7 +307,26 @@ contraint, it will be reset to the maximum end of that constraint
     <!-- 
     </div>
     -->
-      </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) generate an vector consisting of random values from beta distribution
+x <- rbeta(1000, shape1=0.5, shape2=1)
+
+# 2) fit a p-value distribution under beta-uniform mixture model
+fit <- dBUMfit(x)
+</div>
+<strong class='message'>	A total of p-values: 1000</strong>
+<strong class='message'>	Maximum Log-Likelihood: 259.4</strong>
+<strong class='message'>	Mixture parameter (lambda): 0.000</strong>
+<strong class='message'>	Shape parameter (a): 0.526</strong>
+<div class='input'>
+# 3) calculate the scores according to the fitted BUM and fdr=0.01
+# using "pdf" method
+scores <- dBUMscore(fit, method="pdf", fdr=0.01)
+# using "cdf" method
+scores <- dBUMscore(fit, method="cdf", fdr=0.01)
+</div></pre>
+  </div>
   
   <div class="span4">
     
@@ -369,7 +388,7 @@ https://github.com/hfang-bristol/dnet</a></li>
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

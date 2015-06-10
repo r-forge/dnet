@@ -257,7 +257,25 @@ subgraph.</p>
     <!-- 
     </div>
     -->
-      </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) load HPPA as igraph object
+data(ig.HPPA)
+g <- ig.HPPA
+
+# 2) randomly select vertices as the query nodes
+# the query nodes can be igraph vertex sequences
+nodes_query <- sample(V(g),5)
+# more commonly, the query nodes can be term id
+nodes_query <- sample(V(g),5)$name
+
+# 3) obtain the induced subgraph
+# 3a) based on all possible paths (i.e. the complete subgraph induced)
+subg <- dDAGinduce(g, nodes_query, path.mode="all_paths")
+# 3b) based on shortest paths (i.e. the most concise subgraph induced)
+subg <- dDAGinduce(g, nodes_query, path.mode="shortest_paths")
+</div></pre>
+  </div>
   
   <div class="span4">
     
@@ -319,7 +337,7 @@ https://github.com/hfang-bristol/dnet</a></li>
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

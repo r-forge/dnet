@@ -234,7 +234,43 @@ window.onload = function(){
     <!-- 
     </div>
     -->
-      </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'>org.Dm.eg <- dRDataLoader(RData='org.Dm.eg')
+</div>
+<strong class='message'>'org.Dm.eg' (from http://supfam.org/dnet/data/Dm/org.Dm.eg.RData) has been loaded into the working environment</strong>
+<div class='input'>names(org.Dm.eg)
+</div>
+<div class='output'>[1] "gene_info"
+</div>
+<div class='input'>org.Dm.eg$gene_info[1:5,]
+</div>
+<div class='output'>      GeneID  Symbol                                     description chromosome
+30970  30970  CG3038   CG3038 gene product from transcript CG3038-RB          X
+30971  30971     G9a   CG2995 gene product from transcript CG2995-RB          X
+30972  30972 CG13377 CG13377 gene product from transcript CG13377-RB          X
+30973  30973     cin                                        cinnamon          X
+30975  30975     ewg                                      erect wing          X
+      map_location
+30970      1A1-1A1
+30971      1A1-1A1
+30972      1A1-1A1
+30973      1A1-1A1
+30975   1A1-1A1|1-
+                                                                                                  Synonyms
+30970                                                                             DmelCG3038|EG:BACR37P7.1
+30971                                            CG2995|DmelCG2995|EG:BACR37P7.2|EHMT|cab65850 G9a Dm|dG9a
+30972                                                                    BG01596|DmelCG13377|EG:BACR37P7.9
+30973                                       CG2945|CIN|DmelCG2945|EG:BACR37P7.3|fs(1)M50|l(1)1Ae|l(1)G0142
+30975 CG3114|DmelCG3114|EC3|EG:BACR37P7.7|EWG|Ewg|NRF-1|l(1)1Ag|l(1)DA659|l(1)EC3|l(1)EC3f|l(1)VA720|l[EC3
+                  dbXrefs
+30970 FLYBASE:FBgn0040373
+30971 FLYBASE:FBgn0040372
+30972 FLYBASE:FBgn0261446
+30973 FLYBASE:FBgn0000316
+30975 FLYBASE:FBgn0005427
+</div></pre>
+  </div>
   
   <div class="span4">
     
@@ -286,7 +322,7 @@ https://github.com/hfang-bristol/dnet</a></li>
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

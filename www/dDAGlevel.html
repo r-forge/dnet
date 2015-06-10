@@ -261,7 +261,76 @@ deriving nodes according to their closeness to the root.</p>
     <!-- 
     </div>
     -->
-      </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) load HPPA as igraph object
+data(ig.HPPA)
+g <- ig.HPPA
+
+# 2) randomly select vertices as the query nodes
+nodes_query <- sample(V(g),5)$name
+
+# 3) obtain the complete subgraph induced
+subg <- dDAGinduce(g, nodes_query)
+
+# 4) calculate the node levels
+# 4a) definition based on the longest path
+dDAGlevel(subg, level.mode="longest_path")
+</div>
+<div class='output'>HP:0000118 HP:0000707 HP:0000924 HP:0001574 HP:0002086 HP:0002664 HP:0003011 
+         1          2          2          2          2          2          2 
+HP:0000951 HP:0011792 HP:0011793 HP:0011804 HP:0011842 HP:0012252 HP:0012638 
+         3          3          3          3          3          3          3 
+HP:0100022 HP:0100606 HP:0002087 HP:0002088 HP:0002861 HP:0003330 HP:0004305 
+         4          4          4          4          4          4          5 
+HP:0008069 HP:0001600 HP:0004348 HP:0012056 HP:0100526 HP:0100552 HP:0007316 
+         4          5          5          5          5          6          6 
+HP:0011001 HP:0012058 HP:0005450 HP:0006519 
+         6          6          7          7 
+</div>
+<div class='input'># 4b) definition based on the shortest path
+dDAGlevel(subg, level.mode="shortest_path")
+</div>
+<div class='output'>HP:0000118 HP:0000707 HP:0000924 HP:0001574 HP:0002086 HP:0002664 HP:0003011 
+         1          2          2          2          2          2          2 
+HP:0000951 HP:0011792 HP:0011793 HP:0011804 HP:0011842 HP:0012252 HP:0012638 
+         3          3          3          3          3          3          3 
+HP:0100022 HP:0100606 HP:0002087 HP:0002088 HP:0002861 HP:0003330 HP:0004305 
+         4          4          4          4          4          4          4 
+HP:0008069 HP:0001600 HP:0004348 HP:0012056 HP:0100526 HP:0100552 HP:0007316 
+         4          5          5          5          5          6          5 
+HP:0011001 HP:0012058 HP:0005450 HP:0006519 
+         6          6          7          7 
+</div>
+<div class='input'># 4c) definition based on the longest path, and return nodes for each level
+dDAGlevel(subg, level.mode="longest_path", return.mode="level2node")
+</div>
+<div class='output'>$`1`
+[1] "HP:0000118"
+
+$`2`
+[1] "HP:0000707" "HP:0000924" "HP:0001574" "HP:0002086" "HP:0002664"
+[6] "HP:0003011"
+
+$`3`
+[1] "HP:0000951" "HP:0011792" "HP:0011793" "HP:0011804" "HP:0011842"
+[6] "HP:0012252" "HP:0012638"
+
+$`4`
+[1] "HP:0100022" "HP:0100606" "HP:0002087" "HP:0002088" "HP:0002861"
+[6] "HP:0003330" "HP:0008069"
+
+$`5`
+[1] "HP:0004305" "HP:0001600" "HP:0004348" "HP:0012056" "HP:0100526"
+
+$`6`
+[1] "HP:0100552" "HP:0007316" "HP:0011001" "HP:0012058"
+
+$`7`
+[1] "HP:0005450" "HP:0006519"
+
+</div></pre>
+  </div>
   
   <div class="span4">
     
@@ -323,7 +392,7 @@ https://github.com/hfang-bristol/dnet</a></li>
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

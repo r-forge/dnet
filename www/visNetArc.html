@@ -285,7 +285,40 @@ plotting points. See
     <!-- 
     </div>
     -->
-      </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) generate a random graph according to the ER model
+g <- erdos.renyi.game(100, 1/80)
+
+# 2) produce the induced subgraph only based on the nodes in query
+g <- dNetInduce(g, V(g), knn=0)
+
+# 3) color nodes according to communities identified via a spin-glass model and simulated annealing
+com <- spinglass.community(g, spins=4)
+vgroups <- com$membership
+palette.name <- visColormap(colormap="rainbow")
+vcolors <- palette.name(length(com))[vgroups]
+
+# 4) size nodes according to degrees
+vdegrees <- igraph::degree(g)
+
+# 5) sort nodes: first by communities and then degrees
+tmp <- data.frame(ind=1:vcount(g), vgroups, vdegrees)
+ordering <- tmp[order(vgroups,vdegrees),]$ind
+
+# 6) visualise graph using 1-dimensional arc diagram
+visNetArc(g, ordering=ordering, labels=V(g)$name,
+vertex.label.color=vcolors,
+vertex.color=vcolors, vertex.frame.color=vcolors,
+vertex.size=log(vdegrees)+0.1)
+
+# 7) as comparison, also visualise graph on 2-dimensional layout
+visNet(g, colormap="bwr", layout=layout.kamada.kawai(g),
+vertex.label=V(g)$name,
+vertex.color=vcolors, vertex.frame.color=vcolors,
+vertex.shape="sphere")
+</div></pre>
+  </div>
   
   <div class="span4">
     
@@ -347,7 +380,7 @@ https://github.com/hfang-bristol/dnet</a></li>
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

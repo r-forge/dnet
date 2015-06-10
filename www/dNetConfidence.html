@@ -259,7 +259,24 @@ appended with the "nodeConfidence" attribute to the nodes and the
     <!-- 
     </div>
     -->
-      </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) generate a target graph according to the ER model
+g <- erdos.renyi.game(100, 1/100)
+target <- dNetInduce(g, V(g), knn=0)
+
+# 2) generate a list source graphs according to the ER model
+sources <- lapply(1:100, function(x) erdos.renyi.game(100*runif(1),
+1/10))
+
+# 3) append the confidence information from the source graphs into the target graph
+g <- dNetConfidence(target=target, sources=sources)
+
+# 4) visualise the confidence target graph
+visNet(g, vertex.size=V(g)$nodeConfidence/10,
+edge.width=E(g)$edgeConfidence)
+</div></pre>
+  </div>
   
   <div class="span4">
     
@@ -321,7 +338,7 @@ https://github.com/hfang-bristol/dnet</a></li>
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 
