@@ -9,7 +9,7 @@ org.Mm.egDO <- dRDataLoader(RData='org.Mm.egDO')
 }
 
 \description{
-An R object that contains associations between Disease Ontology terms and Mouse Entrez Genes. This data is first prepared based on \url{http://sourceforge.net/p/diseaseontology/code/HEAD/tree/trunk/HumanDO.obo} and  \url{http://dga.nubic.northwestern.edu/ajax/Download.ajax.php}, which results in annotations of Human Entrez Genes. Then, these annotations are transferred to Mouse Entrez Genes based on \url{ftp://anonymous@ftp.ncbi.nih.gov/pub/HomoloGene/build67/homologene.data}.
+An R object that contains associations between Disease Ontology terms and Mouse Entrez Genes. This data is first prepared based on \url{http://sourceforge.net/p/diseaseontology/code/HEAD/tree/trunk/HumanDO.obo?format=raw} and  \url{http://dga.nubic.northwestern.edu/ajax/Download.ajax.php}, which results in annotations of Human Entrez Genes. Then, these annotations are transferred to Mouse Entrez Genes based on \url{ftp://anonymous@ftp.ncbi.nih.gov/pub/HomoloGene/build67/homologene.data}.
 }
 
 \value{

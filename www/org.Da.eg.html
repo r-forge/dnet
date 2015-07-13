@@ -238,19 +238,19 @@ window.onload = function(){
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'>org.Da.eg <- dRDataLoader(RData='org.Da.eg')
 </div>
-<strong class='message'>'org.Da.eg' (from http://supfam.org/dnet/data/Da/org.Da.eg.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Da.eg' (from http://supfam.org/dnet/data/org.Da.eg.RData) has been loaded into the working environment</strong>
 <div class='input'>names(org.Da.eg)
 </div>
 <div class='output'>[1] "gene_info"
 </div>
 <div class='input'>org.Da.eg$gene_info[1:5,]
 </div>
-<div class='output'>      GeneID Symbol                                 description chromosome
-30037  30037    tnc                                  tenascin C          5
-30038  30038 sox19a                 SRY-box containing gene 19a          5
-30065  30065    hug                                         HuG         11
-30066  30066 meis2b myeloid ecotropic viral integration site 2b         20
-30067  30067  chico                                       chico          2
+<div class='output'>      GeneID Symbol                            description chromosome
+30037  30037    tnc                             tenascin C          5
+30038  30038 sox19a SRY (sex determining region Y)-box 19a          5
+30065  30065    hug                                    HuG         11
+30066  30066 meis2b                       Meis homeobox 2b         20
+30067  30067  chico                                  chico          2
       map_location                              Synonyms
 30037            -                       tenc|wu:fk04d02
 30038            -        cb799|fc66c01|sox19|wu:fc66c01
@@ -260,7 +260,7 @@ window.onload = function(){
                                                                           dbXrefs
 30037 ZFIN:ZDB-GENE-980526-104|Ensembl:ENSDARG00000021948|Vega:OTTDARG00000032698
 30038 ZFIN:ZDB-GENE-980526-102|Ensembl:ENSDARG00000010770|Vega:OTTDARG00000016206
-30065                          ZFIN:ZDB-GENE-000210-17|Ensembl:ENSDARG00000016405
+30065                          ZFIN:ZDB-GENE-000210-17|Ensembl:ENSDARG00000101744
 30066  ZFIN:ZDB-GENE-000210-23|Ensembl:ENSDARG00000077840|Vega:OTTDARG00000032200
 30067                          ZFIN:ZDB-GENE-000210-28|Ensembl:ENSDARG00000019588
 </div></pre>
@@ -298,12 +298,10 @@ window.onload = function(){
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
       <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href="
-http://cran.r-project.org/package=dnet">
-http://cran.r-project.org/package=dnet</a></li>
-      <li><a href="
-https://github.com/hfang-bristol/dnet">
-https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href=" http://cran.r-
+project.org/package=dnet"> http://cran.r-
+project.org/package=dnet</a></li>
+      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     

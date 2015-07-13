@@ -308,15 +308,15 @@ for(i in 1:nrow(md_selected)){
 names(HR) <- rownames(md_selected)
 names(pvals) <- rownames(md_selected)
 
-# An igraph object that contains a functional protein association network in human. The network is extracted from the STRING database (version 9.1). Only those associations with medium confidence (score>=400) are retained.
+# An igraph object that contains a functional protein association network in human. The network is extracted from the STRING database (version 10). Only those associations with medium confidence (score>=400) are retained.
 org.Hs.string <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='org.Hs.string')
 </div>
-<strong class='message'>'org.Hs.string' (from http://supfam.org/dnet/data/Hs/org.Hs.string.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.string' (from http://supfam.org/dnet/data/org.Hs.string.RData) has been loaded into the working environment</strong>
 <div class='input'># restrict to those edges with high confidence (score>=700)
 network <- subgraph.edges(org.Hs.string, eids=E(org.Hs.string)[combined_score>=700])
 network
 </div>
-<div class='output'>IGRAPH UN-- 13026 198516 -- 
+<div class='output'>IGRAPH UN-- 13865 274803 -- 
 + attr: name (v/c), seqid (v/c), geneid (v/n), symbol (v/c),
   description (v/c), neighborhood_score (e/n), fusion_score (e/n),
   cooccurence_score (e/n), coexpression_score (e/n), experimental_score
@@ -332,7 +332,7 @@ network <- <a href='dNetInduce.html' target=dNetInduce>dNetInduce</a>(g=network,
 V(network)$name <- V(network)$symbol
 network
 </div>
-<div class='output'>IGRAPH UN-- 1601 9283 -- 
+<div class='output'>IGRAPH UN-- 1631 11541 -- 
 + attr: name (v/c), seqid (v/c), geneid (v/n), symbol (v/c),
   description (v/c), neighborhood_score (e/n), fusion_score (e/n),
   cooccurence_score (e/n), coexpression_score (e/n), experimental_score
@@ -341,24 +341,24 @@ network
 </div>
 <div class='input'>
 # Identification of gene-active network
-net <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network, pval=pvals, method="customised", significance.threshold=3e-02)
+net <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network, pval=pvals, method="customised", significance.threshold=2.5e-02)
 </div>
-<strong class='message'>Start at 2015-06-04 12:29:08</strong>
+<strong class='message'>Start at 2015-07-13 13:34:33</strong>
 <strong class='message'></strong>
 <strong class='message'>First, consider the input fdr (or p-value) distribution</strong>
 <strong class='message'>Second, determine the significance threshold...</strong>
-<strong class='message'>	significance threshold: 3.00e-02</strong>
+<strong class='message'>	significance threshold: 2.50e-02</strong>
 <strong class='message'>Third, calculate the scores according to the input fdr (or p-value) and the threshold (if any)...</strong>
-<strong class='message'>	Amongst 2837 scores, there are 175 positives.</strong>
-<strong class='message'>Finally, find the subgraph from the input graph with 1601 nodes and 9283 edges...</strong>
-<strong class='message'>	Size of the subgraph: 42 nodes and 54 edges</strong>
+<strong class='message'>	Amongst 2837 scores, there are 150 positives.</strong>
+<strong class='message'>Finally, find the subgraph from the input graph with 1631 nodes and 11541 edges...</strong>
+<strong class='message'>	Size of the subgraph: 37 nodes and 46 edges</strong>
 <strong class='message'>
-Finish at 2015-06-04 12:29:11</strong>
-<strong class='message'>Runtime in total is: 3 secs
+Finish at 2015-07-13 13:34:35</strong>
+<strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'>net
 </div>
-<div class='output'>IGRAPH UN-- 42 54 -- 
+<div class='output'>IGRAPH UN-- 37 46 -- 
 + attr: name (v/c), seqid (v/c), geneid (v/n), symbol (v/c),
   description (v/c), score (v/n), neighborhood_score (e/n),
   fusion_score (e/n), cooccurence_score (e/n), coexpression_score
@@ -436,7 +436,7 @@ stats::ks.test(x=naive, y=HR[cg_names], alternative="two.sided", exact=NULL)
 	Two-sample Kolmogorov-Smirnov test
 
 data:  naive and HR[cg_names]
-D = 0.9286, p-value < 2.2e-16
+D = 0.83784, p-value = 2.125e-13
 alternative hypothesis: two-sided
 
 </div>
@@ -462,46 +462,46 @@ rownames(frac_mutated) <- fData(eset)$Symbol
 data <- frac_mutated[V(net)$name,]
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g=net, data, feature="edge", node.normalise="degree", amplifier=3, metric="none")
 </div>
-<strong class='message'>Start at 2015-06-04 12:29:33</strong>
+<strong class='message'>Start at 2015-07-13 13:34:43</strong>
 <strong class='message'></strong>
-<strong class='message'>First, define topology of a map grid (2015-06-04 12:29:33)...</strong>
-<strong class='message'>Second, initialise the codebook matrix (36 X 54) using 'linear' initialisation, given a topology and input data (2015-06-04 12:29:33)...</strong>
-<strong class='message'>Third, get training at the rough stage (2015-06-04 12:29:33)...</strong>
-<strong class='message'>	1 out of 363 (2015-06-04 12:29:33)</strong>
-<strong class='message'>	37 out of 363 (2015-06-04 12:29:33)</strong>
-<strong class='message'>	74 out of 363 (2015-06-04 12:29:33)</strong>
-<strong class='message'>	111 out of 363 (2015-06-04 12:29:33)</strong>
-<strong class='message'>	148 out of 363 (2015-06-04 12:29:33)</strong>
-<strong class='message'>	185 out of 363 (2015-06-04 12:29:33)</strong>
-<strong class='message'>	222 out of 363 (2015-06-04 12:29:33)</strong>
-<strong class='message'>	259 out of 363 (2015-06-04 12:29:33)</strong>
-<strong class='message'>	296 out of 363 (2015-06-04 12:29:33)</strong>
-<strong class='message'>	333 out of 363 (2015-06-04 12:29:33)</strong>
-<strong class='message'>	363 out of 363 (2015-06-04 12:29:33)</strong>
-<strong class='message'>Fourth, get training at the finetune stage (2015-06-04 12:29:33)...</strong>
-<strong class='message'>	1 out of 1441 (2015-06-04 12:29:33)</strong>
-<strong class='message'>	145 out of 1441 (2015-06-04 12:29:33)</strong>
-<strong class='message'>	290 out of 1441 (2015-06-04 12:29:33)</strong>
-<strong class='message'>	435 out of 1441 (2015-06-04 12:29:33)</strong>
-<strong class='message'>	580 out of 1441 (2015-06-04 12:29:33)</strong>
-<strong class='message'>	725 out of 1441 (2015-06-04 12:29:33)</strong>
-<strong class='message'>	870 out of 1441 (2015-06-04 12:29:33)</strong>
-<strong class='message'>	1015 out of 1441 (2015-06-04 12:29:33)</strong>
-<strong class='message'>	1160 out of 1441 (2015-06-04 12:29:33)</strong>
-<strong class='message'>	1305 out of 1441 (2015-06-04 12:29:33)</strong>
-<strong class='message'>	1441 out of 1441 (2015-06-04 12:29:33)</strong>
-<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-06-04 12:29:33)...</strong>
-<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-06-04 12:29:33)...</strong>
+<strong class='message'>First, define topology of a map grid (2015-07-13 13:34:43)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (36 X 46) using 'linear' initialisation, given a topology and input data (2015-07-13 13:34:43)...</strong>
+<strong class='message'>Third, get training at the rough stage (2015-07-13 13:34:43)...</strong>
+<strong class='message'>	1 out of 363 (2015-07-13 13:34:43)</strong>
+<strong class='message'>	37 out of 363 (2015-07-13 13:34:43)</strong>
+<strong class='message'>	74 out of 363 (2015-07-13 13:34:43)</strong>
+<strong class='message'>	111 out of 363 (2015-07-13 13:34:43)</strong>
+<strong class='message'>	148 out of 363 (2015-07-13 13:34:43)</strong>
+<strong class='message'>	185 out of 363 (2015-07-13 13:34:43)</strong>
+<strong class='message'>	222 out of 363 (2015-07-13 13:34:43)</strong>
+<strong class='message'>	259 out of 363 (2015-07-13 13:34:43)</strong>
+<strong class='message'>	296 out of 363 (2015-07-13 13:34:43)</strong>
+<strong class='message'>	333 out of 363 (2015-07-13 13:34:43)</strong>
+<strong class='message'>	363 out of 363 (2015-07-13 13:34:43)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2015-07-13 13:34:43)...</strong>
+<strong class='message'>	1 out of 1441 (2015-07-13 13:34:43)</strong>
+<strong class='message'>	145 out of 1441 (2015-07-13 13:34:43)</strong>
+<strong class='message'>	290 out of 1441 (2015-07-13 13:34:44)</strong>
+<strong class='message'>	435 out of 1441 (2015-07-13 13:34:44)</strong>
+<strong class='message'>	580 out of 1441 (2015-07-13 13:34:44)</strong>
+<strong class='message'>	725 out of 1441 (2015-07-13 13:34:44)</strong>
+<strong class='message'>	870 out of 1441 (2015-07-13 13:34:44)</strong>
+<strong class='message'>	1015 out of 1441 (2015-07-13 13:34:44)</strong>
+<strong class='message'>	1160 out of 1441 (2015-07-13 13:34:44)</strong>
+<strong class='message'>	1305 out of 1441 (2015-07-13 13:34:44)</strong>
+<strong class='message'>	1441 out of 1441 (2015-07-13 13:34:44)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-07-13 13:34:44)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-07-13 13:34:44)...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
-<strong class='message'>   dimension of input data: 11x54
+<strong class='message'>   dimension of input data: 11x46
    xy-dimension of map grid: xdim=6, ydim=6
    grid lattice: rect
    grid shape: sheet
    dimension of grid coord: 36x2
    initialisation method: linear
-   dimension of codebook matrix: 36x54
-   mean quantization error: 0.0028412561272337
+   dimension of codebook matrix: 36x46
+   mean quantization error: 0.00290529109623643
 </strong>
 <strong class='message'>Below are the details of trainology:</strong>
 <strong class='message'>   training algorithm: sequential
@@ -511,8 +511,8 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g=net,
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2015-06-04 12:29:33</strong>
-<strong class='message'>Runtime in total is: 0 secs
+<strong class='message'>End at 2015-07-13 13:34:44</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g=net, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*3, newpage=T, glayout=glayout, colormap="darkgreen-lightgreen-lightpink-darkred", vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.8,border.color="888888", zlim=c(0,0.1), mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
 
@@ -548,41 +548,41 @@ hist(ubiquity,20, xlab="Cross-tumor mutation ubiquity", xlim=c(0,1))
 customised.genesets <- list(net=V(net)$name)
 eTerm <- <a href='dGSEA.html' target=dGSEA>dGSEA</a>(data=cbind(ubiquity, frac_mutated), identity="symbol", genome="Hs", ontology="Customised", customised.genesets=customised.genesets, weight=0, nperm=2000)
 </div>
-<strong class='message'>Start at 2015-06-04 12:30:08</strong>
+<strong class='message'>Start at 2015-07-13 13:35:18</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology Customised and its gene associations in the genome Hs (2015-06-04 12:30:08) ...</strong>
-<strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Hs/org.Hs.eg.RData</strong>
-<strong class='message'>	Among 42 symbols of input data, there are 42 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Then, do mapping based on symbol (2015-06-04 12:30:08) ...</strong>
-<strong class='message'>	Among 19171 symbols of input data, there are 19171 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Third, perform GSEA analysis (2015-06-04 12:30:11) ...</strong>
-<strong class='message'>	Sample 1 is being processed at (2015-06-04 12:30:11) ...</strong>
+<strong class='message'>First, load the ontology Customised and its gene associations in the genome Hs (2015-07-13 13:35:18) ...</strong>
+<strong class='message'>'org.Hs.eg' (from http://supfam.org/dnet/data/org.Hs.eg.RData) has been loaded into the working environment</strong>
+<strong class='message'>	Among 37 symbols of input data, there are 37 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Then, do mapping based on symbol (2015-07-13 13:35:30) ...</strong>
+<strong class='message'>	Among 19171 symbols of input data, there are 18962 mappable via official gene symbols but 209 left unmappable</strong>
+<strong class='message'>Third, perform GSEA analysis (2015-07-13 13:35:32) ...</strong>
+<strong class='message'>	Sample 1 is being processed at (2015-07-13 13:35:32) ...</strong>
 <strong class='message'>		 1 of 1 gene sets have been processed</strong>
-<strong class='message'>	Sample 2 is being processed at (2015-06-04 12:30:13) ...</strong>
+<strong class='message'>	Sample 2 is being processed at (2015-07-13 13:35:35) ...</strong>
 <strong class='message'>		 1 of 1 gene sets have been processed</strong>
-<strong class='message'>	Sample 3 is being processed at (2015-06-04 12:30:16) ...</strong>
+<strong class='message'>	Sample 3 is being processed at (2015-07-13 13:35:37) ...</strong>
 <strong class='message'>		 1 of 1 gene sets have been processed</strong>
-<strong class='message'>	Sample 4 is being processed at (2015-06-04 12:30:19) ...</strong>
+<strong class='message'>	Sample 4 is being processed at (2015-07-13 13:35:40) ...</strong>
 <strong class='message'>		 1 of 1 gene sets have been processed</strong>
-<strong class='message'>	Sample 5 is being processed at (2015-06-04 12:30:22) ...</strong>
+<strong class='message'>	Sample 5 is being processed at (2015-07-13 13:35:43) ...</strong>
 <strong class='message'>		 1 of 1 gene sets have been processed</strong>
-<strong class='message'>	Sample 6 is being processed at (2015-06-04 12:30:24) ...</strong>
+<strong class='message'>	Sample 6 is being processed at (2015-07-13 13:35:45) ...</strong>
 <strong class='message'>		 1 of 1 gene sets have been processed</strong>
-<strong class='message'>	Sample 7 is being processed at (2015-06-04 12:30:27) ...</strong>
+<strong class='message'>	Sample 7 is being processed at (2015-07-13 13:35:48) ...</strong>
 <strong class='message'>		 1 of 1 gene sets have been processed</strong>
-<strong class='message'>	Sample 8 is being processed at (2015-06-04 12:30:29) ...</strong>
+<strong class='message'>	Sample 8 is being processed at (2015-07-13 13:35:51) ...</strong>
 <strong class='message'>		 1 of 1 gene sets have been processed</strong>
-<strong class='message'>	Sample 9 is being processed at (2015-06-04 12:30:31) ...</strong>
+<strong class='message'>	Sample 9 is being processed at (2015-07-13 13:35:53) ...</strong>
 <strong class='message'>		 1 of 1 gene sets have been processed</strong>
-<strong class='message'>	Sample 10 is being processed at (2015-06-04 12:30:34) ...</strong>
+<strong class='message'>	Sample 10 is being processed at (2015-07-13 13:35:56) ...</strong>
 <strong class='message'>		 1 of 1 gene sets have been processed</strong>
-<strong class='message'>	Sample 11 is being processed at (2015-06-04 12:30:36) ...</strong>
+<strong class='message'>	Sample 11 is being processed at (2015-07-13 13:35:59) ...</strong>
 <strong class='message'>		 1 of 1 gene sets have been processed</strong>
-<strong class='message'>	Sample 12 is being processed at (2015-06-04 12:30:39) ...</strong>
+<strong class='message'>	Sample 12 is being processed at (2015-07-13 13:36:01) ...</strong>
 <strong class='message'>		 1 of 1 gene sets have been processed</strong>
 <strong class='message'>
-End at 2015-06-04 12:30:41</strong>
-<strong class='message'>Runtime in total is: 33 secs
+End at 2015-07-13 13:36:04</strong>
+<strong class='message'>Runtime in total is: 46 secs
 </strong>
 <div class='input'>## Comparing normalised enrichement score (NES)
 frac_pvalue <- as.vector(eTerm$pvalue)
@@ -607,19 +607,19 @@ barY <- barplot(z, xlab="Normalised enrichment score (NES)", horiz=TRUE, names.a
 ## get a list of genes in the subnetwork
 eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data=V(net)$name, identity="symbol", genome="Hs", ontology="PS2", sizeRange=c(10,20000), min.overlap=0)
 </div>
-<strong class='message'>Start at 2015-06-04 12:30:43</strong>
+<strong class='message'>Start at 2015-07-13 13:36:06</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology PS2 and its gene associations in the genome Hs (2015-06-04 12:30:43) ...</strong>
-<strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Hs/org.Hs.eg.RData</strong>
-<strong class='message'>	Load annotation information from http://supfam.org/dnet/data/Hs/org.Hs.egPS.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2015-06-04 12:30:43) ...</strong>
-<strong class='message'>	Among 42 symbols of input data, there are 42 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-06-04 12:30:43) ...</strong>
+<strong class='message'>First, load the ontology PS2 and its gene associations in the genome Hs (2015-07-13 13:36:06) ...</strong>
+<strong class='message'>'org.Hs.eg' (from http://supfam.org/dnet/data/org.Hs.eg.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egPS' (from http://supfam.org/dnet/data/org.Hs.egPS.RData) has been loaded into the working environment</strong>
+<strong class='message'>Then, do mapping based on symbol (2015-07-13 13:36:19) ...</strong>
+<strong class='message'>	Among 37 symbols of input data, there are 37 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-07-13 13:36:19) ...</strong>
 <strong class='message'>	There are 19 terms being used, each restricted within [10,20000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2015-06-04 12:30:43) ...</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2015-07-13 13:36:19) ...</strong>
 <strong class='message'>
-End at 2015-06-04 12:30:43</strong>
-<strong class='message'>Runtime in total is: 0 secs
+End at 2015-07-13 13:36:19</strong>
+<strong class='message'>Runtime in total is: 13 secs
 </strong>
 <a href="javascript:newWin('TCGA-131.png', 'TCGA-131.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-131.png', width="400" /></a>
 <div class='input'>## Look at the evolution relevance along the path to the eukaryotic common ancestor
@@ -627,84 +627,84 @@ output <- <a href='dEnricherView.html' target=dEnricherView>dEnricherView</a>(eT
 write.table(output, file="enrichment_PS2.txt", quote=F, row.names=F,col.names=T,sep="\t")
 output
 </div>
-<div class='output'>   setID nAnno nOverlap zscore  pvalue  adjp                  name    namespace
-3      3  7001        9 -3.770 1.00000 1.000        2759:Eukaryota superkingdom
-8      8  3259       12  0.777 0.17000 0.290    33154:Opisthokonta      no rank
-11    11   612        6  3.120 0.00220 0.014         33208:Metazoa      kingdom
-13    13   477        1 -0.377 0.43000 0.480        6072:Eumetazoa      no rank
-15    15   405        0 -1.130 0.71000 0.750       33213:Bilateria      no rank
-17    17   674        7  3.560 0.00081 0.014   33511:Deuterostomia      no rank
-18    18    75        2  3.740 0.00150 0.014         7711:Chordata       phylum
-19    19    97        0 -0.545 0.26000 0.350       7742:Vertebrata      no rank
-20    20   559        2  0.241 0.24000 0.350   117571:Euteleostomi      no rank
-21    21   105        0 -0.567 0.27000 0.350    8287:Sarcopterygii      no rank
-22    22   122        0 -0.611 0.31000 0.370       32523:Tetrapoda      no rank
-23    23   203        2  1.780 0.02300 0.089         32524:Amniota      no rank
-24    24    13        0 -0.199 0.03900 0.120        40674:Mammalia        class
-25    25    71        0 -0.466 0.19000 0.310          32525:Theria      no rank
-26    26    53        0 -0.402 0.15000 0.280         9347:Eutheria      no rank
-27    27    76        1  1.610 0.02200 0.089 1437010:Boreoeutheria      no rank
-30    30    22        0 -0.259 0.06500 0.150         9443:Primates        order
-36    36    15        0 -0.214 0.04400 0.120      207598:Homininae    subfamily
-37    37    30        0 -0.302 0.08700 0.180     9606:Homo sapiens      species
-     distance
-3           0
-8  0.03880849
-11 0.09260898
-13  0.1117612
-15   0.126603
-17  0.1485278
-18  0.1575984
-19  0.1695313
-20  0.1829545
-21  0.1855467
-22   0.188559
-23  0.1924103
-24  0.1955288
-25  0.1991713
-26  0.2026269
-27  0.2040922
-30  0.2070882
-36   0.223133
-37  0.2334046
-                                                                    members
-3               ABCA1,COL19A1,DYNC1I1,DNMT1,PPP2R1A,BAP1,UBE3C,SIN3A,AMBRA1
-8  BRCA2,CACNA1E,DNAH9,DYNC1H1,DNM2,NPM1,UBC,CACNA1I,LTN1,BAZ1A,RAD50,STAT1
-11                                        ABL1,BTK,ANKLE2,ITGA4,NCAM1,NCAM2
-13                                                                   PARP14
-15                                                                         
-17                                  COL6A2,EPHA1,EPHA3,PTK2,VAV1,HUWE1,TP53
-18                                                              EPHB1,ITGAM
-19                                                                         
-20                                                             TNR,ARHGEF11
-21                                                                         
-22                                                                         
-23                                                               ARAP2,AGRN
-24                                                                         
-25                                                                         
-26                                                                         
-27                                                                    HSPG2
-30                                                                         
-36                                                                         
-37                                                                         
+<div class='output'>   setID nAnno nOverlap  zscore  pvalue  adjp                  name
+3      3  7067        8 -3.4100 1.00000 1.000        2759:Eukaryota
+8      8  3263       10  0.6290 0.20000 0.320    33154:Opisthokonta
+11    11   615        5  2.7800 0.00450 0.042         33208:Metazoa
+13    13   485        1 -0.2270 0.36000 0.400        6072:Eumetazoa
+15    15   408        1 -0.0506 0.28000 0.340       33213:Bilateria
+17    17   672        4  1.7700 0.02800 0.088   33511:Deuterostomia
+18    18    75        2  4.1300 0.00093 0.018         7711:Chordata
+19    19    96        0 -0.5000 0.22000 0.320       7742:Vertebrata
+20    20   568        1 -0.3910 0.43000 0.460   117571:Euteleostomi
+21    21   106        0 -0.5250 0.24000 0.330    8287:Sarcopterygii
+22    22   123        0 -0.5660 0.27000 0.340       32523:Tetrapoda
+23    23   206        2  2.0300 0.01600 0.065         32524:Amniota
+24    24    13        0 -0.1830 0.03300 0.090        40674:Mammalia
+25    25    75        1  1.8400 0.01600 0.065          32525:Theria
+26    26    53        0 -0.3710 0.13000 0.220         9347:Eutheria
+27    27    78        1  1.7900 0.01700 0.065 1437010:Boreoeutheria
+30    30    23        0 -0.2440 0.05800 0.120         9443:Primates
+36    36    15        0 -0.1970 0.03800 0.090      207598:Homininae
+37    37    34        0 -0.2970 0.08400 0.160     9606:Homo sapiens
+      namespace   distance
+3  superkingdom          0
+8       no rank 0.03880849
+11      kingdom 0.09260898
+13      no rank  0.1117612
+15      no rank   0.126603
+17      no rank  0.1485278
+18       phylum  0.1575984
+19      no rank  0.1695313
+20      no rank  0.1829545
+21      no rank  0.1855467
+22      no rank   0.188559
+23      no rank  0.1924103
+24        class  0.1955288
+25      no rank  0.1991713
+26      no rank  0.2026269
+27      no rank  0.2040922
+30        order  0.2070882
+36    subfamily   0.223133
+37      species  0.2334046
+                                                              members
+3                    ABCA1,AKT1,DYNC1I1,DNMT1,IDH1,PPP2R1A,SIN3A,PAK7
+8  BRCA2,CACNA1E,DNAH9,DYNC1H1,DNM2,FAM13A,DNAH10,CCDC88A,RAD50,SMC1B
+11                                       ABL1,BTK,ANKLE2,KAT6A,TNRC6C
+13                                                               TJP1
+15                                                               DSC2
+17                                              EPHA1,EPHA3,VAV1,TP53
+18                                                        EPHB1,ITGAM
+19                                                                   
+20                                                           ARHGEF11
+21                                                                   
+22                                                                   
+23                                                         ARAP2,AGRN
+24                                                                   
+25                                                               UTRN
+26                                                                   
+27                                                              HSPG2
+30                                                                   
+36                                                                   
+37                                                                   
 </div>
 <div class='input'>## load Entrezgene info
 org.Hs.eg <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='org.Hs.eg')
 </div>
-<strong class='message'>'org.Hs.eg' (from http://supfam.org/dnet/data/Hs/org.Hs.eg.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.eg' (from http://supfam.org/dnet/data/org.Hs.eg.RData) has been loaded into the working environment</strong>
 <div class='input'>gene_info <- org.Hs.eg$gene_info
 entrez <- unlist(eTerm$overlap[6], use.names=F)
 ## build neighbor-joining tree
 data <- frac_mutated[V(net)$name,]
 tree_bs <- visTreeBootstrap(t(data), nodelabels.arg=list(cex=0.7,bg="white-pink-violet"), metric=c("euclidean","pearson","spearman","cos","manhattan","kendall","mi")[3], num.bootstrap=2000, plot.phylo.arg=list(cex=1, edge.width=1.2))
 </div>
-<strong class='message'>Start at 2015-06-04 12:30:44</strong>
+<strong class='message'>Start at 2015-07-13 13:36:33</strong>
 <strong class='message'></strong>
-<strong class='message'>First, build the tree (using nj algorithm and spearman distance) from input matrix (11 by 42)...</strong>
+<strong class='message'>First, build the tree (using nj algorithm and spearman distance) from input matrix (11 by 37)...</strong>
 <strong class='message'>Second, perform bootstrap analysis with 2000 replicates...</strong>
 <strong class='message'>Finally, visualise the bootstrapped tree...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2015-06-04 12:30:46</strong>
+<strong class='message'>Finish at 2015-07-13 13:36:35</strong>
 <strong class='message'>Runtime in total is: 2 secs
 </strong>
 <a href="javascript:newWin('TCGA-145.png', 'TCGA-145.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-145.png', width="400" /></a>
@@ -774,7 +774,9 @@ lbls <- eTerm$set_info$name[unique(base_order1)]
 lbls <- gsub(".*:","",lbls)
 <a href='visBoxplotAdv.html' target=visBoxplotAdv>visBoxplotAdv</a>(formula=net_ubiquity ~ base_order1, data=data, method=c("center","hex","square","swarm")[4], pch=19, xlab="", ylab="Cross-tumor mutation ubiquity", ylim=c(0,1), labels=lbls)
 </div>
-<a href="javascript:newWin('TCGA-149.png', 'TCGA-149.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-149.png', width="400" /></a>
+<strong class='warning'>Warning message:
+data length is not a multiple of split variable</strong>
+<strong class='error'>Error: length(pie.out) == n.obs is not TRUE</strong>
 <div class='input'>## Deuterostomia versus all ancestors
 stats::ks.test(x=net_ubiquity[base_order1==6], y=net_ubiquity, alternative="two.sided", exact=NULL)
 </div>
@@ -784,7 +786,7 @@ cannot compute exact p-value with ties</strong>
 	Two-sample Kolmogorov-Smirnov test
 
 data:  net_ubiquity[base_order1 == 6] and net_ubiquity
-D = 0.5476, p-value = 0.05472
+D = 0.61486, p-value = 0.1305
 alternative hypothesis: two-sided
 
 </div>
@@ -795,7 +797,7 @@ stats::ks.test(x=net_ubiquity[base_order1==6], y=net_ubiquity[base_order1<6], al
 	Two-sample Kolmogorov-Smirnov test
 
 data:  net_ubiquity[base_order1 == 6] and net_ubiquity[base_order1 < 6]
-D = 0.6786, p-value = 0.006488
+D = 0.71, p-value = 0.03385
 alternative hypothesis: two-sided
 
 </div>
@@ -806,7 +808,7 @@ stats::ks.test(x=net_ubiquity[base_order1==6], y=net_ubiquity[base_order1>6], al
 	Two-sample Kolmogorov-Smirnov test
 
 data:  net_ubiquity[base_order1 == 6] and net_ubiquity[base_order1 > 6]
-D = 0.5714, p-value = 0.2121
+D = 0.60714, p-value = 0.2121
 alternative hypothesis: two-sided
 
 </div>
@@ -814,19 +816,19 @@ alternative hypothesis: two-sided
 # GOBP enrichment analysis
 eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data=V(net)$name, identity="symbol", genome="Hs", ontology="GOBP")
 </div>
-<strong class='message'>Start at 2015-06-04 12:30:47</strong>
+<strong class='message'>Start at 2015-07-13 13:36:36</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology GOBP and its gene associations in the genome Hs (2015-06-04 12:30:47) ...</strong>
-<strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Hs/org.Hs.eg.RData</strong>
-<strong class='message'>	Load annotation information from http://supfam.org/dnet/data/Hs/org.Hs.egGOBP.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2015-06-04 12:30:47) ...</strong>
-<strong class='message'>	Among 42 symbols of input data, there are 42 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-06-04 12:30:47) ...</strong>
-<strong class='message'>	There are 1955 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2015-06-04 12:30:48) ...</strong>
+<strong class='message'>First, load the ontology GOBP and its gene associations in the genome Hs (2015-07-13 13:36:36) ...</strong>
+<strong class='message'>'org.Hs.eg' (from http://supfam.org/dnet/data/org.Hs.eg.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egGOBP' (from http://supfam.org/dnet/data/org.Hs.egGOBP.RData) has been loaded into the working environment</strong>
+<strong class='message'>Then, do mapping based on symbol (2015-07-13 13:36:59) ...</strong>
+<strong class='message'>	Among 37 symbols of input data, there are 37 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-07-13 13:36:59) ...</strong>
+<strong class='message'>	There are 2251 terms being used, each restricted within [10,1000] annotations</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2015-07-13 13:37:00) ...</strong>
 <strong class='message'>
-End at 2015-06-04 12:30:48</strong>
-<strong class='message'>Runtime in total is: 1 secs
+End at 2015-07-13 13:37:00</strong>
+<strong class='message'>Runtime in total is: 24 secs
 </strong>
 <div class='input'>## write into the file called 'enrichment_GOBP.txt'
 output <- <a href='dEnricherView.html' target=dEnricherView>dEnricherView</a>(eTerm, top_num=NULL, sortBy="adjp", details=TRUE)
@@ -835,45 +837,45 @@ write.table(output, file="enrichment_GOBP.txt", quote=F, row.names=F,col.names=T
 ## first, load the GOBP ontology
 ig.GOBP <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='ig.GOBP')
 </div>
-<strong class='message'>'ig.GOBP' (from http://supfam.org/dnet/data/Obo/ig.GOBP.RData) has been loaded into the working environment</strong>
+<strong class='message'>'ig.GOBP' (from http://supfam.org/dnet/data/ig.GOBP.RData) has been loaded into the working environment</strong>
 <div class='input'>g <- ig.GOBP
 ## select the top most significant 10 terms
 top <- <a href='dEnricherView.html' target=dEnricherView>dEnricherView</a>(eTerm, top_num=10, details=TRUE)
 top
 </div>
 <div class='output'>                setID nAnno nOverlap zscore  pvalue    adjp
-GO:0007411 GO:0007411   331        9   8.29 2.7e-08 6.1e-07
-GO:0030198 GO:0030198   312        9   8.59 1.5e-08 6.1e-07
-GO:0030010 GO:0030010    20        3  12.20 2.9e-07 4.5e-06
-GO:0032319 GO:0032319    23        3  11.40 5.3e-07 6.1e-06
-GO:0007569 GO:0007569    26        3  10.60 8.9e-07 8.1e-06
-GO:0048013 GO:0048013    28        3  10.20 1.2e-06 9.3e-06
-GO:0007229 GO:0007229    70        4   8.44 1.7e-06 1.1e-05
-GO:0008104 GO:0008104    55        3   7.12 1.9e-05 8.7e-05
-GO:0043065 GO:0043065   288        6   5.70 1.7e-05 8.7e-05
-GO:0097190 GO:0097190   112        4   6.47 1.7e-05 8.7e-05
-                                               name namespace distance
-GO:0007411                            axon guidance   Process       14
-GO:0030198        extracellular matrix organization   Process        5
-GO:0030010           establishment of cell polarity   Process        5
-GO:0032319        regulation of Rho GTPase activity   Process       11
-GO:0007569                               cell aging   Process        4
-GO:0048013        ephrin receptor signaling pathway   Process        9
-GO:0007229      integrin-mediated signaling pathway   Process        7
-GO:0008104                     protein localization   Process        4
-GO:0043065 positive regulation of apoptotic process   Process        8
-GO:0097190              apoptotic signaling pathway   Process        6
-                                                          members
-GO:0007411 PTK2,ARHGEF11,AGRN,EPHB1,ABL1,CACNA1I,COL6A2,NCAM1,TNR
-GO:0030198   PTK2,COL19A1,HSPG2,AGRN,ITGA4,ITGAM,COL6A2,NCAM1,TNR
-GO:0030010                                    PTK2,ARHGEF11,EPHB1
-GO:0032319                                    PTK2,ARHGEF11,EPHA3
-GO:0007569                                        TP53,BRCA2,NPM1
-GO:0048013                                       PTK2,EPHB1,EPHA3
-GO:0007229                                  PTK2,ITGA4,ITGAM,VAV1
-GO:0008104                                        TP53,HSPG2,NPM1
-GO:0043065                       TP53,UBC,DNM2,ARHGEF11,ABL1,VAV1
-GO:0097190                                  UBC,BTK,ARHGEF11,VAV1
+GO:0018108 GO:0018108   120        5   8.89 3.5e-07 1.6e-05
+GO:0006302 GO:0006302    66        3   7.21 1.7e-05 2.0e-04
+GO:0007018 GO:0007018    65        3   7.27 1.6e-05 2.0e-04
+GO:0051056 GO:0051056   122        4   6.94 9.6e-06 2.0e-04
+GO:0007411 GO:0007411   379        6   5.45 2.6e-05 2.2e-04
+GO:0008543 GO:0008543   165        4   5.81 4.1e-05 2.2e-04
+GO:0042127 GO:0042127   153        4   6.08 2.9e-05 2.2e-04
+GO:0043065 GO:0043065   277        5   5.41 4.3e-05 2.2e-04
+GO:0061024 GO:0061024   159        4   5.94 3.5e-05 2.2e-04
+GO:0016477 GO:0016477   172        4   5.66 5.0e-05 2.3e-04
+                                                              name namespace
+GO:0018108                       peptidyl-tyrosine phosphorylation   Process
+GO:0006302                              double-strand break repair   Process
+GO:0007018                              microtubule-based movement   Process
+GO:0051056 regulation of small GTPase mediated signal transduction   Process
+GO:0007411                                           axon guidance   Process
+GO:0008543     fibroblast growth factor receptor signaling pathway   Process
+GO:0042127                        regulation of cell proliferation   Process
+GO:0043065                positive regulation of apoptotic process   Process
+GO:0061024                                   membrane organization   Process
+GO:0016477                                          cell migration   Process
+           distance                              members
+GO:0018108        9           EPHA1,EPHB1,ABL1,BTK,EPHA3
+GO:0006302        9                     TP53,RAD50,BRCA2
+GO:0007018        5                 DYNC1H1,DNAH9,DNAH10
+GO:0051056        8           ARHGEF11,VAV1,FAM13A,ARAP2
+GO:0007411       14 ARHGEF11,AGRN,EPHA1,EPHB1,ABL1,EPHA3
+GO:0008543        8             AKT1,PPP2R1A,TNRC6C,VAV1
+GO:0042127        5               DNMT1,CCDC88A,ABL1,BTK
+GO:0043065        8         TP53,DNM2,ARHGEF11,ABL1,VAV1
+GO:0061024        4               AKT1,DNM2,CCDC88A,TJP1
+GO:0016477        6              CCDC88A,ABL1,PAK7,EPHA3
 </div>
 <div class='input'>nodes_query <- rownames(top)
 nodes.highlight <- rep("red", length(nodes_query))
@@ -886,21 +888,21 @@ subg <- <a href='dDAGinduce.html' target=dDAGinduce>dDAGinduce</a>(g, nodes_quer
 # GOMF enrichment analysis
 eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data=V(net)$name, identity="symbol", genome="Hs", ontology="GOMF")
 </div>
-<strong class='message'>Start at 2015-06-04 12:30:52</strong>
+<strong class='message'>Start at 2015-07-13 13:37:14</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology GOMF and its gene associations in the genome Hs (2015-06-04 12:30:52) ...</strong>
-<strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Hs/org.Hs.eg.RData</strong>
-<strong class='message'>	Load annotation information from http://supfam.org/dnet/data/Hs/org.Hs.egGOMF.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2015-06-04 12:30:52) ...</strong>
-<strong class='message'>	Among 42 symbols of input data, there are 42 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-06-04 12:30:52) ...</strong>
-<strong class='message'>	There are 566 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2015-06-04 12:30:52) ...</strong>
+<strong class='message'>First, load the ontology GOMF and its gene associations in the genome Hs (2015-07-13 13:37:14) ...</strong>
+<strong class='message'>'org.Hs.eg' (from http://supfam.org/dnet/data/org.Hs.eg.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egGOMF' (from http://supfam.org/dnet/data/org.Hs.egGOMF.RData) has been loaded into the working environment</strong>
+<strong class='message'>Then, do mapping based on symbol (2015-07-13 13:37:30) ...</strong>
+<strong class='message'>	Among 37 symbols of input data, there are 37 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-07-13 13:37:30) ...</strong>
+<strong class='message'>	There are 633 terms being used, each restricted within [10,1000] annotations</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2015-07-13 13:37:31) ...</strong>
 <strong class='message'>
-End at 2015-06-04 12:30:52</strong>
-<strong class='message'>Runtime in total is: 0 secs
+End at 2015-07-13 13:37:31</strong>
+<strong class='message'>Runtime in total is: 17 secs
 </strong>
-<a href="javascript:newWin('TCGA-187.png', 'TCGA-187.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-187.png', width="400" /></a>
+<a href="javascript:newWin('TCGA-188.png', 'TCGA-188.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-188.png', width="400" /></a>
 <div class='input'>## write into the file called 'enrichment_GOMF.txt'
 output <- <a href='dEnricherView.html' target=dEnricherView>dEnricherView</a>(eTerm, top_num=NULL, sortBy="adjp", details=TRUE)
 write.table(output, file="enrichment_GOMF.txt", quote=F, row.names=F,col.names=T,sep="\t")
@@ -908,45 +910,45 @@ write.table(output, file="enrichment_GOMF.txt", quote=F, row.names=F,col.names=T
 ## first, load the GOMF ontology
 ig.GOMF <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='ig.GOMF')
 </div>
-<strong class='message'>'ig.GOMF' (from http://supfam.org/dnet/data/Obo/ig.GOMF.RData) has been loaded into the working environment</strong>
+<strong class='message'>'ig.GOMF' (from http://supfam.org/dnet/data/ig.GOMF.RData) has been loaded into the working environment</strong>
 <div class='input'>g <- ig.GOMF
 ## select the top most significant 10 terms
 top <- <a href='dEnricherView.html' target=dEnricherView>dEnricherView</a>(eTerm, top_num=10, details=TRUE)
 top
 </div>
 <div class='output'>                setID nAnno nOverlap zscore  pvalue    adjp
-GO:0004715 GO:0004715    45        3   8.01 7.9e-06 9.5e-05
-GO:0002020 GO:0002020    64        3   6.59 3.2e-05 1.9e-04
-GO:0003777 GO:0003777    73        3   6.12 5.4e-05 2.2e-04
-GO:0016887 GO:0016887   115        3   4.67 3.2e-04 9.5e-04
-GO:0019901 GO:0019901   295        4   3.47 1.5e-03 3.5e-03
-GO:0003682 GO:0003682   334        4   3.15 2.5e-03 5.0e-03
-GO:0019899 GO:0019899   242        3   2.79 4.9e-03 7.4e-03
-GO:0046982 GO:0046982   391        4   2.76 4.9e-03 7.4e-03
-GO:0004842 GO:0004842   257        3   2.66 6.1e-03 8.1e-03
-GO:0042802 GO:0042802   475        4   2.30 1.1e-02 1.3e-02
-                                                             name namespace
-GO:0004715 non-membrane spanning protein tyrosine kinase activity  Function
-GO:0002020                                       protease binding  Function
-GO:0003777                             microtubule motor activity  Function
-GO:0016887                                        ATPase activity  Function
-GO:0019901                                 protein kinase binding  Function
-GO:0003682                                      chromatin binding  Function
-GO:0019899                                         enzyme binding  Function
-GO:0046982                    protein heterodimerization activity  Function
-GO:0004842                      ubiquitin-protein ligase activity  Function
-GO:0042802                              identical protein binding  Function
-           distance                 members
-GO:0004715        8           ABL1,PTK2,BTK
-GO:0002020        5          TP53,BRCA2,UBC
-GO:0003777        9   DNAH9,DYNC1I1,DYNC1H1
-GO:0016887        8     DNAH9,DYNC1H1,ABCA1
-GO:0019901        6    TP53,NPM1,PTK2,EPHA1
-GO:0003682        3   TP53,SIN3A,DNMT1,BAP1
-GO:0019899        4         STAT1,TP53,DNM2
-GO:0046982        5 TP53,ITGAM,NPM1,PPP2R1A
-GO:0004842        7        UBE3C,HUWE1,LTN1
-GO:0042802        4    STAT1,TP53,BTK,NCAM1
+GO:0003777 GO:0003777    68        4   9.27 7.0e-07 0.00001
+GO:0005547 GO:0005547    33        3  10.10 1.3e-06 0.00001
+GO:0016887 GO:0016887   145        3   4.38 4.6e-04 0.00250
+GO:0008017 GO:0008017   174        3   3.89 9.2e-04 0.00290
+GO:0008022 GO:0008022   172        3   3.92 8.8e-04 0.00290
+GO:0004672 GO:0004672   192        3   3.64 1.3e-03 0.00300
+GO:0005102 GO:0005102   321        4   3.59 1.2e-03 0.00300
+GO:0003682 GO:0003682   382        4   3.14 2.5e-03 0.00500
+GO:0005096 GO:0005096   251        3   3.00 3.5e-03 0.00620
+GO:0008134 GO:0008134   266        3   2.87 4.3e-03 0.00690
+                                                       name namespace distance
+GO:0003777                       microtubule motor activity  Function        9
+GO:0005547 phosphatidylinositol-3,4,5-trisphosphate binding  Function        8
+GO:0016887                                  ATPase activity  Function        8
+GO:0008017                              microtubule binding  Function        5
+GO:0008022                       protein C-terminus binding  Function        4
+GO:0004672                          protein kinase activity  Function        6
+GO:0005102                                 receptor binding  Function        4
+GO:0003682                                chromatin binding  Function        4
+GO:0005096                        GTPase activator activity  Function        5
+GO:0008134                     transcription factor binding  Function        4
+                                members
+GO:0003777 DNAH9,DYNC1I1,DYNC1H1,DNAH10
+GO:0005547               AKT1,BTK,ARAP2
+GO:0016887         DNAH9,DYNC1H1,DNAH10
+GO:0008017         DYNC1I1,CCDC88A,DNM2
+GO:0008022              ABL1,TJP1,HSPG2
+GO:0004672              ABL1,AKT1,EPHA1
+GO:0005102          ABL1,IDH1,BTK,ABCA1
+GO:0003682       SIN3A,TP53,DNMT1,KAT6A
+GO:0005096        ARHGEF11,FAM13A,ARAP2
+GO:0008134             TP53,DNMT1,KAT6A
 </div>
 <div class='input'>nodes_query <- rownames(top)
 nodes.highlight <- rep("red", length(nodes_query))
@@ -960,21 +962,21 @@ subg <- <a href='dDAGinduce.html' target=dDAGinduce>dDAGinduce</a>(g, nodes_quer
 #eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data=V(net)$name, identity="symbol", genome="Hs", ontology="MP", ontology.algorithm="elim")
 eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data=V(net)$name, identity="symbol", genome="Hs", ontology="MP", min.overlap=4)
 </div>
-<strong class='message'>Start at 2015-06-04 12:30:56</strong>
+<strong class='message'>Start at 2015-07-13 13:37:41</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MP and its gene associations in the genome Hs (2015-06-04 12:30:56) ...</strong>
-<strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Hs/org.Hs.eg.RData</strong>
-<strong class='message'>	Load annotation information from http://supfam.org/dnet/data/Hs/org.Hs.egMP.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2015-06-04 12:30:56) ...</strong>
-<strong class='message'>	Among 42 symbols of input data, there are 42 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-06-04 12:30:56) ...</strong>
-<strong class='message'>	There are 4377 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2015-06-04 12:30:58) ...</strong>
+<strong class='message'>First, load the ontology MP and its gene associations in the genome Hs (2015-07-13 13:37:41) ...</strong>
+<strong class='message'>'org.Hs.eg' (from http://supfam.org/dnet/data/org.Hs.eg.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egMP' (from http://supfam.org/dnet/data/org.Hs.egMP.RData) has been loaded into the working environment</strong>
+<strong class='message'>Then, do mapping based on symbol (2015-07-13 13:38:03) ...</strong>
+<strong class='message'>	Among 37 symbols of input data, there are 37 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-07-13 13:38:04) ...</strong>
+<strong class='message'>	There are 4731 terms being used, each restricted within [10,1000] annotations</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2015-07-13 13:38:06) ...</strong>
 <strong class='message'>
-End at 2015-06-04 12:30:59</strong>
-<strong class='message'>Runtime in total is: 3 secs
+End at 2015-07-13 13:38:06</strong>
+<strong class='message'>Runtime in total is: 25 secs
 </strong>
-<a href="javascript:newWin('TCGA-205.png', 'TCGA-205.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-205.png', width="400" /></a>
+<a href="javascript:newWin('TCGA-206.png', 'TCGA-206.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-206.png', width="400" /></a>
 <div class='input'>## write into the file called 'enrichment_MP.txt'
 output <- <a href='dEnricherView.html' target=dEnricherView>dEnricherView</a>(eTerm, top_num=NULL, sortBy="adjp", details=TRUE)
 write.table(output, file="enrichment_MP.txt", quote=F, row.names=F,col.names=T,sep="\t")
@@ -982,56 +984,45 @@ write.table(output, file="enrichment_MP.txt", quote=F, row.names=F,col.names=T,s
 ## first, load the MP ontology
 ig.MP <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='ig.MP')
 </div>
-<strong class='message'>'ig.MP' (from http://supfam.org/dnet/data/Obo/ig.MP.RData) has been loaded into the working environment</strong>
+<strong class='message'>'ig.MP' (from http://supfam.org/dnet/data/ig.MP.RData) has been loaded into the working environment</strong>
 <div class='input'>g <- ig.MP
 ## select the top most significant 10 terms
 top <- <a href='dEnricherView.html' target=dEnricherView>dEnricherView</a>(eTerm, top_num=10, details=TRUE)
 top
 </div>
 <div class='output'>                setID nAnno nOverlap zscore  pvalue    adjp
-MP:0002022 MP:0002022   153        6   6.31 5.4e-06 0.00019
-MP:0002026 MP:0002026    82        5   7.49 1.8e-06 0.00019
-MP:0004809 MP:0004809    53        4   7.56 4.1e-06 0.00019
-MP:0005432 MP:0005432    96        5   6.83 4.6e-06 0.00019
-MP:0008215 MP:0008215   144        6   6.55 3.6e-06 0.00019
-MP:0010296 MP:0010296   204        7   6.28 3.3e-06 0.00019
-MP:0011108 MP:0011108   298        8   5.71 6.2e-06 0.00019
-MP:0011704 MP:0011704   100        5   6.67 5.8e-06 0.00019
-MP:0011109 MP:0011109   226        7   5.87 7.0e-06 0.00020
-MP:0000218 MP:0000218   835       13   4.89 9.4e-06 0.00022
-                                                                name
-MP:0002022                              increased lymphoma incidence
-MP:0002026                                                  leukemia
-MP:0004809                  increased hematopoietic stem cell number
-MP:0005432                            abnormal pro-B cell morphology
-MP:0008215                          decreased immature B cell number
-MP:0010296             increased hemolymphoid system tumor incidence
-MP:0011108          partial embryonic lethality during organogenesis
-MP:0011704                        decreased fibroblast proliferation
-MP:0011109 partial lethality throughout fetal growth and development
-MP:0000218                           increased leukocyte cell number
-                     namespace distance
-MP:0002022 Mammalian_phenotype        6
-MP:0002026 Mammalian_phenotype        6
-MP:0004809 Mammalian_phenotype        4
-MP:0005432 Mammalian_phenotype       10
-MP:0008215 Mammalian_phenotype       11
-MP:0010296 Mammalian_phenotype        6
-MP:0011108 Mammalian_phenotype        7
-MP:0011704 Mammalian_phenotype        5
-MP:0011109 Mammalian_phenotype        6
-MP:0000218 Mammalian_phenotype        7
-                                                                          members
-MP:0002022                                        TP53,BRCA2,NPM1,RAD50,BTK,DNMT1
-MP:0002026                                             TP53,NPM1,RAD50,BAP1,DNMT1
-MP:0004809                                                   TP53,NPM1,ABCA1,BAP1
-MP:0005432                                              TP53,RAD50,ABL1,BTK,DNMT1
-MP:0008215                                         TP53,RAD50,ABL1,BTK,HUWE1,VAV1
-MP:0010296                                   TP53,BRCA2,NPM1,RAD50,BTK,BAP1,DNMT1
-MP:0011108                           TP53,HSPG2,BRCA2,HUWE1,ITGA4,PTK2,AMBRA1,UBC
-MP:0011704                                          TP53,BRCA2,NPM1,PTK2,ARHGEF11
-MP:0011109                                  TP53,BRCA2,NPM1,RAD50,ABL1,ABCA1,PTK2
-MP:0000218 TP53,HSPG2,STAT1,BRCA2,NPM1,RAD50,ABL1,BTK,ABCA1,BAP1,ITGA4,ITGAM,VAV1
+MP:0005432 MP:0005432   102        6   9.29 5.7e-08 1.4e-05
+MP:0008215 MP:0008215   117        6   8.60 1.5e-07 1.9e-05
+MP:0000172 MP:0000172   194        7   7.58 3.0e-07 2.5e-05
+MP:0000333 MP:0000333   137        6   7.85 4.4e-07 2.7e-05
+MP:0013664 MP:0013664   150        6   7.44 8.1e-07 4.1e-05
+MP:0005022 MP:0005022   156        6   7.27 1.1e-06 4.4e-05
+MP:0008813 MP:0008813    57        4   8.35 1.7e-06 5.9e-05
+MP:0008208 MP:0008208    61        4   8.04 2.3e-06 7.3e-05
+MP:0000694 MP:0000694   133        5   6.54 6.8e-06 1.5e-04
+MP:0002398 MP:0002398   508        9   5.43 6.7e-06 1.5e-04
+                                                       name           namespace
+MP:0005432                   abnormal pro-B cell morphology Mammalian_phenotype
+MP:0008215                 decreased immature B cell number Mammalian_phenotype
+MP:0000172                 abnormal bone marrow cell number Mammalian_phenotype
+MP:0000333                decreased bone marrow cell number Mammalian_phenotype
+MP:0013664                  abnormal immature B cell number Mammalian_phenotype
+MP:0005022              abnormal immature B cell morphology Mammalian_phenotype
+MP:0008813  decreased common myeloid progenitor cell number Mammalian_phenotype
+MP:0008208                      decreased pro-B cell number Mammalian_phenotype
+MP:0000694                                spleen hypoplasia Mammalian_phenotype
+MP:0002398 abnormal bone marrow cell morphology/development Mammalian_phenotype
+           distance                                          members
+MP:0005432       10                  TP53,KAT6A,RAD50,ABL1,BTK,DNMT1
+MP:0008215       11                   TP53,KAT6A,RAD50,ABL1,BTK,VAV1
+MP:0000172        4             TP53,KAT6A,BRCA2,IDH1,RAD50,ABL1,BTK
+MP:0000333        5                 TP53,KAT6A,BRCA2,IDH1,RAD50,ABL1
+MP:0013664       10                   TP53,KAT6A,RAD50,ABL1,BTK,VAV1
+MP:0005022        8                   TP53,KAT6A,RAD50,ABL1,BTK,VAV1
+MP:0008813        8                            TP53,KAT6A,BRCA2,IDH1
+MP:0008208       11                           KAT6A,RAD50,ABL1,DNMT1
+MP:0000694        7                        TP53,KAT6A,BRCA2,ABL1,BTK
+MP:0002398        3 TP53,KAT6A,BRCA2,IDH1,RAD50,ABL1,BTK,ABCA1,ITGAM
 </div>
 <div class='input'>nodes_query <- rownames(top)
 nodes.highlight <- rep("red", length(nodes_query))
@@ -1045,21 +1036,21 @@ subg <- <a href='dDAGinduce.html' target=dDAGinduce>dDAGinduce</a>(g, nodes_quer
 #eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data=V(net)$name, identity="symbol", genome="Hs", ontology="DO", ontology.algorithm="pc")
 eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data=V(net)$name, identity="symbol", genome="Hs", ontology="DO")
 </div>
-<strong class='message'>Start at 2015-06-04 12:31:06</strong>
+<strong class='message'>Start at 2015-07-13 13:38:20</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology DO and its gene associations in the genome Hs (2015-06-04 12:31:06) ...</strong>
-<strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Hs/org.Hs.eg.RData</strong>
-<strong class='message'>	Load annotation information from http://supfam.org/dnet/data/Hs/org.Hs.egDO.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2015-06-04 12:31:06) ...</strong>
-<strong class='message'>	Among 42 symbols of input data, there are 42 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-06-04 12:31:06) ...</strong>
-<strong class='message'>	There are 913 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2015-06-04 12:31:06) ...</strong>
+<strong class='message'>First, load the ontology DO and its gene associations in the genome Hs (2015-07-13 13:38:20) ...</strong>
+<strong class='message'>'org.Hs.eg' (from http://supfam.org/dnet/data/org.Hs.eg.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egDO' (from http://supfam.org/dnet/data/org.Hs.egDO.RData) has been loaded into the working environment</strong>
+<strong class='message'>Then, do mapping based on symbol (2015-07-13 13:38:42) ...</strong>
+<strong class='message'>	Among 37 symbols of input data, there are 37 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-07-13 13:38:42) ...</strong>
+<strong class='message'>	There are 917 terms being used, each restricted within [10,1000] annotations</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2015-07-13 13:38:42) ...</strong>
 <strong class='message'>
-End at 2015-06-04 12:31:06</strong>
-<strong class='message'>Runtime in total is: 0 secs
+End at 2015-07-13 13:38:42</strong>
+<strong class='message'>Runtime in total is: 22 secs
 </strong>
-<a href="javascript:newWin('TCGA-223.png', 'TCGA-223.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-223.png', width="400" /></a>
+<a href="javascript:newWin('TCGA-224.png', 'TCGA-224.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-224.png', width="400" /></a>
 <div class='input'>## write into the file called 'enrichment_DO.txt'
 output <- <a href='dEnricherView.html' target=dEnricherView>dEnricherView</a>(eTerm, top_num=NULL, sortBy="adjp", details=TRUE)
 write.table(output, file="enrichment_DO.txt", quote=F, row.names=F,col.names=T,sep="\t")
@@ -1067,45 +1058,45 @@ write.table(output, file="enrichment_DO.txt", quote=F, row.names=F,col.names=T,s
 ## first, load the DO ontology
 ig.DO <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='ig.DO')
 </div>
-<strong class='message'>'ig.DO' (from http://supfam.org/dnet/data/Obo/ig.DO.RData) has been loaded into the working environment</strong>
+<strong class='message'>'ig.DO' (from http://supfam.org/dnet/data/ig.DO.RData) has been loaded into the working environment</strong>
 <div class='input'>g <- ig.DO
 ## select the top most significant 10 terms
 top <- <a href='dEnricherView.html' target=dEnricherView>dEnricherView</a>(eTerm, top_num=10, details=TRUE)
 top
 </div>
 <div class='output'>                    setID nAnno nOverlap zscore  pvalue    adjp
-DOID:5683       DOID:5683   221        8   7.41 1.9e-07 2.7e-05
-DOID:0050736 DOID:0050736   344        8   5.55 7.9e-06 2.9e-04
-DOID:1037       DOID:1037   413        9   5.64 4.3e-06 2.9e-04
-DOID:1307       DOID:1307   455        9   5.26 1.0e-05 2.9e-04
-DOID:3111       DOID:3111    36        3   7.30 1.4e-05 2.9e-04
-DOID:3114       DOID:3114    36        3   7.30 1.4e-05 2.9e-04
-DOID:612         DOID:612   199        6   5.69 1.5e-05 2.9e-04
-DOID:4866       DOID:4866    38        3   7.09 1.8e-05 3.1e-04
-DOID:10652     DOID:10652   397        8   5.01 2.5e-05 3.7e-04
-DOID:680         DOID:680   400        8   4.98 2.7e-05 3.7e-04
+DOID:10652     DOID:10652   397        8   5.58 6.4e-06 0.00024
+DOID:3111       DOID:3111    36        3   7.91 7.8e-06 0.00024
+DOID:3114       DOID:3114    36        3   7.91 7.8e-06 0.00024
+DOID:680         DOID:680   400        8   5.55 6.8e-06 0.00024
+DOID:2893       DOID:2893    51        3   6.53 3.2e-05 0.00069
+DOID:4362       DOID:4362    52        3   6.46 3.4e-05 0.00069
+DOID:0060122 DOID:0060122   125        4   5.28 7.7e-05 0.00093
+DOID:1037       DOID:1037   413        7   4.59 7.5e-05 0.00093
+DOID:4159       DOID:4159   125        4   5.28 7.7e-05 0.00093
+DOID:612         DOID:612   199        5   5.07 6.5e-05 0.00093
                                          name        namespace distance
-DOID:5683    hereditary breast ovarian cancer Disease_Ontology        5
-DOID:0050736       autosomal dominant disease Disease_Ontology        4
-DOID:1037              lymphoblastic leukemia Disease_Ontology        7
-DOID:1307                            dementia Disease_Ontology        3
+DOID:10652                Alzheimer's disease Disease_Ontology        6
 DOID:3111                  cystadenocarcinoma Disease_Ontology        6
 DOID:3114           serous cystadenocarcinoma Disease_Ontology        7
-DOID:612     primary immunodeficiency disease Disease_Ontology        3
-DOID:4866            adenoid cystic carcinoma Disease_Ontology        5
-DOID:10652                Alzheimer's disease Disease_Ontology        4
 DOID:680                            tauopathy Disease_Ontology        5
-                                                       members
-DOID:5683           TP53,STAT1,RAD50,ABL1,NPM1,PTK2,BRCA2,BAP1
-DOID:0050736        TP53,STAT1,RAD50,ABL1,NPM1,PTK2,BRCA2,BAP1
-DOID:1037    TP53,ITGAM,STAT1,ITGA4,ABL1,DNMT1,EPHA3,NCAM1,BTK
-DOID:1307    TP53,ABCA1,ITGAM,ABL1,DNMT1,HSPG2,NCAM1,DNM2,AGRN
-DOID:3111                                   TP53,BRCA2,PPP2R1A
-DOID:3114                                   TP53,BRCA2,PPP2R1A
-DOID:612                      TP53,STAT1,ABL1,BTK,VAV1,PPP2R1A
-DOID:4866                                     TP53,DNMT1,NCAM1
-DOID:10652         TP53,ABCA1,ITGAM,ABL1,HSPG2,NCAM1,DNM2,AGRN
-DOID:680           TP53,ABCA1,ITGAM,ABL1,HSPG2,NCAM1,DNM2,AGRN
+DOID:2893                    cervix carcinoma Disease_Ontology        7
+DOID:4362                     cervical cancer Disease_Ontology        6
+DOID:0060122      integumentary system cancer Disease_Ontology        4
+DOID:1037              lymphoblastic leukemia Disease_Ontology        7
+DOID:4159                         skin cancer Disease_Ontology        5
+DOID:612     primary immunodeficiency disease Disease_Ontology        3
+                                                members
+DOID:10652   TP53,ABCA1,AKT1,ITGAM,ABL1,HSPG2,DNM2,AGRN
+DOID:3111                            TP53,BRCA2,PPP2R1A
+DOID:3114                            TP53,BRCA2,PPP2R1A
+DOID:680     TP53,ABCA1,AKT1,ITGAM,ABL1,HSPG2,DNM2,AGRN
+DOID:2893                                TP53,AKT1,DNM2
+DOID:4362                                TP53,AKT1,DNM2
+DOID:0060122                      TP53,AKT1,BRCA2,EPHA1
+DOID:1037          TP53,AKT1,ITGAM,ABL1,DNMT1,EPHA3,BTK
+DOID:4159                         TP53,AKT1,BRCA2,EPHA1
+DOID:612                     TP53,ABL1,BTK,VAV1,PPP2R1A
 </div>
 <div class='input'>nodes_query <- rownames(top)
 nodes.highlight <- rep("red", length(nodes_query))
@@ -1119,451 +1110,380 @@ subg <- <a href='dDAGinduce.html' target=dDAGinduce>dDAGinduce</a>(g, nodes_quer
 ## uisng CP
 eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data=V(net)$name, identity="symbol", genome="Hs", ontology="MsigdbC2CP")
 </div>
-<strong class='message'>Start at 2015-06-04 12:31:10</strong>
+<strong class='message'>Start at 2015-07-13 13:38:50</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MsigdbC2CP and its gene associations in the genome Hs (2015-06-04 12:31:10) ...</strong>
-<strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Hs/org.Hs.eg.RData</strong>
-<strong class='message'>	Load annotation information from http://supfam.org/dnet/data/Msigdb/org.Hs.egMsigdbC2CP.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2015-06-04 12:31:10) ...</strong>
-<strong class='message'>	Among 42 symbols of input data, there are 42 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-06-04 12:31:10) ...</strong>
-<strong class='message'>	There are 236 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2015-06-04 12:31:10) ...</strong>
+<strong class='message'>First, load the ontology MsigdbC2CP and its gene associations in the genome Hs (2015-07-13 13:38:50) ...</strong>
+<strong class='message'>'org.Hs.eg' (from http://supfam.org/dnet/data/org.Hs.eg.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egMsigdbC2CP' (from http://supfam.org/dnet/data/org.Hs.egMsigdbC2CP.RData) has been loaded into the working environment</strong>
+<strong class='message'>Then, do mapping based on symbol (2015-07-13 13:39:07) ...</strong>
+<strong class='message'>	Among 37 symbols of input data, there are 37 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-07-13 13:39:07) ...</strong>
+<strong class='message'>	There are 245 terms being used, each restricted within [10,1000] annotations</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2015-07-13 13:39:07) ...</strong>
 <strong class='message'>
-End at 2015-06-04 12:31:10</strong>
-<strong class='message'>Runtime in total is: 0 secs
+End at 2015-07-13 13:39:07</strong>
+<strong class='message'>Runtime in total is: 17 secs
 </strong>
-<a href="javascript:newWin('TCGA-241.png', 'TCGA-241.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-241.png', width="400" /></a>
+<a href="javascript:newWin('TCGA-242.png', 'TCGA-242.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='TCGA-242.png', width="400" /></a>
 <div class='input'><a href='dEnricherView.html' target=dEnricherView>dEnricherView</a>(eTerm, top_num=10, sortBy="adjp", details=TRUE)
 </div>
-<div class='output'>                                                      setID nAnno nOverlap
-ST_GA12_PATHWAY                             ST_GA12_PATHWAY    23        3
-PID_BARD1PATHWAY                           PID_BARD1PATHWAY    29        3
-PID_CXCR4_PATHWAY                         PID_CXCR4_PATHWAY   102        4
-PID_FCER1PATHWAY                           PID_FCER1PATHWAY    62        3
-PID_P53REGULATIONPATHWAY           PID_P53REGULATIONPATHWAY    59        3
-PID_TELOMERASEPATHWAY                 PID_TELOMERASEPATHWAY    68        3
-PID_MYC_ACTIVPATHWAY                   PID_MYC_ACTIVPATHWAY    79        3
-PID_PDGFRBPATHWAY                         PID_PDGFRBPATHWAY   129        4
-ST_INTEGRIN_SIGNALING_PATHWAY ST_INTEGRIN_SIGNALING_PATHWAY    82        3
-                              zscore  pvalue    adjp
-ST_GA12_PATHWAY                 5.97 5.2e-05 0.00047
-PID_BARD1PATHWAY                5.21 1.4e-04 0.00061
-PID_CXCR4_PATHWAY               3.13 2.4e-03 0.00460
-PID_FCER1PATHWAY                3.17 2.6e-03 0.00460
-PID_P53REGULATIONPATHWAY        3.28 2.1e-03 0.00460
-PID_TELOMERASEPATHWAY           2.95 3.6e-03 0.00540
-PID_MYC_ACTIVPATHWAY            2.62 6.2e-03 0.00700
-PID_PDGFRBPATHWAY               2.55 6.7e-03 0.00700
-ST_INTEGRIN_SIGNALING_PATHWAY   2.54 7.0e-03 0.00700
-                                                                               name
-ST_GA12_PATHWAY                                                  G alpha 12 Pathway
-PID_BARD1PATHWAY                                             BARD1 signaling events
-PID_CXCR4_PATHWAY                                   CXCR4-mediated signaling events
-PID_FCER1PATHWAY                      Fc-epsilon receptor I signaling in mast cells
-PID_P53REGULATIONPATHWAY                                                p53 pathway
-PID_TELOMERASEPATHWAY                                      Regulation of Telomerase
-PID_MYC_ACTIVPATHWAY          Validated targets of C-MYC transcriptional activation
-PID_PDGFRBPATHWAY                                      PDGFR-beta signaling pathway
-ST_INTEGRIN_SIGNALING_PATHWAY                            Integrin Signaling Pathway
-                              namespace distance                 members
-ST_GA12_PATHWAY                      C2       NA           PTK2,BTK,VAV1
-PID_BARD1PATHWAY                     C2       NA         TP53,RAD50,NPM1
-PID_CXCR4_PATHWAY                    C2       NA   PTK2,ITGA4,VAV1,STAT1
-PID_FCER1PATHWAY                     C2       NA           PTK2,BTK,VAV1
-PID_P53REGULATIONPATHWAY             C2       NA         ABL1,TP53,HUWE1
-PID_TELOMERASEPATHWAY                C2       NA        ABL1,RAD50,SIN3A
-PID_MYC_ACTIVPATHWAY                 C2       NA         TP53,NPM1,HUWE1
-PID_PDGFRBPATHWAY                    C2       NA ABL1,DNM2,PPP2R1A,STAT1
-ST_INTEGRIN_SIGNALING_PATHWAY        C2       NA         ABL1,PTK2,ITGA4
+<div class='output'>      setID nAnno nOverlap zscore  pvalue    adjp
+M5193 M5193    45        4   6.64 1.1e-05 9.7e-05
+M105   M105    68        4   5.19 8.3e-05 2.8e-04
+M1315 M1315    36        3   5.53 9.3e-05 2.8e-04
+M3501 M3501    40        3   5.20 1.4e-04 3.2e-04
+M8626 M8626    46        3   4.78 2.4e-04 4.4e-04
+M261   M261    59        3   4.08 6.4e-04 9.6e-04
+M7       M7    62        3   3.95 7.8e-04 1.0e-03
+M3270 M3270    82        3   3.26 2.2e-03 2.5e-03
+M186   M186   129        3   2.26 1.1e-02 1.1e-02
+                                     name namespace
+M5193                      SIG_CHEMOTAXIS        C2
+M105               PID_TELOMERASE_PATHWAY        C2
+M1315 SIG_PIP3_SIGNALING_IN_B_LYMPHOCYTES        C2
+M3501          ST_B_CELL_ANTIGEN_RECEPTOR        C2
+M8626           SIG_BCR_SIGNALING_PATHWAY        C2
+M261           PID_P53_REGULATION_PATHWAY        C2
+M7                      PID_FCER1_PATHWAY        C2
+M3270       ST_INTEGRIN_SIGNALING_PATHWAY        C2
+M186                   PID_PDGFRB_PATHWAY        C2
+                                              distance                members
+M5193                      Genes related to chemotaxis AKT1,BTK,ARHGEF11,PAK7
+M105                          Regulation of Telomerase  RAD50,AKT1,SIN3A,ABL1
+M1315 Genes related to PIP3 signaling in B lymphocytes          AKT1,BTK,VAV1
+M3501                          B Cell Antigen Receptor          AKT1,BTK,VAV1
+M8626             Members of the BCR signaling pathway          AKT1,BTK,VAV1
+M261                                       p53 pathway         AKT1,ABL1,TP53
+M7       Fc-epsilon receptor I signaling in mast cells          AKT1,BTK,VAV1
+M3270                       Integrin Signaling Pathway         AKT1,ABL1,PAK7
+M186                      PDGFR-beta signaling pathway      ABL1,PPP2R1A,DNM2
 </div>
 <div class='input'>## using KEGG
 eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data=V(net)$name, identity="symbol", genome="Hs", ontology="MsigdbC2KEGG")
 </div>
-<strong class='message'>Start at 2015-06-04 12:31:10</strong>
+<strong class='message'>Start at 2015-07-13 13:39:07</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MsigdbC2KEGG and its gene associations in the genome Hs (2015-06-04 12:31:10) ...</strong>
-<strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Hs/org.Hs.eg.RData</strong>
-<strong class='message'>	Load annotation information from http://supfam.org/dnet/data/Msigdb/org.Hs.egMsigdbC2KEGG.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2015-06-04 12:31:10) ...</strong>
-<strong class='message'>	Among 42 symbols of input data, there are 42 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-06-04 12:31:10) ...</strong>
+<strong class='message'>First, load the ontology MsigdbC2KEGG and its gene associations in the genome Hs (2015-07-13 13:39:07) ...</strong>
+<strong class='message'>'org.Hs.eg' (from http://supfam.org/dnet/data/org.Hs.eg.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egMsigdbC2KEGG' (from http://supfam.org/dnet/data/org.Hs.egMsigdbC2KEGG.RData) has been loaded into the working environment</strong>
+<strong class='message'>Then, do mapping based on symbol (2015-07-13 13:39:26) ...</strong>
+<strong class='message'>	Among 37 symbols of input data, there are 37 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-07-13 13:39:26) ...</strong>
 <strong class='message'>	There are 186 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2015-06-04 12:31:10) ...</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2015-07-13 13:39:26) ...</strong>
 <strong class='message'>
-End at 2015-06-04 12:31:10</strong>
-<strong class='message'>Runtime in total is: 0 secs
+End at 2015-07-13 13:39:26</strong>
+<strong class='message'>Runtime in total is: 19 secs
 </strong>
 <div class='input'><a href='dEnricherView.html' target=dEnricherView>dEnricherView</a>(eTerm, top_num=10, sortBy="adjp", details=TRUE)
 </div>
-<div class='output'>                                                                              setID
-KEGG_ECM_RECEPTOR_INTERACTION                         KEGG_ECM_RECEPTOR_INTERACTION
-KEGG_AXON_GUIDANCE                                               KEGG_AXON_GUIDANCE
-KEGG_CELL_ADHESION_MOLECULES_CAMS                 KEGG_CELL_ADHESION_MOLECULES_CAMS
-KEGG_FOCAL_ADHESION                                             KEGG_FOCAL_ADHESION
-KEGG_LEISHMANIA_INFECTION                                 KEGG_LEISHMANIA_INFECTION
-KEGG_LEUKOCYTE_TRANSENDOTHELIAL_MIGRATION KEGG_LEUKOCYTE_TRANSENDOTHELIAL_MIGRATION
-KEGG_PANCREATIC_CANCER                                       KEGG_PANCREATIC_CANCER
-KEGG_REGULATION_OF_ACTIN_CYTOSKELETON         KEGG_REGULATION_OF_ACTIN_CYTOSKELETON
-KEGG_PATHWAYS_IN_CANCER                                     KEGG_PATHWAYS_IN_CANCER
-KEGG_CHEMOKINE_SIGNALING_PATHWAY                   KEGG_CHEMOKINE_SIGNALING_PATHWAY
-                                          nAnno nOverlap zscore  pvalue    adjp
-KEGG_ECM_RECEPTOR_INTERACTION                84        5   6.22 1.1e-05 0.00012
-KEGG_AXON_GUIDANCE                          129        5   4.72 1.3e-04 0.00070
-KEGG_CELL_ADHESION_MOLECULES_CAMS           132        4   3.53 1.3e-03 0.00200
-KEGG_FOCAL_ADHESION                         199        5   3.42 1.3e-03 0.00200
-KEGG_LEISHMANIA_INFECTION                    72        3   3.82 9.9e-04 0.00200
-KEGG_LEUKOCYTE_TRANSENDOTHELIAL_MIGRATION   115        4   3.91 6.8e-04 0.00200
-KEGG_PANCREATIC_CANCER                       70        3   3.89 8.9e-04 0.00200
-KEGG_REGULATION_OF_ACTIN_CYTOSKELETON       213        4   2.35 9.9e-03 0.01400
-KEGG_PATHWAYS_IN_CANCER                     325        5   2.14 1.4e-02 0.01800
-KEGG_CHEMOKINE_SIGNALING_PATHWAY            190        3   1.69 3.0e-02 0.03300
-                                                                          name
-KEGG_ECM_RECEPTOR_INTERACTION                         ECM-receptor interaction
-KEGG_AXON_GUIDANCE                                               Axon guidance
-KEGG_CELL_ADHESION_MOLECULES_CAMS               Cell adhesion molecules (CAMs)
-KEGG_FOCAL_ADHESION                                             Focal adhesion
-KEGG_LEISHMANIA_INFECTION                                 Leishmania infection
-KEGG_LEUKOCYTE_TRANSENDOTHELIAL_MIGRATION Leukocyte transendothelial migration
-KEGG_PANCREATIC_CANCER                                       Pancreatic cancer
-KEGG_REGULATION_OF_ACTIN_CYTOSKELETON         Regulation of actin cytoskeleton
-KEGG_PATHWAYS_IN_CANCER                                     Pathways in cancer
-KEGG_CHEMOKINE_SIGNALING_PATHWAY                   Chemokine signaling pathway
-                                          namespace distance
-KEGG_ECM_RECEPTOR_INTERACTION                    C2       NA
-KEGG_AXON_GUIDANCE                               C2       NA
-KEGG_CELL_ADHESION_MOLECULES_CAMS                C2       NA
-KEGG_FOCAL_ADHESION                              C2       NA
-KEGG_LEISHMANIA_INFECTION                        C2       NA
-KEGG_LEUKOCYTE_TRANSENDOTHELIAL_MIGRATION        C2       NA
-KEGG_PANCREATIC_CANCER                           C2       NA
-KEGG_REGULATION_OF_ACTIN_CYTOSKELETON            C2       NA
-KEGG_PATHWAYS_IN_CANCER                          C2       NA
-KEGG_CHEMOKINE_SIGNALING_PATHWAY                 C2       NA
-                                                              members
-KEGG_ECM_RECEPTOR_INTERACTION             ITGA4,COL6A2,HSPG2,TNR,AGRN
-KEGG_AXON_GUIDANCE                        ABL1,EPHA1,EPHA3,EPHB1,PTK2
-KEGG_CELL_ADHESION_MOLECULES_CAMS             ITGA4,ITGAM,NCAM1,NCAM2
-KEGG_FOCAL_ADHESION                        ITGA4,PTK2,VAV1,COL6A2,TNR
-KEGG_LEISHMANIA_INFECTION                           ITGA4,ITGAM,STAT1
-KEGG_LEUKOCYTE_TRANSENDOTHELIAL_MIGRATION       ITGA4,PTK2,VAV1,ITGAM
-KEGG_PANCREATIC_CANCER                               TP53,STAT1,BRCA2
-KEGG_REGULATION_OF_ACTIN_CYTOSKELETON           ITGA4,PTK2,VAV1,ITGAM
-KEGG_PATHWAYS_IN_CANCER                    TP53,ABL1,PTK2,STAT1,BRCA2
-KEGG_CHEMOKINE_SIGNALING_PATHWAY                      PTK2,VAV1,STAT1
+<div class='output'>        setID nAnno nOverlap zscore  pvalue    adjp
+M5539   M5539   129        5   5.16 5.8e-05 0.00088
+M11816 M11816    79        3   3.92 8.5e-04 0.00250
+M321     M321    73        3   4.13 6.3e-04 0.00250
+M5436   M5436    75        3   4.06 7.0e-04 0.00250
+M9726   M9726    70        3   4.24 5.3e-04 0.00250
+M12467 M12467    87        3   3.68 1.2e-03 0.00300
+M16121 M16121    96        3   3.43 1.8e-03 0.00380
+M9904   M9904   108        3   3.15 2.7e-03 0.00510
+M16763 M16763   126        3   2.80 4.7e-03 0.00710
+M7963   M7963   125        3   2.82 4.6e-03 0.00710
+                                         name namespace
+M5539                      KEGG_AXON_GUIDANCE        C2
+M11816   KEGG_FC_EPSILON_RI_SIGNALING_PATHWAY        C2
+M321            KEGG_CHRONIC_MYELOID_LEUKEMIA        C2
+M5436  KEGG_B_CELL_RECEPTOR_SIGNALING_PATHWAY        C2
+M9726                  KEGG_PANCREATIC_CANCER        C2
+M12467            KEGG_ERBB_SIGNALING_PATHWAY        C2
+M16121  KEGG_FC_GAMMA_R_MEDIATED_PHAGOCYTOSIS        C2
+M9904  KEGG_T_CELL_RECEPTOR_SIGNALING_PATHWAY        C2
+M16763    KEGG_NEUROTROPHIN_SIGNALING_PATHWAY        C2
+M7963                         KEGG_CELL_CYCLE        C2
+                                distance                     members
+M5539                      Axon guidance ABL1,PAK7,EPHA1,EPHA3,EPHB1
+M11816   Fc epsilon RI signaling pathway               AKT1,BTK,VAV1
+M321            Chronic myeloid leukemia              AKT1,TP53,ABL1
+M5436  B cell receptor signaling pathway               AKT1,BTK,VAV1
+M9726                  Pancreatic cancer             AKT1,TP53,BRCA2
+M12467            ErbB signaling pathway              AKT1,ABL1,PAK7
+M16121  Fc gamma R-mediated phagocytosis              AKT1,VAV1,DNM2
+M9904  T cell receptor signaling pathway              AKT1,VAV1,PAK7
+M16763    Neurotrophin signaling pathway              AKT1,TP53,ABL1
+M7963                         Cell cycle             TP53,ABL1,SMC1B
 </div>
 <div class='input'>## uisng REACTOME
 eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data=V(net)$name, identity="symbol", genome="Hs", ontology="MsigdbC2REACTOME")
 </div>
-<strong class='message'>Start at 2015-06-04 12:31:10</strong>
+<strong class='message'>Start at 2015-07-13 13:39:26</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MsigdbC2REACTOME and its gene associations in the genome Hs (2015-06-04 12:31:10) ...</strong>
-<strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Hs/org.Hs.eg.RData</strong>
-<strong class='message'>	Load annotation information from http://supfam.org/dnet/data/Msigdb/org.Hs.egMsigdbC2REACTOME.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2015-06-04 12:31:10) ...</strong>
-<strong class='message'>	Among 42 symbols of input data, there are 42 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-06-04 12:31:10) ...</strong>
+<strong class='message'>First, load the ontology MsigdbC2REACTOME and its gene associations in the genome Hs (2015-07-13 13:39:26) ...</strong>
+<strong class='message'>'org.Hs.eg' (from http://supfam.org/dnet/data/org.Hs.eg.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egMsigdbC2REACTOME' (from http://supfam.org/dnet/data/org.Hs.egMsigdbC2REACTOME.RData) has been loaded into the working environment</strong>
+<strong class='message'>Then, do mapping based on symbol (2015-07-13 13:39:46) ...</strong>
+<strong class='message'>	Among 37 symbols of input data, there are 37 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-07-13 13:39:46) ...</strong>
 <strong class='message'>	There are 662 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2015-06-04 12:31:10) ...</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2015-07-13 13:39:46) ...</strong>
 <strong class='message'>
-End at 2015-06-04 12:31:10</strong>
-<strong class='message'>Runtime in total is: 0 secs
+End at 2015-07-13 13:39:46</strong>
+<strong class='message'>Runtime in total is: 20 secs
 </strong>
 <div class='input'><a href='dEnricherView.html' target=dEnricherView>dEnricherView</a>(eTerm, top_num=10, sortBy="adjp", details=TRUE)
 </div>
-<div class='output'>                                                                                        setID
-REACTOME_AXON_GUIDANCE                                                 REACTOME_AXON_GUIDANCE
-REACTOME_NCAM_SIGNALING_FOR_NEURITE_OUT_GROWTH REACTOME_NCAM_SIGNALING_FOR_NEURITE_OUT_GROWTH
-REACTOME_NCAM1_INTERACTIONS                                       REACTOME_NCAM1_INTERACTIONS
-REACTOME_DEVELOPMENTAL_BIOLOGY                                 REACTOME_DEVELOPMENTAL_BIOLOGY
-REACTOME_ADAPTIVE_IMMUNE_SYSTEM                               REACTOME_ADAPTIVE_IMMUNE_SYSTEM
-REACTOME_HEMOSTASIS                                                       REACTOME_HEMOSTASIS
-REACTOME_MHC_CLASS_II_ANTIGEN_PRESENTATION         REACTOME_MHC_CLASS_II_ANTIGEN_PRESENTATION
-REACTOME_IMMUNE_SYSTEM                                                 REACTOME_IMMUNE_SYSTEM
-REACTOME_SIGNALING_BY_RHO_GTPASES                           REACTOME_SIGNALING_BY_RHO_GTPASES
-REACTOME_TOLL_RECEPTOR_CASCADES                               REACTOME_TOLL_RECEPTOR_CASCADES
-                                               nAnno nOverlap zscore  pvalue
-REACTOME_AXON_GUIDANCE                           242        8   6.88 4.7e-07
-REACTOME_NCAM_SIGNALING_FOR_NEURITE_OUT_GROWTH    64        5   8.96 2.5e-07
-REACTOME_NCAM1_INTERACTIONS                       39        4   9.29 5.7e-07
-REACTOME_DEVELOPMENTAL_BIOLOGY                   387        8   5.00 2.3e-05
-REACTOME_ADAPTIVE_IMMUNE_SYSTEM                  523        8   3.94 2.5e-04
-REACTOME_HEMOSTASIS                              458        7   3.66 5.5e-04
-REACTOME_MHC_CLASS_II_ANTIGEN_PRESENTATION        91        3   4.15 6.1e-04
-REACTOME_IMMUNE_SYSTEM                           910       10   3.27 9.0e-04
-REACTOME_SIGNALING_BY_RHO_GTPASES                112        3   3.61 1.3e-03
-REACTOME_TOLL_RECEPTOR_CASCADES                  117        3   3.51 1.6e-03
-                                                  adjp
-REACTOME_AXON_GUIDANCE                         3.4e-06
-REACTOME_NCAM_SIGNALING_FOR_NEURITE_OUT_GROWTH 3.4e-06
-REACTOME_NCAM1_INTERACTIONS                    3.4e-06
-REACTOME_DEVELOPMENTAL_BIOLOGY                 1.0e-04
-REACTOME_ADAPTIVE_IMMUNE_SYSTEM                8.9e-04
-REACTOME_HEMOSTASIS                            1.6e-03
-REACTOME_MHC_CLASS_II_ANTIGEN_PRESENTATION     1.6e-03
-REACTOME_IMMUNE_SYSTEM                         2.0e-03
-REACTOME_SIGNALING_BY_RHO_GTPASES              2.6e-03
-REACTOME_TOLL_RECEPTOR_CASCADES                2.8e-03
-                                                                                                  name
-REACTOME_AXON_GUIDANCE                                                 Genes involved in Axon guidance
-REACTOME_NCAM_SIGNALING_FOR_NEURITE_OUT_GROWTH Genes involved in NCAM signaling for neurite out-growth
-REACTOME_NCAM1_INTERACTIONS                                       Genes involved in NCAM1 interactions
-REACTOME_DEVELOPMENTAL_BIOLOGY                                 Genes involved in Developmental Biology
-REACTOME_ADAPTIVE_IMMUNE_SYSTEM                               Genes involved in Adaptive Immune System
-REACTOME_HEMOSTASIS                                                       Genes involved in Hemostasis
-REACTOME_MHC_CLASS_II_ANTIGEN_PRESENTATION         Genes involved in MHC class II antigen presentation
-REACTOME_IMMUNE_SYSTEM                                                 Genes involved in Immune System
-REACTOME_SIGNALING_BY_RHO_GTPASES                           Genes involved in Signaling by Rho GTPases
-REACTOME_TOLL_RECEPTOR_CASCADES                               Genes involved in Toll Receptor Cascades
-                                               namespace distance
-REACTOME_AXON_GUIDANCE                                C2       NA
-REACTOME_NCAM_SIGNALING_FOR_NEURITE_OUT_GROWTH        C2       NA
-REACTOME_NCAM1_INTERACTIONS                           C2       NA
-REACTOME_DEVELOPMENTAL_BIOLOGY                        C2       NA
-REACTOME_ADAPTIVE_IMMUNE_SYSTEM                       C2       NA
-REACTOME_HEMOSTASIS                                   C2       NA
-REACTOME_MHC_CLASS_II_ANTIGEN_PRESENTATION            C2       NA
-REACTOME_IMMUNE_SYSTEM                                C2       NA
-REACTOME_SIGNALING_BY_RHO_GTPASES                     C2       NA
-REACTOME_TOLL_RECEPTOR_CASCADES                       C2       NA
-                                                                                                     members
-REACTOME_AXON_GUIDANCE                                     AGRN,DNM2,PTK2,ABL1,COL6A2,NCAM1,CACNA1I,ARHGEF11
-REACTOME_NCAM_SIGNALING_FOR_NEURITE_OUT_GROWTH                                AGRN,PTK2,COL6A2,NCAM1,CACNA1I
-REACTOME_NCAM1_INTERACTIONS                                                        AGRN,COL6A2,NCAM1,CACNA1I
-REACTOME_DEVELOPMENTAL_BIOLOGY                             AGRN,DNM2,PTK2,ABL1,COL6A2,NCAM1,CACNA1I,ARHGEF11
-REACTOME_ADAPTIVE_IMMUNE_SYSTEM                            BTK,PPP2R1A,DYNC1H1,DYNC1I1,DNM2,VAV1,UBE3C,HUWE1
-REACTOME_HEMOSTASIS                                                  PPP2R1A,TP53,VAV1,PTK2,ABL1,ITGAM,SIN3A
-REACTOME_MHC_CLASS_II_ANTIGEN_PRESENTATION                                              DYNC1H1,DYNC1I1,DNM2
-REACTOME_IMMUNE_SYSTEM                         BTK,PPP2R1A,DYNC1H1,DYNC1I1,DNM2,VAV1,UBE3C,HUWE1,STAT1,NCAM1
-REACTOME_SIGNALING_BY_RHO_GTPASES                                                        VAV1,ARHGEF11,ARAP2
-REACTOME_TOLL_RECEPTOR_CASCADES                                                             BTK,PPP2R1A,DNM2
+<div class='output'>        setID nAnno nOverlap zscore  pvalue   adjp
+M17386 M17386    62        3   5.52 9.9e-05 0.0010
+M501     M501   112        4   5.32 7.1e-05 0.0010
+M3574   M3574   214        5   4.53 1.6e-04 0.0011
+M8395   M8395   458        7   3.93 2.9e-04 0.0014
+M8821   M8821   243        5   4.14 3.3e-04 0.0014
+M705     M705    91        3   4.37 4.4e-04 0.0015
+M1058   M1058   524        7   3.51 7.4e-04 0.0019
+M509     M509   388        6   3.66 6.4e-04 0.0019
+M529     M529   112        3   3.82 9.7e-04 0.0023
+M7494   M7494   117        3   3.71 1.1e-03 0.0024
+                                             name namespace
+M17386  REACTOME_COSTIMULATION_BY_THE_CD28_FAMILY        C2
+M501            REACTOME_SIGNALING_BY_RHO_GTPASES        C2
+M3574                  REACTOME_SIGNALLING_BY_NGF        C2
+M8395                         REACTOME_HEMOSTASIS        C2
+M8821                      REACTOME_AXON_GUIDANCE        C2
+M705   REACTOME_MHC_CLASS_II_ANTIGEN_PRESENTATION        C2
+M1058             REACTOME_ADAPTIVE_IMMUNE_SYSTEM        C2
+M509               REACTOME_DEVELOPMENTAL_BIOLOGY        C2
+M529                             REACTOME_MEIOSIS        C2
+M7494             REACTOME_TOLL_RECEPTOR_CASCADES        C2
+                                                  distance
+M17386  Genes involved in Costimulation by the CD28 family
+M501            Genes involved in Signaling by Rho GTPases
+M3574                  Genes involved in Signalling by NGF
+M8395                         Genes involved in Hemostasis
+M8821                      Genes involved in Axon guidance
+M705   Genes involved in MHC class II antigen presentation
+M1058             Genes involved in Adaptive Immune System
+M509               Genes involved in Developmental Biology
+M529                             Genes involved in Meiosis
+M7494             Genes involved in Toll Receptor Cascades
+                                          members
+M17386                          PPP2R1A,AKT1,VAV1
+M501                   VAV1,ARHGEF11,FAM13A,ARAP2
+M3574             DNM2,PPP2R1A,AKT1,VAV1,ARHGEF11
+M8395     PPP2R1A,TP53,AKT1,VAV1,ITGAM,SIN3A,ABL1
+M8821                DNM2,AGRN,ARHGEF11,ABL1,PAK7
+M705                         DNM2,DYNC1H1,DYNC1I1
+M1058  DNM2,PPP2R1A,BTK,AKT1,DYNC1H1,DYNC1I1,VAV1
+M509            DNM2,AKT1,AGRN,ARHGEF11,ABL1,PAK7
+M529                            BRCA2,RAD50,SMC1B
+M7494                            DNM2,PPP2R1A,BTK
 </div>
 <div class='input'>## uisng BIOCARTA
 eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data=V(net)$name, identity="symbol", genome="Hs", ontology="MsigdbC2BIOCARTA", min.overlap=2)
 </div>
-<strong class='message'>Start at 2015-06-04 12:31:10</strong>
+<strong class='message'>Start at 2015-07-13 13:39:46</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MsigdbC2BIOCARTA and its gene associations in the genome Hs (2015-06-04 12:31:10) ...</strong>
-<strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Hs/org.Hs.eg.RData</strong>
-<strong class='message'>	Load annotation information from http://supfam.org/dnet/data/Msigdb/org.Hs.egMsigdbC2BIOCARTA.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2015-06-04 12:31:11) ...</strong>
-<strong class='message'>	Among 42 symbols of input data, there are 42 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-06-04 12:31:11) ...</strong>
+<strong class='message'>First, load the ontology MsigdbC2BIOCARTA and its gene associations in the genome Hs (2015-07-13 13:39:46) ...</strong>
+<strong class='message'>'org.Hs.eg' (from http://supfam.org/dnet/data/org.Hs.eg.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egMsigdbC2BIOCARTA' (from http://supfam.org/dnet/data/org.Hs.egMsigdbC2BIOCARTA.RData) has been loaded into the working environment</strong>
+<strong class='message'>Then, do mapping based on symbol (2015-07-13 13:40:03) ...</strong>
+<strong class='message'>	Among 37 symbols of input data, there are 37 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-07-13 13:40:03) ...</strong>
 <strong class='message'>	There are 214 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2015-06-04 12:31:11) ...</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2015-07-13 13:40:03) ...</strong>
 <strong class='message'>
-End at 2015-06-04 12:31:11</strong>
-<strong class='message'>Runtime in total is: 1 secs
+End at 2015-07-13 13:40:03</strong>
+<strong class='message'>Runtime in total is: 17 secs
 </strong>
 <div class='input'><a href='dEnricherView.html' target=dEnricherView>dEnricherView</a>(eTerm, top_num=10, sortBy="adjp", details=TRUE)
 </div>
-<div class='output'>                                              setID nAnno nOverlap zscore
-BIOCARTA_ATM_PATHWAY           BIOCARTA_ATM_PATHWAY    20        3   5.96
-BIOCARTA_ATRBRCA_PATHWAY   BIOCARTA_ATRBRCA_PATHWAY    21        3   5.79
-BIOCARTA_CHEMICAL_PATHWAY BIOCARTA_CHEMICAL_PATHWAY    22        3   5.64
-BIOCARTA_MONOCYTE_PATHWAY BIOCARTA_MONOCYTE_PATHWAY    11        2   5.41
-BIOCARTA_ARF_PATHWAY           BIOCARTA_ARF_PATHWAY    17        2   4.21
-BIOCARTA_G1_PATHWAY             BIOCARTA_G1_PATHWAY    28        2   3.07
-BIOCARTA_BCR_PATHWAY           BIOCARTA_BCR_PATHWAY    35        2   2.63
-BIOCARTA_FCER1_PATHWAY       BIOCARTA_FCER1_PATHWAY    39        2   2.42
-                           pvalue    adjp
-BIOCARTA_ATM_PATHWAY      4.3e-05 0.00017
-BIOCARTA_ATRBRCA_PATHWAY  5.2e-05 0.00017
-BIOCARTA_CHEMICAL_PATHWAY 6.3e-05 0.00017
-BIOCARTA_MONOCYTE_PATHWAY 1.7e-04 0.00035
-BIOCARTA_ARF_PATHWAY      6.9e-04 0.00110
-BIOCARTA_G1_PATHWAY       3.1e-03 0.00410
-BIOCARTA_BCR_PATHWAY      5.9e-03 0.00670
-BIOCARTA_FCER1_PATHWAY    8.0e-03 0.00800
-                                                                           name
-BIOCARTA_ATM_PATHWAY                                      ATM Signaling Pathway
-BIOCARTA_ATRBRCA_PATHWAY  Role of BRCA1, BRCA2 and ATR in Cancer Susceptibility
-BIOCARTA_CHEMICAL_PATHWAY         Apoptotic Signaling in Response to DNA Damage
-BIOCARTA_MONOCYTE_PATHWAY                    Monocyte and its Surface Molecules
-BIOCARTA_ARF_PATHWAY         Tumor Suppressor Arf Inhibits Ribosomal Biogenesis
-BIOCARTA_G1_PATHWAY                                Cell Cycle: G1/S Check Point
-BIOCARTA_BCR_PATHWAY                                      BCR Signaling Pathway
-BIOCARTA_FCER1_PATHWAY            Fc Epsilon Receptor I Signaling in Mast Cells
-                          namespace distance          members
-BIOCARTA_ATM_PATHWAY             C2       NA  ABL1,TP53,RAD50
-BIOCARTA_ATRBRCA_PATHWAY         C2       NA TP53,RAD50,BRCA2
-BIOCARTA_CHEMICAL_PATHWAY        C2       NA  PTK2,TP53,STAT1
-BIOCARTA_MONOCYTE_PATHWAY        C2       NA      ITGAM,ITGA4
-BIOCARTA_ARF_PATHWAY             C2       NA        ABL1,TP53
-BIOCARTA_G1_PATHWAY              C2       NA        ABL1,TP53
-BIOCARTA_BCR_PATHWAY             C2       NA         BTK,VAV1
-BIOCARTA_FCER1_PATHWAY           C2       NA         BTK,VAV1
+<div class='output'>        setID nAnno nOverlap zscore  pvalue    adjp                        name
+M10628 M10628    20        3   5.95 4.3e-05 0.00029        BIOCARTA_ATM_PATHWAY
+M9703   M9703    21        3   5.79 5.2e-05 0.00029    BIOCARTA_ATRBRCA_PATHWAY
+M10401 M10401    18        2   4.06 8.2e-04 0.00230        BIOCARTA_TEL_PATHWAY
+M11358 M11358    17        2   4.21 6.9e-04 0.00230        BIOCARTA_ARF_PATHWAY
+M3873   M3873    22        2   3.59 1.5e-03 0.00270   BIOCARTA_CHEMICAL_PATHWAY
+M5202   M5202    23        2   3.49 1.7e-03 0.00270 BIOCARTA_P53HYPOXIA_PATHWAY
+M8809   M8809    23        2   3.49 1.7e-03 0.00270     BIOCARTA_PTDINS_PATHWAY
+M648     M648    28        2   3.07 3.1e-03 0.00420         BIOCARTA_G1_PATHWAY
+M6220   M6220    36        2   2.57 6.4e-03 0.00700        BIOCARTA_AGR_PATHWAY
+M9494   M9494    35        2   2.62 5.9e-03 0.00700        BIOCARTA_BCR_PATHWAY
+       namespace                                               distance
+M10628        C2                                  ATM Signaling Pathway
+M9703         C2  Role of BRCA1, BRCA2 and ATR in Cancer Susceptibility
+M10401        C2 Telomeres, Telomerase, Cellular Aging, and Immortality
+M11358        C2     Tumor Suppressor Arf Inhibits Ribosomal Biogenesis
+M3873         C2          Apoptotic Signaling in Response to DNA Damage
+M5202         C2           Hypoxia and p53 in the Cardiovascular system
+M8809         C2        Phosphoinositides and their downstream targets.
+M648          C2                           Cell Cycle: G1/S Check Point
+M6220         C2                  Agrin in Postsynaptic Differentiation
+M9494         C2                                  BCR Signaling Pathway
+                members
+M10628  TP53,ABL1,RAD50
+M9703  TP53,RAD50,BRCA2
+M10401        AKT1,TP53
+M11358        TP53,ABL1
+M3873         AKT1,TP53
+M5202         AKT1,TP53
+M8809          AKT1,BTK
+M648          TP53,ABL1
+M6220         UTRN,PAK7
+M9494          VAV1,BTK
 </div>
 <div class='input'>
 # SCOP superfamily domain enrichment analysis
 eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data=V(net)$name, identity="symbol", genome="Hs", ontology="SF")
 </div>
-<strong class='message'>Start at 2015-06-04 12:31:11</strong>
+<strong class='message'>Start at 2015-07-13 13:40:03</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology SF and its gene associations in the genome Hs (2015-06-04 12:31:11) ...</strong>
-<strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Hs/org.Hs.eg.RData</strong>
-<strong class='message'>	Load annotation information from http://supfam.org/dnet/data/Hs/org.Hs.egSF.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2015-06-04 12:31:11) ...</strong>
-<strong class='message'>	Among 42 symbols of input data, there are 42 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-06-04 12:31:11) ...</strong>
-<strong class='message'>	There are 363 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2015-06-04 12:31:11) ...</strong>
+<strong class='message'>First, load the ontology SF and its gene associations in the genome Hs (2015-07-13 13:40:03) ...</strong>
+<strong class='message'>'org.Hs.eg' (from http://supfam.org/dnet/data/org.Hs.eg.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egSF' (from http://supfam.org/dnet/data/org.Hs.egSF.RData) has been loaded into the working environment</strong>
+<strong class='message'>Then, do mapping based on symbol (2015-07-13 13:40:13) ...</strong>
+<strong class='message'>	Among 37 symbols of input data, there are 37 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-07-13 13:40:13) ...</strong>
+<strong class='message'>	There are 328 terms being used, each restricted within [10,1000] annotations</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2015-07-13 13:40:13) ...</strong>
 <strong class='message'>
-End at 2015-06-04 12:31:11</strong>
-<strong class='message'>Runtime in total is: 0 secs
+End at 2015-07-13 13:40:13</strong>
+<strong class='message'>Runtime in total is: 10 secs
 </strong>
 <div class='input'><a href='dEnricherView.html' target=dEnricherView>dEnricherView</a>(eTerm, top_num=10, sortBy="adjp", details=TRUE)
 </div>
 <div class='output'>      setID nAnno nOverlap zscore  pvalue    adjp
-49265 49265   567        6   6.95 2.1e-06 2.1e-05
-47769 47769   135        4   6.22 2.3e-05 7.8e-05
-55550 55550   121        4   6.35 2.0e-05 7.8e-05
-49785 49785    84        3   5.79 7.8e-05 2.0e-04
-50729 50729   503        6   4.25 2.3e-04 4.7e-04
-57184 57184   248        3   4.24 5.7e-04 9.4e-04
-56112 56112   533        6   3.61 8.2e-04 1.2e-03
-50044 50044   284        3   2.98 3.7e-03 4.6e-03
-49899 49899   326        3   2.89 4.3e-03 4.7e-03
-48371 48371   413        3   2.00 1.8e-02 1.8e-02
-                                        name namespace distance
-49265                   Fibronectin type III        sf    b.1.2
-47769                     SAM/Pointed domain        sf   a.60.1
-55550                             SH2 domain        sf   d.93.1
-49785          Galactose-binding domain-like        sf   b.18.1
-50729                         PH domain-like        sf   b.55.1
-57184          Growth factor receptor domain        sf    g.3.9
-56112          Protein kinase-like (PK-like)        sf  d.144.1
-50044                             SH3-domain        sf   b.34.2
-49899 Concanavalin A-like lectins/glucanases        sf   b.29.1
-48371                             ARM repeat        sf  a.118.1
-                                members
-49265 EPHA1,EPHA3,EPHB1,NCAM1,NCAM2,TNR
-47769           EPHA1,EPHA3,EPHB1,ARAP2
-55550               VAV1,STAT1,ABL1,BTK
-49785                 EPHA1,EPHA3,EPHB1
-50729 PTK2,VAV1,ARAP2,ARHGEF11,BTK,DNM2
-57184                 EPHA1,EPHA3,EPHB1
-56112   PTK2,EPHA1,EPHA3,EPHB1,ABL1,BTK
-50044                     VAV1,ABL1,BTK
-49899                COL19A1,HSPG2,AGRN
-48371                HUWE1,PPP2R1A,LTN1
+47769 47769   115        4   6.88 9.9e-06 8.9e-05
+49785 49785    75        3   6.45 3.8e-05 1.2e-04
+56112 56112   526        7   4.99 4.0e-05 1.2e-04
+50729 50729   420        6   4.85 7.4e-05 1.7e-04
+50044 50044   212        4   4.75 1.8e-04 2.4e-04
+52540 52540   844        8   4.13 1.9e-04 2.4e-04
+55550 55550   112        3   5.11 1.8e-04 2.4e-04
+57184 57184   127        3   4.73 2.9e-04 3.3e-04
+49265 49265   200        3   3.52 1.6e-03 1.6e-03
+                                                      name namespace distance
+47769                                   SAM/Pointed domain        sf   a.60.1
+49785                        Galactose-binding domain-like        sf   b.18.1
+56112                        Protein kinase-like (PK-like)        sf  d.144.1
+50729                                       PH domain-like        sf   b.55.1
+50044                                           SH3-domain        sf   b.34.2
+52540 P-loop containing nucleoside triphosphate hydrolases        sf   c.37.1
+55550                                           SH2 domain        sf   d.93.1
+57184                        Growth factor receptor domain        sf    g.3.9
+49265                                 Fibronectin type III        sf    b.1.2
+                                               members
+47769                          EPHA1,EPHA3,EPHB1,ARAP2
+49785                                EPHA1,EPHA3,EPHB1
+56112             EPHA1,EPHA3,EPHB1,ABL1,BTK,AKT1,PAK7
+50729                VAV1,ARAP2,ARHGEF11,BTK,AKT1,DNM2
+50044                               VAV1,ABL1,BTK,TJP1
+52540 TJP1,DNM2,ABCA1,DNAH9,DYNC1H1,RAD50,SMC1B,DNAH10
+55550                                    VAV1,ABL1,BTK
+57184                                EPHA1,EPHA3,EPHB1
+49265                                EPHA1,EPHA3,EPHB1
 </div>
 <div class='input'>
 # DGIdb druggable gene category enrichment analysis
 eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data=V(net)$name, identity="symbol", genome="Hs", ontology="DGIdb", sizeRange=c(10,5000), min.overlap=2)
 </div>
-<strong class='message'>Start at 2015-06-04 12:31:11</strong>
+<strong class='message'>Start at 2015-07-13 13:40:13</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology DGIdb and its gene associations in the genome Hs (2015-06-04 12:31:11) ...</strong>
-<strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Hs/org.Hs.eg.RData</strong>
-<strong class='message'>	Load annotation information from http://supfam.org/dnet/data/Hs/org.Hs.egDGIdb.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2015-06-04 12:31:11) ...</strong>
-<strong class='message'>	Among 42 symbols of input data, there are 42 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-06-04 12:31:11) ...</strong>
+<strong class='message'>First, load the ontology DGIdb and its gene associations in the genome Hs (2015-07-13 13:40:13) ...</strong>
+<strong class='message'>'org.Hs.eg' (from http://supfam.org/dnet/data/org.Hs.eg.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egDGIdb' (from http://supfam.org/dnet/data/org.Hs.egDGIdb.RData) has been loaded into the working environment</strong>
+<strong class='message'>Then, do mapping based on symbol (2015-07-13 13:40:24) ...</strong>
+<strong class='message'>	Among 37 symbols of input data, there are 37 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-07-13 13:40:24) ...</strong>
 <strong class='message'>	There are 36 terms being used, each restricted within [10,5000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2015-06-04 12:31:11) ...</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2015-07-13 13:40:24) ...</strong>
 <strong class='message'>
-End at 2015-06-04 12:31:11</strong>
-<strong class='message'>Runtime in total is: 0 secs
+End at 2015-07-13 13:40:24</strong>
+<strong class='message'>Runtime in total is: 11 secs
 </strong>
 <div class='input'><a href='dEnricherView.html' target=dEnricherView>dEnricherView</a>(eTerm, top_num=10, sortBy="adjp", details=F)
 </div>
-<div class='output'>                                                            setID nAnno
-CLINICALLY ACTIONABLE                       CLINICALLY ACTIONABLE   237
-TYROSINE KINASE                                   TYROSINE KINASE   148
-DNA REPAIR                                             DNA REPAIR   386
-HISTONE MODIFICATION                         HISTONE MODIFICATION   249
-TRANSCRIPTION FACTOR BINDING         TRANSCRIPTION FACTOR BINDING   403
-TUMOR SUPPRESSOR                                 TUMOR SUPPRESSOR   717
-KINASE                                                     KINASE   811
-EXTERNAL SIDE OF PLASMA MEMBRANE EXTERNAL SIDE OF PLASMA MEMBRANE   191
-TRANSCRIPTION FACTOR COMPLEX         TRANSCRIPTION FACTOR COMPLEX   281
-DRUGGABLE GENOME                                 DRUGGABLE GENOME  3808
-                                 nOverlap zscore  pvalue    adjp
-CLINICALLY ACTIONABLE                  10  9.930 2.3e-10 3.0e-09
-TYROSINE KINASE                         6  7.460 7.3e-07 4.8e-06
-DNA REPAIR                              7  4.800 4.9e-05 2.1e-04
-HISTONE MODIFICATION                    5  4.330 2.3e-04 7.6e-04
-TRANSCRIPTION FACTOR BINDING            4  2.120 1.5e-02 3.2e-02
-TUMOR SUPPRESSOR                        6  2.170 1.3e-02 3.2e-02
-KINASE                                  6  1.840 2.4e-02 4.5e-02
-EXTERNAL SIDE OF PLASMA MEMBRANE        2  1.560 3.3e-02 5.3e-02
-TRANSCRIPTION FACTOR COMPLEX            2  0.961 8.4e-02 1.2e-01
-DRUGGABLE GENOME                       16  0.762 1.7e-01 2.1e-01
+<div class='output'>                                                    setID nAnno nOverlap zscore
+Clinically actionable               Clinically actionable   237       11 12.900
+Tyrosine kinase                           Tyrosine kinase   151        5  7.110
+Dna repair                                     Dna repair   385        5  3.880
+Histone modification                 Histone modification   249        4  4.020
+Kinase                                             Kinase   823        7  3.290
+Transcription factor binding Transcription factor binding   403        4  2.780
+Transcription factor complex Transcription factor complex   282        2  1.390
+Tumor suppressor                         Tumor suppressor   716        4  1.480
+Serine threonine kinase           Serine threonine kinase   461        2  0.640
+Druggable genome                         Druggable genome  3766       11  0.187
+                              pvalue    adjp
+Clinically actionable        1.1e-13 1.2e-12
+Tyrosine kinase              2.4e-06 1.3e-05
+Dna repair                   4.7e-04 1.4e-03
+Histone modification         5.0e-04 1.4e-03
+Kinase                       1.0e-03 2.3e-03
+Transcription factor binding 4.3e-03 7.8e-03
+Transcription factor complex 4.3e-02 6.0e-02
+Tumor suppressor             4.4e-02 6.0e-02
+Serine threonine kinase      1.4e-01 1.7e-01
+Druggable genome             3.4e-01 3.8e-01
 </div>
 <div class='input'>
 # TFBS enrichment analysis
 eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data=V(net)$name, identity="symbol", genome="Hs", ontology="MsigdbC3TFT")
 </div>
-<strong class='message'>Start at 2015-06-04 12:31:11</strong>
+<strong class='message'>Start at 2015-07-13 13:40:24</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MsigdbC3TFT and its gene associations in the genome Hs (2015-06-04 12:31:11) ...</strong>
-<strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Hs/org.Hs.eg.RData</strong>
-<strong class='message'>	Load annotation information from http://supfam.org/dnet/data/Msigdb/org.Hs.egMsigdbC3TFT.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2015-06-04 12:31:11) ...</strong>
-<strong class='message'>	Among 42 symbols of input data, there are 42 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-06-04 12:31:11) ...</strong>
+<strong class='message'>First, load the ontology MsigdbC3TFT and its gene associations in the genome Hs (2015-07-13 13:40:24) ...</strong>
+<strong class='message'>'org.Hs.eg' (from http://supfam.org/dnet/data/org.Hs.eg.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egMsigdbC3TFT' (from http://supfam.org/dnet/data/org.Hs.egMsigdbC3TFT.RData) has been loaded into the working environment</strong>
+<strong class='message'>Then, do mapping based on symbol (2015-07-13 13:40:35) ...</strong>
+<strong class='message'>	Among 37 symbols of input data, there are 37 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-07-13 13:40:35) ...</strong>
 <strong class='message'>	There are 597 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2015-06-04 12:31:12) ...</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2015-07-13 13:40:36) ...</strong>
 <strong class='message'>
-End at 2015-06-04 12:31:12</strong>
-<strong class='message'>Runtime in total is: 1 secs
+End at 2015-07-13 13:40:36</strong>
+<strong class='message'>Runtime in total is: 12 secs
 </strong>
 <div class='input'><a href='dEnricherView.html' target=dEnricherView>dEnricherView</a>(eTerm, top_num=10, sortBy="adjp", details=F)
 </div>
-<div class='output'>                                  setID nAnno nOverlap zscore  pvalue   adjp
-V$FOXM1_01                   V$FOXM1_01   246        4   4.20 0.00043 0.0090
-AAAYWAACM_V$HFH4_01 AAAYWAACM_V$HFH4_01   254        3   2.87 0.00430 0.0093
-V$E2F_Q3_01                 V$E2F_Q3_01   235        3   3.05 0.00330 0.0093
-V$E2F1_Q4_01               V$E2F1_Q4_01   228        3   3.12 0.00290 0.0093
-V$ELF1_Q6                     V$ELF1_Q6   243        3   2.97 0.00370 0.0093
-V$MEIS1_01                   V$MEIS1_01   238        3   3.02 0.00340 0.0093
-V$RFX1_01                     V$RFX1_01   256        3   2.86 0.00440 0.0093
-V$SRF_Q6                       V$SRF_Q6   241        3   2.99 0.00360 0.0093
-V$TCF11_01                   V$TCF11_01   252        3   2.89 0.00420 0.0093
-V$TCF11MAFG_01           V$TCF11MAFG_01   207        3   3.35 0.00210 0.0093
+<div class='output'>        setID nAnno nOverlap zscore  pvalue   adjp
+M19808 M19808   150        3   4.00 0.00079 0.0086
+M6517   M6517   254        4   3.94 0.00066 0.0086
+M133     M133   253        3   2.75 0.00530 0.0110
+M14141 M14141   255        3   2.73 0.00540 0.0110
+M15623 M15623   265        3   2.65 0.00620 0.0110
+M1608   M1608   272        3   2.59 0.00680 0.0110
+M17117 M17117   235        3   2.91 0.00410 0.0110
+M17588 M17588   256        3   2.72 0.00550 0.0110
+M2315   M2315   237        3   2.89 0.00420 0.0110
+M4121   M4121   207        3   3.20 0.00260 0.0110
 </div>
 <div class='input'>
 # miRNA target enrichment analysis
 eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data=V(net)$name, identity="symbol", genome="Hs", ontology="MsigdbC3MIR")
 </div>
-<strong class='message'>Start at 2015-06-04 12:31:12</strong>
+<strong class='message'>Start at 2015-07-13 13:40:36</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MsigdbC3MIR and its gene associations in the genome Hs (2015-06-04 12:31:12) ...</strong>
-<strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Hs/org.Hs.eg.RData</strong>
-<strong class='message'>	Load annotation information from http://supfam.org/dnet/data/Msigdb/org.Hs.egMsigdbC3MIR.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2015-06-04 12:31:12) ...</strong>
-<strong class='message'>	Among 42 symbols of input data, there are 42 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-06-04 12:31:12) ...</strong>
+<strong class='message'>First, load the ontology MsigdbC3MIR and its gene associations in the genome Hs (2015-07-13 13:40:36) ...</strong>
+<strong class='message'>'org.Hs.eg' (from http://supfam.org/dnet/data/org.Hs.eg.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egMsigdbC3MIR' (from http://supfam.org/dnet/data/org.Hs.egMsigdbC3MIR.RData) has been loaded into the working environment</strong>
+<strong class='message'>Then, do mapping based on symbol (2015-07-13 13:40:43) ...</strong>
+<strong class='message'>	Among 37 symbols of input data, there are 37 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-07-13 13:40:43) ...</strong>
 <strong class='message'>	There are 212 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2015-06-04 12:31:12) ...</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2015-07-13 13:40:43) ...</strong>
 <strong class='message'>
-End at 2015-06-04 12:31:12</strong>
-<strong class='message'>Runtime in total is: 0 secs
+End at 2015-07-13 13:40:43</strong>
+<strong class='message'>Runtime in total is: 7 secs
 </strong>
 <div class='input'><a href='dEnricherView.html' target=dEnricherView>dEnricherView</a>(eTerm, top_num=10, sortBy="adjp", details=F)</div>
-<div class='output'>                                                              setID nAnno
-GTCTTCC,MIR-7                                         GTCTTCC,MIR-7   169
-AAAGGGA,MIR-204,MIR-211                     AAAGGGA,MIR-204,MIR-211   224
-AAGCCAT,MIR-135A,MIR-135B                 AAGCCAT,MIR-135A,MIR-135B   334
-ATACCTC,MIR-202                                     ATACCTC,MIR-202   179
-CACCAGC,MIR-138                                     CACCAGC,MIR-138   226
-CACTTTG,MIR-520G,MIR-520H                 CACTTTG,MIR-520G,MIR-520H   237
-TTGCCAA,MIR-182                                     TTGCCAA,MIR-182   327
-TTTGTAG,MIR-520D                                   TTTGTAG,MIR-520D   336
-CAGTATT,MIR-200B,MIR-200C,MIR-429 CAGTATT,MIR-200B,MIR-200C,MIR-429   468
-CTTTGTA,MIR-524                                     CTTTGTA,MIR-524   433
-                                  nOverlap zscore  pvalue   adjp
-GTCTTCC,MIR-7                            4  4.070 0.00052 0.0083
-AAAGGGA,MIR-204,MIR-211                  3  2.240 0.01200 0.0380
-AAGCCAT,MIR-135A,MIR-135B                4  2.340 0.01000 0.0380
-ATACCTC,MIR-202                          3  2.720 0.00550 0.0380
-CACCAGC,MIR-138                          3  2.220 0.01200 0.0380
-CACTTTG,MIR-520G,MIR-520H                3  2.130 0.01400 0.0380
-TTGCCAA,MIR-182                          3  1.500 0.04100 0.0890
-TTTGTAG,MIR-520D                         3  1.450 0.04500 0.0890
-CAGTATT,MIR-200B,MIR-200C,MIR-429        3  0.836 0.12000 0.1400
-CTTTGTA,MIR-524                          3  0.977 0.09400 0.1400
+<div class='output'>        setID nAnno nOverlap zscore  pvalue   adjp
+M19058 M19058   199        4   4.25 0.00037 0.0048
+M10873 M10873   179        3   3.23 0.00240 0.0150
+M11557 M11557   226        3   2.70 0.00550 0.0170
+M13700 M13700   224        3   2.72 0.00530 0.0170
+M698     M698   237        3   2.60 0.00650 0.0170
+M10705 M10705   448        4   2.19 0.01300 0.0280
+M10975 M10975   334        3   1.90 0.02100 0.0390
+M10635 M10635   601        4   1.55 0.04000 0.0520
+M18759 M18759   595        4   1.57 0.03800 0.0520
+M8862   M8862   403        3   1.53 0.03800 0.0520
 </div>
       </pre>
     </div>
@@ -1611,12 +1531,10 @@ CTTTGTA,MIR-524                          3  0.977 0.09400 0.1400
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
       <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href="
-http://cran.r-project.org/package=dnet">
-http://cran.r-project.org/package=dnet</a></li>
-      <li><a href="
-https://github.com/hfang-bristol/dnet">
-https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href=" http://cran.r-
+project.org/package=dnet"> http://cran.r-
+project.org/package=dnet</a></li>
+      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     <h2>Author</h2>

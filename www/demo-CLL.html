@@ -226,7 +226,7 @@ for(pkg in c("Biobase","limma")){
 # This dataset involves 130 patients with chronic lymphocytic leukemia (CLL). When enrolled in the study, these CLL patients had not received prior therapy for CLL. Additional covariate about sampling time to first treatment (years) is available. The dataset has been normalised and log2-transformed, and provided as an "ExpressionSet" object.
 CLL <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='CLL')
 </div>
-<strong class='message'>'CLL' (from http://supfam.org/dnet/data/Datasets/CLL.RData) has been loaded into the working environment</strong>
+<strong class='message'>'CLL' (from http://supfam.org/dnet/data/CLL.RData) has been loaded into the working environment</strong>
 <div class='input'>CLL
 </div>
 <div class='output'>ExpressionSet (storageMode: lockedEnvironment)
@@ -283,7 +283,7 @@ esetGene <- prob2gene(esetNew)
 esetGene
 </div>
 <div class='output'>ExpressionSet (storageMode: lockedEnvironment)
-assayData: 9367 features, 130 samples 
+assayData: 9324 features, 130 samples 
   element names: exprs 
 protocolData: none
 phenoData
@@ -291,7 +291,7 @@ phenoData
   varLabels: Name Time Treatment
   varMetadata: labelDescription
 featureData
-  featureNames: A1BG NAT1 ... LOC101060510 (9367 total)
+  featureNames: A1BG NAT1 ... BISPR (9324 total)
   fvarLabels: EntrezID Symbol Desc
   fvarMetadata: labelDescription
 experimentData: use 'experimentData(object)'
@@ -301,10 +301,10 @@ Annotation:
 # An igraph object that contains a functional protein association network in human. The network is extracted from the STRING database (version 9.1). Only those associations with medium confidence (score>=400) are retained.
 org.Hs.string <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='org.Hs.string')
 </div>
-<strong class='message'>'org.Hs.string' (from http://supfam.org/dnet/data/Hs/org.Hs.string.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.string' (from http://supfam.org/dnet/data/org.Hs.string.RData) has been loaded into the working environment</strong>
 <div class='input'>org.Hs.string
 </div>
-<div class='output'>IGRAPH UN-- 16973 410824 -- 
+<div class='output'>IGRAPH UN-- 17038 613946 -- 
 + attr: name (v/c), seqid (v/c), geneid (v/n), symbol (v/c),
   description (v/c), neighborhood_score (e/n), fusion_score (e/n),
   cooccurence_score (e/n), coexpression_score (e/n), experimental_score
@@ -319,7 +319,7 @@ esetGeneSub <- esetGene[ind[!is.na(ind)],]
 esetGeneSub
 </div>
 <div class='output'>ExpressionSet (storageMode: lockedEnvironment)
-assayData: 8348 features, 130 samples 
+assayData: 8065 features, 130 samples 
   element names: exprs 
 protocolData: none
 phenoData
@@ -327,7 +327,7 @@ phenoData
   varLabels: Name Time Treatment
   varMetadata: labelDescription
 featureData
-  featureNames: MVP KIAA0226 ... XKR8 (8348 total)
+  featureNames: ZNF445 MVP ... XKR8 (8065 total)
   fvarLabels: EntrezID Symbol Desc
   fvarMetadata: labelDescription
 experimentData: use 'experimentData(object)'
@@ -339,7 +339,7 @@ network <- <a href='dNetInduce.html' target=dNetInduce>dNetInduce</a>(g=org.Hs.s
 V(network)$name <- V(network)$symbol
 network
 </div>
-<div class='output'>IGRAPH UN-- 8133 158729 -- 
+<div class='output'>IGRAPH UN-- 7981 212519 -- 
 + attr: name (v/c), seqid (v/c), geneid (v/n), symbol (v/c),
   description (v/c)
 </div>
@@ -392,13 +392,13 @@ pval <- pvals[,my_contrast]
 # 2) identification of module
 g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network, pval=pval, nsize=20)
 </div>
-<strong class='message'>Start at 2015-06-04 12:07:05</strong>
+<strong class='message'>Start at 2015-07-13 12:38:11</strong>
 <strong class='message'></strong>
 <strong class='message'>First, fit the input p-value distribution under beta-uniform mixture model...</strong>
-<strong class='message'>	A total of p-values: 9367</strong>
-<strong class='message'>	Maximum Log-Likelihood: 1748.6</strong>
+<strong class='message'>	A total of p-values: 9324</strong>
+<strong class='message'>	Maximum Log-Likelihood: 1720.1</strong>
 <strong class='message'>	Mixture parameter (lambda): 0.000</strong>
-<strong class='message'>	Shape parameter (a): 0.574</strong>
+<strong class='message'>	Shape parameter (a): 0.576</strong>
 <strong class='message'>Second, determine the significance threshold...</strong>
 <strong class='message'>	Via constraint on the size of subnetwork to be identified (20 nodes)</strong>
 <strong class='message'>	Scanning significance threshold at rough stage...</strong>
@@ -406,22 +406,20 @@ g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network,
 <strong class='message'>		significance threshold: 1.00e-05, corresponding to the network size (0 nodes)</strong>
 <strong class='message'>		significance threshold: 1.00e-04, corresponding to the network size (0 nodes)</strong>
 <strong class='message'>		significance threshold: 1.00e-03, corresponding to the network size (0 nodes)</strong>
-<strong class='message'>		significance threshold: 1.00e-02, corresponding to the network size (1 nodes)</strong>
-<strong class='message'>		significance threshold: 1.00e-01, corresponding to the network size (602 nodes)</strong>
+<strong class='message'>		significance threshold: 1.00e-02, corresponding to the network size (2 nodes)</strong>
+<strong class='message'>		significance threshold: 1.00e-01, corresponding to the network size (624 nodes)</strong>
 <strong class='message'>	Scanning significance threshold at finetune stage...</strong>
-<strong class='message'>		significance threshold : 1.50e-02, corresponding to the network size (4 nodes)</strong>
-<strong class='message'>		significance threshold : 2.00e-02, corresponding to the network size (4 nodes)</strong>
-<strong class='message'>		significance threshold : 2.50e-02, corresponding to the network size (11 nodes)</strong>
-<strong class='message'>		significance threshold : 3.00e-02, corresponding to the network size (18 nodes)</strong>
-<strong class='message'>		significance threshold : 3.50e-02, corresponding to the network size (50 nodes)</strong>
-<strong class='message'>	significance threshold: 3.50e-02</strong>
+<strong class='message'>		significance threshold : 1.50e-02, corresponding to the network size (5 nodes)</strong>
+<strong class='message'>		significance threshold : 2.00e-02, corresponding to the network size (7 nodes)</strong>
+<strong class='message'>		significance threshold : 2.50e-02, corresponding to the network size (21 nodes)</strong>
+<strong class='message'>	significance threshold: 2.50e-02</strong>
 <strong class='message'>Third, calculate the scores according to the fitted BUM and FDR threshold (if any)...</strong>
-<strong class='message'>	Amongst 9367 scores, there are 113 positives.</strong>
-<strong class='message'>Finally, find the subgraph from the input graph with 8133 nodes and 158729 edges...</strong>
-<strong class='message'>	Size of the subgraph: 50 nodes and 67 edges</strong>
+<strong class='message'>	Amongst 9324 scores, there are 56 positives.</strong>
+<strong class='message'>Finally, find the subgraph from the input graph with 7981 nodes and 212519 edges...</strong>
+<strong class='message'>	Size of the subgraph: 21 nodes and 22 edges</strong>
 <strong class='message'>
-Finish at 2015-06-04 12:11:47</strong>
-<strong class='message'>Runtime in total is: 282 secs
+Finish at 2015-07-13 12:42:18</strong>
+<strong class='message'>Runtime in total is: 247 secs
 </strong>
 <div class='input'>glayout <- layout.fruchterman.reingold(g)
 
@@ -455,7 +453,7 @@ ordering <- tmp[order(vgroups,vdegrees),]$ind
 # 8) as comparison, also visualise graph on 2-dimensional layout 
 mark.groups <- communities(com)
 </div>
-<a href="javascript:newWin('CLL-50.png', 'CLL-50.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='CLL-50.png', width="400" /></a>
+<a href="javascript:newWin('CLL-48.png', 'CLL-48.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='CLL-48.png', width="400" /></a>
 <div class='input'>mark.col <- visColoralpha(mcolors, alpha=0.2)
 mark.border <- visColoralpha(mcolors, alpha=0.2)
 edge.color <- c("grey", "black")[crossing(com,g)+1]
@@ -463,10 +461,10 @@ edge.color <- c("grey", "black")[crossing(com,g)+1]
 
 legend_name <- paste("C",1:length(mcolors)," (n=",com$csize,", pval=",signif(com$significance,digits=2),")",sep='')
 </div>
-<a href="javascript:newWin('CLL-52.png', 'CLL-52.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='CLL-52.png', width="400" /></a>
+<a href="javascript:newWin('CLL-50.png', 'CLL-50.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='CLL-50.png', width="400" /></a>
 <div class='input'>legend("bottomleft", legend=legend_name, fill=mcolors, bty="n", cex=0.6)
 </div>
-<a href="javascript:newWin('CLL-54.png', 'CLL-54.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='CLL-54.png', width="400" /></a>
+<a href="javascript:newWin('CLL-52.png', 'CLL-52.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='CLL-52.png', width="400" /></a>
 <div class='input'>
 # 9) color by score and FC
 # colored by score
@@ -474,14 +472,14 @@ legend_name <- paste("C",1:length(mcolors)," (n=",com$csize,", pval=",signif(com
 # colored by FC
 colormap <- "darkgreen-lightgreen-lightpink-darkred"
 </div>
-<a href="javascript:newWin('CLL-56.png', 'CLL-56.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='CLL-56.png', width="400" /></a>
+<a href="javascript:newWin('CLL-54.png', 'CLL-54.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='CLL-54.png', width="400" /></a>
 <div class='input'>logFC <- fit2$coefficients[V(g)$name,my_contrast]
 <a href='visNet.html' target=visNet>visNet</a>(g, glayout=glayout, pattern=logFC, colormap=colormap, vertex.shape="circle", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
 
 # 10) color by additional data
 ind <- union(which(EIL=="L"), which(EIL=="E"))
 </div>
-<a href="javascript:newWin('CLL-58.png', 'CLL-58.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='CLL-58.png', width="400" /></a>
+<a href="javascript:newWin('CLL-56.png', 'CLL-56.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='CLL-56.png', width="400" /></a>
 <div class='input'>ind <- sample(ind, 10) # sampling randomly 10 without replacement.
 data <- exprs(esetGene)[V(g)$name,ind]
 colnames(data) <- EIL[ind]
@@ -490,46 +488,46 @@ colnames(data) <- EIL[ind]
 # 11) color by additional data (be reordered)
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="edge", node.normalise="degree", amplifier=2, metric="none")
 </div>
-<strong class='message'>Start at 2015-06-04 12:12:42</strong>
+<strong class='message'>Start at 2015-07-13 12:42:57</strong>
 <strong class='message'></strong>
-<strong class='message'>First, define topology of a map grid (2015-06-04 12:12:42)...</strong>
-<strong class='message'>Second, initialise the codebook matrix (25 X 67) using 'linear' initialisation, given a topology and input data (2015-06-04 12:12:42)...</strong>
-<strong class='message'>Third, get training at the rough stage (2015-06-04 12:12:42)...</strong>
-<strong class='message'>	1 out of 250 (2015-06-04 12:12:42)</strong>
-<strong class='message'>	25 out of 250 (2015-06-04 12:12:42)</strong>
-<strong class='message'>	50 out of 250 (2015-06-04 12:12:42)</strong>
-<strong class='message'>	75 out of 250 (2015-06-04 12:12:42)</strong>
-<strong class='message'>	100 out of 250 (2015-06-04 12:12:42)</strong>
-<strong class='message'>	125 out of 250 (2015-06-04 12:12:42)</strong>
-<strong class='message'>	150 out of 250 (2015-06-04 12:12:42)</strong>
-<strong class='message'>	175 out of 250 (2015-06-04 12:12:42)</strong>
-<strong class='message'>	200 out of 250 (2015-06-04 12:12:42)</strong>
-<strong class='message'>	225 out of 250 (2015-06-04 12:12:42)</strong>
-<strong class='message'>	250 out of 250 (2015-06-04 12:12:42)</strong>
-<strong class='message'>Fourth, get training at the finetune stage (2015-06-04 12:12:42)...</strong>
-<strong class='message'>	1 out of 1000 (2015-06-04 12:12:42)</strong>
-<strong class='message'>	100 out of 1000 (2015-06-04 12:12:42)</strong>
-<strong class='message'>	200 out of 1000 (2015-06-04 12:12:42)</strong>
-<strong class='message'>	300 out of 1000 (2015-06-04 12:12:42)</strong>
-<strong class='message'>	400 out of 1000 (2015-06-04 12:12:42)</strong>
-<strong class='message'>	500 out of 1000 (2015-06-04 12:12:42)</strong>
-<strong class='message'>	600 out of 1000 (2015-06-04 12:12:42)</strong>
-<strong class='message'>	700 out of 1000 (2015-06-04 12:12:42)</strong>
-<strong class='message'>	800 out of 1000 (2015-06-04 12:12:42)</strong>
-<strong class='message'>	900 out of 1000 (2015-06-04 12:12:42)</strong>
-<strong class='message'>	1000 out of 1000 (2015-06-04 12:12:42)</strong>
-<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-06-04 12:12:42)...</strong>
-<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-06-04 12:12:42)...</strong>
+<strong class='message'>First, define topology of a map grid (2015-07-13 12:42:57)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (25 X 22) using 'linear' initialisation, given a topology and input data (2015-07-13 12:42:57)...</strong>
+<strong class='message'>Third, get training at the rough stage (2015-07-13 12:42:57)...</strong>
+<strong class='message'>	1 out of 250 (2015-07-13 12:42:57)</strong>
+<strong class='message'>	25 out of 250 (2015-07-13 12:42:57)</strong>
+<strong class='message'>	50 out of 250 (2015-07-13 12:42:57)</strong>
+<strong class='message'>	75 out of 250 (2015-07-13 12:42:57)</strong>
+<strong class='message'>	100 out of 250 (2015-07-13 12:42:57)</strong>
+<strong class='message'>	125 out of 250 (2015-07-13 12:42:57)</strong>
+<strong class='message'>	150 out of 250 (2015-07-13 12:42:57)</strong>
+<strong class='message'>	175 out of 250 (2015-07-13 12:42:57)</strong>
+<strong class='message'>	200 out of 250 (2015-07-13 12:42:57)</strong>
+<strong class='message'>	225 out of 250 (2015-07-13 12:42:57)</strong>
+<strong class='message'>	250 out of 250 (2015-07-13 12:42:57)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2015-07-13 12:42:57)...</strong>
+<strong class='message'>	1 out of 1000 (2015-07-13 12:42:57)</strong>
+<strong class='message'>	100 out of 1000 (2015-07-13 12:42:57)</strong>
+<strong class='message'>	200 out of 1000 (2015-07-13 12:42:58)</strong>
+<strong class='message'>	300 out of 1000 (2015-07-13 12:42:58)</strong>
+<strong class='message'>	400 out of 1000 (2015-07-13 12:42:58)</strong>
+<strong class='message'>	500 out of 1000 (2015-07-13 12:42:58)</strong>
+<strong class='message'>	600 out of 1000 (2015-07-13 12:42:58)</strong>
+<strong class='message'>	700 out of 1000 (2015-07-13 12:42:58)</strong>
+<strong class='message'>	800 out of 1000 (2015-07-13 12:42:58)</strong>
+<strong class='message'>	900 out of 1000 (2015-07-13 12:42:58)</strong>
+<strong class='message'>	1000 out of 1000 (2015-07-13 12:42:58)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-07-13 12:42:58)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-07-13 12:42:58)...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
-<strong class='message'>   dimension of input data: 10x67
+<strong class='message'>   dimension of input data: 10x22
    xy-dimension of map grid: xdim=5, ydim=5
    grid lattice: rect
    grid shape: sheet
    dimension of grid coord: 25x2
    initialisation method: linear
-   dimension of codebook matrix: 25x67
-   mean quantization error: 5.28683866568278
+   dimension of codebook matrix: 25x22
+   mean quantization error: 2.29823329548072
 </strong>
 <strong class='message'>Below are the details of trainology:</strong>
 <strong class='message'>   training algorithm: sequential
@@ -539,10 +537,10 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2015-06-04 12:12:42</strong>
-<strong class='message'>Runtime in total is: 0 secs
+<strong class='message'>End at 2015-07-13 12:42:58</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
-<a href="javascript:newWin('CLL-97.png', 'CLL-97.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='CLL-97.png', width="400" /></a>
+<a href="javascript:newWin('CLL-95.png', 'CLL-95.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='CLL-95.png', width="400" /></a>
 <div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap=colormap, vertex.label=NA,vertex.shape="sphere", vertex.size=18,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)</div>
       </pre>
     </div>
@@ -586,12 +584,10 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
       <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href="
-http://cran.r-project.org/package=dnet">
-http://cran.r-project.org/package=dnet</a></li>
-      <li><a href="
-https://github.com/hfang-bristol/dnet">
-https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href=" http://cran.r-
+project.org/package=dnet"> http://cran.r-
+project.org/package=dnet</a></li>
+      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     <h2>Author</h2>

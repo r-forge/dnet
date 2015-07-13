@@ -350,29 +350,29 @@ genes <- sample(allgenes,5)
 sim <- dDAGgeneSim(g=dag, genes=genes, method.gene="BM.average",
 method.term="Resnik", parallel=FALSE, verbose=TRUE)
 </div>
-<strong class='message'>Start at 2015-06-10 15:07:56</strong>
+<strong class='message'>Start at 2015-07-13 11:53:31</strong>
 <strong class='message'></strong>
-<strong class='message'>First, extract all annotatable genes (2015-06-10 15:07:56)...</strong>
+<strong class='message'>First, extract all annotatable genes (2015-07-13 11:53:31)...</strong>
 <strong class='message'>	there are 5 input genes amongst 2910 annotatable genes</strong>
-<strong class='message'>Second, pre-compute semantic similarity between 120 terms (forced to be the most specific for each gene) using Resnik method (2015-06-10 15:07:57)...</strong>
-<strong class='message'>Last, calculate pair-wise semantic similarity between 5 genes using BM.average method (2015-06-10 15:07:58)...</strong>
-<strong class='message'>	1 out of 5 (2015-06-10 15:07:58)</strong>
-<strong class='message'>	2 out of 5 (2015-06-10 15:07:58)</strong>
-<strong class='message'>	3 out of 5 (2015-06-10 15:07:58)</strong>
-<strong class='message'>	4 out of 5 (2015-06-10 15:07:58)</strong>
+<strong class='message'>Second, pre-compute semantic similarity between 78 terms (forced to be the most specific for each gene) using Resnik method (2015-07-13 11:53:31)...</strong>
+<strong class='message'>Last, calculate pair-wise semantic similarity between 5 genes using BM.average method (2015-07-13 11:53:32)...</strong>
+<strong class='message'>	1 out of 5 (2015-07-13 11:53:32)</strong>
+<strong class='message'>	2 out of 5 (2015-07-13 11:53:32)</strong>
+<strong class='message'>	3 out of 5 (2015-07-13 11:53:32)</strong>
+<strong class='message'>	4 out of 5 (2015-07-13 11:53:32)</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2015-06-10 15:07:58</strong>
-<strong class='message'>Runtime in total is: 2 secs
+<strong class='message'>Finish at 2015-07-13 11:53:32</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'>sim
 </div>
 <div class='output'>5 x 5 sparse Matrix of class "dgCMatrix"
-          84295       4351      3735         90      4990
-84295 .         0.11443114 0.3759818 0.63987169 0.8955769
-4351  0.1144311 .          0.0339761 0.07590418 0.1166044
-3735  0.3759818 0.03397610 .         0.29927805 0.2733898
-90    0.6398717 0.07590418 0.2992780 .          0.5357758
-4990  0.8955769 0.11660439 0.2733898 0.53577577 .        
+           1462     23639     57192     11019      9940
+1462  .         .         0.5979944 .         .        
+23639 .         .         0.1798053 0.3814529 0.4638315
+57192 0.5979944 0.1798053 .         0.5154151 0.1382168
+11019 .         0.3814529 0.5154151 .         0.3379552
+9940  .         0.4638315 0.1382168 0.3379552 .        
 </div></pre>
   </div>
   
@@ -419,12 +419,10 @@ method.term="Resnik", parallel=FALSE, verbose=TRUE)
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
       <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href="
-http://cran.r-project.org/package=dnet">
-http://cran.r-project.org/package=dnet</a></li>
-      <li><a href="
-https://github.com/hfang-bristol/dnet">
-https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href=" http://cran.r-
+project.org/package=dnet"> http://cran.r-
+project.org/package=dnet</a></li>
+      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     

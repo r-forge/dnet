@@ -9,7 +9,7 @@ org.Mm.egHPMI <- dRDataLoader(RData='org.Mm.egHPMI')
 }
 
 \description{
-An R object that contains associations between HPMI terms and Mouse Entrez Genes. This data is first prepared based on \url{http://compbio.charite.de/svn/hpo/trunk/src/ontology/human-phenotype-ontology.obo} and  \url{http://compbio.charite.de/hudson/job/hpo.annotations.monthly/lastStableBuild/artifact/annotation/ALL_SOURCES_ALL_FREQUENCIES_genes_to_phenotype.txt}, which results in annotations of Human Entrez Genes. Then, these annotations are transferred to Mouse Entrez Genes based on \url{ftp://anonymous@ftp.ncbi.nih.gov/pub/HomoloGene/build67/homologene.data}.
+An R object that contains associations between HPMI terms and Mouse Entrez Genes. This data is first prepared based on \url{http://purl.obolibrary.org/obo/hp.obo} and  \url{http://compbio.charite.de/hudson/job/hpo.annotations.monthly/lastStableBuild/artifact/annotation/ALL_SOURCES_ALL_FREQUENCIES_genes_to_phenotype.txt}, which results in annotations of Human Entrez Genes. Then, these annotations are transferred to Mouse Entrez Genes based on \url{ftp://anonymous@ftp.ncbi.nih.gov/pub/HomoloGene/build67/homologene.data}.
 }
 
 \value{

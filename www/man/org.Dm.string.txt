@@ -1,14 +1,14 @@
 \name{org.Dm.string}
 \alias{org.Dm.string}
 
-\title{Fruitfly functional protein association network from STRING (version 9.1).}
+\title{Fruitfly functional protein association network from STRING (version 10).}
 
 \usage{
 org.Dm.string <- dRDataLoader(RData='org.Dm.string')
 }
 
 \description{
-An igraph object that contains a functional protein association network in fruitfly. The network is extracted from the STRING database (version 9.1). Only those associations with medium confidence (score>=0.4) are retained. 
+An igraph object that contains a functional protein association network in fruitfly. The network is extracted from the STRING database (version 10). Only those associations with medium confidence (score>=0.4) are retained. 
 }
 
 \value{
@@ -35,7 +35,7 @@ An igraph object that contains a functional protein association network in fruit
 }
 
 \references{
-Franceschini et al. (2013) STRING v9.1: protein-protein interaction networks, with increased coverage and integration. \emph{Nucleic Acids Res}, 41:D808-D815.
+Szklarczyk et al. (2015) STRING v10: protein-protein interaction networks, integrated over the tree of life. \emph{Nucleic Acids Res}, 43:D447-52.
 }
 
 \keyword{datasets}

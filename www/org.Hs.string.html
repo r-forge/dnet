@@ -198,13 +198,13 @@ window.onload = function(){
         
       </header>
       
-      <h2>Human functional protein association network from STRING (version 9.1).</h2>
+      <h2>Human functional protein association network from STRING (version 10).</h2>
 
 <div class="row">
   <div class="span8">
   
     <h3>Description</h3>
-    <p>An igraph object that contains a functional protein association network in human. The network is extracted from the STRING database (version 9.1). Only those associations with medium confidence (score>=0.4) are retained.</p>
+    <p>An igraph object that contains a functional protein association network in human. The network is extracted from the STRING database (version 10). Only those associations with medium confidence (score>=0.4) are retained.</p>
   
     <h3>Usage</h3>
     <pre>org.Hs.string <- dRDataLoader(RData = "org.Hs.string")</pre>
@@ -258,7 +258,7 @@ window.onload = function(){
     -->
       <h3>References</h3>
       
-      <p>Franceschini et al. (2013) STRING v9.1: protein-protein interaction networks, with increased coverage and integration. <em>Nucleic Acids Res</em>, 41:D808-D815.</p>
+      <p>Szklarczyk et al. (2015) STRING v10: protein-protein interaction networks, integrated over the tree of life. <em>Nucleic Acids Res</em>, 43:D447-52.</p>
     <!-- 
     </div>
     -->
@@ -266,10 +266,10 @@ window.onload = function(){
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'>org.Hs.string <- dRDataLoader(RData='org.Hs.string')
 </div>
-<strong class='message'>'org.Hs.string' (from http://supfam.org/dnet/data/Hs/org.Hs.string.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.string' (from http://supfam.org/dnet/data/org.Hs.string.RData) has been loaded into the working environment</strong>
 <div class='input'>org.Hs.string
 </div>
-<div class='output'>IGRAPH UN-- 16973 410824 -- 
+<div class='output'>IGRAPH UN-- 17038 613946 -- 
 + attr: name (v/c), seqid (v/c), geneid (v/n), symbol (v/c),
   description (v/c), neighborhood_score (e/n), fusion_score (e/n),
   cooccurence_score (e/n), coexpression_score (e/n), experimental_score
@@ -310,12 +310,10 @@ window.onload = function(){
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
       <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href="
-http://cran.r-project.org/package=dnet">
-http://cran.r-project.org/package=dnet</a></li>
-      <li><a href="
-https://github.com/hfang-bristol/dnet">
-https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href=" http://cran.r-
+project.org/package=dnet"> http://cran.r-
+project.org/package=dnet</a></li>
+      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     

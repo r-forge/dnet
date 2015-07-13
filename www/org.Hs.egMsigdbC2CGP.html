@@ -218,7 +218,7 @@ window.onload = function(){
       
       <p>an object of class "GS", a list with following components:
     <ul>
-<li><code>set_info</code>: a matrix of nSet X 4 containing gene set information, where nSet is the number of gene sets, and the 4 columns are "setID" (i.e. "Geneset standard name"), "name" (i.e. "Geneset brief description"), "namespace" (i.e. Geneset category code) and "distance" (always empty)
+<li><code>set_info</code>: a matrix of nSet X 4 containing gene set information, where nSet is the number of gene sets, and the 4 columns are "setID" (i.e. "Geneset systematic name"), "name" (i.e. "Geneset standard description"), "namespace" (i.e. Geneset category code) and "distance" (i.e. "Geneset brief description")
         </li>
 <li><code>gs</code>: a list of gene sets, each storing gene members thereof. Always, gene sets are identified by "setID" and gene members identified by "Entrez ID"
     </li>
@@ -240,7 +240,7 @@ window.onload = function(){
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'>org.Hs.egMsigdbC2CGP <- dRDataLoader(RData='org.Hs.egMsigdbC2CGP')
 </div>
-<strong class='message'>'org.Hs.egMsigdbC2CGP' (from http://supfam.org/dnet/data/Msigdb/org.Hs.egMsigdbC2CGP.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egMsigdbC2CGP' (from http://supfam.org/dnet/data/org.Hs.egMsigdbC2CGP.RData) has been loaded into the working environment</strong>
 <div class='input'>names(org.Hs.egMsigdbC2CGP)
 </div>
 <div class='output'>[1] "gs"       "set_info"
@@ -279,12 +279,10 @@ window.onload = function(){
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
       <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href="
-http://cran.r-project.org/package=dnet">
-http://cran.r-project.org/package=dnet</a></li>
-      <li><a href="
-https://github.com/hfang-bristol/dnet">
-https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href=" http://cran.r-
+project.org/package=dnet"> http://cran.r-
+project.org/package=dnet</a></li>
+      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     

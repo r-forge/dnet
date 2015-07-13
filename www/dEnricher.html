@@ -213,14 +213,14 @@ ontology.</p>
     <h3>Usage</h3>
     <pre>dEnricher(data, identity = c("symbol", "entrez"), check.symbol.identity = FALSE, 
   genome = c("Hs", "Mm", "Rn", "Gg", "Ce", "Dm", "Da", "At"), ontology = c("GOBP", 
-          "GOMF", "GOCC", "PS", "PS2", "SF", "DO", "HPPA", "HPMI", "HPON", "MP", "MsigdbC1", 
-          "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", 
-          "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", 
-          "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7", "DGIdb"), sizeRange = c(10, 
-          1000), min.overlap = 3, which_distance = NULL, test = c("HypergeoTest", "FisherTest", 
-          "BinomialTest"), p.adjust.method = c("BH", "BY", "bonferroni", "holm", "hochberg", 
-          "hommel"), ontology.algorithm = c("none", "pc", "elim", "lea"), elim.pvalue = 0.01, 
-      lea.depth = 2, verbose = T, RData.location = "http://supfam.org/dnet/data")</pre>
+          "GOMF", "GOCC", "PS", "PS2", "SF", "DO", "HPPA", "HPMI", "HPCM", "HPMA", 
+          "MP", "MsigdbH", "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG", 
+          "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", 
+          "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7", 
+          "DGIdb"), sizeRange = c(10, 1000), min.overlap = 3, which_distance = NULL, 
+      test = c("HypergeoTest", "FisherTest", "BinomialTest"), p.adjust.method = c("BH", 
+          "BY", "bonferroni", "holm", "hochberg", "hommel"), ontology.algorithm = c("none", 
+          "pc", "elim", "lea"), elim.pvalue = 0.01, lea.depth = 2, verbose = T, RData.location = "http://supfam.org/dnet/data")</pre>
     
     <h3>Arguments</h3>
     <dl>
@@ -250,19 +250,19 @@ phylostratific age information, "PS2" for the collapsed PS version
 (inferred ancestors being collapsed into one with the known taxonomy
 information), "SF" for domain superfamily assignments, "DO" for Disease
 Ontology, "HPPA" for Human Phenotype Phenotypic Abnormality, "HPMI" for
-Human Phenotype Mode of Inheritance, "HPON" for Human Phenotype ONset
-and clinical course, "MP" for Mammalian Phenotype, and Drug-Gene
-Interaction database (DGIdb) and the molecular signatures database
-(Msigdb) only in human (including "MsigdbC1", "MsigdbC2CGP",
-"MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA",
-"MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM",
-"MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", "MsigdbC6", "MsigdbC7").
-Note: These four ("GOBP", "GOMF", "GOCC" and "PS") are availble for all
-genomes/species; for "Hs" and "Mm", these five ("DO", "HPPA", "HPMI",
-"HPON" and "MP") are also supported; all "Msigdb" are only supported in
-"Hs". For details on the eligibility for pairs of input genome and
-ontology, please refer to the online Documentations at
-<a href = 'http://supfam.org/dnet/docs.html'>http://supfam.org/dnet/docs.html</a></dd>
+Human Phenotype Mode of Inheritance, "HPCM" for Human Phenotype
+Clinical Modifier, "HPMA" for Human Phenotype Mortality Aging, "MP" for
+Mammalian Phenotype, and Drug-Gene Interaction database (DGIdb) and the
+molecular signatures database (Msigdb) only in human (including
+"MsigdbH", "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG",
+"MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR",
+"MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC",
+"MsigdbC6", "MsigdbC7"). Note: These four ("GOBP", "GOMF", "GOCC" and
+"PS") are availble for all genomes/species; for "Hs" and "Mm", these
+six ("DO", "HPPA", "HPMI", "HPCM", "HPMA" and "MP") are also supported;
+all "Msigdb" are only supported in "Hs". For details on the eligibility
+for pairs of input genome and ontology, please refer to the online
+Documentations at <a href = 'http://supfam.org/dnet/docs.html'>http://supfam.org/dnet/docs.html</a></dd>
       <dt>sizeRange</dt>
       <dd>the minimum and maximum size of members of each gene
 set in consideration. By default, it sets to a minimum of 10 but no
@@ -321,7 +321,6 @@ displayed in the screen. By default, it sets to false for no display</dd>
       <dt>RData.location</dt>
       <dd>the characters to tell the location of built-in
 RData files. By default, it remotely locates at
-<a href = 'http://supfam.org/dnet/data'>http://supfam.org/dnet/data</a> or
 <a href = 'http://dnet.r-forge.r-project.org/data'>http://dnet.r-forge.r-project.org/data</a>. For the user equipped
 with fast internet connection, this option can be just left as default.
 But it is always advisable to download these files locally. Especially
@@ -435,65 +434,66 @@ data
 </div>
 <div class='input'>
 # enrichment analysis
-eTerm <- dEnricher(data, identity="symbol", genome="Hs", ontology="DO")
+eTerm <- dEnricher(data, identity="symbol", genome="Hs",
+ontology="HPPA")
 </div>
-<strong class='message'>Start at 2015-06-10 15:08:08</strong>
+<strong class='message'>Start at 2015-07-13 11:53:40</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology DO and its gene associations in the genome Hs (2015-06-10 15:08:08) ...</strong>
-<strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Hs/org.Hs.eg.RData</strong>
-<strong class='message'>	Load annotation information from http://supfam.org/dnet/data/Hs/org.Hs.egDO.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2015-06-10 15:08:08) ...</strong>
+<strong class='message'>First, load the ontology HPPA and its gene associations in the genome Hs (2015-07-13 11:53:40) ...</strong>
+<strong class='message'>'org.Hs.eg' (from http://supfam.org/dnet/data/org.Hs.eg.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egHPPA' (from package 'dnet' version 1.0.7) has been loaded into the working environment</strong>
+<strong class='message'>Then, do mapping based on symbol (2015-07-13 11:53:43) ...</strong>
 <strong class='message'>	Among 47 symbols of input data, there are 43 mappable via official gene symbols but 4 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-06-10 15:08:08) ...</strong>
-<strong class='message'>	There are 913 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2015-06-10 15:08:08) ...</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-07-13 11:53:43) ...</strong>
+<strong class='message'>	There are 2251 terms being used, each restricted within [10,1000] annotations</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2015-07-13 11:53:44) ...</strong>
 <strong class='message'>
-End at 2015-06-10 15:08:08</strong>
-<strong class='message'>Runtime in total is: 0 secs
+End at 2015-07-13 11:53:44</strong>
+<strong class='message'>Runtime in total is: 4 secs
 </strong>
 <div class='input'>dEnricherView(eTerm, top_num=10, sortBy="adjp", decreasing=FALSE,
 details=TRUE)
 </div>
-<div class='output'>              setID nAnno nOverlap zscore  pvalue   adjp
-DOID:1749 DOID:1749   719        8   3.94 0.00022 0.0025
-DOID:1909 DOID:1909   708        8   3.99 0.00019 0.0025
-DOID:231   DOID:231   185        4   4.47 0.00025 0.0025
-DOID:8566 DOID:8566    94        3   4.93 0.00021 0.0025
-DOID:332   DOID:332   154        3   3.59 0.00130 0.0100
-DOID:1115 DOID:1115   191        3   3.08 0.00300 0.0190
-DOID:3571 DOID:3571   883        7   2.63 0.00460 0.0200
-DOID:684   DOID:684   882        7   2.64 0.00460 0.0200
-DOID:686   DOID:686   882        7   2.64 0.00460 0.0200
-DOID:2355 DOID:2355   235        3   2.62 0.00620 0.0240
-                                   name        namespace distance
-DOID:1749       squamous cell carcinoma Disease_Ontology        5
-DOID:1909                      melanoma Disease_Ontology        4
-DOID:231           motor neuron disease Disease_Ontology        5
-DOID:8566                herpes simplex Disease_Ontology        3
-DOID:332  amyotrophic lateral sclerosis Disease_Ontology        6
-DOID:1115                       sarcoma Disease_Ontology        4
-DOID:3571                  liver cancer Disease_Ontology        5
-DOID:684       hepatocellular carcinoma Disease_Ontology        7
-DOID:686                liver carcinoma Disease_Ontology        6
-DOID:2355                        anemia Disease_Ontology        4
-                                             members
-DOID:1749  RHOA,MSN,CANX,NPM1,RPS6,HSP90B1,EPHB3,BAD
-DOID:1909 APP,RHOA,MSN,CANX,NPM1,PRKAR1A,HSP90B1,BAD
-DOID:231                        APP,TARDBP,RPS6,KARS
-DOID:8566                               APP,MSN,NPM1
-DOID:332                             APP,TARDBP,KARS
-DOID:1115                           TARDBP,NPM1,RPS6
-DOID:3571       RHOA,NPM1,RPS6,HSP90B1,BAD,HINT1,JTB
-DOID:684        RHOA,NPM1,RPS6,HSP90B1,BAD,HINT1,JTB
-DOID:686        RHOA,NPM1,RPS6,HSP90B1,BAD,HINT1,JTB
-DOID:2355                              MSN,NPM1,RPS6
+<div class='output'>                setID nAnno nOverlap zscore  pvalue  adjp
+HP:0011675 HP:0011675   216        4   3.91 0.00042 0.011
+HP:0009830 HP:0009830   265        4   3.37 0.00110 0.014
+HP:0011025 HP:0011025   464        5   2.92 0.00200 0.017
+HP:0000759 HP:0000759   354        4   2.67 0.00410 0.026
+HP:0000708 HP:0000708   596        5   2.29 0.00750 0.039
+HP:0011793 HP:0011793   455        4   2.10 0.01200 0.053
+HP:0002664 HP:0002664   484        4   1.96 0.01600 0.059
+HP:0011121 HP:0011121   565        4   1.62 0.03000 0.098
+HP:0001760 HP:0001760   594        4   1.52 0.03700 0.110
+HP:0001324 HP:0001324   448        3   1.26 0.05600 0.150
+                                                      name
+HP:0011675                                      Arrhythmia
+HP:0009830                           Peripheral neuropathy
+HP:0011025 Abnormality of cardiovascular system physiology
+HP:0000759    Abnormality of the peripheral nervous system
+HP:0000708             Behavioural/Psychiatric Abnormality
+HP:0011793                     Neoplasm by anatomical site
+HP:0002664                                        Neoplasm
+HP:0011121                  Abnormality of skin morphology
+HP:0001760                         Abnormality of the foot
+HP:0001324                                 Muscle weakness
+                        namespace distance                        members
+HP:0011675 Phenotypic_abnormality        4         PRKAR1A,RPS10,PAX8,DSP
+HP:0009830 Phenotypic_abnormality        5         PRKAR1A,APP,HINT1,KARS
+HP:0011025 Phenotypic_abnormality        3     PRKAR1A,RPS10,PAX8,DSP,APP
+HP:0000759 Phenotypic_abnormality        4         PRKAR1A,APP,HINT1,KARS
+HP:0000708 Phenotypic_abnormality        5 PRKAR1A,PAX8,GUCA1A,TARDBP,APP
+HP:0011793 Phenotypic_abnormality        3        PRKAR1A,RPS10,KARS,NPM1
+HP:0002664 Phenotypic_abnormality        2        PRKAR1A,RPS10,KARS,NPM1
+HP:0011121 Phenotypic_abnormality        5         PRKAR1A,RPS10,PAX8,DSP
+HP:0001760 Phenotypic_abnormality        7         PRKAR1A,DSP,HINT1,KARS
+HP:0001324 Phenotypic_abnormality        4            PRKAR1A,PAX8,TARDBP
 </div>
 <div class='input'>
 # visualise the top significant terms in the ontology hierarchy
-ig.DO <- dRDataLoader(RData='ig.DO')
+ig.HPPA <- dRDataLoader(RData='ig.HPPA')
 </div>
-<strong class='message'>'ig.DO' (from http://supfam.org/dnet/data/Obo/ig.DO.RData) has been loaded into the working environment</strong>
-<div class='input'>g <- ig.DO
+<strong class='message'>'ig.HPPA' (from package 'dnet' version 1.0.7) has been loaded into the working environment</strong>
+<div class='input'>g <- ig.HPPA
 nodes_query <- names(sort(eTerm$adjp)[1:5])
 nodes.highlight <- rep("red", length(nodes_query))
 names(nodes.highlight) <- nodes_query
@@ -550,12 +550,10 @@ node.attrs=list(color=nodes.highlight))
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
       <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href="
-http://cran.r-project.org/package=dnet">
-http://cran.r-project.org/package=dnet</a></li>
-      <li><a href="
-https://github.com/hfang-bristol/dnet">
-https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href=" http://cran.r-
+project.org/package=dnet"> http://cran.r-
+project.org/package=dnet</a></li>
+      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     

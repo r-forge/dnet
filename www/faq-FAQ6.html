@@ -215,7 +215,7 @@ Notes:
 # 1) load the whole human gene network. The network is extracted from the STRING database (version 9.1). Only those associations with medium confidence (score>=400) are retained
 network <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData = "org.Hs.string")
 </div>
-<strong class='message'>'org.Hs.string' (from http://supfam.org/dnet/data/Hs/org.Hs.string.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.string' (from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.string.RData) has been loaded into the working environment</strong>
 <div class='input'># If required, can only focus on those edges with confidence score >= 700
 network <- subgraph.edges(network, eids=E(network)[combined_score>=700])
 network
@@ -276,7 +276,7 @@ out
 keyword <- 'stem'
 org.Hs.egGOBP <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData = "org.Hs.egGOBP")
 </div>
-<strong class='message'>'org.Hs.egGOBP' (from http://supfam.org/dnet/data/Hs/org.Hs.egGOBP.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egGOBP' (from http://dnet.r-forge.r-project.org/data/Hs/org.Hs.egGOBP.RData) has been loaded into the working environment</strong>
 <div class='input'>ind <- grep(keyword, org.Hs.egGOBP$set_info$name, ignore.case=T, perl=T)
 genes <- unique(unlist(org.Hs.egGOBP$gs[ind]))
 
@@ -354,12 +354,10 @@ vcolors[match('POU5F1', V(g2)$symbol)] <- 'red'
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
       <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href="
-http://cran.r-project.org/package=dnet">
-http://cran.r-project.org/package=dnet</a></li>
-      <li><a href="
-https://github.com/hfang-bristol/dnet">
-https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href=" http://cran.r-
+project.org/package=dnet"> http://cran.r-
+project.org/package=dnet</a></li>
+      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     <h2>Author</h2>

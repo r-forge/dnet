@@ -204,7 +204,7 @@ window.onload = function(){
   <div class="span8">
   
     <h3>Description</h3>
-    <p>An R object that contains associations between Human Phenotype Phenotypic Abnormality terms and Mouse Entrez Genes. This data is first prepared based on <a href = 'http://compbio.charite.de/svn/hpo/trunk/src/ontology/human-phenotype-ontology.obo'>http://compbio.charite.de/svn/hpo/trunk/src/ontology/human-phenotype-ontology.obo</a> and  <a href = 'http://compbio.charite.de/hudson/job/hpo.annotations.monthly/lastStableBuild/artifact/annotation/ALL_SOURCES_ALL_FREQUENCIES_genes_to_phenotype.txt'>http://compbio.charite.de/hudson/job/hpo.annotations.monthly/lastStableBuild/artifact/annotation/ALL_SOURCES_ALL_FREQUENCIES_genes_to_phenotype.txt</a>, which results in annotations of Human Entrez Genes. Then, these annotations are transferred to Mouse Entrez Genes based on <a href = 'ftp://anonymous@ftp.ncbi.nih.gov/pub/HomoloGene/build67/homologene.data'>ftp://anonymous@ftp.ncbi.nih.gov/pub/HomoloGene/build67/homologene.data</a>.</p>
+    <p>An R object that contains associations between HPPA terms and Mouse Entrez Genes. This data is first prepared based on <a href = 'http://purl.obolibrary.org/obo/hp.obo'>http://purl.obolibrary.org/obo/hp.obo</a> and  <a href = 'http://compbio.charite.de/hudson/job/hpo.annotations.monthly/lastStableBuild/artifact/annotation/ALL_SOURCES_ALL_FREQUENCIES_genes_to_phenotype.txt'>http://compbio.charite.de/hudson/job/hpo.annotations.monthly/lastStableBuild/artifact/annotation/ALL_SOURCES_ALL_FREQUENCIES_genes_to_phenotype.txt</a>, which results in annotations of Human Entrez Genes. Then, these annotations are transferred to Mouse Entrez Genes based on <a href = 'ftp://anonymous@ftp.ncbi.nih.gov/pub/HomoloGene/build67/homologene.data'>ftp://anonymous@ftp.ncbi.nih.gov/pub/HomoloGene/build67/homologene.data</a>.</p>
   
     <h3>Usage</h3>
     <pre>org.Mm.egHPPA <- dRDataLoader(RData = "org.Mm.egHPPA")</pre>
@@ -241,7 +241,7 @@ window.onload = function(){
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'>org.Mm.egHPPA <- dRDataLoader(RData='org.Mm.egHPPA')
 </div>
-<strong class='message'>'org.Mm.egHPPA' (from http://supfam.org/dnet/data/Mm/org.Mm.egHPPA.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Mm.egHPPA' (from http://supfam.org/dnet/data/org.Mm.egHPPA.RData) has been loaded into the working environment</strong>
 <div class='input'>names(org.Mm.egHPPA)
 </div>
 <div class='output'>[1] "gs"       "set_info"
@@ -280,12 +280,10 @@ window.onload = function(){
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
       <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href="
-http://cran.r-project.org/package=dnet">
-http://cran.r-project.org/package=dnet</a></li>
-      <li><a href="
-https://github.com/hfang-bristol/dnet">
-https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href=" http://cran.r-
+project.org/package=dnet"> http://cran.r-
+project.org/package=dnet</a></li>
+      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     

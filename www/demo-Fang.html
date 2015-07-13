@@ -288,10 +288,10 @@ Annotation:
 # An igraph object that contains a functional protein association network in human. The network is extracted from the STRING database (version 9.1). Only those associations with medium confidence (score>=400) are retained.
 org.Hs.string <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='org.Hs.string')
 </div>
-<strong class='message'>'org.Hs.string' (from http://supfam.org/dnet/data/Hs/org.Hs.string.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.string' (from http://supfam.org/dnet/data/org.Hs.string.RData) has been loaded into the working environment</strong>
 <div class='input'>org.Hs.string
 </div>
-<div class='output'>IGRAPH UN-- 16973 410824 -- 
+<div class='output'>IGRAPH UN-- 17038 613946 -- 
 + attr: name (v/c), seqid (v/c), geneid (v/n), symbol (v/c),
   description (v/c), neighborhood_score (e/n), fusion_score (e/n),
   cooccurence_score (e/n), coexpression_score (e/n), experimental_score
@@ -306,7 +306,7 @@ esetGeneSub <- esetGene[ind[!is.na(ind)],]
 esetGeneSub
 </div>
 <div class='output'>ExpressionSet (storageMode: lockedEnvironment)
-assayData: 3590 features, 18 samples 
+assayData: 3386 features, 18 samples 
   element names: exprs 
 protocolData: none
 phenoData
@@ -314,7 +314,7 @@ phenoData
   varLabels: Stage Replicate
   varMetadata: labelDescription
 featureData
-  featureNames: RAB7L1 KLF10 ... NGFR (3590 total)
+  featureNames: PPP1R12B KLF10 ... SOX13 (3386 total)
   fvarLabels: EntrezGene Symbol
   fvarMetadata: labelDescription
 experimentData: use 'experimentData(object)'
@@ -326,7 +326,7 @@ network <- <a href='dNetInduce.html' target=dNetInduce>dNetInduce</a>(g=org.Hs.s
 V(network)$name <- V(network)$symbol
 network
 </div>
-<div class='output'>IGRAPH UN-- 3385 39961 -- 
+<div class='output'>IGRAPH UN-- 3291 52727 -- 
 + attr: name (v/c), seqid (v/c), geneid (v/n), symbol (v/c),
   description (v/c)
 </div>
@@ -391,7 +391,7 @@ apply(adjpvals<1e-2, 2, sum)
 # obtain gene significance from the given gene-sample matrix according to singular value decomposition-based method
 fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.eigen=NULL, pval.eigen=1e-2, signif="fdr", orient.permutation="row", num.permutation=200, fdr.procedure="stepup", verbose=T)
 </div>
-<strong class='message'>Start at 2015-06-04 12:13:27</strong>
+<strong class='message'>Start at 2015-07-13 12:29:46</strong>
 <strong class='message'></strong>
 <strong class='message'>First, singular value decomposition of the input matrix (with 4139 rows and 18 columns)...</strong>
 <strong class='message'>Second, determinate the eigens...</strong>
@@ -401,45 +401,45 @@ fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.ei
 <strong class='message'>Finally, obtain gene significance (fdr) based on 200 permutations...</strong>
 <strong class='message'>	doing row-wise permutations...</strong>
 <strong class='message'>	estimating fdr...</strong>
-<strong class='message'>1 (out of 4139) at 2015-06-04 12:13:49</strong>
-<strong class='message'>414 (out of 4139) at 2015-06-04 12:14:00</strong>
-<strong class='message'>828 (out of 4139) at 2015-06-04 12:14:10</strong>
-<strong class='message'>1242 (out of 4139) at 2015-06-04 12:14:21</strong>
-<strong class='message'>1656 (out of 4139) at 2015-06-04 12:14:32</strong>
-<strong class='message'>2070 (out of 4139) at 2015-06-04 12:14:42</strong>
-<strong class='message'>2484 (out of 4139) at 2015-06-04 12:14:53</strong>
-<strong class='message'>2898 (out of 4139) at 2015-06-04 12:15:03</strong>
-<strong class='message'>3312 (out of 4139) at 2015-06-04 12:15:14</strong>
-<strong class='message'>3726 (out of 4139) at 2015-06-04 12:15:24</strong>
-<strong class='message'>4139 (out of 4139) at 2015-06-04 12:15:35</strong>
+<strong class='message'>1 (out of 4139) at 2015-07-13 12:30:04</strong>
+<strong class='message'>414 (out of 4139) at 2015-07-13 12:30:18</strong>
+<strong class='message'>828 (out of 4139) at 2015-07-13 12:30:32</strong>
+<strong class='message'>1242 (out of 4139) at 2015-07-13 12:30:45</strong>
+<strong class='message'>1656 (out of 4139) at 2015-07-13 12:30:59</strong>
+<strong class='message'>2070 (out of 4139) at 2015-07-13 12:31:12</strong>
+<strong class='message'>2484 (out of 4139) at 2015-07-13 12:31:26</strong>
+<strong class='message'>2898 (out of 4139) at 2015-07-13 12:31:40</strong>
+<strong class='message'>3312 (out of 4139) at 2015-07-13 12:31:53</strong>
+<strong class='message'>3726 (out of 4139) at 2015-07-13 12:32:07</strong>
+<strong class='message'>4139 (out of 4139) at 2015-07-13 12:32:21</strong>
 <strong class='message'>	using stepup procedure...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2015-06-04 12:15:35</strong>
-<strong class='message'>Runtime in total is: 128 secs
+<strong class='message'>Finish at 2015-07-13 12:32:21</strong>
+<strong class='message'>Runtime in total is: 155 secs
 </strong>
 <div class='input'>
 # 2) identification of module
 g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network, pval=fdr, method="customised", nsize=30)
 </div>
-<strong class='message'>Start at 2015-06-04 12:15:35</strong>
+<strong class='message'>Start at 2015-07-13 12:32:21</strong>
 <strong class='message'></strong>
 <strong class='message'>First, consider the input fdr (or p-value) distribution</strong>
 <strong class='message'>Second, determine the significance threshold...</strong>
 <strong class='message'>	Via constraint on the size of subnetwork to be identified (30 nodes)</strong>
 <strong class='message'>	Scanning significance threshold at rough stage...</strong>
 <strong class='message'>		significance threshold: 1.00e-02, corresponding to the network size (0 nodes)</strong>
-<strong class='message'>		significance threshold: 1.00e-01, corresponding to the network size (411 nodes)</strong>
+<strong class='message'>		significance threshold: 1.00e-01, corresponding to the network size (415 nodes)</strong>
 <strong class='message'>	Scanning significance threshold at finetune stage...</strong>
 <strong class='message'>		significance threshold : 1.50e-02, corresponding to the network size (0 nodes)</strong>
-<strong class='message'>		significance threshold : 2.00e-02, corresponding to the network size (54 nodes)</strong>
+<strong class='message'>		significance threshold : 2.00e-02, corresponding to the network size (45 nodes)</strong>
 <strong class='message'>	significance threshold: 2.00e-02</strong>
 <strong class='message'>Third, calculate the scores according to the input fdr (or p-value) and the threshold (if any)...</strong>
 <strong class='message'>	Amongst 4139 scores, there are 82 positives.</strong>
-<strong class='message'>Finally, find the subgraph from the input graph with 3385 nodes and 39961 edges...</strong>
-<strong class='message'>	Size of the subgraph: 54 nodes and 226 edges</strong>
+<strong class='message'>Finally, find the subgraph from the input graph with 3291 nodes and 52727 edges...</strong>
+<strong class='message'>	Size of the subgraph: 45 nodes and 101 edges</strong>
 <strong class='message'>
-Finish at 2015-06-04 12:16:11</strong>
-<strong class='message'>Runtime in total is: 36 secs
+Finish at 2015-07-13 12:33:05</strong>
+<strong class='message'>Runtime in total is: 44 secs
 </strong>
 <div class='input'>glayout <- layout.fruchterman.reingold(g)
 
@@ -500,46 +500,46 @@ colormap <- "darkgreen-lightgreen-lightpink-darkred"
 # 11) color by additional data (be reordered)
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="edge", node.normalise="degree", amplifier=2, metric="none")
 </div>
-<strong class='message'>Start at 2015-06-04 12:17:45</strong>
+<strong class='message'>Start at 2015-07-13 12:34:03</strong>
 <strong class='message'></strong>
-<strong class='message'>First, define topology of a map grid (2015-06-04 12:17:45)...</strong>
-<strong class='message'>Second, initialise the codebook matrix (16 X 226) using 'linear' initialisation, given a topology and input data (2015-06-04 12:17:45)...</strong>
-<strong class='message'>Third, get training at the rough stage (2015-06-04 12:17:45)...</strong>
-<strong class='message'>	1 out of 162 (2015-06-04 12:17:45)</strong>
-<strong class='message'>	17 out of 162 (2015-06-04 12:17:45)</strong>
-<strong class='message'>	34 out of 162 (2015-06-04 12:17:45)</strong>
-<strong class='message'>	51 out of 162 (2015-06-04 12:17:45)</strong>
-<strong class='message'>	68 out of 162 (2015-06-04 12:17:45)</strong>
-<strong class='message'>	85 out of 162 (2015-06-04 12:17:45)</strong>
-<strong class='message'>	102 out of 162 (2015-06-04 12:17:45)</strong>
-<strong class='message'>	119 out of 162 (2015-06-04 12:17:45)</strong>
-<strong class='message'>	136 out of 162 (2015-06-04 12:17:45)</strong>
-<strong class='message'>	153 out of 162 (2015-06-04 12:17:45)</strong>
-<strong class='message'>	162 out of 162 (2015-06-04 12:17:45)</strong>
-<strong class='message'>Fourth, get training at the finetune stage (2015-06-04 12:17:45)...</strong>
-<strong class='message'>	1 out of 642 (2015-06-04 12:17:45)</strong>
-<strong class='message'>	65 out of 642 (2015-06-04 12:17:45)</strong>
-<strong class='message'>	130 out of 642 (2015-06-04 12:17:45)</strong>
-<strong class='message'>	195 out of 642 (2015-06-04 12:17:45)</strong>
-<strong class='message'>	260 out of 642 (2015-06-04 12:17:45)</strong>
-<strong class='message'>	325 out of 642 (2015-06-04 12:17:45)</strong>
-<strong class='message'>	390 out of 642 (2015-06-04 12:17:45)</strong>
-<strong class='message'>	455 out of 642 (2015-06-04 12:17:45)</strong>
-<strong class='message'>	520 out of 642 (2015-06-04 12:17:45)</strong>
-<strong class='message'>	585 out of 642 (2015-06-04 12:17:45)</strong>
-<strong class='message'>	642 out of 642 (2015-06-04 12:17:45)</strong>
-<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-06-04 12:17:45)...</strong>
-<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-06-04 12:17:45)...</strong>
+<strong class='message'>First, define topology of a map grid (2015-07-13 12:34:03)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (16 X 101) using 'linear' initialisation, given a topology and input data (2015-07-13 12:34:03)...</strong>
+<strong class='message'>Third, get training at the rough stage (2015-07-13 12:34:03)...</strong>
+<strong class='message'>	1 out of 162 (2015-07-13 12:34:03)</strong>
+<strong class='message'>	17 out of 162 (2015-07-13 12:34:03)</strong>
+<strong class='message'>	34 out of 162 (2015-07-13 12:34:03)</strong>
+<strong class='message'>	51 out of 162 (2015-07-13 12:34:03)</strong>
+<strong class='message'>	68 out of 162 (2015-07-13 12:34:03)</strong>
+<strong class='message'>	85 out of 162 (2015-07-13 12:34:03)</strong>
+<strong class='message'>	102 out of 162 (2015-07-13 12:34:03)</strong>
+<strong class='message'>	119 out of 162 (2015-07-13 12:34:03)</strong>
+<strong class='message'>	136 out of 162 (2015-07-13 12:34:03)</strong>
+<strong class='message'>	153 out of 162 (2015-07-13 12:34:03)</strong>
+<strong class='message'>	162 out of 162 (2015-07-13 12:34:03)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2015-07-13 12:34:03)...</strong>
+<strong class='message'>	1 out of 642 (2015-07-13 12:34:03)</strong>
+<strong class='message'>	65 out of 642 (2015-07-13 12:34:03)</strong>
+<strong class='message'>	130 out of 642 (2015-07-13 12:34:03)</strong>
+<strong class='message'>	195 out of 642 (2015-07-13 12:34:03)</strong>
+<strong class='message'>	260 out of 642 (2015-07-13 12:34:03)</strong>
+<strong class='message'>	325 out of 642 (2015-07-13 12:34:03)</strong>
+<strong class='message'>	390 out of 642 (2015-07-13 12:34:03)</strong>
+<strong class='message'>	455 out of 642 (2015-07-13 12:34:03)</strong>
+<strong class='message'>	520 out of 642 (2015-07-13 12:34:03)</strong>
+<strong class='message'>	585 out of 642 (2015-07-13 12:34:03)</strong>
+<strong class='message'>	642 out of 642 (2015-07-13 12:34:03)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-07-13 12:34:03)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-07-13 12:34:03)...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
-<strong class='message'>   dimension of input data: 6x226
+<strong class='message'>   dimension of input data: 6x101
    xy-dimension of map grid: xdim=4, ydim=4
    grid lattice: rect
    grid shape: sheet
    dimension of grid coord: 16x2
    initialisation method: linear
-   dimension of codebook matrix: 16x226
-   mean quantization error: 0.581187704956089
+   dimension of codebook matrix: 16x101
+   mean quantization error: 0.655384545863015
 </strong>
 <strong class='message'>Below are the details of trainology:</strong>
 <strong class='message'>   training algorithm: sequential
@@ -549,7 +549,7 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2015-06-04 12:17:45</strong>
+<strong class='message'>End at 2015-07-13 12:34:03</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <a href="javascript:newWin('Fang-106.png', 'Fang-106.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-106.png', width="400" /></a>
@@ -610,12 +610,10 @@ write.table(sif, file=paste("Fang_whole.sif", sep=""), quote=F, row.names=F,col.
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
       <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href="
-http://cran.r-project.org/package=dnet">
-http://cran.r-project.org/package=dnet</a></li>
-      <li><a href="
-https://github.com/hfang-bristol/dnet">
-https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href=" http://cran.r-
+project.org/package=dnet"> http://cran.r-
+project.org/package=dnet</a></li>
+      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     <h2>Author</h2>

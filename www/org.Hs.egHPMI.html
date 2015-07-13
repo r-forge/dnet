@@ -204,7 +204,7 @@ window.onload = function(){
   <div class="span8">
   
     <h3>Description</h3>
-    <p>An R object that contains associations between HPMI terms and Human Entrez Genes. This data is first prepared based on <a href = 'http://compbio.charite.de/svn/hpo/trunk/src/ontology/human-phenotype-ontology.obo'>http://compbio.charite.de/svn/hpo/trunk/src/ontology/human-phenotype-ontology.obo</a> and  <a href = 'http://compbio.charite.de/hudson/job/hpo.annotations.monthly/lastStableBuild/artifact/annotation/ALL_SOURCES_ALL_FREQUENCIES_genes_to_phenotype.txt'>http://compbio.charite.de/hudson/job/hpo.annotations.monthly/lastStableBuild/artifact/annotation/ALL_SOURCES_ALL_FREQUENCIES_genes_to_phenotype.txt</a>.</p>
+    <p>An R object that contains associations between HPMI terms and Human Entrez Genes. This data is first prepared based on <a href = 'http://purl.obolibrary.org/obo/hp.obo'>http://purl.obolibrary.org/obo/hp.obo</a> and  <a href = 'http://compbio.charite.de/hudson/job/hpo.annotations.monthly/lastStableBuild/artifact/annotation/ALL_SOURCES_ALL_FREQUENCIES_genes_to_phenotype.txt'>http://compbio.charite.de/hudson/job/hpo.annotations.monthly/lastStableBuild/artifact/annotation/ALL_SOURCES_ALL_FREQUENCIES_genes_to_phenotype.txt</a>.</p>
   
     <h3>Usage</h3>
     <pre>org.Hs.egHPMI <- dRDataLoader(RData = "org.Hs.egHPMI")</pre>
@@ -240,7 +240,7 @@ window.onload = function(){
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'>org.Hs.egHPMI <- dRDataLoader(RData='org.Hs.egHPMI')
 </div>
-<strong class='message'>'org.Hs.egHPMI' (from http://supfam.org/dnet/data/Hs/org.Hs.egHPMI.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egHPMI' (from http://supfam.org/dnet/data/org.Hs.egHPMI.RData) has been loaded into the working environment</strong>
 <div class='input'>names(org.Hs.egHPMI)
 </div>
 <div class='output'>[1] "gs"       "set_info"
@@ -279,12 +279,10 @@ window.onload = function(){
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
       <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href="
-http://cran.r-project.org/package=dnet">
-http://cran.r-project.org/package=dnet</a></li>
-      <li><a href="
-https://github.com/hfang-bristol/dnet">
-https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href=" http://cran.r-
+project.org/package=dnet"> http://cran.r-
+project.org/package=dnet</a></li>
+      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     

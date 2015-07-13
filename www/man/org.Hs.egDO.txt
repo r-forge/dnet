@@ -9,7 +9,7 @@ org.Hs.egDO <- dRDataLoader(RData='org.Hs.egDO')
 }
 
 \description{
-An R object that contains associations between Disease Ontology terms and Human Entrez Genes. This data is first prepared based on \url{http://sourceforge.net/p/diseaseontology/code/HEAD/tree/trunk/HumanDO.obo} and  \url{http://dga.nubic.northwestern.edu/ajax/Download.ajax.php}, which results in annotations of Human Entrez Genes.
+An R object that contains associations between Disease Ontology terms and Human Entrez Genes. This data is first prepared based on \url{http://sourceforge.net/p/diseaseontology/code/HEAD/tree/trunk/HumanDO.obo?format=raw} and  \url{http://dga.nubic.northwestern.edu/ajax/Download.ajax.php}, which results in annotations of Human Entrez Genes.
 }
 
 \value{

@@ -211,13 +211,13 @@ the input data and the ontology in query. It returns an object of class
     <h3>Usage</h3>
     <pre>dGSEA(data, identity = c("symbol", "entrez"), check.symbol.identity = FALSE, genome = c("Hs", 
   "Mm", "Rn", "Gg", "Ce", "Dm", "Da", "At"), ontology = c("GOBP", "GOMF", "GOCC", 
-      "PS", "PS2", "SF", "DO", "HPPA", "HPMI", "HPON", "MP", "MsigdbC1", "MsigdbC2CGP", 
-      "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", 
-      "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", 
-      "MsigdbC6", "MsigdbC7", "DGIdb", "Customised"), customised.genesets = NULL, sizeRange = c(10, 
-      20000), which_distance = NULL, weight = 1, nperm = 1000, fast = T, sigTail = c("two-tails", 
-      "one-tail"), p.adjust.method = c("BH", "BY", "bonferroni", "holm", "hochberg", 
-      "hommel"), verbose = T, RData.location = "http://supfam.org/dnet/data")</pre>
+      "PS", "PS2", "SF", "DO", "HPPA", "HPMI", "HPCM", "HPMA", "MP", "MsigdbH", "MsigdbC1", 
+      "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", 
+      "MsigdbC3TFT", "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", 
+      "MsigdbC5CC", "MsigdbC6", "MsigdbC7", "DGIdb", "Customised"), customised.genesets = NULL, 
+      sizeRange = c(10, 20000), which_distance = NULL, weight = 1, nperm = 1000, fast = T, 
+      sigTail = c("two-tails", "one-tail"), p.adjust.method = c("BH", "BY", "bonferroni", 
+          "holm", "hochberg", "hommel"), verbose = T, RData.location = "http://supfam.org/dnet/data")</pre>
     
     <h3>Arguments</h3>
     <dl>
@@ -247,18 +247,19 @@ phylostratific age information, "PS2" for the collapsed PS version
 (inferred ancestors being collapsed into one with the known taxonomy
 information), "SF" for domain superfamily assignments, "DO" for Disease
 Ontology, "HPPA" for Human Phenotype Phenotypic Abnormality, "HPMI" for
-Human Phenotype Mode of Inheritance, "HPON" for Human Phenotype ONset
-and clinical course, "MP" for Mammalian Phenotype, and Drug-Gene
-Interaction database (DGIdb) and the molecular signatures database
-(Msigdb) in human (including "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP",
-"MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT",
-"MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF",
-"MsigdbC5CC", "MsigdbC6", "MsigdbC7"). Note: These four ("GOBP",
-"GOMF", "GOCC" and "PS") are availble for all genomes/species; for "Hs"
-and "Mm", these five ("DO", "HPPA", "HPMI", "HPON" and "MP") are also
-supported; all "Msigdb" are only supported in "Hs". For details on the
-eligibility for pairs of input genome and ontology, please refer to the
-online Documentations at <a href = 'http://supfam.org/dnet/docs.html'>http://supfam.org/dnet/docs.html</a>. Also
+Human Phenotype Mode of Inheritance, "HPCM" for Human Phenotype
+Clinical Modifier, "HPMA" for Human Phenotype Mortality Aging, "MP" for
+Mammalian Phenotype, and Drug-Gene Interaction database (DGIdb) and the
+molecular signatures database (Msigdb) only in human (including
+"MsigdbH", "MsigdbC1", "MsigdbC2CGP", "MsigdbC2CP", "MsigdbC2KEGG",
+"MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", "MsigdbC3MIR",
+"MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC",
+"MsigdbC6", "MsigdbC7"). Note: These four ("GOBP", "GOMF", "GOCC" and
+"PS") are availble for all genomes/species; for "Hs" and "Mm", these
+six ("DO", "HPPA", "HPMI", "HPCM", "HPMA" and "MP") are also supported;
+all "Msigdb" are only supported in "Hs". For details on the eligibility
+for pairs of input genome and ontology, please refer to the online
+Documentations at <a href = 'http://supfam.org/dnet/docs.html'>http://supfam.org/dnet/docs.html</a>. Also
 supported are the user-customised gene sets; in doing so, the option
 "Customised" should be used together with the input of the next
 parameter "customised.genesets"</dd>
@@ -305,7 +306,6 @@ displayed in the screen. By default, it sets to false for no display</dd>
       <dt>RData.location</dt>
       <dd>the characters to tell the location of built-in
 RData files. By default, it remotely locates at
-<a href = 'http://supfam.org/dnet/data'>http://supfam.org/dnet/data</a> or
 <a href = 'http://dnet.r-forge.r-project.org/data'>http://dnet.r-forge.r-project.org/data</a>. For the user equipped
 with fast internet connection, this option can be just left as default.
 But it is always advisable to download these files locally. Especially
@@ -417,26 +417,30 @@ higher "nes", the lower "qvalue".
     -->
     
     <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'>load(url("http://dnet.r-forge.r-project.org/data/Datasets/Hiratani_TableS1.RData"))
-data <- RT[1:1000,1:2]
+    <pre class="examples"><div class='input'>load(url("http://supfam.org/dnet/data/Hiratani_TableS1.RData"))
+ls() # you should see three variables: 'RT', 'CpG' and 'EX'
+</div>
+<div class='output'>[1] "CpG" "EX"  "RT" 
+</div>
+<div class='input'>data <- RT[1:1000,1:2]
 eTerm <- dGSEA(data, identity="symbol", genome="Mm", ontology="MP",
 which_distance=c(1,2))
 </div>
-<strong class='message'>Start at 2015-06-10 15:08:16</strong>
+<strong class='message'>Start at 2015-07-13 11:53:51</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2015-06-10 15:08:16) ...</strong>
-<strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Mm/org.Mm.eg.RData</strong>
-<strong class='message'>	Load annotation information from http://supfam.org/dnet/data/Mm/org.Mm.egMP.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2015-06-10 15:08:16) ...</strong>
-<strong class='message'>	Among 1000 symbols of input data, there are 853 mappable via official gene symbols but 147 left unmappable</strong>
-<strong class='message'>Third, perform GSEA analysis (2015-06-10 15:08:17) ...</strong>
-<strong class='message'>	Sample 1 is being processed at (2015-06-10 15:08:17) ...</strong>
-<strong class='message'>		 81 of 81 gene sets have been processed</strong>
-<strong class='message'>	Sample 2 is being processed at (2015-06-10 15:08:28) ...</strong>
-<strong class='message'>		 81 of 81 gene sets have been processed</strong>
+<strong class='message'>First, load the ontology MP and its gene associations in the genome Mm (2015-07-13 11:53:51) ...</strong>
+<strong class='message'>'org.Mm.eg' (from http://supfam.org/dnet/data/org.Mm.eg.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Mm.egMP' (from http://supfam.org/dnet/data/org.Mm.egMP.RData) has been loaded into the working environment</strong>
+<strong class='message'>Then, do mapping based on symbol (2015-07-13 11:53:55) ...</strong>
+<strong class='message'>	Among 1000 symbols of input data, there are 839 mappable via official gene symbols but 161 left unmappable</strong>
+<strong class='message'>Third, perform GSEA analysis (2015-07-13 11:53:55) ...</strong>
+<strong class='message'>	Sample 1 is being processed at (2015-07-13 11:53:55) ...</strong>
+<strong class='message'>		 83 of 83 gene sets have been processed</strong>
+<strong class='message'>	Sample 2 is being processed at (2015-07-13 11:54:05) ...</strong>
+<strong class='message'>		 83 of 83 gene sets have been processed</strong>
 <strong class='message'>
-End at 2015-06-10 15:08:40</strong>
-<strong class='message'>Runtime in total is: 24 secs
+End at 2015-07-13 11:54:16</strong>
+<strong class='message'>Runtime in total is: 25 secs
 </strong>
 <div class='input'>res <- dGSEAview(eTerm, which_sample=1, top_num=5, sortBy="adjp",
 decreasing=FALSE, details=TRUE)
@@ -446,27 +450,27 @@ filename="eTerm.txt")
 </div>
 <strong class='message'>A file called eTerm.txt has been successfully written!
 </strong>
-<a href="javascript:newWin('dGSEA-18.png', 'dGSEA-18.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dGSEA-18.png', width="400" /></a>
+<a href="javascript:newWin('dGSEA-20.png', 'dGSEA-20.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dGSEA-20.png', width="400" /></a>
 <div class='input'>
 ## based on customised gene sets
 eTerm <- dGSEA(data, identity="symbol", genome="Mm",
 ontology="Customised", customised.genesets=rownames(data)[1:100])
 </div>
-<strong class='message'>Start at 2015-06-10 15:08:43</strong>
+<strong class='message'>Start at 2015-07-13 11:54:19</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology Customised and its gene associations in the genome Mm (2015-06-10 15:08:43) ...</strong>
-<strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Mm/org.Mm.eg.RData</strong>
-<strong class='message'>	Among 100 symbols of input data, there are 81 mappable via official gene symbols but 19 left unmappable</strong>
-<strong class='message'>Then, do mapping based on symbol (2015-06-10 15:08:43) ...</strong>
-<strong class='message'>	Among 1000 symbols of input data, there are 853 mappable via official gene symbols but 147 left unmappable</strong>
-<strong class='message'>Third, perform GSEA analysis (2015-06-10 15:08:43) ...</strong>
-<strong class='message'>	Sample 1 is being processed at (2015-06-10 15:08:43) ...</strong>
+<strong class='message'>First, load the ontology Customised and its gene associations in the genome Mm (2015-07-13 11:54:19) ...</strong>
+<strong class='message'>'org.Mm.eg' (from http://supfam.org/dnet/data/org.Mm.eg.RData) has been loaded into the working environment</strong>
+<strong class='message'>	Among 100 symbols of input data, there are 79 mappable via official gene symbols but 21 left unmappable</strong>
+<strong class='message'>Then, do mapping based on symbol (2015-07-13 11:54:21) ...</strong>
+<strong class='message'>	Among 1000 symbols of input data, there are 839 mappable via official gene symbols but 161 left unmappable</strong>
+<strong class='message'>Third, perform GSEA analysis (2015-07-13 11:54:21) ...</strong>
+<strong class='message'>	Sample 1 is being processed at (2015-07-13 11:54:21) ...</strong>
 <strong class='message'>		 1 of 1 gene sets have been processed</strong>
-<strong class='message'>	Sample 2 is being processed at (2015-06-10 15:08:44) ...</strong>
+<strong class='message'>	Sample 2 is being processed at (2015-07-13 11:54:21) ...</strong>
 <strong class='message'>		 1 of 1 gene sets have been processed</strong>
 <strong class='message'>
-End at 2015-06-10 15:08:44</strong>
-<strong class='message'>Runtime in total is: 1 secs
+End at 2015-07-13 11:54:21</strong>
+<strong class='message'>Runtime in total is: 2 secs
 </strong></pre>
   </div>
   
@@ -513,12 +517,10 @@ End at 2015-06-10 15:08:44</strong>
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
       <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href="
-http://cran.r-project.org/package=dnet">
-http://cran.r-project.org/package=dnet</a></li>
-      <li><a href="
-https://github.com/hfang-bristol/dnet">
-https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href=" http://cran.r-
+project.org/package=dnet"> http://cran.r-
+project.org/package=dnet</a></li>
+      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     

@@ -221,7 +221,7 @@ Notes:
 ## load human Entrez Genes (EG), and list the first 3 genes
 org.Hs.eg <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='org.Hs.eg')
 </div>
-<strong class='message'>'org.Hs.eg' (from http://supfam.org/dnet/data/Hs/org.Hs.eg.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.eg' (from http://supfam.org/dnet/data/org.Hs.eg.RData) has been loaded into the working environment</strong>
 <div class='input'>org.Hs.eg$gene_info[1:3,]
 </div>
 <div class='output'>  GeneID Symbol                        description chromosome map_location
@@ -232,15 +232,15 @@ org.Hs.eg <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RD
 1      A1B|ABG|GAB|HYST2477
 2 A2MD|CPAMD5|FWP007|S863-7
 3                      A2MP
-                                                                       dbXrefs
-1 HGNC:5|MIM:138670|Ensembl:ENSG00000121410|HPRD:00726|Vega:OTTHUMG00000183507
-2 HGNC:7|MIM:103950|Ensembl:ENSG00000175899|HPRD:00072|Vega:OTTHUMG00000150267
-3                                               HGNC:8|Ensembl:ENSG00000256069
+                                                                            dbXrefs
+1 MIM:138670|HGNC:HGNC:5|Ensembl:ENSG00000121410|HPRD:00726|Vega:OTTHUMG00000183507
+2 MIM:103950|HGNC:HGNC:7|Ensembl:ENSG00000175899|HPRD:00072|Vega:OTTHUMG00000150267
+3                                               HGNC:HGNC:8|Ensembl:ENSG00000256069
 </div>
 <div class='input'>## load annotations of human Entrez Genes by Gene Ontology Biological Process (GOBP), inspect the content and list the first 3 terms
 org.Hs.egGOBP <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='org.Hs.egGOBP')
 </div>
-<strong class='message'>'org.Hs.egGOBP' (from http://supfam.org/dnet/data/Hs/org.Hs.egGOBP.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egGOBP' (from http://supfam.org/dnet/data/org.Hs.egGOBP.RData) has been loaded into the working environment</strong>
 <div class='input'>names(org.Hs.egGOBP)
 </div>
 <div class='output'>[1] "gs"       "set_info"
@@ -250,23 +250,23 @@ org.Hs.egGOBP <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a
 <div class='output'>                setID                             name namespace distance
 GO:0000002 GO:0000002 mitochondrial genome maintenance   Process        6
 GO:0000003 GO:0000003                     reproduction   Process        2
-GO:0000012 GO:0000012       single strand break repair   Process        9
+GO:0000011 GO:0000011              vacuole inheritance   Process        6
 </div>
 <div class='input'>## load annotations of human Entrez Genes by Disease Ontology (DO), inspect the content and list the first 5 terms
 org.Hs.egDO <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='org.Hs.egDO')
 </div>
-<strong class='message'>'org.Hs.egDO' (from http://supfam.org/dnet/data/Hs/org.Hs.egDO.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egDO' (from http://supfam.org/dnet/data/org.Hs.egDO.RData) has been loaded into the working environment</strong>
 <div class='input'>org.Hs.egDO$set_info[1:3,]
 </div>
-<div class='output'>                    setID                name        namespace distance
-DOID:0000000 DOID:0000000 gallbladder disease Disease_Ontology        3
-DOID:0001816 DOID:0001816        angiosarcoma Disease_Ontology        5
-DOID:0002116 DOID:0002116           pterygium Disease_Ontology        7
+<div class='output'>                    setID                  name        namespace distance
+DOID:0001816 DOID:0001816          angiosarcoma Disease_Ontology        5
+DOID:0002116 DOID:0002116             pterygium Disease_Ontology        7
+DOID:0014667 DOID:0014667 disease of metabolism Disease_Ontology        1
 </div>
 <div class='input'>## load phylostratific age (PS) information of human Entrez Genes, inspect the content and list all our ancestors
 org.Hs.egPS <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='org.Hs.egPS')
 </div>
-<strong class='message'>'org.Hs.egPS' (from http://supfam.org/dnet/data/Hs/org.Hs.egPS.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egPS' (from http://supfam.org/dnet/data/org.Hs.egPS.RData) has been loaded into the working environment</strong>
 <div class='input'>org.Hs.egPS$set_info
 </div>
 <div class='output'>   setID                  name    namespace   distance
@@ -307,7 +307,7 @@ org.Hs.egPS <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(
 <div class='input'>## load domain superfamily (SF) information of human Entrez Genes, inspect the content and list the first 3 superfamilies
 org.Hs.egSF <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='org.Hs.egSF')
 </div>
-<strong class='message'>'org.Hs.egSF' (from http://supfam.org/dnet/data/Hs/org.Hs.egSF.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egSF' (from http://supfam.org/dnet/data/org.Hs.egSF.RData) has been loaded into the working environment</strong>
 <div class='input'>org.Hs.egSF$set_info[1:3,]
 </div>
 <div class='output'>      setID                         name namespace distance
@@ -318,36 +318,36 @@ org.Hs.egSF <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(
 <div class='input'>## load KEGG pathways for human Entrez Genes, inspect the content and list the first 3 pathways
 org.Hs.egMsigdbC2KEGG <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='org.Hs.egMsigdbC2KEGG')
 </div>
-<strong class='message'>'org.Hs.egMsigdbC2KEGG' (from http://supfam.org/dnet/data/Msigdb/org.Hs.egMsigdbC2KEGG.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egMsigdbC2KEGG' (from http://supfam.org/dnet/data/org.Hs.egMsigdbC2KEGG.RData) has been loaded into the working environment</strong>
 <div class='input'>org.Hs.egMsigdbC2KEGG$set_info[1:3,]
 </div>
-<div class='output'>                                                  setID                   name
-KEGG_ABC_TRANSPORTERS             KEGG_ABC_TRANSPORTERS       ABC transporters
-KEGG_ACUTE_MYELOID_LEUKEMIA KEGG_ACUTE_MYELOID_LEUKEMIA Acute myeloid leukemia
-KEGG_ADHERENS_JUNCTION           KEGG_ADHERENS_JUNCTION      Adherens junction
-                            namespace distance
-KEGG_ABC_TRANSPORTERS              C2       NA
-KEGG_ACUTE_MYELOID_LEUKEMIA        C2       NA
-KEGG_ADHERENS_JUNCTION             C2       NA
+<div class='output'>        setID                                 name namespace
+M10462 M10462 KEGG_ADIPOCYTOKINE_SIGNALING_PATHWAY        C2
+M1053   M1053      KEGG_HEDGEHOG_SIGNALING_PATHWAY        C2
+M10680 M10680                      KEGG_PROTEASOME        C2
+                              distance
+M10462 Adipocytokine signaling pathway
+M1053       Hedgehog signaling pathway
+M10680                      Proteasome
 </div>
 <div class='input'>## load the network for human Entrez Genes as an 'igraph' object
 org.Hs.string <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='org.Hs.string')
 </div>
-<strong class='message'>'org.Hs.string' (from http://supfam.org/dnet/data/Hs/org.Hs.string.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.string' (from http://supfam.org/dnet/data/org.Hs.string.RData) has been loaded into the working environment</strong>
 <div class='input'>org.Hs.string
 </div>
-<div class='output'>IGRAPH UN-- 16973 410824 -- 
+<div class='output'>IGRAPH UN-- 17038 613946 -- 
 + attr: name (v/c), seqid (v/c), geneid (v/n), symbol (v/c),
   description (v/c), neighborhood_score (e/n), fusion_score (e/n),
   cooccurence_score (e/n), coexpression_score (e/n), experimental_score
   (e/n), database_score (e/n), textmining_score (e/n), combined_score
   (e/n)
 </div>
-<div class='input'>## This network is extracted from the STRING database (version 9.1). Only those associations with medium confidence (score>=400) are retained. And the users can restrict to those edges with high confidence (score>=700, for example)
+<div class='input'>## This network is extracted from the STRING database. Only those associations with medium confidence (score>=400) are retained. And the users can restrict to those edges with high confidence (score>=700, for example)
 network <- igraph::subgraph.edges(org.Hs.string, eids=E(org.Hs.string)[combined_score>=700])
 network
 </div>
-<div class='output'>IGRAPH UN-- 13026 198516 -- 
+<div class='output'>IGRAPH UN-- 13865 274803 -- 
 + attr: name (v/c), seqid (v/c), geneid (v/n), symbol (v/c),
   description (v/c), neighborhood_score (e/n), fusion_score (e/n),
   cooccurence_score (e/n), coexpression_score (e/n), experimental_score
@@ -365,39 +365,39 @@ symbols <- as.character(fData(TCGA_mutations)$Symbol)
 data <- symbols[1:50] # select the first 50 human genes
 eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data, identity="symbol", genome="Hs", ontology="DO")
 </div>
-<strong class='message'>Start at 2015-06-04 11:57:55</strong>
+<strong class='message'>Start at 2015-07-13 12:09:18</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology DO and its gene associations in the genome Hs (2015-06-04 11:57:55) ...</strong>
-<strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Hs/org.Hs.eg.RData</strong>
-<strong class='message'>	Load annotation information from http://supfam.org/dnet/data/Hs/org.Hs.egDO.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2015-06-04 11:57:56) ...</strong>
+<strong class='message'>First, load the ontology DO and its gene associations in the genome Hs (2015-07-13 12:09:18) ...</strong>
+<strong class='message'>'org.Hs.eg' (from http://supfam.org/dnet/data/org.Hs.eg.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egDO' (from http://supfam.org/dnet/data/org.Hs.egDO.RData) has been loaded into the working environment</strong>
+<strong class='message'>Then, do mapping based on symbol (2015-07-13 12:09:24) ...</strong>
 <strong class='message'>	Among 50 symbols of input data, there are 50 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-06-04 11:57:56) ...</strong>
-<strong class='message'>	There are 913 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2015-06-04 11:57:56) ...</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-07-13 12:09:24) ...</strong>
+<strong class='message'>	There are 917 terms being used, each restricted within [10,1000] annotations</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2015-07-13 12:09:24) ...</strong>
 <strong class='message'>
-End at 2015-06-04 11:57:56</strong>
-<strong class='message'>Runtime in total is: 1 secs
+End at 2015-07-13 12:09:24</strong>
+<strong class='message'>Runtime in total is: 6 secs
 </strong>
 <div class='input'>
 ## gene set enrichment analysis (GSEA) using KEGG pathways
 tol <- apply(exprs(TCGA_mutations), 1, sum) # calculate the total mutations for each gene
 data <- data.frame(tol=tol)
 eTerm <- <a href='dGSEA.html' target=dGSEA>dGSEA</a>(data, identity="symbol", genome="Hs", ontology="MsigdbC2KEGG")</div>
-<strong class='message'>Start at 2015-06-04 11:58:00</strong>
+<strong class='message'>Start at 2015-07-13 12:09:28</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MsigdbC2KEGG and its gene associations in the genome Hs (2015-06-04 11:58:00) ...</strong>
-<strong class='message'>	Load Enterz Gene information from http://supfam.org/dnet/data/Hs/org.Hs.eg.RData</strong>
-<strong class='message'>	Load annotation information from http://supfam.org/dnet/data/Msigdb/org.Hs.egMsigdbC2KEGG.RData</strong>
-<strong class='message'>Then, do mapping based on symbol (2015-06-04 11:58:00) ...</strong>
-<strong class='message'>	Among 19171 symbols of input data, there are 18924 mappable via official gene symbols but 247 left unmappable</strong>
-<strong class='message'>Third, perform GSEA analysis (2015-06-04 11:58:03) ...</strong>
-<strong class='message'>	Sample 1 is being processed at (2015-06-04 11:58:03) ...</strong>
+<strong class='message'>First, load the ontology MsigdbC2KEGG and its gene associations in the genome Hs (2015-07-13 12:09:28) ...</strong>
+<strong class='message'>'org.Hs.eg' (from http://supfam.org/dnet/data/org.Hs.eg.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egMsigdbC2KEGG' (from http://supfam.org/dnet/data/org.Hs.egMsigdbC2KEGG.RData) has been loaded into the working environment</strong>
+<strong class='message'>Then, do mapping based on symbol (2015-07-13 12:09:35) ...</strong>
+<strong class='message'>	Among 19171 symbols of input data, there are 18721 mappable via official gene symbols but 450 left unmappable</strong>
+<strong class='message'>Third, perform GSEA analysis (2015-07-13 12:09:40) ...</strong>
+<strong class='message'>	Sample 1 is being processed at (2015-07-13 12:09:40) ...</strong>
 <strong class='message'>		 100 of 186 gene sets have been processed</strong>
 <strong class='message'>		 186 of 186 gene sets have been processed</strong>
 <strong class='message'>
-End at 2015-06-04 11:58:53</strong>
-<strong class='message'>Runtime in total is: 53 secs
+End at 2015-07-13 12:10:39</strong>
+<strong class='message'>Runtime in total is: 71 secs
 </strong>
       </pre>
     </div>
@@ -430,12 +430,10 @@ End at 2015-06-04 11:58:53</strong>
     <ul>
       <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
       <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href="
-http://cran.r-project.org/package=dnet">
-http://cran.r-project.org/package=dnet</a></li>
-      <li><a href="
-https://github.com/hfang-bristol/dnet">
-https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href=" http://cran.r-
+project.org/package=dnet"> http://cran.r-
+project.org/package=dnet</a></li>
+      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
     </ul>
     
     <h2>Author</h2>
