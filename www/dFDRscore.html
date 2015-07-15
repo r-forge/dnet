@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>dFDRscore @ dnet 1.0.7</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+
+<style type="text/css">
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 8px 20px 12px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #999999;
+}
+
+.navbar .brand:hover {
+  color: #F87217;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar .nav > li > a:hover {
+  color: #F87217;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+</style>
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17338744-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- Enlarge image -->
+<script type="text/javascript">
+    function newWin(url, name, width, height) { 
+       
+        var left = (screen.width/2)-(width/2);
+        var top = (screen.height/2)-(height/2); 
+        
+        window.open(url,name,'scrollbars=yes,resizable=yes,fullscreen=yes, width=' + width + ', height='+height+', top='+top+', left='+left);
+    }
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">dnet 1.0.7</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="install.html"><i class="icon-wrench icon-white"></i> Installation</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="rdata.html"><i class="icon-file icon-white"></i> RData</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="faqs.html"><i class="icon-question-sign icon-white"></i> FAQs</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
+        </ul>
+       
+        <!-- HTML for GOOLE SEARCH BAR 
+        <ul class="nav">
+            <div id="search-wrapper">
+                <form id="search" method="get" action="http://www.google.com/custom">
+                    <div class="search-box">
+                        <i class="icon-search icon-white"></i>
+                        <input type="text" id="tfq" class="textinput" name="q" size="21" maxlength="120" value="Google Search"/>
+                    </div>
+                </form>
+            </div>
+        </ul>
+        -->
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CSS styles for standard search box with placeholder text-->
+<style type="text/css">
+    #search-wrapper {
+        width:300px;
+        height:40px;
+        background-color:transparent;
+        margin:0px auto 0;
+        border:0px solid #ff0000;
+        -moz-border-radius: 2px; /* FF1+ */
+        -webkit-border-radius: 2px; /* Saf3-4 */
+        border-radius: 2px; /* Opera 10.5, IE 9, Saf5, Chrome */
+        position:relative;
+    }
+
+    #search {
+        background-color:transparent;
+        padding:0px;
+        height:40px;
+        overflow:hidden;
+    }
+
+    .search-box {
+        width:250px;
+        height:32px;
+        background-color:transparent;
+        margin:2px 7px;
+        border:0px solid #cfcfcf;
+        -moz-border-radius: 2px; /* FF1+ */
+        -webkit-border-radius: 2px; /* Saf3-4 */
+        border-radius: 2px; /* Opera 10.5, IE 9, Saf5, Chrome */
+        position:relative;
+    }
+
+	.textinput{
+		margin: 0;
+		padding: 5px 15px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size:14px;
+		color:#999999;
+		border:1px solid #f00; border-right:0px;
+		border-top-left-radius: 5px 5px;
+		border-bottom-left-radius: 5px 5px;
+	}
+</style>
+
+<!-- JAVASCRIPT to clear search text when the field is clicked -->
+<script type="text/javascript">
+window.onload = function(){
+	//Get submit button
+	var submitbutton = document.getElementById("tfq");
+	//Add listener to submit button
+	if(submitbutton.addEventListener){
+		submitbutton.addEventListener("click", function() {
+			if (submitbutton.value == 'Google Search'){//Customize this text string to whatever you want
+				submitbutton.value = 'dnet R ';
+			}
+		});
+	}
+}
+</script>
+
+<script>
+  (function() {
+    var cx = '012094530736424854714:djnz9oat1hu';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<div><gcse:search></gcse:search></div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h2>Function to transform fdr into scores according to log-likelihood ratio between the true positives and the false positivies and/or after controlling false discovery rate</h2>
+
+<div class="row">
+  <div class="span8">
+  
+    <h3>Description</h3>
+    <p><code>dFDRscore</code> is supposed to take as input a vector of fdr, which
+are transformed into scores according to according to log-likelihood
+ratio between the true positives and the false positivies. Also if the
+FDR threshold is given, it is used to make sure that fdr below
+threshold are considered significant and thus scored positively.
+Instead, those fdr above the given threshold are considered
+insigificant and thus scored negatively.</p>
+  
+    <h3>Usage</h3>
+    <pre>dFDRscore(fdr, fdr.threshold = NULL, scatter = F)</pre>
+    
+    <h3>Arguments</h3>
+    <dl>
+      <dt>fdr</dt>
+      <dd>a vector containing a list of input fdr</dd>
+      <dt>fdr.threshold</dt>
+      <dd>the given FDR threshold. By default, it is set to
+NULL, meaning there is no constraint. If given, those fdr with the FDR
+below threshold are considered significant and thus scored positively.
+Instead, those fdr with the FDR above given threshold are considered
+insigificant and thus scored negatively</dd>
+      <dt>scatter</dt>
+      <dd>logical to indicate whether the scatter graph of scores
+against p-values should be drawn. Also indicated is the score
+corresponding to the given FDR threshold (if any)</dd>
+    </dl>
+    <!-- 
+    -->
+    
+    <!-- 
+    <div class="Value">
+    -->
+      <h3>Value</h3>
+      
+      <p><ul>
+<li><code>scores</code>: a vector of scores
+</li>
+</ul></p>
+      <p></p>
+    <!-- 
+    </div>
+    -->
+    <!-- 
+    <div class="Note">
+    -->
+      <h3>Note</h3>
+      
+      <p>none</p>
+    <!-- 
+    </div>
+    -->
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) generate data with an iid matrix of 1000 x 9
+data <- cbind(matrix(rnorm(1000*3,mean=0,sd=1), nrow=1000, ncol=3),
+matrix(rnorm(1000*3,mean=0.5,sd=1), nrow=1000, ncol=3),
+matrix(rnorm(1000*3,mean=-0.5,sd=1), nrow=1000, ncol=3))
+
+# 2) calculate the significance according to SVD
+# using "fdr" significance
+fdr <- dSVDsignif(data, signif="fdr", num.permutation=10)
+</div>
+<strong class='message'>Start at 2015-07-13 11:53:48</strong>
+<strong class='message'></strong>
+<strong class='message'>First, singular value decomposition of the input matrix (with 1000 rows and 9 columns)...</strong>
+<strong class='message'>Second, determinate the eigens...</strong>
+<strong class='message'>	via automatically deciding on the number of dominant eigens under the cutoff of 1.00e-02 pvalue</strong>
+<strong class='message'>	number of the eigens in consideration: 1</strong>
+<strong class='message'>Third, construct the gene-specific projection vector,and calculate distance statistics...</strong>
+<strong class='message'>Finally, obtain gene significance (fdr) based on 10 permutations...</strong>
+<strong class='message'>	doing row-wise permutations...</strong>
+<strong class='message'>	estimating fdr...</strong>
+<strong class='message'>1 (out of 1000) at 2015-07-13 11:53:49</strong>
+<strong class='message'>100 (out of 1000) at 2015-07-13 11:53:49</strong>
+<strong class='message'>200 (out of 1000) at 2015-07-13 11:53:49</strong>
+<strong class='message'>300 (out of 1000) at 2015-07-13 11:53:49</strong>
+<strong class='message'>400 (out of 1000) at 2015-07-13 11:53:49</strong>
+<strong class='message'>500 (out of 1000) at 2015-07-13 11:53:49</strong>
+<strong class='message'>600 (out of 1000) at 2015-07-13 11:53:49</strong>
+<strong class='message'>700 (out of 1000) at 2015-07-13 11:53:49</strong>
+<strong class='message'>800 (out of 1000) at 2015-07-13 11:53:49</strong>
+<strong class='message'>900 (out of 1000) at 2015-07-13 11:53:49</strong>
+<strong class='message'>1000 (out of 1000) at 2015-07-13 11:53:49</strong>
+<strong class='message'>	using stepup procedure...</strong>
+<strong class='message'></strong>
+<strong class='message'>Finish at 2015-07-13 11:53:49</strong>
+<strong class='message'>Runtime in total is: 1 secs
+</strong>
+<div class='input'>
+# 3) calculate the scores according to the fitted BUM and fdr=0.01
+# no fdr threshold
+scores <- dFDRscore(fdr)
+# using fdr threshold of 0.01
+scores <- dFDRscore(fdr, fdr.threshold=0.1, scatter=TRUE)
+</div></pre>
+  </div>
+  
+  <div class="span4">
+    
+    <!-- 
+    <ul>
+      <li>dFDRscore</li>
+    </ul>
+    <ul>
+      
+    </ul> 
+    -->
+    
+    <h2>Source code</h2>
+    <a href="javascript:newWin('R/dFDRscore.r', 'R/dFDRscore.r', '1200', '1200')" title="Click to view"><B><code>dFDRscore.r</code></B></a>
+    
+    <h2>Source man</h2>
+    <a href="javascript:newWin('man/dFDRscore.txt', 'man/dFDRscore.txt', '1200', '1200')" title="Click to view"><B><code>dFDRscore.Rd</code></B></a>
+    
+    <a href="javascript:newWin('man/dFDRscore.pdf', 'man/dFDRscore.pdf', '1200', '1200')" title="Click to view"><B><code>dFDRscore.pdf</code></B></a>
+    
+    <h2>See also</h2>
+    
+<code><a href='dSVDsignif.html'>dSVDsignif</a></code>, <code><a href='dNetPipeline.html'>dNetPipeline</a></code>
+
+    <!--
+
+    <h2>Citation</h2>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I>, 6(8):64. <a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/25246945">25246945</a></p>
+
+<p>You may also cite the package as:</p>
+
+<ul>
+<li><code>web link/URL</code></li>
+</ul>
+
+<p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
+
+    
+    
+    <h2>URL</h2>
+    <ul>
+      <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
+      <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
+      <li><a href=" http://cran.r-
+project.org/package=dnet"> http://cran.r-
+project.org/package=dnet</a></li>
+      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
+    </ul>
+    
+    
+    -->
+    
+  </div>
+  
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+
+<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
+
+
+      </footer>
+    </div>
+  </body>
+</html>

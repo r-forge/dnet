@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Demo for patient expression dataset @ dnet 1.0.7</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Hai Fang and Julian Gough">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+
+<style type="text/css">
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 8px 20px 12px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #999999;
+}
+
+.navbar .brand:hover {
+  color: #F87217;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar .nav > li > a:hover {
+  color: #F87217;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+</style>
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17338744-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- Enlarge image -->
+<script type="text/javascript">
+    function newWin(url, name, width, height) { 
+       
+        var left = (screen.width/2)-(width/2);
+        var top = (screen.height/2)-(height/2); 
+        
+        window.open(url,name,'scrollbars=yes,resizable=yes,fullscreen=yes, width=' + width + ', height='+height+', top='+top+', left='+left);
+    }
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">dnet 1.0.7</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="install.html"><i class="icon-wrench icon-white"></i> Installation</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="rdata.html"><i class="icon-file icon-white"></i> RData</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="faqs.html"><i class="icon-question-sign icon-white"></i> FAQs</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
+        </ul>
+       
+        <!-- HTML for GOOLE SEARCH BAR 
+        <ul class="nav">
+            <div id="search-wrapper">
+                <form id="search" method="get" action="http://www.google.com/custom">
+                    <div class="search-box">
+                        <i class="icon-search icon-white"></i>
+                        <input type="text" id="tfq" class="textinput" name="q" size="21" maxlength="120" value="Google Search"/>
+                    </div>
+                </form>
+            </div>
+        </ul>
+        -->
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CSS styles for standard search box with placeholder text-->
+<style type="text/css">
+    #search-wrapper {
+        width:300px;
+        height:40px;
+        background-color:transparent;
+        margin:0px auto 0;
+        border:0px solid #ff0000;
+        -moz-border-radius: 2px; /* FF1+ */
+        -webkit-border-radius: 2px; /* Saf3-4 */
+        border-radius: 2px; /* Opera 10.5, IE 9, Saf5, Chrome */
+        position:relative;
+    }
+
+    #search {
+        background-color:transparent;
+        padding:0px;
+        height:40px;
+        overflow:hidden;
+    }
+
+    .search-box {
+        width:250px;
+        height:32px;
+        background-color:transparent;
+        margin:2px 7px;
+        border:0px solid #cfcfcf;
+        -moz-border-radius: 2px; /* FF1+ */
+        -webkit-border-radius: 2px; /* Saf3-4 */
+        border-radius: 2px; /* Opera 10.5, IE 9, Saf5, Chrome */
+        position:relative;
+    }
+
+	.textinput{
+		margin: 0;
+		padding: 5px 15px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size:14px;
+		color:#999999;
+		border:1px solid #f00; border-right:0px;
+		border-top-left-radius: 5px 5px;
+		border-bottom-left-radius: 5px 5px;
+	}
+</style>
+
+<!-- JAVASCRIPT to clear search text when the field is clicked -->
+<script type="text/javascript">
+window.onload = function(){
+	//Get submit button
+	var submitbutton = document.getElementById("tfq");
+	//Add listener to submit button
+	if(submitbutton.addEventListener){
+		submitbutton.addEventListener("click", function() {
+			if (submitbutton.value == 'Google Search'){//Customize this text string to whatever you want
+				submitbutton.value = 'dnet R ';
+			}
+		});
+	}
+}
+</script>
+
+<script>
+  (function() {
+    var cx = '012094530736424854714:djnz9oat1hu';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<div><gcse:search></gcse:search></div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h2>Demo for patient expression dataset</h2>
+
+Notes:
+<li> All results are based on dnet (version 1.0.7). </li>
+<li> R scripts (i.e. R expressions) plus necessary comments are highlighted in light cyan, and the rest are outputs in the screen. </li>
+<li> Images displayed below may be distorted, but should be normal in your screen. </li>
+<li> Functions contained in dnet 1.0.7 are hyperlinked in-place and also listed on the right side. </li>
+
+<div class="row">
+    <div class="span8">
+      <pre>
+      <div class='input'># This is a demo for chronic lymphocytic leukemia patient expression data and network data
+# 
+###############################################################################
+library(dnet)
+
+# Load or install packages specifically used in this demo
+for(pkg in c("Biobase","limma")){
+    if(!require(pkg, character.only=T)){
+        source("http://bioconductor.org/biocLite.R")
+        biocLite(pkg)
+        lapply(pkg, library, character.only=T)
+    }
+}
+
+# This dataset involves 130 patients with chronic lymphocytic leukemia (CLL). When enrolled in the study, these CLL patients had not received prior therapy for CLL. Additional covariate about sampling time to first treatment (years) is available. The dataset has been normalised and log2-transformed, and provided as an "ExpressionSet" object.
+CLL <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='CLL')
+</div>
+<strong class='message'>'CLL' (from http://supfam.org/dnet/data/CLL.RData) has been loaded into the working environment</strong>
+<div class='input'>CLL
+</div>
+<div class='output'>ExpressionSet (storageMode: lockedEnvironment)
+assayData: 54675 features, 130 samples 
+  element names: exprs 
+protocolData: none
+phenoData
+  sampleNames: GSM977137 GSM977138 ... GSM977266 (130 total)
+  varLabels: Name Time Treatment
+  varMetadata: labelDescription
+featureData
+  featureNames: 1007_s_at 1053_at ... AFFX-TrpnX-M_at (54675 total)
+  fvarLabels: EntrezID Symbol Desc
+  fvarMetadata: labelDescription
+experimentData: use 'experimentData(object)'
+Annotation:  
+</div>
+<div class='input'>
+# Non-specific probesets filtering: the signals below log2(30) are considered as being technically unreliable (i.e. an empirically determined value of minimum sensitivity). Also, those probesets with >70% of samples having technically unriliable signals were excluded from further consideration
+sensVal <- log2(30)
+filter_flag <- apply(exprs(CLL)<sensVal,1,sum) > 0.7*ncol(exprs(CLL))
+eset <- CLL[!filter_flag,]
+
+# Create esetNew after replacing all those less than "sensVal" with "sensVal"
+new.matrix <- exprs(eset)
+new.matrix[new.matrix <= sensVal] <- sensVal
+esetNew <- new("ExpressionSet",exprs=new.matrix,phenoData=as(pData(eset),"AnnotatedDataFrame"),featureData=as(fData(eset),"AnnotatedDataFrame"))
+
+# A function to convert probeset-centric to entrezgene-centric expression levels
+prob2gene <- function(eset){
+    fdat <- fData(eset)
+    tmp <- as.matrix(unique(fdat[c("EntrezID", "Symbol", "Desc")]))
+    forder <- tmp[order(as.numeric(tmp[,1])),]
+    forder <- forder[!is.na(forder[,1]),]
+    rownames(forder) <- forder[,2]
+    system.time({
+        dat <- exprs(eset)
+        edat <- matrix(data=NA, nrow=nrow(forder), ncol=ncol(dat))
+        for (i in 1:nrow(forder)){
+            ind <- which(fdat$EntrezID==forder[i,1])
+            if (length(ind) == 1){
+                edat[i,] <- dat[ind,]
+            }else{
+                edat[i,] <- apply(dat[ind,],2,mean)
+            }
+        }
+    })
+    rownames(edat) <- rownames(forder) # as gene symbols
+    colnames(edat) <- rownames(pData(eset))
+    esetGene <- new("ExpressionSet",exprs=data.frame(edat),phenoData=as(pData(eset),"AnnotatedDataFrame"),featureData=as(data.frame(forder),"AnnotatedDataFrame"))
+    return(esetGene)
+}
+esetGene <- prob2gene(esetNew)
+esetGene
+</div>
+<div class='output'>ExpressionSet (storageMode: lockedEnvironment)
+assayData: 9324 features, 130 samples 
+  element names: exprs 
+protocolData: none
+phenoData
+  sampleNames: GSM977137 GSM977138 ... GSM977266 (130 total)
+  varLabels: Name Time Treatment
+  varMetadata: labelDescription
+featureData
+  featureNames: A1BG NAT1 ... BISPR (9324 total)
+  fvarLabels: EntrezID Symbol Desc
+  fvarMetadata: labelDescription
+experimentData: use 'experimentData(object)'
+Annotation:  
+</div>
+<div class='input'>
+# An igraph object that contains a functional protein association network in human. The network is extracted from the STRING database (version 9.1). Only those associations with medium confidence (score>=400) are retained.
+org.Hs.string <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='org.Hs.string')
+</div>
+<strong class='message'>'org.Hs.string' (from http://supfam.org/dnet/data/org.Hs.string.RData) has been loaded into the working environment</strong>
+<div class='input'>org.Hs.string
+</div>
+<div class='output'>IGRAPH UN-- 17038 613946 -- 
++ attr: name (v/c), seqid (v/c), geneid (v/n), symbol (v/c),
+  description (v/c), neighborhood_score (e/n), fusion_score (e/n),
+  cooccurence_score (e/n), coexpression_score (e/n), experimental_score
+  (e/n), database_score (e/n), textmining_score (e/n), combined_score
+  (e/n)
+</div>
+<div class='input'>
+# extract network that only contains genes in esetGene
+ind <- match(V(org.Hs.string)$symbol, rownames(esetGene))
+## for extracted expression
+esetGeneSub <- esetGene[ind[!is.na(ind)],]
+esetGeneSub
+</div>
+<div class='output'>ExpressionSet (storageMode: lockedEnvironment)
+assayData: 8065 features, 130 samples 
+  element names: exprs 
+protocolData: none
+phenoData
+  sampleNames: GSM977137 GSM977138 ... GSM977266 (130 total)
+  varLabels: Name Time Treatment
+  varMetadata: labelDescription
+featureData
+  featureNames: ZNF445 MVP ... XKR8 (8065 total)
+  fvarLabels: EntrezID Symbol Desc
+  fvarMetadata: labelDescription
+experimentData: use 'experimentData(object)'
+Annotation:  
+</div>
+<div class='input'>## for extracted graph
+nodes_mapped <- V(org.Hs.string)$name[!is.na(ind)]
+network <- <a href='dNetInduce.html' target=dNetInduce>dNetInduce</a>(g=org.Hs.string, nodes_query=nodes_mapped, knn=0, remove.loops=T, largest.comp=T)
+V(network)$name <- V(network)$symbol
+network
+</div>
+<div class='output'>IGRAPH UN-- 7981 212519 -- 
++ attr: name (v/c), seqid (v/c), geneid (v/n), symbol (v/c),
+  description (v/c)
+</div>
+<div class='input'>
+# according to sampling time to first treatment (years), patient samples are categorised into 3 groups: early-phase disease (E) if they were collected more than 4 years before treatment, intermediate phase (I) if collected 4 or less, but 1 or more, years before treatment (yellow bars), or late phase (L) if collected less than 1 year before treatment.
+EIL <- sapply(pData(esetGeneSub)$Time, function(x) {
+    if(x>4){
+        "E"
+    }else if(x<1){
+        "L"
+    }else{
+        "I"
+    }
+})
+
+# 1) preparation of node p-values
+design <- model.matrix(~ -1 + factor(EIL))
+colnames(design)<- c("E", "I", "L")
+contrast.matrix <- makeContrasts(L-E, I-E, L-I, levels=design)
+colnames(contrast.matrix) <- c("L_E", "I_E", "L_I")
+contrast.matrix 
+</div>
+<div class='output'>      Contrasts
+Levels L_E I_E L_I
+     E  -1  -1   0
+     I   0   1  -1
+     L   1   0   1
+</div>
+<div class='input'>fit <- lmFit(exprs(esetGene), design)
+fit2 <- contrasts.fit(fit, contrast.matrix)
+fit2 <- eBayes(fit2)
+# for p-value
+pvals<-as.matrix(fit2$p.value)
+# for adjusted p-value
+adjpvals <- sapply(1:ncol(pvals),function(x) {
+    p.adjust(pvals[,x], method="BH")
+})
+colnames(adjpvals) <- colnames(pvals)
+# num of differentially expressed genes
+apply(adjpvals<1e-1, 2, sum)
+</div>
+<div class='output'>L_E I_E L_I 
+ 59   0   0 
+</div>
+<div class='input'># only for the comparisons from late phase (L) against the early stage (E) 
+my_contrast <- "L_E"
+# get the p-values and calculate the scores thereupon
+pval <- pvals[,my_contrast]
+
+# 2) identification of module
+g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network, pval=pval, nsize=20)
+</div>
+<strong class='message'>Start at 2015-07-13 12:38:11</strong>
+<strong class='message'></strong>
+<strong class='message'>First, fit the input p-value distribution under beta-uniform mixture model...</strong>
+<strong class='message'>	A total of p-values: 9324</strong>
+<strong class='message'>	Maximum Log-Likelihood: 1720.1</strong>
+<strong class='message'>	Mixture parameter (lambda): 0.000</strong>
+<strong class='message'>	Shape parameter (a): 0.576</strong>
+<strong class='message'>Second, determine the significance threshold...</strong>
+<strong class='message'>	Via constraint on the size of subnetwork to be identified (20 nodes)</strong>
+<strong class='message'>	Scanning significance threshold at rough stage...</strong>
+<strong class='message'>		significance threshold: 1.00e-06, corresponding to the network size (0 nodes)</strong>
+<strong class='message'>		significance threshold: 1.00e-05, corresponding to the network size (0 nodes)</strong>
+<strong class='message'>		significance threshold: 1.00e-04, corresponding to the network size (0 nodes)</strong>
+<strong class='message'>		significance threshold: 1.00e-03, corresponding to the network size (0 nodes)</strong>
+<strong class='message'>		significance threshold: 1.00e-02, corresponding to the network size (2 nodes)</strong>
+<strong class='message'>		significance threshold: 1.00e-01, corresponding to the network size (624 nodes)</strong>
+<strong class='message'>	Scanning significance threshold at finetune stage...</strong>
+<strong class='message'>		significance threshold : 1.50e-02, corresponding to the network size (5 nodes)</strong>
+<strong class='message'>		significance threshold : 2.00e-02, corresponding to the network size (7 nodes)</strong>
+<strong class='message'>		significance threshold : 2.50e-02, corresponding to the network size (21 nodes)</strong>
+<strong class='message'>	significance threshold: 2.50e-02</strong>
+<strong class='message'>Third, calculate the scores according to the fitted BUM and FDR threshold (if any)...</strong>
+<strong class='message'>	Amongst 9324 scores, there are 56 positives.</strong>
+<strong class='message'>Finally, find the subgraph from the input graph with 7981 nodes and 212519 edges...</strong>
+<strong class='message'>	Size of the subgraph: 21 nodes and 22 edges</strong>
+<strong class='message'>
+Finish at 2015-07-13 12:42:18</strong>
+<strong class='message'>Runtime in total is: 247 secs
+</strong>
+<div class='input'>glayout <- layout.fruchterman.reingold(g)
+
+# 3) color nodes according to communities identified via a spin-glass model and simulated annealing
+#com <- walktrap.community(g, modularity=T)
+com <- spinglass.community(g, spins=25)
+com$csize <- sapply(1:length(com),function(x) sum(com$membership==x))
+vgroups <- com$membership
+colormap <- "yellow-darkorange"
+palette.name <- visColormap(colormap=colormap)
+mcolors <- palette.name(length(com))
+vcolors <- mcolors[vgroups]
+com$significance <- <a href='dCommSignif.html' target=dCommSignif>dCommSignif</a>(g, com)
+
+# 4) size nodes according to degrees
+vdegrees <- igraph::degree(g)
+
+# 5) sort nodes: first by communities and then degrees
+tmp <- data.frame(ind=1:vcount(g), vgroups, vdegrees)
+ordering <- tmp[order(vgroups,vdegrees),]$ind
+
+# 6) visualise graph using 1-dimensional arc diagram
+<a href='visNetArc.html' target=visNetArc>visNetArc</a>(g, ordering=ordering, labels=V(g)$geneSymbol, vertex.label.color=vcolors, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.size=log(vdegrees)+0.1, vertex.label.cex=0.4)
+
+# 7) visualise graph using circle diagram
+# 7a) drawn into a single circle 
+<a href='visNetCircle.html' target=visNetCircle>visNetCircle</a>(g=g, com=com, ordering=ordering, colormap=colormap, vertex.label=V(g)$symbol, vertex.size=igraph::degree(g)+5, vertex.label.color="black", vertex.label.cex=0.6, vertex.label.dist=0.75, vertex.shape="sphere", edge.color.within="grey", edge.color.crossing="black", edge.width=1, edge.lty=1, mark.shape=1, mark.expand=10)
+# 7b) drawn into multiple circles
+<a href='visNetCircle.html' target=visNetCircle>visNetCircle</a>(g=g, com=com, circles="multiple", ordering=ordering, colormap=colormap, vertex.label=V(g)$symbol, vertex.size=igraph::degree(g)+5, vertex.label.color="black", vertex.label.cex=0.6, vertex.label.dist=0.25, vertex.shape="sphere", edge.color.within="grey", edge.color.crossing="black", edge.width=1, edge.lty=1, mark.shape=1, mark.expand=10)
+
+# 8) as comparison, also visualise graph on 2-dimensional layout 
+mark.groups <- communities(com)
+</div>
+<a href="javascript:newWin('CLL-48.png', 'CLL-48.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='CLL-48.png', width="400" /></a>
+<div class='input'>mark.col <- visColoralpha(mcolors, alpha=0.2)
+mark.border <- visColoralpha(mcolors, alpha=0.2)
+edge.color <- c("grey", "black")[crossing(com,g)+1]
+<a href='visNet.html' target=visNet>visNet</a>(g, glayout=glayout, vertex.label=V(g)$geneSymbol, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.shape="sphere", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
+
+legend_name <- paste("C",1:length(mcolors)," (n=",com$csize,", pval=",signif(com$significance,digits=2),")",sep='')
+</div>
+<a href="javascript:newWin('CLL-50.png', 'CLL-50.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='CLL-50.png', width="400" /></a>
+<div class='input'>legend("bottomleft", legend=legend_name, fill=mcolors, bty="n", cex=0.6)
+</div>
+<a href="javascript:newWin('CLL-52.png', 'CLL-52.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='CLL-52.png', width="400" /></a>
+<div class='input'>
+# 9) color by score and FC
+# colored by score
+<a href='visNet.html' target=visNet>visNet</a>(g, glayout=glayout, pattern=V(g)$score, zlim=c(-1*ceiling(max(abs(V(g)$score))),ceiling(max(abs(V(g)$score)))), vertex.shape="circle", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
+# colored by FC
+colormap <- "darkgreen-lightgreen-lightpink-darkred"
+</div>
+<a href="javascript:newWin('CLL-54.png', 'CLL-54.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='CLL-54.png', width="400" /></a>
+<div class='input'>logFC <- fit2$coefficients[V(g)$name,my_contrast]
+<a href='visNet.html' target=visNet>visNet</a>(g, glayout=glayout, pattern=logFC, colormap=colormap, vertex.shape="circle", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
+
+# 10) color by additional data
+ind <- union(which(EIL=="L"), which(EIL=="E"))
+</div>
+<a href="javascript:newWin('CLL-56.png', 'CLL-56.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='CLL-56.png', width="400" /></a>
+<div class='input'>ind <- sample(ind, 10) # sampling randomly 10 without replacement.
+data <- exprs(esetGene)[V(g)$name,ind]
+colnames(data) <- EIL[ind]
+<a href='visNetMul.html' target=visNetMul>visNetMul</a>(g=g, data=data, height=ceiling(sqrt(ncol(data)))*2, newpage=T,glayout=glayout,colormap=colormap,vertex.label=NA,vertex.shape="sphere", vertex.size=18,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
+
+# 11) color by additional data (be reordered)
+sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="edge", node.normalise="degree", amplifier=2, metric="none")
+</div>
+<strong class='message'>Start at 2015-07-13 12:42:57</strong>
+<strong class='message'></strong>
+<strong class='message'>First, define topology of a map grid (2015-07-13 12:42:57)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (25 X 22) using 'linear' initialisation, given a topology and input data (2015-07-13 12:42:57)...</strong>
+<strong class='message'>Third, get training at the rough stage (2015-07-13 12:42:57)...</strong>
+<strong class='message'>	1 out of 250 (2015-07-13 12:42:57)</strong>
+<strong class='message'>	25 out of 250 (2015-07-13 12:42:57)</strong>
+<strong class='message'>	50 out of 250 (2015-07-13 12:42:57)</strong>
+<strong class='message'>	75 out of 250 (2015-07-13 12:42:57)</strong>
+<strong class='message'>	100 out of 250 (2015-07-13 12:42:57)</strong>
+<strong class='message'>	125 out of 250 (2015-07-13 12:42:57)</strong>
+<strong class='message'>	150 out of 250 (2015-07-13 12:42:57)</strong>
+<strong class='message'>	175 out of 250 (2015-07-13 12:42:57)</strong>
+<strong class='message'>	200 out of 250 (2015-07-13 12:42:57)</strong>
+<strong class='message'>	225 out of 250 (2015-07-13 12:42:57)</strong>
+<strong class='message'>	250 out of 250 (2015-07-13 12:42:57)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2015-07-13 12:42:57)...</strong>
+<strong class='message'>	1 out of 1000 (2015-07-13 12:42:57)</strong>
+<strong class='message'>	100 out of 1000 (2015-07-13 12:42:57)</strong>
+<strong class='message'>	200 out of 1000 (2015-07-13 12:42:58)</strong>
+<strong class='message'>	300 out of 1000 (2015-07-13 12:42:58)</strong>
+<strong class='message'>	400 out of 1000 (2015-07-13 12:42:58)</strong>
+<strong class='message'>	500 out of 1000 (2015-07-13 12:42:58)</strong>
+<strong class='message'>	600 out of 1000 (2015-07-13 12:42:58)</strong>
+<strong class='message'>	700 out of 1000 (2015-07-13 12:42:58)</strong>
+<strong class='message'>	800 out of 1000 (2015-07-13 12:42:58)</strong>
+<strong class='message'>	900 out of 1000 (2015-07-13 12:42:58)</strong>
+<strong class='message'>	1000 out of 1000 (2015-07-13 12:42:58)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-07-13 12:42:58)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-07-13 12:42:58)...</strong>
+<strong class='message'></strong>
+<strong class='message'>Below are the summaries of the training results:</strong>
+<strong class='message'>   dimension of input data: 10x22
+   xy-dimension of map grid: xdim=5, ydim=5
+   grid lattice: rect
+   grid shape: sheet
+   dimension of grid coord: 25x2
+   initialisation method: linear
+   dimension of codebook matrix: 25x22
+   mean quantization error: 2.29823329548072
+</strong>
+<strong class='message'>Below are the details of trainology:</strong>
+<strong class='message'>   training algorithm: sequential
+   alpha type: invert
+   training neighborhood kernel: gaussian
+   trainlength (x input data length): 25 at rough stage; 100 at finetune stage
+   radius (at rough stage): from 1 to 1
+   radius (at finetune stage): from 1 to 1
+</strong>
+<strong class='message'>End at 2015-07-13 12:42:58</strong>
+<strong class='message'>Runtime in total is: 1 secs
+</strong>
+<a href="javascript:newWin('CLL-95.png', 'CLL-95.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='CLL-95.png', width="400" /></a>
+<div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap=colormap, vertex.label=NA,vertex.shape="sphere", vertex.size=18,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)</div>
+      </pre>
+    </div>
+
+  <div class="span4">
+
+    <h2>Source demo</h2>
+    <a href="javascript:newWin('demo/CLL.r', 'demo/CLL.r', '1200', '1200')" title="Click to view"><B><code>CLL.r</code></B></a>
+    
+    <h2>Functions used in this demo</h2>
+    <ul>
+      <li><a href="dRDataLoader.html">dRDataLoader</a></li>
+      <li><a href="dNetInduce.html">dNetInduce</a></li>
+      <li><a href="dNetPipeline.html">dNetPipeline</a></li>
+      <li><a href="dCommSignif.html">dCommSignif</a></li>
+      <li><a href="visNetArc.html">visNetArc</a></li>
+      <li><a href="visNetCircle.html">visNetCircle</a></li>
+      <li><a href="visNet.html">visNet</a></li>
+      <li><a href="visNetMul.html">visNetMul</a></li>
+      <li><a href="dNetReorder.html">dNetReorder</a></li>
+      <li><a href="visNetReorder.html">visNetReorder</a></li>
+    </ul>
+    
+    <!--
+    
+    <h2>Citation</h2>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I>, 6(8):64. <a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/25246945">25246945</a></p>
+
+<p>You may also cite the package as:</p>
+
+<ul>
+<li><code>web link/URL</code></li>
+</ul>
+
+<p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
+
+    
+
+    
+    <h2>URL</h2>
+    <ul>
+      <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
+      <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
+      <li><a href=" http://cran.r-
+project.org/package=dnet"> http://cran.r-
+project.org/package=dnet</a></li>
+      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
+    </ul>
+    
+    <h2>Author</h2>
+    Hai Fang and Julian Gough
+    
+    -->
+    
+  </div>
+
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+
+<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
+
+
+      </footer>
+    </div>
+  </body>
+</html>
