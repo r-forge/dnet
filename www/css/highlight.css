@@ -1,0 +1,39 @@
+/* Syntax highlighting ---------------------------------------------------- */
+
+pre .input {
+  #border-left: 3px solid #ccc;
+  #padding-left: 0.5em;
+
+	margin: 	1em 0;	
+	padding: 	0.5em;
+	background-color: #EEFFFF;
+	border:1px solid #EEFFFF;
+           -moz-border-radius: 5px; 
+           -webkit-border-radius: 5px; 
+           border-radius: 5px; 
+           -moz-box-shadow: 5px 5px 2px #C0C0C0;
+           -webkit-box-shadow: 5px 5px 2px #C0C0C0;
+           box-shadow: 5px 5px 2px #C0C0C0;
+}
+pre .output {
+  background-color: #fff;
+}
+
+.number {color:rgb(21,20,181);}
+.functioncall {color:#264D66 ;}
+.string {color:#375D81 ;}
+.keyword {font-weight:bolder ;color:black;}
+.argument {color:#264D66 ;}
+.comment {color: #333;}
+.formalargs {color: #264D66;}
+.eqformalargs {color:#264D66;}
+.slot {font-style:italic;}
+.symbol {color:black ;}
+.prompt {color:black ;}
+
+pre img { 
+  background-color: #fff;
+  border: 1px solid #ccc;
+  display: block;
+  margin: 0.5em auto 0.5em auto;
+}
