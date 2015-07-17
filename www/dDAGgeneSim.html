@@ -353,29 +353,29 @@ genes <- sample(allgenes,5)
 sim <- dDAGgeneSim(g=dag, genes=genes, method.gene="BM.average",
 method.term="Resnik", parallel=FALSE, verbose=TRUE)
 </div>
-<strong class='message'>Start at 2015-07-16 16:21:01</strong>
+<strong class='message'>Start at 2015-07-17 16:55:33</strong>
 <strong class='message'></strong>
-<strong class='message'>First, extract all annotatable genes (2015-07-16 16:21:01)...</strong>
+<strong class='message'>First, extract all annotatable genes (2015-07-17 16:55:33)...</strong>
 <strong class='message'>	there are 5 input genes amongst 3130 annotatable genes</strong>
-<strong class='message'>Second, pre-compute semantic similarity between 264 terms (forced to be the most specific for each gene) using Resnik method (2015-07-16 16:21:07)...</strong>
-<strong class='message'>Last, calculate pair-wise semantic similarity between 5 genes using BM.average method (2015-07-16 16:21:11)...</strong>
-<strong class='message'>	1 out of 5 (2015-07-16 16:21:11)</strong>
-<strong class='message'>	2 out of 5 (2015-07-16 16:21:11)</strong>
-<strong class='message'>	3 out of 5 (2015-07-16 16:21:11)</strong>
-<strong class='message'>	4 out of 5 (2015-07-16 16:21:11)</strong>
+<strong class='message'>Second, pre-compute semantic similarity between 109 terms (forced to be the most specific for each gene) using Resnik method (2015-07-17 16:55:36)...</strong>
+<strong class='message'>Last, calculate pair-wise semantic similarity between 5 genes using BM.average method (2015-07-17 16:55:38)...</strong>
+<strong class='message'>	1 out of 5 (2015-07-17 16:55:38)</strong>
+<strong class='message'>	2 out of 5 (2015-07-17 16:55:38)</strong>
+<strong class='message'>	3 out of 5 (2015-07-17 16:55:38)</strong>
+<strong class='message'>	4 out of 5 (2015-07-17 16:55:38)</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2015-07-16 16:21:11</strong>
-<strong class='message'>Runtime in total is: 10 secs
+<strong class='message'>Finish at 2015-07-17 16:55:38</strong>
+<strong class='message'>Runtime in total is: 5 secs
 </strong>
 <div class='input'>sim
 </div>
 <div class='output'>5 x 5 sparse Matrix of class "dgCMatrix"
-          11315      2263     22999      3516     10999
-11315 .         0.2779588 0.2181425 0.2458348 .        
-2263  0.2779588 .         0.4298318 0.8936666 0.2852179
-22999 0.2181425 0.4298318 .         0.2408557 .        
-3516  0.2458348 0.8936666 0.2408557 .         0.9850083
-10999 .         0.2852179 .         0.9850083 .        
+           55687       930       3590      6925       6337
+55687 .          0.5617452 0.03530879 0.2411873 0.64175872
+930   0.56174519 .         0.24199567 0.3041102 0.48225399
+3590  0.03530879 0.2419957 .          0.5270546 0.09692213
+6925  0.24118727 0.3041102 0.52705459 .         0.20551460
+6337  0.64175872 0.4822540 0.09692213 0.2055146 .         
 </div></pre>
   </div>
   

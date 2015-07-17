@@ -432,19 +432,19 @@ data <- data.frame(tol=tol)
 eTerm <- dGSEA(data, identity="symbol", genome="Hs",
 ontology="MsigdbC2KEGG")
 </div>
-<strong class='message'>Start at 2015-07-16 16:22:11</strong>
+<strong class='message'>Start at 2015-07-17 16:56:37</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MsigdbC2KEGG and its gene associations in the genome Hs (2015-07-16 16:22:11) ...</strong>
+<strong class='message'>First, load the ontology MsigdbC2KEGG and its gene associations in the genome Hs (2015-07-17 16:56:37) ...</strong>
 <strong class='message'>'org.Hs.eg' (from http://supfam.org/dnet/RData/1.0.7/org.Hs.eg.RData) has been loaded into the working environment</strong>
 <strong class='message'>'org.Hs.egMsigdbC2KEGG' (from http://supfam.org/dnet/RData/1.0.7/org.Hs.egMsigdbC2KEGG.RData) has been loaded into the working environment</strong>
-<strong class='message'>Then, do mapping based on symbol (2015-07-16 16:22:11) ...</strong>
+<strong class='message'>Then, do mapping based on symbol (2015-07-17 16:56:37) ...</strong>
 <strong class='message'>	Among 19420 symbols of input data, there are 19038 mappable via official gene symbols but 382 left unmappable</strong>
-<strong class='message'>Third, perform GSEA analysis (2015-07-16 16:22:16) ...</strong>
-<strong class='message'>	Sample 1 is being processed at (2015-07-16 16:22:16) ...</strong>
+<strong class='message'>Third, perform GSEA analysis (2015-07-17 16:56:41) ...</strong>
+<strong class='message'>	Sample 1 is being processed at (2015-07-17 16:56:41) ...</strong>
 <strong class='message'>		 100 of 186 gene sets have been processed</strong>
 <strong class='message'>		 186 of 186 gene sets have been processed</strong>
 <strong class='message'>
-End at 2015-07-16 16:23:10</strong>
+End at 2015-07-17 16:57:36</strong>
 <strong class='message'>Runtime in total is: 59 secs
 </strong>
 <div class='input'>res <- dGSEAview(eTerm, which_sample=1, top_num=5, sortBy="adjp",
@@ -461,18 +461,18 @@ filename="eTerm.txt")
 eTerm <- dGSEA(data, identity="symbol", genome="Hs",
 ontology="Customised", customised.genesets=sample(rownames(data),100))
 </div>
-<strong class='message'>Start at 2015-07-16 16:23:21</strong>
+<strong class='message'>Start at 2015-07-17 16:57:47</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology Customised and its gene associations in the genome Hs (2015-07-16 16:23:21) ...</strong>
+<strong class='message'>First, load the ontology Customised and its gene associations in the genome Hs (2015-07-17 16:57:47) ...</strong>
 <strong class='message'>'org.Hs.eg' (from http://supfam.org/dnet/RData/1.0.7/org.Hs.eg.RData) has been loaded into the working environment</strong>
-<strong class='message'>	Among 100 symbols of input data, there are 99 mappable via official gene symbols but 1 left unmappable</strong>
-<strong class='message'>Then, do mapping based on symbol (2015-07-16 16:23:21) ...</strong>
+<strong class='message'>	Among 100 symbols of input data, there are 100 mappable via official gene symbols but 0 left unmappable</strong>
+<strong class='message'>Then, do mapping based on symbol (2015-07-17 16:57:47) ...</strong>
 <strong class='message'>	Among 19420 symbols of input data, there are 19038 mappable via official gene symbols but 382 left unmappable</strong>
-<strong class='message'>Third, perform GSEA analysis (2015-07-16 16:23:23) ...</strong>
-<strong class='message'>	Sample 1 is being processed at (2015-07-16 16:23:23) ...</strong>
+<strong class='message'>Third, perform GSEA analysis (2015-07-17 16:57:49) ...</strong>
+<strong class='message'>	Sample 1 is being processed at (2015-07-17 16:57:49) ...</strong>
 <strong class='message'>		 1 of 1 gene sets have been processed</strong>
 <strong class='message'>
-End at 2015-07-16 16:23:25</strong>
+End at 2015-07-17 16:57:51</strong>
 <strong class='message'>Runtime in total is: 4 secs
 </strong>
 <div class='input'>res <- dGSEAview(eTerm, which_sample=1, top_num=5, sortBy="adjp",

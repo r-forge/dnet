@@ -337,12 +337,13 @@ visNetCircle(g=g, colormap="bwr", com=com, ordering=ordering)
 # 6b) drawn into multlpe circles (one circle per community)
 visNetCircle(g=g, colormap="bwr", com=com, circles="multiple",
 ordering=ordering)
-
+</div>
+<strong class='error'>Error in lay[V(ig)$name, ]: subscript out of bounds</strong>
+<a href="javascript:newWin('visNetCircle-3.png', 'visNetCircle-3.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visNetCircle-3.png', width="400" /></a>
+<div class='input'>
 # 7) as comparison, also visualise graph on 2-dimensional layout
 mark.groups <- communities(com)
-</div>
-<a href="javascript:newWin('visNetCircle-2.png', 'visNetCircle-2.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visNetCircle-2.png', width="400" /></a>
-<div class='input'>mark.col <- visColoralpha(mcolors, alpha=0.2)
+mark.col <- visColoralpha(mcolors, alpha=0.2)
 mark.border <- visColoralpha(mcolors, alpha=0.2)
 edge.color <- c("grey", "black")[crossing(com,g)+1]
 visNet(g, colormap="bwr", glayout=layout.fruchterman.reingold,

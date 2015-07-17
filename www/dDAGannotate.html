@@ -291,38 +291,36 @@ annotations <- GS$gs[sample(1:length(GS$gs),5)]
 # 4a) based on all possible paths (i.e. the complete subgraph induced)
 dDAGannotate(g, annotations, path.mode="all_paths", verbose=TRUE)
 </div>
-<strong class='message'>	At level 9, there are 1 nodes, and 2 incoming neighbors.</strong>
-<strong class='message'>	At level 8, there are 4 nodes, and 6 incoming neighbors.</strong>
-<strong class='message'>	At level 7, there are 5 nodes, and 5 incoming neighbors.</strong>
-<strong class='message'>	At level 6, there are 7 nodes, and 8 incoming neighbors.</strong>
-<strong class='message'>	At level 5, there are 6 nodes, and 5 incoming neighbors.</strong>
-<strong class='message'>	At level 4, there are 5 nodes, and 4 incoming neighbors.</strong>
-<strong class='message'>	At level 3, there are 5 nodes, and 5 incoming neighbors.</strong>
-<strong class='message'>	At level 2, there are 6 nodes, and 1 incoming neighbors.</strong>
+<strong class='message'>	At level 8, there are 2 nodes, and 2 incoming neighbors.</strong>
+<strong class='message'>	At level 7, there are 4 nodes, and 5 incoming neighbors.</strong>
+<strong class='message'>	At level 6, there are 5 nodes, and 6 incoming neighbors.</strong>
+<strong class='message'>	At level 5, there are 6 nodes, and 8 incoming neighbors.</strong>
+<strong class='message'>	At level 4, there are 6 nodes, and 6 incoming neighbors.</strong>
+<strong class='message'>	At level 3, there are 8 nodes, and 8 incoming neighbors.</strong>
+<strong class='message'>	At level 2, there are 8 nodes, and 1 incoming neighbors.</strong>
 <strong class='message'>	At level 1, there are 1 nodes, and 0 incoming neighbors.</strong>
-<div class='output'>IGRAPH DN-- 40 48 -- 
+<div class='output'>IGRAPH DN-- 40 44 -- 
 + attr: name (v/c), term_id (v/c), term_name (v/c), term_distance
 | (v/n), annotations (v/x), IC (v/n), relation (e/c)
 + edges (vertex names):
- [1] HP:0000118->HP:0000152 HP:0000118->HP:0000478 HP:0000118->HP:0000707
- [4] HP:0000118->HP:0000924 HP:0000118->HP:0003011 HP:0000118->HP:0003549
- [7] HP:0000152->HP:0000234 HP:0000478->HP:0012372 HP:0000707->HP:0012639
-[10] HP:0000924->HP:0011842 HP:0003011->HP:0011805 HP:0003549->HP:0001371
-[13] HP:0012372->HP:0000589 HP:0012372->HP:0012374 HP:0012639->HP:0002011
-[16] HP:0000234->HP:0000271 HP:0001371->HP:0030044 HP:0011805->HP:0001371
-[19] HP:0011842->HP:0001367 HP:0011842->HP:0100261 HP:0000271->HP:0000284
+ [1] HP:0000118->HP:0000119 HP:0000118->HP:0000152 HP:0000118->HP:0000478
+ [4] HP:0000118->HP:0000707 HP:0000118->HP:0000818 HP:0000118->HP:0000924
+ [7] HP:0000118->HP:0001871 HP:0000118->HP:0003011 HP:0000119->HP:0000078
+[10] HP:0000152->HP:0000234 HP:0000478->HP:0012372 HP:0000707->HP:0012638
+[13] HP:0000818->HP:0008373 HP:0000924->HP:0011842 HP:0001871->HP:0001877
+[16] HP:0001871->HP:0005561 HP:0003011->HP:0011804 HP:0012372->HP:0012374
+[19] HP:0012638->HP:0011442 HP:0000078->HP:0000080 HP:0000234->HP:0000929
 + ... omitted several edges
 </div>
 <div class='input'># 4b) based on shortest paths (i.e. the most concise subgraph induced)
 dag <- dDAGannotate(g, annotations, path.mode="shortest_paths",
 verbose=TRUE)
 </div>
-<strong class='message'>	At level 8, there are 3 nodes, and 3 incoming neighbors.</strong>
-<strong class='message'>	At level 7, there are 3 nodes, and 3 incoming neighbors.</strong>
-<strong class='message'>	At level 6, there are 5 nodes, and 5 incoming neighbors.</strong>
-<strong class='message'>	At level 5, there are 4 nodes, and 4 incoming neighbors.</strong>
-<strong class='message'>	At level 4, there are 4 nodes, and 4 incoming neighbors.</strong>
-<strong class='message'>	At level 3, there are 4 nodes, and 4 incoming neighbors.</strong>
+<strong class='message'>	At level 7, there are 2 nodes, and 2 incoming neighbors.</strong>
+<strong class='message'>	At level 6, there are 3 nodes, and 3 incoming neighbors.</strong>
+<strong class='message'>	At level 5, there are 5 nodes, and 5 incoming neighbors.</strong>
+<strong class='message'>	At level 4, there are 5 nodes, and 5 incoming neighbors.</strong>
+<strong class='message'>	At level 3, there are 5 nodes, and 5 incoming neighbors.</strong>
 <strong class='message'>	At level 2, there are 5 nodes, and 1 incoming neighbors.</strong>
 <strong class='message'>	At level 1, there are 1 nodes, and 0 incoming neighbors.</strong>
 <div class='input'>
