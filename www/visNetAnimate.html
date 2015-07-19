@@ -210,16 +210,16 @@ pdf file containing a list of frames/images, a mp4 video file or a gif
 file. To support video output file, the software 'ffmpeg' must be first
 installed (also put its path into the system PATH variable; see Note).
 To support gif output file, the software 'ImageMagick' must be first
-installed (also put its path into the system PATH variable; see
-<a href = 'http://www.imagemagick.org/script/binary-releases.php'>http://www.imagemagick.org/script/binary-releases.php</a>).</p>
+installed (also put its path into the system PATH variable; see Note).</p>
   
     <h3>Usage</h3>
     <pre>visNetAnimate(g, data, filename = "visNetAnimate", filetype = c("pdf", "mp4", "gif"), 
-  num.frame = ncol(data), sec_per_frame = 1, height.device = 7, margin = rep(0.1, 
-          4), border.color = "#EEEEEE", colormap = c("bwr", "jet", "gbr", "wyr", "br", 
-          "yr", "rainbow", "wb"), ncolors = 40, zlim = NULL, colorbar = T, colorbar.fraction = 0.25, 
-      glayout = layout.fruchterman.reingold, glayout.dynamics = F, mtext.side = 3, 
-      mtext.adj = 0, mtext.cex = 1, mtext.font = 2, mtext.col = "black", ...)</pre>
+  image.type = c("jpg", "png"), num.frame = ncol(data), sec_per_frame = 1, height.device = 7, 
+      margin = rep(0.1, 4), border.color = "#EEEEEE", colormap = c("bwr", "jet", "gbr", 
+          "wyr", "br", "yr", "rainbow", "wb"), ncolors = 40, zlim = NULL, colorbar = T, 
+      colorbar.fraction = 0.25, glayout = layout.fruchterman.reingold, glayout.dynamics = F, 
+      mtext.side = 3, mtext.adj = 0, mtext.cex = 1, mtext.font = 2, mtext.col = "black", 
+      ...)</pre>
     
     <h3>Arguments</h3>
     <dl>
@@ -241,6 +241,12 @@ file. By default, it is 'visNetAnimate'</dd>
       <dd>the type of the output file, i.e. the extension of the
 output file name. It can be one of either 'pdf' for the pdf file, 'mp4'
 for the mp4 video file, 'gif' for the gif file</dd>
+      <dt>image.type</dt>
+      <dd>the type of the image files temporarily generated. It
+can be one of either 'jpg' or 'png'. These temporary image files are
+used for producing mp4/gif output file. The reason doing so is to
+accommodate that sometimes only one of image types is supported so that
+you can choose the right one</dd>
       <dt>num.frame</dt>
       <dd>a numeric value specifying the number of
 frames/images. By default, it sets to the number of columns in the
@@ -323,9 +329,10 @@ bottom alignment, 1 for right or top alignment)</dd>
       <h3>Value</h3>
       
       <p>If specifying the output file name (see argument 'filename' above), the
-output file is either 'filename.pdf' or 'filename.mp4' in the current
-working directory. If no output file name specified, by default the
-output file is either 'visNetAnimate.pdf' or 'visNetAnimate.mp4'</p>
+output file is either 'filename.pdf' or 'filename.mp4' or
+'filename.gif' in the current working directory. If no output file name
+specified, by default the output file is either 'visNetAnimate.pdf' or
+'visNetAnimate.mp4' or 'visNetAnimate.gif'</p>
     <!-- 
     </div>
     -->
@@ -335,20 +342,74 @@ output file is either 'visNetAnimate.pdf' or 'visNetAnimate.mp4'</p>
       <h3>Note</h3>
       
       <p>When producing mp4 video, this function requires the installation of
-the software 'ffmpeg' at <a href = 'https://www.ffmpeg.org'>https://www.ffmpeg.org</a>. Assuming you
-have a ROOT (sudo) privilege, shell command lines for ffmpeg
-installation in Terminal (for both Linux and Mac) are:</p>
-      <p>wget http://www.ffmpeg.org/releases/ffmpeg-2.7.1.tar.gz</p>
-      <p>tar xvfz ffmpeg-2.7.1.tar.gz</p>
-      <p>cd ffmpeg-2.7.1</p>
-      <p>./configure --disable-yasm</p>
-      <p>make</p>
-      <p>make install</p>
-      <p>ffmpeg -h
-# Installation without Root privilege, please replace with:
-./configure --disable-yasm --prefix=$HOME/ffmpeg-2.7.1
-# Also add the system PATH variable to your ~/.bash_profile file
-export PATH=$HOME/ffmpeg-2.7.1:$PATH</p>
+the software 'ffmpeg' at <a href = 'https://www.ffmpeg.org'>https://www.ffmpeg.org</a>. Shell command
+lines for ffmpeg installation in Terminal (for both Linux and Mac) are:
+<ul>
+<li>1) <code>wget -O ffmpeg.tar.gz
+http://www.ffmpeg.org/releases/ffmpeg-2.7.1.tar.gz</code>
+</li>
+<li>2) <code>mkdir ~/ffmpeg | tar xvfz ffmpeg.tar.gz -C ~/ffmpeg
+--strip-components=1</code>
+</li>
+<li>3) <code>cd ffmpeg</code>
+</li>
+<li>4a) # Assuming you want installation with a ROOT (sudo)
+privilege: <code>./configure --disable-yasm</code>
+</li>
+<li>4b) # Assuming you want local installation without ROOT (sudo)
+privilege: <code>./configure --disable-yasm --prefix=$HOME/ffmpeg</code>
+</li>
+<li>5) <code>make</code>
+</li>
+<li>6) <code>make install</code>
+</li>
+<li>7) # add the system PATH variable to your ~/.bash_profile file if
+you follow 4b) route: <code>export PATH=$HOME/ffmpeg:$PATH</code>
+</li>
+<li>8) # make sure ffmpeg has been installed successfully:
+<code>ffmpeg -h</code>
+</li>
+</ul></p>
+      <p>When producing gif file, this function requires the installation of the
+software 'ImageMagick' at <a href = 'http://www.imagemagick.org'>http://www.imagemagick.org</a>. Shell
+command lines for ImageMagick installation in Terminal are:
+<ul>
+<li>1) <code>wget
+http://www.imagemagick.org/download/ImageMagick.tar.gz</code>
+</li>
+<li>2) <code>mkdir ~/ImageMagick | tar xvzf ImageMagick.tar.gz -C
+~/ImageMagick --strip-components=1</code>
+</li>
+<li>3) <code>cd ImageMagick</code>
+</li>
+<li>4) <code>./configure --prefix=$HOME/ImageMagick</code>
+</li>
+<li>5) <code>make</code>
+</li>
+<li>6) <code>make install</code>
+</li>
+<li>7) # add the system PATH variable to your ~/.bash_profile file.
+ For Linux: <code>export MAGICK_HOME=$HOME/ImageMagick</code>
+<code>export PATH=$MAGICK_HOME/bin:$PATH</code> <code>export
+LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$MAGICK_HOME/lib</code>
+ For Mac: <code>export MAGICK_HOME=$HOME/ImageMagick</code>
+<code>export PATH=$MAGICK_HOME/bin:$PATH</code> <code>export
+DYLD_LIBRARY_PATH=$MAGICK_HOME/lib/</code>
+</li>
+<li>8a) # check configuration: <code>convert -list configure</code>
+</li>
+<li>8b) # check image format supported: <code>identify -list
+format</code>
+</li>
+<li>Tips:  Prior to 4), please make sure <code>libjpeg</code> and
+<code>libpng</code> are installed. If NOT, for Mac try this: <code>brew
+install libjpeg libpng</code>  To check whether ImageMagick does work,
+please get additional information from: <code>identify -list format</code>
+<code>convert -list configure</code>  On details, please refer to
+<a href = 'http://www.imagemagick.org/script/advanced-unix-installation.php'>http://www.imagemagick.org/script/advanced-unix-installation.php</a>
+</li>
+</ul></p>
+      <p></p>
     <!-- 
     </div>
     -->
@@ -365,22 +426,22 @@ nnodes <- vcount(subg)
 nsamples <- 10
 data <- matrix(runif(nnodes*nsamples), nrow=nnodes, ncol=nsamples)
 rownames(data) <- V(subg)$name
-# output as a pdf file
+# output as a <a href="visNetAnimate.pdf">pdf</a> file
 visNetAnimate(g=subg, data=data, filetype="pdf")
 </div>
 <strong class='message'>Congratulations! A file 'visNetAnimate.pdf' (in the directory /Users/hfang/Sites/SUPERFAMILY/dnet) has been created!</strong>
-<div class='input'># output as a mp4 file
-visNetAnimate(g=subg, data=data, filetype="mp4")
-</div>
-<strong class='message'>Executing this ...
-	ffmpeg -y -v quiet -r 1 -i /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//RtmpyB5qEK/Rplot%06d.png -q:v 1 /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//RtmpyB5qEK/visNetAnimate.mp4</strong>
-<strong class='message'>Congratulations! A file 'visNetAnimate.mp4' (in the directory /Users/hfang/Sites/SUPERFAMILY/dnet) has been created!</strong>
-<div class='input'># output as a mp4 file but with dynamic layout
+<div class='input'># output as a <a href="visNetAnimate.mp4">mp4</a> file but with dynamic layout
 visNetAnimate(g=subg, data=data, filetype="mp4", glayout.dynamics=TRUE)
 </div>
 <strong class='message'>Executing this ...
-	ffmpeg -y -v quiet -r 1 -i /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//RtmpyB5qEK/Rplot%06d.png -q:v 1 /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//RtmpyB5qEK/visNetAnimate.mp4</strong>
-<strong class='message'>Congratulations! A file 'visNetAnimate.mp4' (in the directory /Users/hfang/Sites/SUPERFAMILY/dnet) has been created!</strong></pre>
+	ffmpeg -y -v quiet -r 1 -i /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//RtmpZVUfTx/Rplot%06d.jpg -q:v 1 /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//RtmpZVUfTx/visNetAnimate.mp4</strong>
+<strong class='message'>Congratulations! A file 'visNetAnimate.mp4' (in the directory /Users/hfang/Sites/SUPERFAMILY/dnet) has been created!</strong>
+<div class='input'># output as a <a href="visNetAnimate.gif">gif</a> file but with dynamic layout
+visNetAnimate(g=subg, data=data, filetype="gif", glayout.dynamics=TRUE)
+</div>
+<strong class='message'>Executing this ...
+	convert -delay 100 /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//RtmpZVUfTx/Rplot*.jpg /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//RtmpZVUfTx/visNetAnimate.gif</strong>
+<strong class='message'>Congratulations! A file 'visNetAnimate.gif' (in the directory /Users/hfang/Sites/SUPERFAMILY/dnet) has been created!</strong></pre>
   </div>
   
   <div class="span4">
@@ -395,12 +456,12 @@ visNetAnimate(g=subg, data=data, filetype="mp4", glayout.dynamics=TRUE)
     -->
     
     <h2>Source code</h2>
-    <a href="javascript:newWin('R/visNetAnimate.r', 'R/visNetAnimate.r', '1200', '1200')" title="Click to view"><B><code>visNetAnimate.r</code></B></a>
+    <a href="javascript:newWin('R/visNetAnimate.r', 'R/visNetAnimate.r', '1200', '1198.21162444113')" title="Click to view"><B><code>visNetAnimate.r</code></B></a>
     
     <h2>Source man</h2>
-    <a href="javascript:newWin('man/visNetAnimate.txt', 'man/visNetAnimate.txt', '1200', '1200')" title="Click to view"><B><code>visNetAnimate.Rd</code></B></a>
+    <a href="javascript:newWin('man/visNetAnimate.txt', 'man/visNetAnimate.txt', '1200', '1198.21162444113')" title="Click to view"><B><code>visNetAnimate.Rd</code></B></a>
     
-    <a href="javascript:newWin('man/visNetAnimate.pdf', 'man/visNetAnimate.pdf', '1200', '1200')" title="Click to view"><B><code>visNetAnimate.pdf</code></B></a>
+    <a href="javascript:newWin('man/visNetAnimate.pdf', 'man/visNetAnimate.pdf', '1200', '1198.21162444113')" title="Click to view"><B><code>visNetAnimate.pdf</code></B></a>
     
     <h2>See also</h2>
     
