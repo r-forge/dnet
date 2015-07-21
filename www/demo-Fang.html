@@ -412,7 +412,7 @@ apply(adjpvals<1e-2, 2, sum)
 # obtain gene significance from the given gene-sample matrix according to singular value decomposition-based method
 fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.eigen=NULL, pval.eigen=1e-2, signif="fdr", orient.permutation="row", num.permutation=200, fdr.procedure="stepup", verbose=T)
 </div>
-<strong class='message'>Start at 2015-07-16 16:51:44</strong>
+<strong class='message'>Start at 2015-07-21 17:43:23</strong>
 <strong class='message'></strong>
 <strong class='message'>First, singular value decomposition of the input matrix (with 4139 rows and 18 columns)...</strong>
 <strong class='message'>Second, determinate the eigens...</strong>
@@ -422,27 +422,27 @@ fdr <- <a href='dSVDsignif.html' target=dSVDsignif>dSVDsignif</a>(data=D, num.ei
 <strong class='message'>Finally, obtain gene significance (fdr) based on 200 permutations...</strong>
 <strong class='message'>	doing row-wise permutations...</strong>
 <strong class='message'>	estimating fdr...</strong>
-<strong class='message'>1 (out of 4139) at 2015-07-16 16:52:03</strong>
-<strong class='message'>414 (out of 4139) at 2015-07-16 16:52:13</strong>
-<strong class='message'>828 (out of 4139) at 2015-07-16 16:52:24</strong>
-<strong class='message'>1242 (out of 4139) at 2015-07-16 16:52:35</strong>
-<strong class='message'>1656 (out of 4139) at 2015-07-16 16:52:45</strong>
-<strong class='message'>2070 (out of 4139) at 2015-07-16 16:52:56</strong>
-<strong class='message'>2484 (out of 4139) at 2015-07-16 16:53:07</strong>
-<strong class='message'>2898 (out of 4139) at 2015-07-16 16:53:17</strong>
-<strong class='message'>3312 (out of 4139) at 2015-07-16 16:53:28</strong>
-<strong class='message'>3726 (out of 4139) at 2015-07-16 16:53:38</strong>
-<strong class='message'>4139 (out of 4139) at 2015-07-16 16:53:49</strong>
+<strong class='message'>1 (out of 4139) at 2015-07-21 17:43:43</strong>
+<strong class='message'>414 (out of 4139) at 2015-07-21 17:43:54</strong>
+<strong class='message'>828 (out of 4139) at 2015-07-21 17:44:06</strong>
+<strong class='message'>1242 (out of 4139) at 2015-07-21 17:44:19</strong>
+<strong class='message'>1656 (out of 4139) at 2015-07-21 17:44:31</strong>
+<strong class='message'>2070 (out of 4139) at 2015-07-21 17:44:43</strong>
+<strong class='message'>2484 (out of 4139) at 2015-07-21 17:44:54</strong>
+<strong class='message'>2898 (out of 4139) at 2015-07-21 17:45:05</strong>
+<strong class='message'>3312 (out of 4139) at 2015-07-21 17:45:17</strong>
+<strong class='message'>3726 (out of 4139) at 2015-07-21 17:45:29</strong>
+<strong class='message'>4139 (out of 4139) at 2015-07-21 17:45:40</strong>
 <strong class='message'>	using stepup procedure...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2015-07-16 16:53:49</strong>
-<strong class='message'>Runtime in total is: 125 secs
+<strong class='message'>Finish at 2015-07-21 17:45:40</strong>
+<strong class='message'>Runtime in total is: 137 secs
 </strong>
 <div class='input'>
 # 2) identification of module
 g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network, pval=fdr, method="customised", nsize=30)
 </div>
-<strong class='message'>Start at 2015-07-16 16:53:49</strong>
+<strong class='message'>Start at 2015-07-21 17:45:40</strong>
 <strong class='message'></strong>
 <strong class='message'>First, consider the input fdr (or p-value) distribution</strong>
 <strong class='message'>Second, determine the significance threshold...</strong>
@@ -459,8 +459,8 @@ g <- <a href='dNetPipeline.html' target=dNetPipeline>dNetPipeline</a>(g=network,
 <strong class='message'>Finally, find the subgraph from the input graph with 3623 nodes and 63805 edges...</strong>
 <strong class='message'>	Size of the subgraph: 49 nodes and 130 edges</strong>
 <strong class='message'>
-Finish at 2015-07-16 16:55:29</strong>
-<strong class='message'>Runtime in total is: 100 secs
+Finish at 2015-07-21 17:47:43</strong>
+<strong class='message'>Runtime in total is: 123 secs
 </strong>
 <div class='input'>glayout <- layout.fruchterman.reingold(g)
 
@@ -484,73 +484,79 @@ ordering <- tmp[order(vgroups,vdegrees),]$ind
 
 # 6) visualise graph using 1-dimensional arc diagram
 <a href='visNetArc.html' target=visNetArc>visNetArc</a>(g, ordering=ordering, labels=V(g)$geneSymbol, vertex.label.color=vcolors, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.size=log(vdegrees)+0.1, vertex.label.cex=0.4)
-
+</div>
+<a href="javascript:newWin('Fang-65.png', 'Fang-65.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-65.png', width="400" /></a>
+<div class='input'>
 # 7) visualise graph using circle diagram
 # 7a) drawn into a single circle 
 <a href='visNetCircle.html' target=visNetCircle>visNetCircle</a>(g=g, com=com, ordering=ordering, colormap=colormap, vertex.label=V(g)$symbol, vertex.size=igraph::degree(g)+5, vertex.label.color="black", vertex.label.cex=0.6, vertex.label.dist=0.75, vertex.shape="sphere", edge.color.within="grey", edge.color.crossing="black", edge.width=1, edge.lty=1, mark.shape=1, mark.expand=10)
-# 7b) drawn into multiple circles
+</div>
+<a href="javascript:newWin('Fang-67.png', 'Fang-67.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-67.png', width="400" /></a>
+<div class='input'># 7b) drawn into multiple circles
 <a href='visNetCircle.html' target=visNetCircle>visNetCircle</a>(g=g, com=com, circles="multiple", ordering=ordering, colormap=colormap, vertex.label=V(g)$symbol, vertex.size=igraph::degree(g)+5, vertex.label.color="black", vertex.label.cex=0.6, vertex.label.dist=0.25, vertex.shape="sphere", edge.color.within="grey", edge.color.crossing="black", edge.width=1, edge.lty=1, mark.shape=1, mark.expand=10)
-
+</div>
+<a href="javascript:newWin('Fang-69.png', 'Fang-69.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-69.png', width="400" /></a>
+<div class='input'>
 # 8) as comparison, also visualise graph on 2-dimensional layout 
 mark.groups <- communities(com)
-</div>
-<a href="javascript:newWin('Fang-65.png', 'Fang-65.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-65.png', width="400" /></a>
-<div class='input'>mark.col <- visColoralpha(mcolors, alpha=0.2)
+mark.col <- visColoralpha(mcolors, alpha=0.2)
 mark.border <- visColoralpha(mcolors, alpha=0.2)
 edge.color <- c("grey", "black")[crossing(com,g)+1]
 <a href='visNet.html' target=visNet>visNet</a>(g, glayout=glayout, vertex.label=V(g)$geneSymbol, vertex.color=vcolors, vertex.frame.color=vcolors, vertex.shape="sphere", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
-
+</div>
+<a href="javascript:newWin('Fang-71.png', 'Fang-71.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-71.png', width="400" /></a>
+<div class='input'>
 legend_name <- paste("C",1:length(mcolors)," (n=",com$csize,", pval=",signif(com$significance,digits=2),")",sep='')
+legend("bottomleft", legend=legend_name, fill=mcolors, bty="n", cex=0.6)
 </div>
-<a href="javascript:newWin('Fang-67.png', 'Fang-67.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-67.png', width="400" /></a>
-<div class='input'>legend("bottomleft", legend=legend_name, fill=mcolors, bty="n", cex=0.6)
-</div>
-<a href="javascript:newWin('Fang-69.png', 'Fang-69.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-69.png', width="400" /></a>
+<a href="javascript:newWin('Fang-73.png', 'Fang-73.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-73.png', width="400" /></a>
 <div class='input'>
 # 9) color by score
 # colored by score
 <a href='visNet.html' target=visNet>visNet</a>(g, glayout=glayout, pattern=V(g)$score, zlim=c(-1*ceiling(max(abs(V(g)$score))),ceiling(max(abs(V(g)$score)))), vertex.shape="circle", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
-
+</div>
+<a href="javascript:newWin('Fang-75.png', 'Fang-75.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-75.png', width="400" /></a>
+<div class='input'>
 # 10) color by additional data
 colormap <- "darkgreen-lightgreen-lightpink-darkred"
-</div>
-<a href="javascript:newWin('Fang-71.png', 'Fang-71.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-71.png', width="400" /></a>
-<div class='input'>data <- as.matrix(fit2$coefficients[V(g)$name,])
+data <- as.matrix(fit2$coefficients[V(g)$name,])
 <a href='visNetMul.html' target=visNetMul>visNetMul</a>(g=g, data=data, height=ceiling(sqrt(ncol(data)))*2, newpage=T,glayout=glayout,colormap=colormap,vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=mark.border, mark.shape=1, mark.expand=10, edge.color=edge.color)
-
+</div>
+<a href="javascript:newWin('Fang-77.png', 'Fang-77.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-77.png', width="400" /></a>
+<div class='input'>
 # 11) color by additional data (be reordered)
 sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, data, feature="edge", node.normalise="degree", amplifier=2, metric="none")
 </div>
-<strong class='message'>Start at 2015-07-16 16:56:29</strong>
+<strong class='message'>Start at 2015-07-21 17:48:44</strong>
 <strong class='message'></strong>
-<strong class='message'>First, define topology of a map grid (2015-07-16 16:56:29)...</strong>
-<strong class='message'>Second, initialise the codebook matrix (16 X 130) using 'linear' initialisation, given a topology and input data (2015-07-16 16:56:29)...</strong>
-<strong class='message'>Third, get training at the rough stage (2015-07-16 16:56:29)...</strong>
-<strong class='message'>	1 out of 162 (2015-07-16 16:56:29)</strong>
-<strong class='message'>	17 out of 162 (2015-07-16 16:56:29)</strong>
-<strong class='message'>	34 out of 162 (2015-07-16 16:56:29)</strong>
-<strong class='message'>	51 out of 162 (2015-07-16 16:56:29)</strong>
-<strong class='message'>	68 out of 162 (2015-07-16 16:56:29)</strong>
-<strong class='message'>	85 out of 162 (2015-07-16 16:56:29)</strong>
-<strong class='message'>	102 out of 162 (2015-07-16 16:56:29)</strong>
-<strong class='message'>	119 out of 162 (2015-07-16 16:56:30)</strong>
-<strong class='message'>	136 out of 162 (2015-07-16 16:56:30)</strong>
-<strong class='message'>	153 out of 162 (2015-07-16 16:56:30)</strong>
-<strong class='message'>	162 out of 162 (2015-07-16 16:56:30)</strong>
-<strong class='message'>Fourth, get training at the finetune stage (2015-07-16 16:56:30)...</strong>
-<strong class='message'>	1 out of 642 (2015-07-16 16:56:30)</strong>
-<strong class='message'>	65 out of 642 (2015-07-16 16:56:30)</strong>
-<strong class='message'>	130 out of 642 (2015-07-16 16:56:30)</strong>
-<strong class='message'>	195 out of 642 (2015-07-16 16:56:30)</strong>
-<strong class='message'>	260 out of 642 (2015-07-16 16:56:30)</strong>
-<strong class='message'>	325 out of 642 (2015-07-16 16:56:30)</strong>
-<strong class='message'>	390 out of 642 (2015-07-16 16:56:31)</strong>
-<strong class='message'>	455 out of 642 (2015-07-16 16:56:31)</strong>
-<strong class='message'>	520 out of 642 (2015-07-16 16:56:31)</strong>
-<strong class='message'>	585 out of 642 (2015-07-16 16:56:31)</strong>
-<strong class='message'>	642 out of 642 (2015-07-16 16:56:31)</strong>
-<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-07-16 16:56:31)...</strong>
-<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-07-16 16:56:31)...</strong>
+<strong class='message'>First, define topology of a map grid (2015-07-21 17:48:44)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (16 X 130) using 'linear' initialisation, given a topology and input data (2015-07-21 17:48:44)...</strong>
+<strong class='message'>Third, get training at the rough stage (2015-07-21 17:48:44)...</strong>
+<strong class='message'>	1 out of 162 (2015-07-21 17:48:44)</strong>
+<strong class='message'>	17 out of 162 (2015-07-21 17:48:44)</strong>
+<strong class='message'>	34 out of 162 (2015-07-21 17:48:44)</strong>
+<strong class='message'>	51 out of 162 (2015-07-21 17:48:44)</strong>
+<strong class='message'>	68 out of 162 (2015-07-21 17:48:44)</strong>
+<strong class='message'>	85 out of 162 (2015-07-21 17:48:44)</strong>
+<strong class='message'>	102 out of 162 (2015-07-21 17:48:44)</strong>
+<strong class='message'>	119 out of 162 (2015-07-21 17:48:44)</strong>
+<strong class='message'>	136 out of 162 (2015-07-21 17:48:45)</strong>
+<strong class='message'>	153 out of 162 (2015-07-21 17:48:45)</strong>
+<strong class='message'>	162 out of 162 (2015-07-21 17:48:45)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2015-07-21 17:48:45)...</strong>
+<strong class='message'>	1 out of 642 (2015-07-21 17:48:45)</strong>
+<strong class='message'>	65 out of 642 (2015-07-21 17:48:45)</strong>
+<strong class='message'>	130 out of 642 (2015-07-21 17:48:45)</strong>
+<strong class='message'>	195 out of 642 (2015-07-21 17:48:45)</strong>
+<strong class='message'>	260 out of 642 (2015-07-21 17:48:45)</strong>
+<strong class='message'>	325 out of 642 (2015-07-21 17:48:45)</strong>
+<strong class='message'>	390 out of 642 (2015-07-21 17:48:45)</strong>
+<strong class='message'>	455 out of 642 (2015-07-21 17:48:46)</strong>
+<strong class='message'>	520 out of 642 (2015-07-21 17:48:46)</strong>
+<strong class='message'>	585 out of 642 (2015-07-21 17:48:46)</strong>
+<strong class='message'>	642 out of 642 (2015-07-21 17:48:46)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-07-21 17:48:46)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-07-21 17:48:46)...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
 <strong class='message'>   dimension of input data: 6x130
@@ -570,17 +576,17 @@ sReorder <- <a href='dNetReorder.html' target=dNetReorder>dNetReorder</a>(g, dat
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2015-07-16 16:56:31</strong>
+<strong class='message'>End at 2015-07-21 17:48:46</strong>
 <strong class='message'>Runtime in total is: 2 secs
 </strong>
-<a href="javascript:newWin('Fang-110.png', 'Fang-110.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-110.png', width="400" /></a>
 <div class='input'><a href='visNetReorder.html' target=visNetReorder>visNetReorder</a>(g=g, data=data, sReorder=sReorder, height=ceiling(sqrt(ncol(data)))*2, newpage=T, glayout=glayout, colormap=colormap, vertex.label=NA,vertex.shape="sphere", vertex.size=16,mtext.cex=0.8,border.color="888888", mark.groups=mark.groups, mark.col=mark.col, mark.border=NA, mark.shape=1, mark.expand=10, edge.color=edge.color)
-
+</div>
+<a href="javascript:newWin('Fang-117.png', 'Fang-117.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-117.png', width="400" /></a>
+<div class='input'>
 # 12) heatmap of subnetwork
 visHeatmapAdv(data, colormap="gbr", row.cutree=3, column.cutree=3)
 </div>
-<a href="javascript:newWin('Fang-112.png', 'Fang-112.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-112.png', width="400" /></a>
-<a href="javascript:newWin('Fang-113.png', 'Fang-113.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-113.png', width="400" /></a>
+<a href="javascript:newWin('Fang-119.png', 'Fang-119.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-119.png', width="400" /></a>
 <div class='input'>hmap <- data.frame(Symbol=rownames(data), data)
 write.table(hmap, file=paste("Fang_whole.txt", sep=""), quote=F, row.names=F,col.names=T,sep="\t")
 

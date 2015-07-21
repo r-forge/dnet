@@ -254,17 +254,17 @@ g
 </div>
 <div class='input'># 3) visualise the extracted subnetwork
 <a href='visNet.html' target=visNet>visNet</a>(g, vertex.label=V(g)$symbol, vertex.shape="sphere")
-# 4) highlight the query gene in red, and its neighours in black
-vcolors <- rep('black', vcount(g))
 </div>
 <a href="javascript:newWin('FAQ6-8.png', 'FAQ6-8.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ6-8.png', width="400" /></a>
-<div class='input'>vcolors[match('NANOG', V(g)$symbol)] <- 'red'
+<div class='input'># 4) highlight the query gene in red, and its neighours in black
+vcolors <- rep('black', vcount(g))
+vcolors[match('NANOG', V(g)$symbol)] <- 'red'
 <a href='visNet.html' target=visNet>visNet</a>(g, vertex.label=V(g)$symbol, vertex.shape="sphere", vertex.color=vcolors)
-# 5) output the detailed information for genes in the subnetwork onto the file called 'NANOG.subnetwork.txt'
-out <- data.frame(GeneID=V(g)$geneid, Symbol=V(g)$symbol, Description=V(g)$description)
 </div>
 <a href="javascript:newWin('FAQ6-10.png', 'FAQ6-10.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ6-10.png', width="400" /></a>
-<div class='input'>write.table(out, file="NANOG.subnetwork.txt", quote=F, row.names=F,col.names=T,sep="\t")
+<div class='input'># 5) output the detailed information for genes in the subnetwork onto the file called 'NANOG.subnetwork.txt'
+out <- data.frame(GeneID=V(g)$geneid, Symbol=V(g)$symbol, Description=V(g)$description)
+write.table(out, file="NANOG.subnetwork.txt", quote=F, row.names=F,col.names=T,sep="\t")
 out
 </div>
 <div class='output'>   GeneID  Symbol
@@ -377,12 +377,12 @@ vcolors <- rep('black', vcount(g))
 vcolors[match(intersect_genes, V(g)$symbol)] <- 'blue'
 vcolors[match('NANOG', V(g)$symbol)] <- 'red'
 <a href='visNet.html' target=visNet>visNet</a>(g, vertex.label=V(g)$symbol, vertex.shape="sphere", vertex.color=vcolors)
-
-# <span style="font-weight:bold; color:#F87217; text-decoration:underline">Alternatively, remain only genes related to 'stem' and the query gene 'NANOG'.</span>
-both_genes <- c(intersect_genes, 'NANOG')
 </div>
 <a href="javascript:newWin('FAQ6-18.png', 'FAQ6-18.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ6-18.png', width="400" /></a>
-<div class='input'>both_genes
+<div class='input'>
+# <span style="font-weight:bold; color:#F87217; text-decoration:underline">Alternatively, remain only genes related to 'stem' and the query gene 'NANOG'.</span>
+both_genes <- c(intersect_genes, 'NANOG')
+both_genes
 </div>
 <div class='output'> [1] "FOXD3"   "NOTCH1"  "CTNNB1"  "LIN28A"  "TDGF1"   "POU5F1"  "PRDM14" 
  [8] "SOX2"    "PBX1"    "ESRRB"   "SMAD4"   "CDH2"    "EPAS1"   "EPHA1"  
@@ -397,19 +397,20 @@ g1 <- <a href='dNetInduce.html' target=dNetInduce>dNetInduce</a>(g, nodes_query=
 vcolors <- rep('blue', vcount(g1))
 vcolors[match('NANOG', V(g1)$symbol)] <- 'red'
 <a href='visNet.html' target=visNet>visNet</a>(g1, vertex.label=V(g1)$symbol, vertex.shape="sphere", vertex.color=vcolors)
-
-# <span style="font-weight:bold; color:#F87217; text-decoration:underline">Also, only edges linked to the query gene 'NANOG' are remained.</span>
-ind <- match('NANOG', V(g1)$symbol)
 </div>
 <a href="javascript:newWin('FAQ6-22.png', 'FAQ6-22.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ6-22.png', width="400" /></a>
-<div class='input'>eids <- E(g1)[from(ind)]
+<div class='input'>
+# <span style="font-weight:bold; color:#F87217; text-decoration:underline">Also, only edges linked to the query gene 'NANOG' are remained.</span>
+ind <- match('NANOG', V(g1)$symbol)
+eids <- E(g1)[from(ind)]
 g2 <- subgraph.edges(g1, eids=eids)
 vcolors <- rep('blue', vcount(g2))
 vcolors[match('NANOG', V(g2)$symbol)] <- 'red'
 <a href='visNet.html' target=visNet>visNet</a>(g2, vertex.label=V(g2)$symbol, vertex.shape="sphere", vertex.color=vcolors)
-
-# <span style="font-weight:bold; color:#F87217; text-decoration:underline">In addition to the direct interacting neighbors, the indirect neighbors can be specifed via the parameter 'knn' in the function <a href='dNetInduce.html' target=dNetInduce>dNetInduce</a>.</span></div>
+</div>
 <a href="javascript:newWin('FAQ6-24.png', 'FAQ6-24.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ6-24.png', width="400" /></a>
+<div class='input'>
+# <span style="font-weight:bold; color:#F87217; text-decoration:underline">In addition to the direct interacting neighbors, the indirect neighbors can be specifed via the parameter 'knn' in the function <a href='dNetInduce.html' target=dNetInduce>dNetInduce</a>.</span></div>
       </pre>
     </div>
 

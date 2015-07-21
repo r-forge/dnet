@@ -397,27 +397,30 @@ visDAG(g=subg, node.info="both")
 # 5) color-code nodes/terms according to its level
 data <- dDAGlevel(subg)
 visDAG(g=subg, data=data, node.info="both")
-# 5a) globally change the node and edge attributes
+</div>
+<a href="javascript:newWin('visDAG-4.png', 'visDAG-4.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visDAG-4.png', width="400" /></a>
+<div class='input'># 5a) globally change the node and edge attributes
 visDAG(g=subg, data=data, layout.orientation="top_bottom",
 node.info="both",
 graph.node.attrs=list(fixedsize=FALSE,shape="box",color="transparent"),
 graph.edge.attrs=list(color="black"))
-# 5b) locally highlight the root by changing its shape into "box"
-root <- dDAGroot(subg)
 </div>
-<a href="javascript:newWin('visDAG-4.png', 'visDAG-4.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visDAG-4.png', width="400" /></a>
-<div class='input'>root.shape <- "box"
+<a href="javascript:newWin('visDAG-6.png', 'visDAG-6.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visDAG-6.png', width="400" /></a>
+<div class='input'># 5b) locally highlight the root by changing its shape into "box"
+root <- dDAGroot(subg)
+root.shape <- "box"
 names(root.shape) <- V(subg)[root]$name
 visDAG(g=subg, data=data, node.info="both",
 node.attrs=list(shape=root.shape))
-# 5c) further locally remove the root labelling
-root.label <- ""
 </div>
-<a href="javascript:newWin('visDAG-6.png', 'visDAG-6.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visDAG-6.png', width="400" /></a>
-<div class='input'>names(root.label) <- V(subg)[root]$name
+<a href="javascript:newWin('visDAG-8.png', 'visDAG-8.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visDAG-8.png', width="400" /></a>
+<div class='input'># 5c) further locally remove the root labelling
+root.label <- ""
+names(root.label) <- V(subg)[root]$name
 visDAG(g=subg, data=data, node.info="both",
 node.attrs=list(shape=root.shape,label=root.label))
-</div></pre>
+</div>
+<a href="javascript:newWin('visDAG-10.png', 'visDAG-10.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visDAG-10.png', width="400" /></a></pre>
   </div>
   
   <div class="span4">
