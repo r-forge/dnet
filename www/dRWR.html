@@ -328,27 +328,27 @@ V(subg)$name <- 1:vcount(subg)
 PTmatrix <- dRWR(g=subg, normalise="laplacian", restart=0.75,
 parallel=FALSE)
 </div>
-<strong class='message'>Start at 2015-07-21 17:59:00</strong>
+<strong class='message'>Start at 2015-07-22 23:31:51</strong>
 <strong class='message'></strong>
-<strong class='message'>First, get the adjacency matrix of the input graph (2015-07-21 17:59:00) ...</strong>
+<strong class='message'>First, get the adjacency matrix of the input graph (2015-07-22 23:31:51) ...</strong>
 <strong class='message'>	Notes: using unweighted graph!</strong>
-<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2015-07-21 17:59:00) ...</strong>
-<strong class='message'>Third, RWR of 10 sets of seeds using 7.5e-01 restart probability (2015-07-21 17:59:00) ...</strong>
-<strong class='message'>	1 out of 10 seed sets (2015-07-21 17:59:00)</strong>
-<strong class='message'>	2 out of 10 seed sets (2015-07-21 17:59:01)</strong>
-<strong class='message'>	3 out of 10 seed sets (2015-07-21 17:59:01)</strong>
-<strong class='message'>	4 out of 10 seed sets (2015-07-21 17:59:01)</strong>
-<strong class='message'>	5 out of 10 seed sets (2015-07-21 17:59:01)</strong>
-<strong class='message'>	6 out of 10 seed sets (2015-07-21 17:59:01)</strong>
-<strong class='message'>	7 out of 10 seed sets (2015-07-21 17:59:01)</strong>
-<strong class='message'>	8 out of 10 seed sets (2015-07-21 17:59:01)</strong>
-<strong class='message'>	9 out of 10 seed sets (2015-07-21 17:59:01)</strong>
-<strong class='message'>	10 out of 10 seed sets (2015-07-21 17:59:02)</strong>
-<strong class='message'>Fourth, rescale steady probability vector (2015-07-21 17:59:02) ...</strong>
-<strong class='message'>Finally, output 10 by 10 affinity matrix normalised by none (2015-07-21 17:59:02) ...</strong>
+<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2015-07-22 23:31:51) ...</strong>
+<strong class='message'>Third, RWR of 10 sets of seeds using 7.5e-01 restart probability (2015-07-22 23:31:51) ...</strong>
+<strong class='message'>	1 out of 10 seed sets (2015-07-22 23:31:51)</strong>
+<strong class='message'>	2 out of 10 seed sets (2015-07-22 23:31:51)</strong>
+<strong class='message'>	3 out of 10 seed sets (2015-07-22 23:31:51)</strong>
+<strong class='message'>	4 out of 10 seed sets (2015-07-22 23:31:51)</strong>
+<strong class='message'>	5 out of 10 seed sets (2015-07-22 23:31:52)</strong>
+<strong class='message'>	6 out of 10 seed sets (2015-07-22 23:31:52)</strong>
+<strong class='message'>	7 out of 10 seed sets (2015-07-22 23:31:52)</strong>
+<strong class='message'>	8 out of 10 seed sets (2015-07-22 23:31:52)</strong>
+<strong class='message'>	9 out of 10 seed sets (2015-07-22 23:31:52)</strong>
+<strong class='message'>	10 out of 10 seed sets (2015-07-22 23:31:52)</strong>
+<strong class='message'>Fourth, rescale steady probability vector (2015-07-22 23:31:52) ...</strong>
+<strong class='message'>Finally, output 10 by 10 affinity matrix normalised by none (2015-07-22 23:31:52) ...</strong>
 <strong class='message'>
-Finish at 2015-07-21 17:59:02</strong>
-<strong class='message'>Runtime in total is: 2 secs
+Finish at 2015-07-22 23:31:52</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'># visualise affinity matrix
 visHeatmapAdv(PTmatrix, Rowv=FALSE, Colv=FALSE, colormap="wyr",
@@ -367,22 +367,22 @@ rownames(setSeeds) <- 1:5
 PTmatrix <- dRWR(g=subg, normalise="laplacian", setSeeds=setSeeds,
 restart=0.75, parallel=FALSE)
 </div>
-<strong class='message'>Start at 2015-07-21 17:59:02</strong>
+<strong class='message'>Start at 2015-07-22 23:31:52</strong>
 <strong class='message'></strong>
-<strong class='message'>First, get the adjacency matrix of the input graph (2015-07-21 17:59:02) ...</strong>
+<strong class='message'>First, get the adjacency matrix of the input graph (2015-07-22 23:31:52) ...</strong>
 <strong class='message'>	Notes: using unweighted graph!</strong>
-<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2015-07-21 17:59:02) ...</strong>
+<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2015-07-22 23:31:52) ...</strong>
 <strong class='warning'>Warning message:
 The row names of input setSeeds do not contain all those in the input graph.
 </strong>
-<strong class='message'>Third, RWR of 2 sets of seeds using 7.5e-01 restart probability (2015-07-21 17:59:02) ...</strong>
-<strong class='message'>	1 out of 2 seed sets (2015-07-21 17:59:02)</strong>
-<strong class='message'>	2 out of 2 seed sets (2015-07-21 17:59:02)</strong>
-<strong class='message'>Fourth, rescale steady probability vector (2015-07-21 17:59:02) ...</strong>
-<strong class='message'>Finally, output 10 by 2 affinity matrix normalised by none (2015-07-21 17:59:02) ...</strong>
+<strong class='message'>Third, RWR of 2 sets of seeds using 7.5e-01 restart probability (2015-07-22 23:31:52) ...</strong>
+<strong class='message'>	1 out of 2 seed sets (2015-07-22 23:31:52)</strong>
+<strong class='message'>	2 out of 2 seed sets (2015-07-22 23:31:53)</strong>
+<strong class='message'>Fourth, rescale steady probability vector (2015-07-22 23:31:53) ...</strong>
+<strong class='message'>Finally, output 10 by 2 affinity matrix normalised by none (2015-07-22 23:31:53) ...</strong>
 <strong class='message'>
-Finish at 2015-07-21 17:59:02</strong>
-<strong class='message'>Runtime in total is: 0 secs
+Finish at 2015-07-22 23:31:53</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'>PTmatrix
 </div>

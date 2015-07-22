@@ -204,7 +204,7 @@ window.onload = function(){
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>dRDataLoader</code> is supposed to load dnet built-in RData.</p>
+    <p><code>dRDataLoader</code> is supposed to load the package built-in RData.</p>
   
     <h3>Usage</h3>
     <pre>dRDataLoader(RData = c(NA, "TCGA_mutations", "ig.DO", "ig.GOBP", "ig.GOCC", "ig.GOMF", 
@@ -231,7 +231,7 @@ window.onload = function(){
       "SF", "DO", "HPPA", "HPMI", "HPCM", "HPMA", "MP", "MsigdbH", "MsigdbC1", "MsigdbC2CGP", 
       "MsigdbC2CP", "MsigdbC2KEGG", "MsigdbC2REACTOME", "MsigdbC2BIOCARTA", "MsigdbC3TFT", 
       "MsigdbC3MIR", "MsigdbC4CGN", "MsigdbC4CM", "MsigdbC5BP", "MsigdbC5MF", "MsigdbC5CC", 
-      "MsigdbC6", "MsigdbC7", "DGIdb"), RData.location = "http://supfam.org/dnet/RData/1.0.7")</pre>
+      "MsigdbC6", "MsigdbC7", "DGIdb"), verbose = T, RData.location = "https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7")</pre>
     
     <h3>Arguments</h3>
     <dl>
@@ -289,9 +289,13 @@ six ("DO", "HPPA", "HPMI", "HPCM", "HPMA" and "MP") are also supported;
 all "Msigdb" are only supported in "Hs". For details on the eligibility
 for pairs of input genome and ontology, please refer to the online
 Documentations at <a href = 'http://supfam.org/dnet/docs.html'>http://supfam.org/dnet/docs.html</a></dd>
+      <dt>verbose</dt>
+      <dd>logical to indicate whether the messages will be
+displayed in the screen. By default, it sets to TRUE for display</dd>
       <dt>RData.location</dt>
       <dd>the characters to tell the location of built-in
 RData files. By default, it remotely locates at
+<a href = 'https://github.com/hfang-bristol/RDataCentre/blob/master/dnet'>https://github.com/hfang-bristol/RDataCentre/blob/master/dnet</a> and
 <a href = 'http://dnet.r-forge.r-project.org/RData'>http://dnet.r-forge.r-project.org/RData</a>. Be aware of several
 versions and the latest one is matched to the current package version.
 For the user equipped with fast internet connection, this option can be
@@ -336,22 +340,22 @@ working environment.</p>
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'>org.Hs.egSF <- dRDataLoader(RData='org.Hs.egSF')
 </div>
-<strong class='message'>'org.Hs.egSF' (from http://supfam.org/dnet/RData/1.0.7/org.Hs.egSF.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egSF' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/org.Hs.egSF.RData?raw=true) has been loaded into the working environment (at 2015-07-22 23:31:42)</strong>
 <div class='input'>org.Hs.eg <- dRDataLoader(RData='org.Hs.eg')
 </div>
-<strong class='message'>'org.Hs.eg' (from http://supfam.org/dnet/RData/1.0.7/org.Hs.eg.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.eg' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/org.Hs.eg.RData?raw=true) has been loaded into the working environment (at 2015-07-22 23:31:45)</strong>
 <div class='input'>org.Hs.egDGIdb <- dRDataLoader(RData='org.Hs.egDGIdb')
 </div>
-<strong class='message'>'org.Hs.egDGIdb' (from http://supfam.org/dnet/RData/1.0.7/org.Hs.egDGIdb.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egDGIdb' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/org.Hs.egDGIdb.RData?raw=true) has been loaded into the working environment (at 2015-07-22 23:31:46)</strong>
 <div class='input'>org.Hs.egMsigdbC2KEGG <- dRDataLoader(RData='org.Hs.egMsigdbC2KEGG')
 </div>
-<strong class='message'>'org.Hs.egMsigdbC2KEGG' (from http://supfam.org/dnet/RData/1.0.7/org.Hs.egMsigdbC2KEGG.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egMsigdbC2KEGG' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/org.Hs.egMsigdbC2KEGG.RData?raw=true) has been loaded into the working environment (at 2015-07-22 23:31:47)</strong>
 <div class='input'>org.Hs.egHPPA <- dRDataLoader(genome='Hs', ontology='HPPA')
 </div>
-<strong class='message'>'org.Hs.egHPPA' (from package 'dnet' version 1.0.7) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egHPPA' (from package 'dnet' version 1.0.7) has been loaded into the working environment (at 2015-07-22 23:31:47)</strong>
 <div class='input'>ig.MP <- dRDataLoader(RData='ig.MP')
 </div>
-<strong class='message'>'ig.MP' (from http://supfam.org/dnet/RData/1.0.7/ig.MP.RData) has been loaded into the working environment</strong></pre>
+<strong class='message'>'ig.MP' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/ig.MP.RData?raw=true) has been loaded into the working environment (at 2015-07-22 23:31:50)</strong></pre>
   </div>
   
   <div class="span4">

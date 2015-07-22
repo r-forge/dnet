@@ -291,13 +291,13 @@ matrix via the function <code>as.matrix</code></p>
     <pre class="examples"><div class='input'># 1) load HPPA as igraph object
 ig.HPPA <-dRDataLoader(RData='ig.HPPA')
 </div>
-<strong class='message'>'ig.HPPA' (from package 'dnet' version 1.0.7) has been loaded into the working environment</strong>
+<strong class='message'>'ig.HPPA' (from package 'dnet' version 1.0.7) has been loaded into the working environment (at 2015-07-22 23:28:04)</strong>
 <div class='input'>g <- ig.HPPA
 
 # 2) load human genes annotated by HPPA
 org.Hs.egHPPA <- dRDataLoader(RData='org.Hs.egHPPA')
 </div>
-<strong class='message'>'org.Hs.egHPPA' (from package 'dnet' version 1.0.7) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egHPPA' (from package 'dnet' version 1.0.7) has been loaded into the working environment (at 2015-07-22 23:28:04)</strong>
 <div class='input'>
 # 3) prepare for ontology and its annotation information
 dag <- dDAGannotate(g, annotations=org.Hs.egHPPA,
@@ -322,28 +322,28 @@ terms <- sample(V(dag)$name, 5)
 sim <- dDAGtermSim(g=dag, terms=terms, method="Schlicker",
 parallel=FALSE)
 </div>
-<strong class='message'>Start at 2015-07-21 17:55:32</strong>
+<strong class='message'>Start at 2015-07-22 23:28:26</strong>
 <strong class='message'></strong>
-<strong class='message'>Calculate semantic similarity between 5 terms using Schlicker method (2015-07-21 17:55:32)...</strong>
-<strong class='message'>Build a sparse matrix of children x ancestors (with 5 rows and 3367 columns (2015-07-21 17:55:32)...</strong>
-<strong class='message'>	1 out of 5 (2015-07-21 17:55:32)</strong>
-<strong class='message'>	2 out of 5 (2015-07-21 17:55:32)</strong>
-<strong class='message'>	3 out of 5 (2015-07-21 17:55:32)</strong>
-<strong class='message'>	4 out of 5 (2015-07-21 17:55:32)</strong>
-<strong class='message'>	5 out of 5 (2015-07-21 17:55:32)</strong>
+<strong class='message'>Calculate semantic similarity between 5 terms using Schlicker method (2015-07-22 23:28:26)...</strong>
+<strong class='message'>Build a sparse matrix of children x ancestors (with 5 rows and 3367 columns (2015-07-22 23:28:26)...</strong>
+<strong class='message'>	1 out of 5 (2015-07-22 23:28:26)</strong>
+<strong class='message'>	2 out of 5 (2015-07-22 23:28:26)</strong>
+<strong class='message'>	3 out of 5 (2015-07-22 23:28:26)</strong>
+<strong class='message'>	4 out of 5 (2015-07-22 23:28:26)</strong>
+<strong class='message'>	5 out of 5 (2015-07-22 23:28:26)</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2015-07-21 17:55:32</strong>
+<strong class='message'>Finish at 2015-07-22 23:28:26</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>sim
 </div>
 <div class='output'>5 x 5 sparse Matrix of class "dgCMatrix"
-           HP:0030061 HP:0100730 HP:0100650 HP:0012093 HP:0000921
-HP:0030061  1.9763578   .         0.2780308   .          .       
-HP:0100730  .           1.996166  .           .          .       
-HP:0100650  0.2780308   .         1.9968051   .          .       
-HP:0012093  .           .         .           1.991054   .       
-HP:0000921  .           .         .           .          1.990415
+           HP:0100777 HP:0000175 HP:0010668 HP:0005339 HP:0000848
+HP:0100777   1.991054  .          .            .         .       
+HP:0000175   .         1.8038339  0.1280639    .         .       
+HP:0010668   .         0.1280639  1.9686901    .         .       
+HP:0005339   .         .          .            1.98722   .       
+HP:0000848   .         .          .            .         1.994888
 </div></pre>
   </div>
   

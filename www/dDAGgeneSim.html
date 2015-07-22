@@ -321,13 +321,13 @@ subgraph.</p>
     <pre class="examples"><div class='input'># 1) load HPPA as igraph object
 ig.HPPA <-dRDataLoader(RData='ig.HPPA')
 </div>
-<strong class='message'>'ig.HPPA' (from package 'dnet' version 1.0.7) has been loaded into the working environment</strong>
+<strong class='message'>'ig.HPPA' (from package 'dnet' version 1.0.7) has been loaded into the working environment (at 2015-07-22 23:27:10)</strong>
 <div class='input'>g <- ig.HPPA
 
 # 2) load human genes annotated by HPPA
 org.Hs.egHPPA <- dRDataLoader(RData='org.Hs.egHPPA')
 </div>
-<strong class='message'>'org.Hs.egHPPA' (from package 'dnet' version 1.0.7) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egHPPA' (from package 'dnet' version 1.0.7) has been loaded into the working environment (at 2015-07-22 23:27:10)</strong>
 <div class='input'>
 # 3) prepare for ontology and its annotation information
 dag <- dDAGannotate(g, annotations=org.Hs.egHPPA,
@@ -353,29 +353,29 @@ genes <- sample(allgenes,5)
 sim <- dDAGgeneSim(g=dag, genes=genes, method.gene="BM.average",
 method.term="Resnik", parallel=FALSE, verbose=TRUE)
 </div>
-<strong class='message'>Start at 2015-07-21 17:53:49</strong>
+<strong class='message'>Start at 2015-07-22 23:27:36</strong>
 <strong class='message'></strong>
-<strong class='message'>First, extract all annotatable genes (2015-07-21 17:53:49)...</strong>
+<strong class='message'>First, extract all annotatable genes (2015-07-22 23:27:36)...</strong>
 <strong class='message'>	there are 5 input genes amongst 3130 annotatable genes</strong>
-<strong class='message'>Second, pre-compute semantic similarity between 124 terms (forced to be the most specific for each gene) using Resnik method (2015-07-21 17:54:02)...</strong>
-<strong class='message'>Last, calculate pair-wise semantic similarity between 5 genes using BM.average method (2015-07-21 17:54:05)...</strong>
-<strong class='message'>	1 out of 5 (2015-07-21 17:54:05)</strong>
-<strong class='message'>	2 out of 5 (2015-07-21 17:54:05)</strong>
-<strong class='message'>	3 out of 5 (2015-07-21 17:54:05)</strong>
-<strong class='message'>	4 out of 5 (2015-07-21 17:54:05)</strong>
+<strong class='message'>Second, pre-compute semantic similarity between 83 terms (forced to be the most specific for each gene) using Resnik method (2015-07-22 23:27:41)...</strong>
+<strong class='message'>Last, calculate pair-wise semantic similarity between 5 genes using BM.average method (2015-07-22 23:27:42)...</strong>
+<strong class='message'>	1 out of 5 (2015-07-22 23:27:42)</strong>
+<strong class='message'>	2 out of 5 (2015-07-22 23:27:43)</strong>
+<strong class='message'>	3 out of 5 (2015-07-22 23:27:43)</strong>
+<strong class='message'>	4 out of 5 (2015-07-22 23:27:43)</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2015-07-21 17:54:05</strong>
-<strong class='message'>Runtime in total is: 16 secs
+<strong class='message'>Finish at 2015-07-22 23:27:43</strong>
+<strong class='message'>Runtime in total is: 7 secs
 </strong>
 <div class='input'>sim
 </div>
 <div class='output'>5 x 5 sparse Matrix of class "dgCMatrix"
-             238       9241     79641      10734       5696
-238   .          0.08979537 0.2437200 0.21335502 0.17117516
-9241  0.08979537 .          0.2347524 0.03091316 0.67050059
-79641 0.24372003 0.23475236 .         0.16439222 0.43382179
-10734 0.21335502 0.03091316 0.1643922 .          0.08038859
-5696  0.17117516 0.67050059 0.4338218 0.08038859 .         
+          724066     10161       1141       2243     23169
+724066 .         0.1187681 0.18032166 0.17333792 .        
+10161  0.1187681 .         .          0.27575279 0.3390282
+1141   0.1803217 .         .          0.09297191 .        
+2243   0.1733379 0.2757528 0.09297191 .          0.3606363
+23169  .         0.3390282 .          0.36063632 .        
 </div></pre>
   </div>
   
