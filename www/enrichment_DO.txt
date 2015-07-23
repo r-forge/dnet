@@ -1,0 +1,131 @@
+name	nAnno	nOverlap	zscore	pvalue	adjp	namespace	distance	members
+seminoma	25	4	11.6	6.4e-08	8.4e-06	Disease_Ontology	5	Rb1,Sox2,Klf4,Bcl2
+larynx cancer	77	5	7.96	9.1e-07	3e-05	Disease_Ontology	5	Rb1,Spp1,Cd44,Bcl2,Serpinb5
+laryngeal carcinoma	75	5	8.08	7.8e-07	3e-05	Disease_Ontology	6	Rb1,Spp1,Cd44,Bcl2,Serpinb5
+laryngeal squamous cell carcinoma	75	5	8.08	7.8e-07	3e-05	Disease_Ontology	7	Rb1,Spp1,Cd44,Bcl2,Serpinb5
+stomach cancer	91	5	7.23	2.5e-06	4.6e-05	Disease_Ontology	5	Spp1,Klf4,Cd44,Bcl2,Serpinb5
+gastric adenocarcinoma	86	5	7.47	1.8e-06	4.6e-05	Disease_Ontology	7	Spp1,Klf4,Cd44,Bcl2,Serpinb5
+stomach carcinoma	89	5	7.32	2.2e-06	4.6e-05	Disease_Ontology	6	Spp1,Klf4,Cd44,Bcl2,Serpinb5
+lichen disease	56	4	7.5	4.2e-06	6.1e-05	Disease_Ontology	4	Spp1,Cd44,Bcl2,Abcg2
+lichen planus	56	4	7.5	4.2e-06	6.1e-05	Disease_Ontology	5	Spp1,Cd44,Bcl2,Abcg2
+integumentary system benign neoplasm	30	3	7.82	8.4e-06	9.9e-05	Disease_Ontology	4	Sox2,Spp1,Notch2
+skin benign neoplasm	30	3	7.82	8.4e-06	9.9e-05	Disease_Ontology	5	Sox2,Spp1,Notch2
+lung small cell carcinoma	31	3	7.68	9.6e-06	1e-04	Disease_Ontology	7	Rb1,Cd44,Bcl2
+germ cell cancer	78	4	6.2	2.2e-05	0.00022	Disease_Ontology	4	Rb1,Sox2,Klf4,Bcl2
+lung cancer	461	8	4.27	0.00012	0.0011	Disease_Ontology	5	Rb1,Spp1,Cd44,Bcl2,Frk,Ibsp,Serpinb5,Abcg2
+adenocarcinoma	708	10	4.05	0.00014	0.0011	Disease_Ontology	5	Rb1,Sox2,Spp1,Klf4,Cd44,Bcl2,Serpinb5,Abcg2,Gucy2c,Atoh1
+lung carcinoma	460	8	4.28	0.00012	0.0011	Disease_Ontology	6	Rb1,Spp1,Cd44,Bcl2,Frk,Ibsp,Serpinb5,Abcg2
+respiratory system cancer	486	8	4.09	0.00018	0.0014	Disease_Ontology	4	Rb1,Spp1,Cd44,Bcl2,Frk,Ibsp,Serpinb5,Abcg2
+organ system benign neoplasm	196	5	4.46	0.00019	0.0014	Disease_Ontology	3	Sox2,Spp1,Klf4,Cd44,Notch2
+non-small cell lung carcinoma	403	7	3.98	0.00029	0.002	Disease_Ontology	7	Rb1,Spp1,Bcl2,Frk,Ibsp,Serpinb5,Abcg2
+benign neoplasm	525	8	3.83	0.00033	0.0022	Disease_Ontology	2	Rb1,Sox2,Spp1,Klf4,Cd44,Bcl2,Notch2,Gucy2c
+melanoma	669	9	3.65	0.00043	0.0026	Disease_Ontology	4	Rb1,Sox2,Spp1,Cat,Cd44,Bcl2,Perp,Serpinb5,Tbx3
+head and neck squamous cell carcinoma	163	4	3.86	0.00071	0.0042	Disease_Ontology	6	Rb1,Klf4,Cd44,Bcl2
+papillary thyroid carcinoma	96	3	3.94	0.00083	0.0045	Disease_Ontology	7	Spp1,Serpinb5,Mpp1
+acute myeloid leukemia	358	6	3.56	0.00083	0.0045	Disease_Ontology	8	Spp1,Cat,Cd44,Bcl2,Abcg2,Plcb1
+endometriosis	261	5	3.61	9e-04	0.0047	Disease_Ontology	4	Rb1,Sox2,Spp1,Cat,Cd44
+arthritis	614	8	3.32	0.0011	0.0053	Disease_Ontology	6	Rb1,Spp1,Cat,Cd44,Bcl2,Notch2,Abcg2,Itpr2
+large intestine cancer	771	9	3.17	0.0013	0.0062	Disease_Ontology	6	Sox2,Spp1,Klf4,Cd44,Bcl2,Notch2,Serpinb5,Abcg2,Gucy2c
+colorectal cancer	770	9	3.17	0.0013	0.0062	Disease_Ontology	7	Sox2,Spp1,Klf4,Cd44,Bcl2,Notch2,Serpinb5,Abcg2,Gucy2c
+intestinal cancer	779	9	3.13	0.0014	0.0064	Disease_Ontology	5	Sox2,Spp1,Klf4,Cd44,Bcl2,Notch2,Serpinb5,Abcg2,Gucy2c
+pharynx cancer	202	4	3.3	0.0019	0.0066	Disease_Ontology	5	Rb1,Cd44,Bcl2,Serpinb5
+integumentary system cancer	119	3	3.4	0.0018	0.0066	Disease_Ontology	4	Klf4,Cd44,Bcl2
+squamous cell carcinoma	654	8	3.11	0.0017	0.0066	Disease_Ontology	5	Rb1,Sox2,Spp1,Klf4,Cd44,Bcl2,Serpinb5,Abcg2
+malignant glioma	412	6	3.15	0.0019	0.0066	Disease_Ontology	4	Rb1,Sox2,Spp1,Bcl2,Notch2,Abcg2
+bone inflammation disease	646	8	3.15	0.0015	0.0066	Disease_Ontology	5	Rb1,Spp1,Cat,Cd44,Bcl2,Notch2,Abcg2,Itpr2
+skin disease	533	7	3.1	0.0019	0.0066	Disease_Ontology	3	Spp1,Cat,Cd44,Bcl2,Perp,Serpinb5,Abcg2
+skin cancer	119	3	3.4	0.0018	0.0066	Disease_Ontology	5	Klf4,Cd44,Bcl2
+psoriasis	201	4	3.31	0.0018	0.0066	Disease_Ontology	4	Spp1,Cat,Bcl2,Serpinb5
+liver cancer	825	9	2.94	0.0022	0.0073	Disease_Ontology	5	Rb1,Spp1,Cat,Cd44,Bcl2,Notch2,Abcg2,Klf8,Prok2
+hepatocellular carcinoma	824	9	2.95	0.0022	0.0073	Disease_Ontology	7	Rb1,Spp1,Cat,Cd44,Bcl2,Notch2,Abcg2,Klf8,Prok2
+liver carcinoma	824	9	2.95	0.0022	0.0073	Disease_Ontology	6	Rb1,Spp1,Cat,Cd44,Bcl2,Notch2,Abcg2,Klf8,Prok2
+integumentary system disease	556	7	2.98	0.0024	0.0077	Disease_Ontology	2	Spp1,Cat,Cd44,Bcl2,Perp,Serpinb5,Abcg2
+endometrial carcinoma	132	3	3.16	0.0027	0.0082	Disease_Ontology	8	Spp1,Cd44,Bcl2
+osteosarcoma	220	4	3.08	0.0027	0.0082	Disease_Ontology	7	Rb1,Spp1,Cd44,Bcl2
+head and neck carcinoma	225	4	3.02	0.003	0.0084	Disease_Ontology	5	Rb1,Klf4,Cd44,Bcl2
+female reproductive system disease	328	5	2.98	0.0029	0.0084	Disease_Ontology	3	Rb1,Sox2,Spp1,Cat,Cd44
+urinary system cancer	442	6	2.95	0.0028	0.0084	Disease_Ontology	4	Spp1,Cd44,Bcl2,Notch2,Serpinb5,Klf8
+head and neck cancer	229	4	2.98	0.0032	0.0086	Disease_Ontology	4	Rb1,Klf4,Cd44,Bcl2
+endometrial cancer	138	3	3.05	0.0032	0.0086	Disease_Ontology	7	Spp1,Cd44,Bcl2
+uterine cancer	139	3	3.04	0.0033	0.0086	Disease_Ontology	6	Spp1,Cd44,Bcl2
+bone cancer	232	4	2.95	0.0034	0.0088	Disease_Ontology	6	Rb1,Spp1,Cd44,Bcl2
+cell type benign neoplasm	467	6	2.79	0.0039	0.0095	Disease_Ontology	3	Rb1,Spp1,Cd44,Bcl2,Notch2,Gucy2c
+reproductive system disease	467	6	2.79	0.0039	0.0095	Disease_Ontology	2	Rb1,Sox2,Spp1,Cat,Cd44,Bcl2
+rheumatoid arthritis	466	6	2.8	0.0038	0.0095	Disease_Ontology	7	Rb1,Spp1,Cat,Cd44,Bcl2,Itpr2
+connective tissue cancer	351	5	2.8	0.0041	0.0097	Disease_Ontology	5	Rb1,Sox2,Spp1,Cd44,Bcl2
+renal carcinoma	350	5	2.81	0.004	0.0097	Disease_Ontology	6	Spp1,Cd44,Bcl2,Notch2,Klf8
+bone disease	788	8	2.53	0.006	0.013	Disease_Ontology	4	Rb1,Spp1,Cat,Cd44,Bcl2,Notch2,Abcg2,Itpr2
+lymphoblastic leukemia	380	5	2.59	0.006	0.013	Disease_Ontology	7	Rb1,Cd44,Bcl2,Notch2,Abcg2
+astrocytoma	376	5	2.62	0.0057	0.013	Disease_Ontology	5	Rb1,Sox2,Spp1,Bcl2,Abcg2
+biliary tract cancer	161	3	2.71	0.0055	0.013	Disease_Ontology	5	Rb1,Spp1,Abcg2
+myeloid leukemia	501	6	2.6	0.0057	0.013	Disease_Ontology	7	Spp1,Cat,Cd44,Bcl2,Abcg2,Plcb1
+sarcoma	175	3	2.53	0.0074	0.015	Disease_Ontology	4	Rb1,Sox2,Spp1
+systemic lupus erythematosus	274	4	2.55	0.0069	0.015	Disease_Ontology	4	Spp1,Cat,Cd44,Bcl2
+female reproductive organ cancer	402	5	2.45	0.0079	0.016	Disease_Ontology	5	Spp1,Cd44,Bcl2,Serpinb5,Abcg2
+thyroid cancer	180	3	2.47	0.0081	0.016	Disease_Ontology	5	Spp1,Serpinb5,Mpp1
+thyroid carcinoma	176	3	2.52	0.0075	0.016	Disease_Ontology	6	Spp1,Serpinb5,Mpp1
+autosomal dominant disease	413	5	2.38	0.009	0.017	Disease_Ontology	4	Rb1,Spp1,Cd44,Bcl2,Notch2
+musculoskeletal system cancer	413	5	2.38	0.009	0.017	Disease_Ontology	4	Rb1,Sox2,Spp1,Cd44,Bcl2
+kidney cancer	412	5	2.39	0.0089	0.017	Disease_Ontology	5	Spp1,Cd44,Bcl2,Notch2,Klf8
+glioblastoma multiforme	293	4	2.39	0.0091	0.017	Disease_Ontology	6	Rb1,Sox2,Bcl2,Abcg2
+breast cancer	558	6	2.3	0.01	0.018	Disease_Ontology	5	Rb1,Spp1,Klf4,Cd44,Bcl2,Serpinb5
+breast ductal carcinoma	188	3	2.38	0.0095	0.018	Disease_Ontology	7	Klf4,Bcl2,Serpinb5
+thoracic cancer	558	6	2.3	0.01	0.018	Disease_Ontology	4	Rb1,Spp1,Klf4,Cd44,Bcl2,Serpinb5
+renal cell carcinoma	311	4	2.25	0.012	0.02	Disease_Ontology	7	Spp1,Cd44,Bcl2,Notch2
+adenoma	308	4	2.28	0.011	0.02	Disease_Ontology	4	Rb1,Cd44,Bcl2,Gucy2c
+chronic obstructive pulmonary disease	204	3	2.21	0.013	0.021	Disease_Ontology	6	Spp1,Cat,Bcl2
+breast carcinoma	443	5	2.21	0.013	0.021	Disease_Ontology	6	Rb1,Klf4,Cd44,Bcl2,Serpinb5
+hereditary breast ovarian cancer	210	3	2.15	0.014	0.023	Disease_Ontology	5	Rb1,Spp1,Bcl2
+autonomic nervous system neoplasm	339	4	2.06	0.016	0.027	Disease_Ontology	6	Rb1,Klf4,Cd44,Bcl2
+neuroblastoma	339	4	2.06	0.016	0.027	Disease_Ontology	7	Rb1,Klf4,Cd44,Bcl2
+lupus erythematosus	349	4	1.99	0.018	0.03	Disease_Ontology	5	Spp1,Cat,Cd44,Bcl2
+myeloma	353	4	1.97	0.019	0.031	Disease_Ontology	7	Spp1,Cd44,Bcl2,Abcg2
+peripheral nervous system neoplasm	352	4	1.97	0.019	0.031	Disease_Ontology	5	Rb1,Klf4,Cd44,Bcl2
+diabetes mellitus	788	7	1.96	0.02	0.031	Disease_Ontology	5	Rb1,Sox2,Spp1,Cat,Klf7,Klf4,Cd44
+multiple myeloma	235	3	1.92	0.02	0.031	Disease_Ontology	8	Spp1,Cd44,Abcg2
+bone marrow cancer	369	4	1.87	0.023	0.035	Disease_Ontology	6	Spp1,Cd44,Bcl2,Abcg2
+gastrointestinal system disease	974	8	1.88	0.023	0.035	Disease_Ontology	2	Rb1,Sox2,Spp1,Cd44,Bcl2,Notch2,Abcg2,Cxcl5
+connective tissue disease	979	8	1.86	0.024	0.036	Disease_Ontology	3	Rb1,Spp1,Cat,Cd44,Bcl2,Notch2,Abcg2,Itpr2
+carbohydrate metabolism disease	825	7	1.83	0.026	0.037	Disease_Ontology	3	Rb1,Sox2,Spp1,Cat,Klf7,Klf4,Cd44
+glucose metabolism disease	825	7	1.83	0.026	0.037	Disease_Ontology	4	Rb1,Sox2,Spp1,Cat,Klf7,Klf4,Cd44
+reproductive organ cancer	521	5	1.81	0.026	0.038	Disease_Ontology	4	Spp1,Cd44,Bcl2,Serpinb5,Abcg2
+endocrine gland cancer	388	4	1.76	0.028	0.039	Disease_Ontology	4	Spp1,Bcl2,Serpinb5,Mpp1
+endocrine system disease	387	4	1.76	0.028	0.039	Disease_Ontology	2	Spp1,Cd44,Bcl2,Prok2
+malignant ovarian surface epithelial-stromal neoplasm	265	3	1.69	0.03	0.041	Disease_Ontology	8	Cd44,Bcl2,Serpinb5
+ovary epithelial cancer	265	3	1.69	0.03	0.041	Disease_Ontology	7	Cd44,Bcl2,Serpinb5
+ovarian carcinoma	265	3	1.69	0.03	0.041	Disease_Ontology	9	Cd44,Bcl2,Serpinb5
+ovarian cancer	271	3	1.65	0.032	0.043	Disease_Ontology	6	Cd44,Bcl2,Serpinb5
+multiple sclerosis	292	3	1.5	0.04	0.054	Disease_Ontology	6	Spp1,Cat,Abcg2
+demyelinating disease	296	3	1.48	0.042	0.056	Disease_Ontology	5	Spp1,Cat,Abcg2
+hematopoietic system disease	441	4	1.48	0.045	0.059	Disease_Ontology	3	Cat,Klf4,Bcl2,Notch2
+hypersensitivity reaction disease	764	6	1.47	0.049	0.063	Disease_Ontology	3	Spp1,Cat,Cd44,Bcl2,Notch2,Abcg2
+cognitive disorder	798	6	1.36	0.059	0.076	Disease_Ontology	2	Spp1,Bcl2,Cckar,Plcb1,Grik3,Napg
+obesity	333	3	1.26	0.06	0.077	Disease_Ontology	5	Spp1,Klf7,Prok2
+nervous system cancer	483	4	1.29	0.062	0.078	Disease_Ontology	4	Rb1,Klf4,Cd44,Bcl2
+overnutrition	339	3	1.22	0.064	0.08	Disease_Ontology	4	Spp1,Klf7,Prok2
+asthma	343	3	1.2	0.066	0.081	Disease_Ontology	5	Spp1,Cat,Bcl2
+genetic disease	816	6	1.3	0.066	0.081	Disease_Ontology	1	Rb1,Spp1,Cd44,Bcl2,Notch2,Prok2
+nutrition disease	350	3	1.17	0.07	0.085	Disease_Ontology	3	Spp1,Klf7,Prok2
+bronchial disease	352	3	1.16	0.071	0.086	Disease_Ontology	4	Spp1,Cat,Bcl2
+hypersensitivity reaction type II disease	678	5	1.18	0.078	0.093	Disease_Ontology	4	Spp1,Cat,Cd44,Bcl2,Notch2
+autosomal genetic disease	688	5	1.14	0.082	0.097	Disease_Ontology	3	Rb1,Spp1,Cd44,Bcl2,Notch2
+monogenic disease	720	5	1.03	0.098	0.11	Disease_Ontology	2	Rb1,Spp1,Cd44,Bcl2,Notch2
+myopathy	393	3	0.953	0.098	0.11	Disease_Ontology	5	Spp1,Bcl2,Itpr2
+muscle tissue disease	393	3	0.953	0.098	0.11	Disease_Ontology	4	Spp1,Bcl2,Itpr2
+muscular disease	403	3	0.907	0.1	0.12	Disease_Ontology	3	Spp1,Bcl2,Itpr2
+hepatitis	418	3	0.841	0.12	0.13	Disease_Ontology	5	Rb1,Spp1,Bcl2
+liver disease	593	4	0.852	0.12	0.14	Disease_Ontology	4	Rb1,Spp1,Bcl2,Notch2
+brain disease	431	3	0.785	0.13	0.14	Disease_Ontology	4	Notch2,Abcg2,Zfp715
+lower respiratory tract disease	620	4	0.759	0.14	0.15	Disease_Ontology	3	Spp1,Cat,Cd44,Bcl2
+obstructive lung disease	449	3	0.711	0.14	0.15	Disease_Ontology	5	Spp1,Cat,Bcl2
+hepatobiliary disease	616	4	0.772	0.14	0.15	Disease_Ontology	3	Rb1,Spp1,Bcl2,Notch2
+lung disease	611	4	0.789	0.14	0.15	Disease_Ontology	4	Spp1,Cat,Cd44,Bcl2
+respiratory system disease	658	4	0.633	0.17	0.18	Disease_Ontology	2	Spp1,Cat,Cd44,Bcl2
+eye and adnexa disease	510	3	0.481	0.19	0.2	Disease_Ontology	4	Sox2,Cat,Bcl2
+eye disease	501	3	0.513	0.19	0.2	Disease_Ontology	5	Sox2,Cat,Bcl2
+neurodegenerative disease	891	5	0.528	0.21	0.21	Disease_Ontology	4	Spp1,Cat,Frk,Abcg2,Cckar
+viral infectious disease	758	4	0.334	0.25	0.26	Disease_Ontology	2	Rb1,Spp1,Bcl2,Vps4b
+sensory system disease	583	3	0.239	0.27	0.27	Disease_Ontology	3	Sox2,Cat,Bcl2
+psychotic disorder	626	3	0.11	0.31	0.31	Disease_Ontology	3	Cckar,Plcb1,Grik3
+schizophrenia	624	3	0.115	0.31	0.31	Disease_Ontology	4	Cckar,Plcb1,Grik3
+artery disease	892	4	-0.0143	0.38	0.38	Disease_Ontology	4	Sox2,Spp1,Cat,Cd44
