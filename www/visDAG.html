@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>visDAG @ dnet 1.0.7</title>
+<title>visDAG @ dnet 1.0.11</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.7</a>
+      <a class="brand" href="index.html">dnet 1.0.11</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -213,8 +213,8 @@ provided)</p>
   "bwr", "jet", "gbr", "wyr", "br", "rainbow", "wb", "lightyellow-orange"), ncolors = 40, 
       zlim = NULL, colorbar = T, colorbar.fraction = 0.1, newpage = T, layout.orientation = c("left_right", 
           "top_bottom", "bottom_top", "right_left"), node.info = c("none", "term_id", 
-          "term_name", "both", "full_term_name"), graph.node.attrs = NULL, graph.edge.attrs = NULL, 
-      node.attrs = NULL)</pre>
+          "term_name", "both", "full_term_name"), numChar = 15, graph.node.attrs = NULL, 
+      graph.edge.attrs = NULL, node.attrs = NULL)</pre>
     
     <h3>Arguments</h3>
     <dl>
@@ -272,6 +272,9 @@ nodes. It can be one of "none" for no node labeling, "term_id" for
 using Term ID, "term_name" for using Term Name (the first 15
 characters), "both" for using both of Term ID and Name (the first 15
 characters), and "full_term_name" for using the full Term Name</dd>
+      <dt>numChar</dt>
+      <dd>a positive integer specifying wrap width of node
+labelling</dd>
       <dt>graph.node.attrs</dt>
       <dd>a list of global node attributes. These node
 attributes will be changed globally. See 'Note' below for details on
@@ -381,7 +384,7 @@ node: 0.75 by default
     <pre class="examples"><div class='input'># 1) load HPPA as igraph object
 ig.HPPA <-dRDataLoader(RData='ig.HPPA')
 </div>
-<strong class='message'>'ig.HPPA' (from package 'dnet' version 1.0.7) has been loaded into the working environment (at 2015-07-22 23:36:19)</strong>
+<strong class='message'>'ig.HPPA' (from package 'dnet' version 1.0.11) has been loaded into the working environment (at 2017-03-27 20:03:32)</strong>
 <div class='input'>g <- ig.HPPA
 
 # 2) randomly select vertices as the query nodes
@@ -397,30 +400,27 @@ visDAG(g=subg, node.info="both")
 # 5) color-code nodes/terms according to its level
 data <- dDAGlevel(subg)
 visDAG(g=subg, data=data, node.info="both")
-</div>
-<a href="javascript:newWin('visDAG-4.png', 'visDAG-4.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visDAG-4.png', width="400" /></a>
-<div class='input'># 5a) globally change the node and edge attributes
+# 5a) globally change the node and edge attributes
 visDAG(g=subg, data=data, layout.orientation="top_bottom",
 node.info="both",
 graph.node.attrs=list(fixedsize=FALSE,shape="box",color="transparent"),
 graph.edge.attrs=list(color="black"))
-</div>
-<a href="javascript:newWin('visDAG-6.png', 'visDAG-6.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visDAG-6.png', width="400" /></a>
-<div class='input'># 5b) locally highlight the root by changing its shape into "box"
+# 5b) locally highlight the root by changing its shape into "box"
 root <- dDAGroot(subg)
-root.shape <- "box"
+</div>
+<a href="javascript:newWin('visDAG-4.png', 'visDAG-4.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visDAG-4.png', width="400" /></a>
+<div class='input'>root.shape <- "box"
 names(root.shape) <- V(subg)[root]$name
 visDAG(g=subg, data=data, node.info="both",
 node.attrs=list(shape=root.shape))
-</div>
-<a href="javascript:newWin('visDAG-8.png', 'visDAG-8.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visDAG-8.png', width="400" /></a>
-<div class='input'># 5c) further locally remove the root labelling
+# 5c) further locally remove the root labelling
 root.label <- ""
-names(root.label) <- V(subg)[root]$name
+</div>
+<a href="javascript:newWin('visDAG-6.png', 'visDAG-6.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visDAG-6.png', width="400" /></a>
+<div class='input'>names(root.label) <- V(subg)[root]$name
 visDAG(g=subg, data=data, node.info="both",
 node.attrs=list(shape=root.shape,label=root.label))
-</div>
-<a href="javascript:newWin('visDAG-10.png', 'visDAG-10.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visDAG-10.png', width="400" /></a></pre>
+</div></pre>
   </div>
   
   <div class="span4">
@@ -464,12 +464,9 @@ node.attrs=list(shape=root.shape,label=root.label))
     
     <h2>URL</h2>
     <ul>
-      <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
-      <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href=" http://cran.r-
-project.org/package=dnet"> http://cran.r-
-project.org/package=dnet</a></li>
+      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
       <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href=" http://supfam.org/dnet"> http://supfam.org/dnet</a></li>
     </ul>
     
     
@@ -482,7 +479,7 @@ project.org/package=dnet</a></li>
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang.shanghai@gmail.com" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

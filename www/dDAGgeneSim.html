@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dDAGgeneSim @ dnet 1.0.7</title>
+<title>dDAGgeneSim @ dnet 1.0.11</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.7</a>
+      <a class="brand" href="index.html">dnet 1.0.11</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -251,7 +251,7 @@ between terms. It can be "Resnik" for information content (IC) of most
 informative common ancestor (MICA) (see
 <a href = 'http://arxiv.org/pdf/cmp-lg/9511007.pdf'>http://arxiv.org/pdf/cmp-lg/9511007.pdf</a>), "Lin" for 2*IC at MICA
 divided by the sum of IC at pairs of terms (see
-<a href = 'http://webdocs.cs.ualberta.ca/~lindek/papers/sim.pdf'>http://webdocs.cs.ualberta.ca/~lindek/papers/sim.pdf</a>),
+<a href = 'https://www.cse.iitb.ac.in/~cs626-449/Papers/WordSimilarity/3.pdf'>https://www.cse.iitb.ac.in/~cs626-449/Papers/WordSimilarity/3.pdf</a>),
 "Schlicker" for weighted version of 'Lin' by the 1-prob(MICA) (see
 <a href = 'http://www.ncbi.nlm.nih.gov/pubmed/16776819'>http://www.ncbi.nlm.nih.gov/pubmed/16776819</a>), "Jiang" for 1 -
 difference between the sum of IC at pairs of terms and 2*IC at MICA
@@ -274,13 +274,11 @@ just used for understanding scripts</dd>
       <dt>parallel</dt>
       <dd>logical to indicate whether parallel computation with
 multicores is used. By default, it sets to true, but not necessarily
-does so. Partly because parallel backends available will be
-system-specific (now only Linux or Mac OS). Also, it will depend on
-whether these two packages "foreach" and "doMC" have been installed. It
-can be installed via:
+does so. It will depend on whether these two packages "foreach" and
+"doParallel" have been installed. It can be installed via:
 <code>source("http://bioconductor.org/biocLite.R");
-biocLite(c("foreach","doMC"))</code>. If not yet installed, this option will
-be disabled</dd>
+biocLite(c("foreach","doParallel"))</code>. If not yet installed, this option
+will be disabled</dd>
       <dt>multicores</dt>
       <dd>an integer to specify how many cores will be
 registered as the multicore parallel backend to the 'foreach' package.
@@ -321,61 +319,61 @@ subgraph.</p>
     <pre class="examples"><div class='input'># 1) load HPPA as igraph object
 ig.HPPA <-dRDataLoader(RData='ig.HPPA')
 </div>
-<strong class='message'>'ig.HPPA' (from package 'dnet' version 1.0.7) has been loaded into the working environment (at 2015-07-22 23:27:10)</strong>
+<strong class='message'>'ig.HPPA' (from package 'dnet' version 1.0.11) has been loaded into the working environment (at 2017-03-27 19:53:41)</strong>
 <div class='input'>g <- ig.HPPA
 
 # 2) load human genes annotated by HPPA
 org.Hs.egHPPA <- dRDataLoader(RData='org.Hs.egHPPA')
 </div>
-<strong class='message'>'org.Hs.egHPPA' (from package 'dnet' version 1.0.7) has been loaded into the working environment (at 2015-07-22 23:27:10)</strong>
+<strong class='message'>'org.Hs.egHPPA' (from package 'dnet' version 1.0.11) has been loaded into the working environment (at 2017-03-27 19:53:41)</strong>
 <div class='input'>
-# 3) prepare for ontology and its annotation information
+# 3) prepare for ontology and its annotation information 
 dag <- dDAGannotate(g, annotations=org.Hs.egHPPA,
 path.mode="all_paths", verbose=TRUE)
 </div>
 <strong class='message'>	At level 13, there are 5 nodes, and 12 incoming neighbors.</strong>
 <strong class='message'>	At level 12, there are 17 nodes, and 27 incoming neighbors.</strong>
-<strong class='message'>	At level 11, there are 47 nodes, and 63 incoming neighbors.</strong>
-<strong class='message'>	At level 10, there are 141 nodes, and 142 incoming neighbors.</strong>
-<strong class='message'>	At level 9, there are 322 nodes, and 284 incoming neighbors.</strong>
-<strong class='message'>	At level 8, there are 515 nodes, and 361 incoming neighbors.</strong>
-<strong class='message'>	At level 7, there are 616 nodes, and 384 incoming neighbors.</strong>
-<strong class='message'>	At level 6, there are 704 nodes, and 383 incoming neighbors.</strong>
-<strong class='message'>	At level 5, there are 580 nodes, and 228 incoming neighbors.</strong>
-<strong class='message'>	At level 4, there are 294 nodes, and 89 incoming neighbors.</strong>
-<strong class='message'>	At level 3, there are 102 nodes, and 23 incoming neighbors.</strong>
+<strong class='message'>	At level 11, there are 50 nodes, and 65 incoming neighbors.</strong>
+<strong class='message'>	At level 10, there are 144 nodes, and 145 incoming neighbors.</strong>
+<strong class='message'>	At level 9, there are 332 nodes, and 282 incoming neighbors.</strong>
+<strong class='message'>	At level 8, there are 518 nodes, and 374 incoming neighbors.</strong>
+<strong class='message'>	At level 7, there are 625 nodes, and 389 incoming neighbors.</strong>
+<strong class='message'>	At level 6, there are 710 nodes, and 382 incoming neighbors.</strong>
+<strong class='message'>	At level 5, there are 587 nodes, and 232 incoming neighbors.</strong>
+<strong class='message'>	At level 4, there are 297 nodes, and 91 incoming neighbors.</strong>
+<strong class='message'>	At level 3, there are 105 nodes, and 23 incoming neighbors.</strong>
 <strong class='message'>	At level 2, there are 23 nodes, and 1 incoming neighbors.</strong>
 <strong class='message'>	At level 1, there are 1 nodes, and 0 incoming neighbors.</strong>
 <div class='input'>
-# 4) calculate pair-wise semantic similarity between 5 randomly chosen genes
+# 4) calculate pair-wise semantic similarity between 5 randomly chosen genes 
 allgenes <- unique(unlist(V(dag)$annotations))
 genes <- sample(allgenes,5)
 sim <- dDAGgeneSim(g=dag, genes=genes, method.gene="BM.average",
 method.term="Resnik", parallel=FALSE, verbose=TRUE)
 </div>
-<strong class='message'>Start at 2015-07-22 23:27:36</strong>
+<strong class='message'>Start at 2017-03-27 19:54:00</strong>
 <strong class='message'></strong>
-<strong class='message'>First, extract all annotatable genes (2015-07-22 23:27:36)...</strong>
-<strong class='message'>	there are 5 input genes amongst 3130 annotatable genes</strong>
-<strong class='message'>Second, pre-compute semantic similarity between 83 terms (forced to be the most specific for each gene) using Resnik method (2015-07-22 23:27:41)...</strong>
-<strong class='message'>Last, calculate pair-wise semantic similarity between 5 genes using BM.average method (2015-07-22 23:27:42)...</strong>
-<strong class='message'>	1 out of 5 (2015-07-22 23:27:42)</strong>
-<strong class='message'>	2 out of 5 (2015-07-22 23:27:43)</strong>
-<strong class='message'>	3 out of 5 (2015-07-22 23:27:43)</strong>
-<strong class='message'>	4 out of 5 (2015-07-22 23:27:43)</strong>
+<strong class='message'>First, extract all annotatable genes (2017-03-27 19:54:00)...</strong>
+<strong class='message'>	there are 5 input genes amongst 3226 annotatable genes</strong>
+<strong class='message'>Second, pre-compute semantic similarity between 120 terms (forced to be the most specific for each gene) using Resnik method (2017-03-27 19:54:02)...</strong>
+<strong class='message'>Last, calculate pair-wise semantic similarity between 5 genes using BM.average method (2017-03-27 19:54:04)...</strong>
+<strong class='message'>	1 out of 5 (2017-03-27 19:54:04)</strong>
+<strong class='message'>	2 out of 5 (2017-03-27 19:54:04)</strong>
+<strong class='message'>	3 out of 5 (2017-03-27 19:54:04)</strong>
+<strong class='message'>	4 out of 5 (2017-03-27 19:54:04)</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2015-07-22 23:27:43</strong>
-<strong class='message'>Runtime in total is: 7 secs
+<strong class='message'>Finish at 2017-03-27 19:54:04</strong>
+<strong class='message'>Runtime in total is: 4 secs
 </strong>
 <div class='input'>sim
 </div>
 <div class='output'>5 x 5 sparse Matrix of class "dgCMatrix"
-          724066     10161       1141       2243     23169
-724066 .         0.1187681 0.18032166 0.17333792 .        
-10161  0.1187681 .         .          0.27575279 0.3390282
-1141   0.1803217 .         .          0.09297191 .        
-2243   0.1733379 0.2757528 0.09297191 .          0.3606363
-23169  .         0.3390282 .          0.36063632 .        
+           10484       6521    128674    124454       4308
+10484  .         0.24999002 0.7144068 0.3097743 0.29595544
+6521   0.2499900 .          0.3258604 0.4471606 0.08989818
+128674 0.7144068 0.32586044 .         0.4661203 0.41865267
+124454 0.3097743 0.44716055 0.4661203 .         0.24577978
+4308   0.2959554 0.08989818 0.4186527 0.2457798 .         
 </div></pre>
   </div>
   
@@ -420,12 +418,9 @@ method.term="Resnik", parallel=FALSE, verbose=TRUE)
     
     <h2>URL</h2>
     <ul>
-      <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
-      <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href=" http://cran.r-
-project.org/package=dnet"> http://cran.r-
-project.org/package=dnet</a></li>
+      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
       <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href=" http://supfam.org/dnet"> http://supfam.org/dnet</a></li>
     </ul>
     
     
@@ -438,7 +433,7 @@ project.org/package=dnet</a></li>
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang.shanghai@gmail.com" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

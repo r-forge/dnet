@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dDAGtermSim @ dnet 1.0.7</title>
+<title>dDAGtermSim @ dnet 1.0.11</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.7</a>
+      <a class="brand" href="index.html">dnet 1.0.11</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -229,7 +229,7 @@ input terms. It can be "Resnik" for information content (IC) of most
 informative common ancestor (MICA) (see
 <a href = 'http://arxiv.org/pdf/cmp-lg/9511007.pdf'>http://arxiv.org/pdf/cmp-lg/9511007.pdf</a>), "Lin" for 2*IC at MICA
 divided by the sum of IC at pairs of terms (see
-<a href = 'http://webdocs.cs.ualberta.ca/~lindek/papers/sim.pdf'>http://webdocs.cs.ualberta.ca/~lindek/papers/sim.pdf</a>),
+<a href = 'https://www.cse.iitb.ac.in/~cs626-449/Papers/WordSimilarity/3.pdf'>https://www.cse.iitb.ac.in/~cs626-449/Papers/WordSimilarity/3.pdf</a>),
 "Schlicker" for weighted version of 'Lin' by the 1-prob(MICA) (see
 <a href = 'http://www.ncbi.nlm.nih.gov/pubmed/16776819'>http://www.ncbi.nlm.nih.gov/pubmed/16776819</a>), "Jiang" for 1 -
 difference between the sum of IC at pairs of terms and 2*IC at MICA
@@ -247,13 +247,11 @@ just used for understanding scripts</dd>
       <dt>parallel</dt>
       <dd>logical to indicate whether parallel computation with
 multicores is used. By default, it sets to true, but not necessarily
-does so. Partly because parallel backends available will be
-system-specific (now only Linux or Mac OS). Also, it will depend on
-whether these two packages "foreach" and "doMC" have been installed. It
-can be installed via:
+does so. It will depend on whether these two packages "foreach" and
+"doParallel" have been installed. It can be installed via:
 <code>source("http://bioconductor.org/biocLite.R");
-biocLite(c("foreach","doMC"))</code>. If not yet installed, this option will
-be disabled</dd>
+biocLite(c("foreach","doParallel"))</code>. If not yet installed, this option
+will be disabled</dd>
       <dt>multicores</dt>
       <dd>an integer to specify how many cores will be
 registered as the multicore parallel backend to the 'foreach' package.
@@ -291,59 +289,59 @@ matrix via the function <code>as.matrix</code></p>
     <pre class="examples"><div class='input'># 1) load HPPA as igraph object
 ig.HPPA <-dRDataLoader(RData='ig.HPPA')
 </div>
-<strong class='message'>'ig.HPPA' (from package 'dnet' version 1.0.7) has been loaded into the working environment (at 2015-07-22 23:28:04)</strong>
+<strong class='message'>'ig.HPPA' (from package 'dnet' version 1.0.11) has been loaded into the working environment (at 2017-03-27 19:54:26)</strong>
 <div class='input'>g <- ig.HPPA
 
 # 2) load human genes annotated by HPPA
 org.Hs.egHPPA <- dRDataLoader(RData='org.Hs.egHPPA')
 </div>
-<strong class='message'>'org.Hs.egHPPA' (from package 'dnet' version 1.0.7) has been loaded into the working environment (at 2015-07-22 23:28:04)</strong>
+<strong class='message'>'org.Hs.egHPPA' (from package 'dnet' version 1.0.11) has been loaded into the working environment (at 2017-03-27 19:54:26)</strong>
 <div class='input'>
-# 3) prepare for ontology and its annotation information
+# 3) prepare for ontology and its annotation information 
 dag <- dDAGannotate(g, annotations=org.Hs.egHPPA,
 path.mode="all_paths", verbose=TRUE)
 </div>
 <strong class='message'>	At level 13, there are 5 nodes, and 12 incoming neighbors.</strong>
 <strong class='message'>	At level 12, there are 17 nodes, and 27 incoming neighbors.</strong>
-<strong class='message'>	At level 11, there are 47 nodes, and 63 incoming neighbors.</strong>
-<strong class='message'>	At level 10, there are 141 nodes, and 142 incoming neighbors.</strong>
-<strong class='message'>	At level 9, there are 322 nodes, and 284 incoming neighbors.</strong>
-<strong class='message'>	At level 8, there are 515 nodes, and 361 incoming neighbors.</strong>
-<strong class='message'>	At level 7, there are 616 nodes, and 384 incoming neighbors.</strong>
-<strong class='message'>	At level 6, there are 704 nodes, and 383 incoming neighbors.</strong>
-<strong class='message'>	At level 5, there are 580 nodes, and 228 incoming neighbors.</strong>
-<strong class='message'>	At level 4, there are 294 nodes, and 89 incoming neighbors.</strong>
-<strong class='message'>	At level 3, there are 102 nodes, and 23 incoming neighbors.</strong>
+<strong class='message'>	At level 11, there are 50 nodes, and 65 incoming neighbors.</strong>
+<strong class='message'>	At level 10, there are 144 nodes, and 145 incoming neighbors.</strong>
+<strong class='message'>	At level 9, there are 332 nodes, and 282 incoming neighbors.</strong>
+<strong class='message'>	At level 8, there are 518 nodes, and 374 incoming neighbors.</strong>
+<strong class='message'>	At level 7, there are 625 nodes, and 389 incoming neighbors.</strong>
+<strong class='message'>	At level 6, there are 710 nodes, and 382 incoming neighbors.</strong>
+<strong class='message'>	At level 5, there are 587 nodes, and 232 incoming neighbors.</strong>
+<strong class='message'>	At level 4, there are 297 nodes, and 91 incoming neighbors.</strong>
+<strong class='message'>	At level 3, there are 105 nodes, and 23 incoming neighbors.</strong>
 <strong class='message'>	At level 2, there are 23 nodes, and 1 incoming neighbors.</strong>
 <strong class='message'>	At level 1, there are 1 nodes, and 0 incoming neighbors.</strong>
 <div class='input'>
-# 4) calculate pair-wise semantic similarity between 5 randomly chosen terms
+# 4) calculate pair-wise semantic similarity between 5 randomly chosen terms 
 terms <- sample(V(dag)$name, 5)
 sim <- dDAGtermSim(g=dag, terms=terms, method="Schlicker",
 parallel=FALSE)
 </div>
-<strong class='message'>Start at 2015-07-22 23:28:26</strong>
+<strong class='message'>Start at 2017-03-27 19:54:46</strong>
 <strong class='message'></strong>
-<strong class='message'>Calculate semantic similarity between 5 terms using Schlicker method (2015-07-22 23:28:26)...</strong>
-<strong class='message'>Build a sparse matrix of children x ancestors (with 5 rows and 3367 columns (2015-07-22 23:28:26)...</strong>
-<strong class='message'>	1 out of 5 (2015-07-22 23:28:26)</strong>
-<strong class='message'>	2 out of 5 (2015-07-22 23:28:26)</strong>
-<strong class='message'>	3 out of 5 (2015-07-22 23:28:26)</strong>
-<strong class='message'>	4 out of 5 (2015-07-22 23:28:26)</strong>
-<strong class='message'>	5 out of 5 (2015-07-22 23:28:26)</strong>
+<strong class='message'>Calculate semantic similarity between 5 terms using Schlicker method (2017-03-27 19:54:46)...</strong>
+<strong class='message'>Build a sparse matrix of children x ancestors (with 5 rows and 3414 columns (2017-03-27 19:54:46)...</strong>
+<strong class='message'>	1 out of 5 (2017-03-27 19:54:46)</strong>
+<strong class='message'>	2 out of 5 (2017-03-27 19:54:46)</strong>
+<strong class='message'>	3 out of 5 (2017-03-27 19:54:46)</strong>
+<strong class='message'>	4 out of 5 (2017-03-27 19:54:46)</strong>
+<strong class='message'>	5 out of 5 (2017-03-27 19:54:46)</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2015-07-22 23:28:26</strong>
+<strong class='message'>Finish at 2017-03-27 19:54:46</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>sim
 </div>
 <div class='output'>5 x 5 sparse Matrix of class "dgCMatrix"
-           HP:0100777 HP:0000175 HP:0010668 HP:0005339 HP:0000848
-HP:0100777   1.991054  .          .            .         .       
-HP:0000175   .         1.8038339  0.1280639    .         .       
-HP:0010668   .         0.1280639  1.9686901    .         .       
-HP:0005339   .         .          .            1.98722   .       
-HP:0000848   .         .          .            .         1.994888
+           HP:0030402 HP:0000142 HP:0002384 HP:0000653 HP:0012471
+HP:0030402   1.988841   .           .        .          .        
+HP:0000142   .          1.967762    .        .          .        
+HP:0002384   .          .           1.99442  .          .        
+HP:0000653   .          .           .        1.9776813  0.1018821
+HP:0012471   .          .           .        0.1018821  1.9330440
 </div></pre>
   </div>
   
@@ -388,12 +386,9 @@ HP:0000848   .         .          .            .         1.994888
     
     <h2>URL</h2>
     <ul>
-      <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
-      <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href=" http://cran.r-
-project.org/package=dnet"> http://cran.r-
-project.org/package=dnet</a></li>
+      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
       <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href=" http://supfam.org/dnet"> http://supfam.org/dnet</a></li>
     </ul>
     
     
@@ -406,7 +401,7 @@ project.org/package=dnet</a></li>
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang.shanghai@gmail.com" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

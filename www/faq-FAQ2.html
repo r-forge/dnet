@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>What is the built-in data and how to use? @ dnet 1.0.7</title>
+<title>What is the built-in data and how to use? @ dnet 1.0.11</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Hai Fang and Julian Gough">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.7</a>
+      <a class="brand" href="index.html">dnet 1.0.11</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -201,10 +201,10 @@ window.onload = function(){
       <h2>What is the built-in data and how to use?</h2>
 
 Notes:
-<li> All results are based on dnet (version 1.0.7). </li>
+<li> All results are based on dnet (version 1.0.11). </li>
 <li> R scripts (i.e. R expressions) plus necessary comments are highlighted in light-cyan background, and the rest are outputs in the screen. </li>
 <li> Images displayed below may be distorted, but should be normal in your screen. </li>
-<li> Functions contained in dnet 1.0.7 are hyperlinked in-place and also listed on the right side. </li>
+<li> Functions contained in dnet 1.0.11 are hyperlinked in-place and also listed on the right side. </li>
 <li> Key texts are underlined, in bold and in pumpkin-orange color. </li>
 
 <div class="row">
@@ -221,7 +221,7 @@ Notes:
 ## load human Entrez Genes (EG), and list the first 3 genes
 org.Hs.eg <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='org.Hs.eg')
 </div>
-<strong class='message'>'org.Hs.eg' (from http://supfam.org/dnet/RData/1.0.7/org.Hs.eg.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.eg' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/org.Hs.eg.RData?raw=true) has been loaded into the working environment (at 2017-03-27 20:05:17)</strong>
 <div class='input'>org.Hs.eg$gene_info[1:3,]
 </div>
 <div class='output'>  GeneID Symbol                        description chromosome map_location
@@ -240,7 +240,7 @@ org.Hs.eg <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RD
 <div class='input'>## load annotations of human Entrez Genes by Gene Ontology Biological Process (GOBP), inspect the content and list the first 3 terms
 org.Hs.egGOBP <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='org.Hs.egGOBP')
 </div>
-<strong class='message'>'org.Hs.egGOBP' (from http://supfam.org/dnet/RData/1.0.7/org.Hs.egGOBP.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egGOBP' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/org.Hs.egGOBP.RData?raw=true) has been loaded into the working environment (at 2017-03-27 20:05:21)</strong>
 <div class='input'>names(org.Hs.egGOBP)
 </div>
 <div class='output'>[1] "gs"       "set_info"
@@ -255,7 +255,7 @@ GO:0000011 GO:0000011              vacuole inheritance   Process        6
 <div class='input'>## load annotations of human Entrez Genes by Disease Ontology (DO), inspect the content and list the first 5 terms
 org.Hs.egDO <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='org.Hs.egDO')
 </div>
-<strong class='message'>'org.Hs.egDO' (from http://supfam.org/dnet/RData/1.0.7/org.Hs.egDO.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egDO' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/org.Hs.egDO.RData?raw=true) has been loaded into the working environment (at 2017-03-27 20:05:23)</strong>
 <div class='input'>org.Hs.egDO$set_info[1:3,]
 </div>
 <div class='output'>                    setID                  name        namespace distance
@@ -266,7 +266,7 @@ DOID:0014667 DOID:0014667 disease of metabolism Disease_Ontology        1
 <div class='input'>## load phylostratific age (PS) information of human Entrez Genes, inspect the content and list all our ancestors
 org.Hs.egPS <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='org.Hs.egPS')
 </div>
-<strong class='message'>'org.Hs.egPS' (from http://supfam.org/dnet/RData/1.0.7/org.Hs.egPS.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egPS' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/org.Hs.egPS.RData?raw=true) has been loaded into the working environment (at 2017-03-27 20:05:24)</strong>
 <div class='input'>org.Hs.egPS$set_info
 </div>
 <div class='output'>   setID                  name    namespace   distance
@@ -307,7 +307,7 @@ org.Hs.egPS <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(
 <div class='input'>## load domain superfamily (SF) information of human Entrez Genes, inspect the content and list the first 3 superfamilies
 org.Hs.egSF <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='org.Hs.egSF')
 </div>
-<strong class='message'>'org.Hs.egSF' (from http://supfam.org/dnet/RData/1.0.7/org.Hs.egSF.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egSF' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/org.Hs.egSF.RData?raw=true) has been loaded into the working environment (at 2017-03-27 20:05:26)</strong>
 <div class='input'>org.Hs.egSF$set_info[1:3,]
 </div>
 <div class='output'>      setID                         name namespace distance
@@ -318,22 +318,26 @@ org.Hs.egSF <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(
 <div class='input'>## load KEGG pathways for human Entrez Genes, inspect the content and list the first 3 pathways
 org.Hs.egMsigdbC2KEGG <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='org.Hs.egMsigdbC2KEGG')
 </div>
-<strong class='message'>'org.Hs.egMsigdbC2KEGG' (from http://supfam.org/dnet/RData/1.0.7/org.Hs.egMsigdbC2KEGG.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egMsigdbC2KEGG' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/org.Hs.egMsigdbC2KEGG.RData?raw=true) has been loaded into the working environment (at 2017-03-27 20:05:32)</strong>
 <div class='input'>org.Hs.egMsigdbC2KEGG$set_info[1:3,]
 </div>
-<div class='output'>        setID                                 name namespace
-M10462 M10462 KEGG_ADIPOCYTOKINE_SIGNALING_PATHWAY        C2
-M1053   M1053      KEGG_HEDGEHOG_SIGNALING_PATHWAY        C2
-M10680 M10680                      KEGG_PROTEASOME        C2
-                              distance
-M10462 Adipocytokine signaling pathway
-M1053       Hedgehog signaling pathway
-M10680                      Proteasome
+<div class='output'>                                                  setID                   name
+KEGG_ABC_TRANSPORTERS             KEGG_ABC_TRANSPORTERS       ABC transporters
+KEGG_ACUTE_MYELOID_LEUKEMIA KEGG_ACUTE_MYELOID_LEUKEMIA Acute myeloid leukemia
+KEGG_ADHERENS_JUNCTION           KEGG_ADHERENS_JUNCTION      Adherens junction
+                            namespace
+KEGG_ABC_TRANSPORTERS              C2
+KEGG_ACUTE_MYELOID_LEUKEMIA        C2
+KEGG_ADHERENS_JUNCTION             C2
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               distance
+KEGG_ABC_TRANSPORTERS                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           The ATP-binding cassette (ABC) transporters form one of the largest known protein families, and are widespread in bacteria, archaea, and eukaryotes. They couple ATP hydrolysis to active transport of a wide variety of substrates such as ions, sugars, lipids, sterols, peptides, proteins, and drugs. The structure of a prokaryotic ABC transporter usually consists of three components; typically two integral membrane proteins each having six transmembrane segments, two peripheral proteins that bind and hydrolyze ATP, and a periplasmic (or lipoprotein) substrate-binding protein. Many of the genes for the three components form operons as in fact observed in many bacterial and archaeal genomes. On the other hand, in a typical eukaryotic ABC transporter, the membrane spanning protein and the ATP-binding protein are fused, forming a multi-domain protein with the membrane-spanning domain (MSD) and the nucleotide-binding domain (NBD).
+KEGG_ACUTE_MYELOID_LEUKEMIA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Two major types of genetic events are crucial for the molecular pathogenesis of acute myeloid leukemias (AML) : activating mutations of signal transduction intermediates and alterations in myeloid transcription factors governing hematopoietic differentiation. Both aberrant and constitutive activation of signal transduction molecules are found in about 50% of primary AML bone marrow samples, and seem to contribute to the increased proliferation and apoptosis resistance. The most common of these activating events were observed in the RTK Flt3, in N-Ras and K-Ras, in Kit, and sporadically in other RTKs. Specific haematopoietic transcription factors are crucial for differentiation to particular lineages during normal differentiation, but are frequently disrupted in AML. Some mechanisms of disruption involve the effect of fusion proteins that are generated by chromosomal translocations on haematopoietic transcription factors. In other cases, the transcription factors themselves are mutated.
+KEGG_ADHERENS_JUNCTION      Cell-cell adherens junctions (AJs), the most common type of intercellular adhesions, are important for maintaining tissue architecture and cell polarity and can limit cell movement and proliferation. At AJs, E-cadherin serves as an essential cell adhesion molecules (CAMs). The cytoplasmic tail binds beta-catenin, which in turn binds alpha-catenin. Alpha-catenin is associated with F-actin bundles directly and indirectly. The integrity of the cadherin-catenin complex is negatively regulated by phosphorylation of beta-catenin by receptor tyrosine kinases (RTKs) and cytoplasmic tyrosine kinases (Fer, Fyn, Yes, and Src), which leads to dissociation of the cadherin-catenin complex. Integrity of this complex is positively regulated by beta -catenin phosphorylation by casein kinase II, and dephosphorylation by protein tyrosine phosphatases. Changes in the phosphorylation state of beta-catenin affect cell-cell adhesion, cell migration and the level of signaling beta-catenin. Wnt signaling acts as a positive regulator of beta-catenin by inhibiting beta-catenin degradation, which stabilizes beta-catenin, and causes its accumulation. Cadherin may acts as a negative regulator of signaling beta-catenin as it binds beta-catenin at the cell surface and thereby sequesters it from the nucleus. Nectins also function as CAMs at AJs, but are more highly concentrated at AJs than E-cadherin. Nectins transduce signals through Cdc42 and Rac, which reorganize the actin cytoskeleton, regulate the formation of AJs, and strengthen cell-cell adhesion.
 </div>
 <div class='input'>## load the network for human Entrez Genes as an 'igraph' object
 org.Hs.string <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData='org.Hs.string')
 </div>
-<strong class='message'>'org.Hs.string' (from http://supfam.org/dnet/RData/1.0.7/org.Hs.string.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.string' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/org.Hs.string.RData?raw=true) has been loaded into the working environment (at 2017-03-27 20:05:39)</strong>
 <div class='input'>org.Hs.string
 </div>
 <div class='output'>IGRAPH UN-- 18492 728141 -- 
@@ -377,39 +381,56 @@ symbols <- as.character(fData(TCGA_mutations)$Symbol)
 data <- symbols[1:100] # select the first 100 human genes
 eTerm <- <a href='dEnricher.html' target=dEnricher>dEnricher</a>(data, identity="symbol", genome="Hs", ontology="DO")
 </div>
-<strong class='message'>Start at 2015-07-21 17:49:38</strong>
+<strong class='message'>Start at 2017-03-27 20:05:43</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology DO and its gene associations in the genome Hs (2015-07-21 17:49:38) ...</strong>
-<strong class='message'>'org.Hs.eg' (from http://supfam.org/dnet/RData/1.0.7/org.Hs.eg.RData) has been loaded into the working environment</strong>
-<strong class='message'>'org.Hs.egDO' (from http://supfam.org/dnet/RData/1.0.7/org.Hs.egDO.RData) has been loaded into the working environment</strong>
-<strong class='message'>Then, do mapping based on symbol (2015-07-21 17:49:38) ...</strong>
+<strong class='message'>First, load the ontology DO and its gene associations in the genome Hs (2017-03-27 20:05:43) ...</strong>
+<strong class='message'>'org.Hs.eg' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/org.Hs.eg.RData?raw=true) has been loaded into the working environment (at 2017-03-27 20:05:46)</strong>
+<strong class='message'>'org.Hs.egDO' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/org.Hs.egDO.RData?raw=true) has been loaded into the working environment (at 2017-03-27 20:05:47)</strong>
+<strong class='message'>Then, do mapping based on symbol (2017-03-27 20:05:47) ...</strong>
 <strong class='message'>	Among 100 symbols of input data, there are 100 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-07-21 17:49:39) ...</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2017-03-27 20:05:48) ...</strong>
 <strong class='message'>	There are 917 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2015-07-21 17:49:41) ...</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2017-03-27 20:05:48) ...</strong>
 <strong class='message'>
-End at 2015-07-21 17:49:42</strong>
-<strong class='message'>Runtime in total is: 4 secs
+End at 2017-03-27 20:05:48</strong>
+<strong class='message'>Runtime in total is: 5 secs
 </strong>
 <div class='input'>
 ## gene set enrichment analysis (GSEA) using KEGG pathways
 tol <- apply(exprs(TCGA_mutations), 1, sum) # calculate the total mutations for each gene
 data <- data.frame(tol=tol)
 eTerm <- <a href='dGSEA.html' target=dGSEA>dGSEA</a>(data, identity="symbol", genome="Hs", ontology="MsigdbC2KEGG")</div>
-<strong class='message'>Start at 2015-07-21 17:49:45</strong>
+<strong class='message'>Start at 2017-03-27 20:05:52</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MsigdbC2KEGG and its gene associations in the genome Hs (2015-07-21 17:49:45) ...</strong>
-<strong class='message'>'org.Hs.eg' (from http://supfam.org/dnet/RData/1.0.7/org.Hs.eg.RData) has been loaded into the working environment</strong>
-<strong class='message'>'org.Hs.egMsigdbC2KEGG' (from http://supfam.org/dnet/RData/1.0.7/org.Hs.egMsigdbC2KEGG.RData) has been loaded into the working environment</strong>
-<strong class='message'>Then, do mapping based on symbol (2015-07-21 17:49:45) ...</strong>
+<strong class='message'>First, load the ontology MsigdbC2KEGG and its gene associations in the genome Hs (2017-03-27 20:05:52) ...</strong>
+<strong class='message'>'org.Hs.eg' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/org.Hs.eg.RData?raw=true) has been loaded into the working environment (at 2017-03-27 20:05:55)</strong>
+<strong class='message'>'org.Hs.egMsigdbC2KEGG' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/org.Hs.egMsigdbC2KEGG.RData?raw=true) has been loaded into the working environment (at 2017-03-27 20:06:00)</strong>
+<strong class='message'>Then, do mapping based on symbol (2017-03-27 20:06:00) ...</strong>
 <strong class='message'>	Among 19420 symbols of input data, there are 19038 mappable via official gene symbols but 382 left unmappable</strong>
-<strong class='message'>Third, perform GSEA analysis (2015-07-21 17:49:50) ...</strong>
-<strong class='message'>	Sample 1 is being processed at (2015-07-21 17:49:50) ...</strong>
-<strong class='message'>		 100 of 186 gene sets have been processed</strong>
-<strong class='message'>		 186 of 186 gene sets have been processed</strong>
+<strong class='message'>Third, perform GSEA analysis based on 1000 permutations for 186 gene sets (2017-03-27 20:06:05) ...</strong>
+<strong class='message'>	Sample 1 is being processed at (2017-03-27 20:06:05) ...</strong>
+<strong class='message'>	10 of 186 gene sets have been processed (2017-03-27 20:06:08) ...</strong>
+<strong class='message'>	20 of 186 gene sets have been processed (2017-03-27 20:06:11) ...</strong>
+<strong class='message'>	30 of 186 gene sets have been processed (2017-03-27 20:06:13) ...</strong>
+<strong class='message'>	40 of 186 gene sets have been processed (2017-03-27 20:06:15) ...</strong>
+<strong class='message'>	50 of 186 gene sets have been processed (2017-03-27 20:06:17) ...</strong>
+<strong class='message'>	60 of 186 gene sets have been processed (2017-03-27 20:06:19) ...</strong>
+<strong class='message'>	70 of 186 gene sets have been processed (2017-03-27 20:06:22) ...</strong>
+<strong class='message'>	80 of 186 gene sets have been processed (2017-03-27 20:06:24) ...</strong>
+<strong class='message'>	90 of 186 gene sets have been processed (2017-03-27 20:06:26) ...</strong>
+<strong class='message'>	100 of 186 gene sets have been processed (2017-03-27 20:06:28) ...</strong>
+<strong class='message'>	110 of 186 gene sets have been processed (2017-03-27 20:06:31) ...</strong>
+<strong class='message'>	120 of 186 gene sets have been processed (2017-03-27 20:06:33) ...</strong>
+<strong class='message'>	130 of 186 gene sets have been processed (2017-03-27 20:06:35) ...</strong>
+<strong class='message'>	140 of 186 gene sets have been processed (2017-03-27 20:06:37) ...</strong>
+<strong class='message'>	150 of 186 gene sets have been processed (2017-03-27 20:06:39) ...</strong>
+<strong class='message'>	160 of 186 gene sets have been processed (2017-03-27 20:06:41) ...</strong>
+<strong class='message'>	170 of 186 gene sets have been processed (2017-03-27 20:06:44) ...</strong>
+<strong class='message'>	180 of 186 gene sets have been processed (2017-03-27 20:06:46) ...</strong>
+<strong class='message'>	186 of 186 gene sets have been processed (2017-03-27 20:06:47) ...</strong>
 <strong class='message'>
-End at 2015-07-21 17:50:45</strong>
-<strong class='message'>Runtime in total is: 60 secs
+End at 2017-03-27 20:06:49</strong>
+<strong class='message'>Runtime in total is: 57 secs
 </strong>
       </pre>
     </div>
@@ -440,12 +461,9 @@ End at 2015-07-21 17:50:45</strong>
     
     <h2>URL</h2>
     <ul>
-      <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
-      <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href=" http://cran.r-
-project.org/package=dnet"> http://cran.r-
-project.org/package=dnet</a></li>
+      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
       <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href=" http://supfam.org/dnet"> http://supfam.org/dnet</a></li>
     </ul>
     
     <h2>Author</h2>
@@ -460,7 +478,7 @@ project.org/package=dnet</a></li>
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang.shanghai@gmail.com" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

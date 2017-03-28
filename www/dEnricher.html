@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dEnricher @ dnet 1.0.7</title>
+<title>dEnricher @ dnet 1.0.11</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.7</a>
+      <a class="brand" href="index.html">dnet 1.0.11</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -423,32 +423,32 @@ maximum of both p-values in these two calculations.
 library(Biobase)
 TCGA_mutations <- dRDataLoader(RData='TCGA_mutations')
 </div>
-<strong class='message'>'TCGA_mutations' (from package 'dnet' version 1.0.7) has been loaded into the working environment (at 2015-07-22 23:28:41)</strong>
+<strong class='message'>'TCGA_mutations' (from package 'dnet' version 1.0.11) has been loaded into the working environment (at 2017-03-27 19:55:02)</strong>
 <div class='input'>symbols <- as.character(fData(TCGA_mutations)$Symbol)
 
 # Enrichment analysis using Disease Ontology (DO)
 data <- symbols[1:100] # select the first 100 human genes
 eTerm <- dEnricher(data, identity="symbol", genome="Hs", ontology="DO")
 </div>
-<strong class='message'>Start at 2015-07-22 23:28:41</strong>
+<strong class='message'>Start at 2017-03-27 19:55:02</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology DO and its gene associations in the genome Hs (2015-07-22 23:28:41) ...</strong>
-<strong class='message'>'org.Hs.eg' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/org.Hs.eg.RData?raw=true) has been loaded into the working environment (at 2015-07-22 23:28:43)</strong>
-<strong class='message'>'org.Hs.egDO' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/org.Hs.egDO.RData?raw=true) has been loaded into the working environment (at 2015-07-22 23:28:44)</strong>
-<strong class='message'>Then, do mapping based on symbol (2015-07-22 23:28:44) ...</strong>
+<strong class='message'>First, load the ontology DO and its gene associations in the genome Hs (2017-03-27 19:55:02) ...</strong>
+<strong class='message'>'org.Hs.eg' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/org.Hs.eg.RData?raw=true) has been loaded into the working environment (at 2017-03-27 19:55:09)</strong>
+<strong class='message'>'org.Hs.egDO' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/org.Hs.egDO.RData?raw=true) has been loaded into the working environment (at 2017-03-27 19:55:11)</strong>
+<strong class='message'>Then, do mapping based on symbol (2017-03-27 19:55:11) ...</strong>
 <strong class='message'>	Among 100 symbols of input data, there are 100 mappable via official gene symbols but 0 left unmappable</strong>
-<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2015-07-22 23:28:45) ...</strong>
+<strong class='message'>Third, perform enrichment analysis using HypergeoTest (2017-03-27 19:55:11) ...</strong>
 <strong class='message'>	There are 917 terms being used, each restricted within [10,1000] annotations</strong>
-<strong class='message'>Last, adjust the p-values using the BH method (2015-07-22 23:28:45) ...</strong>
+<strong class='message'>Last, adjust the p-values using the BH method (2017-03-27 19:55:12) ...</strong>
 <strong class='message'>
-End at 2015-07-22 23:28:45</strong>
-<strong class='message'>Runtime in total is: 4 secs
+End at 2017-03-27 19:55:12</strong>
+<strong class='message'>Runtime in total is: 10 secs
 </strong>
 <div class='input'>
 # visualise the top significant terms in the ontology hierarchy
 ig.DO <- dRDataLoader(RData='ig.DO')
 </div>
-<strong class='message'>'ig.DO' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/ig.DO.RData?raw=true) has been loaded into the working environment (at 2015-07-22 23:28:47)</strong>
+<strong class='message'>'ig.DO' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/ig.DO.RData?raw=true) has been loaded into the working environment (at 2017-03-27 19:55:15)</strong>
 <div class='input'>g <- ig.DO
 nodes_query <- names(sort(eTerm$adjp)[1:5])
 nodes.highlight <- rep("red", length(nodes_query))
@@ -457,14 +457,11 @@ subg <- dDAGinduce(g, nodes_query)
 # color-code terms according to the adjust p-values (taking the form of 10-based negative logarithm)
 visDAG(g=subg, data=-1*log10(eTerm$adjp[V(subg)$name]),
 node.info="both", zlim=c(0,2), node.attrs=list(color=nodes.highlight))
-</div>
-<a href="javascript:newWin('dEnricher-19.png', 'dEnricher-19.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dEnricher-19.png', width="400" /></a>
-<div class='input'># color-code terms according to the z-scores
+# color-code terms according to the z-scores
 visDAG(g=subg, data=eTerm$zscore[V(subg)$name], node.info="both",
 colormap="darkblue-white-darkorange",
 node.attrs=list(color=nodes.highlight))
-</div>
-<a href="javascript:newWin('dEnricher-21.png', 'dEnricher-21.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dEnricher-21.png', width="400" /></a></pre>
+</div></pre>
   </div>
   
   <div class="span4">
@@ -507,12 +504,9 @@ node.attrs=list(color=nodes.highlight))
     
     <h2>URL</h2>
     <ul>
-      <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
-      <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href=" http://cran.r-
-project.org/package=dnet"> http://cran.r-
-project.org/package=dnet</a></li>
+      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
       <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href=" http://supfam.org/dnet"> http://supfam.org/dnet</a></li>
     </ul>
     
     
@@ -525,7 +519,7 @@ project.org/package=dnet</a></li>
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang.shanghai@gmail.com" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dGSEAview @ dnet 1.0.7</title>
+<title>dGSEAview @ dnet 1.0.11</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.7</a>
+      <a class="brand" href="index.html">dnet 1.0.11</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -209,7 +209,7 @@ analysis but for a specific sample.</p>
   
     <h3>Usage</h3>
     <pre>dGSEAview(eTerm, which_sample = 1, top_num = 10, sortBy = c("adjp", "gadjp", "ES", 
-  "nES", "pvalue", "FWER", "FDR", "qvalue"), decreasing = NULL, details = F)</pre>
+  "nES", "pvalue", "FWER", "FDR", "qvalue", "none"), decreasing = NULL, details = F)</pre>
     
     <h3>Arguments</h3>
     <dl>
@@ -224,7 +224,8 @@ analysis but for a specific sample.</p>
 gene sets. It can be "adjp" for adjusted p value, "gadjp" for globally
 adjusted p value, "ES" for enrichment score, "nES" for normalised
 enrichment score, "pvalue" for p value, "FWER" for family-wise error
-rate, "FDR" for false discovery rate, "qvalue" for q value</dd>
+rate, "FDR" for false discovery rate, "qvalue" for q value, "none" for
+sorting by setID</dd>
       <dt>decreasing</dt>
       <dd>logical to indicate whether to sort in a decreasing
 order. If it is null, it would be true for "ES" or "nES"; otherwise it
@@ -332,12 +333,9 @@ when "details" is true
     
     <h2>URL</h2>
     <ul>
-      <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
-      <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href=" http://cran.r-
-project.org/package=dnet"> http://cran.r-
-project.org/package=dnet</a></li>
+      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
       <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href=" http://supfam.org/dnet"> http://supfam.org/dnet</a></li>
     </ul>
     
     
@@ -350,7 +348,7 @@ project.org/package=dnet</a></li>
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang.shanghai@gmail.com" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

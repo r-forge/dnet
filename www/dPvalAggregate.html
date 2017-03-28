@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dPvalAggregate @ dnet 1.0.7</title>
+<title>dPvalAggregate @ dnet 1.0.11</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.7</a>
+      <a class="brand" href="index.html">dnet 1.0.11</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -208,10 +208,11 @@ window.onload = function(){
 into a vector of aggregated p-values. The aggregate operation is
 applied to each row of input matrix, each resulting in an aggregated
 p-value. The method implemented can be based on the order statistics of
-p-values or according to Fisher's method.</p>
+p-values or according to Fisher's method or Z-transform method.</p>
   
     <h3>Usage</h3>
-    <pre>dPvalAggregate(pmatrix, method = c("orderStatistic", "fishers"), order = ncol(pmatrix))</pre>
+    <pre>dPvalAggregate(pmatrix, method = c("orderStatistic", "fishers", "Ztransform", "logistic"), 
+  order = ncol(pmatrix), weight = rep(1, ncol(pmatrix)))</pre>
     
     <h3>Arguments</h3>
     <dl>
@@ -220,10 +221,15 @@ p-values or according to Fisher's method.</p>
       <dt>method</dt>
       <dd>the method used. It can be either "orderStatistic" for
 the method based on the order statistics of p-values, or "fishers" for
-Fisher's method</dd>
+Fisher's method (summation of logs), or "Ztransform" for Z-transform
+test (summation of z values, Stouffer's method) and the weighted
+Z-test, or "logistic" for summation of logits</dd>
       <dt>order</dt>
       <dd>an integeter specifying the order used for the aggregation
-according to on the order statistics of p-values</dd>
+according to the order statistics of p-values</dd>
+      <dt>weight</dt>
+      <dd>a vector specifying the weights used for the aggregation
+according to Z-transform method</dd>
     </dl>
     <!-- 
     -->
@@ -251,22 +257,45 @@ aggregated p-values
 <code class = 'eq'>c</code> p-values that are uniformly independently distributed over
 [0,1] under the null hypothesis (uniform distribution). According to
 the order statisitcs, they follow the Beta distribution with the
-paramters <code class = 'eq'>a=order</code> and <code class = 'eq'>b=c-order+1</code>. According to the the
+paramters <code class = 'eq'>a=order</code> and <code class = 'eq'>b=c-order+1</code>. According to the
 Fisher's method, after transformation by <code class = 'eq'>-2*\sum^clog(pvalue)</code>,
-they follow Chi-Squared distribution.</p>
+they follow Chi-Squared distribution. According to the Z-transform
+method, first converts the one-tailed P-values into standard normal
+deviates Z, then combines Z via <code class = 'eq'>\frac{\sum^c(w*Z)}{\sum^c(w^2)}</code>,
+where <code class = 'eq'>w</code> is the weight (usually square root of the sample size if
+the weighted Z-test; 1 if Z-transform test), and finally the combined Z
+follows the standard normal distribution to test the
+cumulative/aggregated evidence on the common null hypothesis. The
+logistic method is defined as <code class = 'eq'>\sum^clog(\frac{pvalue}{1-pvalue}) *
+1/C</code>, where <code class = 'eq'>C=sqrt((k pi^2 (5 k + 2)) / (3(5 k + 4)))</code>, following
+Student's t distribution. Generally speaking, Fisher's method places
+greater emphasis on small p-values, while the Z-transform method on
+equal footings, the logistic method provides a compromise between these
+two. In other words, the Z-transform method does well in problems where
+evidence against the combined null is spread more than a small fraction
+of the individual tests, or when the total evidence is weak; Fisher's
+method does best in problems where the evidence is concentrated in a
+relatively small fraction of the individual tests or when the evidence
+is at least moderately strong.</p>
     <!-- 
     </div>
     -->
     
     <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'># 1) generate an iid uniformly-distributed random matrix of 1000x3
+    <pre class="examples"><div class='input'># 1) generate an iid uniformly-distributed random matrix of 1000x3 
 pmatrix <- cbind(runif(1000), runif(1000), runif(1000))
 
-# 2) aggregate according to the ordre statistics
+# 2) aggregate according to the order statistics
 ap <- dPvalAggregate(pmatrix, method="orderStatistic")
 
 # 3) aggregate according to the Fisher's method
 ap <- dPvalAggregate(pmatrix, method="fishers")
+
+# 4) aggregate according to the Z-transform method
+ap <- dPvalAggregate(pmatrix, method="Ztransform")
+
+# 5) aggregate according to the logistic method
+ap <- dPvalAggregate(pmatrix, method="logistic")
 </div></pre>
   </div>
   
@@ -310,12 +339,9 @@ ap <- dPvalAggregate(pmatrix, method="fishers")
     
     <h2>URL</h2>
     <ul>
-      <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
-      <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href=" http://cran.r-
-project.org/package=dnet"> http://cran.r-
-project.org/package=dnet</a></li>
+      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
       <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href=" http://supfam.org/dnet"> http://supfam.org/dnet</a></li>
     </ul>
     
     
@@ -328,7 +354,7 @@ project.org/package=dnet</a></li>
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang.shanghai@gmail.com" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

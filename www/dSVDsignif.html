@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dSVDsignif @ dnet 1.0.7</title>
+<title>dSVDsignif @ dnet 1.0.11</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.7</a>
+      <a class="brand" href="index.html">dnet 1.0.11</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -290,7 +290,7 @@ matrix(rnorm(1000*3,mean=-0.5,sd=1), nrow=1000, ncol=3))
 # using "fdr" significance
 fdr <- dSVDsignif(data, signif="fdr", num.permutation=10)
 </div>
-<strong class='message'>Start at 2015-07-22 23:32:00</strong>
+<strong class='message'>Start at 2017-03-27 19:58:37</strong>
 <strong class='message'></strong>
 <strong class='message'>First, singular value decomposition of the input matrix (with 1000 rows and 9 columns)...</strong>
 <strong class='message'>Second, determinate the eigens...</strong>
@@ -300,26 +300,26 @@ fdr <- dSVDsignif(data, signif="fdr", num.permutation=10)
 <strong class='message'>Finally, obtain gene significance (fdr) based on 10 permutations...</strong>
 <strong class='message'>	doing row-wise permutations...</strong>
 <strong class='message'>	estimating fdr...</strong>
-<strong class='message'>1 (out of 1000) at 2015-07-22 23:32:02</strong>
-<strong class='message'>100 (out of 1000) at 2015-07-22 23:32:02</strong>
-<strong class='message'>200 (out of 1000) at 2015-07-22 23:32:02</strong>
-<strong class='message'>300 (out of 1000) at 2015-07-22 23:32:02</strong>
-<strong class='message'>400 (out of 1000) at 2015-07-22 23:32:02</strong>
-<strong class='message'>500 (out of 1000) at 2015-07-22 23:32:02</strong>
-<strong class='message'>600 (out of 1000) at 2015-07-22 23:32:02</strong>
-<strong class='message'>700 (out of 1000) at 2015-07-22 23:32:02</strong>
-<strong class='message'>800 (out of 1000) at 2015-07-22 23:32:02</strong>
-<strong class='message'>900 (out of 1000) at 2015-07-22 23:32:02</strong>
-<strong class='message'>1000 (out of 1000) at 2015-07-22 23:32:02</strong>
+<strong class='message'>1 (out of 1000) at 2017-03-27 19:58:39</strong>
+<strong class='message'>100 (out of 1000) at 2017-03-27 19:58:39</strong>
+<strong class='message'>200 (out of 1000) at 2017-03-27 19:58:39</strong>
+<strong class='message'>300 (out of 1000) at 2017-03-27 19:58:39</strong>
+<strong class='message'>400 (out of 1000) at 2017-03-27 19:58:39</strong>
+<strong class='message'>500 (out of 1000) at 2017-03-27 19:58:39</strong>
+<strong class='message'>600 (out of 1000) at 2017-03-27 19:58:39</strong>
+<strong class='message'>700 (out of 1000) at 2017-03-27 19:58:39</strong>
+<strong class='message'>800 (out of 1000) at 2017-03-27 19:58:39</strong>
+<strong class='message'>900 (out of 1000) at 2017-03-27 19:58:40</strong>
+<strong class='message'>1000 (out of 1000) at 2017-03-27 19:58:40</strong>
 <strong class='message'>	using stepup procedure...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2015-07-22 23:32:02</strong>
-<strong class='message'>Runtime in total is: 2 secs
+<strong class='message'>Finish at 2017-03-27 19:58:40</strong>
+<strong class='message'>Runtime in total is: 3 secs
 </strong>
 <div class='input'># using "pval" significance
 pval <- dSVDsignif(data, signif="pval", num.permutation=10)
 </div>
-<strong class='message'>Start at 2015-07-22 23:32:02</strong>
+<strong class='message'>Start at 2017-03-27 19:58:40</strong>
 <strong class='message'></strong>
 <strong class='message'>First, singular value decomposition of the input matrix (with 1000 rows and 9 columns)...</strong>
 <strong class='message'>Second, determinate the eigens...</strong>
@@ -328,7 +328,7 @@ pval <- dSVDsignif(data, signif="pval", num.permutation=10)
 <strong class='message'>Third, construct the gene-specific projection vector,and calculate distance statistics...</strong>
 <strong class='message'>Finally, obtain gene significance (p-value) based on 10 of row-wise permutations...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2015-07-22 23:32:03</strong>
+<strong class='message'>Finish at 2017-03-27 19:58:41</strong>
 <strong class='message'>Runtime in total is: 1 secs
 </strong></pre>
   </div>
@@ -373,12 +373,9 @@ pval <- dSVDsignif(data, signif="pval", num.permutation=10)
     
     <h2>URL</h2>
     <ul>
-      <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
-      <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href=" http://cran.r-
-project.org/package=dnet"> http://cran.r-
-project.org/package=dnet</a></li>
+      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
       <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href=" http://supfam.org/dnet"> http://supfam.org/dnet</a></li>
     </ul>
     
     
@@ -391,7 +388,7 @@ project.org/package=dnet</a></li>
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang.shanghai@gmail.com" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

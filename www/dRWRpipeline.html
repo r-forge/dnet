@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dRWRpipeline @ dnet 1.0.7</title>
+<title>dRWRpipeline @ dnet 1.0.11</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.7</a>
+      <a class="brand" href="index.html">dnet 1.0.11</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -275,13 +275,11 @@ contact graph</dd>
       <dt>parallel</dt>
       <dd>logical to indicate whether parallel computation with
 multicores is used. By default, it sets to true, but not necessarily
-does so. Partly because parallel backends available will be
-system-specific (now only Linux or Mac OS). Also, it will depend on
-whether these two packages "foreach" and "doMC" have been installed. It
-can be installed via:
+does so. It will depend on whether these two packages "foreach" and
+"doParallel" have been installed. It can be installed via:
 <code>source("http://bioconductor.org/biocLite.R");
-biocLite(c("foreach","doMC"))</code>. If not yet installed, this option will
-be disabled</dd>
+biocLite(c("foreach","doParallel"))</code>. If not yet installed, this option
+will be disabled</dd>
       <dt>multicores</dt>
       <dd>an integer to specify how many cores will be
 registered as the multicore parallel backend to the 'foreach' package.
@@ -360,26 +358,26 @@ rownames(data) <- 1:5
 # calcualte their two contact graph
 dContact <- dRWRpipeline(data=data, g=subg, parallel=FALSE)
 </div>
-<strong class='message'>Start at 2015-07-22 23:31:56</strong>
+<strong class='message'>Start at 2017-03-27 19:58:29</strong>
 <strong class='message'></strong>
-<strong class='message'>First, RWR on input graph (15 nodes and 14 edges) using input matrix (5 rows and 2 columns) as seeds (2015-07-22 23:31:56)...</strong>
-<strong class='message'>Second, calculate contact strength (2015-07-22 23:31:56)...</strong>
-<strong class='message'>Third, generate the distribution of contact strength based on 10 permutations on nodes respecting random (2015-07-22 23:31:56)...</strong>
-<strong class='message'>	1 out of 10 (2015-07-22 23:31:56)</strong>
-<strong class='message'>	2 out of 10 (2015-07-22 23:31:56)</strong>
-<strong class='message'>	3 out of 10 (2015-07-22 23:31:57)</strong>
-<strong class='message'>	4 out of 10 (2015-07-22 23:31:57)</strong>
-<strong class='message'>	5 out of 10 (2015-07-22 23:31:57)</strong>
-<strong class='message'>	6 out of 10 (2015-07-22 23:31:58)</strong>
-<strong class='message'>	7 out of 10 (2015-07-22 23:31:58)</strong>
-<strong class='message'>	8 out of 10 (2015-07-22 23:31:58)</strong>
-<strong class='message'>	9 out of 10 (2015-07-22 23:31:59)</strong>
-<strong class='message'>	10 out of 10 (2015-07-22 23:31:59)</strong>
-<strong class='message'>Last, estimate the significance of contact strength: zscore, pvalue, and BH adjusted-pvalue (2015-07-22 23:31:59)...</strong>
-<strong class='message'>Also, construct the contact graph under the cutoff 5.0e-02 of adjusted-pvalue (2015-07-22 23:31:59)...</strong>
+<strong class='message'>First, RWR on input graph (15 nodes and 14 edges) using input matrix (5 rows and 2 columns) as seeds (2017-03-27 19:58:29)...</strong>
+<strong class='message'>Second, calculate contact strength (2017-03-27 19:58:30)...</strong>
+<strong class='message'>Third, generate the distribution of contact strength based on 10 permutations on nodes respecting random (2017-03-27 19:58:30)...</strong>
+<strong class='message'>	1 out of 10 (2017-03-27 19:58:30)</strong>
+<strong class='message'>	2 out of 10 (2017-03-27 19:58:31)</strong>
+<strong class='message'>	3 out of 10 (2017-03-27 19:58:32)</strong>
+<strong class='message'>	4 out of 10 (2017-03-27 19:58:32)</strong>
+<strong class='message'>	5 out of 10 (2017-03-27 19:58:33)</strong>
+<strong class='message'>	6 out of 10 (2017-03-27 19:58:33)</strong>
+<strong class='message'>	7 out of 10 (2017-03-27 19:58:34)</strong>
+<strong class='message'>	8 out of 10 (2017-03-27 19:58:34)</strong>
+<strong class='message'>	9 out of 10 (2017-03-27 19:58:35)</strong>
+<strong class='message'>	10 out of 10 (2017-03-27 19:58:36)</strong>
+<strong class='message'>Last, estimate the significance of contact strength: zscore, pvalue, and BH adjusted-pvalue (2017-03-27 19:58:36)...</strong>
+<strong class='message'>Also, construct the contact graph under the cutoff 5.0e-02 of adjusted-pvalue (2017-03-27 19:58:36)...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2015-07-22 23:31:59</strong>
-<strong class='message'>Runtime in total is: 3 secs
+<strong class='message'>Finish at 2017-03-27 19:58:36</strong>
+<strong class='message'>Runtime in total is: 7 secs
 </strong>
 <div class='input'>dContact
 </div>
@@ -464,12 +462,9 @@ attr(,"class")
     
     <h2>URL</h2>
     <ul>
-      <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
-      <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href=" http://cran.r-
-project.org/package=dnet"> http://cran.r-
-project.org/package=dnet</a></li>
+      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
       <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href=" http://supfam.org/dnet"> http://supfam.org/dnet</a></li>
     </ul>
     
     
@@ -482,7 +477,7 @@ project.org/package=dnet</a></li>
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang.shanghai@gmail.com" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

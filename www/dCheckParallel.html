@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dCheckParallel @ dnet 1.0.7</title>
+<title>dCheckParallel @ dnet 1.0.11</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.7</a>
+      <a class="brand" href="index.html">dnet 1.0.11</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -237,20 +237,17 @@ displayed in the screen. By default, it sets to true for display</dd>
     -->
       <h3>Note</h3>
       
-      <p>Whether parallel computation with multicores is used is system-specific
-(now only Linux or Mac OS). Also, it will depend on whether these two
-packages "foreach" and "doMC" have been installed. It can be installed
+      <p>Whether parallel computation with multicores is used is
+system-specific. Also, it will depend on whether these two packages
+"foreach" and "doParallel" have been installed. It can be installed
 via: <code>source("http://bioconductor.org/biocLite.R");
-biocLite(c("foreach","doMC"))</code>.</p>
+biocLite(c("foreach","doParallel"))</code>.</p>
     <!-- 
     </div>
     -->
     
     <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'>dCheckParallel(multicores=2)
-</div>
-<strong class='message'>	do parallel computation using 2 cores ...</strong>
-<div class='output'>[1] TRUE
+    <pre class="examples"><div class='input'>#dCheckParallel(multicores=2)
 </div></pre>
   </div>
   
@@ -296,12 +293,9 @@ biocLite(c("foreach","doMC"))</code>.</p>
     
     <h2>URL</h2>
     <ul>
-      <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
-      <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href=" http://cran.r-
-project.org/package=dnet"> http://cran.r-
-project.org/package=dnet</a></li>
+      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
       <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href=" http://supfam.org/dnet"> http://supfam.org/dnet</a></li>
     </ul>
     
     
@@ -314,7 +308,7 @@ project.org/package=dnet</a></li>
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang.shanghai@gmail.com" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

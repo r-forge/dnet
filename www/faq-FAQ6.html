@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>How to extract a subnetwork that revolves around a specific gene of interest? @ dnet 1.0.7</title>
+<title>How to extract a subnetwork that revolves around a specific gene of interest? @ dnet 1.0.11</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Hai Fang and Julian Gough">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.7</a>
+      <a class="brand" href="index.html">dnet 1.0.11</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -201,10 +201,10 @@ window.onload = function(){
       <h2>How to extract a subnetwork that revolves around a specific gene of interest?</h2>
 
 Notes:
-<li> All results are based on dnet (version 1.0.7). </li>
+<li> All results are based on dnet (version 1.0.11). </li>
 <li> R scripts (i.e. R expressions) plus necessary comments are highlighted in light-cyan background, and the rest are outputs in the screen. </li>
 <li> Images displayed below may be distorted, but should be normal in your screen. </li>
-<li> Functions contained in dnet 1.0.7 are hyperlinked in-place and also listed on the right side. </li>
+<li> Functions contained in dnet 1.0.11 are hyperlinked in-place and also listed on the right side. </li>
 <li> Key texts are underlined, in bold and in pumpkin-orange color. </li>
 
 <div class="row">
@@ -215,7 +215,7 @@ Notes:
 # 1) load the whole human gene network. The network is extracted from the STRING database (version 9.1). Only those associations with medium confidence (score>=400) are retained
 network <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData = "org.Hs.string")
 </div>
-<strong class='message'>'org.Hs.string' (from http://supfam.org/dnet/RData/1.0.7/org.Hs.string.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.string' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/org.Hs.string.RData?raw=true) has been loaded into the working environment (at 2017-03-27 20:08:43)</strong>
 <div class='input'># If required, can only focus on those edges with confidence score >= 900
 network <- igraph::subgraph.edges(network, eids=E(network)[combined_score>=900])
 network
@@ -254,17 +254,17 @@ g
 </div>
 <div class='input'># 3) visualise the extracted subnetwork
 <a href='visNet.html' target=visNet>visNet</a>(g, vertex.label=V(g)$symbol, vertex.shape="sphere")
+# 4) highlight the query gene in red, and its neighours in black
+vcolors <- rep('black', vcount(g))
 </div>
 <a href="javascript:newWin('FAQ6-8.png', 'FAQ6-8.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ6-8.png', width="400" /></a>
-<div class='input'># 4) highlight the query gene in red, and its neighours in black
-vcolors <- rep('black', vcount(g))
-vcolors[match('NANOG', V(g)$symbol)] <- 'red'
+<div class='input'>vcolors[match('NANOG', V(g)$symbol)] <- 'red'
 <a href='visNet.html' target=visNet>visNet</a>(g, vertex.label=V(g)$symbol, vertex.shape="sphere", vertex.color=vcolors)
+# 5) output the detailed information for genes in the subnetwork onto the file called 'NANOG.subnetwork.txt'
+out <- data.frame(GeneID=V(g)$geneid, Symbol=V(g)$symbol, Description=V(g)$description)
 </div>
 <a href="javascript:newWin('FAQ6-10.png', 'FAQ6-10.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ6-10.png', width="400" /></a>
-<div class='input'># 5) output the detailed information for genes in the subnetwork onto the file called 'NANOG.subnetwork.txt'
-out <- data.frame(GeneID=V(g)$geneid, Symbol=V(g)$symbol, Description=V(g)$description)
-write.table(out, file="NANOG.subnetwork.txt", quote=F, row.names=F,col.names=T,sep="\t")
+<div class='input'>write.table(out, file="NANOG.subnetwork.txt", quote=F, row.names=F,col.names=T,sep="\t")
 out
 </div>
 <div class='output'>   GeneID  Symbol
@@ -357,7 +357,7 @@ out
 keyword <- 'stem'
 org.Hs.egGOBP <- <a href='dRDataLoader.html' target=dRDataLoader>dRDataLoader</a>(RData = "org.Hs.egGOBP")
 </div>
-<strong class='message'>'org.Hs.egGOBP' (from http://supfam.org/dnet/RData/1.0.7/org.Hs.egGOBP.RData) has been loaded into the working environment</strong>
+<strong class='message'>'org.Hs.egGOBP' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/org.Hs.egGOBP.RData?raw=true) has been loaded into the working environment (at 2017-03-27 20:08:49)</strong>
 <div class='input'>ind <- grep(keyword, org.Hs.egGOBP$set_info$name, ignore.case=T, perl=T)
 genes <- unique(unlist(org.Hs.egGOBP$gs[ind]))
 
@@ -377,12 +377,12 @@ vcolors <- rep('black', vcount(g))
 vcolors[match(intersect_genes, V(g)$symbol)] <- 'blue'
 vcolors[match('NANOG', V(g)$symbol)] <- 'red'
 <a href='visNet.html' target=visNet>visNet</a>(g, vertex.label=V(g)$symbol, vertex.shape="sphere", vertex.color=vcolors)
-</div>
-<a href="javascript:newWin('FAQ6-18.png', 'FAQ6-18.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ6-18.png', width="400" /></a>
-<div class='input'>
+
 # <span style="font-weight:bold; color:#F87217; text-decoration:underline">Alternatively, remain only genes related to 'stem' and the query gene 'NANOG'.</span>
 both_genes <- c(intersect_genes, 'NANOG')
-both_genes
+</div>
+<a href="javascript:newWin('FAQ6-18.png', 'FAQ6-18.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ6-18.png', width="400" /></a>
+<div class='input'>both_genes
 </div>
 <div class='output'> [1] "FOXD3"   "NOTCH1"  "CTNNB1"  "LIN28A"  "TDGF1"   "POU5F1"  "PRDM14" 
  [8] "SOX2"    "PBX1"    "ESRRB"   "SMAD4"   "CDH2"    "EPAS1"   "EPHA1"  
@@ -397,20 +397,19 @@ g1 <- <a href='dNetInduce.html' target=dNetInduce>dNetInduce</a>(g, nodes_query=
 vcolors <- rep('blue', vcount(g1))
 vcolors[match('NANOG', V(g1)$symbol)] <- 'red'
 <a href='visNet.html' target=visNet>visNet</a>(g1, vertex.label=V(g1)$symbol, vertex.shape="sphere", vertex.color=vcolors)
-</div>
-<a href="javascript:newWin('FAQ6-22.png', 'FAQ6-22.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ6-22.png', width="400" /></a>
-<div class='input'>
+
 # <span style="font-weight:bold; color:#F87217; text-decoration:underline">Also, only edges linked to the query gene 'NANOG' are remained.</span>
 ind <- match('NANOG', V(g1)$symbol)
-eids <- E(g1)[from(ind)]
+</div>
+<a href="javascript:newWin('FAQ6-22.png', 'FAQ6-22.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ6-22.png', width="400" /></a>
+<div class='input'>eids <- E(g1)[from(ind)]
 g2 <- subgraph.edges(g1, eids=eids)
 vcolors <- rep('blue', vcount(g2))
 vcolors[match('NANOG', V(g2)$symbol)] <- 'red'
 <a href='visNet.html' target=visNet>visNet</a>(g2, vertex.label=V(g2)$symbol, vertex.shape="sphere", vertex.color=vcolors)
-</div>
-<a href="javascript:newWin('FAQ6-24.png', 'FAQ6-24.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ6-24.png', width="400" /></a>
-<div class='input'>
+
 # <span style="font-weight:bold; color:#F87217; text-decoration:underline">In addition to the direct interacting neighbors, the indirect neighbors can be specifed via the parameter 'knn' in the function <a href='dNetInduce.html' target=dNetInduce>dNetInduce</a>.</span></div>
+<a href="javascript:newWin('FAQ6-24.png', 'FAQ6-24.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ6-24.png', width="400" /></a>
       </pre>
     </div>
 
@@ -440,12 +439,9 @@ vcolors[match('NANOG', V(g2)$symbol)] <- 'red'
     
     <h2>URL</h2>
     <ul>
-      <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
-      <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href=" http://cran.r-
-project.org/package=dnet"> http://cran.r-
-project.org/package=dnet</a></li>
+      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
       <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href=" http://supfam.org/dnet"> http://supfam.org/dnet</a></li>
     </ul>
     
     <h2>Author</h2>
@@ -460,7 +456,7 @@ project.org/package=dnet</a></li>
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang.shanghai@gmail.com" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

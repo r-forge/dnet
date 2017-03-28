@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dGSEA @ dnet 1.0.7</title>
+<title>dGSEA @ dnet 1.0.11</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.7</a>
+      <a class="brand" href="index.html">dnet 1.0.11</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -276,7 +276,7 @@ more than 1000</dd>
 to restrict terms in consideration. By default, it sets to 'NULL' to
 consider all distances</dd>
       <dt>weight</dt>
-      <dd>type of score weigth. It can be "0" for unweighted (an
+      <dd>type of score weight. It can be "0" for unweighted (an
 equivalent to Kolmogorov-Smirnov, only considering the rank), "1" for
 weighted by input gene score (by default), and "2" for over-weighted,
 and so on</dd>
@@ -371,6 +371,8 @@ enrichment score represents a false positive finding
 <li><code>qvalue</code>: a matrix of nSet X nSample containing q value. It
 is the monotunically increasing FDR
 </li>
+<li><code>weight</code>: the input type of score weight
+</li>
 <li><code>call</code>: the call that produced this result
 </li>
 </ul></p>
@@ -423,7 +425,7 @@ higher "nes", the lower "qvalue".
 library(Biobase)
 TCGA_mutations <-dRDataLoader(RData='TCGA_mutations')
 </div>
-<strong class='message'>'TCGA_mutations' (from package 'dnet' version 1.0.7) has been loaded into the working environment (at 2015-07-22 23:29:01)</strong>
+<strong class='message'>'TCGA_mutations' (from package 'dnet' version 1.0.11) has been loaded into the working environment (at 2017-03-27 19:55:23)</strong>
 <div class='input'>
 # gene set enrichment analysis (GSEA) using KEGG pathways
 ## calculate the total mutations for each gene
@@ -432,55 +434,70 @@ data <- data.frame(tol=tol)
 eTerm <- dGSEA(data, identity="symbol", genome="Hs",
 ontology="MsigdbC2KEGG")
 </div>
-<strong class='message'>Start at 2015-07-22 23:29:04</strong>
+<strong class='message'>Start at 2017-03-27 19:55:26</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology MsigdbC2KEGG and its gene associations in the genome Hs (2015-07-22 23:29:04) ...</strong>
-<strong class='message'>'org.Hs.eg' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/org.Hs.eg.RData?raw=true) has been loaded into the working environment (at 2015-07-22 23:29:06)</strong>
-<strong class='message'>'org.Hs.egMsigdbC2KEGG' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/org.Hs.egMsigdbC2KEGG.RData?raw=true) has been loaded into the working environment (at 2015-07-22 23:29:07)</strong>
-<strong class='message'>Then, do mapping based on symbol (2015-07-22 23:29:07) ...</strong>
+<strong class='message'>First, load the ontology MsigdbC2KEGG and its gene associations in the genome Hs (2017-03-27 19:55:26) ...</strong>
+<strong class='message'>'org.Hs.eg' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/org.Hs.eg.RData?raw=true) has been loaded into the working environment (at 2017-03-27 19:55:29)</strong>
+<strong class='message'>'org.Hs.egMsigdbC2KEGG' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/org.Hs.egMsigdbC2KEGG.RData?raw=true) has been loaded into the working environment (at 2017-03-27 19:55:35)</strong>
+<strong class='message'>Then, do mapping based on symbol (2017-03-27 19:55:35) ...</strong>
 <strong class='message'>	Among 19420 symbols of input data, there are 19038 mappable via official gene symbols but 382 left unmappable</strong>
-<strong class='message'>Third, perform GSEA analysis (2015-07-22 23:29:13) ...</strong>
-<strong class='message'>	Sample 1 is being processed at (2015-07-22 23:29:13) ...</strong>
-<strong class='message'>		 100 of 186 gene sets have been processed</strong>
-<strong class='message'>		 186 of 186 gene sets have been processed</strong>
+<strong class='message'>Third, perform GSEA analysis based on 1000 permutations for 186 gene sets (2017-03-27 19:55:39) ...</strong>
+<strong class='message'>	Sample 1 is being processed at (2017-03-27 19:55:39) ...</strong>
+<strong class='message'>	10 of 186 gene sets have been processed (2017-03-27 19:55:43) ...</strong>
+<strong class='message'>	20 of 186 gene sets have been processed (2017-03-27 19:55:45) ...</strong>
+<strong class='message'>	30 of 186 gene sets have been processed (2017-03-27 19:55:48) ...</strong>
+<strong class='message'>	40 of 186 gene sets have been processed (2017-03-27 19:55:50) ...</strong>
+<strong class='message'>	50 of 186 gene sets have been processed (2017-03-27 19:55:53) ...</strong>
+<strong class='message'>	60 of 186 gene sets have been processed (2017-03-27 19:55:56) ...</strong>
+<strong class='message'>	70 of 186 gene sets have been processed (2017-03-27 19:55:59) ...</strong>
+<strong class='message'>	80 of 186 gene sets have been processed (2017-03-27 19:56:02) ...</strong>
+<strong class='message'>	90 of 186 gene sets have been processed (2017-03-27 19:56:04) ...</strong>
+<strong class='message'>	100 of 186 gene sets have been processed (2017-03-27 19:56:07) ...</strong>
+<strong class='message'>	110 of 186 gene sets have been processed (2017-03-27 19:56:10) ...</strong>
+<strong class='message'>	120 of 186 gene sets have been processed (2017-03-27 19:56:13) ...</strong>
+<strong class='message'>	130 of 186 gene sets have been processed (2017-03-27 19:56:16) ...</strong>
+<strong class='message'>	140 of 186 gene sets have been processed (2017-03-27 19:56:18) ...</strong>
+<strong class='message'>	150 of 186 gene sets have been processed (2017-03-27 19:56:22) ...</strong>
+<strong class='message'>	160 of 186 gene sets have been processed (2017-03-27 19:56:24) ...</strong>
+<strong class='message'>	170 of 186 gene sets have been processed (2017-03-27 19:56:26) ...</strong>
+<strong class='message'>	180 of 186 gene sets have been processed (2017-03-27 19:56:29) ...</strong>
+<strong class='message'>	186 of 186 gene sets have been processed (2017-03-27 19:56:30) ...</strong>
 <strong class='message'>
-End at 2015-07-22 23:30:25</strong>
-<strong class='message'>Runtime in total is: 81 secs
+End at 2017-03-27 19:56:32</strong>
+<strong class='message'>Runtime in total is: 66 secs
 </strong>
 <div class='input'>res <- dGSEAview(eTerm, which_sample=1, top_num=5, sortBy="adjp",
 decreasing=FALSE, details=TRUE)
 visGSEA(eTerm, which_sample=1, which_term=rownames(res)[1])
-</div>
-<a href="javascript:newWin('dGSEA-18.png', 'dGSEA-18.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dGSEA-18.png', width="400" /></a>
-<div class='input'>output <- dGSEAwrite(eTerm, which_content="gadjp", which_score="gadjp",
+output <- dGSEAwrite(eTerm, which_content="gadjp", which_score="gadjp",
 filename="eTerm.txt")
 </div>
 <strong class='message'>A file called eTerm.txt has been successfully written!
 </strong>
+<a href="javascript:newWin('dGSEA-36.png', 'dGSEA-36.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dGSEA-36.png', width="400" /></a>
 <div class='input'>
 ## based on customised gene sets
 eTerm <- dGSEA(data, identity="symbol", genome="Hs",
 ontology="Customised", customised.genesets=sample(rownames(data),100))
 </div>
-<strong class='message'>Start at 2015-07-22 23:30:38</strong>
+<strong class='message'>Start at 2017-03-27 19:56:32</strong>
 <strong class='message'></strong>
-<strong class='message'>First, load the ontology Customised and its gene associations in the genome Hs (2015-07-22 23:30:38) ...</strong>
-<strong class='message'>'org.Hs.eg' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/org.Hs.eg.RData?raw=true) has been loaded into the working environment (at 2015-07-22 23:30:39)</strong>
-<strong class='message'>	Among 100 symbols of input data, there are 99 mappable via official gene symbols but 1 left unmappable</strong>
-<strong class='message'>Then, do mapping based on symbol (2015-07-22 23:30:39) ...</strong>
+<strong class='message'>First, load the ontology Customised and its gene associations in the genome Hs (2017-03-27 19:56:32) ...</strong>
+<strong class='message'>'org.Hs.eg' (from https://github.com/hfang-bristol/RDataCentre/blob/master/dnet/1.0.7/org.Hs.eg.RData?raw=true) has been loaded into the working environment (at 2017-03-27 19:56:36)</strong>
+<strong class='message'>	Among 100 symbols of input data, there are 98 mappable via official gene symbols but 2 left unmappable</strong>
+<strong class='message'>Then, do mapping based on symbol (2017-03-27 19:56:36) ...</strong>
 <strong class='message'>	Among 19420 symbols of input data, there are 19038 mappable via official gene symbols but 382 left unmappable</strong>
-<strong class='message'>Third, perform GSEA analysis (2015-07-22 23:30:42) ...</strong>
-<strong class='message'>	Sample 1 is being processed at (2015-07-22 23:30:42) ...</strong>
-<strong class='message'>		 1 of 1 gene sets have been processed</strong>
+<strong class='message'>Third, perform GSEA analysis based on 1000 permutations for 1 gene sets (2017-03-27 19:56:38) ...</strong>
+<strong class='message'>	Sample 1 is being processed at (2017-03-27 19:56:38) ...</strong>
+<strong class='message'>	1 of 1 gene sets have been processed (2017-03-27 19:56:39) ...</strong>
 <strong class='message'>
-End at 2015-07-22 23:30:43</strong>
-<strong class='message'>Runtime in total is: 5 secs
+End at 2017-03-27 19:56:39</strong>
+<strong class='message'>Runtime in total is: 7 secs
 </strong>
 <div class='input'>res <- dGSEAview(eTerm, which_sample=1, top_num=5, sortBy="adjp",
 decreasing=FALSE, details=TRUE)
 visGSEA(eTerm, which_sample=1, which_term=rownames(res)[1])
-</div>
-<a href="javascript:newWin('dGSEA-35.png', 'dGSEA-35.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='dGSEA-35.png', width="400" /></a></pre>
+</div></pre>
   </div>
   
   <div class="span4">
@@ -524,12 +541,9 @@ visGSEA(eTerm, which_sample=1, which_term=rownames(res)[1])
     
     <h2>URL</h2>
     <ul>
-      <li><a href="http://supfam.org/dnet">http://supfam.org/dnet</a></li>
-      <li><a href=" http://dnet.r-forge.r-project.org"> http://dnet.r-forge.r-project.org</a></li>
-      <li><a href=" http://cran.r-
-project.org/package=dnet"> http://cran.r-
-project.org/package=dnet</a></li>
+      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
       <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
+      <li><a href=" http://supfam.org/dnet"> http://supfam.org/dnet</a></li>
     </ul>
     
     
@@ -542,7 +556,7 @@ project.org/package=dnet</a></li>
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang.shanghai@gmail.com" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

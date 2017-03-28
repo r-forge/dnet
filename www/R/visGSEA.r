@@ -1,15 +1,15 @@
 #' Function to visualise running enrichment score for a given sample and a gene set
 #'
-#' \code{visGSEA} is supposed to visualise running enrichment score for a given sample and a gene set. To help understand the underlying running enrichment score, the input gene scores are also displayed. Positions for members in the given gene set are color-coded in both displays (red line for the positive gene scores, and green line for the negative). 
+#' \code{visGSEA} is supposed to visualise running enrichment score for a given sample and a gene set. To help understand the underlying running enrichment score, the input gene scores are also displayed. Positions for members in the given gene set are color-coded in both displays (red line for the positive gene scores, and green line for the negative).
 #'
 #' @param eTerm an object of class "eTerm"
 #' @param which_sample which sample will be used. It can be index or sample names
-#' @param which_term which term will be used. It can be index or term ID or term names 
-#' @param weight type of score weigth. It can be "0" for unweighted (an equivalent to Kolmogorov-Smirnov, only considering the rank), "1" for weighted by input gene score (by default), and "2" for over-weighted, and so on
+#' @param which_term which term will be used. It can be index or term ID or term names
+#' @param plot logical to indicate whether to plot
 #' @param orientation the orientation of the plots. It can be either "vertical" (default) or "horizontal"
+#' @param hit.linewidth the line width for the hits (ie genes in the gene set)
 #' @param newpage logical to indicate whether to open a new page. By default, it sets to true for opening a new page
-#' @return
-#' invisible
+#' @return leading genes (being sorted)
 #' @note none
 #' @export
 #' @seealso \code{\link{dGSEA}}, \code{\link{dGSEAview}}
@@ -17,7 +17,7 @@
 #' @examples
 #' #visGSEA(eTerm, which_sample=1, which_term=1)
 
-visGSEA <- function(eTerm, which_sample=1, which_term="GO:0006281", weight=1, orientation=c('vertical','horizontal'), newpage=T) 
+visGSEA <- function(eTerm, which_sample=1, which_term="GO:0006281", plot=T, orientation=c('vertical','horizontal'), hit.linewidth=0.5, newpage=T) 
 {
 
     if (class(eTerm) != "eTerm" ){
@@ -26,6 +26,8 @@ visGSEA <- function(eTerm, which_sample=1, which_term="GO:0006281", weight=1, or
     
     orientation <- match.arg(orientation)
     
+    weight <- eTerm$weight
+
     data <- eTerm$data
     geneid <- rownames(data)
     nGene <- nrow(data)
@@ -75,11 +77,10 @@ visGSEA <- function(eTerm, which_sample=1, which_term="GO:0006281", weight=1, or
     
     
     rank.score <- data[,which_sample]
-        
+    
     ind <- order(rank.score, decreasing=T)
     rank.score.sorted <- rank.score[ind]
     geneid.sorted <- geneid[ind]
-    geneid2ind <- ind
 
     nHit <- length(gs[[which_term]])
     nMiss <- nGene - nHit
@@ -102,21 +103,38 @@ visGSEA <- function(eTerm, which_sample=1, which_term="GO:0006281", weight=1, or
     es.observed <- signif(ifelse(max.RES>abs(min.RES), max.RES, min.RES), digits=5)
     es.position <- ifelse(max.RES>abs(min.RES), which.max(RES), which.min(RES))
     
+    #############################################################
+    ## for leading genes
+    if(RES[es.position]<0){
+    	ind <- which(flag >= es.position)
+    }else{
+    	ind <- which(flag <= es.position)
+    }
+    hits <- rep(0, length(RES))
+    hits[flag] <- 1
+    hits[flag[ind]] <- 2
+    hits[es.position] <- 3
+    df_leading <- data.frame(GeneID=geneid.sorted, Rank=1:length(RES), Score=rank.score.sorted, RES=RES, Hits=hits, stringsAsFactors=F)
+    #############################################################
+    
+    if(plot==FALSE){
+    	return(df_leading)
+    }
+
+    ######################################################################################
+
     max.caxis <- ifelse(max.RES<0.4, 0.4, max.RES)
     min.caxis <- ifelse(min.RES>-0.4, -0.4, min.RES)
     caxis <- max(abs(max.caxis), abs(min.caxis))
     max.caxis <- caxis
     min.caxis <- -1*caxis
     
-    
-    ######################################################################################
     ## Visualisation
     if (newpage){
         grDevices::dev.new()
     }
     
     fontsize_axis <- 0.7
-    linewidth_hit <- 0.5
     
     if(orientation == "vertical"){
 
@@ -140,9 +158,9 @@ visGSEA <- function(eTerm, which_sample=1, which_term="GO:0006281", weight=1, or
 
         temp <- sapply(match(gs[[which_term]], geneid.sorted), function(x) {
             if(rank.score.sorted[x]>=0){
-                graphics::lines(c(x, x), c(0, rank.score.sorted[x]), lwd=linewidth_hit, lty=1, cex=1, col="red")  # enrichment tags
+                graphics::lines(c(x, x), c(0, rank.score.sorted[x]), lwd=hit.linewidth, lty=1, cex=1, col="red")  # enrichment tags
             }else{
-                graphics::lines(c(x, x), c(0, rank.score.sorted[x]), lwd=linewidth_hit, lty=1, cex=1, col="green")  # enrichment tags
+                graphics::lines(c(x, x), c(0, rank.score.sorted[x]), lwd=hit.linewidth, lty=1, cex=1, col="green")  # enrichment tags
             }
         })
     
@@ -159,9 +177,9 @@ visGSEA <- function(eTerm, which_sample=1, which_term="GO:0006281", weight=1, or
     
         temp <- sapply(match(gs[[which_term]], geneid.sorted), function(x) {
             if(rank.score.sorted[x]>=0){
-                graphics::lines(c(x, x), c(0, RES[x]), lwd=linewidth_hit, lty=1, cex=1, col="red")  # enrichment tags
+                graphics::lines(c(x, x), c(0, RES[x]), lwd=hit.linewidth, lty=1, cex=1, col="red")  # enrichment tags
             }else{
-                graphics::lines(c(x, x), c(0, RES[x]), lwd=linewidth_hit, lty=1, cex=1, col="green")  # enrichment tags
+                graphics::lines(c(x, x), c(0, RES[x]), lwd=hit.linewidth, lty=1, cex=1, col="green")  # enrichment tags
             }
         })
     
@@ -232,9 +250,9 @@ visGSEA <- function(eTerm, which_sample=1, which_term="GO:0006281", weight=1, or
 
         temp <- sapply(match(gs[[which_term]], geneid.sorted), function(x) {
             if(rank.score.sorted[x]>=0){
-                graphics::lines(c(0, rank.score.sorted[x]), c(x, x), lwd=linewidth_hit, lty=1, cex=1, col="red")  # enrichment tags
+                graphics::lines(c(0, rank.score.sorted[x]), c(x, x), lwd=hit.linewidth, lty=1, cex=1, col="red")  # enrichment tags
             }else{
-                graphics::lines(c(0, rank.score.sorted[x]), c(x, x), lwd=linewidth_hit, lty=1, cex=1, col="green")  # enrichment tags
+                graphics::lines(c(0, rank.score.sorted[x]), c(x, x), lwd=hit.linewidth, lty=1, cex=1, col="green")  # enrichment tags
             }
         })
     
@@ -251,9 +269,9 @@ visGSEA <- function(eTerm, which_sample=1, which_term="GO:0006281", weight=1, or
     
         temp <- sapply(match(gs[[which_term]], geneid.sorted), function(x) {
             if(rank.score.sorted[x]>=0){
-                graphics::lines(c(0, RES[x]), c(x, x), lwd=linewidth_hit, lty=1, cex=1, col="red")  # enrichment tags
+                graphics::lines(c(0, RES[x]), c(x, x), lwd=hit.linewidth, lty=1, cex=1, col="red")  # enrichment tags
             }else{
-                graphics::lines(c(0, RES[x]), c(x, x), lwd=linewidth_hit, lty=1, cex=1, col="green")  # enrichment tags
+                graphics::lines(c(0, RES[x]), c(x, x), lwd=hit.linewidth, lty=1, cex=1, col="green")  # enrichment tags
             }
         })
     
@@ -293,5 +311,5 @@ visGSEA <- function(eTerm, which_sample=1, which_term="GO:0006281", weight=1, or
         graphics::mtext(paste("Sample:", sample_names[which_sample], "\nGeneset:", set_info$name[which_term]), side=3, outer=TRUE, line=-3, cex=1)
     }
     
-    invisible()
+    invisible(df_leading)
 }
