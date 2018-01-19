@@ -142,14 +142,12 @@ of the assigement sign '<-', then no RData will be loaded onto the
 working environment.
 }
 \examples{
-\dontrun{
 org.Hs.egSF <- dRDataLoader(RData='org.Hs.egSF')
 org.Hs.eg <- dRDataLoader(RData='org.Hs.eg')
 org.Hs.egDGIdb <- dRDataLoader(RData='org.Hs.egDGIdb')
 org.Hs.egMsigdbC2KEGG <- dRDataLoader(RData='org.Hs.egMsigdbC2KEGG')
 org.Hs.egHPPA <- dRDataLoader(genome='Hs', ontology='HPPA')
 ig.MP <- dRDataLoader(RData='ig.MP')
-}
 }
 \seealso{
 \code{\link{dRDataLoader}}

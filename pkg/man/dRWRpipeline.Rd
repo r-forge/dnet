@@ -117,7 +117,6 @@ recommended to sequentially use \code{\link{dRWR}} and
 \code{\link{dRWRcontact}} instead.
 }
 \examples{
-\dontrun{
 # 1) generate a random graph according to the ER model
 g <- erdos.renyi.game(100, 1/100)
 
@@ -135,7 +134,6 @@ rownames(data) <- 1:5
 # calcualte their two contact graph
 dContact <- dRWRpipeline(data=data, g=subg, parallel=FALSE)
 dContact
-}
 }
 \seealso{
 \code{\link{dRWR}}, \code{\link{dRWRcontact}},

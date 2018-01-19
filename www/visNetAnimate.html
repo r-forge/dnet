@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>visNetAnimate @ dnet 1.0.11</title>
+<title>visNetAnimate @ dnet 1.1.2</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.11</a>
+      <a class="brand" href="index.html">dnet 1.1.2</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -342,8 +342,8 @@ specified, by default the output file is either 'visNetAnimate.pdf' or
       <h3>Note</h3>
       
       <p>When producing mp4 video, this function requires the installation of
-the software 'ffmpeg' at <a href = 'https://www.ffmpeg.org'>https://www.ffmpeg.org</a>. Shell command
-lines for ffmpeg installation in Terminal (for both Linux and Mac) are:
+the software 'ffmpeg' at https://www.ffmpeg.org. Shell command lines
+for ffmpeg installation in Terminal (for both Linux and Mac) are:
 <ul>
 <li>1) <code>wget -O ffmpeg.tar.gz
 http://www.ffmpeg.org/releases/ffmpeg-2.7.1.tar.gz</code>
@@ -371,8 +371,8 @@ you follow 4b) route: <code>export PATH=$HOME/ffmpeg:$PATH</code>
 </li>
 </ul></p>
       <p>When producing gif file, this function requires the installation of the
-software 'ImageMagick' at <a href = 'http://www.imagemagick.org'>http://www.imagemagick.org</a>. Shell
-command lines for ImageMagick installation in Terminal are:
+software 'ImageMagick' at http://www.imagemagick.org. Shell command
+lines for ImageMagick installation in Terminal are:
 <ul>
 <li>1) <code>wget
 http://www.imagemagick.org/download/ImageMagick.tar.gz</code>
@@ -433,13 +433,13 @@ visNetAnimate(g=subg, data=data, filetype="pdf")
 <div class='input'># output as a <a href="visNetAnimate.mp4">mp4</a> file but with dynamic layout
 visNetAnimate(g=subg, data=data, filetype="mp4", glayout.dynamics=TRUE)
 </div>
-<strong class='message'>Executing this command: 'ffmpeg -y -v quiet -r 1 -i /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//Rtmp0kKJkI/Rplot%06d.jpg -q:v 1 /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//Rtmp0kKJkI/visNetAnimate.mp4'
+<strong class='message'>Executing this command: 'ffmpeg -y -v quiet -r 1 -i /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//RtmpncsM2C/Rplot%06d.jpg -q:v 1 /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//RtmpncsM2C/visNetAnimate.mp4'
 </strong>
 <strong class='message'>Congratulations! A file 'visNetAnimate.mp4' (in the directory /Users/hfang/Sites/SUPERFAMILY/dnet) has been created!</strong>
 <div class='input'># output as a <a href="visNetAnimate.gif">gif</a> file but with dynamic layout
 visNetAnimate(g=subg, data=data, filetype="gif", glayout.dynamics=TRUE)
 </div>
-<strong class='message'>Executing this command: 'convert -delay 100 /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//Rtmp0kKJkI/Rplot*.jpg /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//Rtmp0kKJkI/visNetAnimate.gif'
+<strong class='message'>Executing this command: 'convert -delay 100 /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//RtmpncsM2C/Rplot*.jpg /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//RtmpncsM2C/visNetAnimate.gif'
 </strong>
 <strong class='message'>Congratulations! A file 'visNetAnimate.gif' (in the directory /Users/hfang/Sites/SUPERFAMILY/dnet) has been created!</strong></pre>
   </div>
@@ -486,7 +486,6 @@ visNetAnimate(g=subg, data=data, filetype="gif", glayout.dynamics=TRUE)
     <ul>
       <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
       <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
-      <li><a href=" http://supfam.org/dnet"> http://supfam.org/dnet</a></li>
     </ul>
     
     

@@ -29,10 +29,8 @@ developer does not have to specify default values for all arguments
 except those arguments are of interest
 }
 \examples{
-\dontrun{
 fun <- "dNetPipeline"
 dFunArgs(fun)
-}
 }
 \seealso{
 \code{\link{dNetPipeline}}

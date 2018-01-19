@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dDAGtermSim @ dnet 1.0.11</title>
+<title>dDAGtermSim @ dnet 1.1.2</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.11</a>
+      <a class="brand" href="index.html">dnet 1.1.2</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -289,13 +289,13 @@ matrix via the function <code>as.matrix</code></p>
     <pre class="examples"><div class='input'># 1) load HPPA as igraph object
 ig.HPPA <-dRDataLoader(RData='ig.HPPA')
 </div>
-<strong class='message'>'ig.HPPA' (from package 'dnet' version 1.0.11) has been loaded into the working environment (at 2017-03-27 19:54:26)</strong>
+<strong class='message'>'ig.HPPA' (from package 'dnet' version 1.1.2) has been loaded into the working environment (at 2018-01-19 12:35:06)</strong>
 <div class='input'>g <- ig.HPPA
 
 # 2) load human genes annotated by HPPA
 org.Hs.egHPPA <- dRDataLoader(RData='org.Hs.egHPPA')
 </div>
-<strong class='message'>'org.Hs.egHPPA' (from package 'dnet' version 1.0.11) has been loaded into the working environment (at 2017-03-27 19:54:26)</strong>
+<strong class='message'>'org.Hs.egHPPA' (from package 'dnet' version 1.1.2) has been loaded into the working environment (at 2018-01-19 12:35:06)</strong>
 <div class='input'>
 # 3) prepare for ontology and its annotation information 
 dag <- dDAGannotate(g, annotations=org.Hs.egHPPA,
@@ -320,28 +320,28 @@ terms <- sample(V(dag)$name, 5)
 sim <- dDAGtermSim(g=dag, terms=terms, method="Schlicker",
 parallel=FALSE)
 </div>
-<strong class='message'>Start at 2017-03-27 19:54:46</strong>
+<strong class='message'>Start at 2018-01-19 12:35:19</strong>
 <strong class='message'></strong>
-<strong class='message'>Calculate semantic similarity between 5 terms using Schlicker method (2017-03-27 19:54:46)...</strong>
-<strong class='message'>Build a sparse matrix of children x ancestors (with 5 rows and 3414 columns (2017-03-27 19:54:46)...</strong>
-<strong class='message'>	1 out of 5 (2017-03-27 19:54:46)</strong>
-<strong class='message'>	2 out of 5 (2017-03-27 19:54:46)</strong>
-<strong class='message'>	3 out of 5 (2017-03-27 19:54:46)</strong>
-<strong class='message'>	4 out of 5 (2017-03-27 19:54:46)</strong>
-<strong class='message'>	5 out of 5 (2017-03-27 19:54:46)</strong>
+<strong class='message'>Calculate semantic similarity between 5 terms using Schlicker method (2018-01-19 12:35:19)...</strong>
+<strong class='message'>Build a sparse matrix of children x ancestors (with 5 rows and 3414 columns (2018-01-19 12:35:19)...</strong>
+<strong class='message'>	1 out of 5 (2018-01-19 12:35:19)</strong>
+<strong class='message'>	2 out of 5 (2018-01-19 12:35:19)</strong>
+<strong class='message'>	3 out of 5 (2018-01-19 12:35:19)</strong>
+<strong class='message'>	4 out of 5 (2018-01-19 12:35:19)</strong>
+<strong class='message'>	5 out of 5 (2018-01-19 12:35:19)</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2017-03-27 19:54:46</strong>
+<strong class='message'>Finish at 2018-01-19 12:35:19</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>sim
 </div>
-<div class='output'>5 x 5 sparse Matrix of class "dgCMatrix"
-           HP:0030402 HP:0000142 HP:0002384 HP:0000653 HP:0012471
-HP:0030402   1.988841   .           .        .          .        
-HP:0000142   .          1.967762    .        .          .        
-HP:0002384   .          .           1.99442  .          .        
-HP:0000653   .          .           .        1.9776813  0.1018821
-HP:0012471   .          .           .        0.1018821  1.9330440
+<div class='output'>5 x 5 sparse Matrix of class "dsCMatrix"
+           HP:0410008 HP:0009141 HP:0001178 HP:0002926 HP:0010765
+HP:0410008  0.9615623  .          .           .         .        
+HP:0009141  .          0.9978301  .           .         .        
+HP:0001178  .          .          0.9975201   .         .        
+HP:0002926  .          .          .           0.966832  .        
+HP:0010765  .          .          .           .         0.9913205
 </div></pre>
   </div>
   
@@ -388,7 +388,6 @@ HP:0012471   .          .           .        0.1018821  1.9330440
     <ul>
       <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
       <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
-      <li><a href=" http://supfam.org/dnet"> http://supfam.org/dnet</a></li>
     </ul>
     
     

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dBUMscore @ dnet 1.0.11</title>
+<title>dBUMscore @ dnet 1.1.2</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.11</a>
+      <a class="brand" href="index.html">dnet 1.1.2</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -316,9 +316,9 @@ x <- rbeta(1000, shape1=0.5, shape2=1)
 fit <- dBUMfit(x)
 </div>
 <strong class='message'>	A total of p-values: 1000</strong>
-<strong class='message'>	Maximum Log-Likelihood: 325.1</strong>
-<strong class='message'>	Mixture parameter (lambda): 0.000</strong>
-<strong class='message'>	Shape parameter (a): 0.491</strong>
+<strong class='message'>	Maximum Log-Likelihood: 319.8</strong>
+<strong class='message'>	Mixture parameter (lambda): 0.062</strong>
+<strong class='message'>	Shape parameter (a): 0.478</strong>
 <div class='input'>
 # 3) calculate the scores according to the fitted BUM and fdr=0.01
 # using "pdf" method
@@ -370,7 +370,6 @@ scores <- dBUMscore(fit, method="cdf", fdr=0.01)
     <ul>
       <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
       <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
-      <li><a href=" http://supfam.org/dnet"> http://supfam.org/dnet</a></li>
     </ul>
     
     

@@ -142,7 +142,6 @@ node: 0.75 by default}
 }
 }
 \examples{
-\dontrun{
 # 1) load HPPA as igraph object
 ig.HPPA <-dRDataLoader(RData='ig.HPPA')
 g <- ig.HPPA
@@ -176,7 +175,6 @@ root.label <- ""
 names(root.label) <- V(subg)[root]$name
 visDAG(g=subg, data=data, node.info="both",
 node.attrs=list(shape=root.shape,label=root.label))
-}
 }
 \seealso{
 \code{\link{dDAGreverse}}, \code{\link{dDAGroot}},

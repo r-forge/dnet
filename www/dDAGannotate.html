@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dDAGannotate @ dnet 1.0.11</title>
+<title>dDAGannotate @ dnet 1.1.2</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.11</a>
+      <a class="brand" href="index.html">dnet 1.1.2</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -274,13 +274,13 @@ subgraph.</p>
     <pre class="examples"><div class='input'># 1) load HPPA as igraph object
 ig.HPPA <-dRDataLoader(RData='ig.HPPA')
 </div>
-<strong class='message'>'ig.HPPA' (from package 'dnet' version 1.0.11) has been loaded into the working environment (at 2017-03-27 19:53:34)</strong>
+<strong class='message'>'ig.HPPA' (from package 'dnet' version 1.1.2) has been loaded into the working environment (at 2018-01-19 12:34:34)</strong>
 <div class='input'>g <- ig.HPPA
 
 # 2) load human genes annotated by HPPA
 org.Hs.egHPPA <- dRDataLoader(RData='org.Hs.egHPPA')
 </div>
-<strong class='message'>'org.Hs.egHPPA' (from package 'dnet' version 1.0.11) has been loaded into the working environment (at 2017-03-27 19:53:34)</strong>
+<strong class='message'>'org.Hs.egHPPA' (from package 'dnet' version 1.1.2) has been loaded into the working environment (at 2018-01-19 12:34:34)</strong>
 <div class='input'>GS <- org.Hs.egHPPA # as 'GS' object
 
 # 3) prepare for annotation data
@@ -291,42 +291,38 @@ annotations <- GS$gs[sample(1:length(GS$gs),5)]
 # 4a) based on all possible paths (i.e. the complete subgraph induced)
 dDAGannotate(g, annotations, path.mode="all_paths", verbose=TRUE)
 </div>
-<strong class='message'>	At level 12, there are 1 nodes, and 1 incoming neighbors.</strong>
-<strong class='message'>	At level 11, there are 1 nodes, and 2 incoming neighbors.</strong>
-<strong class='message'>	At level 10, there are 1 nodes, and 1 incoming neighbors.</strong>
-<strong class='message'>	At level 9, there are 2 nodes, and 3 incoming neighbors.</strong>
-<strong class='message'>	At level 8, there are 4 nodes, and 3 incoming neighbors.</strong>
-<strong class='message'>	At level 7, there are 2 nodes, and 2 incoming neighbors.</strong>
-<strong class='message'>	At level 6, there are 4 nodes, and 4 incoming neighbors.</strong>
-<strong class='message'>	At level 5, there are 6 nodes, and 5 incoming neighbors.</strong>
-<strong class='message'>	At level 4, there are 5 nodes, and 4 incoming neighbors.</strong>
-<strong class='message'>	At level 3, there are 4 nodes, and 4 incoming neighbors.</strong>
-<strong class='message'>	At level 2, there are 4 nodes, and 1 incoming neighbors.</strong>
+<strong class='message'>	At level 10, there are 1 nodes, and 2 incoming neighbors.</strong>
+<strong class='message'>	At level 9, there are 1 nodes, and 2 incoming neighbors.</strong>
+<strong class='message'>	At level 8, there are 2 nodes, and 3 incoming neighbors.</strong>
+<strong class='message'>	At level 7, there are 4 nodes, and 6 incoming neighbors.</strong>
+<strong class='message'>	At level 6, there are 7 nodes, and 9 incoming neighbors.</strong>
+<strong class='message'>	At level 5, there are 8 nodes, and 13 incoming neighbors.</strong>
+<strong class='message'>	At level 4, there are 11 nodes, and 8 incoming neighbors.</strong>
+<strong class='message'>	At level 3, there are 9 nodes, and 6 incoming neighbors.</strong>
+<strong class='message'>	At level 2, there are 6 nodes, and 1 incoming neighbors.</strong>
 <strong class='message'>	At level 1, there are 1 nodes, and 0 incoming neighbors.</strong>
-<div class='output'>IGRAPH DN-- 35 37 -- 
+<div class='output'>IGRAPH 918a92a DN-- 50 64 -- 
 + attr: name (v/c), term_id (v/c), term_name (v/c), term_distance
 | (v/n), annotations (v/x), IC (v/n), relation (e/c)
-+ edges (vertex names):
- [1] HP:0000118->HP:0000152 HP:0000118->HP:0000707 HP:0000118->HP:0000924
- [4] HP:0000118->HP:0001626 HP:0000152->HP:0000234 HP:0000707->HP:0012639
- [7] HP:0000924->HP:0011842 HP:0001626->HP:0001627 HP:0012639->HP:0000759
-[10] HP:0012639->HP:0002011 HP:0000234->HP:0000271 HP:0001627->HP:0002564
-[13] HP:0011842->HP:0003330 HP:0000271->HP:0000153 HP:0000759->HP:0000764
-[16] HP:0002011->HP:0012443 HP:0002011->HP:0002977 HP:0002564->HP:0011603
-[19] HP:0003330->HP:0100671 HP:0012443->HP:0100547 HP:0000153->HP:0000163
++ edges from 918a92a (vertex names):
+ [1] HP:0000118->HP:0000152 HP:0000118->HP:0000924 HP:0000118->HP:0001871
+ [4] HP:0000118->HP:0002086 HP:0000118->HP:0002715 HP:0000118->HP:0040064
+ [7] HP:0000152->HP:0000234 HP:0000924->HP:0040068 HP:0000924->HP:0011842
+[10] HP:0001871->HP:0001881 HP:0001871->HP:0005561 HP:0002086->HP:0012252
+[13] HP:0002086->HP:0002795 HP:0002715->HP:0010987 HP:0040064->HP:0040068
+[16] HP:0040064->HP:0002814 HP:0040064->HP:0002817 HP:0040064->HP:0009815
+[19] HP:0012252->HP:0002088 HP:0040068->HP:0002813 HP:0040068->HP:0040070
 + ... omitted several edges
 </div>
 <div class='input'># 4b) based on shortest paths (i.e. the most concise subgraph induced)
 dag <- dDAGannotate(g, annotations, path.mode="shortest_paths",
 verbose=TRUE)
 </div>
-<strong class='message'>	At level 9, there are 1 nodes, and 1 incoming neighbors.</strong>
-<strong class='message'>	At level 8, there are 2 nodes, and 2 incoming neighbors.</strong>
 <strong class='message'>	At level 7, there are 2 nodes, and 2 incoming neighbors.</strong>
-<strong class='message'>	At level 6, there are 4 nodes, and 4 incoming neighbors.</strong>
+<strong class='message'>	At level 6, there are 2 nodes, and 2 incoming neighbors.</strong>
 <strong class='message'>	At level 5, there are 5 nodes, and 5 incoming neighbors.</strong>
-<strong class='message'>	At level 4, there are 5 nodes, and 4 incoming neighbors.</strong>
-<strong class='message'>	At level 3, there are 4 nodes, and 4 incoming neighbors.</strong>
+<strong class='message'>	At level 4, there are 5 nodes, and 5 incoming neighbors.</strong>
+<strong class='message'>	At level 3, there are 5 nodes, and 4 incoming neighbors.</strong>
 <strong class='message'>	At level 2, there are 4 nodes, and 1 incoming neighbors.</strong>
 <strong class='message'>	At level 1, there are 1 nodes, and 0 incoming neighbors.</strong>
 <div class='input'>
@@ -379,7 +375,6 @@ visDAG(g=dag, data=data, node.info="both")
     <ul>
       <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
       <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
-      <li><a href=" http://supfam.org/dnet"> http://supfam.org/dnet</a></li>
     </ul>
     
     

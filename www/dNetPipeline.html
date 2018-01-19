@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dNetPipeline @ dnet 1.0.11</title>
+<title>dNetPipeline @ dnet 1.1.2</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.11</a>
+      <a class="brand" href="index.html">dnet 1.1.2</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -306,78 +306,76 @@ subg <- dNetInduce(g, V(g), knn=0)
 # 4a) assume the input is a list of p-values (controlling fdr=0.1)
 subgraph <- dNetPipeline(g=subg, pval=x, significance.threshold=0.1)
 </div>
-<strong class='message'>Start at 2017-03-27 19:56:52</strong>
+<strong class='message'>Start at 2018-01-19 12:36:34</strong>
 <strong class='message'></strong>
-<strong class='message'>First, fit the input p-value distribution under beta-uniform mixture model (2017-03-27 19:56:52)...</strong>
+<strong class='message'>First, fit the input p-value distribution under beta-uniform mixture model (2018-01-19 12:36:34)...</strong>
 <strong class='message'>	A total of p-values: 1000</strong>
-<strong class='message'>	Maximum Log-Likelihood: 265.1</strong>
+<strong class='message'>	Maximum Log-Likelihood: 252.6</strong>
 <strong class='message'>	Mixture parameter (lambda): 0.000</strong>
-<strong class='message'>	Shape parameter (a): 0.522</strong>
-<strong class='message'>Second, determine the significance threshold (2017-03-27 19:56:52)...</strong>
+<strong class='message'>	Shape parameter (a): 0.530</strong>
+<strong class='message'>Second, determine the significance threshold (2018-01-19 12:36:34)...</strong>
 <strong class='message'>	significance threshold: 1.00e-01</strong>
-<strong class='message'>Third, calculate the scores according to the fitted BUM and FDR threshold (if any) (2017-03-27 19:56:52)...</strong>
-<strong class='message'>	Amongst 1000 scores, there are 160 positives.</strong>
-<strong class='message'>Finally, find the subgraph from the input graph with 1000 nodes and 4939 edges (2017-03-27 19:56:52)...</strong>
-<strong class='message'>	Size of the subgraph: 105 nodes and 113 edges</strong>
+<strong class='message'>Third, calculate the scores according to the fitted BUM and FDR threshold (if any) (2018-01-19 12:36:34)...</strong>
+<strong class='message'>	Amongst 1000 scores, there are 154 positives.</strong>
+<strong class='message'>Finally, find the subgraph from the input graph with 1000 nodes and 5039 edges (2018-01-19 12:36:34)...</strong>
+<strong class='message'>	Size of the subgraph: 107 nodes and 113 edges</strong>
 <strong class='message'>
-Finish at 2017-03-27 19:56:57</strong>
-<strong class='message'>Runtime in total is: 5 secs
+Finish at 2018-01-19 12:36:36</strong>
+<strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'># 4b) assume the input is a list of customised significance (eg FDR directly)
 subgraph <- dNetPipeline(g=subg, pval=x, method="customised",
 significance.threshold=0.1)
 </div>
-<strong class='message'>Start at 2017-03-27 19:56:57</strong>
+<strong class='message'>Start at 2018-01-19 12:36:36</strong>
 <strong class='message'></strong>
-<strong class='message'>First, consider the input fdr (or p-value) distribution (2017-03-27 19:56:57)...</strong>
-<strong class='message'>Second, determine the significance threshold (2017-03-27 19:56:57)...</strong>
+<strong class='message'>First, consider the input fdr (or p-value) distribution (2018-01-19 12:36:36)...</strong>
+<strong class='message'>Second, determine the significance threshold (2018-01-19 12:36:36)...</strong>
 <strong class='message'>	significance threshold: 1.00e-01</strong>
-<strong class='message'>Third, calculate the scores according to the input fdr (or p-value) and the threshold (if any) (2017-03-27 19:56:57)...</strong>
-<strong class='message'>	Amongst 1000 scores, there are 309 positives.</strong>
-<strong class='message'>Finally, find the subgraph from the input graph with 1000 nodes and 4939 edges (2017-03-27 19:56:57)...</strong>
-<strong class='message'>	Size of the subgraph: 295 nodes and 472 edges</strong>
+<strong class='message'>Third, calculate the scores according to the input fdr (or p-value) and the threshold (if any) (2018-01-19 12:36:36)...</strong>
+<strong class='message'>	Amongst 1000 scores, there are 300 positives.</strong>
+<strong class='message'>Finally, find the subgraph from the input graph with 1000 nodes and 5039 edges (2018-01-19 12:36:36)...</strong>
+<strong class='message'>	Size of the subgraph: 287 nodes and 433 edges</strong>
 <strong class='message'>
-Finish at 2017-03-27 19:57:02</strong>
-<strong class='message'>Runtime in total is: 5 secs
+Finish at 2018-01-19 12:36:38</strong>
+<strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'>
 # 5) find maximum-scoring subgraph with the desired node number nsize=20
 subgraph <- dNetPipeline(g=subg, pval=x, nsize=20)
 </div>
-<strong class='message'>Start at 2017-03-27 19:57:02</strong>
+<strong class='message'>Start at 2018-01-19 12:36:38</strong>
 <strong class='message'></strong>
-<strong class='message'>First, fit the input p-value distribution under beta-uniform mixture model (2017-03-27 19:57:02)...</strong>
+<strong class='message'>First, fit the input p-value distribution under beta-uniform mixture model (2018-01-19 12:36:38)...</strong>
 <strong class='message'>	A total of p-values: 1000</strong>
-<strong class='message'>	Maximum Log-Likelihood: 265.1</strong>
+<strong class='message'>	Maximum Log-Likelihood: 252.6</strong>
 <strong class='message'>	Mixture parameter (lambda): 0.000</strong>
-<strong class='message'>	Shape parameter (a): 0.522</strong>
-<strong class='message'>Second, determine the significance threshold (2017-03-27 19:57:02)...</strong>
+<strong class='message'>	Shape parameter (a): 0.530</strong>
+<strong class='message'>Second, determine the significance threshold (2018-01-19 12:36:38)...</strong>
 <strong class='message'>	Via constraint on the size of subnetwork to be identified (20 nodes)</strong>
-<strong class='message'>	Scanning significance threshold at rough stage (2017-03-27 19:57:02)...</strong>
-<strong class='message'>		significance threshold: 1.00e-06, corresponding to the network size (0 nodes) (2017-03-27 19:57:02)</strong>
-<strong class='message'>		significance threshold: 1.00e-05, corresponding to the network size (0 nodes) (2017-03-27 19:57:02)</strong>
-<strong class='message'>		significance threshold: 1.00e-04, corresponding to the network size (0 nodes) (2017-03-27 19:57:02)</strong>
-<strong class='message'>		significance threshold: 1.00e-03, corresponding to the network size (1 nodes) (2017-03-27 19:57:04)</strong>
-<strong class='message'>		significance threshold: 1.00e-02, corresponding to the network size (3 nodes) (2017-03-27 19:57:07)</strong>
-<strong class='message'>		significance threshold: 1.00e-01, corresponding to the network size (105 nodes) (2017-03-27 19:57:12)</strong>
-<strong class='message'>	Scanning significance threshold at finetuning stage (2017-03-27 19:57:12)...</strong>
-<strong class='message'>		significance threshold: 1.50e-02, corresponding to the network size (7 nodes) (2017-03-27 19:57:14)</strong>
-<strong class='message'>		significance threshold: 2.00e-02, corresponding to the network size (7 nodes) (2017-03-27 19:57:17)</strong>
-<strong class='message'>		significance threshold: 2.50e-02, corresponding to the network size (8 nodes) (2017-03-27 19:57:22)</strong>
-<strong class='message'>		significance threshold: 3.00e-02, corresponding to the network size (5 nodes) (2017-03-27 19:57:28)</strong>
-<strong class='message'>		significance threshold: 3.50e-02, corresponding to the network size (5 nodes) (2017-03-27 19:57:33)</strong>
-<strong class='message'>		significance threshold: 4.00e-02, corresponding to the network size (7 nodes) (2017-03-27 19:57:37)</strong>
-<strong class='message'>		significance threshold: 4.50e-02, corresponding to the network size (6 nodes) (2017-03-27 19:57:44)</strong>
-<strong class='message'>		significance threshold: 5.00e-02, corresponding to the network size (19 nodes) (2017-03-27 19:57:52)</strong>
-<strong class='message'>		significance threshold: 5.50e-02, corresponding to the network size (30 nodes) (2017-03-27 19:57:59)</strong>
-<strong class='message'>	significance threshold: 5.50e-02</strong>
-<strong class='message'>Third, calculate the scores according to the fitted BUM and FDR threshold (if any) (2017-03-27 19:57:59)...</strong>
-<strong class='message'>	Amongst 1000 scores, there are 78 positives.</strong>
-<strong class='message'>Finally, find the subgraph from the input graph with 1000 nodes and 4939 edges (2017-03-27 19:57:59)...</strong>
-<strong class='message'>	Size of the subgraph: 30 nodes and 30 edges</strong>
+<strong class='message'>	Scanning significance threshold at rough stage (2018-01-19 12:36:38)...</strong>
+<strong class='message'>		significance threshold: 1.00e-05, corresponding to the network size (0 nodes) (2018-01-19 12:36:38)</strong>
+<strong class='message'>		significance threshold: 1.00e-04, corresponding to the network size (0 nodes) (2018-01-19 12:36:38)</strong>
+<strong class='message'>		significance threshold: 1.00e-03, corresponding to the network size (0 nodes) (2018-01-19 12:36:38)</strong>
+<strong class='message'>		significance threshold: 1.00e-02, corresponding to the network size (2 nodes) (2018-01-19 12:36:38)</strong>
+<strong class='message'>		significance threshold: 1.00e-01, corresponding to the network size (107 nodes) (2018-01-19 12:36:39)</strong>
+<strong class='message'>	Scanning significance threshold at finetuning stage (2018-01-19 12:36:39)...</strong>
+<strong class='message'>		significance threshold: 1.50e-02, corresponding to the network size (2 nodes) (2018-01-19 12:36:40)</strong>
+<strong class='message'>		significance threshold: 2.00e-02, corresponding to the network size (6 nodes) (2018-01-19 12:36:40)</strong>
+<strong class='message'>		significance threshold: 2.50e-02, corresponding to the network size (9 nodes) (2018-01-19 12:36:41)</strong>
+<strong class='message'>		significance threshold: 3.00e-02, corresponding to the network size (9 nodes) (2018-01-19 12:36:41)</strong>
+<strong class='message'>		significance threshold: 3.50e-02, corresponding to the network size (11 nodes) (2018-01-19 12:36:42)</strong>
+<strong class='message'>		significance threshold: 4.00e-02, corresponding to the network size (11 nodes) (2018-01-19 12:36:43)</strong>
+<strong class='message'>		significance threshold: 4.50e-02, corresponding to the network size (10 nodes) (2018-01-19 12:36:43)</strong>
+<strong class='message'>		significance threshold: 5.00e-02, corresponding to the network size (29 nodes) (2018-01-19 12:36:44)</strong>
+<strong class='message'>	significance threshold: 5.00e-02</strong>
+<strong class='message'>Third, calculate the scores according to the fitted BUM and FDR threshold (if any) (2018-01-19 12:36:44)...</strong>
+<strong class='message'>	Amongst 1000 scores, there are 72 positives.</strong>
+<strong class='message'>Finally, find the subgraph from the input graph with 1000 nodes and 5039 edges (2018-01-19 12:36:44)...</strong>
+<strong class='message'>	Size of the subgraph: 29 nodes and 29 edges</strong>
 <strong class='message'>
-Finish at 2017-03-27 19:58:06</strong>
-<strong class='message'>Runtime in total is: 64 secs
+Finish at 2018-01-19 12:36:45</strong>
+<strong class='message'>Runtime in total is: 7 secs
 </strong></pre>
   </div>
   
@@ -424,7 +422,6 @@ Finish at 2017-03-27 19:58:06</strong>
     <ul>
       <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
       <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
-      <li><a href=" http://supfam.org/dnet"> http://supfam.org/dnet</a></li>
     </ul>
     
     

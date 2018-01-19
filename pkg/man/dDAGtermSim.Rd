@@ -69,7 +69,6 @@ Mac operating systems.
 none
 }
 \examples{
-\dontrun{
 # 1) load HPPA as igraph object
 ig.HPPA <-dRDataLoader(RData='ig.HPPA')
 g <- ig.HPPA
@@ -86,7 +85,6 @@ terms <- sample(V(dag)$name, 5)
 sim <- dDAGtermSim(g=dag, terms=terms, method="Schlicker",
 parallel=FALSE)
 sim
-}
 }
 \seealso{
 \code{\link{dDAGinduce}}, \code{\link{dDAGancestor}},

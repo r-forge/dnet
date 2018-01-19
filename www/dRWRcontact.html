@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dRWRcontact @ dnet 1.0.11</title>
+<title>dRWRcontact @ dnet 1.1.2</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">dnet 1.0.11</a>
+      <a class="brand" href="index.html">dnet 1.1.2</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -321,24 +321,24 @@ V(subg)$name <- 1:vcount(subg)
 # 3) pre-compute affinity matrix from the input graph
 Amatrix <- dRWR(g=subg, parallel=FALSE)
 </div>
-<strong class='message'>Start at 2017-03-27 19:58:28</strong>
+<strong class='message'>Start at 2018-01-19 12:36:55</strong>
 <strong class='message'></strong>
-<strong class='message'>First, get the adjacency matrix of the input graph (2017-03-27 19:58:28) ...</strong>
+<strong class='message'>First, get the adjacency matrix of the input graph (2018-01-19 12:36:55) ...</strong>
 <strong class='message'>	Notes: using unweighted graph!</strong>
-<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2017-03-27 19:58:28) ...</strong>
-<strong class='message'>Third, RWR of 8 sets of seeds using 7.5e-01 restart probability (2017-03-27 19:58:28) ...</strong>
-<strong class='message'>	1 out of 8 seed sets (2017-03-27 19:58:28)</strong>
-<strong class='message'>	2 out of 8 seed sets (2017-03-27 19:58:28)</strong>
-<strong class='message'>	3 out of 8 seed sets (2017-03-27 19:58:28)</strong>
-<strong class='message'>	4 out of 8 seed sets (2017-03-27 19:58:28)</strong>
-<strong class='message'>	5 out of 8 seed sets (2017-03-27 19:58:28)</strong>
-<strong class='message'>	6 out of 8 seed sets (2017-03-27 19:58:28)</strong>
-<strong class='message'>	7 out of 8 seed sets (2017-03-27 19:58:28)</strong>
-<strong class='message'>	8 out of 8 seed sets (2017-03-27 19:58:28)</strong>
-<strong class='message'>Fourth, rescale steady probability vector (2017-03-27 19:58:28) ...</strong>
-<strong class='message'>Finally, output 8 by 8 affinity matrix normalised by none (2017-03-27 19:58:28) ...</strong>
+<strong class='message'>Then, normalise the adjacency matrix using laplacian normalisation (2018-01-19 12:36:55) ...</strong>
+<strong class='message'>Third, RWR of 8 sets of seeds using 7.5e-01 restart probability (2018-01-19 12:36:55) ...</strong>
+<strong class='message'>	1 out of 8 seed sets (2018-01-19 12:36:55)</strong>
+<strong class='message'>	2 out of 8 seed sets (2018-01-19 12:36:55)</strong>
+<strong class='message'>	3 out of 8 seed sets (2018-01-19 12:36:55)</strong>
+<strong class='message'>	4 out of 8 seed sets (2018-01-19 12:36:55)</strong>
+<strong class='message'>	5 out of 8 seed sets (2018-01-19 12:36:55)</strong>
+<strong class='message'>	6 out of 8 seed sets (2018-01-19 12:36:55)</strong>
+<strong class='message'>	7 out of 8 seed sets (2018-01-19 12:36:55)</strong>
+<strong class='message'>	8 out of 8 seed sets (2018-01-19 12:36:55)</strong>
+<strong class='message'>Fourth, rescale steady probability vector (2018-01-19 12:36:55) ...</strong>
+<strong class='message'>Finally, output 8 by 8 affinity matrix normalised by none (2018-01-19 12:36:55) ...</strong>
 <strong class='message'>
-Finish at 2017-03-27 19:58:28</strong>
+Finish at 2018-01-19 12:36:55</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
@@ -353,25 +353,25 @@ rownames(data) <- 1:5
 dContact <- dRWRcontact(data=data, g=subg, Amatrix=Amatrix,
 parallel=FALSE)
 </div>
-<strong class='message'>Start at 2017-03-27 19:58:28</strong>
+<strong class='message'>Start at 2018-01-19 12:36:55</strong>
 <strong class='message'></strong>
-<strong class='message'>First, RWR on input graph (8 nodes and 8 edges) using input matrix (5 rows and 2 columns) as seeds and pre-computed affinity matrix (8 rows and 8 columns) (2017-03-27 19:58:28)...</strong>
-<strong class='message'>Second, calculate contact strength (2017-03-27 19:58:28)...</strong>
-<strong class='message'>Third, generate the distribution of contact strength based on 10 permutations on nodes respecting random (2017-03-27 19:58:28)...</strong>
-<strong class='message'>	1 out of 10 (2017-03-27 19:58:28)</strong>
-<strong class='message'>	2 out of 10 (2017-03-27 19:58:28)</strong>
-<strong class='message'>	3 out of 10 (2017-03-27 19:58:28)</strong>
-<strong class='message'>	4 out of 10 (2017-03-27 19:58:28)</strong>
-<strong class='message'>	5 out of 10 (2017-03-27 19:58:28)</strong>
-<strong class='message'>	6 out of 10 (2017-03-27 19:58:28)</strong>
-<strong class='message'>	7 out of 10 (2017-03-27 19:58:28)</strong>
-<strong class='message'>	8 out of 10 (2017-03-27 19:58:28)</strong>
-<strong class='message'>	9 out of 10 (2017-03-27 19:58:28)</strong>
-<strong class='message'>	10 out of 10 (2017-03-27 19:58:28)</strong>
-<strong class='message'>Last, estimate the significance of contact strength: zscore, pvalue, and BH adjusted-pvalue (2017-03-27 19:58:28)...</strong>
-<strong class='message'>Also, construct the contact graph under the cutoff 5.0e-02 of adjusted-pvalue (2017-03-27 19:58:28)...</strong>
+<strong class='message'>First, RWR on input graph (8 nodes and 8 edges) using input matrix (5 rows and 2 columns) as seeds and pre-computed affinity matrix (8 rows and 8 columns) (2018-01-19 12:36:55)...</strong>
+<strong class='message'>Second, calculate contact strength (2018-01-19 12:36:55)...</strong>
+<strong class='message'>Third, generate the distribution of contact strength based on 10 permutations on nodes respecting random (2018-01-19 12:36:55)...</strong>
+<strong class='message'>	1 out of 10 (2018-01-19 12:36:55)</strong>
+<strong class='message'>	2 out of 10 (2018-01-19 12:36:55)</strong>
+<strong class='message'>	3 out of 10 (2018-01-19 12:36:55)</strong>
+<strong class='message'>	4 out of 10 (2018-01-19 12:36:55)</strong>
+<strong class='message'>	5 out of 10 (2018-01-19 12:36:55)</strong>
+<strong class='message'>	6 out of 10 (2018-01-19 12:36:55)</strong>
+<strong class='message'>	7 out of 10 (2018-01-19 12:36:55)</strong>
+<strong class='message'>	8 out of 10 (2018-01-19 12:36:55)</strong>
+<strong class='message'>	9 out of 10 (2018-01-19 12:36:55)</strong>
+<strong class='message'>	10 out of 10 (2018-01-19 12:36:55)</strong>
+<strong class='message'>Last, estimate the significance of contact strength: zscore, pvalue, and BH adjusted-pvalue (2018-01-19 12:36:55)...</strong>
+<strong class='message'>Also, construct the contact graph under the cutoff 5.0e-02 of adjusted-pvalue (2018-01-19 12:36:55)...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2017-03-27 19:58:28</strong>
+<strong class='message'>Finish at 2018-01-19 12:36:55</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>dContact
@@ -397,9 +397,9 @@ aSeeds    0.3    0.1
 bSeeds    0.1    0.2
 
 $cgraph
-IGRAPH UN-- 2 0 -- 
+IGRAPH a6b96ce UN-- 2 0 -- 
 + attr: name (v/c)
-+ edges (vertex names):
++ edges from a6b96ce (vertex names):
 
 $call
 dRWRcontact(data = data, g = subg, Amatrix = Amatrix, parallel = FALSE)
@@ -454,7 +454,6 @@ attr(,"class")
     <ul>
       <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
       <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
-      <li><a href=" http://supfam.org/dnet"> http://supfam.org/dnet</a></li>
     </ul>
     
     

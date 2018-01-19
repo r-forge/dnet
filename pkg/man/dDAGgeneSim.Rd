@@ -99,7 +99,6 @@ nodes in query, while the mode "all_paths" results in the complete
 subgraph.
 }
 \examples{
-\dontrun{
 # 1) load HPPA as igraph object
 ig.HPPA <-dRDataLoader(RData='ig.HPPA')
 g <- ig.HPPA
@@ -117,7 +116,6 @@ genes <- sample(allgenes,5)
 sim <- dDAGgeneSim(g=dag, genes=genes, method.gene="BM.average",
 method.term="Resnik", parallel=FALSE, verbose=TRUE)
 sim
-}
 }
 \seealso{
 \code{\link{dDAGtermSim}}, \code{\link{dDAGinduce}},

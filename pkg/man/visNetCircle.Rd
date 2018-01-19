@@ -95,7 +95,6 @@ vertices is determined according to communities and degrees.
 none
 }
 \examples{
-\dontrun{
 # 1) generate a random graph according to the ER model
 g <- erdos.renyi.game(100, 1/80)
 
@@ -135,7 +134,6 @@ vertex.frame.color=vcolors, vertex.shape="sphere",
 mark.groups=mark.groups, mark.col=mark.col,
 mark.border=mark.border, mark.shape=1, mark.expand=10,
 edge.color=edge.color)
-}
 }
 \seealso{
 \code{\link{visNet}}
