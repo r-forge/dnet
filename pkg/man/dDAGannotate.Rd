@@ -52,6 +52,7 @@ nodes in query, while the mode "all_paths" results in the complete
 subgraph.
 }
 \examples{
+\dontrun{
 # 1) load HPPA as igraph object
 ig.HPPA <-dRDataLoader(RData='ig.HPPA')
 g <- ig.HPPA
@@ -75,6 +76,7 @@ verbose=TRUE)
 data <- sapply(V(dag)$annotations, length)
 names(data) <- V(dag)$name
 visDAG(g=dag, data=data, node.info="both")
+}
 }
 \seealso{
 \code{\link{dDAGinduce}}, \code{\link{dDAGlevel}}

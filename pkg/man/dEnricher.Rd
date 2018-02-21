@@ -195,6 +195,7 @@ maximum of both p-values in these two calculations.}
 }
 }
 \examples{
+\dontrun{
 # load data
 library(Biobase)
 TCGA_mutations <- dRDataLoader(RData='TCGA_mutations')
@@ -218,6 +219,7 @@ node.info="both", zlim=c(0,2), node.attrs=list(color=nodes.highlight))
 visDAG(g=subg, data=eTerm$zscore[V(subg)$name], node.info="both",
 colormap="darkblue-white-darkorange",
 node.attrs=list(color=nodes.highlight))
+}
 }
 \seealso{
 \code{\link{dEnricherView}}

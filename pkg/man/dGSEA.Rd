@@ -189,6 +189,7 @@ higher "nes", the lower "qvalue".}
 }
 }
 \examples{
+\dontrun{
 # load data
 library(Biobase)
 TCGA_mutations <-dRDataLoader(RData='TCGA_mutations')
@@ -211,6 +212,7 @@ ontology="Customised", customised.genesets=sample(rownames(data),100))
 res <- dGSEAview(eTerm, which_sample=1, top_num=5, sortBy="adjp",
 decreasing=FALSE, details=TRUE)
 visGSEA(eTerm, which_sample=1, which_term=rownames(res)[1])
+}
 }
 \seealso{
 \code{\link{dGSEAview}}, \code{\link{dGSEAwrite}},

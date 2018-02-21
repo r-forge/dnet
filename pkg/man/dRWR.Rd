@@ -94,6 +94,7 @@ The input graph will treat as an unweighted graph if there is no
 'weight' edge attribute associated with
 }
 \examples{
+\dontrun{
 # 1) generate a random graph according to the ER model
 g <- erdos.renyi.game(100, 1/100)
 
@@ -119,6 +120,7 @@ rownames(setSeeds) <- 1:5
 PTmatrix <- dRWR(g=subg, normalise="laplacian", setSeeds=setSeeds,
 restart=0.75, parallel=FALSE)
 PTmatrix
+}
 }
 \seealso{
 \code{\link{dRWRcontact}}, \code{\link{dRWRpipeline}},

@@ -87,6 +87,7 @@ is also supported for Linux or Mac operating systems.
 none
 }
 \examples{
+\dontrun{
 # 1) generate a random graph according to the ER model
 g <- erdos.renyi.game(100, 1/100)
 
@@ -108,6 +109,7 @@ rownames(data) <- 1:5
 dContact <- dRWRcontact(data=data, g=subg, Amatrix=Amatrix,
 parallel=FALSE)
 dContact
+}
 }
 \seealso{
 \code{\link{dRWR}}, \code{\link{dCheckParallel}}

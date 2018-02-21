@@ -69,6 +69,7 @@ from the input graph and scores imposed on its nodes.}
 }
 }
 \examples{
+\dontrun{
 # 1) generate an vector consisting of random values from beta distribution
 x <- rbeta(1000, shape1=0.5, shape2=1)
 names(x) <- as.character(1:length(x))
@@ -88,6 +89,7 @@ significance.threshold=0.1)
 
 # 5) find maximum-scoring subgraph with the desired node number nsize=20
 subgraph <- dNetPipeline(g=subg, pval=x, nsize=20)
+}
 }
 \seealso{
 \code{\link{dBUMfit}}, \code{\link{dBUMscore}},

@@ -179,6 +179,7 @@ please get additional information from: \cr\code{identify -list format}
 }
 }
 \examples{
+\dontrun{
 # 1) generate a random graph according to the ER model
 g <- erdos.renyi.game(100, 1/100)
 
@@ -196,6 +197,7 @@ visNetAnimate(g=subg, data=data, filetype="pdf")
 visNetAnimate(g=subg, data=data, filetype="mp4", glayout.dynamics=TRUE)
 # output as a <a href="visNetAnimate.gif">gif</a> file but with dynamic layout
 visNetAnimate(g=subg, data=data, filetype="gif", glayout.dynamics=TRUE)
+}
 }
 \seealso{
 \code{\link{visNetMul}}
