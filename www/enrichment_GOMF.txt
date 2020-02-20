@@ -1,0 +1,20 @@
+name	nAnno	nOverlap	zscore	pvalue	adjp	namespace	distance	members
+sequence-specific DNA binding	564	8	4.48	1e-04	0.0019	Function	6	Klf4,Sox2,Atoh1,Ehf,Tbx3,Zfp369,Zfp42,Rsl1
+sequence-specific DNA binding transcription factor activity	791	9	3.96	0.00027	0.0026	Function	3	Klf4,Sox2,Ehf,Tbx3,Zfp369,Klf7,Taf7,Zfp457,Rex2
+transcription factor binding	319	5	3.8	0.00071	0.0045	Function	4	Klf4,Sox2,Rb1,Bcl2,Taf7
+nucleic acid binding	774	8	3.4	0.0011	0.0046	Function	4	Klf4,Zfp369,Zfp42,Zfp329,Klf7,Zfp120,Zfp458,Klf8
+enzyme binding	353	5	3.51	0.0012	0.0046	Function	4	Rb1,Plcb1,Cat,Notch2,Atg3
+RNA polymerase II core promoter proximal region sequence-specific DNA binding transcription factor activity involved in positive regulation of transcription	248	4	3.46	0.0015	0.0048	Function	6	Klf4,Sox2,Atoh1,Ehf
+sequence-specific DNA binding RNA polymerase II transcription factor activity	159	3	3.36	0.0021	0.0056	Function	4	Sox2,Ehf,Zfp369
+protein dimerization activity	181	3	3.05	0.0033	0.0079	Function	4	Atoh1,Olig3,Abcg2
+transcription regulatory region DNA binding	199	3	2.84	0.0047	0.0098	Function	7	Klf4,Sox2,Taf7
+GTPase activity	211	3	2.71	0.0057	0.0099	Function	8	Gng2,Rab17,Rasl2-9
+cytokine activity	208	3	2.74	0.0054	0.0099	Function	5	Cxcl15,Cxcl5,Spp1
+protein homodimerization activity	731	6	2.28	0.011	0.018	Function	5	Bcl2,Plcb1,Cat,Ptpre,Vps4b,Abcg2
+RNA polymerase II core promoter proximal region sequence-specific DNA binding	333	3	1.77	0.027	0.037	Function	10	Atoh1,Ehf,Tbx3
+GTP binding	337	3	1.75	0.028	0.037	Function	6	Rab17,Rasl2-9,Gucy2c
+protein kinase activity	510	3	0.973	0.095	0.12	Function	6	Gucy2c,Frk,Tnni3k
+transferase activity, transferring phosphorus-containing groups	519	3	0.941	0.1	0.12	Function	4	Gucy2c,Frk,Tnni3k
+calcium ion binding	561	3	0.801	0.12	0.14	Function	6	Plcb1,Itpr2,Notch2
+identical protein binding	602	3	0.674	0.15	0.16	Function	4	Rb1,Bcl2,Vps4b
+signal transducer activity	670	3	0.483	0.19	0.19	Function	3	Gng2,Plcb1,Cckar

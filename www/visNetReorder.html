@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>visNetReorder @ dnet 1.1.2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+
+<style type="text/css">
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 8px 20px 12px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #999999;
+}
+
+.navbar .brand:hover {
+  color: #F87217;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar .nav > li > a:hover {
+  color: #F87217;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+</style>
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17338744-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- Enlarge image -->
+<script type="text/javascript">
+    function newWin(url, name, width, height) { 
+       
+        var left = (screen.width/2)-(width/2);
+        var top = (screen.height/2)-(height/2); 
+        
+        window.open(url,name,'scrollbars=yes,resizable=yes,fullscreen=yes, width=' + width + ', height='+height+', top='+top+', left='+left);
+    }
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">dnet 1.1.2</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="install.html"><i class="icon-wrench icon-white"></i> Installation</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="rdata.html"><i class="icon-file icon-white"></i> RData</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="faqs.html"><i class="icon-question-sign icon-white"></i> FAQs</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
+        </ul>
+       
+        <!-- HTML for GOOLE SEARCH BAR 
+        <ul class="nav">
+            <div id="search-wrapper">
+                <form id="search" method="get" action="http://www.google.com/custom">
+                    <div class="search-box">
+                        <i class="icon-search icon-white"></i>
+                        <input type="text" id="tfq" class="textinput" name="q" size="21" maxlength="120" value="Google Search"/>
+                    </div>
+                </form>
+            </div>
+        </ul>
+        -->
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CSS styles for standard search box with placeholder text-->
+<style type="text/css">
+    #search-wrapper {
+        width:300px;
+        height:40px;
+        background-color:transparent;
+        margin:0px auto 0;
+        border:0px solid #ff0000;
+        -moz-border-radius: 2px; /* FF1+ */
+        -webkit-border-radius: 2px; /* Saf3-4 */
+        border-radius: 2px; /* Opera 10.5, IE 9, Saf5, Chrome */
+        position:relative;
+    }
+
+    #search {
+        background-color:transparent;
+        padding:0px;
+        height:40px;
+        overflow:hidden;
+    }
+
+    .search-box {
+        width:250px;
+        height:32px;
+        background-color:transparent;
+        margin:2px 7px;
+        border:0px solid #cfcfcf;
+        -moz-border-radius: 2px; /* FF1+ */
+        -webkit-border-radius: 2px; /* Saf3-4 */
+        border-radius: 2px; /* Opera 10.5, IE 9, Saf5, Chrome */
+        position:relative;
+    }
+
+	.textinput{
+		margin: 0;
+		padding: 5px 15px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size:14px;
+		color:#999999;
+		border:1px solid #f00; border-right:0px;
+		border-top-left-radius: 5px 5px;
+		border-bottom-left-radius: 5px 5px;
+	}
+</style>
+
+<!-- JAVASCRIPT to clear search text when the field is clicked -->
+<script type="text/javascript">
+window.onload = function(){
+	//Get submit button
+	var submitbutton = document.getElementById("tfq");
+	//Add listener to submit button
+	if(submitbutton.addEventListener){
+		submitbutton.addEventListener("click", function() {
+			if (submitbutton.value == 'Google Search'){//Customize this text string to whatever you want
+				submitbutton.value = 'dnet R ';
+			}
+		});
+	}
+}
+</script>
+
+<script>
+  (function() {
+    var cx = '012094530736424854714:djnz9oat1hu';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<div><gcse:search></gcse:search></div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h2>Function to visualise the multiple graph colorings reorded within a sheet-shape rectangle grid</h2>
+
+<div class="row">
+  <div class="span8">
+  
+    <h3>Description</h3>
+    <p><code>visNetReorder</code> is supposed to visualise the multiple graph
+colorings reorded within a sheet-shape rectangle grid</p>
+  
+    <h3>Usage</h3>
+    <pre>visNetReorder(g, data, sReorder, height = 7, margin = rep(0.1, 4), border.color = "#EEEEEE", 
+  colormap = c("bwr", "jet", "gbr", "wyr", "br", "yr", "rainbow", "wb"), ncolors = 40, 
+      zlim = NULL, colorbar = T, colorbar.fraction = 0.5, newpage = T, glayout = layout.fruchterman.reingold, 
+      mtext.side = 3, mtext.adj = 0, mtext.cex = 1, mtext.font = 2, mtext.col = "black", 
+      ...)</pre>
+    
+    <h3>Arguments</h3>
+    <dl>
+      <dt>g</dt>
+      <dd>an object of class "igraph" or "graphNEL"</dd>
+      <dt>data</dt>
+      <dd>an input data matrix used to color-code vertices/nodes. One
+column corresponds to one graph node coloring. The input matrix must
+have row names, and these names should include all node names of input
+graph, i.e. V(g)$name, since there is a mapping operation. After
+mapping, the length of the pattern vector should be the same as the
+number of nodes of input graph. The way of how to color-code is to map
+values in the pattern onto the whole colormap (see the next arguments:
+colormap, ncolors, zlim and colorbar)</dd>
+      <dt>sReorder</dt>
+      <dd>an object of class "sReorder"</dd>
+      <dt>height</dt>
+      <dd>a numeric value specifying the height of device</dd>
+      <dt>margin</dt>
+      <dd>margins as units of length 4 or 1</dd>
+      <dt>border.color</dt>
+      <dd>the border color of each figure</dd>
+      <dt>colormap</dt>
+      <dd>short name for the colormap. It can be one of "jet"
+(jet colormap), "bwr" (blue-white-red colormap), "gbr" (green-black-red
+colormap), "wyr" (white-yellow-red colormap), "br" (black-red
+colormap), "yr" (yellow-red colormap), "wb" (white-black colormap), and
+"rainbow" (rainbow colormap, that is,
+red-yellow-green-cyan-blue-magenta). Alternatively, any
+hyphen-separated HTML color names, e.g. "blue-black-yellow",
+"royalblue-white-sandybrown", "darkgreen-white-darkviolet". A list of
+standard color names can be found in
+<a href = 'http://html-color-codes.info/color-names'>http://html-color-codes.info/color-names</a></dd>
+      <dt>ncolors</dt>
+      <dd>the number of colors specified over the colormap</dd>
+      <dt>zlim</dt>
+      <dd>the minimum and maximum z/patttern values for which colors
+should be plotted, defaulting to the range of the finite values of z.
+Each of the given colors will be used to color an equispaced interval
+of this range. The midpoints of the intervals cover the range, so that
+values just outside the range will be plotted</dd>
+      <dt>colorbar</dt>
+      <dd>logical to indicate whether to append a colorbar. If
+pattern is null, it always sets to false</dd>
+      <dt>colorbar.fraction</dt>
+      <dd>the relative fraction of colorbar block
+against the figure block</dd>
+      <dt>newpage</dt>
+      <dd>logical to indicate whether to open a new page. By
+default, it sets to true for opening a new page</dd>
+      <dt>glayout</dt>
+      <dd>either a function or a numeric matrix configuring how
+the vertices will be placed on the plot. If layout is a function, this
+function will be called with the graph as the single parameter to
+determine the actual coordinates. This function can be one of
+"layout.auto", "layout.random", "layout.circle", "layout.sphere",
+"layout.fruchterman.reingold", "layout.kamada.kawai", "layout.spring",
+"layout.reingold.tilford", "layout.fruchterman.reingold.grid",
+"layout.lgl", "layout.graphopt", "layout.svd" and "layout.norm". A full
+explanation of these layouts can be found in
+<a href = 'http://igraph.org/r/doc/layout_nicely.html'>http://igraph.org/r/doc/layout_nicely.html</a></dd>
+      <dt>mtext.side</dt>
+      <dd>on which side of the mtext plot (1=bottom, 2=left,
+3=top, 4=right)</dd>
+      <dt>mtext.adj</dt>
+      <dd>the adjustment for mtext alignment (0 for left or
+bottom alignment, 1 for right or top alignment)</dd>
+      <dt>mtext.cex</dt>
+      <dd>the font size of mtext labels</dd>
+      <dt>mtext.font</dt>
+      <dd>the font weight of mtext labels</dd>
+      <dt>mtext.col</dt>
+      <dd>the color of mtext labels</dd>
+      <dt>...</dt>
+      <dd>additional graphic parameters. See
+<a href = 'http://igraph.org/r/doc/plot.common.html'>http://igraph.org/r/doc/plot.common.html</a> for the complete list.</dd>
+    </dl>
+    <!-- 
+    -->
+    
+    <!-- 
+    <div class="Value">
+    -->
+      <h3>Value</h3>
+      
+      <p>invisible</p>
+    <!-- 
+    </div>
+    -->
+    <!-- 
+    <div class="Note">
+    -->
+      <h3>Note</h3>
+      
+      <p>none</p>
+    <!-- 
+    </div>
+    -->
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) generate a random graph according to the ER model
+g <- erdos.renyi.game(100, 1/100)
+
+# 2) produce the induced subgraph only based on the nodes in query
+subg <- dNetInduce(g, V(g), knn=0)
+
+# 3) reorder the module with vertices being color-coded by input data
+nnodes <- vcount(subg)
+nsamples <- 10
+data <- matrix(runif(nnodes*nsamples), nrow=nnodes, ncol=nsamples)
+rownames(data) <- V(subg)$name
+sReorder <- dNetReorder(g=subg, data, feature="node",
+node.normalise="none")
+</div>
+<strong class='message'>Start at 2018-01-19 12:39:19</strong>
+<strong class='message'></strong>
+<strong class='message'>First, define topology of a map grid (2018-01-19 12:39:19)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (36 X 10) using 'linear' initialisation, given a topology and input data (2018-01-19 12:39:19)...</strong>
+<strong class='message'>Third, get training at the rough stage (2018-01-19 12:39:19)...</strong>
+<strong class='message'>	1 out of 360 (2018-01-19 12:39:19)</strong>
+<strong class='message'>	36 out of 360 (2018-01-19 12:39:19)</strong>
+<strong class='message'>	72 out of 360 (2018-01-19 12:39:19)</strong>
+<strong class='message'>	108 out of 360 (2018-01-19 12:39:19)</strong>
+<strong class='message'>	144 out of 360 (2018-01-19 12:39:19)</strong>
+<strong class='message'>	180 out of 360 (2018-01-19 12:39:19)</strong>
+<strong class='message'>	216 out of 360 (2018-01-19 12:39:19)</strong>
+<strong class='message'>	252 out of 360 (2018-01-19 12:39:19)</strong>
+<strong class='message'>	288 out of 360 (2018-01-19 12:39:19)</strong>
+<strong class='message'>	324 out of 360 (2018-01-19 12:39:19)</strong>
+<strong class='message'>	360 out of 360 (2018-01-19 12:39:19)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2018-01-19 12:39:19)...</strong>
+<strong class='message'>	1 out of 1440 (2018-01-19 12:39:19)</strong>
+<strong class='message'>	144 out of 1440 (2018-01-19 12:39:19)</strong>
+<strong class='message'>	288 out of 1440 (2018-01-19 12:39:20)</strong>
+<strong class='message'>	432 out of 1440 (2018-01-19 12:39:20)</strong>
+<strong class='message'>	576 out of 1440 (2018-01-19 12:39:20)</strong>
+<strong class='message'>	720 out of 1440 (2018-01-19 12:39:20)</strong>
+<strong class='message'>	864 out of 1440 (2018-01-19 12:39:20)</strong>
+<strong class='message'>	1008 out of 1440 (2018-01-19 12:39:20)</strong>
+<strong class='message'>	1152 out of 1440 (2018-01-19 12:39:20)</strong>
+<strong class='message'>	1296 out of 1440 (2018-01-19 12:39:20)</strong>
+<strong class='message'>	1440 out of 1440 (2018-01-19 12:39:20)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2018-01-19 12:39:20)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2018-01-19 12:39:20)...</strong>
+<strong class='message'></strong>
+<strong class='message'>Below are the summaries of the training results:</strong>
+<strong class='message'>   dimension of input data: 10x10
+   xy-dimension of map grid: xdim=6, ydim=6, r=3
+   grid lattice: rect
+   grid shape: sheet
+   dimension of grid coord: 36x2
+   initialisation method: linear
+   dimension of codebook matrix: 36x10
+   mean quantization error: 0.232787363343837
+</strong>
+<strong class='message'>Below are the details of trainology:</strong>
+<strong class='message'>   training algorithm: sequential
+   alpha type: invert
+   training neighborhood kernel: gaussian
+   trainlength (x input data length): 36 at rough stage; 144 at finetune stage
+   radius (at rough stage): from 1 to 1
+   radius (at finetune stage): from 1 to 1
+</strong>
+<strong class='message'>End at 2018-01-19 12:39:20</strong>
+<strong class='message'>Runtime in total is: 1 secs
+</strong>
+<div class='input'>
+# 4) visualise the module with vertices being color-coded by input data
+visNetReorder(g=subg, colormap="bwr", data=data, sReorder)
+</div></pre>
+  </div>
+  
+  <div class="span4">
+    
+    <!-- 
+    <ul>
+      <li>visNetReorder</li>
+    </ul>
+    <ul>
+      
+    </ul> 
+    -->
+    
+    <h2>Source code</h2>
+    <a href="javascript:newWin('R/visNetReorder.r', 'R/visNetReorder.r', '1200', '1200')" title="Click to view"><B><code>visNetReorder.r</code></B></a>
+    
+    <h2>Source man</h2>
+    <a href="javascript:newWin('man/visNetReorder.txt', 'man/visNetReorder.txt', '1200', '1200')" title="Click to view"><B><code>visNetReorder.Rd</code></B></a>
+    
+    <a href="javascript:newWin('man/visNetReorder.pdf', 'man/visNetReorder.pdf', '1200', '1200')" title="Click to view"><B><code>visNetReorder.pdf</code></B></a>
+    
+    <h2>See also</h2>
+    
+<code><a href='visNet.html'>visNet</a></code>, <code><a href='dNetReorder.html'>dNetReorder</a></code>
+
+    <!--
+
+    <h2>Citation</h2>
+    <p>Fang H, Gough J. (2014) <B>The &#39;dnet&#39; approach promotes emerging research on cancer patient survival</B>. <I>Genome Medicine</I>, 6(8):64. <a href="http://dx.doi.org/10.1186/s13073-014-0064-8">doi:10.1186/s13073-014-0064-8</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/25246945">25246945</a></p>
+
+<p>You may also cite the package as:</p>
+
+<ul>
+<li><code>web link/URL</code></li>
+</ul>
+
+<p>Package &ldquo;dnet&rdquo; [<a href="http://cran.r-project.org/package=dnet">http://cran.r-project.org/package=dnet</a>]</p>
+
+    
+    
+    <h2>URL</h2>
+    <ul>
+      <li><a href="http://dnet.r-forge.r-project.org">http://dnet.r-forge.r-project.org</a></li>
+      <li><a href=" https://github.com/hfang-bristol/dnet"> https://github.com/hfang-bristol/dnet</a></li>
+    </ul>
+    
+    
+    -->
+    
+  </div>
+  
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+
+<p><a href="mailto:hfang.shanghai@gmail.com" title="Hai Fang">Hai Fang</a></p>
+<p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
+
+
+      </footer>
+    </div>
+  </body>
+</html>

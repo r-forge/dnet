@@ -1,0 +1,380 @@
+name	nAnno	nOverlap	zscore	pvalue	adjp	namespace	distance	members
+abnormal vestibular hair cell number	20	3	11.4	5e-07	0.00019	Mammalian_phenotype	8	Rb1,Atoh1,Sox2
+abnormal rostral migratory stream morphology	32	3	8.86	3.6e-06	0.00068	Mammalian_phenotype	9	Cckar,Prok2,Olig3
+abnormal vestibular hair cell morphology	42	3	7.65	1.1e-05	0.001	Mammalian_phenotype	5	Rb1,Atoh1,Sox2
+decreased susceptibility to bacterial infection induced morbidity/mortality	39	3	7.96	8.1e-06	0.001	Mammalian_phenotype	7	Gucy2c,Spp1,Cxcl5
+abnormal olfactory bulb development	57	3	6.45	3.7e-05	0.0016	Mammalian_phenotype	5	Cckar,Prok2,Olig3
+abnormal bone remodeling	182	5	5.68	2.8e-05	0.0016	Mammalian_phenotype	3	Spp1,Ibsp,Mepe,Cd44,Ptpre
+abnormal autophagy	56	3	6.52	3.5e-05	0.0016	Mammalian_phenotype	3	Bcl2,Sox2,Atg3
+abnormal olfactory lobe morphology	188	5	5.56	3.4e-05	0.0016	Mammalian_phenotype	6	Sox2,Klf7,Cckar,Prok2,Olig3
+abnormal exocrine gland morphology	653	9	4.76	3.9e-05	0.0016	Mammalian_phenotype	3	Bcl2,Rb1,Atoh1,Sox2,Tbx3,Cd44,Itpr2,Notch2,Klf4
+abnormal cell differentiation	686	9	4.57	5.9e-05	0.002	Mammalian_phenotype	3	Rb1,Sox2,Cd44,Ptpre,Klf7,Notch2,Klf4,Cckar,Olig3
+abnormal chemokine level	63	3	6.09	5.5e-05	0.002	Mammalian_phenotype	6	Spp1,Cd44,Cxcl5
+abnormal inner ear vestibule morphology	84	3	5.15	0.00017	0.0021	Mammalian_phenotype	4	Rb1,Atoh1,Sox2
+diluted coat color	80	3	5.3	0.00014	0.0021	Mammalian_phenotype	6	Bcl2,Sox2,Notch2
+abnormal sensory neuron morphology	485	7	4.32	0.00016	0.0021	Mammalian_phenotype	4	Bcl2,Rb1,Atoh1,Sox2,Klf7,Notch2,Cckar
+abnormal epidermis stratum granulosum morphology	71	3	5.69	8.8e-05	0.0021	Mammalian_phenotype	4	Rb1,Cd44,Klf4
+abnormal osteoclast physiology	77	3	5.42	0.00012	0.0021	Mammalian_phenotype	4	Spp1,Mepe,Ptpre
+abnormal tumor incidence	916	10	4.14	0.00013	0.0021	Mammalian_phenotype	3	Bcl2,Rb1,Sox2,Spp1,Cd44,Cat,Notch2,Klf4,Ranbp2,Perp
+decreased tumor incidence	233	5	4.83	0.00011	0.0021	Mammalian_phenotype	4	Bcl2,Rb1,Spp1,Cd44,Cat
+altered tumor susceptibility	930	10	4.08	0.00015	0.0021	Mammalian_phenotype	2	Bcl2,Rb1,Sox2,Spp1,Cd44,Cat,Notch2,Klf4,Ranbp2,Perp
+abnormal melanocyte morphology	74	3	5.55	1e-04	0.0021	Mammalian_phenotype	2	Bcl2,Rb1,Notch2
+abnormal cochlear hair cell number	68	3	5.83	7.4e-05	0.0021	Mammalian_phenotype	9	Rb1,Atoh1,Sox2
+abnormal small intestine crypts of Lieberkuhn morphology	72	3	5.64	9.3e-05	0.0021	Mammalian_phenotype	5	Bcl2,Atoh1,Klf4
+abnormal neuronal precursor cell number	68	3	5.83	7.4e-05	0.0021	Mammalian_phenotype	5	Rb1,Notch2,Cckar
+abnormal olfactory system morphology	76	3	5.47	0.00012	0.0021	Mammalian_phenotype	2	Sox2,Notch2,Cckar
+abnormal lens development	84	3	5.15	0.00017	0.0021	Mammalian_phenotype	4	Rb1,Sox2,Klf4
+decreased apoptosis	244	5	4.68	0.00014	0.0021	Mammalian_phenotype	5	Bcl2,Rb1,Spp1,Cd44,Perp
+abnormal T cell apoptosis	143	4	5.13	0.00011	0.0021	Mammalian_phenotype	5	Bcl2,Cd44,Atg3,Perp
+decreased susceptibility to infection induced morbidity/mortality	74	3	5.55	1e-04	0.0021	Mammalian_phenotype	6	Gucy2c,Spp1,Cxcl5
+abnormal neuron differentiation	358	6	4.46	0.00016	0.0021	Mammalian_phenotype	4	Rb1,Sox2,Klf7,Notch2,Cckar,Olig3
+decreased cell death	245	5	4.67	0.00015	0.0021	Mammalian_phenotype	4	Bcl2,Rb1,Spp1,Cd44,Perp
+abnormal cell migration	496	7	4.24	0.00019	0.0022	Mammalian_phenotype	3	Atoh1,Spp1,Cd44,Klf4,Cckar,Olig3,Mpp1
+abnormal neuron physiology	633	8	4.16	0.00018	0.0022	Mammalian_phenotype	3	Rb1,Atoh1,Sox2,Spp1,Notch2,Cckar,Olig3,Perp
+abnormal trabecular bone morphology	275	5	4.31	0.00027	0.0023	Mammalian_phenotype	4	Spp1,Ibsp,Mepe,Cd44,Ptpre
+altered response to myocardial infarction	90	3	4.94	0.00022	0.0023	Mammalian_phenotype	3	Spp1,Cd44,Tnni3k
+abnormal olfactory bulb morphology	168	4	4.62	0.00023	0.0023	Mammalian_phenotype	7	Klf7,Cckar,Prok2,Olig3
+abnormal oxygen level	272	5	4.34	0.00026	0.0023	Mammalian_phenotype	4	Rb1,Atoh1,Klf7,Notch2,Olig3
+abnormal ectoderm development	93	3	4.84	0.00025	0.0023	Mammalian_phenotype	6	Sox2,Tbx3,Serpinb5
+pericardial edema	94	3	4.81	0.00026	0.0023	Mammalian_phenotype	5	Rb1,Tbx3,Notch2
+increased tumor incidence	816	9	3.95	0.00025	0.0023	Mammalian_phenotype	4	Bcl2,Rb1,Sox2,Cd44,Cat,Notch2,Klf4,Ranbp2,Perp
+abnormal gland physiology	652	8	4.06	0.00023	0.0023	Mammalian_phenotype	2	Bcl2,Rb1,Itpr2,Notch2,Klf4,Cckar,Taf7,Perp
+abnormal neuronal precursor proliferation	92	3	4.87	0.00024	0.0023	Mammalian_phenotype	5	Rb1,Atoh1,Sox2
+increased physiological sensitivity to xenobiotic	268	5	4.39	0.00024	0.0023	Mammalian_phenotype	3	Spp1,Cat,Klf4,Abcg2,Ranbp2
+decreased sensitivity to induced cell death	91	3	4.91	0.00023	0.0023	Mammalian_phenotype	5	Spp1,Cd44,Perp
+abnormal blood vessel endothelium morphology	94	3	4.81	0.00026	0.0023	Mammalian_phenotype	4	Bcl2,Cd44,Notch2
+complete neonatal lethality	670	8	3.97	0.00028	0.0023	Mammalian_phenotype	7	Rb1,Atoh1,Sox2,Notch2,Klf4,Nxf3,Atg3,Olig3
+increased organ/body region tumor incidence	687	8	3.88	0.00034	0.0028	Mammalian_phenotype	5	Bcl2,Rb1,Sox2,Cd44,Cat,Notch2,Ranbp2,Perp
+decreased sensory neuron number	186	4	4.32	0.00036	0.0029	Mammalian_phenotype	6	Bcl2,Rb1,Atoh1,Sox2
+decreased neutrophil cell number	105	3	4.49	4e-04	0.003	Mammalian_phenotype	9	Spp1,Cxcl5,Cxcl15
+partial prenatal lethality	417	6	3.98	4e-04	0.003	Mammalian_phenotype	5	Rb1,Sox2,Tbx3,Notch2,Zfp42,Olig3
+abnormal organ/body region tumor incidence	699	8	3.83	0.00038	0.003	Mammalian_phenotype	4	Bcl2,Rb1,Sox2,Cd44,Cat,Notch2,Ranbp2,Perp
+abnormal blood urea nitrogen level	192	4	4.23	0.00042	0.0031	Mammalian_phenotype	4	Bcl2,Spp1,Cd44,Notch2
+deafness	108	3	4.41	0.00045	0.0032	Mammalian_phenotype	5	Rb1,Atoh1,Sox2
+abnormal gas homeostasis	567	7	3.81	0.00047	0.0033	Mammalian_phenotype	3	Bcl2,Rb1,Atoh1,Spp1,Klf7,Notch2,Olig3
+abnormal response to tactile stimuli	110	3	4.36	0.00048	0.0033	Mammalian_phenotype	5	Rb1,Spp1,Klf7
+abnormal hippocampus neuron morphology	111	3	4.34	0.00049	0.0033	Mammalian_phenotype	4	Sox2,Klf7,Plcb1
+abnormal spinal reflex	110	3	4.36	0.00048	0.0033	Mammalian_phenotype	6	Rb1,Spp1,Klf7
+decreased granulocyte number	202	4	4.08	0.00053	0.0035	Mammalian_phenotype	7	Spp1,Cd44,Cxcl5,Cxcl15
+abnormal pituitary gland morphology	117	3	4.19	6e-04	0.0038	Mammalian_phenotype	5	Rb1,Sox2,Notch2
+abnormal induced morbidity/mortality	588	7	3.69	6e-04	0.0038	Mammalian_phenotype	2	Gucy2c,Rb1,Spp1,Cd44,Cat,Cxcl5,Atg3
+abnormal thymus physiology	117	3	4.19	6e-04	0.0038	Mammalian_phenotype	3	Bcl2,Taf7,Perp
+abnormal circulating amino acid level	210	4	3.97	0.00063	0.0039	Mammalian_phenotype	4	Bcl2,Spp1,Cd44,Atg3
+abnormal intestinal mucosa morphology	214	4	3.92	0.00068	0.0042	Mammalian_phenotype	5	Bcl2,Rb1,Atoh1,Klf4
+abnormal innate immunity	608	7	3.58	0.00075	0.0043	Mammalian_phenotype	3	Bcl2,Spp1,Mepe,Cd44,Ptpre,Cxcl5,Mpp1
+increased incidence of tumors by chemical induction	123	3	4.06	0.00073	0.0043	Mammalian_phenotype	4	Cat,Klf4,Ranbp2
+decreased T cell proliferation	217	4	3.88	0.00073	0.0043	Mammalian_phenotype	9	Rb1,Cd44,Atg3,Taf7
+abnormal redox activity	125	3	4.02	0.00077	0.0044	Mammalian_phenotype	3	Cat,Abcg2,Atg3
+abnormal breathing pattern	337	5	3.7	8e-04	0.0045	Mammalian_phenotype	5	Rb1,Atoh1,Sox2,Cd44,Klf7
+abnormal neuron proliferation	128	3	3.95	0.00085	0.0047	Mammalian_phenotype	4	Rb1,Atoh1,Sox2
+abnormal cell morphology	627	7	3.49	0.00091	0.005	Mammalian_phenotype	2	Rb1,Sox2,Cd44,Abcg2,Nxf3,Ranbp2,Zfp42
+abnormal forebrain morphology	981	9	3.31	0.0011	0.005	Mammalian_phenotype	4	Rb1,Sox2,Spp1,Klf7,Plcb1,Notch2,Cckar,Prok2,Olig3
+abnormal telencephalon morphology	791	8	3.42	0.00094	0.005	Mammalian_phenotype	5	Rb1,Sox2,Spp1,Klf7,Plcb1,Cckar,Prok2,Olig3
+neonatal lethality	977	9	3.32	0.0011	0.005	Mammalian_phenotype	6	Rb1,Atoh1,Sox2,Cd44,Notch2,Klf4,Nxf3,Atg3,Olig3
+neuron degeneration	356	5	3.55	0.0011	0.005	Mammalian_phenotype	4	Bcl2,Rb1,Atoh1,Sox2,Notch2
+arteriosclerosis	137	3	3.78	0.0011	0.005	Mammalian_phenotype	5	Bcl2,Spp1,Cd44
+abnormal brainstem morphology	234	4	3.68	0.001	0.005	Mammalian_phenotype	4	Bcl2,Atoh1,Spp1,Olig3
+abnormal circulating creatinine level	136	3	3.8	0.0011	0.005	Mammalian_phenotype	5	Bcl2,Spp1,Cd44
+atherosclerotic lesions	132	3	3.87	0.00095	0.005	Mammalian_phenotype	6	Bcl2,Spp1,Cd44
+abnormal neuronal migration	132	3	3.87	0.00095	0.005	Mammalian_phenotype	4	Atoh1,Cckar,Olig3
+increased liver tumor incidence	136	3	3.8	0.0011	0.005	Mammalian_phenotype	7	Rb1,Cat,Ranbp2
+abnormal circulating interleukin-6 level	137	3	3.78	0.0011	0.005	Mammalian_phenotype	8	Spp1,Cd44,Cxcl5
+abnormal respiratory epithelium morphology	237	4	3.64	0.0011	0.005	Mammalian_phenotype	3	Rb1,Sox2,Notch2,Cckar
+abnormal motile cilium morphology	133	3	3.85	0.00098	0.005	Mammalian_phenotype	4	Sox2,Nxf3,Zfp42
+abnormal neuroendocrine gland morphology	139	3	3.74	0.0011	0.0051	Mammalian_phenotype	4	Rb1,Sox2,Notch2
+cyanosis	239	4	3.62	0.0011	0.0051	Mammalian_phenotype	4	Atoh1,Klf7,Notch2,Olig3
+increased hepatobiliary system tumor incidence	138	3	3.76	0.0011	0.0051	Mammalian_phenotype	6	Rb1,Cat,Ranbp2
+abnormal intestinal epithelium morphology	243	4	3.57	0.0012	0.0053	Mammalian_phenotype	4	Bcl2,Rb1,Atoh1,Klf4
+abnormal sex gland morphology	821	8	3.3	0.0012	0.0053	Mammalian_phenotype	3	Bcl2,Rb1,Sox2,Plcb1,Notch2,Klf4,Nxf3,Zfp42
+decreased susceptibility to bacterial infection	142	3	3.69	0.0012	0.0054	Mammalian_phenotype	6	Gucy2c,Spp1,Cxcl5
+enlarged kidney	144	3	3.65	0.0013	0.0056	Mammalian_phenotype	5	Bcl2,Plcb1,Cckar
+abnormal digestive system physiology	669	7	3.28	0.0014	0.0058	Mammalian_phenotype	2	Gucy2c,Rb1,Atoh1,Sox2,Cd44,Itpr2,Cckar
+increased circulating alkaline phosphatase level	147	3	3.6	0.0014	0.0059	Mammalian_phenotype	7	Rb1,Zfp715,Notch2
+abnormal somatic sensory system morphology	683	7	3.22	0.0016	0.0062	Mammalian_phenotype	4	Bcl2,Rb1,Atoh1,Sox2,Klf7,Notch2,Cckar
+altered susceptibility to infection	683	7	3.22	0.0016	0.0062	Mammalian_phenotype	4	Gucy2c,Rb1,Spp1,Cd44,Notch2,Cxcl5,Cxcl15
+abnormal T cell physiology	681	7	3.23	0.0016	0.0062	Mammalian_phenotype	6	Bcl2,Rb1,Cd44,Notch2,Atg3,Taf7,Perp
+abnormal neuron apoptosis	256	4	3.44	0.0015	0.0062	Mammalian_phenotype	4	Rb1,Spp1,Notch2,Perp
+increased lung tumor incidence	151	3	3.53	0.0016	0.0062	Mammalian_phenotype	7	Bcl2,Rb1,Ranbp2
+increased respiratory system tumor incidence	151	3	3.53	0.0016	0.0062	Mammalian_phenotype	6	Bcl2,Rb1,Ranbp2
+taste/olfaction phenotype	153	3	3.5	0.0016	0.0063	Mammalian_phenotype	1	Sox2,Notch2,Cckar
+abnormal incidence of induced tumors	260	4	3.4	0.0016	0.0063	Mammalian_phenotype	4	Spp1,Cat,Klf4,Ranbp2
+abnormal bone mineralization	156	3	3.45	0.0018	0.0066	Mammalian_phenotype	4	Spp1,Ibsp,Mepe
+abnormal amino acid level	264	4	3.36	0.0017	0.0066	Mammalian_phenotype	3	Bcl2,Spp1,Cd44,Atg3
+increased blood urea nitrogen level	159	3	3.41	0.0019	0.007	Mammalian_phenotype	5	Bcl2,Spp1,Notch2
+abnormal crypts of Lieberkuhn morphology	161	3	3.38	0.002	0.0073	Mammalian_phenotype	4	Bcl2,Atoh1,Klf4
+abnormal nose morphology	162	3	3.36	0.002	0.0073	Mammalian_phenotype	3	Bcl2,Notch2,Cckar
+abnormal facial morphology	709	7	3.11	0.002	0.0073	Mammalian_phenotype	3	Bcl2,Rb1,Sox2,Tbx3,Notch2,Klf4,Cckar
+increased incidence of induced tumors	166	3	3.31	0.0022	0.0078	Mammalian_phenotype	5	Cat,Klf4,Ranbp2
+abnormal somatic nervous system morphology	891	8	3.03	0.0022	0.0078	Mammalian_phenotype	3	Bcl2,Rb1,Atoh1,Sox2,Cd44,Klf7,Notch2,Cckar
+abnormal respiratory function	413	5	3.14	0.0023	0.0079	Mammalian_phenotype	4	Rb1,Atoh1,Sox2,Cd44,Klf7
+abnormal macrophage physiology	413	5	3.14	0.0023	0.0079	Mammalian_phenotype	4	Bcl2,Spp1,Mepe,Cd44,Ptpre
+abnormal response to infection	724	7	3.04	0.0023	0.0079	Mammalian_phenotype	3	Gucy2c,Rb1,Spp1,Cd44,Notch2,Cxcl5,Cxcl15
+abnormal internal female genitalia morphology	414	5	3.13	0.0023	0.0079	Mammalian_phenotype	5	Bcl2,Rb1,Tbx3,Cd44,Notch2
+abnormal cell proliferation	902	8	2.99	0.0024	0.008	Mammalian_phenotype	3	Bcl2,Rb1,Atoh1,Sox2,Cd44,Notch2,Serpinb5,Klf4
+abnormal diencephalon morphology	287	4	3.14	0.0025	0.0082	Mammalian_phenotype	5	Rb1,Sox2,Notch2,Olig3
+abnormal T cell morphology	909	8	2.97	0.0025	0.0082	Mammalian_phenotype	7	Bcl2,Rb1,Spp1,Cd44,Zfp715,Notch2,Atg3,Taf7
+abnormal female genitalia morphology	421	5	3.09	0.0025	0.0082	Mammalian_phenotype	4	Bcl2,Rb1,Tbx3,Cd44,Notch2
+altered susceptibility to infection induced morbidity/mortality	171	3	3.24	0.0025	0.0082	Mammalian_phenotype	3	Gucy2c,Spp1,Cxcl5
+abnormal mammary gland morphology	174	3	3.19	0.0026	0.0083	Mammalian_phenotype	3	Rb1,Tbx3,Cd44
+abnormal female reproductive system morphology	424	5	3.07	0.0026	0.0083	Mammalian_phenotype	3	Bcl2,Rb1,Tbx3,Cd44,Notch2
+abnormal kidney weight	173	3	3.21	0.0026	0.0083	Mammalian_phenotype	5	Bcl2,Plcb1,Cckar
+abnormal apocrine gland morphology	174	3	3.19	0.0026	0.0083	Mammalian_phenotype	4	Rb1,Tbx3,Cd44
+abnormal fluid regulation	744	7	2.96	0.0027	0.0084	Mammalian_phenotype	3	Rb1,Sox2,Tbx3,Cd44,Itpr2,Notch2,Klf4
+abnormal long bone morphology	578	6	3	0.0027	0.0084	Mammalian_phenotype	4	Rb1,Ibsp,Tbx3,Cd44,Ptpre,Plcb1
+abnormal osteoclast morphology	175	3	3.18	0.0027	0.0084	Mammalian_phenotype	4	Spp1,Cd44,Ptpre
+abnormal neutrophil physiology	177	3	3.15	0.0028	0.0085	Mammalian_phenotype	4	Cd44,Cxcl5,Mpp1
+abnormal respiration	592	6	2.94	0.0031	0.0093	Mammalian_phenotype	3	Rb1,Atoh1,Sox2,Cd44,Klf7,Olig3
+abnormal cochlear hair cell morphology	182	3	3.09	0.0031	0.0093	Mammalian_phenotype	6	Rb1,Atoh1,Sox2
+abnormal circulating alkaline phosphatase level	184	3	3.06	0.0032	0.0095	Mammalian_phenotype	6	Rb1,Zfp715,Notch2
+abnormal eye development	304	4	3	0.0032	0.0095	Mammalian_phenotype	3	Rb1,Sox2,Notch2,Klf4
+abnormal limb long bone morphology	441	5	2.96	0.0032	0.0095	Mammalian_phenotype	5	Rb1,Ibsp,Tbx3,Cd44,Ptpre
+abnormal organ of Corti morphology	190	3	2.99	0.0036	0.0098	Mammalian_phenotype	7	Rb1,Atoh1,Sox2
+abnormal hair cell morphology	189	3	3	0.0035	0.0098	Mammalian_phenotype	4	Rb1,Atoh1,Sox2
+microphthalmia	189	3	3	0.0035	0.0098	Mammalian_phenotype	4	Sox2,Notch2,Klf4
+abnormal touch/ nociception	307	4	2.97	0.0034	0.0098	Mammalian_phenotype	2	Rb1,Atoh1,Spp1,Klf7
+neurodegeneration	452	5	2.9	0.0036	0.0098	Mammalian_phenotype	3	Bcl2,Rb1,Atoh1,Sox2,Notch2
+abnormal cochlear sensory epithelium morphology	188	3	3.02	0.0035	0.0098	Mammalian_phenotype	5	Rb1,Atoh1,Sox2
+decreased T cell number	605	6	2.87	0.0035	0.0098	Mammalian_phenotype	9	Bcl2,Rb1,Spp1,Zfp715,Atg3,Taf7
+impaired hearing	187	3	3.03	0.0034	0.0098	Mammalian_phenotype	4	Rb1,Atoh1,Sox2
+increased adenoma incidence	188	3	3.02	0.0035	0.0098	Mammalian_phenotype	6	Bcl2,Rb1,Cd44
+abnormal adenoma incidence	188	3	3.02	0.0035	0.0098	Mammalian_phenotype	5	Bcl2,Rb1,Cd44
+abnormal small intestine morphology	197	3	2.91	0.0041	0.01	Mammalian_phenotype	4	Bcl2,Atoh1,Klf4
+abnormal testis morphology	612	6	2.84	0.0037	0.01	Mammalian_phenotype	5	Rb1,Sox2,Plcb1,Klf4,Nxf3,Zfp42
+abnormal limb bone morphology	463	5	2.83	0.004	0.01	Mammalian_phenotype	3	Rb1,Ibsp,Tbx3,Cd44,Ptpre
+abnormal immune organ physiology	193	3	2.96	0.0038	0.01	Mammalian_phenotype	3	Bcl2,Taf7,Perp
+decreased acute inflammation	195	3	2.93	0.0039	0.01	Mammalian_phenotype	5	Spp1,Cd44,Cxcl5
+decreased double-positive T cell number	197	3	2.91	0.0041	0.01	Mammalian_phenotype	10	Bcl2,Rb1,Taf7
+abnormal glucose tolerance	459	5	2.86	0.0039	0.01	Mammalian_phenotype	4	Gucy2c,Bcl2,Spp1,Abcg2,Ranbp2
+increased hemolymphoid system tumor incidence	314	4	2.92	0.0037	0.01	Mammalian_phenotype	6	Bcl2,Rb1,Cd44,Notch2
+abnormal skin adnexa morphology	968	8	2.77	0.0038	0.01	Mammalian_phenotype	2	Gucy2c,Bcl2,Rb1,Sox2,Tbx3,Cd44,Notch2,Klf4
+abnormal sensitivity to induced morbidity/mortality	462	5	2.84	0.004	0.01	Mammalian_phenotype	3	Rb1,Spp1,Cd44,Cat,Atg3
+abnormal digestive system morphology	997	8	2.68	0.0047	0.011	Mammalian_phenotype	2	Bcl2,Rb1,Atoh1,Sox2,Tbx3,Itpr2,Notch2,Klf4
+uremia	200	3	2.88	0.0043	0.011	Mammalian_phenotype	4	Bcl2,Spp1,Notch2
+increased classified tumor incidence	627	6	2.77	0.0042	0.011	Mammalian_phenotype	5	Bcl2,Rb1,Cd44,Notch2,Ranbp2,Perp
+abnormal cilium morphology	198	3	2.9	0.0042	0.011	Mammalian_phenotype	3	Sox2,Nxf3,Zfp42
+abnormal classified tumor incidence	634	6	2.74	0.0045	0.011	Mammalian_phenotype	4	Bcl2,Rb1,Cd44,Notch2,Ranbp2,Perp
+small thymus	332	4	2.78	0.0047	0.012	Mammalian_phenotype	6	Bcl2,Rb1,Atg3,Taf7
+abnormal hippocampus morphology	339	4	2.73	0.0051	0.012	Mammalian_phenotype	6	Sox2,Klf7,Plcb1,Olig3
+abnormal CD4-positive, alpha beta T cell morphology	479	5	2.74	0.0048	0.012	Mammalian_phenotype	9	Bcl2,Cd44,Zfp715,Atg3,Taf7
+abnormal neuron number	480	5	2.74	0.0048	0.012	Mammalian_phenotype	4	Bcl2,Rb1,Atoh1,Sox2,Spp1
+abnormal temporal lobe morphology	345	4	2.69	0.0055	0.013	Mammalian_phenotype	7	Sox2,Klf7,Plcb1,Olig3
+abnormal mechanoreceptor morphology	212	3	2.75	0.0053	0.013	Mammalian_phenotype	5	Rb1,Atoh1,Sox2
+abnormal heart rate	212	3	2.75	0.0053	0.013	Mammalian_phenotype	4	Rb1,Spp1,Tbx3
+abnormal eye size	213	3	2.74	0.0054	0.013	Mammalian_phenotype	3	Sox2,Notch2,Klf4
+abnormal scala media morphology	215	3	2.72	0.0056	0.013	Mammalian_phenotype	5	Rb1,Atoh1,Sox2
+abnormal cochlear labyrinth morphology	216	3	2.71	0.0057	0.013	Mammalian_phenotype	5	Rb1,Atoh1,Sox2
+abnormal testis size	497	5	2.65	0.0057	0.013	Mammalian_phenotype	7	Rb1,Sox2,Plcb1,Nxf3,Zfp42
+abnormal skin physiology	342	4	2.71	0.0053	0.013	Mammalian_phenotype	2	Cd44,Klf4,Abcg2,Perp
+abnormal skin condition	355	4	2.62	0.0062	0.014	Mammalian_phenotype	3	Rb1,Notch2,Abcg2,Perp
+abnormal epidermal layer morphology	362	4	2.58	0.0068	0.014	Mammalian_phenotype	3	Rb1,Cd44,Notch2,Klf4
+increased susceptibility to infection	514	5	2.56	0.0067	0.014	Mammalian_phenotype	5	Rb1,Spp1,Cd44,Notch2,Cxcl15
+oligozoospermia	222	3	2.65	0.0062	0.014	Mammalian_phenotype	5	Sox2,Nxf3,Zfp42
+abnormal hindlimb zeugopod morphology	220	3	2.67	0.006	0.014	Mammalian_phenotype	4	Tbx3,Cd44,Ptpre
+abnormal wound healing	219	3	2.68	0.006	0.014	Mammalian_phenotype	3	Spp1,Cd44,Klf4
+abnormal T cell proliferation	357	4	2.61	0.0064	0.014	Mammalian_phenotype	8	Rb1,Cd44,Atg3,Taf7
+abnormal anterior eye segment morphology	515	5	2.56	0.0068	0.014	Mammalian_phenotype	3	Rb1,Sox2,Zfp715,Notch2,Klf4
+increased sensitivity to induced morbidity/mortality	354	4	2.63	0.0062	0.014	Mammalian_phenotype	4	Rb1,Spp1,Cd44,Atg3
+abnormal alpha-beta T cell morphology	674	6	2.57	0.0063	0.014	Mammalian_phenotype	8	Bcl2,Rb1,Cd44,Zfp715,Atg3,Taf7
+abnormal male reproductive gland morphology	676	6	2.57	0.0064	0.014	Mammalian_phenotype	4	Rb1,Sox2,Plcb1,Klf4,Nxf3,Zfp42
+abnormal cochlea morphology	231	3	2.56	0.0072	0.015	Mammalian_phenotype	4	Rb1,Atoh1,Sox2
+abnormal mouth morphology	526	5	2.5	0.0075	0.015	Mammalian_phenotype	4	Rb1,Sox2,Tbx3,Notch2,Klf4
+abnormal cranial nerve morphology	234	3	2.53	0.0075	0.015	Mammalian_phenotype	4	Bcl2,Sox2,Klf7
+abnormal skeleton physiology	698	6	2.48	0.0076	0.015	Mammalian_phenotype	2	Rb1,Spp1,Ibsp,Mepe,Cd44,Ptpre
+abnormal reflex	685	6	2.53	0.0069	0.015	Mammalian_phenotype	4	Rb1,Atoh1,Sox2,Spp1,Klf7,Plcb1
+abnormal kidney size	364	4	2.56	0.0069	0.015	Mammalian_phenotype	4	Bcl2,Plcb1,Notch2,Cckar
+abnormal CD8-positive, alpha beta T cell morphology	367	4	2.54	0.0072	0.015	Mammalian_phenotype	9	Bcl2,Cd44,Atg3,Taf7
+abnormal circulating protein level	873	7	2.49	0.0072	0.015	Mammalian_phenotype	4	Rb1,Spp1,Cd44,Klf7,Zfp715,Notch2,Cxcl5
+decreased CD8-positive, alpha-beta T cell number	230	3	2.57	0.0071	0.015	Mammalian_phenotype	11	Bcl2,Atg3,Taf7
+abnormal tumor necrosis factor secretion	230	3	2.57	0.0071	0.015	Mammalian_phenotype	5	Spp1,Cd44,Cxcl5
+abnormal internal male genitalia morphology	692	6	2.5	0.0073	0.015	Mammalian_phenotype	5	Rb1,Sox2,Plcb1,Klf4,Nxf3,Zfp42
+increased cell proliferation	237	3	2.51	0.0078	0.016	Mammalian_phenotype	4	Bcl2,Rb1,Klf4
+abnormal hair follicle morphology	239	3	2.49	0.0081	0.016	Mammalian_phenotype	3	Bcl2,Notch2,Klf4
+abnormal head morphology	887	7	2.44	0.0079	0.016	Mammalian_phenotype	2	Bcl2,Rb1,Sox2,Tbx3,Notch2,Klf4,Cckar
+abnormal male reproductive system morphology	708	6	2.44	0.0082	0.016	Mammalian_phenotype	3	Rb1,Sox2,Plcb1,Klf4,Nxf3,Zfp42
+abnormal double-positive T cell morphology	240	3	2.48	0.0082	0.016	Mammalian_phenotype	9	Bcl2,Rb1,Taf7
+abnormal phagocyte morphology	707	6	2.44	0.0081	0.016	Mammalian_phenotype	6	Rb1,Spp1,Cd44,Ptpre,Cxcl5,Cxcl15
+abnormal circulating interleukin level	240	3	2.48	0.0082	0.016	Mammalian_phenotype	7	Spp1,Cd44,Cxcl5
+abnormal male genitalia morphology	708	6	2.44	0.0082	0.016	Mammalian_phenotype	4	Rb1,Sox2,Plcb1,Klf4,Nxf3,Zfp42
+respiratory distress	246	3	2.43	0.0089	0.017	Mammalian_phenotype	6	Rb1,Sox2,Cd44
+abnormal coat/hair pigmentation	247	3	2.42	0.009	0.017	Mammalian_phenotype	2	Bcl2,Sox2,Notch2
+abnormal limbic system morphology	386	4	2.43	0.0088	0.017	Mammalian_phenotype	5	Sox2,Klf7,Plcb1,Olig3
+decreased lymphocyte cell number	909	7	2.37	0.0091	0.017	Mammalian_phenotype	7	Bcl2,Rb1,Spp1,Zfp715,Notch2,Atg3,Taf7
+abnormal membranous labyrinth morphology	255	3	2.35	0.01	0.018	Mammalian_phenotype	4	Rb1,Atoh1,Sox2
+abnormal hindlimb morphology	397	4	2.36	0.0099	0.018	Mammalian_phenotype	3	Ibsp,Tbx3,Cd44,Ptpre
+abnormal triploblastic development	251	3	2.38	0.0096	0.018	Mammalian_phenotype	4	Sox2,Tbx3,Serpinb5
+abnormal T cell activation	391	4	2.4	0.0093	0.018	Mammalian_phenotype	7	Rb1,Cd44,Atg3,Taf7
+abnormal thymus size	393	4	2.38	0.0095	0.018	Mammalian_phenotype	5	Bcl2,Rb1,Atg3,Taf7
+abnormal bone ossification	393	4	2.38	0.0095	0.018	Mammalian_phenotype	3	Rb1,Spp1,Ibsp,Mepe
+abnormal induced cell death	250	3	2.39	0.0094	0.018	Mammalian_phenotype	4	Spp1,Cd44,Perp
+abnormal appendicular skeleton morphology	731	6	2.35	0.0097	0.018	Mammalian_phenotype	3	Rb1,Ibsp,Tbx3,Cd44,Ptpre,Plcb1
+complete embryonic lethality	394	4	2.38	0.0096	0.018	Mammalian_phenotype	6	Rb1,Tbx3,Ranbp2,Taf7
+abnormal eating behavior	570	5	2.3	0.011	0.02	Mammalian_phenotype	4	Gucy2c,Klf7,Itpr2,Klf4,Cckar
+abnormal granulocyte physiology	262	3	2.29	0.011	0.02	Mammalian_phenotype	5	Cd44,Cxcl5,Mpp1
+abnormal renal tubule morphology	264	3	2.28	0.011	0.02	Mammalian_phenotype	5	Bcl2,Spp1,Notch2
+abnormal cardiac muscle contractility	263	3	2.29	0.011	0.02	Mammalian_phenotype	3	Rb1,Spp1,Tbx3
+abnormal heartbeat	264	3	2.28	0.011	0.02	Mammalian_phenotype	3	Rb1,Spp1,Tbx3
+increased lymphoma incidence	261	3	2.3	0.011	0.02	Mammalian_phenotype	6	Bcl2,Rb1,Cd44
+abnormal brain development	764	6	2.23	0.012	0.021	Mammalian_phenotype	4	Rb1,Atoh1,Sox2,Cckar,Prok2,Olig3
+weight loss	416	4	2.25	0.012	0.021	Mammalian_phenotype	6	Bcl2,Rb1,Cd44,Itpr2
+decreased inflammatory response	268	3	2.25	0.012	0.021	Mammalian_phenotype	4	Spp1,Cd44,Cxcl5
+reduced male fertility	267	3	2.26	0.012	0.021	Mammalian_phenotype	4	Sox2,Tbx3,Plcb1
+abnormal cerebrum morphology	585	5	2.23	0.012	0.021	Mammalian_phenotype	6	Rb1,Sox2,Klf7,Plcb1,Olig3
+abnormal hepatobiliary system physiology	425	4	2.2	0.013	0.022	Mammalian_phenotype	2	Cd44,Notch2,Abcg2,Cckar
+decreased susceptibility to infection	274	3	2.2	0.013	0.022	Mammalian_phenotype	5	Gucy2c,Spp1,Cxcl5
+abnormal food intake	425	4	2.2	0.013	0.022	Mammalian_phenotype	5	Gucy2c,Klf7,Itpr2,Cckar
+increased apoptosis	771	6	2.21	0.013	0.022	Mammalian_phenotype	5	Bcl2,Rb1,Sox2,Cd44,Notch2,Atg3
+decreased neuron number	428	4	2.19	0.013	0.022	Mammalian_phenotype	5	Bcl2,Rb1,Atoh1,Sox2
+increased cell death	775	6	2.19	0.013	0.022	Mammalian_phenotype	4	Bcl2,Rb1,Sox2,Cd44,Notch2,Atg3
+altered susceptibility to bacterial infection	426	4	2.2	0.013	0.022	Mammalian_phenotype	5	Gucy2c,Spp1,Cxcl5,Cxcl15
+abnormal macrophage morphology	433	4	2.16	0.014	0.023	Mammalian_phenotype	5	Rb1,Spp1,Cd44,Ptpre
+abnormal cell cycle	282	3	2.14	0.014	0.023	Mammalian_phenotype	3	Rb1,Notch2,Ranbp2
+abnormal cholesterol homeostasis	602	5	2.16	0.014	0.023	Mammalian_phenotype	4	Bcl2,Spp1,Cd44,Cat,Cckar
+abnormal interleukin level	281	3	2.15	0.014	0.023	Mammalian_phenotype	6	Spp1,Cd44,Cxcl5
+abnormal inner ear morphology	284	3	2.13	0.015	0.024	Mammalian_phenotype	3	Rb1,Atoh1,Sox2
+abnormal triglyceride level	439	4	2.13	0.015	0.024	Mammalian_phenotype	5	Gucy2c,Bcl2,Spp1,Cat
+abnormal CNS glial cell morphology	288	3	2.1	0.015	0.024	Mammalian_phenotype	4	Rb1,Sox2,Spp1
+abnormal respiratory system morphology	798	6	2.12	0.015	0.024	Mammalian_phenotype	2	Bcl2,Rb1,Sox2,Spp1,Notch2,Cckar
+abnormal T cell differentiation	443	4	2.11	0.015	0.024	Mammalian_phenotype	8	Bcl2,Rb1,Notch2,Taf7
+abnormal testis weight	285	3	2.12	0.015	0.024	Mammalian_phenotype	8	Rb1,Plcb1,Nxf3
+abnormal protein level	985	7	2.14	0.014	0.024	Mammalian_phenotype	3	Rb1,Spp1,Cd44,Klf7,Zfp715,Notch2,Cxcl5
+abnormal neutrophil cell number	286	3	2.12	0.015	0.024	Mammalian_phenotype	8	Spp1,Cxcl5,Cxcl15
+abnormal pericardium morphology	293	3	2.07	0.016	0.025	Mammalian_phenotype	4	Rb1,Tbx3,Notch2
+decreased germ cell number	454	4	2.05	0.017	0.026	Mammalian_phenotype	5	Bcl2,Sox2,Nxf3,Zfp42
+abnormal effector T cell morphology	629	5	2.05	0.017	0.026	Mammalian_phenotype	8	Bcl2,Cd44,Zfp715,Atg3,Taf7
+decreased length of long bones	298	3	2.03	0.017	0.026	Mammalian_phenotype	5	Rb1,Ibsp,Cd44
+impaired glucose tolerance	295	3	2.05	0.016	0.026	Mammalian_phenotype	5	Gucy2c,Abcg2,Ranbp2
+abnormal T cell number	812	6	2.07	0.017	0.026	Mammalian_phenotype	8	Bcl2,Rb1,Spp1,Zfp715,Atg3,Taf7
+abnormal physiological response to xenobiotic	622	5	2.08	0.016	0.026	Mammalian_phenotype	2	Spp1,Cat,Klf4,Abcg2,Ranbp2
+small testis	458	4	2.04	0.018	0.027	Mammalian_phenotype	6	Rb1,Sox2,Nxf3,Zfp42
+abnormal lens morphology	300	3	2.02	0.017	0.027	Mammalian_phenotype	4	Rb1,Sox2,Klf4
+abnormal ear morphology	457	4	2.04	0.017	0.027	Mammalian_phenotype	2	Bcl2,Rb1,Atoh1,Sox2
+abnormal kidney physiology	460	4	2.03	0.018	0.027	Mammalian_phenotype	3	Bcl2,Spp1,Cd44,Notch2
+abnormal neutrophil morphology	301	3	2.01	0.018	0.027	Mammalian_phenotype	7	Spp1,Cxcl5,Cxcl15
+abnormal gametes	469	4	1.98	0.019	0.028	Mammalian_phenotype	5	Bcl2,Sox2,Nxf3,Zfp42
+increased carcinoma incidence	307	3	1.97	0.019	0.028	Mammalian_phenotype	7	Rb1,Ranbp2,Perp
+abnormal eye physiology	465	4	2	0.019	0.028	Mammalian_phenotype	2	Rb1,Sox2,Klf4,Ranbp2
+complete postnatal lethality	640	5	2.01	0.018	0.028	Mammalian_phenotype	6	Rb1,Atoh1,Spp1,Klf7,Perp
+partial preweaning lethality	307	3	1.97	0.019	0.028	Mammalian_phenotype	4	Rb1,Tbx3,Klf8
+abnormal intestine morphology	471	4	1.97	0.02	0.029	Mammalian_phenotype	3	Bcl2,Rb1,Atoh1,Klf4
+abnormal pancreas morphology	312	3	1.94	0.02	0.029	Mammalian_phenotype	3	Itpr2,Notch2,Cckar
+partial embryonic lethality during organogenesis	313	3	1.94	0.02	0.029	Mammalian_phenotype	7	Rb1,Tbx3,Klf8
+abnormal granulocyte number	470	4	1.98	0.019	0.029	Mammalian_phenotype	5	Spp1,Cd44,Cxcl5,Cxcl15
+pigmentation phenotype	477	4	1.94	0.021	0.03	Mammalian_phenotype	1	Bcl2,Rb1,Sox2,Notch2
+internal hemorrhage	316	3	1.92	0.021	0.03	Mammalian_phenotype	5	Rb1,Spp1,Notch2
+edema	479	4	1.94	0.021	0.03	Mammalian_phenotype	4	Rb1,Sox2,Tbx3,Notch2
+abnormal hair growth	319	3	1.9	0.021	0.03	Mammalian_phenotype	5	Sox2,Notch2,Klf4
+abnormal involuntary movement	853	6	1.94	0.021	0.03	Mammalian_phenotype	4	Rb1,Atoh1,Sox2,Spp1,Klf7,Plcb1
+increased T cell number	483	4	1.92	0.022	0.03	Mammalian_phenotype	9	Bcl2,Spp1,Zfp715,Taf7
+abnormal myeloid leukocyte morphology	849	6	1.95	0.021	0.03	Mammalian_phenotype	5	Rb1,Spp1,Cd44,Ptpre,Cxcl5,Cxcl15
+abnormal intestine physiology	315	3	1.92	0.02	0.03	Mammalian_phenotype	3	Rb1,Atoh1,Cd44
+abnormal circulating cytokine level	316	3	1.92	0.021	0.03	Mammalian_phenotype	5	Spp1,Cd44,Cxcl5
+abnormal sensory capabilities/reflexes/nociception	857	6	1.93	0.022	0.031	Mammalian_phenotype	3	Rb1,Atoh1,Sox2,Spp1,Klf7,Plcb1
+decreased alpha-beta T cell number	325	3	1.86	0.023	0.032	Mammalian_phenotype	10	Bcl2,Atg3,Taf7
+abnormal consumption behavior	679	5	1.87	0.024	0.033	Mammalian_phenotype	3	Gucy2c,Klf7,Itpr2,Klf4,Cckar
+abnormal interleukin secretion	494	4	1.87	0.023	0.033	Mammalian_phenotype	5	Spp1,Cd44,Notch2,Cxcl5
+abnormal artery morphology	503	4	1.83	0.025	0.034	Mammalian_phenotype	4	Bcl2,Spp1,Cd44,Notch2
+abnormal granulocyte morphology	502	4	1.83	0.025	0.034	Mammalian_phenotype	5	Spp1,Cd44,Cxcl5,Cxcl15
+abnormal CD8-positive, alpha-beta T cell number	335	3	1.8	0.025	0.034	Mammalian_phenotype	10	Bcl2,Atg3,Taf7
+abnormal alpha-beta T cell number	501	4	1.84	0.025	0.034	Mammalian_phenotype	9	Bcl2,Zfp715,Atg3,Taf7
+small gonad	504	4	1.82	0.025	0.035	Mammalian_phenotype	5	Rb1,Sox2,Nxf3,Zfp42
+abnormal respiratory system physiology	886	6	1.84	0.026	0.035	Mammalian_phenotype	2	Rb1,Atoh1,Sox2,Cd44,Klf7,Olig3
+abnormal acute inflammation	338	3	1.78	0.026	0.035	Mammalian_phenotype	4	Spp1,Cd44,Cxcl5
+abnormal male reproductive system physiology	885	6	1.84	0.026	0.035	Mammalian_phenotype	3	Rb1,Sox2,Tbx3,Plcb1,Klf4,Nxf3
+abnormal posterior eye segment morphology	689	5	1.83	0.026	0.035	Mammalian_phenotype	3	Bcl2,Rb1,Sox2,Zfp715,Notch2
+abnormal endocrine gland morphology	895	6	1.81	0.027	0.036	Mammalian_phenotype	3	Bcl2,Rb1,Sox2,Notch2,Atg3,Taf7
+abnormal vascular development	519	4	1.76	0.028	0.038	Mammalian_phenotype	4	Rb1,Spp1,Tbx3,Cd44
+abnormal hindbrain morphology	518	4	1.76	0.028	0.038	Mammalian_phenotype	4	Bcl2,Rb1,Atoh1,Olig3
+abnormal muscle physiology	907	6	1.78	0.029	0.038	Mammalian_phenotype	2	Bcl2,Rb1,Sox2,Spp1,Tbx3,Cd44
+abnormal primary sex determination	520	4	1.75	0.029	0.038	Mammalian_phenotype	4	Rb1,Sox2,Nxf3,Zfp42
+abnormal developmental patterning	524	4	1.74	0.029	0.039	Mammalian_phenotype	3	Sox2,Tbx3,Notch2,Serpinb5
+embryonic growth retardation	525	4	1.73	0.03	0.039	Mammalian_phenotype	3	Rb1,Tbx3,Notch2,Klf8
+abnormal hearing physiology	357	3	1.68	0.031	0.04	Mammalian_phenotype	3	Rb1,Atoh1,Sox2
+abnormal thymus morphology	533	4	1.7	0.031	0.041	Mammalian_phenotype	3	Bcl2,Rb1,Atg3,Taf7
+abnormal cartilage morphology	371	3	1.6	0.035	0.044	Mammalian_phenotype	3	Rb1,Sox2,Cd44
+abnormal gametogenesis	742	5	1.65	0.035	0.044	Mammalian_phenotype	3	Bcl2,Rb1,Sox2,Nxf3,Zfp42
+abnormal skin morphology	941	6	1.68	0.034	0.044	Mammalian_phenotype	2	Rb1,Cd44,Notch2,Klf4,Abcg2,Perp
+abnormal cardiovascular development	735	5	1.68	0.034	0.044	Mammalian_phenotype	3	Rb1,Spp1,Tbx3,Cd44,Notch2
+abnormal physical strength	373	3	1.59	0.035	0.044	Mammalian_phenotype	4	Spp1,Cd44,Zfp715
+abnormal response to injury	547	4	1.64	0.034	0.044	Mammalian_phenotype	2	Spp1,Cd44,Tnni3k,Klf4
+abnormal muscle contractility	373	3	1.59	0.035	0.044	Mammalian_phenotype	3	Rb1,Spp1,Tbx3
+abnormal professional antigen presenting cell morphology	941	6	1.68	0.034	0.044	Mammalian_phenotype	4	Bcl2,Rb1,Spp1,Cd44,Ptpre,Notch2
+abnormal endocrine gland physiology	369	3	1.61	0.034	0.044	Mammalian_phenotype	3	Bcl2,Taf7,Perp
+increased malignant tumor incidence	380	3	1.56	0.037	0.047	Mammalian_phenotype	6	Rb1,Ranbp2,Perp
+abnormal sex determination	560	4	1.59	0.038	0.047	Mammalian_phenotype	3	Rb1,Sox2,Nxf3,Zfp42
+abnormal glial cell morphology	379	3	1.56	0.037	0.047	Mammalian_phenotype	3	Rb1,Sox2,Spp1
+abnormal mononuclear phagocyte morphology	562	4	1.59	0.038	0.047	Mammalian_phenotype	6	Rb1,Spp1,Cd44,Ptpre
+abnormal liver physiology	388	3	1.52	0.04	0.049	Mammalian_phenotype	3	Cd44,Notch2,Abcg2
+abnormal sperm number	388	3	1.52	0.04	0.049	Mammalian_phenotype	4	Sox2,Nxf3,Zfp42
+abnormal bone structure	761	5	1.59	0.039	0.049	Mammalian_phenotype	3	Spp1,Ibsp,Mepe,Cd44,Ptpre
+abnormal hormone level	975	6	1.59	0.04	0.049	Mammalian_phenotype	3	Gucy2c,Bcl2,Sox2,Spp1,Klf4,Frk
+abnormal heart size	569	4	1.56	0.04	0.049	Mammalian_phenotype	4	Gucy2c,Rb1,Spp1,Notch2
+partial neonatal lethality	390	3	1.51	0.04	0.049	Mammalian_phenotype	7	Rb1,Cd44,Notch2
+abnormal lymph organ size	976	6	1.58	0.041	0.05	Mammalian_phenotype	4	Bcl2,Rb1,Spp1,Notch2,Atg3,Taf7
+abnormal limb morphology	782	5	1.53	0.044	0.053	Mammalian_phenotype	2	Rb1,Ibsp,Tbx3,Cd44,Ptpre
+abnormal ear physiology	402	3	1.45	0.044	0.053	Mammalian_phenotype	2	Rb1,Atoh1,Sox2
+decreased male germ cell number	400	3	1.46	0.044	0.053	Mammalian_phenotype	6	Sox2,Nxf3,Zfp42
+abnormal CD4-positive, alpha beta T cell number	401	3	1.46	0.044	0.053	Mammalian_phenotype	10	Zfp715,Atg3,Taf7
+abnormal blood vessel physiology	405	3	1.44	0.045	0.054	Mammalian_phenotype	3	Bcl2,Spp1,Cd44
+abnormal liver morphology	998	6	1.53	0.045	0.054	Mammalian_phenotype	3	Gucy2c,Rb1,Spp1,Tbx3,Notch2,Abcg2
+abnormal placenta morphology	403	3	1.45	0.045	0.054	Mammalian_phenotype	4	Rb1,Sox2,Notch2
+partial postnatal lethality	786	5	1.51	0.045	0.054	Mammalian_phenotype	6	Bcl2,Rb1,Sox2,Tbx3,Notch2
+abnormal lung morphology	598	4	1.45	0.048	0.056	Mammalian_phenotype	3	Rb1,Sox2,Spp1,Notch2
+prenatal growth retardation	597	4	1.46	0.047	0.056	Mammalian_phenotype	3	Rb1,Tbx3,Notch2,Klf8
+abnormal spermatogenesis	602	4	1.44	0.049	0.057	Mammalian_phenotype	4	Rb1,Sox2,Nxf3,Zfp42
+abnormal retinal layer morphology	415	3	1.39	0.049	0.057	Mammalian_phenotype	6	Bcl2,Rb1,Sox2
+abnormal germ cell morphology	609	4	1.41	0.051	0.059	Mammalian_phenotype	4	Bcl2,Sox2,Nxf3,Zfp42
+abnormal cytokine level	418	3	1.38	0.05	0.059	Mammalian_phenotype	4	Spp1,Cd44,Cxcl5
+abnormal coat appearance	612	4	1.4	0.052	0.06	Mammalian_phenotype	4	Bcl2,Sox2,Notch2,Klf4
+abnormal heart ventricle morphology	619	4	1.38	0.054	0.062	Mammalian_phenotype	4	Rb1,Spp1,Tbx3,Notch2
+abnormal intercellular signaling peptide or protein level	428	3	1.33	0.054	0.062	Mammalian_phenotype	4	Spp1,Cd44,Cxcl5
+abnormal retina morphology	624	4	1.36	0.055	0.064	Mammalian_phenotype	5	Bcl2,Rb1,Sox2,Zfp715
+abnormal ocular fundus morphology	630	4	1.34	0.057	0.066	Mammalian_phenotype	4	Bcl2,Rb1,Sox2,Zfp715
+abnormal coat/ hair morphology	638	4	1.31	0.06	0.069	Mammalian_phenotype	3	Bcl2,Sox2,Notch2,Klf4
+abnormal circulating enzyme level	446	3	1.26	0.061	0.069	Mammalian_phenotype	4	Rb1,Zfp715,Notch2
+hearing/vestibular/ear phenotype	640	4	1.31	0.061	0.069	Mammalian_phenotype	1	Bcl2,Rb1,Atoh1,Sox2
+complete preweaning lethality	445	3	1.26	0.06	0.069	Mammalian_phenotype	4	Klf7,Ranbp2,Atg3
+abnormal circulating insulin level	450	3	1.24	0.062	0.071	Mammalian_phenotype	4	Gucy2c,Bcl2,Spp1
+abnormal synaptic transmission	650	4	1.27	0.064	0.072	Mammalian_phenotype	3	Cd44,Ptpre,Plcb1,Grik3
+abnormal gastrulation	455	3	1.22	0.064	0.073	Mammalian_phenotype	4	Sox2,Tbx3,Serpinb5
+abnormal circulating hormone level	864	5	1.29	0.065	0.073	Mammalian_phenotype	4	Gucy2c,Bcl2,Spp1,Klf4,Frk
+abnormal lymphopoiesis	658	4	1.25	0.067	0.075	Mammalian_phenotype	7	Bcl2,Rb1,Notch2,Taf7
+abnormal metencephalon morphology	465	3	1.18	0.069	0.076	Mammalian_phenotype	5	Bcl2,Rb1,Atoh1
+abnormal kidney morphology	874	5	1.26	0.068	0.076	Mammalian_phenotype	3	Bcl2,Spp1,Plcb1,Notch2,Cckar
+abnormal cytokine secretion	671	4	1.21	0.071	0.079	Mammalian_phenotype	4	Spp1,Cd44,Notch2,Cxcl5
+decreased cell proliferation	476	3	1.14	0.074	0.081	Mammalian_phenotype	4	Cd44,Notch2,Serpinb5
+abnormal extraembryonic tissue morphology	688	4	1.15	0.078	0.086	Mammalian_phenotype	3	Rb1,Sox2,Tbx3,Notch2
+abnormal skin appearance	488	3	1.09	0.079	0.087	Mammalian_phenotype	3	Rb1,Notch2,Klf4
+increased lymphocyte cell number	705	4	1.1	0.084	0.092	Mammalian_phenotype	7	Bcl2,Spp1,Zfp715,Taf7
+abnormal renal/urinary system morphology	929	5	1.12	0.086	0.094	Mammalian_phenotype	2	Bcl2,Spp1,Plcb1,Notch2,Cckar
+abnormal nephron morphology	508	3	1.02	0.089	0.097	Mammalian_phenotype	4	Bcl2,Spp1,Notch2
+abnormal female reproductive system physiology	719	4	1.06	0.09	0.098	Mammalian_phenotype	3	Rb1,Tbx3,Plcb1,Notch2
+enlarged spleen	519	3	0.98	0.094	0.1	Mammalian_phenotype	6	Bcl2,Spp1,Notch2
+postnatal growth retardation	959	5	1.04	0.097	0.1	Mammalian_phenotype	4	Bcl2,Rb1,Plcb1,Itpr2,Notch2
+abnormal enzyme/coenzyme level	522	3	0.97	0.096	0.1	Mammalian_phenotype	3	Rb1,Zfp715,Notch2
+abnormal renal/urinary system physiology	736	4	1.01	0.097	0.1	Mammalian_phenotype	2	Bcl2,Spp1,Cd44,Notch2
+abnormal definitive hematopoiesis	981	5	0.991	0.11	0.11	Mammalian_phenotype	6	Bcl2,Rb1,Cd44,Notch2,Taf7
+abnormal spleen size	752	4	0.967	0.1	0.11	Mammalian_phenotype	5	Bcl2,Spp1,Notch2,Atg3
+abnormal leukopoiesis	758	4	0.95	0.11	0.11	Mammalian_phenotype	4	Bcl2,Rb1,Notch2,Taf7
+abnormal male germ cell morphology	530	3	0.942	0.1	0.11	Mammalian_phenotype	5	Sox2,Nxf3,Zfp42
+abnormal bone marrow cell morphology/development	547	3	0.885	0.11	0.12	Mammalian_phenotype	3	Rb1,Spp1,Abcg2
+hemorrhage	567	3	0.82	0.12	0.13	Mammalian_phenotype	4	Rb1,Spp1,Notch2
+abnormal CNS synaptic transmission	566	3	0.823	0.12	0.13	Mammalian_phenotype	4	Cd44,Plcb1,Grik3
+abnormal cholesterol level	595	3	0.733	0.14	0.14	Mammalian_phenotype	5	Spp1,Cd44,Cat
+abnormal sterol level	610	3	0.688	0.15	0.15	Mammalian_phenotype	5	Spp1,Cd44,Cat
+reduced fertility	624	3	0.647	0.15	0.16	Mammalian_phenotype	4	Sox2,Tbx3,Plcb1
+abnormal embryonic growth/weight/body size	877	4	0.645	0.17	0.17	Mammalian_phenotype	3	Rb1,Tbx3,Notch2,Klf8
+abnormal locomotor coordination	645	3	0.588	0.17	0.17	Mammalian_phenotype	6	Rb1,Atoh1,Sox2
+abnormal circulating glucose level	673	3	0.512	0.19	0.19	Mammalian_phenotype	4	Bcl2,Spp1,Itpr2
+abnormal metabolism	668	3	0.525	0.18	0.19	Mammalian_phenotype	2	Bcl2,Rb1,Cat
+embryonic lethality during organogenesis	926	4	0.532	0.2	0.2	Mammalian_phenotype	6	Rb1,Tbx3,Notch2,Klf8
+abnormal blood circulation	693	3	0.459	0.2	0.21	Mammalian_phenotype	3	Rb1,Spp1,Notch2
+abnormal erythrocyte morphology	696	3	0.451	0.2	0.21	Mammalian_phenotype	5	Rb1,Spp1,Zfp715
+abnormal spleen morphology	968	4	0.439	0.22	0.23	Mammalian_phenotype	3	Bcl2,Spp1,Notch2,Atg3
+complete embryonic lethality during organogenesis	737	3	0.349	0.23	0.24	Mammalian_phenotype	7	Rb1,Tbx3,Notch2
+abnormal vertebral column morphology	754	3	0.308	0.24	0.25	Mammalian_phenotype	4	Rb1,Klf7,Plcb1
+abnormal erythroid lineage cell morphology	755	3	0.305	0.25	0.25	Mammalian_phenotype	5	Rb1,Spp1,Zfp715
+abnormal motor coordination/ balance	804	3	0.192	0.28	0.29	Mammalian_phenotype	4	Rb1,Sox2,Cd44
+abnormal adipose tissue morphology	898	3	-0.00708	0.36	0.36	Mammalian_phenotype	2	Gucy2c,Bcl2,Rb1
+adipose tissue phenotype	913	3	-0.0371	0.37	0.37	Mammalian_phenotype	1	Gucy2c,Bcl2,Rb1
+abnormal embryonic tissue morphology	947	3	-0.104	0.39	0.39	Mammalian_phenotype	3	Sox2,Tbx3,Serpinb5
+abnormal muscle morphology	950	3	-0.109	0.4	0.4	Mammalian_phenotype	2	Bcl2,Rb1,Notch2
